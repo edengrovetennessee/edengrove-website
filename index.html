@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Eden Grove</title>
+<meta name="description" content="Eden Grove — Middle Tennessee.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&family=Montserrat:wght@500&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   EDEN GROVE — holding page
+   Same two colours as the internal shell: Plaster ground, Canopy ink.
+   The deboss is two hairlines — light on the lower lip, shadow on the upper.
+   No texture, no gradient, nothing pretending to be a material.
+   ========================================================================== */
+:root{
+  --plaster:#CDC4BB;
+  --canopy:#242A1D;
+  --ink-2:#3c4432;                      /* 5.91:1 on Plaster — safe for small text */
+  --hi:rgba(250,246,239,.62);           /* the lit lower lip */
+  --deboss:0 1px 0 var(--hi), 0 -1px 0 rgba(36,42,29,.13);
+  --deboss-soft:0 1px 0 rgba(250,246,239,.45);
+  --display:"Quattrocento",Georgia,serif;
+  --label:"Montserrat",system-ui,sans-serif;
+}
+*,*::before,*::after{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  background:var(--plaster);
+  color:var(--canopy);
+  font-family:var(--label);
+  -webkit-font-smoothing:antialiased;
+  display:grid;
+  place-items:center;
+  min-height:100svh;
+}
+
+/* ---- the mark ---- */
+.wordmark{
+  font-family:var(--display);
+  font-weight:400;
+  text-transform:uppercase;
+  line-height:1;
+  letter-spacing:.2em;
+  text-indent:.2em;                     /* balances the trailing letterspace */
+  font-size:clamp(1.7rem,1rem + 4.2vw,4rem);
+  text-shadow:var(--deboss);
+  opacity:0;
+  animation:markIn 2.6s cubic-bezier(.25,.6,.25,1) forwards;
+}
+@keyframes markIn{
+  from{opacity:0;letter-spacing:.42em}
+  to  {opacity:1;letter-spacing:.2em}
+}
+
+/* ---- dashboard link ---- */
+.dash{
+  position:fixed;
+  top:clamp(1.1rem,2.5vw,1.9rem);
+  right:clamp(1.1rem,3vw,2.4rem);
+  font-family:var(--label);
+  font-weight:500;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-size:.65rem;
+  color:var(--ink-2);
+  text-decoration:none;
+  text-shadow:var(--deboss-soft);
+  padding:.4rem 0;
+  border-bottom:1px solid transparent;
+  opacity:0;
+  animation:fadeIn 1.2s ease 1.6s forwards;
+}
+.dash:hover,.dash:focus-visible{color:var(--canopy);border-bottom-color:var(--canopy)}
+.dash:focus-visible{outline:2px solid var(--canopy);outline-offset:6px}
+@keyframes fadeIn{to{opacity:1}}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important}
+  .wordmark,.dash{opacity:1}
+}
+/* forced-colors strips the impression rather than fighting the user's palette */
+@media (forced-colors:active){
+  *{text-shadow:none!important}
+}
+</style>
+</head>
+<body>
+
+<!-- The only editable line on this page. Points at the gated dashboard. -->
+<a class="dash" href="https://dashboard.edengrovetennessee.com">Company dashboard</a>
+
+<h1 class="wordmark">Eden&nbsp;Grove</h1>
+
+</body>
+</html>
