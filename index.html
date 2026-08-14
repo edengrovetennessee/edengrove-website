@@ -254,7 +254,74 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
   .tile{aspect-ratio:3/2}
 }
 
-/* ========================= 3 · FEATURED PROPERTIES =========================
+/* ============================ 3 · TESTIMONIALS ============================
+   The one light band on the page. Everything either side is ink, so this reads
+   as a held breath between the tiles and the properties — and it is the only
+   place on the site where a person speaks, which is worth the change of ground. */
+.says{
+  background:var(--paper);color:var(--ink);
+  padding:clamp(5rem,11vh,9rem) var(--gutter);
+}
+.says__inner{max-width:52rem;margin:0 auto;text-align:center}
+
+.says__eyebrow{
+  font-family:var(--ui);font-weight:300;
+  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+  color:rgba(20,23,15,.55);
+  display:flex;align-items:center;justify-content:center;gap:1.1rem;
+}
+/* two short rules rather than a box — the brass appears at hairline weight only */
+.says__eyebrow::before,.says__eyebrow::after{
+  content:"";width:clamp(1.5rem,4vw,3rem);height:1px;background:var(--brass);
+}
+
+/* Fixed height on the stack, absolute slides inside: the section cannot jump
+   when a longer quote comes in, which is what makes the crossfade feel calm. */
+.says__stack{position:relative;margin-top:clamp(2.25rem,5vh,3.5rem)}
+.says__item{
+  position:absolute;inset:0;
+  opacity:0;visibility:hidden;
+  transition:opacity .7s var(--rise),visibility .7s;
+}
+.says__item[data-on]{position:relative;opacity:1;visibility:visible}
+
+blockquote{
+  margin:0;font-family:var(--display);font-weight:300;
+  font-size:clamp(1.25rem,.95rem + 1.15vw,2.05rem);
+  line-height:1.5;letter-spacing:.005em;
+  color:var(--ink);
+}
+.says__by{
+  display:block;margin-top:clamp(1.5rem,3.5vh,2.25rem);
+  font-family:var(--ui);font-weight:400;font-style:normal;
+  font-size:.62rem;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:rgba(20,23,15,.62);
+}
+
+.says__nav{
+  display:flex;align-items:center;justify-content:center;gap:1.75rem;
+  margin-top:clamp(2.5rem,5.5vh,3.75rem);
+}
+.says__arrow{
+  width:2.5rem;height:2.5rem;display:grid;place-items:center;
+  border:1px solid rgba(20,23,15,.22);border-radius:50%;
+  color:rgba(20,23,15,.7);
+  transition:border-color .4s var(--rise),color .4s var(--rise),background-color .4s var(--rise);
+}
+.says__arrow:hover,.says__arrow:focus-visible{
+  border-color:var(--ink);color:var(--ink);background:rgba(20,23,15,.04);outline:none;
+}
+.says__arrow svg{width:.55rem;height:.55rem}
+.says__count{
+  font-family:var(--ui);font-size:.62rem;letter-spacing:.22em;
+  color:rgba(20,23,15,.5);font-variant-numeric:tabular-nums;min-width:4.5rem;
+}
+
+@media (max-width:760px){
+  .says__nav{gap:1.25rem}
+}
+
+/* ========================= 4 · FEATURED PROPERTIES =========================
    One lead, two beneath. Address always visible; the numbers arrive on hover
    so the resting state stays a photograph rather than a spec sheet. */
 .featured{background:var(--ink);padding:clamp(.5rem,1vw,1.1rem) 0 clamp(4rem,8vh,6.5rem)}
@@ -420,7 +487,48 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
   </div>
 </section>
 
-<!-- ==================== 3 · FEATURED PROPERTIES ====================
+<!-- ========================= 3 · TESTIMONIALS =========================
+     PLACEHOLDER COPY. These are written examples, not real client statements,
+     and attributions are deliberately "Client Name" rather than invented people.
+     Publishing fabricated endorsements is an FTC problem — replace before this
+     page is shown to anyone as marketing. -->
+<section class="says" id="testimonials" aria-labelledby="says-eyebrow">
+  <div class="says__inner">
+    <p class="says__eyebrow" id="says-eyebrow">What our clients say</p>
+
+    <div class="says__stack" id="saysStack" aria-live="polite">
+      <figure class="says__item" data-on>
+        <blockquote>They understood what the house was before we did, and priced it
+          like people who had actually walked it. Every decision came with a reason.</blockquote>
+        <figcaption class="says__by">Client Name · Franklin, TN</figcaption>
+      </figure>
+      <figure class="says__item">
+        <blockquote>We had two offers above asking inside a week. What struck us
+          was how quiet the whole process felt — nothing was ever a scramble.</blockquote>
+        <figcaption class="says__by">Client Name · Brentwood, TN</figcaption>
+      </figure>
+      <figure class="says__item">
+        <blockquote>The photography alone put us in a different bracket. It looked
+          like the home we had spent nine years living in, only properly seen.</blockquote>
+        <figcaption class="says__by">Client Name · Belle Meade, TN</figcaption>
+      </figure>
+    </div>
+
+    <div class="says__nav">
+      <button class="says__arrow" id="saysPrev" aria-label="Previous testimonial">
+        <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+          <path d="M5.5 1l-3 3 3 3"/></svg>
+      </button>
+      <span class="says__count" id="saysCount">01 / 03</span>
+      <button class="says__arrow" id="saysNext" aria-label="Next testimonial">
+        <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.3" aria-hidden="true">
+          <path d="M2.5 1l3 3-3 3"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ==================== 4 · FEATURED PROPERTIES ====================
      Addresses, prices and MLS numbers below are invented placeholders. -->
 <section class="featured" id="properties" aria-label="Featured properties">
   <div class="featured__grid">
@@ -530,6 +638,44 @@ nav.addEventListener("click", e => {
     if (!(isPhone() && a.classList.contains("nav__link") && a.parentElement.classList.contains("has-sub"))) closeMenu();
   }
 });
+/* ---- testimonials ----
+   No autoplay. A quote that moves on its own while somebody is halfway through
+   reading it is worse than one that sits still. */
+const saysItems = [...document.querySelectorAll(".says__item")];
+if (saysItems.length) {
+  const stack = document.getElementById("saysStack");
+  const count = document.getElementById("saysCount");
+  const pad   = n => String(n).padStart(2, "0");
+  let at = 0;
+
+  const show = i => {
+    at = (i + saysItems.length) % saysItems.length;
+    saysItems.forEach((el, n) => n === at ? el.setAttribute("data-on","") : el.removeAttribute("data-on"));
+    count.textContent = `${pad(at + 1)} / ${pad(saysItems.length)}`;
+  };
+
+  // Reserve the tallest quote's height up front so the section never reflows
+  // mid-fade. Recomputed on resize, since the tallest changes with line length.
+  const lockHeight = () => {
+    stack.style.height = "auto";
+    const tallest = Math.max(...saysItems.map(el => {
+      const on = el.hasAttribute("data-on");
+      if (!on) { el.style.visibility = "hidden"; el.setAttribute("data-on",""); }
+      const h = el.offsetHeight;
+      if (!on) { el.removeAttribute("data-on"); el.style.visibility = ""; }
+      return h;
+    }));
+    stack.style.height = tallest + "px";
+  };
+
+  document.getElementById("saysPrev").addEventListener("click", () => show(at - 1));
+  document.getElementById("saysNext").addEventListener("click", () => show(at + 1));
+  addEventListener("resize", () => { clearTimeout(window.__sr); window.__sr = setTimeout(lockHeight, 150) });
+  document.fonts?.ready.then(lockHeight);
+  lockHeight();
+  show(0);
+}
+
 addEventListener("keydown", e => {
   if (e.key !== "Escape") return;
   const open = nav.querySelector(".nav__item.open");
