@@ -576,6 +576,7 @@ blockquote{
   *{animation:none !important;transition-duration:.01ms !important}
   .reveal{opacity:1}
 }
+
 /* ======================= PROPERTIES · PAGE BANNER =======================
    Same furniture as the home hero — bar, media, scrim — but shorter, and the
    title sits in the middle rather than the mark. An interior page should not
@@ -601,57 +602,33 @@ blockquote{
   text-shadow:0 1px 24px rgba(0,0,0,.4);
 }
 
-
-/* ========================== NEIGHBOURHOODS · GRID ==========================
-   Three across. Lighter treatment than a property card: no status, no numbers,
-   no hover reveal — a place name on a photograph, and that is the whole card. */
-.hoods{background:var(--ink);padding:clamp(3.5rem,8vh,6rem) 0 clamp(1rem,2vh,1.5rem)}
-.hoods:last-of-type{padding-bottom:clamp(5rem,11vh,8rem)}
-.hoods__h{
-  margin:0 0 clamp(1.75rem,4vh,2.75rem);
-  padding:0 clamp(.5rem,1vw,1.1rem);
-  font-family:var(--ui);font-weight:300;
-  font-size:.62rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:rgba(244,241,236,.55);
-}
-.hoods__grid{
-  display:grid;grid-template-columns:repeat(3,1fr);
+/* ========================= PROPERTIES · THE GRID =========================
+   Two across, square. The card itself is the same .prop component as the home
+   page, so hover behaviour, the reveal and the touch fallback all come free. */
+.listings{background:var(--ink);padding:clamp(3rem,7vh,5rem) 0 clamp(5rem,11vh,8rem)}
+.listings__grid{
+  display:grid;grid-template-columns:1fr 1fr;
   gap:clamp(.5rem,1vw,1.1rem);
   padding:0 clamp(.5rem,1vw,1.1rem);
 }
-.hood{position:relative;display:block;overflow:hidden;aspect-ratio:4/3;background:#1b1f19}
-.hood img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transform:scale(1.001);transition:transform 1.1s var(--rise);
-}
-.hood:hover img,.hood:focus-visible img{transform:scale(1.05)}
-.hood:focus-visible{outline:1px solid rgba(255,255,255,.7);outline-offset:-1px}
-.hood::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to top, rgba(6,8,5,.60) 0%, rgba(6,8,5,.14) 26%, rgba(6,8,5,0) 46%);
-}
-/* Sentence case, not caps. These are place names people say out loud, and
-   letterspaced capitals would make them read as categories. */
-.hood__name{
-  position:absolute;z-index:2;left:clamp(1rem,1.8vw,1.7rem);right:clamp(1rem,1.8vw,1.7rem);
-  bottom:clamp(.9rem,1.8vw,1.5rem);
-  font-family:var(--display);font-weight:400;
-  font-size:clamp(1.1rem,.92rem + .62vw,1.6rem);
-  line-height:1.2;color:#fff;letter-spacing:.01em;
-  text-shadow:0 1px 22px rgba(0,0,0,.45);
+.listings .prop{aspect-ratio:1/1}
+@media (max-width:760px){
+  .listings__grid{grid-template-columns:1fr}
+  .listings .prop{aspect-ratio:4/3}
 }
 
-@media (max-width:900px){ .hoods__grid{grid-template-columns:repeat(2,1fr)} }
-@media (max-width:560px){
-  .hoods__grid{grid-template-columns:1fr}
-  .hood{aspect-ratio:3/2}
-}
+/* ===================== PAST TRANSACTIONS · SOLD CARD =====================
+   These cards go nowhere — there is no property left to view — so they are
+   not links. They are still focusable, because the price and square footage
+   are hidden until hover and a keyboard has to be able to reach them. */
+.prop--sold{cursor:default}
+.prop--sold:focus-visible{outline:1px solid var(--brass);outline-offset:-1px}
 </style>
 </head>
 <body>
 
 <section class="banner" id="top">
-  <img class="hero__media" src="media/hoods-banner.jpg" alt="" aria-hidden="true">
+  <img class="hero__media" src="media/past-banner.jpg" alt="" aria-hidden="true">
   <div class="hero__scrim"></div>
 
   <header class="bar">
@@ -686,161 +663,140 @@ blockquote{
 
   <div class="banner__inner">
     <div class="banner__box">
-      <h1 class="reveal" style="animation-delay:.6s">Luxury Neighborhoods</h1>
-      <p class="reveal" style="animation-delay:1.1s">Nashville and the counties around it hold some of the finest
-         residential land in the South — old-growth streets inside the city, and estate acreage
-         a short drive beyond it. These are the places we know street by street.</p>
+      <h1 class="reveal" style="animation-delay:.6s">Past Transactions</h1>
+      <p class="reveal" style="animation-delay:1.1s">The homes we have represented and closed across Middle Tennessee.
+         Each one held to the same standard, and each one seen through from the first
+         walkthrough to the closing table.</p>
     </div>
   </div>
 </section>
 
-<!-- ============================ LUXURY AREAS ============================
-     PLACEHOLDER imagery. Names are real Middle Tennessee areas. -->
-<section class="hoods" aria-labelledby="areas-h">
-  <p class="hoods__h" id="areas-h">Luxury Areas</p>
-  <div class="hoods__grid">
-    <a class="hood" href="#belle-meade">
-      <img src="media/hood-1.jpg" alt="">
-      <span class="hood__name">Belle Meade</span>
-    </a>
-    <a class="hood" href="#west-meade">
-      <img src="media/hood-2.jpg" alt="">
-      <span class="hood__name">West Meade</span>
-    </a>
-    <a class="hood" href="#green-hills">
-      <img src="media/hood-3.jpg" alt="">
-      <span class="hood__name">Green Hills</span>
-    </a>
-    <a class="hood" href="#forest-hills">
-      <img src="media/hood-4.jpg" alt="">
-      <span class="hood__name">Forest Hills</span>
-    </a>
-    <a class="hood" href="#oak-hill">
-      <img src="media/hood-5.jpg" alt="">
-      <span class="hood__name">Oak Hill</span>
-    </a>
-    <a class="hood" href="#brentwood">
-      <img src="media/hood-6.jpg" alt="">
-      <span class="hood__name">Brentwood</span>
-    </a>
-    <a class="hood" href="#franklin">
-      <img src="media/hood-7.jpg" alt="">
-      <span class="hood__name">Franklin</span>
-    </a>
-    <a class="hood" href="#leiper-s-fork">
-      <img src="media/hood-8.jpg" alt="">
-      <span class="hood__name">Leiper's Fork</span>
-    </a>
-    <a class="hood" href="#arrington">
-      <img src="media/hood-9.jpg" alt="">
-      <span class="hood__name">Arrington</span>
-    </a>
-    <a class="hood" href="#thompson-s-station">
-      <img src="media/hood-10.jpg" alt="">
-      <span class="hood__name">Thompson's Station</span>
-    </a>
-    <a class="hood" href="#downtown">
-      <img src="media/hood-11.jpg" alt="">
-      <span class="hood__name">Downtown</span>
-    </a>
-    <a class="hood" href="#germantown">
-      <img src="media/hood-12.jpg" alt="">
-      <span class="hood__name">Germantown</span>
-    </a>
-  </div>
-</section>
+<!-- ========================== SOLD ==========================
+     PLACEHOLDER. Real street names, invented prices, square footage and MLS
+     numbers. Sold figures are public record — do not publish invented ones. -->
+<section class="listings" aria-label="Past transactions">
+  <div class="listings__grid">
 
-<!-- ========================= LUXURY DEVELOPMENTS =========================
-     PLACEHOLDER. Confirm every development name before this goes public. -->
-<section class="hoods" aria-labelledby="devs-h">
-  <p class="hoods__h" id="devs-h">Luxury Developments</p>
-  <div class="hoods__grid">
-    <a class="hood" href="#witherspoon">
-      <img src="media/hood-13.jpg" alt="">
-      <span class="hood__name">Witherspoon</span>
-    </a>
-    <a class="hood" href="#laurelbrooke">
-      <img src="media/hood-14.jpg" alt="">
-      <span class="hood__name">Laurelbrooke</span>
-    </a>
-    <a class="hood" href="#troubadour">
-      <img src="media/hood-15.jpg" alt="">
-      <span class="hood__name">Troubadour</span>
-    </a>
-    <a class="hood" href="#the-grove">
-      <img src="media/hood-16.jpg" alt="">
-      <span class="hood__name">The Grove</span>
-    </a>
-    <a class="hood" href="#southall">
-      <img src="media/hood-17.jpg" alt="">
-      <span class="hood__name">Southall</span>
-    </a>
-    <a class="hood" href="#annandale">
-      <img src="media/hood-18.jpg" alt="">
-      <span class="hood__name">Annandale</span>
-    </a>
-    <a class="hood" href="#cielo">
-      <img src="media/hood-19.jpg" alt="">
-      <span class="hood__name">Cielo</span>
-    </a>
-    <a class="hood" href="#governors-club">
-      <img src="media/hood-20.jpg" alt="">
-      <span class="hood__name">Governors Club</span>
-    </a>
-    <a class="hood" href="#bison-ridge">
-      <img src="media/hood-21.jpg" alt="">
-      <span class="hood__name">Bison Ridge</span>
-    </a>
-    <a class="hood" href="#firefly">
-      <img src="media/hood-22.jpg" alt="">
-      <span class="hood__name">Firefly</span>
-    </a>
-    <a class="hood" href="#wyelea">
-      <img src="media/hood-23.jpg" alt="">
-      <span class="hood__name">Wyelea</span>
-    </a>
-    <a class="hood" href="#rosebrooke">
-      <img src="media/hood-24.jpg" alt="">
-      <span class="hood__name">Rosebrooke</span>
-    </a>
-    <a class="hood" href="#harlan">
-      <img src="media/hood-25.jpg" alt="">
-      <span class="hood__name">Harlan</span>
-    </a>
-    <a class="hood" href="#anna">
-      <img src="media/hood-26.jpg" alt="">
-      <span class="hood__name">Anna</span>
-    </a>
-    <a class="hood" href="#callie">
-      <img src="media/hood-27.jpg" alt="">
-      <span class="hood__name">Callie</span>
-    </a>
-  </div>
-</section>
+    <div class="prop prop--sold" tabindex="0">
+      <img src="media/past-1.jpg" alt="">
+      <span class="prop__status">Sold</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">4120 Vaughn Crest Drive<br>Franklin, TN 37069</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$6,750,000</span>
+            <span>9,840 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+        </div></div>
+      </div>
+    </div>
 
-<!-- ========================= 5 · PRIVATE ACCESS =========================
-     The form is NOT wired to anything yet. It deliberately collects nothing —
-     submitting shows an honest note rather than a false thank-you. Point the
-     <form> at a real endpoint before this page is shown as marketing. -->
-<section class="access" id="private-access" aria-labelledby="access-title">
-  <img class="access__media" src="media/access.jpg" alt="" aria-hidden="true">
-  <div class="access__scrim"></div>
+    <div class="prop prop--sold" tabindex="0">
+      <img src="media/past-2.jpg" alt="">
+      <span class="prop__status">Sold</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">3530 Bailey Road<br>Franklin, TN 37064</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$5,900,000</span>
+            <span>8,410 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+        </div></div>
+      </div>
+    </div>
 
-  <div class="access__inner">
-    <h2 id="access-title">Private Access</h2>
-    <p>New developments, neighborhood reports and estate land across Middle
-       Tennessee — known to our list before word reaches the wider market.</p>
+    <div class="prop prop--sold" tabindex="0">
+      <img src="media/past-3.jpg" alt="">
+      <span class="prop__status">Sold</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">1215 Chickering Road<br>Nashville, TN 37215</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$4,295,000</span>
+            <span>7,120 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+        </div></div>
+      </div>
+    </div>
 
-    <form class="access__form" id="accessForm" novalidate>
-      <label class="visually-hidden" for="accessEmail">Email address</label>
-      <input id="accessEmail" type="email" name="email" placeholder="Enter your email"
-             autocomplete="email" required>
-      <button class="access__btn" type="submit">Sign Up</button>
-    </form>
+    <div class="prop prop--sold" tabindex="0">
+      <img src="media/past-4.jpg" alt="">
+      <span class="prop__status">Sold</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">9 Northumberland<br>Nashville, TN 37215</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$3,150,000</span>
+            <span>6,480 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+        </div></div>
+      </div>
+    </div>
 
-    <p class="access__terms">By signing up you agree to our
-      <a href="#terms">Terms and Conditions</a>.</p>
-    <p class="access__note" id="accessNote" role="status"></p>
+    <div class="prop prop--sold" tabindex="0">
+      <img src="media/past-5.jpg" alt="">
+      <span class="prop__status">Sold</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">1802 Tyne Boulevard<br>Nashville, TN 37215</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$4,850,000</span>
+            <span>7,640 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="prop prop--sold" tabindex="0">
+      <img src="media/past-6.jpg" alt="">
+      <span class="prop__status">Sold</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">5 Colonel Winstead Drive<br>Brentwood, TN 37027</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$3,695,000</span>
+            <span>6,900 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="prop prop--sold" tabindex="0">
+      <img src="media/past-7.jpg" alt="">
+      <span class="prop__status">Sold</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">2140 Old Hillsboro Road<br>Franklin, TN 37069</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$8,250,000</span>
+            <span>11,200 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
+    <div class="prop prop--sold" tabindex="0">
+      <img src="media/past-8.jpg" alt="">
+      <span class="prop__status">Sold</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">700 Bowling Avenue<br>Nashville, TN 37215</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$2,975,000</span>
+            <span>5,760 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+        </div></div>
+      </div>
+    </div>
+
   </div>
 </section>
 
