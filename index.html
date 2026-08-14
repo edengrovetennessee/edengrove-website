@@ -42,6 +42,10 @@ body{
 }
 a{color:inherit;text-decoration:none}
 button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.visually-hidden{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
+}
 
 /* ============================== HERO ============================== */
 .hero{position:relative;height:100svh;min-height:34rem;overflow:hidden}
@@ -401,6 +405,82 @@ blockquote{
   .prop__more{grid-template-rows:1fr;opacity:1}
 }
 
+/* =========================== 5 · PRIVATE ACCESS ===========================
+   A photographic band to close on, after three ink sections. Copy sits left
+   over the quiet side of the frame; the image carries the right. */
+.access{position:relative;overflow:hidden;background:#1b1f19}
+.access__media{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;display:block;
+}
+/* Weighted to the left rather than a flat wash — the copy side needs the
+   density, the right side should keep whatever the photograph is doing. */
+.access__scrim{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(to right, rgba(6,8,5,.86) 0%, rgba(6,8,5,.66) 38%, rgba(6,8,5,.24) 72%, rgba(6,8,5,.12) 100%),
+    linear-gradient(to bottom, rgba(6,8,5,.30) 0%, rgba(6,8,5,0) 40%);
+}
+.access__inner{
+  position:relative;z-index:2;
+  max-width:min(38rem,86%);
+  padding:clamp(4.5rem,12vh,8rem) 0 clamp(4.5rem,12vh,8rem) var(--gutter);
+}
+.access h2{
+  margin:0;font-family:var(--display);font-weight:300;
+  font-size:clamp(1.9rem,1.3rem + 2.4vw,3.4rem);
+  line-height:1.05;letter-spacing:.03em;text-transform:uppercase;color:#fff;
+}
+.access p{
+  margin:clamp(1.1rem,2.4vh,1.6rem) 0 0;
+  font-family:var(--ui);font-weight:300;font-size:clamp(.85rem,.8rem + .2vw,.98rem);
+  line-height:1.75;color:rgba(255,255,255,.78);max-width:34ch;
+}
+
+/* Underline, not a box. A boxed field would be the only hard rectangle on the
+   page apart from the brass button it sits beside. */
+.access__form{
+  display:flex;flex-wrap:wrap;gap:.9rem;align-items:stretch;
+  margin-top:clamp(1.9rem,4.5vh,2.9rem);
+}
+.access__form input{
+  flex:1 1 17rem;min-width:0;
+  background:none;border:0;border-bottom:1px solid rgba(255,255,255,.42);
+  color:#fff;font-family:var(--ui);font-weight:300;font-size:.92rem;
+  padding:.85rem .2rem;
+  transition:border-color .4s var(--rise);
+}
+.access__form input::placeholder{color:rgba(255,255,255,.45)}
+.access__form input:focus{outline:none;border-bottom-color:var(--brass)}
+
+.access__btn{
+  flex:0 0 auto;background:var(--brass);color:#14170F;
+  font-family:var(--ui);font-weight:400;
+  font-size:.66rem;letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;
+  padding:.95rem 2.1rem;
+  transition:background-color .4s var(--rise);
+}
+.access__btn:hover,.access__btn:focus-visible{background:#C6BA92;outline:none}
+
+.access__terms{
+  margin-top:1.35rem;font-size:.68rem;line-height:1.7;
+  color:rgba(255,255,255,.5);max-width:40ch;
+}
+.access__terms a{border-bottom:1px solid rgba(255,255,255,.35)}
+.access__terms a:hover{color:#fff;border-bottom-color:#fff}
+
+.access__note{
+  margin-top:1.1rem;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--brass);opacity:0;transition:opacity .4s var(--rise);
+}
+.access__note[data-on]{opacity:1}
+
+@media (max-width:760px){
+  .access__inner{max-width:none;padding-right:var(--gutter)}
+  .access__scrim{background:linear-gradient(to bottom, rgba(6,8,5,.72) 0%, rgba(6,8,5,.80) 100%)}
+  .access__btn{flex:1 1 100%;text-align:center}
+}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important;transition-duration:.01ms !important}
   .reveal{opacity:1}
@@ -569,6 +649,32 @@ blockquote{
   </div>
 </section>
 
+<!-- ========================= 5 · PRIVATE ACCESS =========================
+     The form is NOT wired to anything yet. It deliberately collects nothing —
+     submitting shows an honest note rather than a false thank-you. Point the
+     <form> at a real endpoint before this page is shown as marketing. -->
+<section class="access" id="private-access" aria-labelledby="access-title">
+  <img class="access__media" src="media/access.jpg" alt="" aria-hidden="true">
+  <div class="access__scrim"></div>
+
+  <div class="access__inner">
+    <h2 id="access-title">Private Access</h2>
+    <p>Properties, market notes and opportunities in Middle Tennessee — shared
+       with our list before they reach the open market.</p>
+
+    <form class="access__form" id="accessForm" novalidate>
+      <label class="visually-hidden" for="accessEmail">Email address</label>
+      <input id="accessEmail" type="email" name="email" placeholder="Enter your email"
+             autocomplete="email" required>
+      <button class="access__btn" type="submit">Sign Up</button>
+    </form>
+
+    <p class="access__terms">By signing up you agree to our
+      <a href="#terms">Terms and Conditions</a>.</p>
+    <p class="access__note" id="accessNote" role="status"></p>
+  </div>
+</section>
+
 <script>
 const burger  = document.getElementById("burger");
 const nav     = document.getElementById("nav");
@@ -662,6 +768,19 @@ if (saysItems.length) {
   document.fonts?.ready.then(lockHeight);
   lockHeight();
   show(0);
+}
+
+/* ---- private access ----
+   No endpoint yet, so it says so. Showing a thank-you for an address that was
+   never stored is the one thing this must not do. */
+const accessForm = document.getElementById("accessForm");
+if (accessForm) {
+  const note = document.getElementById("accessNote");
+  accessForm.addEventListener("submit", e => {
+    e.preventDefault();
+    note.textContent = "Sign-up opens shortly — nothing has been sent.";
+    note.setAttribute("data-on", "");
+  });
 }
 
 addEventListener("keydown", e => {
