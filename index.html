@@ -481,6 +481,78 @@ blockquote{
   .access__btn{flex:1 1 100%;text-align:center}
 }
 
+/* =============================== 6 · FOOTER ===============================
+   Same ink as everything above it. The only separation is a hairline, so the
+   page ends rather than switching to a different surface. */
+.foot{
+  background:var(--ink);color:var(--paper);
+  border-top:1px solid rgba(244,241,236,.13);
+  padding:clamp(3.5rem,8vh,5.5rem) var(--gutter) clamp(2rem,4vh,2.75rem);
+}
+.foot__inner{max-width:78rem;margin:0 auto}
+
+.foot__mark{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(1rem,.8rem + .5vw,1.3rem);
+  letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--paper);display:inline-block;
+}
+
+.foot__cols{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(2.25rem,5vw,4.5rem);
+  margin-top:clamp(2.5rem,6vh,3.75rem);
+}
+.foot__h{
+  margin:0 0 1.35rem;
+  font-family:var(--ui);font-weight:400;
+  font-size:.58rem;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
+  color:rgba(244,241,236,.5);
+}
+.foot__list{list-style:none;margin:0;padding:0}
+.foot__list li{margin:0 0 .72rem}
+.foot__list li:last-child{margin-bottom:0}
+.foot__list a,.foot__list span{
+  font-family:var(--ui);font-weight:300;font-size:.86rem;line-height:1.5;
+  color:rgba(244,241,236,.78);
+}
+/* the rule appears under the word rather than being there and changing colour */
+.foot__list a{position:relative;transition:color .35s var(--rise)}
+.foot__list a::after{
+  content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--rise);
+}
+.foot__list a:hover,.foot__list a:focus-visible{color:#fff;outline:none}
+.foot__list a:hover::after,.foot__list a:focus-visible::after{transform:scaleX(1)}
+
+.foot__bar{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:1.5rem;
+  margin-top:clamp(3rem,7vh,4.5rem);padding-top:clamp(1.5rem,3vh,2rem);
+  border-top:1px solid rgba(244,241,236,.13);
+}
+.foot__fine{
+  margin:0;font-size:.66rem;letter-spacing:.1em;
+  color:rgba(244,241,236,.42);
+}
+
+/* No circles — the glyph is the whole control. Hit area comes from padding,
+   which keeps them tappable without drawing a button around each one. */
+.social{display:flex;align-items:center;gap:1.5rem}
+.social a{
+  display:grid;place-items:center;padding:.4rem;margin:-.4rem;
+  color:rgba(244,241,236,.62);
+  transition:color .35s var(--rise);
+}
+.social a:hover,.social a:focus-visible{color:#fff;outline:none}
+.social svg{width:1.05rem;height:1.05rem;display:block;fill:currentColor}
+
+@media (max-width:760px){
+  .foot__cols{grid-template-columns:1fr;gap:2.5rem}
+  .foot__bar{flex-direction:column;align-items:flex-start}
+}
+
 @media (prefers-reduced-motion:reduce){
   *{animation:none !important;transition-duration:.01ms !important}
   .reveal{opacity:1}
@@ -489,7 +561,7 @@ blockquote{
 </head>
 <body>
 
-<section class="hero">
+<section class="hero" id="top">
   <!-- Swap this <img> for a <video> when the footage exists. Nothing else changes. -->
   <img class="hero__media" src="media/hero.jpg" alt="" aria-hidden="true">
   <div class="hero__scrim"></div>
@@ -674,6 +746,64 @@ blockquote{
     <p class="access__note" id="accessNote" role="status"></p>
   </div>
 </section>
+
+<!-- ============================== 6 · FOOTER ==============================
+     STILL MISSING, and required before launch (Tenn. Comp. R. & Regs. 1260-02-.12):
+       · The Compass mark, in type at least as large as "Eden Grove"
+       · The office's registered firm name and telephone number as filed with TREC
+       · Equal Housing Opportunity and Realtor® logos
+       · Compass's current disclaimer paragraph — get the exact wording from
+         compliance; do not copy another team's.
+     The wordmark below currently occupies the slot the Compass lockup needs. -->
+<footer class="foot">
+  <div class="foot__inner">
+    <a class="foot__mark" href="#top" aria-label="Eden Grove — home">Eden&nbsp;Grove</a>
+
+    <div class="foot__cols">
+      <nav aria-labelledby="foot-sitemap">
+        <p class="foot__h" id="foot-sitemap">Sitemap</p>
+        <ul class="foot__list">
+          <li><a href="#top">Home</a></li>
+          <li><a href="#residential">Residential</a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <p class="foot__h" id="foot-contact">Contact</p>
+        <ul class="foot__list" aria-labelledby="foot-contact">
+          <li><a href="tel:+16158120066">(615) 812-0066</a></li>
+          <li><a href="mailto:clients@edengrovetennessee.com">clients@edengrovetennessee.com</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="foot__h" id="foot-address">Address</p>
+        <ul class="foot__list" aria-labelledby="foot-address">
+          <li><span>2206 21st Avenue South</span></li>
+          <li><span>Nashville, TN 37212</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="foot__bar">
+      <p class="foot__fine">© 2026 Eden Grove</p>
+
+      <div class="social">
+        <a href="https://www.instagram.com/edengrovetennessee" aria-label="Eden Grove on Instagram" rel="me noopener" target="_blank">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91a5.9 5.9 0 0 0 1.38 2.13 5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.41-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@edengrovetennessee" aria-label="Eden Grove on TikTok" rel="me noopener" target="_blank">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M16.6 5.82A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5 2.59 2.59 0 1 1 .77-5.06V9.7a5.68 5.68 0 0 0-.77-.05 5.65 5.65 0 1 0 5.65 5.65V8.9a7.35 7.35 0 0 0 4.3 1.38V7.19a4.29 4.29 0 0 1-3.21-1.37z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@edengrovetennessee" aria-label="Eden Grove on YouTube" rel="me noopener" target="_blank">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.08 0 12 0 12s0 3.92.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.81zM9.55 15.57V8.43L15.82 12z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 <script>
 const burger  = document.getElementById("burger");
