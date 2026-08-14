@@ -620,6 +620,38 @@ blockquote{
   .listings .prop{aspect-ratio:4/3}
 }
 
+/* ============================== THE STANDARD ==============================
+   A full screen with nothing on it but the statement. It sits between the team
+   photograph and the people themselves, so the argument is made once, plainly,
+   before anyone reads a single biography. */
+.creed{
+  background:var(--ink);
+  min-height:100svh;
+  display:grid;place-items:center;
+  padding:clamp(6rem,15vh,10rem) var(--gutter);
+}
+.creed__inner{max-width:46rem;margin:0 auto;text-align:center}
+.creed__eyebrow{
+  margin:0 0 clamp(2rem,4.5vh,3rem);
+  font-family:var(--ui);font-weight:300;
+  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+  color:var(--brass);
+}
+/* The opening line is set in sentence case on purpose. Everything else on this
+   site shouts in letterspaced capitals; a sentence someone is meant to believe
+   should sound like it was spoken, not engraved. */
+.creed__lead{
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(1.3rem,1.05rem + 1.1vw,2rem);
+  line-height:1.55;letter-spacing:.055em;color:#fff;
+}
+.creed p + p{
+  margin:clamp(1.9rem,4vh,2.75rem) 0 0;
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.88rem,.84rem + .22vw,1rem);
+  line-height:1.95;letter-spacing:.012em;color:rgba(244,241,236,.76);
+}
+
 /* =============================== TEAM PAGE ===============================
    The banner carries no words at all — just the team, the mark and the nav.
    Everything the page has to say is said by the people below it. */
@@ -743,6 +775,25 @@ blockquote{
       </div>
     </nav>
   </header>
+</section>
+
+
+<!-- ============================== THE STANDARD ============================== -->
+<section class="creed" aria-labelledby="creed-eyebrow">
+  <div class="creed__inner">
+    <p class="creed__eyebrow" id="creed-eyebrow">Our Standard</p>
+
+    <p class="creed__lead">When you hire Eden Grove, you hire a team.</p>
+
+    <p>That idea came off a football field. Nobody wins alone — every position has a
+       role, and the whole thing falls down the moment one of them is carried. Luxury
+       real estate is no different. What a client is really buying is the strength of
+       the people standing behind the sign.</p>
+
+    <p>We hold ourselves to a standard of excellence, and we hold each other to it. We
+       take on the properties that meet our mark, and every one of them is represented
+       the same way.</p>
+  </div>
 </section>
 
 <!-- ============================== THE TEAM ==============================
