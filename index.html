@@ -132,6 +132,13 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   transition:opacity .38s var(--rise),transform .38s var(--rise);
 }
 .nav__item.open .sub{opacity:1;transform:none;pointer-events:auto}
+/* The panel hangs 1.1rem below the link, and that gap used to be outside both
+   elements — moving the pointer toward the menu left the item and closed it.
+   This invisible bridge spans the gap and belongs to .sub, so travelling down
+   from the word never leaves the parent. */
+.sub::before{
+  content:"";position:absolute;left:0;right:0;top:-1.4rem;height:1.4rem;
+}
 .sub a{
   font-size:.64rem;letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
   color:var(--on-video-dim);white-space:nowrap;
@@ -832,8 +839,19 @@ nav.querySelectorAll(".has-sub").forEach(item => {
     link.setAttribute("aria-expanded", open);
   };
 
-  item.addEventListener("pointerenter", e => { if (e.pointerType === "mouse" && !isPhone()) set(true) });
-  item.addEventListener("pointerleave", e => { if (e.pointerType === "mouse" && !isPhone()) set(false) });
+  // A short grace period on the way out, so a fast diagonal across the corner
+  // of the panel does not snap it shut before the cursor lands.
+  let closeTimer = null;
+  const cancelClose = () => { clearTimeout(closeTimer); closeTimer = null };
+  item.addEventListener("pointerenter", e => {
+    if (e.pointerType === "mouse" && !isPhone()) { cancelClose(); set(true) }
+  });
+  item.addEventListener("pointerleave", e => {
+    if (e.pointerType === "mouse" && !isPhone()) {
+      cancelClose();
+      closeTimer = setTimeout(() => set(false), 300);
+    }
+  });
 
   // first tap/click opens rather than navigating; the section link still works second
   link.addEventListener("click", e => {
