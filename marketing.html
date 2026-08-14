@@ -77,7 +77,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .mark{
   font-family:var(--display);font-weight:300;
   font-size:clamp(1.05rem,.72rem + .95vw,1.6rem);
-  letter-spacing:.34em;text-indent:.34em;
+  letter-spacing:.4em;text-indent:.4em;
   text-transform:uppercase;line-height:1;white-space:nowrap;
   text-shadow:0 1px 24px rgba(0,0,0,.34);
 }
@@ -174,8 +174,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .cue.reveal{animation-delay:2.4s}
 @keyframes reveal{to{opacity:1}}
 @keyframes markIn{
-  from{opacity:0;letter-spacing:.62em;text-indent:.62em}
-  to  {opacity:1;letter-spacing:.34em;text-indent:.34em}
+  from{opacity:0;letter-spacing:.7em;text-indent:.7em}
+  to  {opacity:1;letter-spacing:.4em;text-indent:.4em}
 }
 
 /* ------------------------------ mobile nav ------------------------------ */
@@ -378,7 +378,7 @@ blockquote{
 .prop__addr{
   margin:0;font-family:var(--ui);font-weight:300;
   font-size:clamp(.9rem,.8rem + .48vw,1.22rem);
-  line-height:1.7;color:#fff;text-transform:uppercase;letter-spacing:.1em;
+  line-height:1.75;color:#fff;text-transform:uppercase;letter-spacing:.15em;
   text-shadow:0 1px 22px rgba(0,0,0,.5);
 }
 
@@ -448,8 +448,8 @@ blockquote{
 }
 .access h2{
   margin:0;font-family:var(--ui);font-weight:300;
-  font-size:clamp(1.45rem,1.1rem + 1.55vw,2.4rem);
-  line-height:1.2;letter-spacing:.14em;text-indent:.14em;
+  font-size:clamp(1.4rem,1.05rem + 1.45vw,2.25rem);
+  line-height:1.3;letter-spacing:.22em;text-indent:.22em;
   text-transform:uppercase;color:#fff;
 }
 .access p{
@@ -515,7 +515,7 @@ blockquote{
 .foot__mark{
   font-family:var(--display);font-weight:300;
   font-size:clamp(1rem,.8rem + .5vw,1.3rem);
-  letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  letter-spacing:.4em;text-indent:.4em;text-transform:uppercase;
   color:var(--paper);display:inline-block;
 }
 
@@ -593,7 +593,7 @@ blockquote{
 .banner h1{
   margin:0;font-family:var(--ui);font-weight:300;
   font-size:clamp(1.6rem,1.15rem + 2.1vw,3rem);
-  line-height:1.12;letter-spacing:.14em;text-indent:.14em;
+  line-height:1.2;letter-spacing:.22em;text-indent:.22em;
   text-transform:uppercase;color:#fff;
   text-shadow:0 1px 30px rgba(0,0,0,.4);
 }
@@ -624,7 +624,48 @@ blockquote{
    Two chapters, each a run of alternating text/image rows. No buttons — the
    page is an argument read top to bottom, not a menu of things to click. */
 .chapter{background:var(--ink);padding:clamp(4.5rem,10vh,8rem) var(--gutter) clamp(2rem,4vh,3rem)}
-.chapter__head{max-width:52rem;margin:0 auto clamp(3rem,7vh,5rem);text-align:center}
+.chapter__head{max-width:60rem;margin:0 auto clamp(3rem,7vh,5rem);text-align:center}
+
+/* ------------------------------- the switch -------------------------------
+   Two chapters, one at a time. Both are in the DOM and only one is shown, so
+   the browser can still find text in the hidden panel and the tab keeps its
+   own URL — but nobody has to scroll past forty rows to reach the second. */
+.tabs{
+  display:flex;justify-content:center;flex-wrap:wrap;
+  gap:clamp(1.5rem,4vw,3.5rem);
+  margin-top:clamp(1.5rem,3.5vh,2.25rem);
+}
+.tab{
+  position:relative;padding:.55rem 0;
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.66rem,.62rem + .18vw,.8rem);
+  letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;
+  color:rgba(244,241,236,.45);
+  transition:color .45s var(--rise);
+}
+.tab::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:var(--brass);transform:scaleX(0);transform-origin:left;
+  transition:transform .55s var(--rise);
+}
+.tab:hover{color:rgba(244,241,236,.8)}
+.tab[aria-selected="true"]{color:#fff}
+.tab[aria-selected="true"]::after{transform:scaleX(1)}
+.tab:focus-visible{outline:1px solid var(--brass);outline-offset:6px}
+
+.panel[hidden]{display:none}
+.panel{animation:panelIn .55s var(--rise)}
+@keyframes panelIn{from{opacity:0;transform:translateY(.5rem)}to{opacity:1;transform:none}}
+.panel__lede{
+  max-width:46ch;margin:clamp(2.5rem,6vh,4rem) auto clamp(3rem,7vh,5rem);
+  text-align:center;
+  font-family:var(--ui);font-weight:300;font-size:clamp(.86rem,.82rem + .2vw,.98rem);
+  line-height:1.85;color:rgba(244,241,236,.72);
+}
+
+@media (max-width:640px){
+  .tabs{flex-direction:column;gap:1.1rem}
+}
 .chapter__eyebrow{
   margin:0 0 1.1rem;font-family:var(--ui);font-weight:300;
   font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
@@ -632,8 +673,8 @@ blockquote{
 }
 .chapter__head h2{
   margin:0;font-family:var(--ui);font-weight:300;
-  font-size:clamp(1.3rem,1.02rem + 1.25vw,2.05rem);
-  line-height:1.35;letter-spacing:.14em;text-indent:.14em;
+  font-size:clamp(1.25rem,1rem + 1.15vw,1.95rem);
+  line-height:1.45;letter-spacing:.22em;text-indent:.22em;
   text-transform:uppercase;color:#fff;
 }
 .chapter__head p{
@@ -665,8 +706,8 @@ blockquote{
 }
 .pitch h3{
   margin:0;font-family:var(--ui);font-weight:300;
-  font-size:clamp(1.02rem,.9rem + .55vw,1.42rem);
-  line-height:1.55;letter-spacing:.12em;text-indent:.12em;
+  font-size:clamp(1rem,.88rem + .5vw,1.34rem);
+  line-height:1.7;letter-spacing:.18em;text-indent:.18em;
   text-transform:uppercase;color:#fff;
 }
 .pitch p{
@@ -741,15 +782,23 @@ blockquote{
   </div>
 </section>
 
-<!-- ==================== ESTABLISHED HOMES AND ESTATES ==================== -->
-<section class="chapter" aria-labelledby="est-h">
+<!-- ======================= MARKETING · TWO CHAPTERS =======================
+     Established and New Construction share one section and swap on a tab, so
+     the second is one click away rather than forty rows of scrolling. -->
+<section class="chapter" aria-labelledby="chapters-eyebrow">
   <div class="chapter__head">
-    <p class="chapter__eyebrow">Marketing</p>
-    <h2 id="est-h">Established Homes &amp; Estates</h2>
-    <p>A house that already exists has to be shown as it is on its best day, and put in
-       front of the few people in a position to want it.</p>
+    <p class="chapter__eyebrow" id="chapters-eyebrow">Marketing</p>
+    <div class="tabs" role="tablist" aria-label="Marketing approach">
+      <button class="tab" role="tab" id="tab-est" aria-controls="panel-est" aria-selected="true">Established Homes &amp; Estates</button>
+      <button class="tab" role="tab" id="tab-new" aria-controls="panel-new" aria-selected="false" tabindex="-1">New Construction Homes &amp; Estates</button>
+    </div>
   </div>
-  <div class="pitches">
+
+  <div class="panel" id="panel-est" role="tabpanel" aria-labelledby="tab-est">
+    <p class="panel__lede">A house that already exists has to be shown as it is on its best
+       day, and put in front of the few people in a position to want it.</p>
+    <div class="pitches">
+
 
     <article class="pitch">
       <div class="pitch__text">
@@ -786,19 +835,15 @@ blockquote{
       </div>
       <div class="pitch__media"><img src="media/mkt-4.jpg" alt=""></div>
     </article>
-
+    </div>
   </div>
-</section>
 
-<!-- ================ NEW CONSTRUCTION HOMES AND ESTATES ================ -->
-<section class="chapter" aria-labelledby="new-h">
-  <div class="chapter__head">
-    <p class="chapter__eyebrow">Marketing</p>
-    <h2 id="new-h">New Construction Homes &amp; Estates</h2>
-    <p>A house that does not exist yet has to be sold twice — first as an idea, then as a
-       building. We market from the first rendering, not from the day the sign goes in.</p>
-  </div>
-  <div class="pitches">
+  <div class="panel" id="panel-new" role="tabpanel" aria-labelledby="tab-new" hidden>
+    <p class="panel__lede">A house that does not exist yet has to be sold twice — first as an
+       idea, then as a building. We market from the first rendering, not from the day the
+       sign goes in.</p>
+    <div class="pitches">
+
 
     <article class="pitch">
       <div class="pitch__text">
@@ -853,8 +898,11 @@ blockquote{
       </div>
       <div class="pitch__media"><img src="media/mkt-10.jpg" alt=""></div>
     </article>
+    </div>
+  </div>
 
-    <div class="closer">
+  <div class="pitches">
+<div class="closer">
       <p>White glove, from the first rendering to the closing table. We market alongside
          you for the length of the project — not for the last month of it.</p>
     </div>
@@ -912,6 +960,42 @@ blockquote{
 </footer>
 
 <script>
+/* ---- marketing chapter tabs ----
+   Arrow keys move between tabs the way a tablist is expected to, and the
+   choice is written to the URL so a chapter can be linked to directly. */
+const tabs = [...document.querySelectorAll('.tab')];
+if (tabs.length) {
+  const select = (tab, focus = true) => {
+    tabs.forEach(t => {
+      const on = t === tab;
+      t.setAttribute('aria-selected', on);
+      t.tabIndex = on ? 0 : -1;
+      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+    });
+    if (focus) tab.focus();
+    history.replaceState(null, '', '#' + tab.id.replace('tab-', ''));
+  };
+
+  tabs.forEach(t => t.addEventListener('click', () => select(t, false)));
+  document.querySelector('.tabs').addEventListener('keydown', e => {
+    const i = tabs.indexOf(document.activeElement);
+    if (i < 0) return;
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault(); select(tabs[(i + 1) % tabs.length]) }
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   { e.preventDefault(); select(tabs[(i - 1 + tabs.length) % tabs.length]) }
+    if (e.key === 'Home') { e.preventDefault(); select(tabs[0]) }
+    if (e.key === 'End')  { e.preventDefault(); select(tabs.at(-1)) }
+  });
+
+  // Also honour a hash arriving after load — clicking a link to #new while
+  // already on this page is a same-document navigation and re-runs nothing.
+  const fromHash = (focus = false) => {
+    const wanted = document.getElementById('tab-' + location.hash.slice(1));
+    if (wanted && tabs.includes(wanted)) select(wanted, focus);
+  };
+  addEventListener('hashchange', () => fromHash(false));
+  fromHash(false);
+}
+
 const burger  = document.getElementById("burger");
 const nav     = document.getElementById("nav");
 const isPhone = () => matchMedia("(max-width:760px)").matches;
