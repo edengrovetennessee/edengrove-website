@@ -258,9 +258,15 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
    Same ink ground as the tiles above and the properties below, so the band
    reads as a pause in one continuous surface rather than a separate panel.
    Set entirely in Jost — the only long-form sans on the page. */
+/* Given a full screen of its own. The quote is short, so the air around it is
+   doing the work — the section has to feel like somewhere the page stops rather
+   than a band between two others. The padding is a floor for short viewports;
+   above that the grid centres the quote in whatever height is left. */
 .says{
   background:var(--ink);color:var(--paper);
-  padding:clamp(5rem,11vh,9rem) var(--gutter);
+  min-height:100svh;
+  display:grid;place-items:center;
+  padding:clamp(7rem,20vh,13rem) var(--gutter);
 }
 .says__inner{max-width:46rem;margin:0 auto;text-align:center}
 
