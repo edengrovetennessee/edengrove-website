@@ -670,16 +670,17 @@ blockquote{
   line-height:1.85;color:rgba(244,241,236,.76);
 }
 
-/* the one place the page speaks in its own voice rather than describing a service */
+/* The last thing said on the page. Same voice as the body copy — no rule, no
+   change of typeface. It earns its weight from the space around it instead,
+   which is why the room underneath is as large as the room above. */
 .closer{
-  max-width:44rem;margin:clamp(2rem,5vh,3.5rem) auto 0;text-align:center;
-  padding-top:clamp(2.5rem,5vh,3.5rem);
-  border-top:1px solid rgba(182,169,124,.4);
+  max-width:44rem;text-align:center;
+  margin:clamp(4rem,9vh,6.5rem) auto clamp(6rem,14vh,10rem);
 }
 .closer p{
-  margin:0;font-family:var(--display);font-weight:300;
-  font-size:clamp(1.05rem,.92rem + .6vw,1.5rem);line-height:1.6;
-  color:rgba(244,241,236,.92);
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(.86rem,.82rem + .2vw,.97rem);
+  line-height:1.85;color:rgba(244,241,236,.76);
 }
 
 @media (max-width:820px){
@@ -852,32 +853,6 @@ blockquote{
       <p>White glove, from the first rendering to the closing table. We market alongside
          you for the length of the project — not for the last month of it.</p>
     </div>
-  </div>
-</section>
-
-<!-- ========================= 5 · PRIVATE ACCESS =========================
-     The form is NOT wired to anything yet. It deliberately collects nothing —
-     submitting shows an honest note rather than a false thank-you. Point the
-     <form> at a real endpoint before this page is shown as marketing. -->
-<section class="access" id="private-access" aria-labelledby="access-title">
-  <img class="access__media" src="media/access.jpg" alt="" aria-hidden="true">
-  <div class="access__scrim"></div>
-
-  <div class="access__inner">
-    <h2 id="access-title">Private Access</h2>
-    <p>Properties, market notes and opportunities in Middle Tennessee — shared
-       with our list before they reach the open market.</p>
-
-    <form class="access__form" id="accessForm" novalidate>
-      <label class="visually-hidden" for="accessEmail">Email address</label>
-      <input id="accessEmail" type="email" name="email" placeholder="Enter your email"
-             autocomplete="email" required>
-      <button class="access__btn" type="submit">Sign Up</button>
-    </form>
-
-    <p class="access__terms">By signing up you agree to our
-      <a href="#terms">Terms and Conditions</a>.</p>
-    <p class="access__note" id="accessNote" role="status"></p>
   </div>
 </section>
 
