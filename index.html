@@ -408,7 +408,8 @@ blockquote{
 /* =========================== 5 · PRIVATE ACCESS ===========================
    A photographic band to close on, after three ink sections. Copy sits left
    over the quiet side of the frame; the image carries the right. */
-.access{position:relative;overflow:hidden;background:#1b1f19}
+.access{position:relative;overflow:hidden;background:#1b1f19;
+  min-height:78svh;display:grid;align-items:center}
 .access__media{
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;object-position:center;display:block;
@@ -424,7 +425,7 @@ blockquote{
 .access__inner{
   position:relative;z-index:2;
   max-width:min(38rem,86%);
-  padding:clamp(4.5rem,12vh,8rem) 0 clamp(4.5rem,12vh,8rem) var(--gutter);
+  padding:clamp(7rem,18vh,12rem) 0 clamp(7rem,18vh,12rem) var(--gutter);
 }
 .access h2{
   margin:0;font-family:var(--display);font-weight:300;
@@ -432,7 +433,7 @@ blockquote{
   line-height:1.05;letter-spacing:.03em;text-transform:uppercase;color:#fff;
 }
 .access p{
-  margin:clamp(1.1rem,2.4vh,1.6rem) 0 0;
+  margin:clamp(1.7rem,3.6vh,2.4rem) 0 0;
   font-family:var(--ui);font-weight:300;font-size:clamp(.85rem,.8rem + .2vw,.98rem);
   line-height:1.75;color:rgba(255,255,255,.78);max-width:34ch;
 }
@@ -441,7 +442,7 @@ blockquote{
    page apart from the brass button it sits beside. */
 .access__form{
   display:flex;flex-wrap:wrap;gap:.9rem;align-items:stretch;
-  margin-top:clamp(1.9rem,4.5vh,2.9rem);
+  margin-top:clamp(2.9rem,6.5vh,4.2rem);
 }
 .access__form input{
   flex:1 1 17rem;min-width:0;
@@ -463,7 +464,7 @@ blockquote{
 .access__btn:hover,.access__btn:focus-visible{background:#C6BA92;outline:none}
 
 .access__terms{
-  margin-top:1.35rem;font-size:.68rem;line-height:1.7;
+  margin-top:1.9rem;font-size:.68rem;line-height:1.7;
   color:rgba(255,255,255,.5);max-width:40ch;
 }
 .access__terms a{border-bottom:1px solid rgba(255,255,255,.35)}
@@ -487,7 +488,7 @@ blockquote{
 .foot{
   background:var(--ink);color:var(--paper);
   border-top:1px solid rgba(244,241,236,.13);
-  padding:clamp(3.5rem,8vh,5.5rem) var(--gutter) clamp(2rem,4vh,2.75rem);
+  padding:clamp(6.5rem,16vh,11rem) var(--gutter) clamp(2.75rem,6vh,4rem);
 }
 .foot__inner{max-width:78rem;margin:0 auto}
 
@@ -501,16 +502,16 @@ blockquote{
 .foot__cols{
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
   gap:clamp(2.25rem,5vw,4.5rem);
-  margin-top:clamp(2.5rem,6vh,3.75rem);
+  margin-top:clamp(4rem,10vh,6.5rem);
 }
 .foot__h{
-  margin:0 0 1.35rem;
+  margin:0 0 1.9rem;
   font-family:var(--ui);font-weight:400;
   font-size:.58rem;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
   color:rgba(244,241,236,.5);
 }
 .foot__list{list-style:none;margin:0;padding:0}
-.foot__list li{margin:0 0 .72rem}
+.foot__list li{margin:0 0 1.05rem}
 .foot__list li:last-child{margin-bottom:0}
 .foot__list a,.foot__list span{
   font-family:var(--ui);font-weight:300;font-size:.86rem;line-height:1.5;
@@ -529,7 +530,7 @@ blockquote{
 .foot__bar{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
   gap:1.5rem;
-  margin-top:clamp(3rem,7vh,4.5rem);padding-top:clamp(1.5rem,3vh,2rem);
+  margin-top:clamp(5rem,12vh,8rem);padding-top:clamp(1.9rem,4vh,2.6rem);
   border-top:1px solid rgba(244,241,236,.13);
 }
 .foot__fine{
