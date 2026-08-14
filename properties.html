@@ -558,13 +558,52 @@ blockquote{
   *{animation:none !important;transition-duration:.01ms !important}
   .reveal{opacity:1}
 }
+
+/* ======================= PROPERTIES · PAGE BANNER =======================
+   Same furniture as the home hero — bar, media, scrim — but shorter, and the
+   title sits in the middle rather than the mark. An interior page should not
+   ask for a full screen before it shows you anything. */
+.banner{position:relative;height:82svh;min-height:30rem;overflow:hidden}
+.banner__inner{
+  position:absolute;inset:0;z-index:10;
+  display:grid;place-items:center;text-align:center;
+  padding:0 var(--gutter);
+}
+.banner__box{max-width:44rem}
+.banner h1{
+  margin:0;font-family:var(--display);font-weight:300;
+  font-size:clamp(2rem,1.3rem + 3vw,4.1rem);
+  line-height:1.04;letter-spacing:.05em;text-transform:uppercase;color:#fff;
+  text-shadow:0 1px 30px rgba(0,0,0,.4);
+}
+.banner p{
+  margin:clamp(1.5rem,3.5vh,2.25rem) auto 0;max-width:46ch;
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.9rem,.84rem + .25vw,1.05rem);line-height:1.85;
+  color:rgba(255,255,255,.86);
+  text-shadow:0 1px 24px rgba(0,0,0,.4);
+}
+
+/* ========================= PROPERTIES · THE GRID =========================
+   Two across, square. The card itself is the same .prop component as the home
+   page, so hover behaviour, the reveal and the touch fallback all come free. */
+.listings{background:var(--ink);padding:clamp(3rem,7vh,5rem) 0 clamp(5rem,11vh,8rem)}
+.listings__grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(.5rem,1vw,1.1rem);
+  padding:0 clamp(.5rem,1vw,1.1rem);
+}
+.listings .prop{aspect-ratio:1/1}
+@media (max-width:760px){
+  .listings__grid{grid-template-columns:1fr}
+  .listings .prop{aspect-ratio:4/3}
+}
 </style>
 </head>
 <body>
 
-<section class="hero" id="top">
-  <!-- Swap this <img> for a <video> when the footage exists. Nothing else changes. -->
-  <img class="hero__media" src="media/hero.jpg" alt="" aria-hidden="true">
+<section class="banner" id="top">
+  <img class="hero__media" src="media/listings-banner.jpg" alt="" aria-hidden="true">
   <div class="hero__scrim"></div>
 
   <header class="bar">
@@ -597,73 +636,24 @@ blockquote{
     </nav>
   </header>
 
-  <div class="cue reveal" aria-hidden="true">
-    <span>Scroll</span>
-    <i></i>
-  </div>
-</section>
-
-<!-- ================= 2 · COMMITMENT TO EXCELLENCE ================= -->
-<section class="excellence" id="excellence" aria-label="Commitment to excellence">
-  <div class="excellence__head">
-    <!-- swap for the real mark; keep it roughly 16:9 and it needs no CSS change -->
-    <img class="logoslot" src="media/logo-placeholder.png" alt="Eden Grove">
-  </div>
-
-  <div class="tiles">
-    <a class="tile" href="#standard">
-      <img src="media/tile-1.jpg" alt="">
-      <span class="tile__t">The Standard</span>
-    </a>
-    <a class="tile" href="#marketing">
-      <img src="media/tile-2.jpg" alt="">
-      <span class="tile__t">Luxury Marketing</span>
-    </a>
-    <a class="tile" href="#consultation">
-      <img src="media/tile-3.jpg" alt="">
-      <span class="tile__t">Book a Consultation</span>
-    </a>
-  </div>
-</section>
-
-<!-- ========================= 3 · TESTIMONIALS =========================
-     PLACEHOLDER COPY. These are written examples, not real client statements,
-     and attributions are deliberately "Client Name" rather than invented people.
-     Publishing fabricated endorsements is an FTC problem — replace before this
-     page is shown to anyone as marketing. -->
-<section class="says" id="testimonials" aria-labelledby="says-eyebrow">
-  <div class="says__inner">
-    <p class="says__eyebrow" id="says-eyebrow">Our Clients</p>
-
-    <div class="says__stack" id="saysStack" aria-live="polite">
-      <figure class="says__item" data-on>
-        <blockquote>They understood what the house was before we did, and priced it
-          like people who had actually walked it. Every decision came with a reason.</blockquote>
-        <figcaption class="says__by">Client Name · Franklin, TN</figcaption>
-      </figure>
-      <figure class="says__item">
-        <blockquote>We had two offers above asking inside a week. What struck us
-          was how quiet the whole process felt — nothing was ever a scramble.</blockquote>
-        <figcaption class="says__by">Client Name · Brentwood, TN</figcaption>
-      </figure>
-      <figure class="says__item">
-        <blockquote>The photography alone put us in a different bracket. It looked
-          like the home we had spent nine years living in, only properly seen.</blockquote>
-        <figcaption class="says__by">Client Name · Belle Meade, TN</figcaption>
-      </figure>
+  <div class="banner__inner">
+    <div class="banner__box">
+      <h1 class="reveal" style="animation-delay:.6s">Featured Listings</h1>
+      <p class="reveal" style="animation-delay:1.1s">Every property we represent is held to one standard, assessed the
+         same way each time and never taken on price alone. What follows is the work —
+         homes across Middle Tennessee that met it.</p>
     </div>
-
-    <span class="says__count" id="saysCount">01 / 03</span>
   </div>
 </section>
 
-<!-- ==================== 4 · FEATURED PROPERTIES ====================
-     Addresses, prices and MLS numbers below are invented placeholders. -->
-<section class="featured" id="properties" aria-label="Featured properties">
-  <div class="featured__grid">
+<!-- ============================ THE LISTINGS ============================
+     PLACEHOLDER. Real street names, invented prices, square footage and
+     MLS numbers. Not to be indexed or shown as marketing. -->
+<section class="listings" aria-label="Listings">
+  <div class="listings__grid">
 
-    <a class="prop prop--lead" href="#property-1">
-      <img src="media/prop-lead.jpg" alt="">
+    <a class="prop" href="#listing-1">
+      <img src="media/listing-1.jpg" alt="">
       <span class="prop__status">Active</span>
       <div class="prop__body">
         <h3 class="prop__addr">4120 Vaughn Crest Drive<br>Franklin, TN 37069</h3>
@@ -681,8 +671,27 @@ blockquote{
       </div>
     </a>
 
-    <a class="prop" href="#property-2">
-      <img src="media/prop-1.jpg" alt="">
+    <a class="prop" href="#listing-2">
+      <img src="media/listing-2.jpg" alt="">
+      <span class="prop__status">Pending</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">3530 Bailey Road<br>Franklin, TN 37064</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$5,900,000</span>
+            <span>8,410 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+    <a class="prop" href="#listing-3">
+      <img src="media/listing-3.jpg" alt="">
       <span class="prop__status">Active</span>
       <div class="prop__body">
         <h3 class="prop__addr">1215 Chickering Road<br>Nashville, TN 37215</h3>
@@ -700,8 +709,8 @@ blockquote{
       </div>
     </a>
 
-    <a class="prop" href="#property-3">
-      <img src="media/prop-2.jpg" alt="">
+    <a class="prop" href="#listing-4">
+      <img src="media/listing-4.jpg" alt="">
       <span class="prop__status">Active</span>
       <div class="prop__body">
         <h3 class="prop__addr">9 Northumberland<br>Nashville, TN 37215</h3>
@@ -719,43 +728,85 @@ blockquote{
       </div>
     </a>
 
+    <a class="prop" href="#listing-5">
+      <img src="media/listing-5.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">1802 Tyne Boulevard<br>Nashville, TN 37215</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$4,850,000</span>
+            <span>7,640 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+    <a class="prop" href="#listing-6">
+      <img src="media/listing-6.jpg" alt="">
+      <span class="prop__status">Pending</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">5 Colonel Winstead Drive<br>Brentwood, TN 37027</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$3,695,000</span>
+            <span>6,900 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+    <a class="prop" href="#listing-7">
+      <img src="media/listing-7.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">2140 Old Hillsboro Road<br>Franklin, TN 37069</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$8,250,000</span>
+            <span>11,200 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+    <a class="prop" href="#listing-8">
+      <img src="media/listing-8.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">700 Bowling Avenue<br>Nashville, TN 37215</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$2,975,000</span>
+            <span>5,760 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
   </div>
 </section>
 
-<!-- ========================= 5 · PRIVATE ACCESS =========================
-     The form is NOT wired to anything yet. It deliberately collects nothing —
-     submitting shows an honest note rather than a false thank-you. Point the
-     <form> at a real endpoint before this page is shown as marketing. -->
-<section class="access" id="private-access" aria-labelledby="access-title">
-  <img class="access__media" src="media/access.jpg" alt="" aria-hidden="true">
-  <div class="access__scrim"></div>
-
-  <div class="access__inner">
-    <h2 id="access-title">Private Access</h2>
-    <p>Properties, market notes and opportunities in Middle Tennessee — shared
-       with our list before they reach the open market.</p>
-
-    <form class="access__form" id="accessForm" novalidate>
-      <label class="visually-hidden" for="accessEmail">Email address</label>
-      <input id="accessEmail" type="email" name="email" placeholder="Enter your email"
-             autocomplete="email" required>
-      <button class="access__btn" type="submit">Sign Up</button>
-    </form>
-
-    <p class="access__terms">By signing up you agree to our
-      <a href="#terms">Terms and Conditions</a>.</p>
-    <p class="access__note" id="accessNote" role="status"></p>
-  </div>
-</section>
-
-<!-- ============================== 6 · FOOTER ==============================
-     STILL MISSING, and required before launch (Tenn. Comp. R. & Regs. 1260-02-.12):
-       · The Compass mark, in type at least as large as "Eden Grove"
-       · The office's registered firm name and telephone number as filed with TREC
-       · Equal Housing Opportunity and Realtor® logos
-       · Compass's current disclaimer paragraph — get the exact wording from
-         compliance; do not copy another team's.
-     The wordmark below currently occupies the slot the Compass lockup needs. -->
 <footer class="foot">
   <div class="foot__inner">
     <a class="foot__mark" href="#top" aria-label="Eden Grove — home">Eden&nbsp;Grove</a>
