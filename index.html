@@ -204,10 +204,60 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
   .cue{display:none}
 }
 
+/* ====================== 2 · COMMITMENT TO EXCELLENCE ======================
+   No photograph behind this one. The ground goes to ink and the three tiles
+   supply all the colour, which is what makes them read as the subject.
+   No heading — the mark sits alone and the tiles speak for themselves. */
+.excellence{background:var(--ink);padding:clamp(4.5rem,9vh,7.5rem) 0 0}
+
+.excellence__head{
+  display:flex;justify-content:center;
+  padding:0 var(--gutter) clamp(3.5rem,7vh,5.75rem);
+}
+.logoslot{width:clamp(7.5rem,11vw,10rem);height:auto;display:block;opacity:.9}
+
+/* Edge to edge, hairline gutters between. The tiles carry the section, so the
+   frame around them stays as thin as the eye will accept. */
+.tiles{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(.5rem,1vw,1.1rem);
+  padding:0 clamp(.5rem,1vw,1.1rem);
+}
+.tile{position:relative;display:block;overflow:hidden;aspect-ratio:4/5;background:#1b1f19}
+.tile img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.001);transition:transform 1.1s var(--rise);
+}
+.tile:hover img,.tile:focus-visible img{transform:scale(1.045)}
+.tile:focus-visible{outline:1px solid rgba(255,255,255,.7);outline-offset:-1px}
+
+/* the wash only exists so the caption never lands on a bright sky */
+.tile::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top, rgba(8,10,7,.62) 0%, rgba(8,10,7,.18) 24%, rgba(8,10,7,0) 46%);
+}
+/* Same voice as the top nav — uppercase Jost, wide tracking. Set smaller than
+   a serif would be at this position: letterspaced caps occupy far more width
+   per word, and "Unparalleled Marketing" has to sit on two lines cleanly. */
+.tile__t{
+  position:absolute;z-index:2;left:clamp(1.1rem,2vw,2rem);bottom:clamp(1.1rem,2.2vw,2rem);
+  right:clamp(1.1rem,2vw,2rem);
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.72rem,.6rem + .38vw,.95rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  line-height:1.85;color:#fff;
+  text-shadow:0 1px 22px rgba(0,0,0,.45);
+}
+
+@media (max-width:760px){
+  .tiles{grid-template-columns:1fr}
+  .tile{aspect-ratio:3/2}
+}
+
 /* ========================= 3 · FEATURED PROPERTIES =========================
    One lead, two beneath. Address always visible; the numbers arrive on hover
    so the resting state stays a photograph rather than a spec sheet. */
-.featured{background:var(--ink);padding:clamp(3.5rem,7vh,6rem) 0 clamp(4rem,8vh,6.5rem)}
+.featured{background:var(--ink);padding:clamp(.5rem,1vw,1.1rem) 0 clamp(4rem,8vh,6.5rem)}
 .featured__grid{
   display:grid;grid-template-columns:1fr 1fr;
   gap:clamp(.5rem,1vw,1.1rem);
@@ -344,6 +394,29 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
   <div class="cue reveal" aria-hidden="true">
     <span>Scroll</span>
     <i></i>
+  </div>
+</section>
+
+<!-- ================= 2 · COMMITMENT TO EXCELLENCE ================= -->
+<section class="excellence" id="excellence" aria-label="Commitment to excellence">
+  <div class="excellence__head">
+    <!-- swap for the real mark; keep it roughly 16:9 and it needs no CSS change -->
+    <img class="logoslot" src="media/logo-placeholder.png" alt="Eden Grove">
+  </div>
+
+  <div class="tiles">
+    <a class="tile" href="#standard">
+      <img src="media/tile-1.jpg" alt="">
+      <span class="tile__t">The Standard</span>
+    </a>
+    <a class="tile" href="#marketing">
+      <img src="media/tile-2.jpg" alt="">
+      <span class="tile__t">Unparalleled Marketing</span>
+    </a>
+    <a class="tile" href="#consultation">
+      <img src="media/tile-3.jpg" alt="">
+      <span class="tile__t">Consultation</span>
+    </a>
   </div>
 </section>
 
