@@ -5,66 +5,467 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Eden Grove</title>
 <meta name="description" content="Eden Grove — Middle Tennessee.">
+<!-- REMOVE once the featured listings are real. Placeholder prices must not be indexed. -->
+<meta name="robots" content="noindex, nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Quattrocento&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <style>
 /* ==========================================================================
-   EDEN GROVE — holding page
-   Same two colours as the internal shell: Plaster ground, Canopy ink.
-   The deboss is two hairlines — light on the lower lip, shadow on the upper.
-   No texture, no gradient, nothing pretending to be a material.
+   EDEN GROVE — homepage
+   HERO: full-bleed video, wordmark top left, nav top right.
+   Layout only for now — no brokerage marks, no compliance furniture yet.
    ========================================================================== */
 :root{
-  --plaster:#CDC4BB;
-  --canopy:#242A1D;
-  --hi:rgba(250,246,239,.62);           /* the lit lower lip */
-  --deboss:0 1px 0 var(--hi), 0 -1px 0 rgba(36,42,29,.13);
-  --display:"Quattrocento",Georgia,serif;
+  --ink:#14170F;
+  --paper:#F4F1EC;
+  --on-video:#FFFFFF;
+  --on-video-dim:rgba(255,255,255,.72);
+
+  /* the one warm note in the palette — status, rules, and the only call to action */
+  --brass:#B6A97C;
+
+  --display:"Cormorant Garamond",Georgia,serif;
+  --ui:"Jost",system-ui,-apple-system,sans-serif;
+
+  --gutter:clamp(1.25rem,4vw,3.25rem);
+  --bar-y:clamp(1.4rem,2.6vw,2.1rem);
+
+  --rise:cubic-bezier(.22,.61,.36,1);
 }
 *,*::before,*::after{box-sizing:border-box}
-html,body{height:100%}
+html{scroll-behavior:smooth}
 body{
-  margin:0;
-  background:var(--plaster);
-  color:var(--canopy);
+  margin:0;background:var(--ink);color:var(--paper);
+  font-family:var(--ui);font-weight:300;
   -webkit-font-smoothing:antialiased;
-  display:grid;
-  place-items:center;
-  min-height:100svh;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* ============================== HERO ============================== */
+.hero{position:relative;height:100svh;min-height:34rem;overflow:hidden}
+
+/* One rule serves both — swapping <img> for <video> needs no CSS change. */
+.hero__media{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  display:block;
 }
 
-/* ---- the mark ---- */
-.wordmark{
-  font-family:var(--display);
-  font-weight:400;
-  text-transform:uppercase;
-  line-height:1;
-  letter-spacing:.2em;
-  text-indent:.2em;                     /* balances the trailing letterspace */
-  font-size:clamp(1.7rem,1rem + 4.2vw,4rem);
-  text-shadow:var(--deboss);
-  opacity:0;
-  animation:markIn 2.6s cubic-bezier(.25,.6,.25,1) forwards;
+/* Two scrims, not one. A top wash so the bar is always legible whatever the
+   footage does, and a floor so the scroll cue never sits on a blown highlight. */
+.hero__scrim{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(to bottom, rgba(8,10,7,.55) 0%, rgba(8,10,7,.22) 14%, rgba(8,10,7,0) 34%),
+    linear-gradient(to top,    rgba(8,10,7,.44) 0%, rgba(8,10,7,0) 26%);
 }
+
+/* ------------------------------ top bar ------------------------------ */
+.bar{
+  position:absolute;top:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:var(--bar-y) var(--gutter);
+  color:var(--on-video);
+}
+
+.mark{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(1.05rem,.72rem + .95vw,1.6rem);
+  letter-spacing:.34em;text-indent:.34em;
+  text-transform:uppercase;line-height:1;white-space:nowrap;
+  text-shadow:0 1px 24px rgba(0,0,0,.34);
+}
+
+.nav{display:flex;align-items:center;gap:clamp(1.6rem,3.2vw,3.4rem)}
+.nav__item{position:relative}
+
+.nav__link{
+  position:relative;display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--ui);font-weight:300;
+  font-size:.68rem;letter-spacing:.26em;text-indent:.26em;
+  text-transform:uppercase;white-space:nowrap;
+  color:var(--on-video-dim);
+  padding:.35rem 0;
+  transition:color .45s var(--rise);
+  text-shadow:0 1px 20px rgba(0,0,0,.34);
+}
+/* the rule draws itself from the left rather than fading in — quieter, and it
+   reads as underlining a word rather than switching a state on */
+.nav__link::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:left;
+  transition:transform .5s var(--rise);
+}
+.nav__link:hover,.nav__link:focus-visible,
+.nav__item.open > .nav__link{color:var(--on-video)}
+.nav__link:hover::after,.nav__link:focus-visible::after,
+.nav__item.open > .nav__link::after{transform:scaleX(1)}
+.nav__link:focus-visible{outline:none}
+
+/* the caret is a hairline chevron, not a glyph — it stays optically correct
+   at this size where a ▾ would look like a smudge */
+.caret{
+  width:.36rem;height:.36rem;margin-left:-.2rem;flex:0 0 auto;
+  border-right:1px solid currentColor;border-bottom:1px solid currentColor;
+  transform:translateY(-.12em) rotate(45deg);opacity:.6;
+  transition:transform .4s var(--rise),opacity .4s var(--rise);
+}
+.nav__item.open .caret{transform:translateY(.05em) rotate(-135deg);opacity:.95}
+
+/* ---------------------------- dropdown ---------------------------- */
+.sub{
+  position:absolute;top:calc(100% + 1.1rem);left:-1.35rem;
+  min-width:14.5rem;
+  display:flex;flex-direction:column;
+  padding:1.25rem 1.35rem 1.35rem;
+  background:rgba(12,15,10,.78);
+  backdrop-filter:blur(14px) saturate(1.1);
+  -webkit-backdrop-filter:blur(14px) saturate(1.1);
+  border-top:1px solid rgba(255,255,255,.20);
+  opacity:0;transform:translateY(-.4rem);pointer-events:none;
+  transition:opacity .38s var(--rise),transform .38s var(--rise);
+}
+.nav__item.open .sub{opacity:1;transform:none;pointer-events:auto}
+.sub a{
+  font-size:.64rem;letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:var(--on-video-dim);white-space:nowrap;
+  padding:.62rem 0;
+  transition:color .35s var(--rise),padding-left .35s var(--rise);
+}
+.sub a:hover,.sub a:focus-visible{color:var(--on-video);padding-left:.4rem;outline:none}
+
+/* ------------------------------ scroll cue ------------------------------ */
+.cue{
+  position:absolute;z-index:20;left:50%;bottom:clamp(1.5rem,3.4vh,2.6rem);
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.75rem;
+  color:var(--on-video-dim);
+}
+.cue span{
+  font-size:.55rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+}
+.cue i{display:block;width:1px;height:2.6rem;background:currentColor;opacity:.5;
+  transform-origin:top;animation:drip 2.9s var(--rise) infinite}
+@keyframes drip{
+  0%{transform:scaleY(0);opacity:0}
+  36%{opacity:.55}
+  100%{transform:scaleY(1);opacity:0}
+}
+
+/* ------------------------------ the reveal ------------------------------
+   Everything overlaid on the video arrives after the footage has had a beat
+   to establish itself. Slow, and it only happens once. */
+.reveal{opacity:0;animation:reveal 2.2s var(--rise) forwards}
+.mark.reveal{animation-name:markIn;animation-duration:2.8s;animation-delay:.5s}
+.nav.reveal{animation-delay:1.5s}
+.cue.reveal{animation-delay:2.4s}
+@keyframes reveal{to{opacity:1}}
 @keyframes markIn{
-  from{opacity:0;letter-spacing:.42em}
-  to  {opacity:1;letter-spacing:.2em}
+  from{opacity:0;letter-spacing:.62em;text-indent:.62em}
+  to  {opacity:1;letter-spacing:.34em;text-indent:.34em}
+}
+
+/* ------------------------------ mobile nav ------------------------------ */
+.burger{display:none;width:1.6rem;height:1.6rem;position:relative;z-index:40}
+.burger i{position:absolute;left:0;right:0;height:1px;background:currentColor;
+  transition:transform .45s var(--rise),opacity .3s}
+.burger i:nth-child(1){top:.45rem}
+.burger i:nth-child(2){top:.95rem}
+body.menu-open .burger i:nth-child(1){transform:translateY(.25rem) rotate(45deg)}
+body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45deg)}
+
+@media (max-width:760px){
+  .burger{display:block}
+  .nav{
+    position:fixed;inset:0;z-index:30;
+    flex-direction:column;justify-content:center;align-items:center;gap:1.9rem;
+    background:rgba(10,13,9,.95);
+    opacity:0;pointer-events:none;transition:opacity .5s var(--rise);
+    animation:none !important;
+  }
+  body.menu-open .nav{opacity:1;pointer-events:auto}
+  .nav__item{text-align:center}
+  .nav__link{font-size:.95rem;letter-spacing:.3em;text-indent:.3em;color:var(--on-video)}
+  .caret{width:.3rem;height:.3rem}
+
+  /* the panel becomes an inline accordion — a floating dropdown on a phone is
+     a fiddly target and hides the rest of the menu behind it */
+  .sub{
+    position:static;min-width:0;padding:0;border-top:0;background:none;
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    transform:none;opacity:1;pointer-events:auto;
+    max-height:0;overflow:hidden;
+    transition:max-height .45s var(--rise),margin .45s var(--rise);
+  }
+  .nav__item.open .sub{max-height:22rem;margin-top:1.4rem}
+  .sub a{font-size:.72rem;padding:.65rem 0}
+  .cue{display:none}
+}
+
+/* ========================= 3 · FEATURED PROPERTIES =========================
+   One lead, two beneath. Address always visible; the numbers arrive on hover
+   so the resting state stays a photograph rather than a spec sheet. */
+.featured{background:var(--ink);padding:clamp(3.5rem,7vh,6rem) 0 clamp(4rem,8vh,6.5rem)}
+.featured__grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(.5rem,1vw,1.1rem);
+  padding:0 clamp(.5rem,1vw,1.1rem);
+}
+.prop--lead{grid-column:1 / -1}
+
+.prop{
+  position:relative;display:block;overflow:hidden;background:#1b1f19;
+  aspect-ratio:6/5;
+}
+.prop--lead{aspect-ratio:5/2}
+.prop img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.001);transition:transform 1.2s var(--rise)
+}
+.prop:hover img,.prop:focus-visible img{transform:scale(1.04)}
+.prop:focus-visible{outline:1px solid var(--brass);outline-offset:-1px}
+
+/* resting wash keeps the address readable; the second stop deepens on hover
+   so the numbers have somewhere to land */
+.prop::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top, rgba(6,8,5,.68) 0%, rgba(6,8,5,.20) 30%, rgba(6,8,5,0) 58%);
+  transition:background .6s var(--rise);
+}
+.prop:hover::after,.prop:focus-within::after,.prop:focus-visible::after{
+  background:linear-gradient(to top, rgba(6,8,5,.78) 0%, rgba(6,8,5,.34) 52%, rgba(6,8,5,0) 100%);
+}
+
+.prop__status{
+  position:absolute;z-index:3;top:clamp(1rem,1.6vw,1.5rem);left:clamp(1rem,1.8vw,1.75rem);
+  background:var(--brass);color:#14170F;
+  font-size:.58rem;font-weight:400;letter-spacing:.2em;text-indent:.2em;
+  text-transform:uppercase;padding:.42rem .75rem .4rem;
+}
+
+/* The block is deliberately narrower than the card. On the lead especially, a
+   rule running the full 1400px would read as a divider across the photograph
+   rather than as underlining these three numbers. */
+.prop__body{
+  position:absolute;z-index:3;left:clamp(1rem,1.8vw,1.75rem);right:clamp(1rem,1.8vw,1.75rem);
+  bottom:clamp(1.1rem,2vw,1.9rem);
+  max-width:31rem;
+}
+.prop__addr{
+  margin:0;font-family:var(--display);font-weight:400;
+  font-size:clamp(1.05rem,.85rem + .75vw,1.75rem);
+  line-height:1.24;color:#fff;text-transform:uppercase;letter-spacing:.02em;
+  text-shadow:0 1px 22px rgba(0,0,0,.5);
+}
+
+/* The detail block is measured in grid rows, not max-height, so it opens to
+   exactly its own height at any width — no guessed magic number to outgrow. */
+.prop__more{
+  display:grid;grid-template-rows:0fr;
+  opacity:0;transition:grid-template-rows .55s var(--rise),opacity .45s var(--rise);
+}
+.prop__more > div{overflow:hidden}
+.prop:hover .prop__more,.prop:focus-within .prop__more,.prop:focus-visible .prop__more{
+  grid-template-rows:1fr;opacity:1;
+}
+
+.prop__facts{
+  display:flex;flex-wrap:wrap;gap:.6rem clamp(1.1rem,2.4vw,2.6rem);
+  margin-top:1.15rem;padding:.85rem 0;
+  border-top:1px solid rgba(182,169,124,.55);
+  border-bottom:1px solid rgba(182,169,124,.55);
+  font-size:.72rem;letter-spacing:.08em;color:#fff;
+}
+.prop__facts .k{color:rgba(255,255,255,.62);margin-right:.4rem}
+.prop__cta{
+  display:inline-flex;align-items:center;gap:.5rem;margin-top:1.05rem;
+  font-family:var(--display);font-size:.95rem;letter-spacing:.14em;text-indent:.14em;
+  text-transform:uppercase;color:var(--brass);
+}
+.prop__cta svg{width:.5rem;height:.5rem;transition:transform .4s var(--rise)}
+.prop:hover .prop__cta svg{transform:translateX(.25rem)}
+
+@media (max-width:760px){
+  .featured__grid{grid-template-columns:1fr}
+  .prop,.prop--lead{aspect-ratio:4/3}
+  /* nothing to hover on a phone — the numbers are simply always there */
+  .prop__more{grid-template-rows:1fr;opacity:1}
+  .prop::after{background:linear-gradient(to top, rgba(6,8,5,.84) 0%, rgba(6,8,5,.42) 52%, rgba(6,8,5,.08) 100%)}
+}
+/* same for any pointer that cannot hover, regardless of width */
+@media (hover:none){
+  .prop__more{grid-template-rows:1fr;opacity:1}
 }
 
 @media (prefers-reduced-motion:reduce){
-  *{animation:none!important}
-  .wordmark{opacity:1}
-}
-/* forced-colors strips the impression rather than fighting the user's palette */
-@media (forced-colors:active){
-  *{text-shadow:none!important}
+  *{animation:none !important;transition-duration:.01ms !important}
+  .reveal{opacity:1}
 }
 </style>
 </head>
 <body>
 
-<h1 class="wordmark">Eden&nbsp;Grove</h1>
+<section class="hero">
+  <!-- Swap this <img> for a <video> when the footage exists. Nothing else changes. -->
+  <img class="hero__media" src="media/hero.jpg" alt="" aria-hidden="true">
+  <div class="hero__scrim"></div>
 
+  <header class="bar">
+    <a class="mark reveal" href="/" aria-label="Eden Grove — home">Eden&nbsp;Grove</a>
+
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+      <i></i><i></i>
+    </button>
+
+    <nav class="nav reveal" id="nav" aria-label="Primary">
+      <div class="nav__item has-sub">
+        <a class="nav__link" href="#residential" aria-expanded="false" aria-haspopup="true">
+          Residential<i class="caret" aria-hidden="true"></i>
+        </a>
+        <div class="sub">
+          <a href="#sellers">Sellers</a>
+          <a href="#buyers">Buyers</a>
+          <a href="#neighborhoods">Neighborhoods</a>
+          <a href="#marketing">Marketing</a>
+          <a href="#past-transactions">Past Transactions</a>
+        </div>
+      </div>
+      <div class="nav__item">
+        <a class="nav__link" href="#team">Team</a>
+      </div>
+      <div class="nav__item">
+        <a class="nav__link" href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <div class="cue reveal" aria-hidden="true">
+    <span>Scroll</span>
+    <i></i>
+  </div>
+</section>
+
+<!-- ==================== 3 · FEATURED PROPERTIES ====================
+     Addresses, prices and MLS numbers below are invented placeholders. -->
+<section class="featured" id="properties" aria-label="Featured properties">
+  <div class="featured__grid">
+
+    <a class="prop prop--lead" href="#property-1">
+      <img src="media/prop-lead.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">4120 Vaughn Crest Drive<br>Franklin, TN 37069</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$6,750,000</span>
+            <span>9,840 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+    <a class="prop" href="#property-2">
+      <img src="media/prop-1.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">1215 Chickering Road<br>Nashville, TN 37215</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$4,295,000</span>
+            <span>7,120 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+    <a class="prop" href="#property-3">
+      <img src="media/prop-2.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">9 Northumberland<br>Nashville, TN 37215</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$3,150,000</span>
+            <span>6,480 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>0000000</span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<script>
+const burger  = document.getElementById("burger");
+const nav     = document.getElementById("nav");
+const isPhone = () => matchMedia("(max-width:760px)").matches;
+
+/* ---- dropdown ----
+   Hover on a mouse, tap on touch. The same .open class drives both, so the
+   desktop panel and the mobile accordion never disagree about state. */
+nav.querySelectorAll(".has-sub").forEach(item => {
+  const link = item.querySelector(".nav__link");
+  const set = open => {
+    item.classList.toggle("open", open);
+    link.setAttribute("aria-expanded", open);
+  };
+
+  item.addEventListener("pointerenter", e => { if (e.pointerType === "mouse" && !isPhone()) set(true) });
+  item.addEventListener("pointerleave", e => { if (e.pointerType === "mouse" && !isPhone()) set(false) });
+
+  // first tap/click opens rather than navigating; the section link still works second
+  link.addEventListener("click", e => {
+    if (isPhone() || e.detail === 0 || !matchMedia("(hover:hover)").matches) {
+      if (!item.classList.contains("open")) { e.preventDefault(); set(true) }
+    }
+  });
+
+  item.addEventListener("focusout", () => {
+    requestAnimationFrame(() => { if (!item.contains(document.activeElement)) set(false) });
+  });
+});
+
+/* ---- mobile menu ---- */
+const closeMenu = () => {
+  document.body.classList.remove("menu-open");
+  burger.setAttribute("aria-expanded", false);
+};
+burger.addEventListener("click", () => {
+  const open = document.body.classList.toggle("menu-open");
+  burger.setAttribute("aria-expanded", open);
+});
+nav.addEventListener("click", e => {
+  const a = e.target.closest("a");
+  if (a && !a.closest(".has-sub > .nav__link")) {
+    if (!(isPhone() && a.classList.contains("nav__link") && a.parentElement.classList.contains("has-sub"))) closeMenu();
+  }
+});
+addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  const open = nav.querySelector(".nav__item.open");
+  if (open) {
+    open.classList.remove("open");
+    open.querySelector(".nav__link").setAttribute("aria-expanded", false);
+    open.querySelector(".nav__link").focus();
+  } else if (document.body.classList.contains("menu-open")) closeMenu();
+});
+</script>
 </body>
 </html>

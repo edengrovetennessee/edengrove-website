@@ -1,46 +1,59 @@
 # edengrove-website
 
-Public holding page for **Eden Grove**, a luxury team at Compass (Middle Tennessee).
-
+Public site for **Eden Grove**, a luxury team at Compass (Middle Tennessee).
 Served by GitHub Pages at `edengrovetennessee.com`.
 
-## What this is right now
+## Current state — draft, not finished
 
-A single static page: the Eden Grove wordmark debossed into a plaster ground,
-plus one link to the internal dashboard. Nothing else. It exists so the domain
-is not dead while Compass compliance answers the co-branding questions.
+Two sections: a full-bleed hero and a featured-properties block. No build step,
+no dependencies; `index.html` is the whole site.
 
-## Before this becomes a real marketing site
+**`<meta name="robots" content="noindex, nofollow">` is set on purpose.** The
+featured listings are invented — real Middle Tennessee street names with made-up
+prices, square footage and `MLS # 0000000`. That must not be indexed, and it must
+not be public-facing marketing. Remove the noindex tag only once every listing on
+the page is real.
 
-The full site cannot launch until compliance confirms:
+## Still missing before launch
 
-- the office's **exact registered firm name and telephone number** as filed with TREC
-- the approved **Compass co-branding lockup**
-- the current **required legal disclaimers**
+Compass compliance furniture is deliberately absent while the design is settled:
 
-Tennessee Rule 1260-02-.12 requires the firm name to appear in type **equal to or
-larger than** the team name in all advertising, alongside the registered firm name
-and phone. Also required on a marketing site: Equal Housing Opportunity logo,
-Realtor® logo, and team licence numbers.
+- **Compass firm name in type equal to or larger than "Eden Grove"** — Tenn. Comp.
+  R. & Regs. 1260-02-.12. This is the violation that gets teams cited.
+- The office's **registered firm name and telephone number** exactly as filed with TREC
+- **Equal Housing Opportunity** and **Realtor®** logos
+- Compass's current **legal disclaimers**
+- Team **licence numbers**
 
 The principal broker approves the site **before** launch, not after.
 
-## Files
+Listings beyond the team's own require an **IDX agreement** with Realtracs plus
+Compass authorisation. Until then, only our own listings with our own photography.
 
-| File | Purpose |
+## Structure
+
+| | |
 |---|---|
-| `index.html` | The whole page. Self-contained — no build step. |
-| `CNAME` | Custom domain for GitHub Pages. Written by GitHub; leave it. |
+| `index.html` | Entire site — markup, CSS and JS in one file |
+| `media/hero.jpg` | Hero slot, 2400 × 1350. Swap `<img class="hero__media">` for `<video>` and no CSS changes |
+| `media/prop-lead.jpg` | Lead property, 2400 × 960 (5:2) |
+| `media/prop-1.jpg`, `prop-2.jpg` | Secondary properties, 1200 × 1000 (6:5) |
+| `CNAME` | Custom domain. Written by GitHub — leave it |
 
-## Editing
+All images are labelled placeholders.
 
-The dashboard link is the only line intended to change:
+## Design notes
 
-```html
-<a class="dash" href="https://dashboard.edengrovetennessee.com">Company dashboard</a>
-```
+Cormorant Garamond for display, Jost for interface. Ink `#14170F`, paper
+`#F4F1EC`, and one warm accent — brass `#B6A97C` — used only for status badges,
+hairline rules and the single call to action.
+
+Property cards show the address at rest and reveal price, square footage and MLS
+number on hover. Because hover does not exist on touch, any device that cannot
+hover shows those numbers permanently; keyboard users get them on focus.
 
 ## DNS
 
-Four A records at `@` → `185.199.108–111.153`, CNAME `www` → `edengrovetennessee.github.io`.
-All **DNS only / grey cloud** in Cloudflare, or GitHub cannot issue the TLS certificate.
+Four A records at `@` → `185.199.108–111.153`, CNAME `www` →
+`edengrovetennessee.github.io`. All **DNS only / grey cloud** in Cloudflare, or
+GitHub cannot issue its TLS certificate.
