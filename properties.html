@@ -619,10 +619,13 @@ blockquote{
   gap:clamp(.5rem,1vw,1.1rem);
   padding:0 clamp(.5rem,1vw,1.1rem);
 }
-.listings .prop{aspect-ratio:1/1}
+/* One lead across both columns, two beneath — the same arrangement as the
+   homepage row, so every crop already in media/ fits without re-cutting. */
+.listings .prop{aspect-ratio:6/5}
+.listings .prop--lead{aspect-ratio:5/2}
 @media (max-width:760px){
   .listings__grid{grid-template-columns:1fr}
-  .listings .prop{aspect-ratio:4/3}
+  .listings .prop,.listings .prop--lead{aspect-ratio:4/3}
 }
 </style>
 </head>
@@ -673,21 +676,21 @@ blockquote{
 </section>
 
 <!-- ============================ THE LISTINGS ============================
-     PLACEHOLDER. Real street names, invented prices, square footage and
-     MLS numbers. Not to be indexed or shown as marketing. -->
+     The three properties we currently represent. Prices and MLS numbers are
+     real — they must match Realtracs exactly. -->
 <section class="listings" aria-label="Listings">
   <div class="listings__grid">
 
-    <a class="prop" href="#listing-1">
-      <img src="media/listing-1.jpg" alt="">
-      <span class="prop__status">Active</span>
+    <a class="prop prop--lead" href="#listing-1">
+      <img src="media/prop-lead.jpg" alt="">
+      <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
-        <h3 class="prop__addr">4120 Vaughn Crest Drive<br>Franklin, TN 37069</h3>
+        <h3 class="prop__addr">1211 Carl Seyfert Memorial Dr<br>Brentwood, TN 37027</h3>
         <div class="prop__more"><div>
           <div class="prop__facts">
-            <span>$6,750,000</span>
-            <span>9,840 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>0000000</span>
+            <span>$5,765,000</span>
+            <span>7,885 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>3259707</span>
           </div>
           <span class="prop__cta">View Property
             <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
@@ -698,15 +701,15 @@ blockquote{
     </a>
 
     <a class="prop" href="#listing-2">
-      <img src="media/listing-2.jpg" alt="">
-      <span class="prop__status">Pending</span>
+      <img src="media/prop-1.jpg" alt="">
+      <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
-        <h3 class="prop__addr">3530 Bailey Road<br>Franklin, TN 37064</h3>
+        <h3 class="prop__addr">715 Davis Dr<br>Brentwood, TN 37027</h3>
         <div class="prop__more"><div>
+          <!-- no MLS number: a Private Exclusive is off-market by definition -->
           <div class="prop__facts">
-            <span>$5,900,000</span>
-            <span>8,410 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>0000000</span>
+            <span>$6,000,000</span>
+            <span>8,600 <span class="k">Sq Ft</span></span>
           </div>
           <span class="prop__cta">View Property
             <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
@@ -717,110 +720,15 @@ blockquote{
     </a>
 
     <a class="prop" href="#listing-3">
-      <img src="media/listing-3.jpg" alt="">
-      <span class="prop__status">Active</span>
+      <img src="media/prop-2.jpg" alt="">
+      <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
-        <h3 class="prop__addr">1215 Chickering Road<br>Nashville, TN 37215</h3>
+        <h3 class="prop__addr">515 Shenandoah Dr<br>Brentwood, TN 37027</h3>
         <div class="prop__more"><div>
+          <!-- no MLS number: a Private Exclusive is off-market by definition -->
           <div class="prop__facts">
-            <span>$4,295,000</span>
-            <span>7,120 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>0000000</span>
-          </div>
-          <span class="prop__cta">View Property
-            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <path d="M2 1l3 3-3 3"/></svg>
-          </span>
-        </div></div>
-      </div>
-    </a>
-
-    <a class="prop" href="#listing-4">
-      <img src="media/listing-4.jpg" alt="">
-      <span class="prop__status">Active</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">9 Northumberland<br>Nashville, TN 37215</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$3,150,000</span>
-            <span>6,480 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>0000000</span>
-          </div>
-          <span class="prop__cta">View Property
-            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <path d="M2 1l3 3-3 3"/></svg>
-          </span>
-        </div></div>
-      </div>
-    </a>
-
-    <a class="prop" href="#listing-5">
-      <img src="media/listing-5.jpg" alt="">
-      <span class="prop__status">Active</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">1802 Tyne Boulevard<br>Nashville, TN 37215</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$4,850,000</span>
-            <span>7,640 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>0000000</span>
-          </div>
-          <span class="prop__cta">View Property
-            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <path d="M2 1l3 3-3 3"/></svg>
-          </span>
-        </div></div>
-      </div>
-    </a>
-
-    <a class="prop" href="#listing-6">
-      <img src="media/listing-6.jpg" alt="">
-      <span class="prop__status">Pending</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">5 Colonel Winstead Drive<br>Brentwood, TN 37027</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$3,695,000</span>
-            <span>6,900 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>0000000</span>
-          </div>
-          <span class="prop__cta">View Property
-            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <path d="M2 1l3 3-3 3"/></svg>
-          </span>
-        </div></div>
-      </div>
-    </a>
-
-    <a class="prop" href="#listing-7">
-      <img src="media/listing-7.jpg" alt="">
-      <span class="prop__status">Active</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">2140 Old Hillsboro Road<br>Franklin, TN 37069</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$8,250,000</span>
-            <span>11,200 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>0000000</span>
-          </div>
-          <span class="prop__cta">View Property
-            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <path d="M2 1l3 3-3 3"/></svg>
-          </span>
-        </div></div>
-      </div>
-    </a>
-
-    <a class="prop" href="#listing-8">
-      <img src="media/listing-8.jpg" alt="">
-      <span class="prop__status">Active</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">700 Bowling Avenue<br>Nashville, TN 37215</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$2,975,000</span>
-            <span>5,760 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>0000000</span>
+            <span>$5,500,000</span>
+            <span>8,000 <span class="k">Sq Ft</span></span>
           </div>
           <span class="prop__cta">View Property
             <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
