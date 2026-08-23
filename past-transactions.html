@@ -595,6 +595,35 @@ blockquote{
   padding:0 var(--gutter);
 }
 .banner__box{max-width:44rem}
+
+/* ---- banner as the lead sale ----
+   Same treatment as Featured Listings: the top property is the header, its
+   details sit bottom left and stay visible. */
+.banner--listing .banner__inner{
+  place-items:end start;text-align:left;
+  padding:0 var(--gutter) clamp(2.5rem,6vh,4.5rem);
+}
+.banner--listing .banner__box{max-width:34rem}
+.banner--listing .prop__status{position:static;display:inline-block;margin-bottom:1.4rem;opacity:1;transform:none}
+.banner--listing .prop__addr{
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(1.05rem,.88rem + .72vw,1.55rem);
+  line-height:1.75;letter-spacing:.15em;text-transform:uppercase;color:#fff;
+  text-shadow:0 1px 24px rgba(0,0,0,.5);
+}
+.banner--listing .prop__facts{
+  display:flex;flex-wrap:wrap;gap:.6rem clamp(1.1rem,2.4vw,2.6rem);
+  margin-top:1.4rem;padding:.85rem 0;
+  border-top:1px solid rgba(182,169,124,.55);
+  border-bottom:1px solid rgba(182,169,124,.55);
+  font-size:.72rem;letter-spacing:.08em;color:#fff;
+}
+.banner--listing .prop__facts .k{color:rgba(255,255,255,.62);margin-right:.4rem}
+.banner--listing .hero__scrim{
+  background:
+    linear-gradient(to bottom, rgba(8,10,7,.55) 0%, rgba(8,10,7,.18) 16%, rgba(8,10,7,0) 38%),
+    linear-gradient(to top,    rgba(8,10,7,.78) 0%, rgba(8,10,7,.30) 34%, rgba(8,10,7,0) 62%);
+}
 .banner h1{
   margin:0;font-family:var(--ui);font-weight:300;
   font-size:clamp(1.6rem,1.15rem + 2.1vw,3rem);
@@ -635,7 +664,7 @@ blockquote{
 </head>
 <body>
 
-<section class="banner" id="top">
+<section class="banner banner--listing" id="top">
   <img class="hero__media" src="media/past-banner.jpg" alt="" aria-hidden="true">
   <div class="hero__scrim"></div>
 
@@ -670,11 +699,14 @@ blockquote{
   </header>
 
   <div class="banner__inner">
-    <div class="banner__box">
-      <h1 class="reveal" style="animation-delay:.6s">Past Transactions</h1>
-      <p class="reveal" style="animation-delay:1.1s">The homes we have represented and closed across Middle Tennessee.
-         Each one held to the same standard, and each one seen through from the first
-         walkthrough to the closing table.</p>
+    <div class="banner__box reveal" style="animation-delay:.6s">
+      <span class="prop__status">Sold</span>
+      <h1 class="prop__addr">6103 Bryan Pl<br>Brentwood, TN 37027</h1>
+      <div class="prop__facts">
+        <span>$5,150,000</span>
+        <span>7,378 <span class="k">Sq Ft</span></span>
+        <span><span class="k">MLS #</span>2946492</span>
+      </div>
     </div>
   </div>
 </section>
@@ -687,21 +719,6 @@ blockquote{
      numbers. Sold figures are public record — do not publish invented ones. -->
 <section class="listings" aria-label="Past transactions">
   <div class="listings__grid">
-
-    <div class="prop prop--sold" tabindex="0">
-      <img src="media/sold-bryan-6103.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">6103 Bryan Pl<br>Brentwood, TN 37027</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$5,150,000</span>
-            <span>7,378 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>2946492</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
 
     <div class="prop prop--sold" tabindex="0">
       <img src="media/sold-troubadour-1213.jpg" alt="">
