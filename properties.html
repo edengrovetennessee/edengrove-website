@@ -659,6 +659,20 @@ blockquote{
 /* Everything below the banner is a square, two across. New listings drop in
    as more squares and the rhythm holds however many there are. */
 .listings .prop{aspect-ratio:1/1}
+
+/* ---- a listing with no photograph yet ----
+   Not a grey placeholder box. The tile keeps its square and its type and simply
+   has no picture in it — a slightly lifted ground and a hairline so it reads as
+   a card rather than a gap. Adding the photo later means adding an <img>; every
+   other rule already applies. */
+.prop--nophoto{
+  background:linear-gradient(160deg,#1e2219 0%,#171b13 70%);
+  box-shadow:inset 0 0 0 1px rgba(244,241,236,.10);
+}
+.prop--nophoto::after{background:none}
+.prop--nophoto .prop__addr{text-shadow:none}
+/* nothing to darken on hover, so the lift is the ground itself */
+.prop--nophoto:hover{background:linear-gradient(160deg,#232719 0%,#1a1e15 70%)}
 @media (max-width:760px){
   .listings__grid{grid-template-columns:1fr}
   .listings .prop{aspect-ratio:4/3}
@@ -834,6 +848,80 @@ blockquote{
             <span>$2,250,000</span>
             <span>3,920 <span class="k">Sq Ft</span></span>
           </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+
+    <a class="prop prop--nophoto" href="#listing-8">
+      <span class="prop__status">Private Exclusive</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">1211 Jefferson Davis Dr<br>Brentwood, TN 37027</h3>
+        <div class="prop__more"><div>
+          <!-- no price, square footage or MLS supplied yet -->
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+
+    <a class="prop prop--nophoto" href="#listing-9">
+      <span class="prop__status">Private Exclusive</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">718 Shenandoah Dr<br>Brentwood, TN 37027</h3>
+        <div class="prop__more"><div>
+          <!-- no price, square footage or MLS supplied yet -->
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+    <a class="prop prop--nophoto" href="#listing-10">
+      <span class="prop__status">Private Exclusive</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">706 Davis Dr<br>Brentwood, TN 37027</h3>
+        <div class="prop__more"><div>
+          <!-- no price, square footage or MLS supplied yet -->
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+
+    <a class="prop prop--nophoto" href="#listing-11">
+      <span class="prop__status">Private Exclusive</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">607 Davis Dr<br>Brentwood, TN 37027</h3>
+        <div class="prop__more"><div>
+          <!-- no price, square footage or MLS supplied yet -->
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+
+    <a class="prop prop--nophoto" href="#listing-12">
+      <span class="prop__status">Private Exclusive</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">842 Brook Hollow Rd<br>Nashville, TN 37205</h3>
+        <div class="prop__more"><div>
+          <!-- no price, square footage or MLS supplied yet -->
           <span class="prop__cta">View Property
             <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
               <path d="M2 1l3 3-3 3"/></svg>
