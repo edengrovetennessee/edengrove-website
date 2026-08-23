@@ -890,9 +890,12 @@ nav.addEventListener("click", e => {
   }
 });
 /* ---- testimonials ----
-   Auto-rotate, no controls. Two concessions so that isn't hostile: it pauses
-   while the pointer is over the section, and it only runs while the section is
-   actually on screen — no quotes cycling away unseen at the top of the page. */
+   Auto-rotate, no controls. It only runs while the section is on screen, so no
+   quote cycles away unseen at the top of the page.
+
+   There is deliberately NO pause-on-hover here. This section is a full viewport
+   tall, so while it is on screen the pointer is essentially always inside it —
+   a hover pause meant it never advanced at all. */
 const saysItems = [...document.querySelectorAll(".says__item")];
 if (saysItems.length) {
   const section = document.querySelector(".says");
@@ -900,7 +903,7 @@ if (saysItems.length) {
   const count = document.getElementById("saysCount");
   const pad   = n => String(n).padStart(2, "0");
   const HOLD  = 7000;
-  let at = 0, timer = null, onScreen = false, hovered = false;
+  let at = 0, timer = null, onScreen = false;
 
   const show = i => {
     at = (i + saysItems.length) % saysItems.length;
@@ -908,16 +911,14 @@ if (saysItems.length) {
     count.textContent = `${pad(at + 1)} / ${pad(saysItems.length)}`;
   };
 
-  const tick = () => { if (onScreen && !hovered) show(at + 1) };
+  const tick = () => { if (onScreen) show(at + 1) };
   const sync = () => {
     clearInterval(timer); timer = null;
-    if (onScreen && !hovered) timer = setInterval(tick, HOLD);
+    if (onScreen) timer = setInterval(tick, HOLD);
   };
 
   new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; sync() },
                            {threshold:.25}).observe(section);
-  section.addEventListener("pointerenter", () => { hovered = true;  sync() });
-  section.addEventListener("pointerleave", () => { hovered = false; sync() });
 
   // Reserve the tallest quote's height up front so the section never reflows
   // mid-fade. Recomputed on resize, since the tallest changes with line length.
