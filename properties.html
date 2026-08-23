@@ -595,6 +595,43 @@ blockquote{
   padding:0 var(--gutter);
 }
 .banner__box{max-width:44rem}
+
+/* ---- banner as the lead listing ----
+   The top property is the banner rather than a card, so its details sit bottom
+   left and stay visible: there is no hover on a page header, and nothing above
+   it to compete for the eye. */
+.banner--listing .banner__inner{
+  place-items:end start;text-align:left;
+  padding:0 var(--gutter) clamp(2.5rem,6vh,4.5rem);
+}
+.banner--listing .banner__box{max-width:34rem}
+.banner--listing .prop__status{position:static;display:inline-block;margin-bottom:1.4rem;opacity:1;transform:none}
+.banner--listing .prop__addr{
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(1.05rem,.88rem + .72vw,1.55rem);
+  line-height:1.75;letter-spacing:.15em;text-transform:uppercase;color:#fff;
+  text-shadow:0 1px 24px rgba(0,0,0,.5);
+}
+.banner--listing .prop__facts{
+  display:flex;flex-wrap:wrap;gap:.6rem clamp(1.1rem,2.4vw,2.6rem);
+  margin-top:1.4rem;padding:.85rem 0;
+  border-top:1px solid rgba(182,169,124,.55);
+  border-bottom:1px solid rgba(182,169,124,.55);
+  font-size:.72rem;letter-spacing:.08em;color:#fff;
+}
+.banner--listing .prop__facts .k{color:rgba(255,255,255,.62);margin-right:.4rem}
+.banner--listing .prop__cta{
+  display:inline-flex;align-items:center;gap:.5rem;margin-top:1.2rem;
+  font-family:var(--ui);font-weight:400;font-size:.66rem;
+  letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;color:var(--brass);
+}
+.banner--listing .prop__cta svg{width:.5rem;height:.5rem}
+/* the wash has to work bottom-left here, not just along the top */
+.banner--listing .hero__scrim{
+  background:
+    linear-gradient(to bottom, rgba(8,10,7,.55) 0%, rgba(8,10,7,.18) 16%, rgba(8,10,7,0) 38%),
+    linear-gradient(to top,    rgba(8,10,7,.78) 0%, rgba(8,10,7,.30) 34%, rgba(8,10,7,0) 62%);
+}
 .banner h1{
   margin:0;font-family:var(--ui);font-weight:300;
   font-size:clamp(1.6rem,1.15rem + 2.1vw,3rem);
@@ -619,19 +656,18 @@ blockquote{
   gap:clamp(.5rem,1vw,1.1rem);
   padding:0 clamp(.5rem,1vw,1.1rem);
 }
-/* One lead across both columns, two beneath — the same arrangement as the
-   homepage row, so every crop already in media/ fits without re-cutting. */
-.listings .prop{aspect-ratio:6/5}
-.listings .prop--lead{aspect-ratio:5/2}
+/* Everything below the banner is a square, two across. New listings drop in
+   as more squares and the rhythm holds however many there are. */
+.listings .prop{aspect-ratio:1/1}
 @media (max-width:760px){
   .listings__grid{grid-template-columns:1fr}
-  .listings .prop,.listings .prop--lead{aspect-ratio:4/3}
+  .listings .prop{aspect-ratio:4/3}
 }
 </style>
 </head>
 <body>
 
-<section class="banner" id="top">
+<section class="banner banner--listing" id="top">
   <img class="hero__media" src="media/listings-banner.jpg" alt="" aria-hidden="true">
   <div class="hero__scrim"></div>
 
@@ -666,11 +702,18 @@ blockquote{
   </header>
 
   <div class="banner__inner">
-    <div class="banner__box">
-      <h1 class="reveal" style="animation-delay:.6s">Featured Listings</h1>
-      <p class="reveal" style="animation-delay:1.1s">A standard of excellence, held the same way on every property we
-         represent. The attention is in the detail — how a home is assessed, how it is
-         photographed, and how it is brought to market.</p>
+    <div class="banner__box reveal" style="animation-delay:.6s">
+      <span class="prop__status">Private Exclusive</span>
+      <h1 class="prop__addr">1211 Carl Seyfert Memorial Dr<br>Brentwood, TN 37027</h1>
+      <div class="prop__facts">
+        <span>$5,765,000</span>
+        <span>7,885 <span class="k">Sq Ft</span></span>
+        <span><span class="k">MLS #</span>3259707</span>
+      </div>
+      <a class="prop__cta" href="#listing-1">View Property
+        <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M2 1l3 3-3 3"/></svg>
+      </a>
     </div>
   </div>
 </section>
@@ -681,27 +724,8 @@ blockquote{
 <section class="listings" aria-label="Listings">
   <div class="listings__grid">
 
-    <a class="prop prop--lead" href="#listing-1">
-      <img src="media/prop-lead.jpg" alt="">
-      <span class="prop__status">Private Exclusive</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">1211 Carl Seyfert Memorial Dr<br>Brentwood, TN 37027</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$5,765,000</span>
-            <span>7,885 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>3259707</span>
-          </div>
-          <span class="prop__cta">View Property
-            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <path d="M2 1l3 3-3 3"/></svg>
-          </span>
-        </div></div>
-      </div>
-    </a>
-
     <a class="prop" href="#listing-2">
-      <img src="media/prop-1.jpg" alt="">
+      <img src="media/listing-davis.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">715 Davis Dr<br>Brentwood, TN 37027</h3>
@@ -720,7 +744,7 @@ blockquote{
     </a>
 
     <a class="prop" href="#listing-3">
-      <img src="media/prop-2.jpg" alt="">
+      <img src="media/listing-shenandoah.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">515 Shenandoah Dr<br>Brentwood, TN 37027</h3>
