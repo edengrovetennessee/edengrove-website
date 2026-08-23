@@ -698,11 +698,11 @@ blockquote{
    markup — the reading order stays text-then-image either way. */
 .pitch:nth-child(even) .pitch__media{order:-1}
 .pitch__media{position:relative;overflow:hidden;aspect-ratio:3/2;background:#1b1f19}
-.pitch__media img{
+.pitch__media img,.pitch__media video{
   width:100%;height:100%;object-fit:cover;display:block;
   transform:scale(1.001);transition:transform 1.2s var(--rise);
 }
-.pitch:hover .pitch__media img{transform:scale(1.035)}
+.pitch:hover .pitch__media img,.pitch:hover .pitch__media video{transform:scale(1.035)}
 
 .pitch__n{
   display:block;margin-bottom:1.1rem;
@@ -811,7 +811,13 @@ blockquote{
         <h3>Bringing Properties to Life Through Film</h3>
         <p>Every established home we represent receives a feature short film — not a walkthrough, a film. Shot on location, cut to the pace of the house, and made to hold the attention of someone who has never heard of the street it sits on.</p>
       </div>
-      <div class="pitch__media"><img src="media/mkt-1.jpg" alt=""></div>
+      <div class="pitch__media">
+        <video autoplay muted loop playsinline preload="metadata"
+               poster="media/mkt-film-poster.jpg" aria-hidden="true">
+          <source src="media/mkt-film.webm" type="video/webm">
+          <source src="media/mkt-film.mp4"  type="video/mp4">
+        </video>
+      </div>
     </article>
 
     <article class="pitch">
