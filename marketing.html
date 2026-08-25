@@ -1012,25 +1012,49 @@ blockquote{
   if (!vids.length) return;
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(({target: v, isIntersecting}) => {
-      if (isIntersecting) {
-        if (!v.dataset.loaded) { v.dataset.loaded = '1'; v.preload = 'auto'; v.load() }
-        const p = v.play();
-        if (p) p.catch(() => {});          // autoplay refused — poster stands in
-      } else if (!v.paused) {
-        v.pause();
-      }
-    })
-  }, {threshold: .2});
+  const near = v => {
+    const r = v.getBoundingClientRect();
+    return r.width > 0 && r.top < innerHeight * 1.6 && r.bottom > -innerHeight * 0.6;
+  };
 
-  vids.forEach(v => io.observe(v));
+  const fetchIt = v => {
+    if (v.dataset.loaded) return;
+    v.dataset.loaded = '1'; v.preload = 'auto'; v.load();
+  };
+  const start = v => { fetchIt(v); const p = v.play(); if (p) p.catch(() => {}) };
 
-  // A backgrounded tab should not keep decoding frames.
+  /* Two observers, deliberately. The first pulls the file down while the card
+     is still a screen and a half away, so by the time it arrives the film is
+     already running rather than sitting on its poster. The second handles
+     play/pause, and nothing anywhere needs to be clicked. */
+  const preloadIO = new IntersectionObserver(es =>
+    es.forEach(({target: v, isIntersecting}) => { if (isIntersecting) fetchIt(v) }),
+    {rootMargin: '150% 0px'});
+
+  const playIO = new IntersectionObserver(es =>
+    es.forEach(({target: v, isIntersecting}) => isIntersecting ? start(v) : (v.paused || v.pause())),
+    {threshold: .15});
+
+  vids.forEach(v => { preloadIO.observe(v); playIO.observe(v) });
+
+  // Anything already on screen at load starts straight away.
+  const kick = () => vids.forEach(v => { if (near(v)) start(v) });
+  kick();
+
+  /* Some phones — iOS in Low Power Mode, or a browser set to block autoplay —
+     refuse playback until the visitor has interacted with the page at all. A
+     scroll or a touch anywhere counts, so we retry on the first one rather
+     than asking anybody to press play. */
+  ['pointerdown','touchstart','scroll','keydown','wheel'].forEach(e =>
+    addEventListener(e, kick, {passive: true}));
+
+  // Switching chapters reveals videos that were display:none — nudge them.
+  document.querySelectorAll('.tab').forEach(t =>
+    t.addEventListener('click', () => setTimeout(kick, 60)));
+
+  // A backgrounded browser tab should not keep decoding frames.
   document.addEventListener('visibilitychange', () => {
-    if (document.hidden) vids.forEach(v => v.pause());
-    else vids.forEach(v => { if (v.dataset.loaded && v.getBoundingClientRect().top < innerHeight
-                              && v.getBoundingClientRect().bottom > 0) v.play().catch(() => {}) });
+    if (document.hidden) vids.forEach(v => v.pause()); else kick();
   });
 })();
 
