@@ -866,31 +866,26 @@ blockquote{
   background:var(--brass);
 }
 
+/* ---- place cards ----
+   No photography: these are real, named places and a borrowed image beside a
+   name is a claim about that place. Instead each entry is an editorial column
+   under a brass hairline — a short read rather than a picture grid. */
 .n-cards{
   max-width:72rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));
-  gap:clamp(1.5rem,3vw,2.2rem);align-items:start;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
+  gap:clamp(2rem,4vw,3.25rem);align-items:start;
 }
-.n-card__media{
-  position:relative;aspect-ratio:3/2;overflow:hidden;
-  background:#1b1f19;border:1px solid rgba(182,169,124,.18);
-  margin:0 0 clamp(1rem,2.2vh,1.4rem);
-}
-.n-card__media img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transform:scale(1.001);transition:transform 1.1s var(--rise);
-}
-.n-card:hover .n-card__media img{transform:scale(1.04)}
+.n-card{border-top:1px solid rgba(182,169,124,.4);padding-top:clamp(1.1rem,2.4vh,1.5rem)}
 .n-card h3{
   margin:0;font-weight:300;font-size:.9rem;
   letter-spacing:.18em;text-indent:.18em;text-transform:uppercase;color:#fff;
 }
 .n-card p{
-  margin:.8rem 0 0;font-weight:300;font-size:.85rem;line-height:1.85;
+  margin:.95rem 0 0;font-weight:300;font-size:.85rem;line-height:1.9;
   color:rgba(244,241,236,.7);
 }
+.n-cards--1{max-width:34rem}
 
-/* Commute times reuse the facts table's hairlines. */
 .n-times{
   max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
   display:grid;grid-template-columns:repeat(4,1fr);
@@ -936,7 +931,6 @@ blockquote{
   letter-spacing:.16em;text-transform:uppercase;color:rgba(244,241,236,.42);
 }
 .n-src--mid{max-width:64rem;margin-left:auto;margin-right:auto;text-align:right}
-.n-cards--1{max-width:22rem}
 
 /* ---- agents ---- */
 .p-agents{
@@ -996,7 +990,6 @@ blockquote{
      LUXURY AREA — Germantown
      Figures and place names come from the sources named on the page. Refresh
      the market figure before this page is used with a client.
-     Card photography is still placeholder: media/place-3x2.jpg
      ========================================================================== -->
 
 <section class="p-hero" id="top">
@@ -1089,19 +1082,16 @@ blockquote{
   </div>
   <div class="n-cards">
     <div class="n-card">
-      <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
       <h3>Nashville Farmers&rsquo; Market</h3>
-      <p>A year-round market on Rosa L. Parks Boulevard with farm sheds, a market house and a garden centre.</p>
+      <p>On Rosa L. Parks Boulevard beside Bicentennial Mall and the State Museum, the indoor Market House runs daily with independent restaurants and shops. The open-air farm sheds trade Friday through Sunday, later into the afternoon from March to October. Two hours of on-site parking are free for customers.</p>
     </div>
     <div class="n-card">
-      <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
       <h3>Tennessee State Museum</h3>
-      <p>The free-admission state history museum on Rosa L. Parks Boulevard.</p>
+      <p>The 137,000-square-foot museum opened in October 2018 in the Bill Haslam Center on Bicentennial Mall, within sight of the State Capitol. Admission is free, and the permanent galleries run chronologically from natural history and First Peoples through the Civil War and Reconstruction to the present. Five further galleries host rotating exhibitions, with a dedicated children's gallery.</p>
     </div>
     <div class="n-card">
-      <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
       <h3>First Horizon Park</h3>
-      <p>Home of the Nashville Sounds since 2015, immediately south of the Germantown blocks.</p>
+      <p>The ninety-one-million-dollar ballpark opened in April 2015 on the site of Sulphur Dell, a minor league park used from 1885 to 1963, and is home to the Nashville Sounds. It seats ten thousand with room for another 1,500 on the outfield berm. Its signature is a guitar-shaped scoreboard 142 feet wide carrying 4,200 square feet of LED display.</p>
     </div>
   </div>
 </section>
@@ -1113,19 +1103,16 @@ blockquote{
   </div>
   <div class="n-cards">
     <div class="n-card">
-      <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
       <h3>Rolf and Daughters</h3>
-      <p>Seasonal New American with handmade pasta on Taylor Street, nightly.</p>
+      <p>Philip Krajeck opened Rolf and Daughters in a restored industrial building in Germantown in 2012, and it became one of the most influential openings of its era — Bon App&eacute;tit ranked it third on its list of the best new restaurants in America. Handmade pastas, wood-fired cooking, house-made breads and regional-farm vegetables, with an award-winning wine programme.</p>
     </div>
     <div class="n-card">
-      <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
       <h3>City House</h3>
-      <p>James Beard-recognised Italian-Southern cooking on Fourth Avenue North.</p>
+      <p>Tandy Wilson opened City House in Germantown in 2007 and won the James Beard Award for Best Chef: Southeast in 2016; the Italian-leaning, farm-driven kitchen also made the New York Times's 2024 list of the twenty-two best pizzerias in the country. In 2025 Wilson promoted a member of the team since 2013 to executive chef while keeping the sourcing relationships intact. Dinner nightly.</p>
     </div>
     <div class="n-card">
-      <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
       <h3>Henrietta Red</h3>
-      <p>Seafood and oysters on Fourth Avenue North, with weekend brunch.</p>
+      <p>Julia Sullivan's Germantown room is a barroom and oyster bar built around seasonal, ingredient-driven cooking, with a marble bar anchoring the space. It appeared on both GQ's and Bon App&eacute;tit's best-new-restaurant lists in 2018 and was a James Beard semifinalist that year. Dinner Tuesday to Sunday, with weekend brunch.</p>
     </div>
   </div>
 </section>
@@ -1137,9 +1124,8 @@ blockquote{
   </div>
   <div class="n-cards n-cards--1">
     <div class="n-card">
-      <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
       <h3>Nashville City Club</h3>
-      <p>A private members' club founded in 1957 on Second Avenue South.</p>
+      <p>Founded in 1957 as a downtown gathering place for business professionals — a private members' club rather than a golf club. It moved to SoBro on Second Avenue South in 2023, into three floors and more than eighteen thousand square feet. A member floor and dining room, a lounge and speakeasy-style bar, private event spaces and coworking.</p>
     </div>
   </div>
 </section>
