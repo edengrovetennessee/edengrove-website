@@ -773,6 +773,35 @@ blockquote{
 @media (max-width:760px){ .p-map__frame{aspect-ratio:4/3} }
 @media (prefers-reduced-motion:reduce){ .p-map__frame iframe{transition:none} }
 
+/* ---- behind the build ----
+   Developer, builder, architect, designer. Four square slots that take either
+   a portrait or a logo — a lot of builders would rather show the mark. */
+.p-build__grid{
+  max-width:72rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:clamp(1.5rem,3vw,2.5rem);align-items:start;
+}
+.p-partner{text-align:center}
+.p-partner__photo{
+  aspect-ratio:1;overflow:hidden;margin:0 0 clamp(1.1rem,2.4vh,1.5rem);
+  background:#1b1f19;border:1px solid rgba(182,169,124,.22);
+}
+.p-partner__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.p-partner__role{
+  margin:0;font-weight:400;font-size:.55rem;
+  letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--brass);
+}
+.p-partner__name{
+  margin:.75rem 0 0;font-weight:300;font-size:.92rem;
+  letter-spacing:.18em;text-indent:.18em;text-transform:uppercase;color:#fff;
+}
+.p-partner p{
+  margin:.9rem 0 0;font-weight:300;font-size:.82rem;line-height:1.8;
+  color:rgba(244,241,236,.7);
+}
+@media (max-width:900px){ .p-build__grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:520px){ .p-build__grid{grid-template-columns:1fr} }
+
 /* ---- agents ---- */
 .p-agents{
   max-width:50rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
@@ -1006,6 +1035,55 @@ blockquote{
         <img src="../../media/dv-plan.jpg" alt="Floor plan" loading="lazy" decoding="async">
       </a>
     </figure>
+  </div>
+</section>
+
+<!-- ============================ BEHIND THE BUILD ===========================
+     PROPERTY: developer, builder, architect, designer. Swap the name, the copy
+     and the image (a portrait or the firm's mark, square). Delete a card if a
+     role does not apply. -->
+<section class="p-sec p-sec--tight" aria-labelledby="build-h">
+  <div class="p-lede">
+    <p class="p-eyebrow">The Team</p>
+    <h2 id="build-h">Behind the Build</h2>
+  </div>
+  <div class="p-build__grid">
+    <div class="p-partner">
+      <div class="p-partner__photo">
+        <img src="../../media/partner.jpg" alt="" loading="lazy" decoding="async">
+      </div>
+      <p class="p-partner__role">Developer</p>
+      <p class="p-partner__name">Firm or Name</p>
+      <p>Placeholder. One or two sentences on who they are and what they are
+         known for.</p>
+    </div>
+    <div class="p-partner">
+      <div class="p-partner__photo">
+        <img src="../../media/partner.jpg" alt="" loading="lazy" decoding="async">
+      </div>
+      <p class="p-partner__role">Builder</p>
+      <p class="p-partner__name">Firm or Name</p>
+      <p>Placeholder. One or two sentences on who they are and what they are
+         known for.</p>
+    </div>
+    <div class="p-partner">
+      <div class="p-partner__photo">
+        <img src="../../media/partner.jpg" alt="" loading="lazy" decoding="async">
+      </div>
+      <p class="p-partner__role">Architect</p>
+      <p class="p-partner__name">Firm or Name</p>
+      <p>Placeholder. One or two sentences on who they are and what they are
+         known for.</p>
+    </div>
+    <div class="p-partner">
+      <div class="p-partner__photo">
+        <img src="../../media/partner.jpg" alt="" loading="lazy" decoding="async">
+      </div>
+      <p class="p-partner__role">Designer</p>
+      <p class="p-partner__name">Firm or Name</p>
+      <p>Placeholder. One or two sentences on who they are and what they are
+         known for.</p>
+    </div>
   </div>
 </section>
 
