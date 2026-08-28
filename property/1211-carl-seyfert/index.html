@@ -801,6 +801,11 @@ blockquote{
 }
 @media (max-width:900px){ .p-build__grid{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:520px){ .p-build__grid{grid-template-columns:1fr} }
+/* Three roles instead of four — narrower grid so the row stays centred and the
+   cards keep their proportions rather than leaving a gap on the right. */
+.p-build__grid--3{max-width:56rem;grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){ .p-build__grid--3{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:520px){ .p-build__grid--3{grid-template-columns:1fr} }
 
 /* ---- agents ---- */
 .p-agents{

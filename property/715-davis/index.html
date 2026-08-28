@@ -804,6 +804,11 @@ blockquote{
 }
 @media (max-width:900px){ .p-build__grid{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:520px){ .p-build__grid{grid-template-columns:1fr} }
+/* Three roles instead of four — narrower grid so the row stays centred and the
+   cards keep their proportions rather than leaving a gap on the right. */
+.p-build__grid--3{max-width:56rem;grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){ .p-build__grid--3{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:520px){ .p-build__grid--3{grid-template-columns:1fr} }
 
 /* ---- agents ---- */
 .p-agents{
@@ -1054,16 +1059,7 @@ blockquote{
     <p class="p-eyebrow">The Team</p>
     <h2 id="build-h">Behind the Build</h2>
   </div>
-  <div class="p-build__grid">
-    <div class="p-partner">
-      <div class="p-partner__photo">
-        <img src="../../media/partner.jpg" alt="" loading="lazy" decoding="async">
-      </div>
-      <p class="p-partner__role">Developer</p>
-      <p class="p-partner__name">Firm or Name</p>
-      <p>Placeholder. One or two sentences on who they are and what they are
-         known for.</p>
-    </div>
+  <div class="p-build__grid p-build__grid--3">
     <div class="p-partner">
       <div class="p-partner__photo">
         <img src="../../media/partner.jpg" alt="" loading="lazy" decoding="async">
