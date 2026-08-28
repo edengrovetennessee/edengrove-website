@@ -716,6 +716,9 @@ blockquote{
 }
 /* A row with only two images gets two wider cards instead of a gap. */
 .p-gal__row--2{grid-template-columns:repeat(2,1fr)}
+.p-gal__row--1{grid-template-columns:1fr}
+.p-gal__row--1 .p-shot{aspect-ratio:5/2}
+@media (max-width:760px){ .p-gal__row--1 .p-shot{aspect-ratio:3/2} }
 .p-shot{position:relative;overflow:hidden;aspect-ratio:3/2;background:#1b1f19;display:block}
 .p-shot img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -871,7 +874,7 @@ blockquote{
 
 <section class="p-hero" id="top">
   <!-- PROPERTY: hero image (or swap <img> for <video>, as on the homepage) -->
-  <img class="hero__media" src="../../media/listing-davis.jpg" alt="" aria-hidden="true">
+  <img class="hero__media" src="../../media/dv-hero.jpg" alt="" aria-hidden="true">
   <div class="hero__scrim"></div>
 
   <header class="bar">
@@ -987,28 +990,26 @@ blockquote{
 
   <div class="p-gal">
     <div class="p-gal__head"><span>Exteriors</span><i></i></div>
-    <div class="p-gal__row">
+    <!-- One exterior so far, so the row runs full width at close to the
+         rendering's own proportions rather than cropping it into a third. -->
+    <div class="p-gal__row p-gal__row--1">
       <a class="p-shot" href="../../media/dv-ext-1.jpg"><img src="../../media/dv-ext-1.jpg" alt="" loading="lazy"></a>
-      <a class="p-shot" href="../../media/dv-ext-2.jpg"><img src="../../media/dv-ext-2.jpg" alt="" loading="lazy"></a>
-      <a class="p-shot" href="../../media/dv-ext-3.jpg"><img src="../../media/dv-ext-3.jpg" alt="" loading="lazy"></a>
     </div>
   </div>
 
   <div class="p-gal">
     <div class="p-gal__head"><span>Living</span><i></i></div>
-    <div class="p-gal__row">
+    <div class="p-gal__row p-gal__row--2">
       <a class="p-shot" href="../../media/dv-liv-1.jpg"><img src="../../media/dv-liv-1.jpg" alt="" loading="lazy"></a>
       <a class="p-shot" href="../../media/dv-liv-2.jpg"><img src="../../media/dv-liv-2.jpg" alt="" loading="lazy"></a>
-      <a class="p-shot" href="../../media/dv-liv-3.jpg"><img src="../../media/dv-liv-3.jpg" alt="" loading="lazy"></a>
     </div>
   </div>
 
   <div class="p-gal">
-    <div class="p-gal__head"><span>Chef's Kitchen</span><i></i></div>
-    <div class="p-gal__row">
+    <div class="p-gal__head"><span>Chef&rsquo;s Kitchen &amp; Dining</span><i></i></div>
+    <div class="p-gal__row p-gal__row--2">
       <a class="p-shot" href="../../media/dv-kit-1.jpg"><img src="../../media/dv-kit-1.jpg" alt="" loading="lazy"></a>
       <a class="p-shot" href="../../media/dv-kit-2.jpg"><img src="../../media/dv-kit-2.jpg" alt="" loading="lazy"></a>
-      <a class="p-shot" href="../../media/dv-kit-3.jpg"><img src="../../media/dv-kit-3.jpg" alt="" loading="lazy"></a>
     </div>
   </div>
 
