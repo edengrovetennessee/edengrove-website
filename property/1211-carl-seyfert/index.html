@@ -643,15 +643,33 @@ blockquote{
   font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
   line-height:1.95;color:rgba(244,241,236,.76);
 }
+/* The narrative runs long on a real listing. Centred prose stops working past
+   a couple of sentences, so the story block sets left with a proper measure
+   while the eyebrow and heading above it stay centred. */
+.p-story{max-width:44rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0}
+.p-story p{
+  margin:0 0 1.5rem;text-align:left;
+  font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
+  line-height:1.95;color:rgba(244,241,236,.76);
+}
+.p-story p:last-child{margin-bottom:0}
 
 /* ---- the facts table ---- */
+/* Hairlines are drawn per cell, not by a 1px gap over a light background —
+   an incomplete last row would otherwise leave a pale block of empty grid.
+   Four columns then two keeps the eight facts in full rows at every width. */
 .p-facts{
   max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));
-  gap:1px;background:rgba(244,241,236,.14);
-  border:1px solid rgba(244,241,236,.14);
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border-top:1px solid rgba(244,241,236,.14);
+  border-left:1px solid rgba(244,241,236,.14);
 }
-.p-fact{background:var(--ink);padding:1.6rem 1.4rem}
+.p-fact{
+  background:var(--ink);padding:1.6rem 1.4rem;
+  border-right:1px solid rgba(244,241,236,.14);
+  border-bottom:1px solid rgba(244,241,236,.14);
+}
+@media (max-width:900px){ .p-facts{grid-template-columns:repeat(2,1fr)} }
 .p-fact dt{
   font-size:.55rem;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
   color:rgba(244,241,236,.5);
@@ -797,9 +815,9 @@ blockquote{
      3. Replace the images in media/ that begin  cs-  with the new property's,
         or add a new prefix and update the gallery src attributes.
 
-     STILL PLACEHOLDER on this page: the narrative copy, every gallery image,
-     the floor plan, the bedroom/bathroom/lot/stories/year figures, and the
-     second agent. The enquiry form is not wired to anything.
+     STILL PLACEHOLDER on this page: every gallery image, the floor plan, the
+     hero image, both headshots, and the second agent. The enquiry form is not
+     wired to anything.
      ========================================================================== -->
 
 <section class="p-hero" id="top">
@@ -855,13 +873,13 @@ blockquote{
   <div class="p-lede">
     <p class="p-eyebrow">The Residence</p>
     <h2 id="res-h">A Study in Presence and Detail</h2>
-    <!-- PROPERTY: narrative. Two paragraphs. Placeholder copy below. -->
-    <p>Placeholder. Two or three sentences on what the house is and how it sits on
-       its land — the view it was built around, the room that decides the plan, the
-       material that carries the whole elevation.</p>
-    <p>Placeholder. A second paragraph on who built it and why, or on the life the
-       house is arranged for. This is the only place on the page that is allowed to
-       be writing rather than specification.</p>
+  </div>
+  <!-- PROPERTY: narrative -->
+  <div class="p-story">
+    <p>Tucked at the end of a quiet dead-end street in coveted Forest Hills, just off Granny White, this newly built 1.28-acre estate delivers the rare combination of privacy, scale, and finish that today's luxury buyer is searching for. Completion is set for mid-October. Designed with timeless curb appeal, the exterior pairs hand-laid stone with soft slurry-washed masonry beneath a steeply pitched roofline &mdash; a fa&ccedil;ade that will age beautifully for generations.</p>
+    <p>Inside, the home is a study in warm, livable luxury: white oak ceiling detail, stone accents in the foyer, oversized steel-look windows, and a layout built around the way families actually live. Six bedrooms and six full baths, plus two half baths, are anchored by a main-level primary suite and a generous secondary bedroom on the first floor &mdash; ideal for guests, in-laws, or multi-generational living. A dedicated main-floor office, an upstairs gym, and three laundry rooms (up, down, and inside the primary) round out a floor plan engineered for real life at the highest level.</p>
+    <p>The kitchen is built for both entertaining and everyday ease, with a full butler's pantry concealing a complete second kitchen behind cabinetry &mdash; a true working back-of-house that keeps the main space immaculate. Storage throughout the home is exceptional.</p>
+    <p>Step outside to a resort-caliber backyard: a full pool and spa &mdash; with an available retractable cover option &mdash; plus an outdoor kitchen, a covered living area with overhead heaters, and a dedicated pool bath, all framed by professional landscaping and lavender-lined hardscape. A four-car garage and pre-wiring for security cameras and whole-home audio (with speakers already installed in the living room, primary suite, and outdoor area) complete the package.</p>
   </div>
 </section>
 
@@ -873,13 +891,13 @@ blockquote{
   </div>
   <!-- PROPERTY: every figure in this table -->
   <dl class="p-facts">
-      <div class="p-fact"><dt>Bedrooms</dt><dd>—</dd></div>
-      <div class="p-fact"><dt>Bathrooms</dt><dd>—</dd></div>
+      <div class="p-fact"><dt>Bedrooms</dt><dd>6</dd></div>
+      <div class="p-fact"><dt>Full Baths</dt><dd>6</dd></div>
+      <div class="p-fact"><dt>Half Baths</dt><dd>3</dd></div>
       <div class="p-fact"><dt>Living Area</dt><dd>7,885 sq ft</dd></div>
-      <div class="p-fact"><dt>Lot</dt><dd>—</dd></div>
-      <div class="p-fact"><dt>Stories</dt><dd>—</dd></div>
-      <div class="p-fact"><dt>Year</dt><dd>—</dd></div>
-      <div class="p-fact"><dt>MLS</dt><dd>3259707</dd></div>
+      <div class="p-fact"><dt>Lot</dt><dd>1.28 acres</dd></div>
+      <div class="p-fact"><dt>Stories</dt><dd>2</dd></div>
+      <div class="p-fact"><dt>Year</dt><dd>2026</dd></div>
       <div class="p-fact"><dt>Price</dt><dd>$5,765,000</dd></div>
   </dl>
 </section>
@@ -892,14 +910,14 @@ blockquote{
   </div>
   <!-- PROPERTY: the amenity list -->
   <ul class="p-amen">
-      <li><i></i>Smart home technology</li>
-      <li><i></i>Chef's kitchen</li>
-      <li><i></i>Media room</li>
-      <li><i></i>Wellness room</li>
       <li><i></i>Pool</li>
-      <li><i></i>Sauna</li>
-      <li><i></i>Wine cellar</li>
-      <li><i></i>Four-car garage</li>
+      <li><i></i>Spa</li>
+      <li><i></i>Bonus Room</li>
+      <li><i></i>Four-Car Garage</li>
+      <li><i></i>Scullery</li>
+      <li><i></i>Luxury Appliances</li>
+      <li><i></i>Custom Cabinets</li>
+      <li><i></i>Elevated Dining Room</li>
   </ul>
 </section>
 
