@@ -629,7 +629,7 @@ blockquote{
   font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
   color:var(--brass);
 }
-.p-sec h2{
+.p-sec h2,.p-plan h2{
   margin:0;font-family:var(--ui);font-weight:300;
   font-size:clamp(1.25rem,1rem + 1.15vw,1.95rem);
   line-height:1.45;letter-spacing:.22em;text-indent:.22em;
@@ -728,8 +728,20 @@ blockquote{
 .p-plan{background:var(--paper);padding:clamp(3.5rem,8vh,6rem) var(--gutter)}
 .p-plan .p-eyebrow{color:#8a7f57}
 .p-plan h2{color:var(--ink)}
-.p-plan__sheet{max-width:60rem;margin:clamp(2rem,5vh,3rem) auto 0}
-.p-plan__sheet img{width:100%;height:auto;display:block}
+/* The two sheets are different shapes, so each sits on its own white card of
+   equal height with the plan centred — otherwise one floats and one sinks. */
+.p-plans{
+  max-width:72rem;margin:clamp(2rem,5vh,3rem) auto 0;
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:clamp(1.5rem,4vw,2.5rem);align-items:stretch;
+}
+.p-plan__sheet{
+  margin:0;background:#fff;padding:clamp(.9rem,2vw,1.6rem);
+  display:grid;place-items:center;
+}
+.p-plan__sheet a{display:block;width:100%}
+.p-plan__sheet img{max-width:100%;height:auto;display:block;margin:0 auto}
+@media (max-width:760px){ .p-plans{grid-template-columns:1fr} }
 
 /* ---- the map ----
    A keyless Google embed, desaturated so it sits inside the palette rather
@@ -977,14 +989,26 @@ blockquote{
   </div>
 </section>
 
-<!-- ============================== FLOOR PLAN ============================== -->
+<!-- ============================== FLOOR PLAN ==============================
+     PROPERTY: the plan sheets. Split per floor and ordered ground-up; each
+     one opens the full-resolution sheet. -->
 <section class="p-plan" aria-labelledby="plan-h">
   <div class="p-lede">
     <p class="p-eyebrow">Layout</p>
     <h2 id="plan-h">Floor Plan</h2>
   </div>
-  <!-- PROPERTY: the plan sheet -->
-  <div class="p-plan__sheet"><img src="../../media/cs-plan.jpg" alt="Floor plan" loading="lazy"></div>
+  <div class="p-plans">
+    <figure class="p-plan__sheet">
+      <a href="../../media/cs-plan-1.jpg">
+        <img src="../../media/cs-plan-1.jpg" alt="First floor plan" loading="lazy" decoding="async">
+      </a>
+    </figure>
+    <figure class="p-plan__sheet">
+      <a href="../../media/cs-plan-2.jpg">
+        <img src="../../media/cs-plan-2.jpg" alt="Second floor plan" loading="lazy" decoding="async">
+      </a>
+    </figure>
+  </div>
 </section>
 
 <!-- ================================ LOCATION ===============================
@@ -997,7 +1021,7 @@ blockquote{
   <div class="p-lede">
     <p class="p-eyebrow">Location</p>
     <!-- PROPERTY: neighbourhood name and description -->
-    <h2 id="hood-h">Brentwood</h2>
+    <h2 id="hood-h">Forest Hills</h2>
     <p>Placeholder. Two sentences on the setting — what is within a short drive,
        what the streets around it are like, why someone chooses here rather than
        the next place over.</p>
