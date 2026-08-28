@@ -717,8 +717,9 @@ blockquote{
 /* A row with only two images gets two wider cards instead of a gap. */
 .p-gal__row--2{grid-template-columns:repeat(2,1fr)}
 .p-gal__row--1{grid-template-columns:1fr}
-.p-gal__row--1 .p-shot{aspect-ratio:5/2}
-@media (max-width:760px){ .p-gal__row--1 .p-shot{aspect-ratio:3/2} }
+/* One exterior, full width. 3:2 rather than a letterbox — the rendering is
+   4:3.3 and a wider slot would crop the roofline and the lawn off it. */
+.p-gal__row--1 .p-shot{aspect-ratio:3/2}
 .p-shot{position:relative;overflow:hidden;aspect-ratio:3/2;background:#1b1f19;display:block}
 .p-shot img{
   width:100%;height:100%;object-fit:cover;display:block;
