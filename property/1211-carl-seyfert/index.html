@@ -767,6 +767,8 @@ blockquote{
   display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));
   gap:clamp(2rem,5vw,3.5rem);
 }
+/* A single agent should not inherit the width of two. */
+.p-agents--1{max-width:20rem}
 .p-agent{text-align:center}
 .p-agent__photo{
   aspect-ratio:1;overflow:hidden;margin:0 0 clamp(1.4rem,3vh,2rem);
@@ -1030,27 +1032,18 @@ blockquote{
     <p class="p-eyebrow">Presented By</p>
     <h2 id="agents-h">Eden Grove</h2>
   </div>
-  <div class="p-agents">
+  <!-- One agent on this listing, so the block runs single and centred. -->
+  <div class="p-agents p-agents--1">
     <div class="p-agent">
       <div class="p-agent__photo">
         <img src="../../media/agent-1.jpg" alt="Blake Barker" loading="lazy" decoding="async">
       </div>
       <p class="p-agent__name">Blake Barker</p>
-      <!-- PROPERTY: title, and a direct line and email if they have one -->
+      <!-- PROPERTY: title, once we have it -->
       <ul>
         <li>Eden Grove at Compass</li>
-        <li><a href="mailto:clients@edengrovetennessee.com">clients@edengrovetennessee.com</a></li>
-        <li><a href="../../team.html">edengrovetennessee.com</a></li>
-      </ul>
-    </div>
-    <div class="p-agent">
-      <div class="p-agent__photo">
-        <img src="../../media/agent-2.jpg" alt="Joe Archer" loading="lazy" decoding="async">
-      </div>
-      <p class="p-agent__name">Joe Archer</p>
-      <ul>
-        <li>Eden Grove at Compass</li>
-        <li><a href="mailto:clients@edengrovetennessee.com">clients@edengrovetennessee.com</a></li>
+        <li><a href="tel:+12705355954">(270) 535-5954</a></li>
+        <li><a href="mailto:blake@edengrovetennessee.com">blake@edengrovetennessee.com</a></li>
         <li><a href="../../team.html">edengrovetennessee.com</a></li>
       </ul>
     </div>
@@ -1097,7 +1090,8 @@ blockquote{
       <div>
         <p class="foot__h" id="foot-contact">Contact</p>
         <ul class="foot__list" aria-labelledby="foot-contact">
-          <li><a href="mailto:clients@edengrovetennessee.com">clients@edengrovetennessee.com</a></li>
+          <li><a href="tel:+12705355954">(270) 535-5954</a></li>
+          <li><a href="mailto:blake@edengrovetennessee.com">blake@edengrovetennessee.com</a></li>
         </ul>
       </div>
 
