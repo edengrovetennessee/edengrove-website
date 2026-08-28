@@ -706,12 +706,48 @@ blockquote{
 .p-plan__sheet{max-width:60rem;margin:clamp(2rem,5vh,3rem) auto 0}
 .p-plan__sheet img{width:100%;height:auto;display:block}
 
+/* ---- the map ----
+   A keyless Google embed, desaturated so it sits inside the palette rather
+   than shouting colour halfway down a dark page. Pointer or keyboard focus
+   restores full colour, because a map you are actually reading should be a
+   map. The iframe is lazy — it costs nothing until it is scrolled to. */
+.p-map{max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0}
+.p-map__addr{
+  margin:0 0 1.3rem;text-align:center;font-weight:300;
+  font-size:clamp(.78rem,.74rem + .18vw,.92rem);
+  letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;
+  color:rgba(244,241,236,.82);
+}
+.p-map__frame{
+  position:relative;aspect-ratio:16/9;overflow:hidden;
+  border:1px solid rgba(182,169,124,.28);background:#1b1f19;
+}
+.p-map__frame iframe{
+  width:100%;height:100%;border:0;display:block;
+  filter:grayscale(1) contrast(.9) brightness(.94);
+  transition:filter .8s var(--rise);
+}
+.p-map__frame:hover iframe,
+.p-map__frame:focus-within iframe{filter:none}
+.p-map__links{
+  margin:1.5rem 0 0;display:flex;justify-content:center;
+  gap:clamp(1.5rem,4vw,3rem);flex-wrap:wrap;
+}
+@media (max-width:760px){ .p-map__frame{aspect-ratio:4/3} }
+@media (prefers-reduced-motion:reduce){ .p-map__frame iframe{transition:none} }
+
 /* ---- agents ---- */
 .p-agents{
-  max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(16rem,1fr));
-  gap:clamp(2rem,5vw,4rem);
+  max-width:50rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));
+  gap:clamp(2rem,5vw,3.5rem);
 }
+.p-agent{text-align:center}
+.p-agent__photo{
+  aspect-ratio:1;overflow:hidden;margin:0 0 clamp(1.4rem,3vh,2rem);
+  background:#1b1f19;border:1px solid rgba(182,169,124,.22);
+}
+.p-agent__photo img{width:100%;height:100%;object-fit:cover;display:block}
 .p-agent__name{
   margin:0;font-weight:300;font-size:1rem;letter-spacing:.2em;text-indent:.2em;
   text-transform:uppercase;color:#fff;
@@ -757,7 +793,7 @@ blockquote{
 
      TO MAKE A NEW PROPERTY PAGE
      1. Copy this whole folder:  property/1211-carl-seyfert/  ->  property/<slug>/
-     2. Change every line marked  PROPERTY:  below. There are eleven of them.
+     2. Change every line marked  PROPERTY:  below. There are thirteen of them.
      3. Replace the images in media/ that begin  cs-  with the new property's,
         or add a new prefix and update the gallery src attributes.
 
@@ -923,7 +959,12 @@ blockquote{
   <div class="p-plan__sheet"><img src="../../media/cs-plan.jpg" alt="Floor plan" loading="lazy"></div>
 </section>
 
-<!-- ============================= NEIGHBOURHOOD ============================= -->
+<!-- ================================ LOCATION ===============================
+     The map is a keyless Google embed: build the src as
+       https://www.google.com/maps?q=<url-encoded address>&output=embed
+     Nothing to sign up for and no key to leak in a public repo. If Eden Grove
+     later wants a branded map, swap the src for the Maps Embed API with a
+     referrer-restricted key. -->
 <section class="p-sec" aria-labelledby="hood-h">
   <div class="p-lede">
     <p class="p-eyebrow">Location</p>
@@ -932,34 +973,63 @@ blockquote{
     <p>Placeholder. Two sentences on the setting — what is within a short drive,
        what the streets around it are like, why someone chooses here rather than
        the next place over.</p>
-    <p><a class="prop__cta" href="../../neighborhoods.html">Explore the neighborhoods
-      <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-        <path d="M2 1l3 3-3 3"/></svg></a></p>
+  </div>
+
+  <div class="p-map">
+    <!-- PROPERTY: the address, three times — heading, iframe src, directions link -->
+    <p class="p-map__addr">1211 Carl Seyfert Memorial Dr, Brentwood, TN 37027</p>
+    <div class="p-map__frame">
+      <iframe
+        title="Map — 1211 Carl Seyfert Memorial Dr, Brentwood, TN 37027"
+        src="https://www.google.com/maps?q=1211%20Carl%20Seyfert%20Memorial%20Dr%2C%20Brentwood%2C%20TN%2037027&amp;output=embed"
+        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+    <p class="p-map__links">
+      <a class="prop__cta" target="_blank" rel="noopener"
+         href="https://www.google.com/maps/dir/?api=1&amp;destination=1211%20Carl%20Seyfert%20Memorial%20Dr%2C%20Brentwood%2C%20TN%2037027">Get directions
+        <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M2 1l3 3-3 3"/></svg></a>
+      <a class="prop__cta" href="../../neighborhoods.html">Explore the neighborhoods
+        <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M2 1l3 3-3 3"/></svg></a>
+    </p>
   </div>
 </section>
 
-<!-- ============================== REPRESENTED ============================== -->
+<!-- =============================== PRESENTED ===============================
+     PROPERTY: whoever is actually listing this one. Headshots are square —
+     media/agent-1.jpg and agent-2.jpg are placeholders at 1000 × 1000. -->
 <section class="p-sec p-sec--tight" aria-labelledby="agents-h">
   <div class="p-lede">
-    <p class="p-eyebrow">Represented By</p>
+    <p class="p-eyebrow">Presented By</p>
     <h2 id="agents-h">Eden Grove</h2>
   </div>
   <div class="p-agents">
     <div class="p-agent">
+      <div class="p-agent__photo">
+        <img src="../../media/agent-1.jpg" alt="Ryan Stonehouse" loading="lazy" decoding="async">
+      </div>
       <p class="p-agent__name">Ryan Stonehouse</p>
       <p class="p-agent__role">Founder | Partner</p>
       <ul>
+        <li>Eden Grove at Compass</li>
         <li><a href="tel:+16158120066">(615) 812-0066</a></li>
         <li><a href="mailto:clients@edengrovetennessee.com">clients@edengrovetennessee.com</a></li>
+        <li><a href="../../team.html">edengrovetennessee.com</a></li>
       </ul>
     </div>
-    <!-- PROPERTY: second agent, if any -->
+    <!-- PROPERTY: second agent, if any. Delete this block for a single-agent listing. -->
     <div class="p-agent">
+      <div class="p-agent__photo">
+        <img src="../../media/agent-2.jpg" alt="" loading="lazy" decoding="async">
+      </div>
       <p class="p-agent__name">Team Member</p>
       <p class="p-agent__role">Founder | Partner</p>
       <ul>
+        <li>Eden Grove at Compass</li>
         <li><a href="tel:+16158120066">(615) 812-0066</a></li>
         <li><a href="mailto:clients@edengrovetennessee.com">clients@edengrovetennessee.com</a></li>
+        <li><a href="../../team.html">edengrovetennessee.com</a></li>
       </ul>
     </div>
   </div>
