@@ -813,6 +813,15 @@ blockquote{
 .p-build__grid--3{max-width:56rem;grid-template-columns:repeat(3,1fr)}
 @media (max-width:900px){ .p-build__grid--3{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:520px){ .p-build__grid--3{grid-template-columns:1fr} }
+/* One firm covering builder, architect and interior design — a single card
+   marooned in a three-column grid looks like two are missing, so the solo case
+   runs wide instead: portrait or mark on the left, the copy beside it. */
+.p-build--solo{
+  max-width:56rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);
+  gap:clamp(1.8rem,4vw,3.2rem);align-items:start;
+}
+@media (max-width:760px){ .p-build--solo{grid-template-columns:1fr} }
 
 /* A builder's bio can run three paragraphs while an architect's runs one, so
    everything past the first paragraph folds away. grid-template-rows animates
@@ -1082,42 +1091,25 @@ blockquote{
     <p class="p-eyebrow">The Team</p>
     <h2 id="build-h">Behind the Build</h2>
   </div>
-  <div class="p-build__grid p-build__grid--3">
+  <div class="p-build--solo">
     <div class="p-partner">
       <div class="p-partner__photo">
-        <!-- PROPERTY: swap for Joe's portrait or the Liebo Builders mark -->
+        <!-- PROPERTY: Joe's portrait or the Liebo Builders mark -->
         <img src="../../media/partner.jpg" alt="" loading="lazy" decoding="async">
       </div>
-      <p class="p-partner__role">Builder</p>
-      <p class="p-partner__name">Joe Liebowitz</p>
+    </div>
+    <div class="p-partner">
+      <p class="p-partner__role">Builder &middot; Architect &middot; Interior Design</p>
+      <p class="p-partner__name">Liebo Builders</p>
       <p>Joe Liebowitz founded Liebo Builders as a small, family-owned crew. It
          has grown into a team of specialists who bring the same passion and
          precision to every project &mdash; the ambition changed, the standard
          did not.</p>
-      <div class="p-partner__more" id="bio-builder"><div>
-        <p>Liebo Builders now offers high-end design and build services, with
-           more than 1,500,000 square feet of completed property behind the
-           name.</p>
-      </div></div>
-      <button class="p-partner__toggle" aria-expanded="false" aria-controls="bio-builder">Read More</button>
-    </div>
-    <div class="p-partner">
-      <div class="p-partner__photo">
-        <img src="../../media/partner.jpg" alt="" loading="lazy" decoding="async">
-      </div>
-      <p class="p-partner__role">Architect</p>
-      <p class="p-partner__name">Firm or Name</p>
-      <p>Placeholder. One or two sentences on who they are and what they are
-         known for.</p>
-    </div>
-    <div class="p-partner">
-      <div class="p-partner__photo">
-        <img src="../../media/partner.jpg" alt="" loading="lazy" decoding="async">
-      </div>
-      <p class="p-partner__role">Designer</p>
-      <p class="p-partner__name">Firm or Name</p>
-      <p>Placeholder. One or two sentences on who they are and what they are
-         known for.</p>
+      <p>Architecture, interior design and construction are all handled in
+         house, so one team carries a house from the first drawing to the final
+         finish.</p>
+      <p>Liebo Builders offers high-end design and build services, with more
+         than 1,500,000 square feet of completed property behind the name.</p>
     </div>
   </div>
 </section>
