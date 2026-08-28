@@ -696,6 +696,11 @@ blockquote{
 
 /* ---- galleries, one run per room ---- */
 .p-gal{margin-top:clamp(2.5rem,6vh,4rem)}
+.p-gal__note{
+  margin:1.4rem auto 0;font-weight:300;font-size:.72rem;
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:rgba(244,241,236,.5);
+}
 .p-gal__head{
   display:flex;align-items:baseline;gap:1.2rem;
   padding:0 clamp(.5rem,1vw,1.1rem);margin-bottom:1.1rem;
@@ -928,10 +933,12 @@ blockquote{
   <div class="p-lede">
     <p class="p-eyebrow">Gallery</p>
     <h2 id="gal-h">The House</h2>
+    <!-- PROPERTY: remove this line once the house is photographed -->
+    <p class="p-gal__note">Renderings. The residence completes in October 2026.</p>
   </div>
 
   <div class="p-gal">
-    <div class="p-gal__head"><span>Exterior Renderings</span><i></i></div>
+    <div class="p-gal__head"><span>Exteriors</span><i></i></div>
     <div class="p-gal__row">
       <a class="p-shot" href="../../media/cs-ext-1.jpg"><img src="../../media/cs-ext-1.jpg" alt="" loading="lazy"></a>
       <a class="p-shot" href="../../media/cs-ext-2.jpg"><img src="../../media/cs-ext-2.jpg" alt="" loading="lazy"></a>
