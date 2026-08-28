@@ -780,11 +780,13 @@ blockquote{
    Developer, builder, architect, designer. Four square slots that take either
    a portrait or a logo — a lot of builders would rather show the mark. */
 .p-build__grid{
-  max-width:72rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+  max-width:80rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
   display:grid;grid-template-columns:repeat(4,1fr);
-  gap:clamp(1.5rem,3vw,2.5rem);align-items:start;
+  gap:clamp(1.5rem,2.4vw,2.2rem);align-items:start;
 }
-.p-partner{text-align:center}
+/* These cards read as short editorial entries rather than badges, so they set
+   left — a paragraph of ragged-centre text in a 290px column is hard work. */
+.p-partner{text-align:left}
 .p-partner__photo{
   aspect-ratio:1;overflow:hidden;margin:0 0 clamp(1.1rem,2.4vh,1.5rem);
   background:#1b1f19;border:1px solid rgba(182,169,124,.22);
@@ -798,9 +800,11 @@ blockquote{
   margin:.75rem 0 0;font-weight:300;font-size:.92rem;
   letter-spacing:.18em;text-indent:.18em;text-transform:uppercase;color:#fff;
 }
+/* Role and name stay centred; the bio sets left. A paragraph of ragged-centre
+   text in a 280px column is hard work to read. */
 .p-partner p{
   margin:.9rem 0 0;font-weight:300;font-size:.82rem;line-height:1.8;
-  color:rgba(244,241,236,.7);
+  color:rgba(244,241,236,.7);text-align:left;
 }
 @media (max-width:900px){ .p-build__grid{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:520px){ .p-build__grid{grid-template-columns:1fr} }
