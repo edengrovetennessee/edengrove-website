@@ -714,6 +714,8 @@ blockquote{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:clamp(.5rem,1vw,1.1rem);padding:0 clamp(.5rem,1vw,1.1rem);
 }
+/* A row with only two images gets two wider cards instead of a gap. */
+.p-gal__row--2{grid-template-columns:repeat(2,1fr)}
 .p-shot{position:relative;overflow:hidden;aspect-ratio:3/2;background:#1b1f19;display:block}
 .p-shot img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -947,11 +949,11 @@ blockquote{
   </div>
 
   <div class="p-gal">
-    <div class="p-gal__head"><span>Living</span><i></i></div>
-    <div class="p-gal__row">
+    <div class="p-gal__head"><span>Living &amp; Office</span><i></i></div>
+    <!-- Two images, so the row runs two-up rather than leaving a hole. -->
+    <div class="p-gal__row p-gal__row--2">
       <a class="p-shot" href="../../media/cs-liv-1.jpg"><img src="../../media/cs-liv-1.jpg" alt="" loading="lazy"></a>
       <a class="p-shot" href="../../media/cs-liv-2.jpg"><img src="../../media/cs-liv-2.jpg" alt="" loading="lazy"></a>
-      <a class="p-shot" href="../../media/cs-liv-3.jpg"><img src="../../media/cs-liv-3.jpg" alt="" loading="lazy"></a>
     </div>
   </div>
 
