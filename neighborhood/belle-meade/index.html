@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Belle Meade — Eden Grove</title>
-<meta name="description" content="Belle Meade, Nashville. Eden Grove — Middle Tennessee.">
+<meta name="description" content="Belle Meade. Eden Grove — Middle Tennessee.">
 <!-- REMOVE once the featured listings are real. Placeholder prices must not be indexed. -->
 <meta name="robots" content="noindex, nofollow">
 <link rel="icon" href="../../favicon.ico" sizes="any">
@@ -714,6 +714,10 @@ blockquote{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:clamp(.5rem,1vw,1.1rem);padding:0 clamp(.5rem,1vw,1.1rem);
 }
+/* A single area photograph runs full width rather than sitting in a third. */
+.p-gal__row--1{grid-template-columns:1fr}
+.p-gal__row--1 .p-shot{aspect-ratio:5/2}
+@media (max-width:760px){ .p-gal__row--1 .p-shot{aspect-ratio:3/2} }
 /* A row with only two images gets two wider cards instead of a gap. */
 .p-gal__row--2{grid-template-columns:repeat(2,1fr)}
 .p-shot{position:relative;overflow:hidden;aspect-ratio:3/2;background:#1b1f19;display:block}
@@ -927,6 +931,13 @@ blockquote{
 }
 @media (max-width:760px){ .n-more{grid-template-columns:repeat(2,1fr)} }
 
+.n-src{
+  margin:1.1rem 0 0;font-weight:300;font-size:.68rem;font-style:normal;
+  letter-spacing:.16em;text-transform:uppercase;color:rgba(244,241,236,.42);
+}
+.n-src--mid{max-width:64rem;margin-left:auto;margin-right:auto;text-align:right}
+.n-cards--1{max-width:22rem}
+
 /* ---- agents ---- */
 .p-agents{
   max-width:50rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
@@ -982,19 +993,13 @@ blockquote{
 <body>
 
 <!-- ==========================================================================
-     NEIGHBOURHOOD PAGE — Belle Meade
-
-     TO MAKE ANOTHER AREA PAGE
-     1. Copy this folder: neighborhood/belle-meade/ -> neighborhood/<slug>/
-     2. Change every line marked  AREA:  below.
-
-     PLACEHOLDER on this page: the market figures, the commute times, the
-     dining and shopping entries, and the card photography. Everything marked
-     AREA: needs real content before this page is shown to a client.
+     LUXURY AREA — Belle Meade
+     Figures and place names come from the sources named on the page. Refresh
+     the market figure before this page is used with a client.
+     Card photography is still placeholder: media/place-3x2.jpg
      ========================================================================== -->
 
 <section class="p-hero" id="top">
-  <!-- AREA: hero image -->
   <img class="hero__media" src="../../media/hood-1.jpg" alt="" aria-hidden="true">
   <div class="hero__scrim"></div>
   <header class="bar">
@@ -1030,7 +1035,6 @@ blockquote{
   <div class="p-hero__body">
     <div class="reveal" style="animation-delay:.5s">
       <span class="p-hero__status">Luxury Area</span>
-      <!-- AREA: name and city -->
       <h1>Belle Meade<br>Nashville, Tennessee</h1>
       <p class="p-hero__price">Key Details</p>
       <a class="p-hero__cta" href="#enquire">Request Early Access</a>
@@ -1038,211 +1042,173 @@ blockquote{
   </div>
 </section>
 
-<!-- ============================ WHAT TO EXPECT ============================ -->
 <section class="p-sec" aria-labelledby="expect-h">
   <div class="p-lede">
     <p class="p-eyebrow">The Area</p>
     <h2 id="expect-h">What to Expect</h2>
   </div>
-
   <div class="n-blocks">
-    <!-- AREA: the lifestyle paragraph -->
     <div class="n-block">
       <span class="n-block__n">01</span>
-      <div>
-        <h3>The Setting</h3>
-        <p>Placeholder. Two or three sentences on what it is like to live here —
-           what is a short drive away, what the streets are like, who the area
-           suits.</p>
-      </div>
+      <div><h3>The Setting</h3><p>Belle Meade is a small independent city of about 3.1 square miles on Nashville's west side, with its own city hall and police department alongside Metro services. It grew out of the 5,300-acre Belle Meade Plantation, a thoroughbred breeding estate founded in 1807 and subdivided from 1906; the city incorporated in 1938. It sits directly against the 3,100-acre Warner Parks.</p></div>
     </div>
-
-    <!-- AREA: the market paragraph. Numbers must be real and dated. -->
     <div class="n-block">
       <span class="n-block__n">02</span>
-      <div>
-        <h3>The Market</h3>
-        <p>Placeholder. Average sale price, typical lot size, and how the market
-           has moved. Give me the figures and the period they cover and I will
-           set them here.</p>
-      </div>
+      <div><h3>The Market</h3><p>Median sale price $4.8M, up 3.7% year over year, at $901 per square foot. Eleven homes sold in June 2026, with a median 91 days on market.</p>
+        <p class="n-src">Redfin, three months ending June 2026</p></div>
     </div>
-
-    <!-- AREA: what the houses are like -->
     <div class="n-block">
       <span class="n-block__n">03</span>
-      <div>
-        <h3>The Houses</h3>
-        <p>Placeholder. What the housing stock is — the eras, the architecture,
-           what a buyer is choosing between.</p>
+      <div><h3>The Houses</h3><p>Housing dates largely to the early-twentieth-century subdivision of the plantation — Arts and Crafts homes from around 1915, shifting to predominantly Tudor Revival through the 1920s and 30s. Landscape architect O.C. Simonds laid the area out as an English garden suburb of winding streets and commons rather than a grid.</p>
         <ul>
-          <li>Placeholder feature</li>
-          <li>Placeholder feature</li>
-          <li>Placeholder feature</li>
-          <li>Placeholder feature</li>
-        </ul>
-      </div>
+          <li>Tudor Revival estate homes</li>
+          <li>Arts and Crafts early builds</li>
+          <li>Curving, tree-lined streets</li>
+          <li>Deep setbacks, hedged boundaries</li>
+        </ul></div>
     </div>
   </div>
 </section>
 
-<!-- ============================== PHOTOGRAPHY ============================= -->
 <section class="p-sec p-sec--tight" aria-labelledby="gal-h">
   <div class="p-lede">
     <p class="p-eyebrow">Gallery</p>
     <h2 id="gal-h">The Area</h2>
   </div>
-  <!-- AREA: every image -->
   <div class="p-gal">
-    <div class="p-gal__row">
+    <div class="p-gal__row p-gal__row--1">
       <a class="p-shot" href="../../media/hood-1.jpg"><img src="../../media/hood-1.jpg" alt="" loading="lazy"></a>
-      <a class="p-shot" href="../../media/hood-2.jpg"><img src="../../media/hood-2.jpg" alt="" loading="lazy"></a>
-      <a class="p-shot" href="../../media/hood-3.jpg"><img src="../../media/hood-3.jpg" alt="" loading="lazy"></a>
     </div>
   </div>
 </section>
 
-<!-- ============================== THINGS TO DO ============================ -->
 <section class="p-sec p-sec--tight" aria-labelledby="do-h">
   <div class="p-lede">
     <p class="p-eyebrow">Nearby</p>
     <h2 id="do-h">Things to Do</h2>
   </div>
-  <!-- AREA: each card. Photography needed for all three. -->
   <div class="n-cards">
     <div class="n-card">
       <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
-      <h3>Percy Warner Park</h3>
-      <p>Placeholder. A sentence on the park and what it offers.</p>
+      <h3>Belle Meade Historic Site &amp; Winery</h3>
+      <p>The former plantation mansion at 5025 Harding Pike, open daily with tours every thirty to forty-five minutes.</p>
     </div>
     <div class="n-card">
       <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
-      <h3>Cheekwood</h3>
-      <p>Placeholder. A sentence on the estate, gardens and museum.</p>
+      <h3>Warner Parks</h3>
+      <p>More than 3,100 acres of hiking, mountain biking and equestrian trails bordering the city.</p>
     </div>
     <div class="n-card">
       <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
-      <h3>Belle Meade Historic Site</h3>
-      <p>Placeholder. A sentence on the mansion and grounds.</p>
+      <h3>Cheekwood Estate &amp; Gardens</h3>
+      <p>A 55-acre estate on Forrest Park Drive with eight botanical gardens, a 1930s mansion and an art museum.</p>
     </div>
   </div>
 </section>
 
-<!-- ================================ DINING =============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="dine-h">
   <div class="p-lede">
     <p class="p-eyebrow">Nearby</p>
     <h2 id="dine-h">Dining</h2>
   </div>
-  <!-- AREA: the restaurants. Names must be real and current. -->
   <div class="n-cards">
     <div class="n-card">
       <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
-      <h3>Restaurant</h3>
-      <p>Placeholder. One line on the room and the cooking.</p>
+      <h3>Sperry&rsquo;s</h3>
+      <p>Steak and seafood house at 5109 Harding Pike, serving Nashville since 1974.</p>
     </div>
     <div class="n-card">
       <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
-      <h3>Restaurant</h3>
-      <p>Placeholder. One line on the room and the cooking.</p>
+      <h3>Roze Pony</h3>
+      <p>All-day caf&eacute;, market and cocktail bar at 5133 Harding Pike.</p>
     </div>
     <div class="n-card">
       <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
-      <h3>Restaurant</h3>
-      <p>Placeholder. One line on the room and the cooking.</p>
+      <h3>Belle Meade Meat &amp; Three</h3>
+      <p>Southern smoked meats and vegetables on Leake Avenue, daily from eleven.</p>
     </div>
   </div>
 </section>
 
-<!-- =============================== THE CLUB ============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="club-h">
   <div class="p-lede">
     <p class="p-eyebrow">Nearby</p>
     <h2 id="club-h">Golf &amp; Clubs</h2>
   </div>
-  <!-- AREA: the club -->
-  <div class="n-cards">
+  <div class="n-cards n-cards--1">
     <div class="n-card">
       <div class="n-card__media"><img src="../../media/place-3x2.jpg" alt="" loading="lazy" decoding="async"></div>
       <h3>Belle Meade Country Club</h3>
-      <p>Placeholder. A sentence on the club and the course.</p>
+      <p>Private club on Belle Meade Boulevard with golf, tennis, fitness and pool.</p>
     </div>
   </div>
 </section>
 
-<!-- ================================ LOCATION ============================= -->
 <section class="p-sec" aria-labelledby="loc-h">
   <div class="p-lede">
     <p class="p-eyebrow">Location</p>
     <h2 id="loc-h">Belle Meade</h2>
   </div>
   <div class="p-map">
-    <!-- AREA: the map query, three times -->
     <p class="p-map__addr">Belle Meade, Nashville, Tennessee</p>
     <div class="p-map__frame">
-      <iframe title="Map — Belle Meade, Nashville, TN"
-        src="https://www.google.com/maps?q=Belle%20Meade%2C%20Nashville%2C%20TN&amp;output=embed"
+      <iframe title="Map — Belle Meade"
+        src="https://www.google.com/maps?q=Belle%20Meade%2C%20Nashville%2C%20Tennessee&amp;output=embed"
         loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <p class="p-map__links">
       <a class="prop__cta" target="_blank" rel="noopener"
-         href="https://www.google.com/maps/dir/?api=1&amp;destination=Belle%20Meade%2C%20Nashville%2C%20TN">Get directions
+         href="https://www.google.com/maps/dir/?api=1&amp;destination=Belle%20Meade%2C%20Nashville%2C%20Tennessee">Get directions
         <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
           <path d="M2 1l3 3-3 3"/></svg></a>
     </p>
   </div>
 </section>
 
-<!-- ================================ COMMUTE ============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="time-h">
   <div class="p-lede">
     <p class="p-eyebrow">Getting Around</p>
     <h2 id="time-h">Commute Times</h2>
   </div>
-  <!-- AREA: every figure. These need to be real drive times. -->
   <dl class="n-times">
-    <div class="n-time"><dt>Downtown</dt><dd>—</dd></div>
-    <div class="n-time"><dt>Green Hills</dt><dd>—</dd></div>
-    <div class="n-time"><dt>Brentwood</dt><dd>—</dd></div>
-    <div class="n-time"><dt>BNA Airport</dt><dd>—</dd></div>
+    <div class="n-time"><dt>Downtown</dt><dd>15 min</dd></div>
+    <div class="n-time"><dt>Green Hills</dt><dd>10 min</dd></div>
+    <div class="n-time"><dt>Brentwood</dt><dd>20 min</dd></div>
+    <div class="n-time"><dt>BNA Airport</dt><dd>25 min</dd></div>
   </dl>
+  <p class="n-src n-src--mid">Approximate driving times, traffic dependent.</p>
 </section>
 
-<!-- ============================ OTHER AREAS ============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="more-h">
   <div class="p-lede">
     <p class="p-eyebrow">Middle Tennessee</p>
     <h2 id="more-h">Explore Other Areas</h2>
   </div>
-  <!-- AREA: point these at the three or four most relevant neighbours -->
   <div class="n-more">
-    <a class="n-tile" href="../../neighborhoods.html">
+    <a class="n-tile" href="../west-meade/">
       <img src="../../media/hood-2.jpg" alt="" loading="lazy" decoding="async">
       <span class="n-tile__veil"></span><span class="n-tile__name">West Meade</span>
     </a>
-    <a class="n-tile" href="../../neighborhoods.html">
+    <a class="n-tile" href="../green-hills/">
       <img src="../../media/hood-3.jpg" alt="" loading="lazy" decoding="async">
       <span class="n-tile__veil"></span><span class="n-tile__name">Green Hills</span>
     </a>
-    <a class="n-tile" href="../../neighborhoods.html">
+    <a class="n-tile" href="../forest-hills/">
       <img src="../../media/hood-4.jpg" alt="" loading="lazy" decoding="async">
       <span class="n-tile__veil"></span><span class="n-tile__name">Forest Hills</span>
     </a>
-    <a class="n-tile" href="../../neighborhoods.html">
-      <img src="../../media/hood-5.jpg" alt="" loading="lazy" decoding="async">
-      <span class="n-tile__veil"></span><span class="n-tile__name">Oak Hill</span>
+    <a class="n-tile" href="../brentwood/">
+      <img src="../../media/hood-6.jpg" alt="" loading="lazy" decoding="async">
+      <span class="n-tile__veil"></span><span class="n-tile__name">Brentwood</span>
     </a>
   </div>
 </section>
 
-<!-- =============================== EARLY ACCESS ==========================
-     NOT WIRED. Submitting shows an honest note rather than a false thank-you. -->
 <section class="p-sec p-sec--tight" id="enquire" aria-labelledby="enq-h">
   <div class="p-lede">
     <p class="p-eyebrow">Private Access</p>
     <h2 id="enq-h">Before the General Public</h2>
-    <p>Homes in Belle Meade often trade before they are ever listed. Ask to be told
-       first.</p>
+    <p>Homes in Belle Meade often trade before they are ever listed. Ask to be told first.</p>
   </div>
   <form class="p-form" id="enqForm" novalidate>
     <label class="visually-hidden" for="enqName">Name</label>
