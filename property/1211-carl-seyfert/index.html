@@ -811,6 +811,25 @@ blockquote{
 @media (max-width:900px){ .p-build__grid--3{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:520px){ .p-build__grid--3{grid-template-columns:1fr} }
 
+/* A builder's bio can run three paragraphs while an architect's runs one, so
+   everything past the first paragraph folds away. grid-template-rows animates
+   from 0fr to 1fr, which opens without clipping descenders the way max-height
+   does. */
+.p-partner__more{
+  display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .5s var(--rise);
+}
+.p-partner__more > div{overflow:hidden}
+.p-partner__more[data-on]{grid-template-rows:1fr}
+.p-partner__toggle{
+  margin-top:1rem;padding:0;border:0;background:none;cursor:pointer;
+  font-family:var(--ui);font-weight:300;font-size:.58rem;
+  letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
+  color:var(--brass);transition:color .3s var(--rise);
+}
+.p-partner__toggle:hover,.p-partner__toggle:focus-visible{color:#fff;outline:none}
+@media (prefers-reduced-motion:reduce){ .p-partner__more{transition:none} }
+
 /* ---- agents ---- */
 .p-agents{
   max-width:50rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
@@ -1070,12 +1089,28 @@ blockquote{
     </div>
     <div class="p-partner">
       <div class="p-partner__photo">
-        <img src="../../media/partner.jpg" alt="" loading="lazy" decoding="async">
+        <img src="../../media/build-chase.jpg" alt="Chase Pasternak" loading="lazy" decoding="async">
       </div>
       <p class="p-partner__role">Builder</p>
-      <p class="p-partner__name">Firm or Name</p>
-      <p>Placeholder. One or two sentences on who they are and what they are
-         known for.</p>
+      <p class="p-partner__name">Chase Pasternak</p>
+      <p>Chase Pasternak is a Texas native, born and raised in Paris, with a
+         strong foundation in faith, family, and service. A proud graduate of
+         Ole Miss, Chase began his professional journey as a real estate agent
+         before transitioning into the building industry, where he spent four
+         years gaining hands-on experience in construction and development.</p>
+      <div class="p-partner__more" id="bio-builder"><div>
+        <p>Now combining both worlds, Chase brings a unique perspective to real
+           estate &mdash; blending sales expertise with deep construction
+           knowledge to help clients make smart, informed decisions. He&rsquo;s
+           driven by a passion for people and a commitment to excellence in
+           everything he does.</p>
+        <p>Chase is happily married to his wife, Halle, and they share life with
+           their two German Shepherds, Emma and Ethel. Outside of work, he&rsquo;s
+           big into fitness, golf, and travel. He also serves as a dedicated
+           volunteer with Team Zeal at Zeal Church, where his faith and community
+           values continue to guide his life and career.</p>
+      </div></div>
+      <button class="p-partner__toggle" aria-expanded="false" aria-controls="bio-builder">Read More</button>
     </div>
     <div class="p-partner">
       <div class="p-partner__photo">
@@ -1095,10 +1130,13 @@ blockquote{
       <p>We take a custom concept and bring it to life, creating a seamless
          experience so you can simply step into a home that feels finished,
          intentional, and ready to live in.</p>
-      <p>I spend most of my days designing spaces, sourcing, and project
-         managing. I have a love for European antiques, unique architectural
-         details, and natural materials. I want our homes to feel collected
-         rather than overly designed.</p>
+      <div class="p-partner__more" id="bio-designer"><div>
+        <p>I spend most of my days designing spaces, sourcing, and project
+           managing. I have a love for European antiques, unique architectural
+           details, and natural materials. I want our homes to feel collected
+           rather than overly designed.</p>
+      </div></div>
+      <button class="p-partner__toggle" aria-expanded="false" aria-controls="bio-designer">Read More</button>
     </div>
   </div>
 </section>
@@ -1370,6 +1408,17 @@ if (accessForm) {
     note.setAttribute("data-on", "");
   });
 }
+
+/* ---- behind-the-build bios ---- */
+document.querySelectorAll(".p-partner__toggle").forEach(btn => {
+  const panel = document.getElementById(btn.getAttribute("aria-controls"));
+  btn.addEventListener("click", () => {
+    const open = panel.hasAttribute("data-on");
+    open ? panel.removeAttribute("data-on") : panel.setAttribute("data-on", "");
+    btn.setAttribute("aria-expanded", !open);
+    btn.textContent = open ? "Read More" : "Read Less";
+  });
+});
 
 addEventListener("keydown", e => {
   if (e.key !== "Escape") return;

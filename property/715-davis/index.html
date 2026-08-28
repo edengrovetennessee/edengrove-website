@@ -814,6 +814,25 @@ blockquote{
 @media (max-width:900px){ .p-build__grid--3{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:520px){ .p-build__grid--3{grid-template-columns:1fr} }
 
+/* A builder's bio can run three paragraphs while an architect's runs one, so
+   everything past the first paragraph folds away. grid-template-rows animates
+   from 0fr to 1fr, which opens without clipping descenders the way max-height
+   does. */
+.p-partner__more{
+  display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .5s var(--rise);
+}
+.p-partner__more > div{overflow:hidden}
+.p-partner__more[data-on]{grid-template-rows:1fr}
+.p-partner__toggle{
+  margin-top:1rem;padding:0;border:0;background:none;cursor:pointer;
+  font-family:var(--ui);font-weight:300;font-size:.58rem;
+  letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
+  color:var(--brass);transition:color .3s var(--rise);
+}
+.p-partner__toggle:hover,.p-partner__toggle:focus-visible{color:#fff;outline:none}
+@media (prefers-reduced-motion:reduce){ .p-partner__more{transition:none} }
+
 /* ---- agents ---- */
 .p-agents{
   max-width:50rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
@@ -1361,6 +1380,17 @@ if (accessForm) {
     note.setAttribute("data-on", "");
   });
 }
+
+/* ---- behind-the-build bios ---- */
+document.querySelectorAll(".p-partner__toggle").forEach(btn => {
+  const panel = document.getElementById(btn.getAttribute("aria-controls"));
+  btn.addEventListener("click", () => {
+    const open = panel.hasAttribute("data-on");
+    open ? panel.removeAttribute("data-on") : panel.setAttribute("data-on", "");
+    btn.setAttribute("aria-expanded", !open);
+    btn.textContent = open ? "Read More" : "Read Less";
+  });
+});
 
 addEventListener("keydown", e => {
   if (e.key !== "Escape") return;
