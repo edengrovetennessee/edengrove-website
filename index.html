@@ -589,74 +589,56 @@ blockquote{
 }
 /* ==========================================================================
    ENTRANCE
-   No wipe, no blur, no travelling light. The paper comes up, the foil settles
-   onto it, its impression deepens a beat later, and the frame pushes in
-   throughout. Everything that moves, moves once.
+   One move: the logo is pressed into the paper. The sheet is already there and
+   never moves. Nothing sweeps, blooms, blurs or pushes in.
    ========================================================================== */
 .enter{
   position:fixed;inset:0;z-index:200;overflow:hidden;
   background:#0d0d0d;
-  transition:opacity .5s var(--rise),visibility .5s var(--rise);
+  transition:opacity .45s var(--rise),visibility .45s var(--rise);
 }
 .enter[data-done]{opacity:0;visibility:hidden;pointer-events:none}
 
 .enter__stage{
   position:absolute;left:50%;top:50%;
   width:max(100vw,100vh);height:max(100vw,100vh);
-  transform:translate(-50%,-50%) scale(1.055);
-  animation:stageSettle 5.4s cubic-bezier(.16,.62,.2,1) 0s forwards;
+  transform:translate(-50%,-50%);
 }
-@keyframes stageSettle{ to{transform:translate(-50%,-50%) scale(1)} }
-
 .enter__paper{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
-  opacity:0;animation:paperUp 1.7s cubic-bezier(.3,0,.2,1) forwards;
 }
-@keyframes paperUp{ to{opacity:1} }
 
-/* The foil settles onto the sheet: a fade with the last of a scale coming off
-   it, so it arrives rather than switches on. No edge travels anywhere. */
+/* The die comes down and stops. Fast in, decisive halt — the easing is the
+   whole character of a press. */
 .enter__tree{
   position:absolute;left:37.938%;top:38.375%;width:25%;height:auto;display:block;
-  opacity:0;transform:scale(1.035);transform-origin:50% 72%;
-  animation:foilSettle 2.4s cubic-bezier(.22,.62,.2,1) 1.05s forwards;
+  opacity:0;transform:scale(1.055);transform-origin:50% 62%;
+  animation:press 1.05s cubic-bezier(.16,.84,.3,1) .55s forwards;
 }
-@keyframes foilSettle{ to{opacity:1;transform:scale(1)} }
+@keyframes press{ to{opacity:1;transform:scale(1)} }
 
-/* The impression it makes in the paper, a beat behind the foil itself. */
+/* The impression it leaves, arriving at the moment of contact. */
 .enter__tree--shade{
   position:absolute;left:37.938%;top:38.375%;width:25%;height:auto;display:block;
   opacity:0;mix-blend-mode:multiply;filter:blur(3px);
-  animation:shadeIn 1.9s var(--rise) 1.75s forwards;
+  animation:impress .55s var(--rise) 1.25s forwards;
 }
-@keyframes shadeIn{ to{opacity:.4} }
-
-/* One breath of light on the gold as it seats — it swells and is gone. */
-.enter__tree--lift{
-  position:absolute;left:37.938%;top:38.375%;width:25%;height:auto;display:block;
-  opacity:0;mix-blend-mode:screen;filter:blur(7px) brightness(1.5);
-  animation:foilLift 2.2s cubic-bezier(.3,0,.35,1) 1.9s forwards;
-}
-@keyframes foilLift{ 0%{opacity:0} 42%{opacity:.34} 100%{opacity:0} }
+@keyframes impress{ to{opacity:.42} }
 
 .enter__veil{
   position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(ellipse 76% 68% at 50% 46%,
     rgba(0,0,0,0) 0%, rgba(0,0,0,.26) 56%, rgba(0,0,0,.8) 100%);
-  opacity:.32;
-  animation:veilEase 5.4s var(--rise) 0s forwards;
+  opacity:.88;
 }
-@keyframes veilEase{ to{opacity:.92} }
 
 body[data-entering]{overflow:hidden}
 
 @media (prefers-reduced-motion:reduce){
   .enter{display:none}
-  .enter__stage,.enter__paper,.enter__tree,.enter__tree--shade,.enter__tree--lift,.enter__veil{animation:none}
-  .enter__stage{transform:translate(-50%,-50%)}
-  .enter__paper{opacity:1}
+  .enter__tree,.enter__tree--shade{animation:none}
   .enter__tree{opacity:1;transform:none}
-  .enter__tree--shade,.enter__tree--lift{display:none}
+  .enter__tree--shade{opacity:.42}
 }
 
 </style>
@@ -669,7 +651,6 @@ body[data-entering]{overflow:hidden}
     <img class="enter__paper" src="media/enter-paper.jpg" alt="" aria-hidden="true">
     <img class="enter__tree--shade" src="media/enter-tree.png" alt="" aria-hidden="true">
     <img class="enter__tree" src="media/enter-tree.png" alt="" aria-hidden="true">
-    <img class="enter__tree--lift" src="media/enter-tree.png" alt="" aria-hidden="true">
   </div>
   <span class="enter__veil"></span>
 </div>
@@ -943,7 +924,7 @@ body[data-entering]{overflow:hidden}
     document.body.removeAttribute("data-entering");
     setTimeout(() => el.remove(), 600);
   };
-  const timer = setTimeout(finish, 4800);
+  const timer = setTimeout(finish, 2500);
   ["pointerdown","keydown","wheel","touchstart"].forEach(e =>
     addEventListener(e, () => { clearTimeout(timer); finish() }, {once:true, passive:true}));
 })();
