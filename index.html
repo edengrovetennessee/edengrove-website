@@ -613,7 +613,7 @@ blockquote{
 .enter__tree{
   position:absolute;left:37.938%;top:38.375%;width:25%;height:auto;display:block;
   opacity:0;transform:scale(1.055);transform-origin:50% 62%;
-  animation:press 1.05s cubic-bezier(.16,.84,.3,1) .55s forwards;
+  animation:press 2.1s cubic-bezier(.2,.78,.28,1) .9s forwards;
 }
 @keyframes press{ to{opacity:1;transform:scale(1)} }
 
@@ -621,7 +621,7 @@ blockquote{
 .enter__tree--shade{
   position:absolute;left:37.938%;top:38.375%;width:25%;height:auto;display:block;
   opacity:0;mix-blend-mode:multiply;filter:blur(3px);
-  animation:impress .55s var(--rise) 1.25s forwards;
+  animation:impress 1.15s var(--rise) 2.25s forwards;
 }
 @keyframes impress{ to{opacity:.42} }
 
@@ -924,7 +924,7 @@ body[data-entering]{overflow:hidden}
     document.body.removeAttribute("data-entering");
     setTimeout(() => el.remove(), 600);
   };
-  const timer = setTimeout(finish, 2500);
+  const timer = setTimeout(finish, 4300);
   ["pointerdown","keydown","wheel","touchstart"].forEach(e =>
     addEventListener(e, () => { clearTimeout(timer); finish() }, {once:true, passive:true}));
 })();
