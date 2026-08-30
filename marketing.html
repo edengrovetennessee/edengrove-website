@@ -1049,7 +1049,32 @@ blockquote{
     es.forEach(({target: v, isIntersecting}) => isIntersecting ? start(v) : (v.paused || v.pause())),
     {threshold: .15});
 
-  vids.forEach(v => { preloadIO.observe(v); playIO.observe(v) });
+  /* Browsers cap how many videos can decode at once, and this page carries
+     eight. Anything a long way off screen gives its decoder back and re-fetches
+     when it returns — without this, whichever card lost the race rendered as an
+     empty panel. */
+  const releaseIO = new IntersectionObserver(es =>
+    es.forEach(({target: v, isIntersecting}) => {
+      if (isIntersecting || !v.dataset.loaded) return;
+      v.pause();
+      delete v.dataset.loaded;
+      v.preload = 'none';
+      v.load();                       // drops the buffer and frees the decoder
+    }), {rootMargin: '60% 0px'});
+
+  /* Paint each card's poster behind its video. Until the file arrives — or if a
+     decoder is ever refused — the card shows its first frame instead of an
+     empty panel. */
+  vids.forEach(v => {
+    const poster = v.getAttribute("poster");
+    if (poster && v.parentElement) {
+      const w = v.parentElement;
+      w.style.backgroundImage = `url("${poster}")`;
+      w.style.backgroundSize = "cover";
+      w.style.backgroundPosition = "center";
+    }
+    preloadIO.observe(v); playIO.observe(v); releaseIO.observe(v);
+  });
 
   // Anything already on screen at load starts straight away.
   const kick = () => vids.forEach(v => { if (near(v)) start(v) });
