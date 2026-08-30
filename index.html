@@ -604,7 +604,7 @@ blockquote{
   position:absolute;inset:0;width:100%;height:100%;
   object-fit:cover;display:block;
   transform:scale(1.13) translateY(1.1%);
-  filter:blur(18px) brightness(.34) contrast(.88) saturate(.7);
+  filter:blur(6px) brightness(.42) contrast(.9) saturate(.78);
   opacity:0;
   animation:plateOpen 5.8s cubic-bezier(.2,.58,.22,1) .2s forwards;
 }
@@ -613,9 +613,9 @@ blockquote{
 @keyframes plateOpen{
   0%  {opacity:0;
        transform:scale(1.13) translateY(1.1%);
-       filter:blur(18px) brightness(.34) contrast(.88) saturate(.7)}
-  22% {opacity:1}
-  62% {filter:blur(3.4px) brightness(.86) contrast(1.02) saturate(.94)}
+       filter:blur(6px) brightness(.42) contrast(.9) saturate(.78)}
+  18% {opacity:1}
+  46% {filter:blur(1.6px) brightness(.88) contrast(1.02) saturate(.95)}
   100%{opacity:1;
        transform:scale(1) translateY(0);
        filter:blur(0) brightness(1.06) contrast(1.07) saturate(1.02)}
