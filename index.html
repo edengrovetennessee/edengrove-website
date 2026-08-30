@@ -589,33 +589,64 @@ blockquote{
 }
 /* ==========================================================================
    ENTRANCE
-   The tree grows from its roots, the wordmark settles, the curtain lifts.
-   Shown once per session — impressive the first time, tedious every time.
-   Skipped entirely for prefers-reduced-motion, and for anyone who clicks.
+   The foil plate, lit. A slow dolly in, one pass of raking light across the
+   gold, then the curtain lifts. Shown once per session; skipped on any input
+   and for prefers-reduced-motion.
    ========================================================================== */
 .enter{
-  position:fixed;inset:0;z-index:200;
-  background:var(--ink);
-  display:grid;place-items:center;align-content:center;gap:clamp(1.6rem,4vh,2.8rem);
-  transition:opacity 1.3s var(--rise),visibility 1.3s var(--rise);
+  position:fixed;inset:0;z-index:200;overflow:hidden;
+  background:#141414;
+  transition:opacity 1.4s var(--rise),visibility 1.4s var(--rise);
 }
 .enter[data-done]{opacity:0;visibility:hidden;pointer-events:none}
-.enter__tree{
-  width:clamp(11rem,21vw,17rem);height:auto;display:block;
-  /* grown from the base: the clip opens upward, so roots arrive before canopy */
-  clip-path:inset(100% 0 0 0);
-  transform:scale(1.05);
-  /* slow and even — a tree does not hurry */
-  animation:treeGrow 4.6s cubic-bezier(.42,0,.58,1) .5s forwards;
+
+.enter__plate{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;display:block;
+  transform:scale(1.11);opacity:0;
+  animation:plateIn 1.6s var(--rise) .15s forwards,
+            plateDolly 8.4s cubic-bezier(.18,.5,.24,1) .15s forwards;
 }
-@keyframes treeGrow{
-  to{clip-path:inset(0 0 0 0);transform:scale(1)}
+@keyframes plateIn   { to{opacity:1} }
+@keyframes plateDolly{ to{transform:scale(1)} }
+
+/* One slow rake of light across the foil. soft-light keeps the paper matte
+   and lets only the gold answer it. */
+.enter__sheen{
+  position:absolute;top:-30%;bottom:-30%;left:-45%;width:55%;
+  pointer-events:none;mix-blend-mode:soft-light;opacity:0;
+  background:linear-gradient(105deg,
+    rgba(255,255,255,0) 0%,
+    rgba(255,246,222,.30) 38%,
+    rgba(255,250,236,.72) 50%,
+    rgba(255,246,222,.30) 62%,
+    rgba(255,255,255,0) 100%);
+  filter:blur(14px);
+  animation:sheenPass 5.2s cubic-bezier(.36,.06,.32,1) 1.5s forwards;
 }
+@keyframes sheenPass{
+  0%  {transform:translateX(0);opacity:0}
+  18% {opacity:1}
+  82% {opacity:1}
+  100%{transform:translateX(255%);opacity:0}
+}
+
+/* A breathing vignette so the corners never sit flat. */
+.enter__veil{
+  position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse 82% 74% at 46% 42%,
+    rgba(0,0,0,0) 0%, rgba(0,0,0,.28) 62%, rgba(0,0,0,.66) 100%);
+  opacity:.55;
+  animation:veilEase 8.4s var(--rise) .15s forwards;
+}
+@keyframes veilEase{ to{opacity:.9} }
+
 body[data-entering]{overflow:hidden}
 
 @media (prefers-reduced-motion:reduce){
   .enter{display:none}
-  .enter__tree{animation:none}
+  .enter__plate,.enter__sheen,.enter__veil{animation:none}
+  .enter__plate{opacity:1;transform:none}
 }
 
 </style>
@@ -624,7 +655,9 @@ body[data-entering]{overflow:hidden}
 
 <!-- ENTRANCE — removed from the DOM once it has played -->
 <div class="enter" id="enter" role="presentation">
-  <img class="enter__tree" src="media/tree.svg" alt="" aria-hidden="true">
+  <img class="enter__plate" src="media/enter-plate.jpg" alt="" aria-hidden="true">
+  <span class="enter__sheen"></span>
+  <span class="enter__veil"></span>
 </div>
 
 
@@ -894,9 +927,9 @@ body[data-entering]{overflow:hidden}
     if (el.hasAttribute("data-done")) return;
     el.setAttribute("data-done", "");
     document.body.removeAttribute("data-entering");
-    setTimeout(() => el.remove(), 1400);
+    setTimeout(() => el.remove(), 1500);
   };
-  const timer = setTimeout(finish, 6100);
+  const timer = setTimeout(finish, 8200);
   ["pointerdown","keydown","wheel","touchstart"].forEach(e =>
     addEventListener(e, () => { clearTimeout(timer); finish() }, {once:true, passive:true}));
 })();
