@@ -596,7 +596,7 @@ blockquote{
 .enter{
   position:fixed;inset:0;z-index:200;overflow:hidden;
   background:#0b0b0b;
-  transition:opacity 1.2s var(--rise),visibility 1.2s var(--rise);
+  transition:opacity .5s var(--rise),visibility .5s var(--rise);
 }
 .enter[data-done]{opacity:0;visibility:hidden;pointer-events:none}
 
@@ -934,9 +934,9 @@ body[data-entering]{overflow:hidden}
     if (el.hasAttribute("data-done")) return;
     el.setAttribute("data-done", "");
     document.body.removeAttribute("data-entering");
-    setTimeout(() => el.remove(), 1300);
+    setTimeout(() => el.remove(), 600);
   };
-  const timer = setTimeout(finish, 6300);
+  const timer = setTimeout(finish, 5900);
   ["pointerdown","keydown","wheel","touchstart"].forEach(e =>
     addEventListener(e, () => { clearTimeout(timer); finish() }, {once:true, passive:true}));
 })();
