@@ -723,6 +723,23 @@ blockquote{
 
 /* a text control, not a boxed button — the only bordered button on this site
    is the one that submits an email address */
+/* Contact sits under each biography rather than only in the footer, so a
+   seller can reach the person they have just read about. */
+.member__contact{
+  margin:clamp(1.4rem,3vh,1.9rem) 0 0;padding:0;list-style:none;
+  display:flex;flex-wrap:wrap;gap:.5rem clamp(1.2rem,3vw,2.2rem);
+}
+.member__contact li{margin:0}
+.member__contact a{
+  font-weight:300;font-size:.86rem;letter-spacing:.04em;
+  color:rgba(244,241,236,.8);text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:color .35s var(--rise),border-color .35s var(--rise);
+}
+.member__contact a:hover,.member__contact a:focus-visible{
+  color:#fff;border-bottom-color:var(--brass);outline:none;
+}
+
 .member__toggle{
   align-self:flex-start;margin-top:clamp(1.6rem,3.4vh,2.2rem);
   position:relative;padding:.4rem 0;
@@ -819,6 +836,10 @@ blockquote{
           <p>Real estate was the natural next field. He started on the development side, learning properties from the dirt up — land, entitlement, construction, and what actually creates value in a finished home. Along the way he founded The Stonehouse Company, a Nashville consulting and premium representation firm working with owners, builders, and investors.</p>
           <p>Eden Grove is the next step: a luxury sales team under Compass, built around new construction and the craftsmanship behind it. The premise is simple — Tennessee&rsquo;s best homes deserve cinematic storytelling and a marketing standard that matches the work that went into them.</p>
         </div></div>
+        <ul class="member__contact">
+          <li><a href="tel:+16158120066">(615) 812-0066</a></li>
+          <li><a href="mailto:ryan@edengrovetennessee.com">ryan@edengrovetennessee.com</a></li>
+        </ul>
         <button class="member__toggle" aria-expanded="false" aria-controls="more-1">Read More</button>
       </div>
       <div class="member__photo"><img loading="lazy" decoding="async" src="media/team-1.jpg" alt="Ryan Stonehouse"></div>
@@ -834,6 +855,10 @@ blockquote{
           <p>In 2025, Blake earned his Master&rsquo;s in Real Estate Development from Auburn University, further equipping him to navigate complex projects and better serve his clients. As a co-founder of Eden Grove and the founder of Shepherd Group, he set out to build a fully integrated real estate business rooted in purpose — one that serves people, fosters community, and creates lasting value through thoughtful development and service.</p>
           <p>Blake is a devoted family man, happily married to his wife Abbey. Outside of work, you&rsquo;ll likely find him on the water, enjoying time with friends and family. He remains committed to being a knowledgeable and reliable guide for anyone navigating the real estate markets of Greater Nashville and South Central Kentucky.</p>
         </div></div>
+        <ul class="member__contact">
+          <li><a href="tel:+12705355954">(270) 535-5954</a></li>
+          <li><a href="mailto:blake@edengrovetennessee.com">blake@edengrovetennessee.com</a></li>
+        </ul>
         <button class="member__toggle" aria-expanded="false" aria-controls="more-2">Read More</button>
       </div>
       <div class="member__photo"><img loading="lazy" decoding="async" src="media/team-2.jpg" alt="Blake Barker"></div>
@@ -848,6 +873,10 @@ blockquote{
           <p>Known for his honesty, work ethic, and relentless commitment to client success, Joe approaches every transaction with integrity and purpose. He takes pride in representing his clients with excellence, ensuring their goals are met with care and precision.</p>
           <p>In addition to his current work, Joe has ambitious plans, with a growing interest in both residential and commercial real estate development. His vision and drive continue to shape his path as a trusted and forward-thinking force in the industry.</p>
         </div></div>
+        <ul class="member__contact">
+          <li><a href="tel:+16158120066">(615) 812-0066</a></li>
+          <li><a href="mailto:clients@edengrovetennessee.com">clients@edengrovetennessee.com</a></li>
+        </ul>
         <button class="member__toggle" aria-expanded="false" aria-controls="more-3">Read More</button>
       </div>
       <div class="member__photo"><img loading="lazy" decoding="async" src="media/team-3.jpg" alt="Joe Archer"></div>
