@@ -825,6 +825,30 @@ blockquote{
 }
 .c-note[data-on]{opacity:1}
 
+/* ---- questions ----
+   Plain answers to the questions people actually ask, in the order they ask
+   them. Marked up as FAQPage so search engines and assistants can quote it. */
+.c-faq{
+  background:var(--ink);padding:0 var(--gutter) clamp(4rem,9vh,7rem);
+}
+.c-faq__inner{
+  max-width:64rem;margin:0 auto;padding-top:clamp(2.5rem,6vh,4rem);
+  border-top:1px solid rgba(244,241,236,.14);
+}
+.c-faq__h{
+  margin:0 0 clamp(2rem,4.5vh,3rem);font-weight:400;font-size:.55rem;
+  letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--brass);
+}
+.c-faq__list{display:grid;gap:clamp(1.8rem,4vh,2.6rem)}
+.c-faq dt{
+  margin:0 0 .7rem;font-weight:300;font-size:.95rem;
+  letter-spacing:.06em;color:#fff;
+}
+.c-faq dd{
+  margin:0;max-width:64ch;font-weight:300;font-size:.88rem;line-height:1.9;
+  color:rgba(244,241,236,.72);
+}
+
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/contact.html">
 <meta property="og:type" content="website">
@@ -842,6 +866,78 @@ blockquote{
 <meta name="twitter:image" content="https://edengrovetennessee.com/media/og-card.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Who is Eden Grove?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Eden Grove is a luxury real estate team at Compass, based in Nashville, Tennessee. It was co-founded by Ryan Stonehouse and Blake Barker, and represents new construction and estate homes across Middle Tennessee."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What areas does Eden Grove cover?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nashville and Williamson County \u2014 Belle Meade, West Meade, Green Hills, Forest Hills, Oak Hill, Downtown and Germantown in Davidson County, and Brentwood, Franklin, Leiper's Fork, Arrington and Thompson's Station in Williamson County."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What kind of properties does Eden Grove represent?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Luxury homes and new construction, typically from about one million dollars upward, including estate homes, custom builds and development projects. Current listings run to six million dollars."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a Compass Private Exclusive?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "A Compass Private Exclusive is a property marketed privately rather than on the open market and the MLS. It lets an owner test price, protect their privacy, and avoid accumulating days on market. Eden Grove represents several Private Exclusives at any time."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How does Eden Grove market a listing?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Every listing receives architectural photography, drone work, a cinematic film, and its own dedicated property website that is updated as a build progresses. Marketing is then distributed across the MLS, paid advertising, email, and social platforms."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Does Eden Grove work with builders and developers?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The team specialises in new construction, working with developers, builders, architects and interior designers from renderings through to completion, and marketing projects while they are still being built."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I contact Eden Grove?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Call (615) 812-0066, email clients@edengrovetennessee.com, or use the form on this page. The office is at 2206 21st Avenue South, Nashville, Tennessee 37212."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Who are the agents at Eden Grove?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ryan Stonehouse, co-founder, a former NFL punter with the Tennessee Titans and Miami Dolphins who moved into development and then representation. Blake Barker, co-founder, who also develops property. Joe Archer, who leads acquisitions and brokers residential deals."
+      }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -934,6 +1030,47 @@ blockquote{
       <p class="c-note" id="contactNote" role="status"></p>
     </form>
 
+  </div>
+</section>
+
+
+<section class="c-faq" aria-labelledby="faq-h">
+  <div class="c-faq__inner">
+    <p class="c-faq__h" id="faq-h">Common Questions</p>
+    <dl class="c-faq__list">
+    <div>
+      <dt>Who is Eden Grove?</dt>
+      <dd>Eden Grove is a luxury real estate team at Compass, based in Nashville, Tennessee. It was co-founded by Ryan Stonehouse and Blake Barker, and represents new construction and estate homes across Middle Tennessee.</dd>
+    </div>
+    <div>
+      <dt>What areas does Eden Grove cover?</dt>
+      <dd>Nashville and Williamson County — Belle Meade, West Meade, Green Hills, Forest Hills, Oak Hill, Downtown and Germantown in Davidson County, and Brentwood, Franklin, Leiper's Fork, Arrington and Thompson's Station in Williamson County.</dd>
+    </div>
+    <div>
+      <dt>What kind of properties does Eden Grove represent?</dt>
+      <dd>Luxury homes and new construction, typically from about one million dollars upward, including estate homes, custom builds and development projects. Current listings run to six million dollars.</dd>
+    </div>
+    <div>
+      <dt>What is a Compass Private Exclusive?</dt>
+      <dd>A Compass Private Exclusive is a property marketed privately rather than on the open market and the MLS. It lets an owner test price, protect their privacy, and avoid accumulating days on market. Eden Grove represents several Private Exclusives at any time.</dd>
+    </div>
+    <div>
+      <dt>How does Eden Grove market a listing?</dt>
+      <dd>Every listing receives architectural photography, drone work, a cinematic film, and its own dedicated property website that is updated as a build progresses. Marketing is then distributed across the MLS, paid advertising, email, and social platforms.</dd>
+    </div>
+    <div>
+      <dt>Does Eden Grove work with builders and developers?</dt>
+      <dd>Yes. The team specialises in new construction, working with developers, builders, architects and interior designers from renderings through to completion, and marketing projects while they are still being built.</dd>
+    </div>
+    <div>
+      <dt>How do I contact Eden Grove?</dt>
+      <dd>Call (615) 812-0066, email clients@edengrovetennessee.com, or use the form on this page. The office is at 2206 21st Avenue South, Nashville, Tennessee 37212.</dd>
+    </div>
+    <div>
+      <dt>Who are the agents at Eden Grove?</dt>
+      <dd>Ryan Stonehouse, co-founder, a former NFL punter with the Tennessee Titans and Miami Dolphins who moved into development and then representation. Blake Barker, co-founder, who also develops property. Joe Archer, who leads acquisitions and brokers residential deals.</dd>
+    </div>
+    </dl>
   </div>
 </section>
 
