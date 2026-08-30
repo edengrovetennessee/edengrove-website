@@ -589,9 +589,9 @@ blockquote{
 }
 /* ==========================================================================
    ENTRANCE
-   The plate is split in two: the paper, and the foil lifted off it with its
-   own alpha. The paper fades up; the tree is then pressed into it from the
-   roots to the canopy. No blur anywhere.
+   No wipe, no blur, no travelling light. The paper comes up, the foil settles
+   onto it, its impression deepens a beat later, and the frame pushes in
+   throughout. Everything that moves, moves once.
    ========================================================================== */
 .enter{
   position:fixed;inset:0;z-index:200;overflow:hidden;
@@ -600,56 +600,63 @@ blockquote{
 }
 .enter[data-done]{opacity:0;visibility:hidden;pointer-events:none}
 
-/* A square that always covers, so the foil registers on the paper exactly
-   where it was cut from, at any window shape. */
 .enter__stage{
   position:absolute;left:50%;top:50%;
   width:max(100vw,100vh);height:max(100vw,100vh);
-  transform:translate(-50%,-50%) scale(1.07);
-  animation:stageSettle 5s cubic-bezier(.2,.6,.22,1) .1s forwards;
+  transform:translate(-50%,-50%) scale(1.055);
+  animation:stageSettle 5.4s cubic-bezier(.16,.62,.2,1) 0s forwards;
 }
 @keyframes stageSettle{ to{transform:translate(-50%,-50%) scale(1)} }
 
 .enter__paper{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
-  opacity:0;animation:paperUp 1.5s var(--rise) .1s forwards;
+  opacity:0;animation:paperUp 1.7s cubic-bezier(.3,0,.2,1) forwards;
 }
 @keyframes paperUp{ to{opacity:1} }
 
-/* Measured off the plate — the foil goes back exactly where it came from. */
+/* The foil settles onto the sheet: a fade with the last of a scale coming off
+   it, so it arrives rather than switches on. No edge travels anywhere. */
 .enter__tree{
   position:absolute;left:37.938%;top:38.375%;width:25%;height:auto;display:block;
-  clip-path:inset(100% 0 0 0);
-  animation:treePress 3.4s cubic-bezier(.42,0,.58,1) .95s forwards;
+  opacity:0;transform:scale(1.035);transform-origin:50% 72%;
+  animation:foilSettle 2.4s cubic-bezier(.22,.62,.2,1) 1.05s forwards;
 }
-@keyframes treePress{ to{clip-path:inset(0 0 0 0)} }
+@keyframes foilSettle{ to{opacity:1;transform:scale(1)} }
 
-/* The impression deepens as the last of it lands. */
+/* The impression it makes in the paper, a beat behind the foil itself. */
 .enter__tree--shade{
   position:absolute;left:37.938%;top:38.375%;width:25%;height:auto;display:block;
   opacity:0;mix-blend-mode:multiply;filter:blur(3px);
-  animation:shadeIn 1.5s var(--rise) 3.5s forwards;
+  animation:shadeIn 1.9s var(--rise) 1.75s forwards;
 }
-@keyframes shadeIn{ to{opacity:.42} }
+@keyframes shadeIn{ to{opacity:.4} }
+
+/* One breath of light on the gold as it seats — it swells and is gone. */
+.enter__tree--lift{
+  position:absolute;left:37.938%;top:38.375%;width:25%;height:auto;display:block;
+  opacity:0;mix-blend-mode:screen;filter:blur(7px) brightness(1.5);
+  animation:foilLift 2.2s cubic-bezier(.3,0,.35,1) 1.9s forwards;
+}
+@keyframes foilLift{ 0%{opacity:0} 42%{opacity:.34} 100%{opacity:0} }
 
 .enter__veil{
   position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse 78% 70% at 50% 46%,
-    rgba(0,0,0,0) 0%, rgba(0,0,0,.28) 58%, rgba(0,0,0,.76) 100%);
-  opacity:.4;
-  animation:veilEase 5s var(--rise) .1s forwards;
+  background:radial-gradient(ellipse 76% 68% at 50% 46%,
+    rgba(0,0,0,0) 0%, rgba(0,0,0,.26) 56%, rgba(0,0,0,.8) 100%);
+  opacity:.32;
+  animation:veilEase 5.4s var(--rise) 0s forwards;
 }
-@keyframes veilEase{ to{opacity:.9} }
+@keyframes veilEase{ to{opacity:.92} }
 
 body[data-entering]{overflow:hidden}
 
 @media (prefers-reduced-motion:reduce){
   .enter{display:none}
-  .enter__stage,.enter__paper,.enter__tree,.enter__tree--shade,.enter__veil{animation:none}
+  .enter__stage,.enter__paper,.enter__tree,.enter__tree--shade,.enter__tree--lift,.enter__veil{animation:none}
   .enter__stage{transform:translate(-50%,-50%)}
   .enter__paper{opacity:1}
-  .enter__tree{clip-path:none}
-  .enter__tree--shade{display:none}
+  .enter__tree{opacity:1;transform:none}
+  .enter__tree--shade,.enter__tree--lift{display:none}
 }
 
 </style>
@@ -662,6 +669,7 @@ body[data-entering]{overflow:hidden}
     <img class="enter__paper" src="media/enter-paper.jpg" alt="" aria-hidden="true">
     <img class="enter__tree--shade" src="media/enter-tree.png" alt="" aria-hidden="true">
     <img class="enter__tree" src="media/enter-tree.png" alt="" aria-hidden="true">
+    <img class="enter__tree--lift" src="media/enter-tree.png" alt="" aria-hidden="true">
   </div>
   <span class="enter__veil"></span>
 </div>
@@ -935,7 +943,7 @@ body[data-entering]{overflow:hidden}
     document.body.removeAttribute("data-entering");
     setTimeout(() => el.remove(), 600);
   };
-  const timer = setTimeout(finish, 5300);
+  const timer = setTimeout(finish, 4800);
   ["pointerdown","keydown","wheel","touchstart"].forEach(e =>
     addEventListener(e, () => { clearTimeout(timer); finish() }, {once:true, passive:true}));
 })();
