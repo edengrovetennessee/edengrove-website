@@ -243,11 +243,12 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
   padding:0 clamp(.5rem,1vw,1.1rem);
 }
 .tile{position:relative;display:block;overflow:hidden;aspect-ratio:4/5;background:#1b1f19}
-.tile img{
+.tile img,.tile video{
   width:100%;height:100%;object-fit:cover;display:block;
   transform:scale(1.001);transition:transform 1.1s var(--rise);
 }
-.tile:hover img,.tile:focus-visible img{transform:scale(1.045)}
+.tile:hover img,.tile:focus-visible img,
+.tile:hover video,.tile:focus-visible video{transform:scale(1.045)}
 .tile:focus-visible{outline:1px solid rgba(255,255,255,.7);outline-offset:-1px}
 
 /* the wash only exists so the caption never lands on a bright sky */
@@ -643,7 +644,11 @@ blockquote{
       <span class="tile__t">The Standard</span>
     </a>
     <a class="tile" href="marketing.html">
-      <img loading="lazy" decoding="async" src="media/tile-2.jpg" alt="">
+      <video autoplay muted loop playsinline preload="metadata"
+             poster="media/tile-marketing-poster.jpg" aria-hidden="true">
+        <source src="media/tile-marketing.webm" type="video/webm">
+        <source src="media/tile-marketing.mp4"  type="video/mp4">
+      </video>
       <span class="tile__t">Luxury Marketing</span>
     </a>
     <a class="tile" href="#consultation">
