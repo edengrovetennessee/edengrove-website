@@ -587,41 +587,9 @@ blockquote{
   *{animation:none !important;transition-duration:.01ms !important}
   .reveal{opacity:1}
 }
-/* ==========================================================================
-   ENTRANCE
-   The plate fades up, holds, and fades away. One image, one opacity curve,
-   nothing else moves.
-   ========================================================================== */
-.enter{
-  position:fixed;inset:0;z-index:200;overflow:hidden;
-  background:#0d0d0d;
-  transition:opacity .5s linear,visibility .5s linear;
-}
-.enter[data-done]{opacity:0;visibility:hidden;pointer-events:none}
 
-.enter__stage{
-  position:absolute;left:50%;top:50%;
-  width:max(100vw,100vh);height:max(100vw,100vh);
-  transform:translate(-50%,-50%);
-}
-.enter__plate{
-  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
-  opacity:0;
-  animation:plateBreath 5.6s cubic-bezier(.4,0,.6,1) .3s forwards;
-}
-/* Up, hold, away — the hold is what stops it reading as a blink. */
-@keyframes plateBreath{
-  0%   {opacity:0}
-  36%  {opacity:1}
-  64%  {opacity:1}
-  100% {opacity:0}
-}
-
-body[data-entering]{overflow:hidden}
 
 @media (prefers-reduced-motion:reduce){
-  .enter{display:none}
-  .enter__plate{animation:none;opacity:1}
 }
 
 </style>
@@ -629,11 +597,7 @@ body[data-entering]{overflow:hidden}
 <body>
 
 <!-- ENTRANCE — removed from the DOM once it has played -->
-<div class="enter" id="enter" role="presentation">
-  <div class="enter__stage">
-    <img class="enter__plate" src="media/enter-plate.jpg" alt="" aria-hidden="true">
-  </div>
-</div>
+
 
 
 <section class="hero" id="top">
@@ -888,30 +852,24 @@ body[data-entering]{overflow:hidden}
 </footer>
 
 <script>
-/* ---- entrance ----
-   Once per session. Anything the visitor does — a click, a key, a scroll —
-   ends it early; nobody should be held at a door they have already opened. */
+/* ---- hero film ----
+   autoplay handles it nearly everywhere. iOS in Low Power Mode, and browsers
+   set to block autoplay, refuse until the visitor has interacted at all — a
+   scroll or a touch anywhere counts, so we retry on the first one rather than
+   showing anybody a play button. */
 (() => {
-  const el = document.getElementById("enter");
-  if (!el) return;
-  const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
-  let seen = false;
-  try { seen = sessionStorage.getItem("eg-entered") === "1" } catch (e) {}
-
-  if (seen || reduced) { el.remove(); return; }
-  try { sessionStorage.setItem("eg-entered", "1") } catch (e) {}
-
-  document.body.setAttribute("data-entering", "");
-  const finish = () => {
-    if (el.hasAttribute("data-done")) return;
-    el.setAttribute("data-done", "");
-    document.body.removeAttribute("data-entering");
-    setTimeout(() => el.remove(), 600);
-  };
-  const timer = setTimeout(finish, 5750);
-  ["pointerdown","keydown","wheel","touchstart"].forEach(e =>
-    addEventListener(e, () => { clearTimeout(timer); finish() }, {once:true, passive:true}));
+  const v = document.querySelector("video.hero__media");
+  if (!v) return;
+  const go = () => { const p = v.play(); if (p) p.catch(() => {}) };
+  go();
+  ["pointerdown","touchstart","scroll","keydown","wheel"].forEach(e =>
+    addEventListener(e, () => { if (v.paused) go() }, {passive:true}));
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) v.pause(); else go();
+  });
 })();
+
+
 
 const burger  = document.getElementById("burger");
 const nav     = document.getElementById("nav");
