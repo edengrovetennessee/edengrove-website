@@ -592,9 +592,46 @@ blockquote{
 @media (prefers-reduced-motion:reduce){
 }
 
+/* ==========================================================================
+   ENTRANCE
+   The plate fades up, holds, and fades away. One image, one opacity curve,
+   nothing else moves. Shown once per session; skipped on any input and for
+   prefers-reduced-motion.
+   ========================================================================== */
+.enter{
+  position:fixed;inset:0;z-index:200;overflow:hidden;
+  background:#0d0d0d;
+  transition:opacity .5s linear,visibility .5s linear;
+}
+.enter[data-done]{opacity:0;visibility:hidden;pointer-events:none}
+.enter__stage{
+  position:absolute;left:50%;top:50%;
+  width:max(100vw,100vh);height:max(100vw,100vh);
+  transform:translate(-50%,-50%);
+}
+.enter__plate{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;
+  opacity:0;
+  animation:plateBreath 5.6s cubic-bezier(.4,0,.6,1) .3s forwards;
+}
+/* Up, hold, away — the hold is what stops it reading as a blink. */
+@keyframes plateBreath{
+  0%{opacity:0} 36%{opacity:1} 64%{opacity:1} 100%{opacity:0}
+}
+body[data-entering]{overflow:hidden}
+@media (prefers-reduced-motion:reduce){ .enter{display:none} }
+
 </style>
 </head>
 <body>
+
+<!-- ENTRANCE — removed from the DOM once it has played -->
+<div class="enter" id="enter" role="presentation">
+  <div class="enter__stage">
+    <img class="enter__plate" src="media/enter-plate.jpg" alt="" aria-hidden="true">
+  </div>
+</div>
+
 
 <!-- ENTRANCE — removed from the DOM once it has played -->
 
@@ -852,6 +889,29 @@ blockquote{
 </footer>
 
 <script>
+/* ---- entrance ----
+   Once per session. Any input ends it early — nobody should be held at a door
+   they have already opened. */
+(() => {
+  const el = document.getElementById("enter");
+  if (!el) return;
+  let seen = false;
+  try { seen = sessionStorage.getItem("eg-entered") === "1" } catch (e) {}
+  if (seen || matchMedia("(prefers-reduced-motion: reduce)").matches) { el.remove(); return }
+  try { sessionStorage.setItem("eg-entered", "1") } catch (e) {}
+
+  document.body.setAttribute("data-entering", "");
+  const finish = () => {
+    if (el.hasAttribute("data-done")) return;
+    el.setAttribute("data-done", "");
+    document.body.removeAttribute("data-entering");
+    setTimeout(() => el.remove(), 600);
+  };
+  const timer = setTimeout(finish, 5750);
+  ["pointerdown","keydown","wheel","touchstart"].forEach(e =>
+    addEventListener(e, () => { clearTimeout(timer); finish() }, {once:true, passive:true}));
+})();
+
 /* ---- hero film ----
    autoplay handles it nearly everywhere. iOS in Low Power Mode, and browsers
    set to block autoplay, refuse until the visitor has interacted at all — a
