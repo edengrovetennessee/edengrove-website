@@ -608,6 +608,85 @@ blockquote{
 @media (prefers-reduced-motion:reduce){
 }
 
+
+/* ==========================================================================
+   OPENING LOCKUP — EDEN GROVE | Compass
+   Homepage only, every visit. Skippable on any key, click or scroll, and it
+   removes itself from the DOM when it is done so nothing is left overlaying
+   the page.
+   ========================================================================== */
+#lock{
+  position:fixed;inset:0;z-index:1000;display:grid;place-items:center;
+  background:var(--ink);padding:var(--gutter);
+  transition:opacity .9s var(--rise),visibility 0s linear .9s;
+}
+#lock[data-done]{opacity:0;visibility:hidden;pointer-events:none}
+
+.lock__row{
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(.9rem,2.6vw,2.2rem);
+  /* the two names sit on one baseline; below 620px they stack */
+  flex-wrap:wrap;
+}
+.lock__eg,.lock__compass{
+  opacity:0;transform:translateY(.5em);
+  animation:lockIn 1.5s var(--rise) forwards;
+}
+.lock__eg{
+  font-family:var(--display);font-weight:300;color:#fff;
+  font-size:clamp(1.5rem,1rem + 2.6vw,3.1rem);line-height:1;
+  letter-spacing:.22em;text-indent:.22em;white-space:nowrap;
+  animation-delay:.25s;
+}
+
+/* The divider draws itself between the two names rather than appearing. */
+.lock__bar{
+  width:1px;height:clamp(1.4rem,3.4vw,2.6rem);background:var(--brass);
+  transform:scaleY(0);transform-origin:center;
+  animation:lockBar 1s var(--rise) 1s forwards;
+}
+
+/* TREC 1260-02-.12: the firm name may not be set smaller than the team name.
+   Both of these resolve from the same clamp, so the relationship holds at
+   every width and cannot drift when someone edits one of them. */
+.lock__compass{animation-delay:.85s}
+img.lock__compass{
+  display:block;width:auto;
+  height:clamp(1.5rem,1rem + 2.6vw,3.1rem);
+}
+.lock__compass--type{
+  font-family:var(--ui);font-weight:300;color:#fff;
+  font-size:clamp(1.5rem,1rem + 2.6vw,3.1rem);line-height:1;
+  letter-spacing:.14em;text-indent:.14em;white-space:nowrap;
+}
+
+.lock__skip{
+  position:absolute;left:50%;bottom:clamp(1.6rem,5vh,3rem);translate:-50% 0;
+  font-family:var(--ui);font-weight:300;font-size:.58rem;
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:rgba(244,241,236,.42);opacity:0;
+  animation:lockIn 1s var(--rise) 2.4s forwards;
+}
+
+@keyframes lockIn{to{opacity:1;transform:none}}
+@keyframes lockBar{to{transform:scaleY(1)}}
+
+@media (max-width:620px){
+  .lock__row{flex-direction:column;gap:clamp(.7rem,3vw,1.1rem)}
+  .lock__bar{width:clamp(1.6rem,9vw,2.4rem);height:1px;
+             transform:scaleX(0);transform-origin:center;
+             animation-name:lockBarH}
+}
+@keyframes lockBarH{to{transform:scaleX(1)}}
+
+/* Someone who has asked for reduced motion gets the lockup as a still frame,
+   held briefly, rather than no lockup at all — the firm name still has to be
+   seen. */
+@media (prefers-reduced-motion:reduce){
+  .lock__eg,.lock__compass,.lock__skip{animation:none;opacity:1;transform:none}
+  .lock__bar{animation:none;transform:none}
+  #lock{transition:opacity .3s linear,visibility 0s linear .3s}
+}
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/">
 <meta property="og:type" content="website">
@@ -673,6 +752,17 @@ blockquote{
 </script>
 </head>
 <body>
+
+<!-- opening lockup — homepage only; see build_lockup.py -->
+<div id="lock" role="presentation">
+  <div class="lock__row">
+    <span class="lock__eg">Eden&nbsp;Grove</span>
+    <i class="lock__bar" aria-hidden="true"></i>
+    <span class="lock__compass lock__compass--type" data-placeholder="drop media/compass-white.svg to replace">Compass</span>
+  </div>
+  <span class="lock__skip">Click to enter</span>
+</div>
+
 
 <section class="hero" id="top">
   <!-- Swap this <img> for a <video> when the footage exists. Nothing else changes. -->
@@ -1058,6 +1148,52 @@ addEventListener("keydown", e => {
     open.querySelector(".nav__link").focus();
   } else if (document.body.classList.contains("menu-open")) closeMenu();
 });
+</script>
+
+<script>
+/* ---- opening lockup ----
+   Holds for a beat after the names have landed, then lifts. Any key, click,
+   touch or scroll skips it immediately — it is a curtain, not a gate.
+
+   The element is REMOVED rather than merely faded. A fixed, full-screen layer
+   left in the DOM at opacity 0 still swallows the first click on the page in
+   some browsers, and that bug is invisible in a screenshot. */
+(() => {
+  const lock = document.getElementById("lock");
+  if (!lock) return;
+  const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const HOLD = reduce ? 1200 : 3400;
+  let gone = false;
+
+  const lift = () => {
+    if (gone) return;
+    gone = true;
+    lock.setAttribute("data-done", "");
+    document.body.style.overflow = "";
+    lock.addEventListener("transitionend", () => lock.remove(), {once:true});
+    setTimeout(() => lock.isConnected && lock.remove(), 1400);  // if the event never fires
+    off();
+  };
+
+  const onKey = () => lift();
+  const opts = {once:true, passive:true};
+  const on = () => {
+    addEventListener("keydown", onKey, opts);
+    addEventListener("pointerdown", onKey, opts);
+    addEventListener("wheel", onKey, opts);
+    addEventListener("touchstart", onKey, opts);
+  };
+  const off = () => {
+    removeEventListener("keydown", onKey);
+    removeEventListener("pointerdown", onKey);
+    removeEventListener("wheel", onKey);
+    removeEventListener("touchstart", onKey);
+  };
+
+  document.body.style.overflow = "hidden";   // no scrolling behind the curtain
+  on();
+  setTimeout(lift, HOLD);
+})();
 </script>
 </body>
 </html>

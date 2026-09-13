@@ -1033,11 +1033,6 @@ blockquote{
   width:100%;                  /* pin to the column: without this the aspect-ratio
                                   derives width from content height and overflows */
   padding:1.5rem 1.2rem;aspect-ratio:3/2;min-height:13rem;
-  /* min-width:0 is load-bearing. A grid item's automatic minimum size is
-     transferred through aspect-ratio, so min-height:13rem became a minimum
-     WIDTH of 13rem x 3/2 = 312px and blew the three-up row apart between
-     761px and about 860px. width:100% cannot beat an automatic minimum. */
-  min-width:0;
   border:1px solid rgba(198,166,100,.32);background:rgba(198,166,100,.045);
   box-sizing:border-box;
 }
@@ -1441,7 +1436,7 @@ blockquote{
   <div class="sb-hero__inner" data-rise data-in>
     <p class="sb-hero__eyebrow">For Sellers</p>
     <h1><span class="ln"><i>Sell it at the level</i></span><span class="ln"><i>it was built to</i></span></h1>
-    <p class="sb-hero__stand">The three-phase launch, what a Private Exclusive actually commits you to, how we price a house with no true comparables &mdash; and the questions most agents&rsquo; pages leave out.</p>
+    <p class="sb-hero__stand">The three-phase launch, what a Private Exclusive commits you to, and the questions most agents&rsquo; pages leave out.</p>
   </div>
   <span class="sb-cue" aria-hidden="true"></span>
   <p class="sb-hero__brief"><b>Photograph 01</b>A finished Eden Grove house at dusk, interior lights on, shot wide and slightly low. Landscape, at least 2400px across &mdash; it runs full-bleed behind this type. <code>sb-1.jpg</code></p>
@@ -1456,15 +1451,15 @@ blockquote{
   <div class="n-blocks">
     <div class="n-block" data-rise>
       <span class="n-block__n">01</span>
-      <div><h3>Phase One &mdash; Private Exclusive</h3><p>Your house is marketed inside the Compass network only. It does not go to the MLS, it does not syndicate to the portals, and it accrues no public days on market and no price-change history. You find out what the market thinks of your price before that opinion becomes part of the permanent record. Showings are private and scheduled around you rather than around an open house.</p></div>
+      <div><h3>Phase One &mdash; Private Exclusive</h3><p>Marketed inside the Compass network only. No MLS, no portals, no public days on market, no price-change history. You learn what the market thinks of your price before that opinion becomes permanent record.</p></div>
     </div>
     <div class="n-block" data-rise>
       <span class="n-block__n">02</span>
-      <div><h3>Phase Two &mdash; Coming Soon</h3><p>The listing goes public on Compass.com and Redfin.com, but still not on the MLS. Reach widens sharply while days on market stay at zero. Note that this phase reaches Compass and Redfin &mdash; not Zillow, Realtor.com or Homes.com. Anyone telling you Coming Soon means &ldquo;everywhere&rdquo; is overselling it.</p></div>
+      <div><h3>Phase Two &mdash; Coming Soon</h3><p>Public on Compass.com and Redfin.com, still not the MLS. Reach widens sharply while days on market stay at zero. Compass and Redfin &mdash; not Zillow, not Realtor.com. Anyone calling that &ldquo;everywhere&rdquo; is overselling it.</p></div>
     </div>
     <div class="n-block" data-rise>
       <span class="n-block__n">03</span>
-      <div><h3>Phase Three &mdash; Active</h3><p>The listing goes live on RealTracs and every portal, priced on what the first two phases taught us rather than on a guess. The clock starts here, and it starts with a house that has already been seen by the agents most likely to bring the buyer.</p></div>
+      <div><h3>Phase Three &mdash; Active</h3><p>Live on RealTracs and every portal, priced on what the first two phases taught us rather than on a guess. The clock starts here &mdash; with a house the right agents have already seen.</p></div>
     </div>
   </div>
   </div>
@@ -1508,9 +1503,9 @@ blockquote{
     </div>
   </div>
   <div class="n-blocks">
-    <div class="n-card" data-rise><h3>What Compass Publishes</h3><p>Those three figures come from a hedonic regression across 70,809 closed Compass transactions in the year to 31 March 2026, controlling for more than fifty variables, with a 95% confidence interval of 4.2% to 4.9% on the first of them.</p></div>
-    <div class="n-card" data-rise><h3>What the Critics Publish</h3><p>Zillow&rsquo;s research finds off-MLS sellers net roughly 1.3% to 1.5% less. A Bright MLS and Drexel study puts the gap far wider. These studies measure different populations &mdash; much off-MLS volume nationally is distressed, family or investor sale, which is not what a Compass Private Exclusive is &mdash; but the direction of the finding is real and you should know it exists.</p></div>
-    <div class="n-card" data-rise><h3>What We Think</h3><p>Both sides have a commercial interest in their own numbers, and Compass&rsquo;s study compares Compass listings to other Compass listings rather than to the market. What is not in dispute is the mechanism: a house that launches publicly at the wrong price carries that mistake in its history forever. Phasing exists to stop that. Whether it is right for your house depends on your house.</p></div>
+    <div class="n-card" data-rise><h3>What Compass Publishes</h3><p>A hedonic regression across 70,809 closed Compass transactions in the year to 31 March 2026. Fifty-plus variables controlled. Confidence interval 4.2% to 4.9%.</p></div>
+    <div class="n-card" data-rise><h3>What the Critics Publish</h3><p>Zillow finds off-MLS sellers net 1.3% to 1.5% less; Bright MLS and Drexel put the gap wider. Different populations &mdash; much off-MLS volume is distressed or family sale &mdash; but the finding is real.</p></div>
+    <div class="n-card" data-rise><h3>What We Think</h3><p>Both sides have a commercial interest in their own numbers, and Compass compares Compass listings to Compass listings. Not in dispute: a house that launches at the wrong price carries that mistake forever.</p></div>
   </div>
   </div>
 </section>
@@ -1522,9 +1517,9 @@ blockquote{
   </div>
   <div data-stagger>
   <div class="n-blocks">
-    <div class="n-card" data-rise><h3>It Is an Office Exclusive</h3><p>In the language of the rules, a Private Exclusive is an office exclusive &mdash; a listing the seller has directed not be disseminated through the MLS. It is not the same as a &ldquo;delayed marketing&rdquo; listing, which does go into the MLS with only syndication held back. The distinction matters and is frequently blurred.</p></div>
-    <div class="n-card" data-rise><h3>You Sign for It</h3><p>RealTracs requires a written, signed instruction from you before a listing can be held off the MLS, filed with them within 48 hours. You are acknowledging in writing what MLS exposure you are choosing to waive. We will not do this on a handshake and no one else should either, and because these rules do change we will confirm the current position with you in writing before you sign.</p></div>
-    <div class="n-card" data-rise><h3>Public Marketing Ends It</h3><p>Under the Clear Cooperation Policy, once a property is publicly marketed it must go to the MLS within one business day. A yard sign, a public social post with a price, a portal listing &mdash; any of those ends Phase One. Private means private.</p></div>
+    <div class="n-card" data-rise><h3>It Is an Office Exclusive</h3><p>A listing you have directed off the MLS. Not a &ldquo;delayed marketing&rdquo; listing, which does go in with only syndication held back. The distinction gets blurred constantly.</p></div>
+    <div class="n-card" data-rise><h3>You Sign for It</h3><p>RealTracs requires your signed instruction, filed within 48 hours &mdash; you acknowledge in writing what exposure you are waiving. Rules change; we confirm the current position before you sign. Not on a handshake.</p></div>
+    <div class="n-card" data-rise><h3>Public Marketing Ends It</h3><p>Under Clear Cooperation, a publicly marketed property goes to the MLS within one business day. A yard sign, a priced social post, a portal listing &mdash; any of those ends Phase One.</p></div>
   </div>
   </div>
 </section>
@@ -1541,7 +1536,7 @@ blockquote{
   <div class="sb-split__body" data-rise style="--d:120ms">
     <p class="sb-split__k">Our Process</p>
     <h3>We Produce, Then We List</h3>
-    <p>Film, architectural photography, a website of its own, print, and a release planned rather than posted. Nothing goes live until the assets are finished.</p><p>A first showing happens on a screen, and at this level the screen is the only showing most buyers will ever give you. That is the whole argument for treating the launch as a production with a date rather than a task with a deadline.</p>
+    <p>Film, architectural photography, a website of its own, print. Nothing goes live until the assets are finished.</p><p>The first showing happens on a screen, and at this level the screen is the only showing most buyers will give you.</p>
   </div>
 </section>
 
@@ -1549,7 +1544,7 @@ blockquote{
   <div class="sb-split__body" data-rise style="--d:120ms">
     <p class="sb-split__k">Our Process</p>
     <h3>We Underwrite the House Before We Price It</h3>
-    <p>Above $2M in Middle Tennessee there are often no true comparables within twelve months. In Belle Meade, Forest Hills and the gated Williamson communities a single year may produce two or three arguable comps, none of them close.</p><p>So we build the number from the actual sales record of your specific community rather than from a county median &mdash; which is why every area and development page on this site publishes closings by address.</p>
+    <p>Above $2M there are often no true comparables within twelve months. Belle Meade, Forest Hills and the gated Williamson communities may produce two or three arguable comps in a year, none of them close.</p><p>So the number comes from your community&rsquo;s actual sales record, not a county median. It is why every area page here publishes closings by address.</p>
   </div>
   <figure class="sb-split__fig" data-rise>
     <div class="sb-par" data-par="7">
@@ -1582,10 +1577,10 @@ blockquote{
   </div>
   <div data-stagger>
   <div class="n-blocks">
-    <div class="n-card" data-rise><h3>What It Costs</h3><p>There is no standard commission and anyone who tells you there is has not read the last two years. Ours is agreed in writing before we start, and the number depends on the property, the work it needs and whether you are also buying. We will show you a net proceeds figure &mdash; what actually reaches you after commission, transfer tax, title and payoff &mdash; before you sign anything, not after.</p></div>
-    <div class="n-card" data-rise><h3>Who Pays the Buyer&rsquo;s Agent</h3><p>Since 2024 this is negotiated rather than assumed, and it is no longer published in the MLS. Most sellers at this level still offer something, because a buyer who has to fund their own agent out of pocket has less to spend on your house. It is your decision and we will model both ways.</p></div>
-    <div class="n-card" data-rise><h3>What Happens If It Does Not Sell</h3><p>We agree a review point before launch &mdash; a date, not a feeling. If the showings are not converting we look at price, presentation and audience in that order, and we tell you which one we think it is. Withdrawing and relaunching is sometimes the right answer and we will say so if it is.</p></div>
-    <div class="n-card" data-rise><h3>What You Will Actually Pay at Closing</h3><p>Tennessee charges transfer tax at $0.37 per $100 of price &mdash; $11,100 on a $3M sale &mdash; and under the standard Tennessee contract that falls to the buyer, though it is negotiable. In Middle Tennessee the seller customarily buys the owner&rsquo;s title policy on a resale. Property taxes run in arrears and you credit the buyer at closing.</p></div>
+    <div class="n-card" data-rise><h3>What It Costs</h3><p>There is no standard commission. Ours is agreed in writing before we start. You see a net proceeds figure &mdash; after commission, transfer tax, title and payoff &mdash; before you sign, not after.</p></div>
+    <div class="n-card" data-rise><h3>Who Pays the Buyer&rsquo;s Agent</h3><p>Negotiated since 2024 and no longer published in the MLS. Most sellers at this level still offer something: a buyer funding their own agent has less to spend on your house. Your decision, modelled both ways.</p></div>
+    <div class="n-card" data-rise><h3>What Happens If It Does Not Sell</h3><p>We set a review date before launch &mdash; a date, not a feeling. If showings are not converting we look at price, presentation and audience in that order, and tell you which one it is.</p></div>
+    <div class="n-card" data-rise><h3>What You Pay at Closing</h3><p>Transfer tax runs $0.37 per $100 &mdash; $11,100 on a $3M sale &mdash; and the standard Tennessee contract puts it on the buyer. Sellers here customarily buy the owner&rsquo;s title policy. Taxes run in arrears; you credit the buyer.</p></div>
   </div>
   </div>
 </section>
@@ -1602,21 +1597,7 @@ blockquote{
   <div class="sb-split__body" data-rise style="--d:120ms">
     <p class="sb-split__k">The Market</p>
     <h3>Where We Actually Are</h3>
-    <p>Brentwood single-family inventory above $2M has been running near twelve months of supply against a four to six month balance point. Sixty-eight per cent of Davidson County sales above $2M closed below asking, at a median $150,000 under list.</p><p>And yet new construction in Williamson County frequently sells at or before completion. At Rosebrooke the median closing was exactly 100% of asking across 25 sales. The market is discriminating, not slow &mdash; which is why the entry price is the whole game.</p>
-  </div>
-</section>
-
-<section class="p-sec p-sec--tight" aria-labelledby="mk-h">
-  <div class="p-lede" data-rise>
-    <p class="p-eyebrow">The Market</p>
-    <h2 id="mk-h">The Numbers Behind That</h2>
-  </div>
-  <div data-stagger>
-  <div class="n-blocks">
-    <div class="n-card" data-rise><h3>It Is Not a Seller&rsquo;s Market at the Top</h3><p>Brentwood single-family inventory has been running near twelve months of supply against a four to six month balance point, and 68% of Davidson County sales above $2M closed below asking, at a median $150,000 under list. Anyone promising you a quick sale above ask is not looking at the data.</p></div>
-    <div class="n-card" data-rise><h3>But the Right Product Still Clears</h3><p>New construction in Williamson County frequently sells at or before completion &mdash; zero days on market. At Rosebrooke the median closing was exactly 100% of asking across 25 sales. The market is discriminating, not slow.</p></div>
-    <div class="n-card" data-rise><h3>Which Is Why Pricing Is the Whole Game</h3><p>In a market where most houses close under ask, the ones that do not are the ones that entered at a number the market recognised. Phasing is how you find that number without paying for the experiment in public.</p></div>
-  </div>
+    <p>Twelve months of supply above $2M against a four-to-six month balance. Sixty-eight per cent of Davidson County sales above $2M closed below asking.</p><p>Yet Williamson new construction often sells at or before completion. Discriminating, not slow &mdash; which is why the entry price is the whole game.</p>
   </div>
 </section>
 

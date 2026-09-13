@@ -1033,11 +1033,6 @@ blockquote{
   width:100%;                  /* pin to the column: without this the aspect-ratio
                                   derives width from content height and overflows */
   padding:1.5rem 1.2rem;aspect-ratio:3/2;min-height:13rem;
-  /* min-width:0 is load-bearing. A grid item's automatic minimum size is
-     transferred through aspect-ratio, so min-height:13rem became a minimum
-     WIDTH of 13rem x 3/2 = 312px and blew the three-up row apart between
-     761px and about 860px. width:100% cannot beat an automatic minimum. */
-  min-width:0;
   border:1px solid rgba(198,166,100,.32);background:rgba(198,166,100,.045);
   box-sizing:border-box;
 }
@@ -1441,7 +1436,7 @@ blockquote{
   <div class="sb-hero__inner" data-rise data-in>
     <p class="sb-hero__eyebrow">For Buyers</p>
     <h1><span class="ln"><i>Know what you are buying,</i></span><span class="ln"><i>and what it costs</i></span></h1>
-    <p class="sb-hero__stand">Access to what is not yet public, an honest account of what representation costs and who pays for it, and what nobody tells you about buying a house that has not been built yet.</p>
+    <p class="sb-hero__stand">What is not yet public, what representation costs and who pays for it, and what nobody tells you about buying a house that has not been built yet.</p>
   </div>
   <span class="sb-cue" aria-hidden="true"></span>
   <p class="sb-hero__brief"><b>Photograph 01</b>A house under construction at golden hour &mdash; framing up, roof on, no siding yet. Landscape, at least 2400px across &mdash; it runs full-bleed behind this type. <code>by-1.jpg</code></p>
@@ -1456,15 +1451,15 @@ blockquote{
   <div class="n-blocks">
     <div class="n-block" data-rise>
       <span class="n-block__n">01</span>
-      <div><h3>You See It Before It Is Public</h3><p>Through the Compass network we see Private Exclusives and Coming Soon listings that are not on RealTracs and not on the portals. In Belle Meade, Forest Hills and the gated Williamson communities, a meaningful share of the best houses trade without ever being publicly listed. That access is the difference between seeing a house and never learning it existed.</p></div>
+      <div><h3>You See It Before It Is Public</h3><p>Through the Compass network we see Private Exclusives and Coming Soon listings that are on neither RealTracs nor the portals. In Belle Meade, Forest Hills and the gated Williamson communities, many of the best houses trade without ever being listed.</p></div>
     </div>
     <div class="n-block" data-rise>
       <span class="n-block__n">02</span>
-      <div><h3>And the Honest Caveat</h3><p>A Private Exclusive has no public days on market and no price history, which means you have less independent evidence about whether the asking price is reasonable. That is the exact mirror of the seller&rsquo;s advantage. Our job on your side of the table is to supply that evidence from the closing record &mdash; which is why this site publishes sales by address.</p></div>
+      <div><h3>And the Honest Caveat</h3><p>A Private Exclusive has no public days on market and no price history, so you have less evidence that the ask is reasonable. That is the mirror of the seller&rsquo;s advantage. Our job is to supply that evidence from the closing record.</p></div>
     </div>
     <div class="n-block" data-rise>
       <span class="n-block__n">03</span>
-      <div><h3>You Do Not Have to Use Us to See Them</h3><p>Compass makes its Private Exclusives book available to agents from any brokerage, and the majority of Private Exclusives that sell off-MLS are co-brokered with non-Compass agents. We would rather tell you that than have you find it out later.</p></div>
+      <div><h3>You Do Not Have to Use Us to See Them</h3><p>Compass opens its Private Exclusives book to agents at any brokerage, and most that sell off-MLS are co-brokered with non-Compass agents. We would rather tell you than have you find out later.</p></div>
     </div>
   </div>
   </div>
@@ -1491,9 +1486,9 @@ blockquote{
   </div>
   <div data-stagger>
   <div class="n-blocks">
-    <div class="n-card" data-rise><h3>You Sign Something Before You Tour</h3><p>Since 2024 a written buyer representation agreement is required before we can show you a house. It states what we do, how long it runs, and what we are paid. Read the term and the exit &mdash; those are the two clauses that matter most and the two most people skip. Nothing on this page is legal advice; your agreement is what governs.</p></div>
-    <div class="n-card" data-rise><h3>Who Actually Pays Us</h3><p>Usually still the seller, negotiated outside the MLS, because a seller who offers nothing shrinks their own buyer pool. But your agreement is the backstop: if the seller offers less than the agreed fee, the difference is yours. We will tell you the number before you tour, not at closing.</p></div>
-    <div class="n-card" data-rise><h3>And How It Can Be Funded</h3><p>A seller concession written into the offer is the most common route. It can also be paid at closing from your own funds. Whether any part of it can be financed depends on your lender and your loan &mdash; ask before you assume, because at $2M the figure is not small.</p></div>
+    <div class="n-card" data-rise><h3>You Sign Before You Tour</h3><p>Since 2024 a written representation agreement is required before we can show you a house. Read the term and the exit &mdash; the two clauses that matter most and the two most people skip. Nothing here is legal advice; your agreement governs.</p></div>
+    <div class="n-card" data-rise><h3>Who Actually Pays Us</h3><p>Usually still the seller, negotiated outside the MLS, because offering nothing shrinks their own buyer pool. Your agreement is the backstop: if the seller offers less than the agreed fee, the difference is yours. You get the number before you tour.</p></div>
+    <div class="n-card" data-rise><h3>How It Can Be Funded</h3><p>A seller concession written into the offer is the common route; it can also come from your own funds at closing. Whether any part can be financed depends on your lender &mdash; ask, because at $2M the figure is not small.</p></div>
   </div>
   </div>
 </section>
@@ -1510,7 +1505,7 @@ blockquote{
   <div class="sb-split__body" data-rise style="--d:120ms">
     <p class="sb-split__k">Our Speciality</p>
     <h3>The Person at the Design Centre Works for the Builder</h3>
-    <p>They are friendly, they are knowledgeable, and they are paid by the seller. In a builder transaction there is no neutral party unless you bring one.</p><p>This is the single most common way a buyer at this level loses money in Middle Tennessee. It is also the thing we do more of than anything else &mdash; new construction is our niche, not a sideline.</p>
+    <p>Friendly, knowledgeable, and paid by the seller. In a builder transaction there is no neutral party unless you bring one.</p><p>It is the most common way a buyer here loses money, and the thing we do more of than anything else. New construction is our niche, not a sideline.</p>
   </div>
 </section>
 
@@ -1518,7 +1513,7 @@ blockquote{
   <div class="sb-split__body" data-rise style="--d:120ms">
     <p class="sb-split__k">Our Speciality</p>
     <h3>Allowances Are Where the Money Goes</h3>
-    <p>A dollar line for flooring, lighting or appliances that you exceed at retail. It is the most common reason a $2M contract closes materially above $2M.</p><p>We price the allowances against what the house actually needs before you sign, not after you are standing in the design centre choosing tile with a deadline.</p>
+    <p>A dollar line for flooring, lighting or appliances that you exceed at retail &mdash; the most common reason a $2M contract closes well above $2M.</p><p>We price them against what the house actually needs before you sign, not while you are choosing tile against a deadline.</p>
   </div>
   <figure class="sb-split__fig" data-rise>
     <div class="sb-par" data-par="7">
@@ -1533,25 +1528,17 @@ blockquote{
 <section class="p-sec" aria-labelledby="nc-h">
   <div class="p-lede" data-rise>
     <p class="p-eyebrow">Our Speciality</p>
-    <h2 id="nc-h">Buying New Construction</h2>
+    <h2 id="nc-h">What You Are Signing</h2>
   </div>
   <div data-stagger>
   <div class="n-blocks">
     <div class="n-block" data-rise>
       <span class="n-block__n">01</span>
-      <div><h3>The Person at the Design Centre Works for the Builder</h3><p>They are friendly, they are knowledgeable, and they are paid by the seller. In a builder transaction there is no neutral party unless you bring one. This is the single most common way a buyer at this level loses money in Middle Tennessee, and it is our speciality.</p></div>
+      <div><h3>It Is Not the Standard Contract</h3><p>A resale runs on the balanced Tennessee Realtors form. A builder transaction runs on the builder&rsquo;s own. Read allowances, change-order markup, the completion date and what happens when it slips, escalation, deposit escrow, and arbitration.</p></div>
     </div>
     <div class="n-block" data-rise>
       <span class="n-block__n">02</span>
-      <div><h3>The Contract Is Not the Standard Contract</h3><p>A resale runs on the Tennessee Realtors form, which is balanced. A builder transaction runs on the builder&rsquo;s own contract, which is not. The clauses to read are allowances, change order markup, the completion date and what happens when it slips, escalation, whether your deposit is escrowed, and whether disputes go to arbitration.</p></div>
-    </div>
-    <div class="n-block" data-rise>
-      <span class="n-block__n">03</span>
-      <div><h3>Allowances Are Where the Money Goes</h3><p>A dollar line for flooring, lighting or appliances that you exceed at retail. It is the most common reason a $2M contract closes materially above $2M. We price the allowances against what the house actually needs before you sign, not after you are choosing tile.</p></div>
-    </div>
-    <div class="n-block" data-rise>
-      <span class="n-block__n">04</span>
-      <div><h3>The Warranty Replaces the Disclosure</h3><p>Tennessee exempts the first sale of a new home from the property condition disclosure &mdash; but only if the builder offers a written warranty. That warranty is your substitute for the disclosure, so its exclusions, its duration and whether it transfers are the things to read. Separately, Tennessee&rsquo;s construction defect window runs four years from substantial completion, five at the outside &mdash; from completion, not from your purchase.</p></div>
+      <div><h3>Allowances Are Where the Money Goes</h3><p>A dollar line for flooring, lighting or appliances that you exceed at retail &mdash; the most common reason a $2M contract closes well above $2M. We price them against what the house actually needs before you sign.</p></div>
     </div>
   </div>
   </div>
@@ -1578,9 +1565,9 @@ blockquote{
   </div>
   <div data-stagger>
   <div class="n-blocks">
-    <div class="n-card" data-rise><h3>Jumbo Starts Higher Here Than You Think</h3><p>In Davidson and Williamson counties the 2026 conforming limit is $1,029,250, not the $832,750 national baseline &mdash; Nashville is a designated high-cost area. Above that you are in jumbo, and at $2M+ you are in jumbo regardless. Expect underwriting to run longer than a conforming file.</p></div>
-    <div class="n-card" data-rise><h3>Proof of Funds Comes Before the Showing</h3><p>At this level sellers expect verification before they engage, and in the gated communities it is often required simply to schedule. We will tell you what is needed and what can be redacted &mdash; you should not be handing out full account statements.</p></div>
-    <div class="n-card" data-rise><h3>The Second Year Costs Something Too</h3><p>Insurance at current rates, HOA dues that run from $3,000 to $5,700 a year in the communities we cover, reassessment on a new build, and the maintenance load on eight thousand square feet. We will put a carrying-cost number in front of you before you offer.</p></div>
+    <div class="n-card" data-rise><h3>Jumbo Starts Higher Here</h3><p>Davidson and Williamson sit at a $1,029,250 conforming limit for 2026, not the $832,750 national baseline &mdash; Nashville is a designated high-cost area. At $2M+ you are in jumbo regardless, and underwriting runs longer.</p></div>
+    <div class="n-card" data-rise><h3>Proof of Funds Comes First</h3><p>Sellers expect verification before they engage, and the gated communities often require it simply to schedule. We will tell you what is needed and what can be redacted &mdash; you should not be handing out full statements.</p></div>
+    <div class="n-card" data-rise><h3>The Second Year Costs Something</h3><p>Insurance at current rates, HOA dues of $3,000 to $5,700 a year in the communities we cover, reassessment on a new build, and the upkeep on eight thousand square feet. You get a carrying-cost number before you offer.</p></div>
   </div>
   </div>
 </section>
@@ -1597,7 +1584,7 @@ blockquote{
   <div class="sb-split__body" data-rise style="--d:120ms">
     <p class="sb-split__k">Tennessee</p>
     <h3>What Moving Here Actually Means</h3>
-    <p>No tax on earned income, and a 2014 constitutional amendment prohibits the legislature from creating one. No state estate or inheritance tax either.</p><p>Residential property is assessed at a quarter of appraised value, and Williamson County cut its rate by roughly 30% in 2025. A $3M house runs about $11,175 a year in Brentwood &mdash; against roughly $52,000 in Cook County, Illinois.</p>
+    <p>No tax on earned income, barred by constitutional amendment. No estate or inheritance tax either.</p><p>Property is assessed at a quarter of value, and Williamson cut its rate ~30% in 2025. A $3M house runs about $11,175 a year in Brentwood, against roughly $52,000 in Cook County, Illinois.</p>
   </div>
 </section>
 
@@ -1625,9 +1612,7 @@ blockquote{
     </div>
   </div>
   <div class="n-blocks">
-    <div class="n-card" data-rise><h3>No State Income Tax, and It Is in the Constitution</h3><p>Tennessee levies no tax on earned income, and a 2014 constitutional amendment prohibits the legislature from creating one. The Hall tax on interest and dividends was repealed from 2021. There is no state estate or inheritance tax either.</p></div>
-    <div class="n-card" data-rise><h3>Property Tax Is Low, and Williamson Just Cut It</h3><p>Residential property is assessed at 25% of appraised value. Williamson County cut its rate from $1.88 to $1.30 in 2025, roughly 30%. A $3M house runs about $11,175 a year in Brentwood and $11,745 in Franklin &mdash; against roughly $52,000 in Cook County, Illinois, or $39,000 in Travis County, Texas.</p></div>
-    <div class="n-card" data-rise><h3>Closings Do Not Require an Attorney</h3><p>Tennessee is a title company state. Most closings are handled by a title company or a title agency law firm. At this level, and particularly on a builder contract, we would still recommend your own counsel read it &mdash; and we will tell you when we think it matters.</p></div>
+    <div class="n-card" data-rise><h3>No Attorney Required at Closing</h3><p>Tennessee is a title company state; most closings run through a title company or title agency law firm. At this level, and on a builder contract especially, we would still want your own counsel reading it.</p></div>
   </div>
   </div>
 </section>
