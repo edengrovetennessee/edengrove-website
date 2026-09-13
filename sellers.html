@@ -1033,6 +1033,11 @@ blockquote{
   width:100%;                  /* pin to the column: without this the aspect-ratio
                                   derives width from content height and overflows */
   padding:1.5rem 1.2rem;aspect-ratio:3/2;min-height:13rem;
+  /* min-width:0 is load-bearing. A grid item's automatic minimum size is
+     transferred through aspect-ratio, so min-height:13rem became a minimum
+     WIDTH of 13rem x 3/2 = 312px and blew the three-up row apart between
+     761px and about 860px. width:100% cannot beat an automatic minimum. */
+  min-width:0;
   border:1px solid rgba(198,166,100,.32);background:rgba(198,166,100,.045);
   box-sizing:border-box;
 }
@@ -1112,15 +1117,15 @@ blockquote{
 /* ---- the hero ---------------------------------------------------------- */
 .sb-hero{
   position:relative;isolation:isolate;overflow:hidden;
-  min-height:min(92svh,50rem);
-  display:grid;align-content:center;
-  padding:calc(var(--bar-y) * 2 + 6rem) var(--gutter) clamp(4rem,10vh,7rem);
+  min-height:100svh;                    /* the picture is the page, not a band */
+  display:grid;align-content:end;       /* type sits low, the way a title card does */
+  padding:calc(var(--bar-y) * 2 + 6rem) var(--gutter) clamp(5rem,13vh,9rem);
   text-align:center;background:var(--ink);
 }
 /* the media wrapper is what drifts; the image inside it does the slow push in,
    so the two transforms never fight over the same element */
 .sb-hero__media{position:absolute;inset:-10% 0;z-index:0}
-.sb-hero__media img{
+.sb-hero__media img,.sb-hero__media video{
   width:100%;height:100%;object-fit:cover;display:block;
   transform:scale(1.075);animation:sbKen 26s var(--rise) forwards;
 }
@@ -1188,17 +1193,23 @@ blockquote{
 /* ---- full-bleed photographic band ------------------------------------- */
 .cine{
   position:relative;isolation:isolate;overflow:hidden;background:var(--ink);
-  min-height:min(66svh,32rem);display:grid;place-items:center;
+  min-height:100svh;display:grid;place-items:center;
   padding:clamp(3.5rem,9vh,6rem) var(--gutter);
 }
+/* the closing band is a shade shorter — it is a sign-off, not another chapter */
+.cine--close{min-height:min(78svh,42rem)}
 .cine__media{position:absolute;inset:-12% 0;z-index:0}
-.cine__media img{width:100%;height:100%;object-fit:cover;display:block}
-.cine__scrim{position:absolute;inset:0;z-index:1;background:rgba(20,23,15,.66)}
-.cine__q{position:relative;z-index:2;max-width:38ch;text-align:center}
+.cine__media img,.cine__media video{width:100%;height:100%;object-fit:cover;display:block}
+.cine__scrim{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,
+    rgba(20,23,15,.5) 0%,rgba(20,23,15,.34) 50%,rgba(20,23,15,.62) 100%);
+}
+.cine__q{position:relative;z-index:2;max-width:46rem;text-align:center}
 .cine__q blockquote{
   margin:0;font-family:var(--display);font-weight:300;
-  font-size:clamp(1.15rem,1rem + 1.2vw,1.95rem);line-height:1.5;
-  letter-spacing:.01em;color:#fff;
+  font-size:clamp(1.35rem,1.05rem + 1.8vw,2.6rem);line-height:1.45;
+  letter-spacing:.01em;color:#fff;text-wrap:balance;
 }
 /* the rule draws itself in rather than simply appearing */
 .cine__rule{
@@ -1209,7 +1220,7 @@ blockquote{
 [data-in] > .cine__rule,[data-in] .cine__rule{transform:scaleX(1)}
 
 /* the empty band: a field rather than a photograph, and the brief on show */
-.cine--empty{min-height:min(54svh,26rem)}
+.cine--empty{min-height:min(72svh,36rem)}
 .cine__field{
   position:absolute;inset:0;z-index:0;
   background:
@@ -1234,7 +1245,7 @@ blockquote{
   color:rgba(244,241,236,.62)}
 .cine__brief code{display:block;margin-top:.9rem;font-family:var(--ui);
   font-size:.58rem;letter-spacing:.14em;color:rgba(198,166,100,.78)}
-.cine--empty .cine__q{max-width:46ch}
+.cine--empty .cine__q{max-width:42rem}
 
 /* the hero's own brief, for as long as the hero has no photograph */
 .sb-hero__brief{
@@ -1247,21 +1258,28 @@ blockquote{
 @media (max-width:760px){.sb-hero__brief{display:none}}
 
 /* ---- editorial split: photograph beside prose -------------------------- */
+/* The picture is not a column in a centred container — it runs off the edge of
+   the page, and the prose is the narrow thing beside it. Non-flipped, the
+   photograph bleeds left; flipped, it bleeds right. */
 .sb-split{
-  max-width:74rem;margin:0 auto;
-  padding:clamp(3rem,7vh,5rem) var(--gutter);
-  display:grid;gap:clamp(1.6rem,4vw,3.5rem);align-items:center;
-  grid-template-columns:1fr 1fr;
+  display:grid;gap:clamp(1.5rem,4vw,3.5rem);align-items:center;
+  grid-template-columns:minmax(0,7fr) minmax(0,5fr);
+  padding:clamp(4rem,10vh,7.5rem) var(--gutter) clamp(4rem,10vh,7.5rem) 0;
+}
+.sb-split--flip{
+  grid-template-columns:minmax(0,5fr) minmax(0,7fr);
+  padding-left:var(--gutter);padding-right:0;
 }
 /* margin:0 is load-bearing — the UA default for <figure> is 1em 40px, which
    pushed the photograph 40px out of its own grid column and gave the whole
    page a horizontal scrollbar on a phone. */
-.sb-split__fig{position:relative;overflow:hidden;aspect-ratio:4/5;width:100%;margin:0}
-.sb-split__fig img{width:100%;height:100%;object-fit:cover;display:block}
+.sb-split__fig{position:relative;overflow:hidden;aspect-ratio:4/3;width:100%;margin:0;
+  min-height:min(62svh,34rem)}
+.sb-split__fig img,.sb-split__fig video{width:100%;height:100%;object-fit:cover;display:block}
 .sb-split__fig .sb-par{position:absolute;inset:-8% 0}
 .sb-split__body h3{
-  margin:0 0 1.1rem;font-family:var(--ui);font-weight:300;
-  font-size:clamp(.95rem,.88rem + .3vw,1.15rem);
+  margin:0 0 1.3rem;font-family:var(--ui);font-weight:300;
+  font-size:clamp(1rem,.9rem + .38vw,1.3rem);
   letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;color:#fff;
 }
 .sb-split__body p{
@@ -1275,9 +1293,11 @@ blockquote{
   letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--brass);
 }
 @media (max-width:820px){
-  .sb-split{grid-template-columns:1fr}
-  /* the photograph always leads on a phone, whichever side it sits on wide */
-  .sb-split__fig{order:-1;aspect-ratio:4/3}
+  /* one column, and the photograph goes fully edge to edge — the prose gets the
+     gutter back on its own */
+  .sb-split,.sb-split--flip{grid-template-columns:1fr;padding-inline:0;gap:clamp(1.4rem,5vw,2rem)}
+  .sb-split__body{padding-inline:var(--gutter)}
+  .sb-split__fig{order:-1;aspect-ratio:4/3;min-height:0}
 }
 
 /* ---- the counted figures ----------------------------------------------- */
@@ -1600,7 +1620,7 @@ blockquote{
   </div>
 </section>
 
-<section class="cine cine--empty" data-rise>
+<section class="cine cine--empty cine--close" data-rise>
   <div class="cine__field" aria-hidden="true"></div>
   <div class="cine__q">
     <blockquote>Sell it at the level it was built to.</blockquote>
@@ -1896,6 +1916,12 @@ addEventListener("keydown", e => {
   if (reduce) {
     rises.forEach(el => el.setAttribute("data-in", ""));
     counters.forEach(settle);
+    /* No CSS can stop an autoplaying loop, and a looping film is exactly what
+       someone who asked for reduced motion is asking not to be given. Freeze on
+       the first frame; the controls stay available if they want to play it. */
+    document.querySelectorAll("video[autoplay]").forEach(v => {
+      v.autoplay = false; v.pause(); v.controls = true;
+    });
   } else {
     counters.forEach(el => el.textContent = (el.dataset.pre || "") + "0" + (el.dataset.suf || ""));
 

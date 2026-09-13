@@ -591,7 +591,9 @@ blockquote{
    One file per property. Everything property-specific is marked PROPERTY:
    in the markup below; the CSS never needs touching.
    ========================================================================== */
-.p-hero{position:relative;height:92svh;min-height:34rem;overflow:hidden}
+.p-hero{position:relative;height:100svh;min-height:36rem;overflow:hidden}
+/* 92svh left a sliver of the next section showing, which reads as a band
+   rather than as a picture you have to scroll past. */
 .p-hero__body{
   position:absolute;inset:0;z-index:10;display:grid;align-items:end;
   padding:0 var(--gutter) clamp(3rem,8vh,5.5rem);
@@ -711,7 +713,7 @@ blockquote{
 .p-gal__head i{flex:1;height:1px;background:rgba(244,241,236,.14)}
 .p-gal__row{
   display:grid;grid-template-columns:repeat(3,1fr);
-  gap:clamp(.5rem,1vw,1.1rem);padding:0 clamp(.5rem,1vw,1.1rem);
+  gap:clamp(.35rem,.7vw,.8rem);padding:0;     /* edge to edge, no side rail */
 }
 /* A single area photograph runs full width rather than sitting in a third. */
 .p-gal__row--1{grid-template-columns:1fr}
@@ -719,7 +721,12 @@ blockquote{
 @media (max-width:760px){ .p-gal__row--1 .p-shot{aspect-ratio:3/2} }
 /* A row with only two images gets two wider cards instead of a gap. */
 .p-gal__row--2{grid-template-columns:repeat(2,1fr)}
-.p-shot{position:relative;overflow:hidden;aspect-ratio:3/2;background:#1b1f19;display:block}
+.p-shot{position:relative;overflow:hidden;aspect-ratio:4/3;background:#1b1f19;display:block}
+/* A single frame on its own row earns a cinematic crop; three across stay 4:3
+   so the row does not become a letterbox strip. */
+.p-gal__row--1 .p-shot{aspect-ratio:21/9}   /* no min-height: it would
+   derive the width from the height and run the frame off the page */
+.p-gal__row--2 .p-shot{aspect-ratio:3/2}
 .p-shot img{
   width:100%;height:100%;object-fit:cover;display:block;
   transform:scale(1.001);transition:transform 1.1s var(--rise);
@@ -981,6 +988,18 @@ blockquote{
   color:var(--brass);opacity:0;transition:opacity .4s var(--rise);
 }
 .p-note[data-on]{opacity:1}
+
+/* ---- film, wherever a still goes ----------------------------------------
+   Same box, same crop, same hover. Drop <slug>-n.webm + .mp4 beside the jpg
+   and swap the tag; nothing else has to change. Muted, looped and playsinline
+   so it behaves as moving wallpaper rather than as a video player. */
+.p-shot video,.p-hero__media video,.hero__media video{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+@media (prefers-reduced-motion:reduce){
+  .p-shot video,.p-hero__media video{animation:none}
+}
+
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/neighborhood/belle-meade/">
 <meta property="og:type" content="website">
