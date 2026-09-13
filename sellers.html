@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>West Meade Homes &amp; Real Estate | Eden Grove</title>
-<meta name="description" content="A guide to West Meade, Nashville — the setting, the market, the housing stock, what is nearby and how long it takes to get anywhere. From Eden Grove.">
-<link rel="icon" href="../../favicon.ico" sizes="any">
-<link rel="icon" type="image/svg+xml" href="../../favicon.svg">
-<link rel="icon" type="image/png" sizes="32x32" href="../../media/favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="../../media/favicon-16.png">
-<link rel="apple-touch-icon" href="../../media/apple-touch-icon.png">
+<title>Selling Luxury Property in Nashville | Eden Grove</title>
+<meta name="description" content="How Eden Grove sells above $2M in Middle Tennessee: Compass Private Exclusives, three-phase launch, pricing where comps are thin, and straight answers on fee, timeline and net proceeds.">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="media/favicon-16.png">
+<link rel="apple-touch-icon" href="media/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Jost:wght@300;400&display=swap" rel="stylesheet">
@@ -719,20 +719,6 @@ blockquote{
 @media (max-width:760px){ .p-gal__row--1 .p-shot{aspect-ratio:3/2} }
 /* A row with only two images gets two wider cards instead of a gap. */
 .p-gal__row--2{grid-template-columns:repeat(2,1fr)}
-/* An upright photograph beside a stacked pair. Gives a portrait somewhere to
-   live at its own proportions rather than cropping it into a letterbox. The
-   stack fills the height the 4:5 feature sets, so the two columns end level. */
-.p-gal__row--pair{grid-template-columns:1fr 1fr}
-.p-gal__row--pair > .p-shot{aspect-ratio:4/5}
-.p-gal__stack{
-  display:grid;grid-template-rows:1fr 1fr;gap:clamp(.5rem,1vw,1.1rem);
-  aspect-ratio:4/5;   /* same box as the feature, so both columns end level */
-}
-.p-gal__stack .p-shot{aspect-ratio:auto;height:100%}
-@media (max-width:760px){
-  .p-gal__row--pair{grid-template-columns:1fr}
-  .p-gal__stack .p-shot{aspect-ratio:3/2;height:auto}
-}
 .p-shot{position:relative;overflow:hidden;aspect-ratio:3/2;background:#1b1f19;display:block}
 .p-shot img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -995,52 +981,410 @@ blockquote{
   color:var(--brass);opacity:0;transition:opacity .4s var(--rise);
 }
 .p-note[data-on]{opacity:1}
+/* ---- development pages: the numbers a buyer actually asks for ---- */
+.w-strip{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1px;background:rgba(244,241,236,.12);
+  border:1px solid rgba(244,241,236,.12);
+  margin-top:clamp(2rem,5vh,3rem);
+}
+@media (max-width:760px){ .w-strip{grid-template-columns:repeat(2,1fr)} }
+.w-strip div{background:var(--ink);padding:clamp(1.2rem,3vw,1.9rem) 1rem;text-align:center}
+.w-strip dt{
+  margin:0 0 .6rem;font-weight:400;font-size:.55rem;
+  letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;
+  color:rgba(244,241,236,.5);
+}
+.w-strip dd{
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(1.05rem,.9rem + .7vw,1.5rem);
+  color:#fff;font-variant-numeric:tabular-nums;letter-spacing:.02em;
+}
+.w-strip dd small{display:block;margin-top:.4rem;font-size:.6rem;letter-spacing:.1em;
+  color:rgba(244,241,236,.45)}
+
+/* the sales table — scrolls sideways on a phone rather than crushing */
+.w-tablewrap{margin-top:clamp(2rem,5vh,3rem);overflow-x:auto}
+.w-table{width:100%;min-width:38rem;border-collapse:collapse;font-family:var(--ui)}
+.w-table caption{
+  caption-side:top;text-align:left;padding-bottom:1rem;
+  font-weight:300;font-size:.82rem;line-height:1.8;color:rgba(244,241,236,.62);
+}
+.w-table th,.w-table td{
+  padding:.78rem .7rem;text-align:right;font-weight:300;font-size:.82rem;
+  border-bottom:1px solid rgba(244,241,236,.09);
+  font-variant-numeric:tabular-nums;white-space:nowrap;
+}
+.w-table th:first-child,.w-table td:first-child{text-align:left;white-space:normal}
+.w-table thead th{
+  font-weight:400;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--brass);border-bottom-color:rgba(198,166,100,.4);
+}
+.w-table tbody td{color:rgba(244,241,236,.76)}
+.w-table tbody tr:first-child td{color:#fff}
+.w-table tbody tr:hover td{background:rgba(244,241,236,.035)}
+.w-table td.w-price{color:#fff}
+
+/* ---- photography slots ----
+   Placeholders that hold the exact shape each frame will occupy, so a photograph
+   drops straight in without the layout moving. Delete a slot as you fill it. */
+.w-slot{
+  position:relative;display:grid;place-items:center;text-align:center;
+  width:100%;                  /* pin to the column: without this the aspect-ratio
+                                  derives width from content height and overflows */
+  padding:1.5rem 1.2rem;aspect-ratio:3/2;min-height:13rem;
+  border:1px solid rgba(198,166,100,.32);background:rgba(198,166,100,.045);
+  box-sizing:border-box;
+}
+.p-gal__row--1 .w-slot{aspect-ratio:5/2}
+@media (max-width:760px){
+  /* let the brief set the height on a phone rather than squeezing it into a box */
+  .w-slot,.p-gal__row--1 .w-slot{aspect-ratio:auto;min-height:11rem}
+}
+.w-slot__n{
+  position:absolute;top:.85rem;left:1rem;
+  font-family:var(--ui);font-weight:400;font-size:.56rem;letter-spacing:.24em;
+  color:var(--brass);font-variant-numeric:tabular-nums;
+}
+.w-slot h4{
+  margin:0 0 .6rem;font-family:var(--ui);font-weight:300;
+  font-size:clamp(.78rem,.72rem + .22vw,.92rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;color:#fff;
+}
+.w-slot p{
+  margin:0 auto;max-width:34ch;font-family:var(--ui);font-weight:300;
+  font-size:.76rem;line-height:1.8;color:rgba(244,241,236,.62);
+}
+.w-slot code{
+  display:block;margin-top:.9rem;font-family:var(--ui);font-size:.58rem;
+  letter-spacing:.14em;color:rgba(198,166,100,.75);
+}
+
+/* what is on the market right now */
+.w-list{list-style:none;margin:clamp(1.8rem,4vh,2.6rem) 0 0;padding:0}
+.w-list li{
+  display:grid;grid-template-columns:1fr auto;gap:.4rem 1.5rem;align-items:baseline;
+  padding:1.05rem 0;border-bottom:1px solid rgba(244,241,236,.1);
+}
+.w-list b{font-weight:300;font-size:.95rem;color:#fff;letter-spacing:.03em}
+.w-list em{
+  grid-column:1;font-style:normal;font-size:.76rem;
+  color:rgba(244,241,236,.55);font-variant-numeric:tabular-nums;
+}
+.w-list span{
+  grid-row:1/3;grid-column:2;align-self:center;
+  font-size:1.02rem;color:var(--brass);font-variant-numeric:tabular-nums;
+}
+@media (max-width:520px){
+  .w-list li{grid-template-columns:1fr}
+  .w-list span{grid-row:auto;grid-column:1;align-self:start}
+}
+
+/* ==========================================================================
+   SELLERS / BUYERS — cinematic layer
+   Three devices, deliberately. A masked line reveal on headings, a rise on
+   enter for everything else, and a counter-scroll drift on photography.
+   Every one of them is disabled under prefers-reduced-motion at the bottom
+   of this block — the page must read perfectly with all motion removed.
+   ========================================================================== */
+
+/* ---- the rise --------------------------------------------------------- */
+[data-rise]{
+  opacity:0;transform:translateY(26px);
+  transition:opacity 1s var(--rise),transform 1.15s var(--rise);
+  transition-delay:var(--d,0ms);
+  will-change:opacity,transform;
+}
+[data-rise][data-in]{opacity:1;transform:none;will-change:auto}
+
+/* ---- the masked line reveal -------------------------------------------
+   Each line is its own overflow-hidden window; the text inside slides up
+   from beneath it. This is why the headings are authored as a list of lines
+   rather than one string — the break points are a typographic decision, not
+   whatever the viewport happens to do. */
+.ln{display:block;overflow:hidden;padding-bottom:.06em}
+.ln > i{
+  display:block;font-style:normal;transform:translateY(115%);
+  transition:transform 1.25s var(--rise);transition-delay:var(--d,0ms);
+}
+[data-in] .ln > i{transform:none}
+
+/* ---- the hero ---------------------------------------------------------- */
+.sb-hero{
+  position:relative;isolation:isolate;overflow:hidden;
+  min-height:min(92svh,50rem);
+  display:grid;align-content:center;
+  padding:calc(var(--bar-y) * 2 + 6rem) var(--gutter) clamp(4rem,10vh,7rem);
+  text-align:center;background:var(--ink);
+}
+/* the media wrapper is what drifts; the image inside it does the slow push in,
+   so the two transforms never fight over the same element */
+.sb-hero__media{position:absolute;inset:-10% 0;z-index:0}
+.sb-hero__media img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.075);animation:sbKen 26s var(--rise) forwards;
+}
+@keyframes sbKen{to{transform:scale(1)}}
+
+/* With no photograph in place the hero must still feel like something rather
+   than a black box, so an extremely slow brass field drifts behind the type. */
+.sb-hero--empty .sb-hero__media{
+  background:
+    radial-gradient(58% 48% at 28% 26%,rgba(198,166,100,.17),transparent 72%),
+    radial-gradient(52% 44% at 76% 74%,rgba(198,166,100,.11),transparent 72%),
+    var(--ink);
+  animation:sbDrift 30s ease-in-out infinite alternate;
+}
+@keyframes sbDrift{to{transform:translate3d(0,-2.5%,0) scale(1.07)}}
+/* With no photograph there is nothing to scrim, so the heavy gradient only
+   flattens the field it is sitting on. Lighten it until a picture lands. */
+.sb-hero--empty .sb-hero__scrim{
+  background:linear-gradient(180deg,
+    rgba(20,23,15,.3) 0%,rgba(20,23,15,0) 46%,rgba(20,23,15,.72) 100%);
+}
+
+.sb-hero__scrim{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,
+    rgba(20,23,15,.78) 0%,rgba(20,23,15,.48) 42%,rgba(20,23,15,.94) 100%);
+}
+.sb-hero__inner{position:relative;z-index:2}
+.sb-hero__eyebrow{
+  margin:0 0 1.5rem;font-weight:300;font-size:.6rem;
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--brass);
+}
+/* No max-width and no ch measure here: the line breaks are authored in the
+   markup, so the only job of this rule is to let each authored line sit on one
+   line for as long as the viewport allows. Tracking is a shade tighter than the
+   site's .2em because at 2.6rem that much air pushes the longest line over. */
+.sb-hero h1{
+  margin:0 auto;max-width:none;font-family:var(--ui);font-weight:300;
+  font-size:clamp(1.28rem,.92rem + 1.85vw,2.6rem);line-height:1.4;
+  letter-spacing:.15em;text-indent:.15em;text-transform:uppercase;color:#fff;
+  text-wrap:balance;
+}
+.sb-hero__stand{
+  margin:clamp(1.7rem,3.6vh,2.5rem) auto 0;max-width:52ch;
+  font-weight:300;font-size:clamp(.9rem,.86rem + .22vw,1.02rem);
+  line-height:1.95;color:rgba(244,241,236,.8);
+}
+/* the scroll cue — one hairline that fills downward, not a bouncing chevron */
+.sb-cue{
+  position:absolute;left:50%;bottom:clamp(1.4rem,4vh,2.6rem);z-index:2;
+  width:1px;height:clamp(2.2rem,5vh,3.4rem);translate:-50% 0;
+  background:rgba(244,241,236,.16);overflow:hidden;
+}
+.sb-cue::after{
+  content:"";position:absolute;inset:0;background:var(--brass);
+  transform-origin:top;animation:sbCue 2.8s var(--rise) infinite;
+}
+@keyframes sbCue{
+  0%{transform:scaleY(0)}
+  40%{transform:scaleY(1);transform-origin:top}
+  41%{transform:scaleY(1);transform-origin:bottom}
+  90%,100%{transform:scaleY(0);transform-origin:bottom}
+}
+
+/* ---- full-bleed photographic band ------------------------------------- */
+.cine{
+  position:relative;isolation:isolate;overflow:hidden;background:var(--ink);
+  min-height:min(66svh,32rem);display:grid;place-items:center;
+  padding:clamp(3.5rem,9vh,6rem) var(--gutter);
+}
+.cine__media{position:absolute;inset:-12% 0;z-index:0}
+.cine__media img{width:100%;height:100%;object-fit:cover;display:block}
+.cine__scrim{position:absolute;inset:0;z-index:1;background:rgba(20,23,15,.66)}
+.cine__q{position:relative;z-index:2;max-width:38ch;text-align:center}
+.cine__q blockquote{
+  margin:0;font-family:var(--display);font-weight:300;
+  font-size:clamp(1.15rem,1rem + 1.2vw,1.95rem);line-height:1.5;
+  letter-spacing:.01em;color:#fff;
+}
+/* the rule draws itself in rather than simply appearing */
+.cine__rule{
+  display:block;width:clamp(2.5rem,6vw,4.5rem);height:1px;margin:1.6rem auto 0;
+  background:var(--brass);transform:scaleX(0);transform-origin:left;
+  transition:transform 1.3s var(--rise) .3s;
+}
+[data-in] > .cine__rule,[data-in] .cine__rule{transform:scaleX(1)}
+
+/* the empty band: a field rather than a photograph, and the brief on show */
+.cine--empty{min-height:min(54svh,26rem)}
+.cine__field{
+  position:absolute;inset:0;z-index:0;
+  background:
+    radial-gradient(56% 60% at 24% 34%,rgba(198,166,100,.13),transparent 72%),
+    radial-gradient(50% 55% at 78% 68%,rgba(198,166,100,.085),transparent 72%),
+    var(--ink);
+}
+.cine__brief{
+  position:relative;margin:clamp(1.8rem,4vh,2.6rem) auto 0;max-width:44ch;
+  padding:1.4rem 1.2rem 1.5rem;
+  border:1px solid rgba(198,166,100,.3);background:rgba(198,166,100,.05);
+}
+.cine__brief-n{
+  position:absolute;top:.8rem;left:1rem;font-weight:400;font-size:.56rem;
+  letter-spacing:.24em;color:var(--brass);font-variant-numeric:tabular-nums;
+}
+.cine__brief h4{
+  margin:0 0 .6rem;font-family:var(--ui);font-weight:300;font-size:.82rem;
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;color:#fff;
+}
+.cine__brief p{margin:0;font-weight:300;font-size:.76rem;line-height:1.8;
+  color:rgba(244,241,236,.62)}
+.cine__brief code{display:block;margin-top:.9rem;font-family:var(--ui);
+  font-size:.58rem;letter-spacing:.14em;color:rgba(198,166,100,.78)}
+.cine--empty .cine__q{max-width:46ch}
+
+/* the hero's own brief, for as long as the hero has no photograph */
+.sb-hero__brief{
+  position:absolute;left:var(--gutter);bottom:clamp(1.2rem,3.5vh,2.2rem);z-index:3;
+  max-width:26ch;text-align:left;
+  font-weight:300;font-size:.66rem;line-height:1.7;color:rgba(244,241,236,.5);
+}
+.sb-hero__brief b{display:block;font-weight:400;letter-spacing:.2em;
+  text-transform:uppercase;color:var(--brass);font-size:.56rem;margin-bottom:.4rem}
+@media (max-width:760px){.sb-hero__brief{display:none}}
+
+/* ---- editorial split: photograph beside prose -------------------------- */
+.sb-split{
+  max-width:74rem;margin:0 auto;
+  padding:clamp(3rem,7vh,5rem) var(--gutter);
+  display:grid;gap:clamp(1.6rem,4vw,3.5rem);align-items:center;
+  grid-template-columns:1fr 1fr;
+}
+/* margin:0 is load-bearing — the UA default for <figure> is 1em 40px, which
+   pushed the photograph 40px out of its own grid column and gave the whole
+   page a horizontal scrollbar on a phone. */
+.sb-split__fig{position:relative;overflow:hidden;aspect-ratio:4/5;width:100%;margin:0}
+.sb-split__fig img{width:100%;height:100%;object-fit:cover;display:block}
+.sb-split__fig .sb-par{position:absolute;inset:-8% 0}
+.sb-split__body h3{
+  margin:0 0 1.1rem;font-family:var(--ui);font-weight:300;
+  font-size:clamp(.95rem,.88rem + .3vw,1.15rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;color:#fff;
+}
+.sb-split__body p{
+  margin:0 0 1.05rem;font-weight:300;
+  font-size:clamp(.88rem,.84rem + .22vw,1rem);line-height:1.95;
+  color:rgba(244,241,236,.78);
+}
+.sb-split__body p:last-child{margin-bottom:0}
+.sb-split__k{
+  margin:0 0 1.2rem;font-weight:300;font-size:.6rem;
+  letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--brass);
+}
+@media (max-width:820px){
+  .sb-split{grid-template-columns:1fr}
+  /* the photograph always leads on a phone, whichever side it sits on wide */
+  .sb-split__fig{order:-1;aspect-ratio:4/3}
+}
+
+/* ---- the counted figures ----------------------------------------------- */
+.sb-stats{
+  max-width:66rem;margin:clamp(2.5rem,6vh,3.75rem) auto 0;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1.25rem,3vw,2.5rem);
+}
+.sb-stat{text-align:center;padding:clamp(1.4rem,3vw,2rem) .5rem;
+  border-top:1px solid rgba(198,166,100,.28)}
+.sb-stat__n{
+  display:block;font-family:var(--display);font-weight:300;
+  font-size:clamp(1.9rem,1.3rem + 2.6vw,3.4rem);line-height:1;
+  color:var(--brass);font-variant-numeric:tabular-nums;
+}
+.sb-stat__l{
+  display:block;margin-top:.95rem;font-weight:300;font-size:.66rem;
+  letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;
+  color:rgba(244,241,236,.82);
+}
+.sb-stat__s{
+  display:block;margin-top:.7rem;font-weight:300;font-size:.74rem;
+  line-height:1.75;color:rgba(244,241,236,.5);
+}
+@media (max-width:700px){
+  .sb-stats{grid-template-columns:1fr;gap:0}
+  .sb-stat{padding-block:clamp(1.15rem,4vw,1.6rem)}
+}
+
+/* ---- photograph placeholder ------------------------------------------- */
+.sb-slot{
+  position:relative;display:grid;place-items:center;text-align:center;
+  width:100%;height:100%;min-height:12rem;padding:1.6rem 1.2rem;
+  border:1px solid rgba(198,166,100,.3);background:rgba(198,166,100,.05);
+  box-sizing:border-box;
+}
+.sb-slot--fill{position:absolute;inset:0;z-index:0;border:0;background:rgba(198,166,100,.05)}
+.sb-slot__n{
+  position:absolute;top:.9rem;left:1.05rem;
+  font-weight:400;font-size:.56rem;letter-spacing:.24em;
+  color:var(--brass);font-variant-numeric:tabular-nums;
+}
+.sb-slot h4{
+  margin:0 0 .65rem;font-family:var(--ui);font-weight:300;
+  font-size:clamp(.78rem,.72rem + .22vw,.92rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;color:#fff;
+}
+.sb-slot p{
+  margin:0 auto;max-width:38ch;font-weight:300;font-size:.76rem;
+  line-height:1.8;color:rgba(244,241,236,.62);
+}
+.sb-slot code{
+  display:block;margin-top:.95rem;font-family:var(--ui);font-size:.58rem;
+  letter-spacing:.14em;color:rgba(198,166,100,.78);
+}
+
+/* ---- a little life on the answer cards --------------------------------- */
+.n-card{transition:border-color .5s var(--rise),transform .5s var(--rise)}
+@media (hover:hover){
+  .n-card:hover{border-color:rgba(198,166,100,.45);transform:translateY(-3px)}
+}
+
+@media (prefers-reduced-motion:reduce){
+  [data-rise],[data-rise][data-in]{opacity:1;transform:none;transition:none}
+  .ln > i{transform:none;transition:none}
+  .cine__rule{transform:scaleX(1);transition:none}
+  .sb-hero__media img,.sb-hero--empty .sb-hero__media{animation:none;transform:none}
+  .sb-cue::after{animation:none;transform:scaleY(.4)}
+  .sb-par,.cine__media,.sb-hero__media{transform:none !important}
+  .n-card{transition:none}
+  .n-card:hover{transform:none}
+}
 </style>
-<link rel="canonical" href="https://edengrovetennessee.com/neighborhood/west-meade/">
+<link rel="canonical" href="https://edengrovetennessee.com/sellers.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Eden Grove">
 <meta property="og:locale" content="en_US">
-<meta property="og:url" content="https://edengrovetennessee.com/neighborhood/west-meade/">
-<meta property="og:title" content="West Meade Homes &amp; Real Estate | Eden Grove">
-<meta property="og:description" content="A guide to West Meade, Nashville — the setting, the market, the housing stock, what is nearby and how long it takes to get anywhere. From Eden Grove.">
+<meta property="og:url" content="https://edengrovetennessee.com/sellers.html">
+<meta property="og:title" content="Selling Luxury Property in Nashville | Eden Grove">
+<meta property="og:description" content="How Eden Grove sells above $2M in Middle Tennessee: Compass Private Exclusives, three-phase launch, pricing where comps are thin, and straight answers on fee, timeline and net proceeds.">
 <meta property="og:image" content="https://edengrovetennessee.com/media/og-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="West Meade Homes &amp; Real Estate | Eden Grove">
-<meta name="twitter:description" content="A guide to West Meade, Nashville — the setting, the market, the housing stock, what is nearby and how long it takes to get anywhere. From Eden Grove.">
+<meta name="twitter:title" content="Selling Luxury Property in Nashville | Eden Grove">
+<meta name="twitter:description" content="How Eden Grove sells above $2M in Middle Tennessee: Compass Private Exclusives, three-phase launch, pricing where comps are thin, and straight answers on fee, timeline and net proceeds.">
 <meta name="twitter:image" content="https://edengrovetennessee.com/media/og-card.jpg">
-<link rel="icon" href="../../favicon.svg" type="image/svg+xml">
-<link rel="icon" href="../../favicon.ico" sizes="any">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="icon" href="favicon.ico" sizes="any">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "Place",
-  "name": "West Meade",
-  "url": "https://edengrovetennessee.com/neighborhood/west-meade/",
-  "address": {
-    "@type": "PostalAddress",
-    "addressLocality": "West Meade",
-    "addressRegion": "TN",
-    "addressCountry": "US"
-  },
-  "description": "A guide to West Meade, Nashville \u2014 the setting, the market, the housing stock, what is nearby and how long it takes to get anywhere. From Eden Grove."
+  "@type": "WebPage",
+  "name": "Selling Luxury Property in Nashville | Eden Grove",
+  "description": "How Eden Grove sells above $2M in Middle Tennessee: Compass Private Exclusives, three-phase launch, pricing where comps are thin, and straight answers on fee, timeline and net proceeds.",
+  "url": "https://edengrovetennessee.com/sellers.html",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Eden Grove",
+    "url": "https://edengrovetennessee.com/"
+  }
 }
 </script>
 </head>
 <body>
 
-<!-- ==========================================================================
-     LUXURY AREA — West Meade
-     Figures and place names come from the sources named on the page. Refresh
-     the market figure before this page is used with a client.
-     ========================================================================== -->
-
-<section class="p-hero" id="top">
-  <img class="hero__media" src="../../media/hood-2.jpg" alt="" aria-hidden="true">
-  <div class="hero__scrim"></div>
   <header class="bar">
-    <a class="mark reveal" href="../../index.html" aria-label="Eden Grove — home">Eden&nbsp;Grove</a>
+    <a class="mark reveal" href="/" aria-label="Eden Grove — home">Eden&nbsp;Grove</a>
 
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav">
       <i></i><i></i>
@@ -1048,241 +1392,259 @@ blockquote{
 
     <nav class="nav reveal" id="nav" aria-label="Primary">
       <div class="nav__item has-sub">
-        <a class="nav__link" href="../../properties.html" aria-expanded="false" aria-haspopup="true">
+        <a class="nav__link" href="properties.html" aria-expanded="false" aria-haspopup="true">
           Residential<i class="caret" aria-hidden="true"></i>
         </a>
         <div class="sub">
-          <a href="../../properties.html">Properties</a>
-          <a href="../../sellers.html">Sellers</a>
-          <a href="../../buyers.html">Buyers</a>
-          <a href="../../neighborhoods.html">Neighborhoods</a>
-          <a href="../../marketing.html">Marketing</a>
-          <a href="../../past-transactions.html">Past Transactions</a>
+          <a href="properties.html">Properties</a>
+          <a href="sellers.html">Sellers</a>
+          <a href="buyers.html">Buyers</a>
+          <a href="neighborhoods.html">Neighborhoods</a>
+          <a href="marketing.html">Marketing</a>
+          <a href="past-transactions.html">Past Transactions</a>
         </div>
       </div>
       <div class="nav__item">
-        <a class="nav__link" href="../../team.html">Team</a>
+        <a class="nav__link" href="team.html">Team</a>
       </div>
       <div class="nav__item">
-        <a class="nav__link" href="../../contact.html">Contact</a>
+        <a class="nav__link" href="contact.html">Contact</a>
       </div>
     </nav>
   </header>
 
-  <div class="p-hero__body">
-    <div class="reveal" style="animation-delay:.5s">
-      <span class="p-hero__status">Luxury Area</span>
-      <h1>West Meade<br>Nashville, Tennessee</h1>
-      <p class="p-hero__price">Key Details</p>
-      <a class="p-hero__cta" href="#enquire">Request Early Access</a>
-    </div>
+
+
+<section class="sb-hero sb-hero--empty" id="top">
+  <div class="sb-hero__media" data-par="12"></div>
+  <div class="sb-hero__scrim"></div>
+  <div class="sb-hero__inner" data-rise data-in>
+    <p class="sb-hero__eyebrow">For Sellers</p>
+    <h1><span class="ln"><i>Sell it at the level</i></span><span class="ln"><i>it was built to</i></span></h1>
+    <p class="sb-hero__stand">The three-phase launch, what a Private Exclusive actually commits you to, how we price a house with no true comparables &mdash; and the questions most agents&rsquo; pages leave out.</p>
   </div>
+  <span class="sb-cue" aria-hidden="true"></span>
+  <p class="sb-hero__brief"><b>Photograph 01</b>A finished Eden Grove house at dusk, interior lights on, shot wide and slightly low. Landscape, at least 2400px across &mdash; it runs full-bleed behind this type. <code>sb-1.jpg</code></p>
 </section>
 
-<section class="p-sec" aria-labelledby="expect-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">The Area</p>
-    <h2 id="expect-h">What to Expect</h2>
+<section class="p-sec" aria-labelledby="ph-h">
+  <div class="p-lede" data-rise>
+    <p class="p-eyebrow">The Strategy</p>
+    <h2 id="ph-h">Three Phases, One Launch</h2>
   </div>
+  <div data-stagger>
   <div class="n-blocks">
-    <div class="n-block">
+    <div class="n-block" data-rise>
       <span class="n-block__n">01</span>
-      <div><h3>The Setting</h3><p>West Meade sits on Nashville's west side about ten miles from downtown, bounded by Charlotte Avenue to the north and Harding Pike to the east. It was carved from the western portion of the Belle Meade Plantation, sold in 1944 as the 1,700-acre West Meade Farms and developed for housing after the war. It adjoins the city of Belle Meade and the Warner Parks.</p></div>
+      <div><h3>Phase One &mdash; Private Exclusive</h3><p>Your house is marketed inside the Compass network only. It does not go to the MLS, it does not syndicate to the portals, and it accrues no public days on market and no price-change history. You find out what the market thinks of your price before that opinion becomes part of the permanent record. Showings are private and scheduled around you rather than around an open house.</p></div>
     </div>
-    <div class="n-block">
+    <div class="n-block" data-rise>
       <span class="n-block__n">02</span>
-      <div><h3>The Luxury Market</h3><p>Thirty-two homes closed above $2M, at a median of $3,225,000, with an area record of $8,500,000 on Bresslyn Rd. The split between old and new is stark &mdash; houses built 2020 or later returned a $3,395,000 median at $572 per square foot, against $1,050,000 and $378 for the pre-1980 originals. Most lots run an acre or more.</p>
-        <p class="n-src">RealTracs MLS via nashvillehome.guru, rolling twelve months to August 2026</p></div>
+      <div><h3>Phase Two &mdash; Coming Soon</h3><p>The listing goes public on Compass.com and Redfin.com, but still not on the MLS. Reach widens sharply while days on market stay at zero. Note that this phase reaches Compass and Redfin &mdash; not Zillow, Realtor.com or Homes.com. Anyone telling you Coming Soon means &ldquo;everywhere&rdquo; is overselling it.</p></div>
     </div>
-    <div class="n-block">
+    <div class="n-block" data-rise>
       <span class="n-block__n">03</span>
-      <div><h3>The Houses</h3><p>The core stock is masonry-veneer ranch houses on large lots, built through the middle and later twentieth century after the farm was subdivided. Newer construction has increasingly replaced original ranches with larger custom homes.</p>
-        <ul>
-          <li>Mid-century ranch houses</li>
-          <li>Acre-plus wooded lots</li>
-          <li>Newer custom estate rebuilds</li>
-          <li>Mature tree canopy</li>
-        </ul></div>
+      <div><h3>Phase Three &mdash; Active</h3><p>The listing goes live on RealTracs and every portal, priced on what the first two phases taught us rather than on a guess. The clock starts here, and it starts with a house that has already been seen by the agents most likely to bring the buyer.</p></div>
+    </div>
+  </div>
+  </div>
+</section>
+
+<section class="cine cine--empty" data-rise>
+  <div class="cine__field" aria-hidden="true"></div>
+  <div class="cine__q">
+    <blockquote>A house that launches at the wrong price carries that mistake in its history forever.</blockquote>
+    <span class="cine__rule"></span>
+    <div class="cine__brief">
+      <span class="cine__brief-n">02</span>
+      <h4>Architectural Detail at Dusk</h4>
+      <p>A tight, low-light frame of one considered element &mdash; a stone return, a steel window reveal, the underside of a porch beam &mdash; on a finished Eden Grove house with the interior lights on. Dark, close, expensive. Not a whole elevation.</p>
+      <code>sb-2.jpg</code>
     </div>
   </div>
 </section>
 
-<section class="p-sec p-sec--tight" aria-labelledby="gal-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Gallery</p>
-    <h2 id="gal-h">The Area</h2>
+<section class="p-sec p-sec--tight" aria-labelledby="ev-h">
+  <div class="p-lede" data-rise>
+    <p class="p-eyebrow">The Evidence</p>
+    <h2 id="ev-h">What the Data Says &mdash; Both Sides</h2>
   </div>
-  <div class="p-gal">
-    <div class="p-gal__row p-gal__row--pair">
-      <a class="p-shot" href="../../media/west-meade-1.jpg">
-        <img src="../../media/west-meade-1.jpg" loading="lazy" decoding="async"
-             alt="The wisteria arbor at Cheekwood, looking out over the wooded hills"></a>
-      <div class="p-gal__stack">
-        <a class="p-shot" href="../../media/west-meade-2.jpg">
-          <img src="../../media/west-meade-2.jpg" loading="lazy" decoding="async"
-               alt="A shallow creek running through hardwoods in the Warner Parks"></a>
-        <a class="p-shot" href="../../media/west-meade-3.jpg">
-          <img src="../../media/west-meade-3.jpg" loading="lazy" decoding="async"
-               alt="A limestone waterfall on a wooded trail near West Meade"></a>
-      </div>
+  <div data-stagger>
+  <div class="sb-stats" data-stagger>
+    <div class="sb-stat" data-rise>
+      <span class="sb-stat__n" data-count="4.6" data-pre="" data-suf="%" data-dec="1">4.6%</span>
+      <span class="sb-stat__l">Higher Closing Price</span>
+      <span class="sb-stat__s">Against comparable Compass listings launched publicly</span>
     </div>
-    <div class="p-gal__row p-gal__row--1" style="margin-top:clamp(.5rem,1vw,1.1rem)">
-      <a class="p-shot" href="../../media/west-meade-4.jpg">
-        <img src="../../media/west-meade-4.jpg" loading="lazy" decoding="async"
-             alt="The stone allee at Percy Warner Park looking down the vista"></a>
+    <div class="sb-stat" data-rise>
+      <span class="sb-stat__n" data-count="34" data-pre="" data-suf="%" data-dec="0">34%</span>
+      <span class="sb-stat__l">Faster to Contract</span>
+      <span class="sb-stat__s">Median days from launch to executed contract</span>
+    </div>
+    <div class="sb-stat" data-rise>
+      <span class="sb-stat__n" data-count="29" data-pre="" data-suf="%" data-dec="0">29%</span>
+      <span class="sb-stat__l">Less Likely to Cut</span>
+      <span class="sb-stat__s">Probability of taking a public price reduction</span>
+    </div>
+  </div>
+  <p class="n-src n-src--mid" data-rise>Compass, methodology footnote to its Private Exclusives page. Hedonic regression across 70,809 closed transactions in the year to 31 March 2026.</p>
+  <div class="n-blocks">
+    <div class="n-card" data-rise><h3>What Compass Publishes</h3><p>Those three figures come from a hedonic regression across 70,809 closed Compass transactions in the year to 31 March 2026, controlling for more than fifty variables, with a 95% confidence interval of 4.2% to 4.9% on the first of them.</p></div>
+    <div class="n-card" data-rise><h3>What the Critics Publish</h3><p>Zillow&rsquo;s research finds off-MLS sellers net roughly 1.3% to 1.5% less. A Bright MLS and Drexel study puts the gap far wider. These studies measure different populations &mdash; much off-MLS volume nationally is distressed, family or investor sale, which is not what a Compass Private Exclusive is &mdash; but the direction of the finding is real and you should know it exists.</p></div>
+    <div class="n-card" data-rise><h3>What We Think</h3><p>Both sides have a commercial interest in their own numbers, and Compass&rsquo;s study compares Compass listings to other Compass listings rather than to the market. What is not in dispute is the mechanism: a house that launches publicly at the wrong price carries that mistake in its history forever. Phasing exists to stop that. Whether it is right for your house depends on your house.</p></div>
+  </div>
+  </div>
+  <p class="n-src n-src--mid" data-rise>Zillow research, 2025 and 2026; Bright MLS and Drexel University. Both sets of figures are published by parties with a commercial interest in the answer.</p>
+</section>
+
+<section class="p-sec p-sec--tight" aria-labelledby="mc-h">
+  <div class="p-lede" data-rise>
+    <p class="p-eyebrow">The Mechanics</p>
+    <h2 id="mc-h">What You Are Actually Signing</h2>
+  </div>
+  <div data-stagger>
+  <div class="n-blocks">
+    <div class="n-card" data-rise><h3>It Is an Office Exclusive</h3><p>In the language of the rules, a Private Exclusive is an office exclusive &mdash; a listing the seller has directed not be disseminated through the MLS. It is not the same as a &ldquo;delayed marketing&rdquo; listing, which does go into the MLS with only syndication held back. The distinction matters and is frequently blurred.</p></div>
+    <div class="n-card" data-rise><h3>You Sign for It</h3><p>RealTracs requires a written, signed instruction from you before a listing can be held off the MLS, filed with them within 48 hours. You are acknowledging in writing what MLS exposure you are choosing to waive. We will not do this on a handshake and no one else should either.</p></div>
+    <div class="n-card" data-rise><h3>Public Marketing Ends It</h3><p>Under the Clear Cooperation Policy, once a property is publicly marketed it must go to the MLS within one business day. A yard sign, a public social post with a price, a portal listing &mdash; any of those ends Phase One. Private means private.</p></div>
+  </div>
+  </div>
+  <p class="n-src n-src--mid" data-rise>NAR Policy Statement 8.14 and the Clear Cooperation Policy; RealTracs Rules, 1 April 2025. Rules change &mdash; we will confirm the current position in writing before you sign.</p>
+</section>
+
+<section class="sb-split">
+  <figure class="sb-split__fig" data-rise>
+    <div class="sb-par" data-par="7">
+      <div class="sb-slot sb-slot--fill">
+          <span class="sb-slot__n">03</span>
+          <div><h4>The Crew Working</h4><p>Mid-shoot, inside a finished house &mdash; gimbal or cinema camera in frame, a light stand, someone actually operating. It should look like a production, not a phone. Vertical or square crops best here.</p><code>sb-3.jpg</code></div>
+        </div>
+    </div>
+  </figure>
+  <div class="sb-split__body" data-rise style="--d:120ms">
+    <p class="sb-split__k">Our Process</p>
+    <h3>We Produce, Then We List</h3>
+    <p>Film, architectural photography, a website of its own, print, and a release planned rather than posted. Nothing goes live until the assets are finished.</p><p>A first showing happens on a screen, and at this level the screen is the only showing most buyers will ever give you. That is the whole argument for treating the launch as a production with a date rather than a task with a deadline.</p>
+  </div>
+</section>
+
+<section class="sb-split">
+  <div class="sb-split__body" data-rise style="--d:120ms">
+    <p class="sb-split__k">Our Process</p>
+    <h3>We Underwrite the House Before We Price It</h3>
+    <p>Above $2M in Middle Tennessee there are often no true comparables within twelve months. In Belle Meade, Forest Hills and the gated Williamson communities a single year may produce two or three arguable comps, none of them close.</p><p>So we build the number from the actual sales record of your specific community rather than from a county median &mdash; which is why every area and development page on this site publishes closings by address.</p>
+  </div>
+  <figure class="sb-split__fig" data-rise>
+    <div class="sb-par" data-par="7">
+      <div class="sb-slot sb-slot--fill">
+          <span class="sb-slot__n">04</span>
+          <div><h4>The Print Piece</h4><p>The brochure or property folio laid on a dark surface, raking light, shallow depth of field. Paper stock and the debossed mark should read. One object, shot like a still life.</p><code>sb-4.jpg</code></div>
+        </div>
+    </div>
+  </figure>
+</section>
+
+<section class="cine cine--empty" data-rise>
+  <div class="cine__field" aria-hidden="true"></div>
+  <div class="cine__q">
+    <blockquote>The questions most pages avoid are the ones you are actually asking.</blockquote>
+    <span class="cine__rule"></span>
+    <div class="cine__brief">
+      <span class="cine__brief-n">05</span>
+      <h4>An Empty Finished Room</h4>
+      <p>A completed interior with no furniture and no people &mdash; late afternoon light across a floor, tall windows, a staircase or a fireplace wall. Quiet and architectural. This is the breath before the hardest section on the page.</p>
+      <code>sb-5.jpg</code>
     </div>
   </div>
 </section>
 
-<section class="p-sec p-sec--tight" aria-labelledby="do-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="do-h">Things to Do</h2>
+<section class="p-sec p-sec--tight" aria-labelledby="ha-h">
+  <div class="p-lede" data-rise>
+    <p class="p-eyebrow">Straight Answers</p>
+    <h2 id="ha-h">The Questions Most Pages Avoid</h2>
   </div>
-  <div class="n-cards">
-    <div class="n-card">
-      <h3>Warner Parks</h3>
-      <p>Percy and Edwin Warner together span more than 3,100 acres of forest and field about nine miles from downtown, opened in 1927 on land given by the Warner family. There are over sixty miles of trail, twenty-plus miles of paved scenic roadway, two equestrian trails and a nature center. The main entrance sits at the end of Belle Meade Boulevard beneath a monumental limestone stair, and the steeplechase course has run the Iroquois each May since 1941.</p>
+  <div data-stagger>
+  <div class="n-blocks">
+    <div class="n-card" data-rise><h3>What It Costs</h3><p>There is no standard commission and anyone who tells you there is has not read the last two years. Ours is agreed in writing before we start, and the number depends on the property, the work it needs and whether you are also buying. We will show you a net proceeds figure &mdash; what actually reaches you after commission, transfer tax, title and payoff &mdash; before you sign anything, not after.</p></div>
+    <div class="n-card" data-rise><h3>Who Pays the Buyer&rsquo;s Agent</h3><p>Since 2024 this is negotiated rather than assumed, and it is no longer published in the MLS. Most sellers at this level still offer something, because a buyer who has to fund their own agent out of pocket has less to spend on your house. It is your decision and we will model both ways.</p></div>
+    <div class="n-card" data-rise><h3>What Happens If It Does Not Sell</h3><p>We agree a review point before launch &mdash; a date, not a feeling. If the showings are not converting we look at price, presentation and audience in that order, and we tell you which one we think it is. Withdrawing and relaunching is sometimes the right answer and we will say so if it is.</p></div>
+    <div class="n-card" data-rise><h3>What You Will Actually Pay at Closing</h3><p>Tennessee charges transfer tax at $0.37 per $100 of price &mdash; $11,100 on a $3M sale &mdash; and under the standard Tennessee contract that falls to the buyer, though it is negotiable. In Middle Tennessee the seller customarily buys the owner&rsquo;s title policy on a resale. Property taxes run in arrears and you credit the buyer at closing.</p></div>
+  </div>
+  </div>
+</section>
+
+<section class="sb-split">
+  <figure class="sb-split__fig" data-rise>
+    <div class="sb-par" data-par="7">
+      <div class="sb-slot sb-slot--fill">
+          <span class="sb-slot__n">06</span>
+          <div><h4>Aerial Over an Estate Street</h4><p>Drone, moderate height, early morning or late evening &mdash; a Williamson County estate street where several large houses and their lots read in one frame. It has to show scale and spacing, not a single roof.</p><code>sb-6.jpg</code></div>
+        </div>
     </div>
-    <div class="n-card">
-      <h3>Cheekwood Estate &amp; Gardens</h3>
-      <p>A 55-acre estate built on the Maxwell House coffee fortune, its limestone mansion designed by Bryant Fleming and finished in 1932; the family opened it as a botanical garden and art museum in 1960. Visitors tour the house and its American art collections, walk formal and woodland gardens, and follow a sculpture trail set with ten works through the grounds.</p>
-    </div>
-    <div class="n-card">
-      <h3>Belle Meade Historic Site &amp; Winery</h3>
-      <p>The 1853 Greek Revival mansion anchors more than thirty acres of the former thoroughbred farm on Harding Pike, with the 1790s Harding cabin, carriage house, stable and dairy open to walk. Costumed guides lead mansion tours every thirty to forty-five minutes, and admission includes a tasting at the winery.</p>
+  </figure>
+  <div class="sb-split__body" data-rise style="--d:120ms">
+    <p class="sb-split__k">The Market</p>
+    <h3>Where We Actually Are</h3>
+    <p>Brentwood single-family inventory above $2M has been running near twelve months of supply against a four to six month balance point. Sixty-eight per cent of Davidson County sales above $2M closed below asking, at a median $150,000 under list.</p><p>And yet new construction in Williamson County frequently sells at or before completion. At Rosebrooke the median closing was exactly 100% of asking across 25 sales. The market is discriminating, not slow &mdash; which is why the entry price is the whole game.</p>
+  </div>
+</section>
+
+<section class="p-sec p-sec--tight" aria-labelledby="mk-h">
+  <div class="p-lede" data-rise>
+    <p class="p-eyebrow">The Market</p>
+    <h2 id="mk-h">The Numbers Behind That</h2>
+  </div>
+  <div data-stagger>
+  <div class="n-blocks">
+    <div class="n-card" data-rise><h3>It Is Not a Seller&rsquo;s Market at the Top</h3><p>Brentwood single-family inventory has been running near twelve months of supply against a four to six month balance point, and 68% of Davidson County sales above $2M closed below asking, at a median $150,000 under list. Anyone promising you a quick sale above ask is not looking at the data.</p></div>
+    <div class="n-card" data-rise><h3>But the Right Product Still Clears</h3><p>New construction in Williamson County frequently sells at or before completion &mdash; zero days on market. At Rosebrooke the median closing was exactly 100% of asking across 25 sales. The market is discriminating, not slow.</p></div>
+    <div class="n-card" data-rise><h3>Which Is Why Pricing Is the Whole Game</h3><p>In a market where most houses close under ask, the ones that do not are the ones that entered at a number the market recognised. Phasing is how you find that number without paying for the experiment in public.</p></div>
+  </div>
+  </div>
+  <p class="n-src n-src--mid" data-rise>RealTracs via nashvillehome.guru and granthammond.com, 2026.</p>
+</section>
+
+<section class="cine cine--empty" data-rise>
+  <div class="cine__field" aria-hidden="true"></div>
+  <div class="cine__q">
+    <blockquote>Sell it at the level it was built to.</blockquote>
+    <span class="cine__rule"></span>
+    <div class="cine__brief">
+      <span class="cine__brief-n">07</span>
+      <h4>Twilight Streetscape</h4>
+      <p>Blue hour on a luxury street &mdash; two or three houses, warm windows, sky still holding colour. The closing image of the page, so it should feel like an ending rather than an establishing shot.</p>
+      <code>sb-7.jpg</code>
     </div>
   </div>
 </section>
 
-<section class="p-sec p-sec--tight" aria-labelledby="dine-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="dine-h">Dining</h2>
+<section class="p-sec p-sec--tight" aria-labelledby="cta-h">
+  <div class="p-lede" data-rise>
+    <p class="p-eyebrow">Next</p>
+    <h2 id="cta-h">Start With a Conversation</h2>
   </div>
-  <div class="n-cards">
-    <div class="n-card">
-      <h3>Sperry&rsquo;s</h3>
-      <p>A Nashville institution on Harding Pike, open since 1974 when the Thomas brothers built it on the site of a former garden centre; it turned fifty in 2024 and is still family run. The dining room has been deliberately left unchanged — dark stained glass, dark wood, an English tavern feel — and it remains a special-occasion steak and seafood room. It served the city's first salad bar, and is known for crab cakes, prime rib and twice-baked potatoes.</p>
-    </div>
-    <div class="n-card">
-      <h3>Sam&rsquo;s Place</h3>
-      <p>A neighbourhood grill on Highway 100 near Percy Warner Park, built for game day with more than forty high-definition screens and a first-come, first-served policy. Indoor and patio seating, known for pizza, burgers and ribs, serving lunch, dinner, weekend brunch and happy hour.</p>
-    </div>
-    <div class="n-card">
-      <h3>Caff&egrave; Nonna</h3>
-      <p>A Sylvan Park Italian room on Murphy Road, opened in 1999 by chef-owner Daniel Maggipinto and built on recipes from his grandmother's kitchen in the North Bronx. Small and unpretentious, seating around fifty, with two patios including a covered one. The signature is the Lasagna Nonna — butternut squash with cheese sauces, marinara and spinach — alongside the lamb shank.</p>
-    </div>
+  <div data-stagger>
+  <div class="n-more" data-rise>
+    <a class="n-morelink" href="contact.html">Request a Valuation</a>
+    <a class="n-morelink" href="marketing.html">See the Marketing</a>
+    <a class="n-morelink" href="past-transactions.html">Past Transactions</a>
+  </div>
   </div>
 </section>
-
-<section class="p-sec p-sec--tight" aria-labelledby="club-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="club-h">Golf &amp; Clubs</h2>
-  </div>
-  <div class="n-cards n-cards--1">
-    <div class="n-card">
-      <h3>Belle Meade Country Club</h3>
-      <p>Founded in 1901 and among Tennessee's oldest private clubs, with an eighteen-hole par-72 course shaped by a succession of architects — Tom Bendelow in 1912, Donald Ross in 1921, Robert Trent Jones Sr. in 1951 and a Rees Jones restoration in 2004. It plays roughly 6,885 yards over Bermuda fairways and bentgrass greens. Clubhouse, tennis, driving range and teaching professionals; membership is private.</p>
-    </div>
-  </div>
-</section>
-
-<section class="p-sec" aria-labelledby="loc-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Location</p>
-    <h2 id="loc-h">West Meade</h2>
-  </div>
-  <div class="p-map">
-    <p class="p-map__addr">West Meade, Nashville, Tennessee</p>
-    <div class="p-map__frame">
-      <iframe title="Map — West Meade"
-        src="https://www.google.com/maps?q=West%20Meade%2C%20Nashville%2C%20Tennessee&amp;output=embed"
-        loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-    <p class="p-map__links">
-      <a class="prop__cta" target="_blank" rel="noopener"
-         href="https://www.google.com/maps/dir/?api=1&amp;destination=West%20Meade%2C%20Nashville%2C%20Tennessee">Get directions
-        <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-          <path d="M2 1l3 3-3 3"/></svg></a>
-    </p>
-  </div>
-</section>
-
-<section class="p-sec p-sec--tight" aria-labelledby="time-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Getting Around</p>
-    <h2 id="time-h">Commute Times</h2>
-  </div>
-  <dl class="n-times">
-    <div class="n-time"><dt>Downtown</dt><dd>17 min</dd></div>
-    <div class="n-time"><dt>Green Hills</dt><dd>15 min</dd></div>
-    <div class="n-time"><dt>Brentwood</dt><dd>25 min</dd></div>
-    <div class="n-time"><dt>BNA Airport</dt><dd>25–30 min</dd></div>
-  </dl>
-  <p class="n-src n-src--mid">Approximate driving times, traffic dependent.</p>
-</section>
-
-<section class="p-sec p-sec--tight" aria-labelledby="more-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Middle Tennessee</p>
-    <h2 id="more-h">Explore Other Areas</h2>
-  </div>
-  <div class="n-more">
-    <a class="n-tile" href="../belle-meade/">
-      <img src="../../media/hood-1.jpg" alt="" loading="lazy" decoding="async">
-      <span class="n-tile__veil"></span><span class="n-tile__name">Belle Meade</span>
-    </a>
-    <a class="n-tile" href="../green-hills/">
-      <img src="../../media/hood-3.jpg" alt="" loading="lazy" decoding="async">
-      <span class="n-tile__veil"></span><span class="n-tile__name">Green Hills</span>
-    </a>
-    <a class="n-tile" href="../forest-hills/">
-      <img src="../../media/hood-4.jpg" alt="" loading="lazy" decoding="async">
-      <span class="n-tile__veil"></span><span class="n-tile__name">Forest Hills</span>
-    </a>
-    <a class="n-tile" href="../downtown/">
-      <img src="../../media/hood-11.jpg" alt="" loading="lazy" decoding="async">
-      <span class="n-tile__veil"></span><span class="n-tile__name">Downtown</span>
-    </a>
-  </div>
-</section>
-
-<section class="p-sec p-sec--tight" id="enquire" aria-labelledby="enq-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Private Access</p>
-    <h2 id="enq-h">Before the General Public</h2>
-    <p>Homes in West Meade often trade before they are ever listed. Ask to be told first.</p>
-  </div>
-  <form class="p-form" id="enqForm" novalidate>
-    <label class="visually-hidden" for="enqName">Name</label>
-    <input id="enqName" name="name" placeholder="Name" autocomplete="name" required>
-    <label class="visually-hidden" for="enqEmail">Email</label>
-    <input id="enqEmail" name="email" type="email" placeholder="Email" autocomplete="email" required>
-    <label class="visually-hidden" for="enqPhone">Phone</label>
-    <input id="enqPhone" name="phone" type="tel" placeholder="Phone" autocomplete="tel">
-    <button type="submit">Request Access</button>
-  </form>
-  <p class="p-note p-lede" id="enqNote" role="status"></p>
-</section>
-
 <footer class="foot">
   <div class="foot__inner">
-    <a class="foot__mark" href="../../index.html" aria-label="Eden Grove — home">Eden&nbsp;Grove</a>
+    <a class="foot__mark" href="index.html" aria-label="Eden Grove — home">Eden&nbsp;Grove</a>
 
     <div class="foot__cols">
       <nav aria-labelledby="foot-sitemap">
         <p class="foot__h" id="foot-sitemap">Sitemap</p>
         <ul class="foot__list">
-          <li><a href="../../index.html">Home</a></li>
-          <li><a href="../../properties.html">Residential</a></li>
-          <li><a href="../../sellers.html">Sellers</a></li>
-          <li><a href="../../buyers.html">Buyers</a></li>
-          <li><a href="../../team.html">Team</a></li>
-          <li><a href="../../contact.html">Contact</a></li>
-          <li><a href="../../privacy.html">Privacy</a></li>
-          <li><a href="../../terms.html">Terms</a></li>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="properties.html">Residential</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="privacy.html">Privacy</a></li>
+          <li><a href="terms.html">Terms</a></li>
         </ul>
       </nav>
 
@@ -1475,5 +1837,110 @@ addEventListener("keydown", e => {
   } else if (document.body.classList.contains("menu-open")) closeMenu();
 });
 </script>
+
+<script>
+/* ==========================================================================
+   SELLERS / BUYERS — cinematic layer
+   One IntersectionObserver, one rAF loop, one counter. Everything short
+   circuits under prefers-reduced-motion, and the reduced path sets the final
+   state explicitly rather than leaving elements at opacity 0 forever — which
+   is the classic way a reveal system hides a whole page from someone.
+   ========================================================================== */
+(() => {
+  const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const rises  = [...document.querySelectorAll("[data-rise]")];
+
+  /* ---- stagger ----
+     Siblings inside a [data-stagger] group step in one after another instead
+     of arriving as a slab. Capped, because past about half a second the reader
+     has already started reading and the late arrivals only distract. */
+  document.querySelectorAll("[data-stagger]").forEach(group => {
+    [...group.children].filter(c => c.hasAttribute("data-rise"))
+      .forEach((c, i) => c.style.setProperty("--d", Math.min(i * 95, 480) + "ms"));
+  });
+
+  const counters = [...document.querySelectorAll("[data-count]")];
+  const settle = el => {
+    const dec = +(el.dataset.dec || 0), to = +el.dataset.count;
+    el.textContent = (el.dataset.pre || "")
+      + to.toLocaleString("en-US", {minimumFractionDigits:dec, maximumFractionDigits:dec})
+      + (el.dataset.suf || "");
+  };
+
+  /* Count up on entry. The value is in the attribute and the final state is
+     written by settle(), so the number is correct even if the animation is
+     interrupted, skipped, or never runs at all. */
+  const count = el => {
+    if (el.dataset.counted) return;            // one loop per figure, ever
+    el.dataset.counted = "1";
+    const to = +el.dataset.count, DUR = 1500, t0 = performance.now();
+    let done = false;
+    /* settle() is the only thing that writes the final value, and it can only
+       run once. These are legal and financial thresholds — a jumbo limit that
+       reads $1,029,039 because the tab was throttled mid-animation is simply a
+       wrong number on the page — so a timer guarantees it lands even if the
+       frames never arrive, and the loop stops the moment it has. */
+    const finish = () => { if (done) return; done = true; settle(el) };
+    setTimeout(finish, DUR + 150);
+
+    const step = now => {
+      if (done) return;
+      const p = Math.min((now - t0) / DUR, 1);
+      if (p >= 1) return finish();
+      const e = 1 - Math.pow(1 - p, 3);                     // ease out cubic
+      const dec = +(el.dataset.dec || 0);
+      el.textContent = (el.dataset.pre || "")
+        + (to * e).toLocaleString("en-US", {minimumFractionDigits:dec, maximumFractionDigits:dec})
+        + (el.dataset.suf || "");
+      requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  };
+
+  if (reduce) {
+    rises.forEach(el => el.setAttribute("data-in", ""));
+    counters.forEach(settle);
+  } else {
+    counters.forEach(el => el.textContent = (el.dataset.pre || "") + "0" + (el.dataset.suf || ""));
+
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.setAttribute("data-in", "");
+        e.target.querySelectorAll?.("[data-count]").forEach(count);
+        if (e.target.hasAttribute("data-count")) count(e.target);
+        io.unobserve(e.target);                 // reveals are one-way, never replayed
+      });
+    }, {threshold:.12, rootMargin:"0px 0px -6% 0px"});
+
+    rises.forEach(el => io.observe(el));
+
+    /* ---- the drift ----
+       Photography counter-scrolls slightly against the page. data-par is the
+       travel in percent of the element's own height; the wrapper is inset
+       beyond its frame in CSS so the edges never pull into view. */
+    const pars = [...document.querySelectorAll("[data-par]")];
+    if (pars.length) {
+      let queued = false;
+      const run = () => {
+        queued = false;
+        const vh = innerHeight;
+        for (const el of pars) {
+          const host = el.parentElement.getBoundingClientRect();
+          if (host.bottom < -240 || host.top > vh + 240) continue;   // offscreen, skip
+          const mid = (host.top + host.height / 2 - vh / 2) / vh;    // -1 .. 1
+          const k = parseFloat(el.dataset.par) || 8;
+          el.style.transform = "translate3d(0," + (mid * k).toFixed(2) + "%,0)";
+        }
+      };
+      const queue = () => { if (!queued) { queued = true; requestAnimationFrame(run) } };
+      addEventListener("scroll", queue, {passive:true});
+      addEventListener("resize", queue);
+      run();
+    }
+  }
+})();
+</script>
+
 </body>
 </html>
