@@ -609,6 +609,9 @@ blockquote{
 }
 
 
+
+
+/* LOCKUP:START */
 /* ==========================================================================
    OPENING LOCKUP — EDEN GROVE | Compass
    Homepage only, every visit. Skippable on any key, click or scroll, and it
@@ -632,11 +635,14 @@ blockquote{
   opacity:0;transform:translateY(.5em);
   animation:lockIn 1.5s var(--rise) forwards;
 }
+/* Set the way the header wordmark is set — uppercase, widely tracked. The
+   lockup is the first thing anyone sees; it cannot disagree with the mark
+   sitting in the bar two seconds later. */
 .lock__eg{
   font-family:var(--display);font-weight:300;color:#fff;
   font-size:clamp(1.5rem,1rem + 2.6vw,3.1rem);line-height:1;
-  letter-spacing:.22em;text-indent:.22em;white-space:nowrap;
-  animation-delay:.25s;
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+  white-space:nowrap;animation-delay:.25s;
 }
 
 /* The divider draws itself between the two names rather than appearing. */
@@ -657,7 +663,8 @@ img.lock__compass{
 .lock__compass--type{
   font-family:var(--ui);font-weight:300;color:#fff;
   font-size:clamp(1.5rem,1rem + 2.6vw,3.1rem);line-height:1;
-  letter-spacing:.14em;text-indent:.14em;white-space:nowrap;
+  letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;
+  white-space:nowrap;
 }
 
 .lock__skip{
@@ -687,6 +694,7 @@ img.lock__compass{
   .lock__bar{animation:none;transform:none}
   #lock{transition:opacity .3s linear,visibility 0s linear .3s}
 }
+/* LOCKUP:END */
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/">
 <meta property="og:type" content="website">
@@ -753,6 +761,7 @@ img.lock__compass{
 </head>
 <body>
 
+<!-- LOCKUP:START -->
 <!-- opening lockup — homepage only; see build_lockup.py -->
 <div id="lock" role="presentation">
   <div class="lock__row">
@@ -762,6 +771,12 @@ img.lock__compass{
   </div>
   <span class="lock__skip">Click to enter</span>
 </div>
+<!-- LOCKUP:END -->
+
+
+
+
+
 
 
 <section class="hero" id="top">
@@ -1150,6 +1165,10 @@ addEventListener("keydown", e => {
 });
 </script>
 
+
+
+
+<!-- LOCKUP:JS:START -->
 <script>
 /* ---- opening lockup ----
    Holds for a beat after the names have landed, then lifts. Any key, click,
@@ -1195,5 +1214,6 @@ addEventListener("keydown", e => {
   setTimeout(lift, HOLD);
 })();
 </script>
+<!-- LOCKUP:JS:END -->
 </body>
 </html>
