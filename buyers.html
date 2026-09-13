@@ -1471,12 +1471,11 @@ blockquote{
   </div>
   <div data-stagger>
   <div class="n-blocks">
-    <div class="n-card" data-rise><h3>You Sign Something Before You Tour</h3><p>Since 2024 a written buyer representation agreement is required before we can show you a house. It states what we do, how long it runs, and what we are paid. Read the term and the exit &mdash; those are the two clauses that matter most and the two most people skip.</p></div>
+    <div class="n-card" data-rise><h3>You Sign Something Before You Tour</h3><p>Since 2024 a written buyer representation agreement is required before we can show you a house. It states what we do, how long it runs, and what we are paid. Read the term and the exit &mdash; those are the two clauses that matter most and the two most people skip. Nothing on this page is legal advice; your agreement is what governs.</p></div>
     <div class="n-card" data-rise><h3>Who Actually Pays Us</h3><p>Usually still the seller, negotiated outside the MLS, because a seller who offers nothing shrinks their own buyer pool. But your agreement is the backstop: if the seller offers less than the agreed fee, the difference is yours. We will tell you the number before you tour, not at closing.</p></div>
     <div class="n-card" data-rise><h3>And How It Can Be Funded</h3><p>A seller concession written into the offer is the most common route. It can also be paid at closing from your own funds. Whether any part of it can be financed depends on your lender and your loan &mdash; ask before you assume, because at $2M the figure is not small.</p></div>
   </div>
   </div>
-  <p class="n-src n-src--mid" data-rise>Following the 2024 National Association of Realtors settlement. Nothing here is legal advice &mdash; your agreement governs.</p>
 </section>
 
 <section class="sb-split">
@@ -1532,7 +1531,7 @@ blockquote{
     </div>
     <div class="n-block" data-rise>
       <span class="n-block__n">04</span>
-      <div><h3>The Warranty Replaces the Disclosure</h3><p>Tennessee exempts the first sale of a new home from the property condition disclosure &mdash; but only if the builder offers a written warranty. That warranty is your substitute for the disclosure, so its exclusions, its duration and whether it transfers are the things to read. Separately, Tennessee&rsquo;s construction defect window runs four years from substantial completion, five at the outside &mdash; from completion, not from your purchase.</p><p class="n-src">Tenn. Code Ann. &sect; 66-5-209(9); &sect;&sect; 28-3-202 and 28-3-203.</p></div>
+      <div><h3>The Warranty Replaces the Disclosure</h3><p>Tennessee exempts the first sale of a new home from the property condition disclosure &mdash; but only if the builder offers a written warranty. That warranty is your substitute for the disclosure, so its exclusions, its duration and whether it transfers are the things to read. Separately, Tennessee&rsquo;s construction defect window runs four years from substantial completion, five at the outside &mdash; from completion, not from your purchase.</p></div>
     </div>
   </div>
   </div>
@@ -1564,7 +1563,6 @@ blockquote{
     <div class="n-card" data-rise><h3>The Second Year Costs Something Too</h3><p>Insurance at current rates, HOA dues that run from $3,000 to $5,700 a year in the communities we cover, reassessment on a new build, and the maintenance load on eight thousand square feet. We will put a carrying-cost number in front of you before you offer.</p></div>
   </div>
   </div>
-  <p class="n-src n-src--mid" data-rise>FHFA conforming loan limits for 2026, Nashville MSA.</p>
 </section>
 
 <section class="sb-split">
@@ -1612,7 +1610,6 @@ blockquote{
     <div class="n-card" data-rise><h3>Closings Do Not Require an Attorney</h3><p>Tennessee is a title company state. Most closings are handled by a title company or a title agency law firm. At this level, and particularly on a builder contract, we would still recommend your own counsel read it &mdash; and we will tell you when we think it matters.</p></div>
   </div>
   </div>
-  <p class="n-src n-src--mid" data-rise>FHFA conforming loan limits, 2026; Tennessee Constitution Article II &sect; 28; Tennessee Department of Revenue; Williamson County 2026 tax rates; Tax Foundation county effective rates, 2026.</p>
 </section>
 
 <section class="cine cine--empty" data-rise>
@@ -1924,17 +1921,37 @@ addEventListener("keydown", e => {
       });
     }, {threshold:.12, rootMargin:"0px 0px -6% 0px"});
 
+    /* A belt-and-braces sweep. If an observer callback is ever missed — it
+       happened once in testing under a fast programmatic scroll — the affected
+       block stays at opacity 0 forever, which on this page means a paragraph
+       about commission that the client simply never sees. So anything that has
+       reached the viewport gets revealed on scroll regardless of the observer.
+       Shares the rAF throttle below; reveal() is idempotent. */
+    const pending = new Set(rises);
     rises.forEach(el => io.observe(el));
+    const sweep = () => {
+      if (!pending.size) return;
+      for (const el of pending) {
+        if (el.hasAttribute("data-in")) { pending.delete(el); continue }
+        if (el.getBoundingClientRect().top < innerHeight) {
+          el.setAttribute("data-in", "");
+          el.querySelectorAll("[data-count]").forEach(count);
+          io.unobserve(el);
+          pending.delete(el);
+        }
+      }
+    };
 
     /* ---- the drift ----
        Photography counter-scrolls slightly against the page. data-par is the
        travel in percent of the element's own height; the wrapper is inset
        beyond its frame in CSS so the edges never pull into view. */
     const pars = [...document.querySelectorAll("[data-par]")];
-    if (pars.length) {
+    {
       let queued = false;
       const run = () => {
         queued = false;
+        sweep();
         const vh = innerHeight;
         for (const el of pars) {
           const host = el.parentElement.getBoundingClientRect();

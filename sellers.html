@@ -1487,14 +1487,12 @@ blockquote{
       <span class="sb-stat__s">Probability of taking a public price reduction</span>
     </div>
   </div>
-  <p class="n-src n-src--mid" data-rise>Compass, methodology footnote to its Private Exclusives page. Hedonic regression across 70,809 closed transactions in the year to 31 March 2026.</p>
   <div class="n-blocks">
     <div class="n-card" data-rise><h3>What Compass Publishes</h3><p>Those three figures come from a hedonic regression across 70,809 closed Compass transactions in the year to 31 March 2026, controlling for more than fifty variables, with a 95% confidence interval of 4.2% to 4.9% on the first of them.</p></div>
     <div class="n-card" data-rise><h3>What the Critics Publish</h3><p>Zillow&rsquo;s research finds off-MLS sellers net roughly 1.3% to 1.5% less. A Bright MLS and Drexel study puts the gap far wider. These studies measure different populations &mdash; much off-MLS volume nationally is distressed, family or investor sale, which is not what a Compass Private Exclusive is &mdash; but the direction of the finding is real and you should know it exists.</p></div>
     <div class="n-card" data-rise><h3>What We Think</h3><p>Both sides have a commercial interest in their own numbers, and Compass&rsquo;s study compares Compass listings to other Compass listings rather than to the market. What is not in dispute is the mechanism: a house that launches publicly at the wrong price carries that mistake in its history forever. Phasing exists to stop that. Whether it is right for your house depends on your house.</p></div>
   </div>
   </div>
-  <p class="n-src n-src--mid" data-rise>Zillow research, 2025 and 2026; Bright MLS and Drexel University. Both sets of figures are published by parties with a commercial interest in the answer.</p>
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="mc-h">
@@ -1505,11 +1503,10 @@ blockquote{
   <div data-stagger>
   <div class="n-blocks">
     <div class="n-card" data-rise><h3>It Is an Office Exclusive</h3><p>In the language of the rules, a Private Exclusive is an office exclusive &mdash; a listing the seller has directed not be disseminated through the MLS. It is not the same as a &ldquo;delayed marketing&rdquo; listing, which does go into the MLS with only syndication held back. The distinction matters and is frequently blurred.</p></div>
-    <div class="n-card" data-rise><h3>You Sign for It</h3><p>RealTracs requires a written, signed instruction from you before a listing can be held off the MLS, filed with them within 48 hours. You are acknowledging in writing what MLS exposure you are choosing to waive. We will not do this on a handshake and no one else should either.</p></div>
+    <div class="n-card" data-rise><h3>You Sign for It</h3><p>RealTracs requires a written, signed instruction from you before a listing can be held off the MLS, filed with them within 48 hours. You are acknowledging in writing what MLS exposure you are choosing to waive. We will not do this on a handshake and no one else should either, and because these rules do change we will confirm the current position with you in writing before you sign.</p></div>
     <div class="n-card" data-rise><h3>Public Marketing Ends It</h3><p>Under the Clear Cooperation Policy, once a property is publicly marketed it must go to the MLS within one business day. A yard sign, a public social post with a price, a portal listing &mdash; any of those ends Phase One. Private means private.</p></div>
   </div>
   </div>
-  <p class="n-src n-src--mid" data-rise>NAR Policy Statement 8.14 and the Clear Cooperation Policy; RealTracs Rules, 1 April 2025. Rules change &mdash; we will confirm the current position in writing before you sign.</p>
 </section>
 
 <section class="sb-split">
@@ -1601,7 +1598,6 @@ blockquote{
     <div class="n-card" data-rise><h3>Which Is Why Pricing Is the Whole Game</h3><p>In a market where most houses close under ask, the ones that do not are the ones that entered at a number the market recognised. Phasing is how you find that number without paying for the experiment in public.</p></div>
   </div>
   </div>
-  <p class="n-src n-src--mid" data-rise>RealTracs via nashvillehome.guru and granthammond.com, 2026.</p>
 </section>
 
 <section class="cine cine--empty" data-rise>
@@ -1913,17 +1909,37 @@ addEventListener("keydown", e => {
       });
     }, {threshold:.12, rootMargin:"0px 0px -6% 0px"});
 
+    /* A belt-and-braces sweep. If an observer callback is ever missed — it
+       happened once in testing under a fast programmatic scroll — the affected
+       block stays at opacity 0 forever, which on this page means a paragraph
+       about commission that the client simply never sees. So anything that has
+       reached the viewport gets revealed on scroll regardless of the observer.
+       Shares the rAF throttle below; reveal() is idempotent. */
+    const pending = new Set(rises);
     rises.forEach(el => io.observe(el));
+    const sweep = () => {
+      if (!pending.size) return;
+      for (const el of pending) {
+        if (el.hasAttribute("data-in")) { pending.delete(el); continue }
+        if (el.getBoundingClientRect().top < innerHeight) {
+          el.setAttribute("data-in", "");
+          el.querySelectorAll("[data-count]").forEach(count);
+          io.unobserve(el);
+          pending.delete(el);
+        }
+      }
+    };
 
     /* ---- the drift ----
        Photography counter-scrolls slightly against the page. data-par is the
        travel in percent of the element's own height; the wrapper is inset
        beyond its frame in CSS so the edges never pull into view. */
     const pars = [...document.querySelectorAll("[data-par]")];
-    if (pars.length) {
+    {
       let queued = false;
       const run = () => {
         queued = false;
+        sweep();
         const vh = innerHeight;
         for (const el of pars) {
           const host = el.parentElement.getBoundingClientRect();
