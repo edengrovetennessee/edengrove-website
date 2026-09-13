@@ -1025,6 +1025,41 @@ blockquote{
 .w-table tbody tr:hover td{background:rgba(244,241,236,.035)}
 .w-table td.w-price{color:#fff}
 
+/* ---- photography slots ----
+   Placeholders that hold the exact shape each frame will occupy, so a photograph
+   drops straight in without the layout moving. Delete a slot as you fill it. */
+.w-slot{
+  position:relative;display:grid;place-items:center;text-align:center;
+  width:100%;                  /* pin to the column: without this the aspect-ratio
+                                  derives width from content height and overflows */
+  padding:1.5rem 1.2rem;aspect-ratio:3/2;min-height:13rem;
+  border:1px solid rgba(198,166,100,.32);background:rgba(198,166,100,.045);
+  box-sizing:border-box;
+}
+.p-gal__row--1 .w-slot{aspect-ratio:5/2}
+@media (max-width:760px){
+  /* let the brief set the height on a phone rather than squeezing it into a box */
+  .w-slot,.p-gal__row--1 .w-slot{aspect-ratio:auto;min-height:11rem}
+}
+.w-slot__n{
+  position:absolute;top:.85rem;left:1rem;
+  font-family:var(--ui);font-weight:400;font-size:.56rem;letter-spacing:.24em;
+  color:var(--brass);font-variant-numeric:tabular-nums;
+}
+.w-slot h4{
+  margin:0 0 .6rem;font-family:var(--ui);font-weight:300;
+  font-size:clamp(.78rem,.72rem + .22vw,.92rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;color:#fff;
+}
+.w-slot p{
+  margin:0 auto;max-width:34ch;font-family:var(--ui);font-weight:300;
+  font-size:.76rem;line-height:1.8;color:rgba(244,241,236,.62);
+}
+.w-slot code{
+  display:block;margin-top:.9rem;font-family:var(--ui);font-size:.58rem;
+  letter-spacing:.14em;color:rgba(198,166,100,.75);
+}
+
 /* what is on the market right now */
 .w-list{list-style:none;margin:clamp(1.8rem,4vh,2.6rem) 0 0;padding:0}
 .w-list li{
@@ -1086,6 +1121,9 @@ blockquote{
 <body>
 
 <section class="p-hero" id="top">
+  <!-- HERO PENDING: borrowing the neighbourhoods tile image. Replace with
+       witherspoon-hero.jpg — the entrance off Crockett Road, the pond and the
+       roundabout, shot wide at dusk. 2400px or wider. -->
   <img class="hero__media" src="../../media/hood-13.jpg" alt="" aria-hidden="true">
   <div class="hero__scrim"></div>
   <header class="bar">
@@ -1147,6 +1185,84 @@ blockquote{
       <div><h3>The Homes</h3><p>American, English, French and Italian-influenced architecture on lots running from roughly half an acre to three acres, the largest wooded and on the ridge. Houses sold in the past year ran from 4,745 to 13,928 square feet, most commonly five bedrooms, with four-car garages typical at the upper end. Build years span 2017 to 2025, so the stock is uniformly modern &mdash; there is no older housing to renovate here.</p><p class="n-src">CPS Land; RealTracs MLS via nashvillehome.guru and granthammond.com, 2026</p></div>
     </div>
   </div>
+</section>
+
+
+<!-- PHOTOGRAPHY PENDING. These slots hold the layout until real frames arrive.
+     Replace each .w-slot with the matching <a class="p-shot"> markup used on the
+     area pages, and delete this section entirely if the page must be shown to a
+     client before the photographs exist. -->
+<section class="p-sec p-sec--tight" aria-labelledby="gal-h">
+  <div class="p-lede">
+    <p class="p-eyebrow">Gallery</p>
+    <h2 id="gal-h">The Community</h2>
+  </div>
+  <div class="p-gal">
+    <div class="p-gal__row p-gal__row--1">
+      <div class="w-slot">
+        <span class="w-slot__n">01</span>
+        <div>
+          <h4>Aerial Over the Whole Site</h4>
+          <p>Drone, high and wide enough to read 263 acres — the ridge lots, the retained tree rows, and how the community sits against Crockett Park. This is the frame that proves the scale.</p>
+          <code>witherspoon-1.jpg</code>
+        </div>
+      </div>
+    </div>
+    <div class="p-gal__row" style="margin-top:clamp(.5rem,1vw,1.1rem)">
+      <div class="w-slot">
+        <span class="w-slot__n">02</span>
+        <div>
+          <h4>Witherspoon Drive</h4>
+          <p>A stretch of street with three or four houses in one frame. Nothing else proves the Builders&rsquo; Guild point — that eleven builders produced one coherent streetscape.</p>
+          <code>witherspoon-2.jpg</code>
+        </div>
+      </div>
+      <div class="w-slot">
+        <span class="w-slot__n">03</span>
+        <div>
+          <h4>A Representative House</h4>
+          <p>Front elevation of one of the English or French-influenced homes, late afternoon. Ideally one that has recently sold, so it ties to the table above.</p>
+          <code>witherspoon-3.jpg</code>
+        </div>
+      </div>
+      <div class="w-slot">
+        <span class="w-slot__n">04</span>
+        <div>
+          <h4>Inside, at This Level</h4>
+          <p>One interior from a recent sale — the room that justifies $500 a foot. Kitchen or the main living space, lit, wide.</p>
+          <code>witherspoon-4.jpg</code>
+        </div>
+      </div>
+    </div>
+    <div class="p-gal__row" style="margin-top:clamp(.5rem,1vw,1.1rem)">
+      <div class="w-slot">
+        <span class="w-slot__n">05</span>
+        <div>
+          <h4>Clubhouse and Pools</h4>
+          <p>The amenity the dues pay for. Either the clubhouse frontage or the adult pool with the pavilion behind it.</p>
+          <code>witherspoon-5.jpg</code>
+        </div>
+      </div>
+      <div class="w-slot">
+        <span class="w-slot__n">06</span>
+        <div>
+          <h4>The Trail to Crockett Park</h4>
+          <p>The paved path leaving the community. It is the detail buyers with children ask about — school and park on foot, without a main road.</p>
+          <code>witherspoon-6.jpg</code>
+        </div>
+      </div>
+      <div class="w-slot">
+        <span class="w-slot__n">07</span>
+        <div>
+          <h4>Holtland</h4>
+          <p>The c.1840 Holt house on its preserved 7.45 acres. Nothing else in Brentwood has a National Register house inside the development.</p>
+          <code>witherspoon-7.jpg</code>
+        </div>
+      </div>
+    </div>
+  </div>
+  <p class="n-src n-src--mid">Eight frames in total — the seven above plus a hero. Send them at
+     1600px wide or larger, landscape, and they will be cropped to fit these shapes.</p>
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="cost-h">
