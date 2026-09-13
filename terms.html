@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Contact | Eden Grove Luxury Real Estate, Nashville</title>
-<meta name="description" content="Arrange a private showing, ask about a Compass Private Exclusive, or talk to Eden Grove about selling your home in Middle Tennessee. Call (615) 812-0066.">
+<title>Terms and Conditions | Eden Grove</title>
+<meta name="description" content="Terms governing the use of edengrovetennessee.com, including property information, renderings, Private Exclusives, fair housing and contact consent.">
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="media/favicon-32.png">
@@ -848,93 +848,118 @@ blockquote{
   color:rgba(244,241,236,.72);
 }
 
+/* ---- legal pages ----
+   Long prose, so the measure is tighter than the rest of the site and the
+   leading is looser. Numbering follows the 01 / 02 idiom used on the area and
+   marketing pages, which keeps these from reading like a different website. */
+.lg{background:var(--ink);color:var(--paper);padding:0 var(--gutter) clamp(4rem,10vh,7rem)}
+.lg__inner{max-width:48rem;margin:0 auto}
+
+.lg__stamp{
+  margin:0 0 clamp(2.5rem,6vh,4rem);padding-bottom:clamp(1.6rem,3.5vh,2.2rem);
+  border-bottom:1px solid rgba(244,241,236,.14);
+  font-weight:300;font-size:.62rem;letter-spacing:.24em;text-indent:.24em;
+  text-transform:uppercase;color:rgba(244,241,236,.5);
+}
+
+/* Contents. Two columns on anything wider than a phone. */
+.lg__toc{
+  margin:0 0 clamp(3rem,7vh,4.5rem);padding:0;list-style:none;
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:.85rem clamp(1.5rem,4vw,3rem);
+}
+@media (max-width:600px){ .lg__toc{grid-template-columns:1fr} }
+.lg__toc a{
+  display:flex;gap:.85rem;align-items:baseline;
+  font-size:.82rem;line-height:1.5;color:rgba(244,241,236,.66);
+  transition:color .4s var(--rise);
+}
+.lg__toc a:hover,.lg__toc a:focus-visible{color:#fff}
+.lg__toc b{
+  flex:none;font-weight:400;font-size:.6rem;letter-spacing:.14em;
+  color:var(--brass);font-variant-numeric:tabular-nums;
+}
+
+.lg__sec{margin:0 0 clamp(2.8rem,6.5vh,4.2rem);scroll-margin-top:6rem}
+.lg__n{
+  display:block;margin:0 0 .8rem;
+  font-weight:400;font-size:.6rem;letter-spacing:.28em;text-indent:.28em;
+  color:var(--brass);font-variant-numeric:tabular-nums;
+}
+.lg h2{
+  margin:0 0 1.2rem;font-family:var(--ui);font-weight:300;
+  font-size:clamp(.92rem,.86rem + .3vw,1.08rem);line-height:1.4;
+  letter-spacing:.18em;text-indent:.18em;text-transform:uppercase;color:#fff;
+}
+.lg p{
+  margin:0 0 1.15rem;font-weight:300;
+  font-size:clamp(.86rem,.83rem + .16vw,.95rem);line-height:1.95;
+  color:rgba(244,241,236,.76);
+}
+.lg p:last-child{margin-bottom:0}
+.lg__sec ul{margin:0 0 1.15rem;padding:0 0 0 1.1rem;list-style:none}
+.lg__sec li{
+  position:relative;margin:0 0 .7rem;font-weight:300;
+  font-size:clamp(.86rem,.83rem + .16vw,.95rem);line-height:1.9;
+  color:rgba(244,241,236,.76);
+}
+.lg__sec li::before{
+  content:"";position:absolute;left:-1.1rem;top:.85em;
+  width:.3rem;height:1px;background:var(--brass);opacity:.75;
+}
+.lg a:not(.lg__toc a){color:rgba(244,241,236,.92);text-decoration:underline;
+  text-underline-offset:.22em;text-decoration-color:rgba(198,166,100,.5)}
+.lg a:not(.lg__toc a):hover{color:#fff;text-decoration-color:var(--brass)}
+.lg strong{font-weight:400;color:rgba(244,241,236,.93)}
+
+/* A clearly marked gap for facts only Compass compliance can supply. Styled to
+   be conspicuous on purpose — it must not survive quietly into production. */
+.lg__todo{
+  margin:1.4rem 0;padding:1.1rem 1.3rem;
+  border-left:2px solid var(--brass);background:rgba(198,166,100,.07);
+  font-size:.8rem;line-height:1.8;color:rgba(244,241,236,.72);
+}
+.lg__todo b{display:block;margin-bottom:.3rem;font-weight:400;
+  font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:var(--brass)}
+
 </style>
-<link rel="canonical" href="https://edengrovetennessee.com/contact.html">
+<link rel="canonical" href="https://edengrovetennessee.com/terms.html">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Eden Grove">
 <meta property="og:locale" content="en_US">
-<meta property="og:url" content="https://edengrovetennessee.com/contact.html">
-<meta property="og:title" content="Contact | Eden Grove Luxury Real Estate, Nashville">
-<meta property="og:description" content="Arrange a private showing, ask about a Compass Private Exclusive, or talk to Eden Grove about selling your home in Middle Tennessee. Call (615) 812-0066.">
+<meta property="og:url" content="https://edengrovetennessee.com/terms.html">
+<meta property="og:title" content="Terms and Conditions | Eden Grove">
+<meta property="og:description" content="Terms governing the use of edengrovetennessee.com, including property information, renderings, Private Exclusives, fair housing and contact consent.">
 <meta property="og:image" content="https://edengrovetennessee.com/media/og-card.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Contact | Eden Grove Luxury Real Estate, Nashville">
-<meta name="twitter:description" content="Arrange a private showing, ask about a Compass Private Exclusive, or talk to Eden Grove about selling your home in Middle Tennessee. Call (615) 812-0066.">
+<meta name="twitter:title" content="Terms and Conditions | Eden Grove">
+<meta name="twitter:description" content="Terms governing the use of edengrovetennessee.com, including property information, renderings, Private Exclusives, fair housing and contact consent.">
 <meta name="twitter:image" content="https://edengrovetennessee.com/media/og-card.jpg">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
 <link rel="icon" href="favicon.ico" sizes="any">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "FAQPage",
-  "mainEntity": [
-    {
-      "@type": "Question",
-      "name": "Who is Eden Grove?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Eden Grove is a luxury real estate team at Compass, based in Nashville, Tennessee. It was co-founded by Ryan Stonehouse and Blake Barker, and represents new construction and estate homes across Middle Tennessee."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What areas does Eden Grove cover?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Nashville and Williamson County \u2014 Belle Meade, West Meade, Green Hills, Forest Hills, Oak Hill, Downtown and Germantown in Davidson County, and Brentwood, Franklin, Leiper's Fork, Arrington and Thompson's Station in Williamson County."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What kind of properties does Eden Grove represent?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Luxury homes and new construction, typically from about one million dollars upward, including estate homes, custom builds and development projects. Current listings run to six million dollars."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "What is a Compass Private Exclusive?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "A Compass Private Exclusive is a property marketed privately rather than on the open market and the MLS. It lets an owner test price, protect their privacy, and avoid accumulating days on market. Eden Grove represents several Private Exclusives at any time."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How does Eden Grove market a listing?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Every listing receives architectural photography, drone work, a cinematic film, and its own dedicated property website that is updated as a build progresses. Marketing is then distributed across the MLS, paid advertising, email, and social platforms."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Does Eden Grove work with builders and developers?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Yes. The team specialises in new construction, working with developers, builders, architects and interior designers from renderings through to completion, and marketing projects while they are still being built."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "How do I contact Eden Grove?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Call (615) 812-0066, email clients@edengrovetennessee.com, or use the form on this page. The office is at 2206 21st Avenue South, Nashville, Tennessee 37212."
-      }
-    },
-    {
-      "@type": "Question",
-      "name": "Who are the agents at Eden Grove?",
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": "Ryan Stonehouse, a former NFL punter with the Tennessee Titans and Miami Dolphins who moved into development and then representation. Blake Barker, who also develops property and holds a Master's in Real Estate Development from Auburn. Joe Archer, who handles acquisitions and residential sales."
-      }
+  "@type": "WebPage",
+  "name": "Terms and Conditions | Eden Grove",
+  "description": "Terms governing the use of edengrovetennessee.com, including property information, renderings, Private Exclusives, fair housing and contact consent.",
+  "url": "https://edengrovetennessee.com/terms.html",
+  "dateModified": "2026-09-12",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Eden Grove",
+    "url": "https://edengrovetennessee.com/"
+  },
+  "publisher": {
+    "@type": "RealEstateAgent",
+    "name": "Eden Grove",
+    "parentOrganization": {
+      "@type": "Organization",
+      "name": "Compass RE"
     }
-  ]
+  }
 }
 </script>
 </head>
@@ -971,105 +996,139 @@ blockquote{
   </header>
 
 <section class="c-open">
-  <p class="c-open__eyebrow">Contact</p>
-  <h1>Tell us what you are<br>looking&nbsp;for</h1>
-  <p>Whether it is a property we represent, one you have seen elsewhere, or a
-     Compass Private Exclusive that never reaches the open market — we will
-     arrange the showing and tell you honestly what we think of the house.</p>
+  <p class="c-open__eyebrow">Legal</p>
+  <h1>Terms and Conditions</h1>
+  <p>The rules that govern this website, what our property information does and does not promise, and how we handle what you send us.</p>
 </section>
 
-<section class="c-body">
-  <div class="c-grid">
+<section class="lg">
+  <div class="lg__inner">
+    <p class="lg__stamp">Last updated 12 September 2026</p>
 
-    <div>
-      <div class="c-block">
-        <p class="c-block__h">Call</p>
-        <p><a href="tel:+16158120066">(615) 812-0066</a></p>
-        <p class="c-name">Ryan Stonehouse</p>
-      </div>
+    <ul class="lg__toc">
+      <li><a href="#who-operates-this-site"><b>01</b><span>Who operates this site</span></a></li>
+      <li><a href="#accepting-these-terms"><b>02</b><span>Accepting these terms</span></a></li>
+      <li><a href="#nothing-here-creates-a-client-relationship"><b>03</b><span>Nothing here creates a client relationship</span></a></li>
+      <li><a href="#property-information"><b>04</b><span>Property information</span></a></li>
+      <li><a href="#homes-under-construction-renderings-and-plans"><b>05</b><span>Homes under construction, renderings and plans</span></a></li>
+      <li><a href="#compass-private-exclusives"><b>06</b><span>Compass Private Exclusives</span></a></li>
+      <li><a href="#listings-from-outside-databases"><b>07</b><span>Listings from outside databases</span></a></li>
+      <li><a href="#fair-housing"><b>08</b><span>Fair housing</span></a></li>
+      <li><a href="#our-content"><b>09</b><span>Our content</span></a></li>
+      <li><a href="#what-you-send-us"><b>10</b><span>What you send us</span></a></li>
+      <li><a href="#links-to-other-sites"><b>11</b><span>Links to other sites</span></a></li>
+      <li><a href="#using-the-site-properly"><b>12</b><span>Using the site properly</span></a></li>
+      <li><a href="#disclaimer"><b>13</b><span>Disclaimer</span></a></li>
+      <li><a href="#limitation-of-liability"><b>14</b><span>Limitation of liability</span></a></li>
+      <li><a href="#indemnity"><b>15</b><span>Indemnity</span></a></li>
+      <li><a href="#governing-law"><b>16</b><span>Governing law</span></a></li>
+      <li><a href="#severability"><b>17</b><span>Severability</span></a></li>
+      <li><a href="#contact"><b>18</b><span>Contact</span></a></li>
+    </ul>
 
-      <div class="c-block">
-        <p class="c-block__h">Email</p>
-        <p><a href="mailto:clients@edengrovetennessee.com">clients@edengrovetennessee.com</a></p>
-      </div>
-
-      <div class="c-block">
-        <p class="c-block__h">Office</p>
-        <p>2206 21st Avenue South<br>Nashville, TN 37212</p>
-      </div>
-    </div>
-
-    <!-- NOT WIRED. Submitting shows an honest note rather than a false
-         thank-you. Point the form at an endpoint before this page goes live. -->
-    <form class="c-form" id="contactForm" novalidate>
-      <label class="visually-hidden" for="cName">Name</label>
-      <input id="cName" name="name" placeholder="Name" autocomplete="name" required>
-
-      <label class="visually-hidden" for="cEmail">Email</label>
-      <input id="cEmail" name="email" type="email" placeholder="Email" autocomplete="email" required>
-
-      <label class="visually-hidden" for="cPhone">Phone</label>
-      <input id="cPhone" name="phone" type="tel" placeholder="Phone" autocomplete="tel">
-
-      <label class="visually-hidden" for="cTopic">How can we help?</label>
-      <select id="cTopic" name="topic">
-        <option value="">How can we help?</option>
-        <option>A property you represent</option>
-        <option>A property I have seen elsewhere</option>
-        <option>Private showing</option>
-        <option>Compass Private Exclusives</option>
-        <option>Selling my home</option>
-        <option>Something else</option>
-      </select>
-
-      <label class="visually-hidden" for="cMsg">Message</label>
-      <textarea id="cMsg" name="message" placeholder="Message" rows="4"></textarea>
-
-      <button type="submit">Send</button>
-      <p class="c-note" id="contactNote" role="status"></p>
-    </form>
-
-  </div>
-</section>
-
-
-<section class="c-faq" aria-labelledby="faq-h">
-  <div class="c-faq__inner">
-    <p class="c-faq__h" id="faq-h">Common Questions</p>
-    <dl class="c-faq__list">
-    <div>
-      <dt>Who is Eden Grove?</dt>
-      <dd>Eden Grove is a luxury real estate team at Compass, based in Nashville, Tennessee. It was co-founded by Ryan Stonehouse and Blake Barker, and represents new construction and estate homes across Middle Tennessee.</dd>
-    </div>
-    <div>
-      <dt>What areas does Eden Grove cover?</dt>
-      <dd>Nashville and Williamson County — Belle Meade, West Meade, Green Hills, Forest Hills, Oak Hill, Downtown and Germantown in Davidson County, and Brentwood, Franklin, Leiper's Fork, Arrington and Thompson's Station in Williamson County.</dd>
-    </div>
-    <div>
-      <dt>What kind of properties does Eden Grove represent?</dt>
-      <dd>Luxury homes and new construction, typically from about one million dollars upward, including estate homes, custom builds and development projects. Current listings run to six million dollars.</dd>
-    </div>
-    <div>
-      <dt>What is a Compass Private Exclusive?</dt>
-      <dd>A Compass Private Exclusive is a property marketed privately rather than on the open market and the MLS. It lets an owner test price, protect their privacy, and avoid accumulating days on market. Eden Grove represents several Private Exclusives at any time.</dd>
-    </div>
-    <div>
-      <dt>How does Eden Grove market a listing?</dt>
-      <dd>Every listing receives architectural photography, drone work, a cinematic film, and its own dedicated property website that is updated as a build progresses. Marketing is then distributed across the MLS, paid advertising, email, and social platforms.</dd>
-    </div>
-    <div>
-      <dt>Does Eden Grove work with builders and developers?</dt>
-      <dd>Yes. The team specialises in new construction, working with developers, builders, architects and interior designers from renderings through to completion, and marketing projects while they are still being built.</dd>
-    </div>
-    <div>
-      <dt>How do I contact Eden Grove?</dt>
-      <dd>Call (615) 812-0066, email clients@edengrovetennessee.com, or use the form on this page. The office is at 2206 21st Avenue South, Nashville, Tennessee 37212.</dd>
-    </div>
-    <div>
-      <dt>Who are the agents at Eden Grove?</dt>
-      <dd>Ryan Stonehouse, a former NFL punter with the Tennessee Titans and Miami Dolphins who moved into development and then representation. Blake Barker, who also develops property and holds a Master's in Real Estate Development from Auburn. Joe Archer, who handles acquisitions and residential sales.</dd>
-    </div>
-    </dl>
+    <section class="lg__sec" id="who-operates-this-site">
+      <span class="lg__n">01</span>
+      <h2>Who operates this site</h2>
+      <p>Eden Grove is a team of licensed real estate professionals affiliated with <strong>Compass RE</strong>, the licensed real estate broker under which the team operates in Tennessee. Eden Grove is a team name, not a separate brokerage. All brokerage services described on this site are provided by and through Compass RE.</p>
+      <p>Throughout these terms, <strong>&ldquo;we&rdquo;</strong>, <strong>&ldquo;us&rdquo;</strong> and <strong>&ldquo;our&rdquo;</strong> mean the Eden Grove team operating under Compass RE. <strong>&ldquo;You&rdquo;</strong> means anyone who visits or uses edengrovetennessee.com.</p>
+      <div class="lg__todo"><b>Needs Compass compliance</b>Tennessee requires the firm name and the firm telephone number on file with the Commission to appear conspicuously on <em>every</em> page of the site, with the firm name in type at least as large as the team name. Confirm the exact registered firm name, the telephone number on file, and Compass&rsquo;s current disclaimer wording before this page is published.</div>
+    </section>
+    <section class="lg__sec" id="accepting-these-terms">
+      <span class="lg__n">02</span>
+      <h2>Accepting these terms</h2>
+      <p>Using this site means you accept these terms. If you do not accept them, please do not use the site. We may change these terms at any time; the version published here is the one that applies, and the date it last changed is shown at the top of this page.</p>
+    </section>
+    <section class="lg__sec" id="nothing-here-creates-a-client-relationship">
+      <span class="lg__n">03</span>
+      <h2>Nothing here creates a client relationship</h2>
+      <p>Browsing this site, reading a property page, or sending us a message through a form does not make us your agent and does not create a brokerage, fiduciary, or client relationship. That relationship begins only when a written representation agreement is signed by you and by a licensee through Compass RE.</p>
+      <p>Until that happens, anything we tell you is general information rather than advice given on your behalf. We are not lawyers, accountants, lenders, surveyors, inspectors or tax advisers, and nothing on this site is legal, tax, financial or investment advice.</p>
+    </section>
+    <section class="lg__sec" id="property-information">
+      <span class="lg__n">04</span>
+      <h2>Property information</h2>
+      <p>We work hard to keep property information current, but we cannot promise it is accurate or complete. Prices, availability, square footage, lot sizes, room counts, taxes, fees and completion dates change, sometimes daily, and information often reaches us from third parties such as sellers, builders, developers and public records.</p>
+      <ul><li>Every property is offered subject to prior sale, change, or withdrawal without notice.</li><li>Square footage and measurements are approximate and should be independently verified.</li><li>A listing shown here is not an offer to sell or a solicitation of an offer to buy.</li><li>Any figure that matters to your decision should be confirmed against the source.</li></ul>
+      <p>No guarantee, warranty or representation of any kind is made regarding the completeness or accuracy of descriptions or measurements, including square footage and property condition. These should be independently verified.</p>
+    </section>
+    <section class="lg__sec" id="homes-under-construction-renderings-and-plans">
+      <span class="lg__n">05</span>
+      <h2>Homes under construction, renderings and plans</h2>
+      <p>Much of what we represent is new construction. Where a property has not been completed, the images on this site may be architectural renderings, artist&rsquo;s impressions, computer visualisations, or photographs of a different home by the same builder.</p>
+      <p>Renderings are illustrative. Finishes, fixtures, appliances, materials, landscaping, elevations, dimensions and floor plans are subject to change during construction, and the finished home may differ from what is shown. Floor plans are approximate and not to scale. Nothing shown in a rendering is a representation that the completed home will match it. Rely on the plans and specifications in your contract, not on this website.</p>
+    </section>
+    <section class="lg__sec" id="compass-private-exclusives">
+      <span class="lg__n">06</span>
+      <h2>Compass Private Exclusives</h2>
+      <p>Some properties are marketed privately rather than on the open market or the MLS. Details of a Private Exclusive may be shared with you in confidence, and availability, pricing and terms can change or be withdrawn at any time. A Private Exclusive shown to you is not a public offering, and we may be restricted in what we are permitted to tell you about it.</p>
+    </section>
+    <section class="lg__sec" id="listings-from-outside-databases">
+      <span class="lg__n">07</span>
+      <h2>Listings from outside databases</h2>
+      <p>Some pages display listings drawn from the MLS or other outside databases. Some or all of those listings may not belong to the firm. Listing information from third-party sources is provided as received and is not verified by us.</p>
+    </section>
+    <section class="lg__sec" id="fair-housing">
+      <span class="lg__n">08</span>
+      <h2>Fair housing</h2>
+      <p>We are committed to the letter and the spirit of United States policy for the achievement of equal housing opportunity. We do not discriminate on the basis of race, colour, religion, sex, handicap, familial status, national origin, or any other class protected by federal, state or local law, and we will not honour a request to do so.</p>
+      <p>Neighbourhood and area descriptions on this site are provided as general local information. They are not a representation about the people who live in an area, and they should not be read as steering anyone toward or away from any neighbourhood. School, crime and demographic information, where mentioned, comes from third parties and should be verified independently by anyone for whom it matters.</p>
+    </section>
+    <section class="lg__sec" id="our-content">
+      <span class="lg__n">09</span>
+      <h2>Our content</h2>
+      <p>The photography, films, renderings, floor plans, written descriptions, area guides, design and code on this site belong to us or to the photographers, builders, architects and designers we work with, and are protected by copyright and trademark law.</p>
+      <p>You may view, print and share pages for your own personal, non-commercial use. You may not copy, republish, scrape, resell, or use our content to train a commercial model, and you may not use our name, logo, or the Compass name or marks without written permission.</p>
+      <p>If you believe something on this site infringes your copyright, write to us at the address below and we will investigate promptly.</p>
+    </section>
+    <section class="lg__sec" id="what-you-send-us">
+      <span class="lg__n">10</span>
+      <h2>What you send us</h2>
+      <p>When you complete a form on this site you may give us your name, email address, telephone number and whatever you write in the message. We use that information to answer you and to provide the services you asked about. How we handle it is set out in our <a href="privacy.html">Privacy Policy</a>.</p>
+      <p>By giving us your telephone number you agree that we may contact you by telephone, text message and email about your enquiry and about properties that may interest you. You can stop marketing messages at any time by replying STOP to a text, using the unsubscribe link in an email, or telling us. Message and data rates may apply. Consent to marketing is not a condition of any purchase or of our services.</p>
+      <p>Please do not send confidential information, financial account details, or documents containing a Social Security number through a website form. Email is not a secure channel.</p>
+    </section>
+    <section class="lg__sec" id="links-to-other-sites">
+      <span class="lg__n">11</span>
+      <h2>Links to other sites</h2>
+      <p>Where we link to another site &mdash; a builder, a restaurant, a club, a map, a public records source &mdash; we do so because we think it is useful. We do not control those sites, we are not responsible for their content or their privacy practices, and a link is not an endorsement.</p>
+    </section>
+    <section class="lg__sec" id="using-the-site-properly">
+      <span class="lg__n">12</span>
+      <h2>Using the site properly</h2>
+      <p>Please do not attempt to interfere with the site, gain unauthorised access to any part of it, scrape it automatically, introduce malicious code, or use it for any unlawful purpose or in any way that could damage or overburden it.</p>
+    </section>
+    <section class="lg__sec" id="disclaimer">
+      <span class="lg__n">13</span>
+      <h2>Disclaimer</h2>
+      <p>This site is provided on an &ldquo;as is&rdquo; and &ldquo;as available&rdquo; basis. To the fullest extent permitted by law, we disclaim all warranties, express or implied, including warranties of merchantability, fitness for a particular purpose, title, non-infringement, and any warranty that the site will be uninterrupted, secure, error-free, or that the information on it is accurate or current.</p>
+    </section>
+    <section class="lg__sec" id="limitation-of-liability">
+      <span class="lg__n">14</span>
+      <h2>Limitation of liability</h2>
+      <p>To the fullest extent permitted by law, neither we nor Compass RE, nor our respective agents, employees or affiliates, will be liable for any indirect, incidental, special, consequential, exemplary or punitive damages arising out of your use of this site or your reliance on anything published on it, including lost profits or lost opportunity, even if we have been advised that such damages are possible.</p>
+      <p>Nothing in these terms limits any liability that cannot lawfully be limited.</p>
+    </section>
+    <section class="lg__sec" id="indemnity">
+      <span class="lg__n">15</span>
+      <h2>Indemnity</h2>
+      <p>You agree to indemnify and hold harmless Eden Grove, Compass RE, and our respective agents, employees and affiliates from any claim, loss, liability or expense, including reasonable legal fees, arising from your misuse of this site or your breach of these terms.</p>
+    </section>
+    <section class="lg__sec" id="governing-law">
+      <span class="lg__n">16</span>
+      <h2>Governing law</h2>
+      <p>These terms are governed by the laws of the State of Tennessee, without regard to its conflict of laws rules. Any dispute arising out of them or out of your use of this site will be brought in the state or federal courts sitting in Davidson County, Tennessee, and you consent to the jurisdiction of those courts.</p>
+    </section>
+    <section class="lg__sec" id="severability">
+      <span class="lg__n">17</span>
+      <h2>Severability</h2>
+      <p>If any part of these terms is found unenforceable, that part will be limited or removed to the minimum extent necessary and the rest will remain in full force.</p>
+    </section>
+    <section class="lg__sec" id="contact">
+      <span class="lg__n">18</span>
+      <h2>Contact</h2>
+      <p>Questions about these terms can go to:</p>
+      <p>Eden Grove at Compass RE<br>2206 21st Avenue South<br>Nashville, Tennessee 37212<br><a href="tel:+16158120066">(615) 812-0066</a><br><a href="mailto:clients@edengrovetennessee.com">clients@edengrovetennessee.com</a></p>
+    </section>
   </div>
 </section>
 
