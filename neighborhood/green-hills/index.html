@@ -719,6 +719,21 @@ blockquote{
 @media (max-width:760px){ .p-gal__row--1 .p-shot{aspect-ratio:3/2} }
 /* A row with only two images gets two wider cards instead of a gap. */
 .p-gal__row--2{grid-template-columns:repeat(2,1fr)}
+/* An upright photograph beside a stacked pair. Gives a portrait somewhere to
+   live at its own proportions rather than cropping it into a letterbox. The
+   stack shares the feature's box, so the two columns end level. */
+.p-gal__row--pair{grid-template-columns:1fr 1fr}
+.p-gal__row--pair > .p-shot{aspect-ratio:4/5}
+.p-gal__stack{
+  display:grid;grid-template-rows:1fr 1fr;gap:clamp(.5rem,1vw,1.1rem);
+  aspect-ratio:4/5;
+}
+.p-gal__stack .p-shot{aspect-ratio:auto;height:100%}
+@media (max-width:760px){
+  .p-gal__row--pair{grid-template-columns:1fr}
+  .p-gal__stack{aspect-ratio:auto}
+  .p-gal__stack .p-shot{aspect-ratio:3/2;height:auto}
+}
 .p-shot{position:relative;overflow:hidden;aspect-ratio:3/2;background:#1b1f19;display:block}
 .p-shot img{
   width:100%;height:100%;object-fit:cover;display:block;
@@ -1099,8 +1114,18 @@ blockquote{
     <h2 id="gal-h">The Area</h2>
   </div>
   <div class="p-gal">
-    <div class="p-gal__row p-gal__row--1">
-      <a class="p-shot" href="../../media/hood-3.jpg"><img src="../../media/hood-3.jpg" alt="" loading="lazy"></a>
+    <div class="p-gal__row p-gal__row--pair">
+      <a class="p-shot" href="../../media/green-hills-1.jpg">
+        <img src="../../media/green-hills-1.jpg" loading="lazy" decoding="async"
+             alt="Evening terrace dining at Hill Center Green Hills"></a>
+      <div class="p-gal__stack">
+        <a class="p-shot" href="../../media/green-hills-2.jpg">
+          <img src="../../media/green-hills-2.jpg" loading="lazy" decoding="async"
+               alt="The RH gallery on Hillsboro Pike lit at dusk"></a>
+        <a class="p-shot" href="../../media/green-hills-3.jpg">
+          <img src="../../media/green-hills-3.jpg" loading="lazy" decoding="async"
+               alt="Restaurant frontage at Hill Center in Green Hills, Nashville"></a>
+      </div>
     </div>
   </div>
 </section>
