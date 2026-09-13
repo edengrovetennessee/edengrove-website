@@ -706,6 +706,55 @@ blockquote{
 }
 .pitch:hover .pitch__media img,.pitch:hover .pitch__media video{transform:scale(1.035)}
 
+/* ---- the live property site, in a window ----
+   Not a recording of the page — the page itself, in an iframe, rendered at a
+   desktop width and scaled down so it reads as a website rather than a phone.
+   It starts inert behind a cover: on a touch screen an iframe that scrolls on
+   contact traps the page, so interaction has to be asked for. */
+.pitch__media--site{background:#0d0f0c}
+.sitewin{position:absolute;inset:0;display:flex;flex-direction:column;background:#101310}
+.sitewin__bar{
+  flex:none;display:flex;align-items:center;gap:.34rem;
+  padding:.52rem .72rem;background:#1b1f19;
+  border-bottom:1px solid rgba(244,241,236,.08);
+}
+.sitewin__bar i{
+  width:.4rem;height:.4rem;border-radius:50%;
+  background:rgba(244,241,236,.2);flex:none;
+}
+.sitewin__bar span{
+  margin-left:.55rem;font-family:var(--ui);font-weight:300;
+  font-size:.52rem;letter-spacing:.1em;color:rgba(244,241,236,.4);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.sitewin__view{position:relative;flex:1;overflow:hidden}
+.sitewin__frame{
+  position:absolute;top:0;left:0;border:0;width:1440px;
+  transform-origin:0 0;pointer-events:none;
+}
+.sitewin[data-live] .sitewin__frame{pointer-events:auto}
+
+/* the cover, and the one instruction it carries */
+.sitewin__cover{
+  position:absolute;inset:0;z-index:2;display:grid;place-items:center;
+  background:rgba(13,15,12,.34);
+  border:0;width:100%;cursor:pointer;
+  transition:opacity .45s var(--rise),visibility .45s;
+}
+.sitewin[data-live] .sitewin__cover{opacity:0;visibility:hidden}
+.sitewin__cover span{
+  font-family:var(--ui);font-weight:400;font-size:.58rem;
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:#fff;
+  padding:.7rem 1.15rem;border:1px solid rgba(244,241,236,.5);
+  background:rgba(13,15,12,.5);backdrop-filter:blur(2px);
+  transition:border-color .4s var(--rise),background .4s var(--rise);
+}
+.sitewin__cover:hover span{border-color:var(--brass);background:rgba(13,15,12,.72)}
+
+/* the window is the point here, so it must not drift under the card hover */
+.pitch:hover .pitch__media--site .sitewin{transform:none}
+@media (prefers-reduced-motion:reduce){ .sitewin__cover{transition:none} }
+
 .pitch__n{
   display:block;margin-bottom:1.1rem;
   font-family:var(--ui);font-weight:300;font-size:.6rem;letter-spacing:.28em;
@@ -866,12 +915,20 @@ blockquote{
         <h3>A Website of Its Own</h3>
         <p>Each property is given its own dedicated website alongside its place on ours. From there it moves out to Instagram, YouTube, TikTok and Facebook — the same assets, cut for each place they land.</p>
       </div>
-      <div class="pitch__media">
-        <video data-lazyvid muted loop playsinline preload="none"
-               poster="media/mkt-propertysite-poster.jpg" aria-hidden="true">
-          <source src="media/mkt-propertysite.webm" type="video/webm">
-          <source src="media/mkt-propertysite.mp4"  type="video/mp4">
-        </video>
+      <div class="pitch__media pitch__media--site">
+        <div class="sitewin" data-sitewin>
+          <div class="sitewin__bar" aria-hidden="true">
+            <i></i><i></i><i></i>
+            <span>edengrovetennessee.com/property/715-davis/</span>
+          </div>
+          <div class="sitewin__view">
+            <iframe class="sitewin__frame" src="property/715-davis/index.html" title="The property website for 715 Davis Dr"
+                    loading="lazy" tabindex="-1"></iframe>
+            <button class="sitewin__cover" type="button" aria-label="Explore the 715 Davis Dr property website">
+              <span>Scroll the site</span>
+            </button>
+          </div>
+        </div>
       </div>
     </article>
     </div>
@@ -929,12 +986,20 @@ blockquote{
         <h3>A Website That Keeps Up</h3>
         <p>A curated property website from the beginning, updated as the build progresses — new stages, revised timelines, fresh imagery. Interest is held across the length of the project rather than gathered at the end of it.</p>
       </div>
-      <div class="pitch__media">
-        <video data-lazyvid muted loop playsinline preload="none"
-               poster="media/mkt-propertysite-poster.jpg" aria-hidden="true">
-          <source src="media/mkt-propertysite.webm" type="video/webm">
-          <source src="media/mkt-propertysite.mp4"  type="video/mp4">
-        </video>
+      <div class="pitch__media pitch__media--site">
+        <div class="sitewin" data-sitewin>
+          <div class="sitewin__bar" aria-hidden="true">
+            <i></i><i></i><i></i>
+            <span>edengrovetennessee.com/property/1211-carl-seyfert/</span>
+          </div>
+          <div class="sitewin__view">
+            <iframe class="sitewin__frame" src="property/1211-carl-seyfert/index.html" title="The property website for 1211 Carl Seyfert Memorial Dr"
+                    loading="lazy" tabindex="-1"></iframe>
+            <button class="sitewin__cover" type="button" aria-label="Explore the 1211 Carl Seyfert property website">
+              <span>Scroll the site</span>
+            </button>
+          </div>
+        </div>
       </div>
     </article>
 
@@ -1031,6 +1096,42 @@ blockquote{
 </footer>
 
 <script>
+/* ---- the property-site windows ----
+   The iframe renders at a fixed desktop width and is scaled to fit, so the card
+   shows the site as a visitor on a laptop would see it. Height is derived from
+   the scale so the full box stays filled at any width. */
+(() => {
+  const wins = [...document.querySelectorAll("[data-sitewin]")];
+  if (!wins.length) return;
+  const W = 1440;
+
+  const fit = win => {
+    const view = win.querySelector(".sitewin__view");
+    const frame = win.querySelector(".sitewin__frame");
+    const box = view.getBoundingClientRect();
+    if (!box.width) return;
+    const s = box.width / W;
+    frame.style.transform = `scale(${s})`;
+    frame.style.height = (box.height / s) + "px";
+  };
+
+  wins.forEach(win => {
+    fit(win);
+    win.querySelector(".sitewin__cover").addEventListener("click", () => {
+      win.setAttribute("data-live", "");
+      win.querySelector(".sitewin__frame").removeAttribute("tabindex");
+    });
+    // the New Construction panel is hidden until its tab is chosen, so its
+    // window measures zero until then — catch it when it finally has a size
+    new ResizeObserver(() => fit(win)).observe(win);
+  });
+
+  addEventListener("resize", () => {
+    clearTimeout(window.__sw);
+    window.__sw = setTimeout(() => wins.forEach(fit), 150);
+  });
+})();
+
 /* ---- lazy video ----
    preload="none" means nothing is fetched until a card is actually on screen.
    With four films on this page that is the difference between ~9MB on load and
