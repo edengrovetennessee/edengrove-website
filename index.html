@@ -611,6 +611,10 @@ blockquote{
 
 
 
+
+
+
+
 /* LOCKUP:START */
 /* ==========================================================================
    OPENING LOCKUP — EDEN GROVE | Compass
@@ -653,12 +657,19 @@ blockquote{
 }
 
 /* TREC 1260-02-.12: the firm name may not be set smaller than the team name.
-   Both of these resolve from the same clamp, so the relationship holds at
-   every width and cannot drift when someone edits one of them. */
+   The measure that matters is CAP HEIGHT, not font-size — a logo's box height
+   and a typeface's font-size are not comparable quantities, and matching those
+   two numbers rendered Compass at 1.47x the cap height of EDEN GROVE, which
+   swamped our own name.
+   The Compass artwork is cropped tight, so its box height IS its cap height.
+   Cormorant Garamond's caps land at about 0.68 of font-size, so this clamp is
+   the EDEN GROVE clamp x 0.74 — putting Compass at roughly 1.08x our cap
+   height. Comfortably larger, which is what the rule asks for, and balanced,
+   which is what a lockup asks for. Verified by measuring rendered ink. */
 .lock__compass{animation-delay:.85s}
 img.lock__compass{
   display:block;width:auto;
-  height:clamp(1.5rem,1rem + 2.6vw,3.1rem);
+  height:clamp(1.11rem,.74rem + 1.92vw,2.29rem);
 }
 .lock__compass--type{
   font-family:var(--ui);font-weight:300;color:#fff;
@@ -767,11 +778,17 @@ img.lock__compass{
   <div class="lock__row">
     <span class="lock__eg">Eden&nbsp;Grove</span>
     <i class="lock__bar" aria-hidden="true"></i>
-    <span class="lock__compass lock__compass--type" data-placeholder="drop media/compass-white.svg to replace">Compass</span>
+    <img class="lock__compass" src="media/compass-white.png" alt="Compass" decoding="async">
   </div>
   <span class="lock__skip">Click to enter</span>
 </div>
 <!-- LOCKUP:END -->
+
+
+
+
+
+
 
 
 
@@ -1164,6 +1181,10 @@ addEventListener("keydown", e => {
   } else if (document.body.classList.contains("menu-open")) closeMenu();
 });
 </script>
+
+
+
+
 
 
 
