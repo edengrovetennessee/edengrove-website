@@ -511,7 +511,9 @@ blockquote{
 .foot{
   background:var(--ink);color:var(--paper);
   border-top:1px solid rgba(244,241,236,.13);
-  padding:clamp(6.5rem,16vh,11rem) var(--gutter) clamp(2.75rem,6vh,4rem);
+  /* rhythm in rem, not vh — a footer's spacing should follow its type, not the
+     height of the window it happens to be shown in */
+  padding:clamp(3.5rem,7vw,6rem) var(--gutter) clamp(2rem,4vw,2.75rem);
 }
 .foot__inner{max-width:78rem;margin:0 auto}
 
@@ -524,8 +526,8 @@ blockquote{
 
 .foot__cols{
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:clamp(2.25rem,5vw,4.5rem);
-  margin-top:clamp(4rem,10vh,6.5rem);
+  gap:clamp(2rem,4vw,4rem);
+  margin-top:clamp(2.25rem,4.5vw,3.5rem);
 }
 .foot__h{
   margin:0 0 1.9rem;
@@ -552,9 +554,39 @@ blockquote{
 
 .foot__bar{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
-  gap:1.5rem;
-  margin-top:clamp(5rem,12vh,8rem);padding-top:clamp(1.9rem,4vh,2.6rem);
+  gap:1.25rem;
+  margin-top:clamp(1.5rem,3vw,2.25rem);padding-top:clamp(1.4rem,2.6vw,1.9rem);
   border-top:1px solid rgba(244,241,236,.13);
+}
+
+/* ---- the firm sign-off ---------------------------------------------------
+   TREC 1260-02-.12 wants the firm name and firm telephone on every page. The
+   mark carries the name; the line under it carries the number. Sized so the
+   Compass cap height sits a shade above the EDEN GROVE cap height above it,
+   the same relationship the opening lockup uses. */
+.foot__firm{
+  margin-top:clamp(2.25rem,4.5vw,3.5rem);
+  padding-top:clamp(1.6rem,3vw,2.2rem);
+  border-top:1px solid rgba(244,241,236,.13);
+  display:flex;align-items:center;flex-wrap:wrap;
+  gap:clamp(.9rem,2.4vw,1.8rem);
+}
+.foot__compass{
+  display:block;width:auto;height:clamp(.95rem,.75rem + .5vw,1.25rem);
+  opacity:.92;flex:none;
+}
+.foot__firmline{
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:.68rem;line-height:1.7;letter-spacing:.1em;
+  color:rgba(244,241,236,.5);
+}
+.foot__firmline a{
+  color:inherit;border-bottom:1px solid rgba(244,241,236,.22);
+  white-space:nowrap;      /* a telephone number must never break mid-digits */
+}
+.foot__firmline a:hover,.foot__firmline a:focus-visible{color:#fff;outline:none}
+@media (max-width:560px){
+  .foot__firm{flex-direction:column;align-items:flex-start;gap:.9rem}
 }
 .foot__fine{
   margin:0;font-size:.66rem;letter-spacing:.1em;
@@ -573,8 +605,17 @@ blockquote{
 .social svg{width:1.05rem;height:1.05rem;display:block;fill:currentColor}
 
 @media (max-width:760px){
-  .foot__cols{grid-template-columns:1fr;gap:2.5rem}
-  .foot__bar{flex-direction:column;align-items:flex-start}
+  .foot__cols{grid-template-columns:1fr;gap:2rem}
+  .foot__bar{flex-direction:column;align-items:flex-start;gap:1rem}
+  /* Eight sitemap links stacked one per line ran the whole height of a phone
+     screen on their own. Two columns, half the height, same clarity. */
+  .foot__cols nav .foot__list{
+    columns:2;column-gap:1.25rem;
+  }
+  .foot__cols nav .foot__list li{
+    margin-bottom:.8rem;break-inside:avoid;
+  }
+  .foot__cols .foot__list li{margin-bottom:.8rem}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -1109,6 +1150,16 @@ blockquote{
       </div>
     </div>
 
+
+    <div class="foot__firm">
+      <img class="foot__compass" src="media/compass-white.png" alt="Compass"
+           width="1586" height="218" loading="lazy" decoding="async">
+      <p class="foot__firmline">
+        Eden&nbsp;Grove is a team at Compass &middot; Office
+        <a href="tel:+16153836964">(615) 383-6964</a><br>
+        Equal Housing Opportunity
+      </p>
+    </div>
     <div class="foot__bar">
       <p class="foot__fine">© 2026 Eden Grove</p>
 
