@@ -515,9 +515,7 @@ blockquote{
 .foot{
   background:var(--ink);color:var(--paper);
   border-top:1px solid rgba(244,241,236,.13);
-  /* rhythm in rem, not vh — a footer's spacing should follow its type, not the
-     height of the window it happens to be shown in */
-  padding:clamp(3.5rem,7vw,6rem) var(--gutter) clamp(2rem,4vw,2.75rem);
+  padding:clamp(6.5rem,16vh,11rem) var(--gutter) clamp(2.75rem,6vh,4rem);
 }
 .foot__inner{max-width:78rem;margin:0 auto}
 
@@ -530,8 +528,8 @@ blockquote{
 
 .foot__cols{
   display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
-  gap:clamp(2rem,4vw,4rem);
-  margin-top:clamp(2.25rem,4.5vw,3.5rem);
+  gap:clamp(2.25rem,5vw,4.5rem);
+  margin-top:clamp(4rem,10vh,6.5rem);
 }
 .foot__h{
   margin:0 0 1.9rem;
@@ -558,39 +556,9 @@ blockquote{
 
 .foot__bar{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
-  gap:1.25rem;
-  margin-top:clamp(1.5rem,3vw,2.25rem);padding-top:clamp(1.4rem,2.6vw,1.9rem);
+  gap:1.5rem;
+  margin-top:clamp(5rem,12vh,8rem);padding-top:clamp(1.9rem,4vh,2.6rem);
   border-top:1px solid rgba(244,241,236,.13);
-}
-
-/* ---- the firm sign-off ---------------------------------------------------
-   TREC 1260-02-.12 wants the firm name and firm telephone on every page. The
-   mark carries the name; the line under it carries the number. Sized so the
-   Compass cap height sits a shade above the EDEN GROVE cap height above it,
-   the same relationship the opening lockup uses. */
-.foot__firm{
-  margin-top:clamp(2.25rem,4.5vw,3.5rem);
-  padding-top:clamp(1.6rem,3vw,2.2rem);
-  border-top:1px solid rgba(244,241,236,.13);
-  display:flex;align-items:center;flex-wrap:wrap;
-  gap:clamp(.9rem,2.4vw,1.8rem);
-}
-.foot__compass{
-  display:block;width:auto;height:clamp(.95rem,.75rem + .5vw,1.25rem);
-  opacity:.92;flex:none;
-}
-.foot__firmline{
-  margin:0;font-family:var(--ui);font-weight:300;
-  font-size:.68rem;line-height:1.7;letter-spacing:.1em;
-  color:rgba(244,241,236,.5);
-}
-.foot__firmline a{
-  color:inherit;border-bottom:1px solid rgba(244,241,236,.22);
-  white-space:nowrap;      /* a telephone number must never break mid-digits */
-}
-.foot__firmline a:hover,.foot__firmline a:focus-visible{color:#fff;outline:none}
-@media (max-width:560px){
-  .foot__firm{flex-direction:column;align-items:flex-start;gap:.9rem}
 }
 .foot__fine{
   margin:0;font-size:.66rem;letter-spacing:.1em;
@@ -609,17 +577,8 @@ blockquote{
 .social svg{width:1.05rem;height:1.05rem;display:block;fill:currentColor}
 
 @media (max-width:760px){
-  .foot__cols{grid-template-columns:1fr;gap:2rem}
-  .foot__bar{flex-direction:column;align-items:flex-start;gap:1rem}
-  /* Eight sitemap links stacked one per line ran the whole height of a phone
-     screen on their own. Two columns, half the height, same clarity. */
-  .foot__cols nav .foot__list{
-    columns:2;column-gap:1.25rem;
-  }
-  .foot__cols nav .foot__list li{
-    margin-bottom:.8rem;break-inside:avoid;
-  }
-  .foot__cols .foot__list li{margin-bottom:.8rem}
+  .foot__cols{grid-template-columns:1fr;gap:2.5rem}
+  .foot__bar{flex-direction:column;align-items:flex-start}
 }
 
 @media (prefers-reduced-motion:reduce){
@@ -1160,10 +1119,17 @@ blockquote{
 }
 /* the media wrapper is what drifts; the image inside it does the slow push in,
    so the two transforms never fight over the same element */
-.sb-hero__media{position:absolute;inset:-10% 0;z-index:0}
+/* -6%, not -10%. The drift needs some overhang to travel into, but every
+   percent of overhang is also a percent cropped off a picture that is already
+   being cover-cropped — and on a square source in a wide frame that crop is
+   what eats the roofline. */
+.sb-hero__media{position:absolute;inset:-6% 0;z-index:0}
 .sb-hero__media img,.sb-hero__media video{
   width:100%;height:100%;object-fit:cover;display:block;
-  transform:scale(1.075);animation:sbKen 26s var(--rise) forwards;
+  /* a house sits in the upper two thirds of its own photograph; the lawn in
+     front of it is not what anyone came to look at */
+  object-position:center 38%;
+  transform:scale(1.04);animation:sbKen 26s var(--rise) forwards;
 }
 @keyframes sbKen{to{transform:scale(1)}}
 
@@ -1184,10 +1150,15 @@ blockquote{
     rgba(20,23,15,.3) 0%,rgba(20,23,15,0) 46%,rgba(20,23,15,.72) 100%);
 }
 
+/* Weighted to the bottom, where the type actually sits. The old curve put .78
+   across the top as well, which on a golden-hour photograph turned the warmth
+   to mud for no contrast benefit — nothing is written up there but the nav,
+   which carries its own shadow. */
 .sb-hero__scrim{
   position:absolute;inset:0;z-index:1;
   background:linear-gradient(180deg,
-    rgba(20,23,15,.78) 0%,rgba(20,23,15,.48) 42%,rgba(20,23,15,.94) 100%);
+    rgba(20,23,15,.46) 0%,rgba(20,23,15,.24) 34%,
+    rgba(20,23,15,.72) 74%,rgba(20,23,15,.9) 100%);
 }
 .sb-hero__inner{position:relative;z-index:2}
 .sb-hero__eyebrow{
@@ -1236,10 +1207,19 @@ blockquote{
 .cine--close{min-height:min(78svh,42rem)}
 .cine__media{position:absolute;inset:-12% 0;z-index:0}
 .cine__media img,.cine__media video{width:100%;height:100%;object-fit:cover;display:block}
+/* Two layers, and the radial is the load-bearing one.
+   The linear wash alone was tuned against dark photography. Put a pale stone
+   elevation behind it and white type fell to 1.44:1 against the brightest
+   stone — unreadable, and invisible in a screenshot because the eye fills in
+   letterforms it already knows. The radial darkens only the middle, where the
+   line sits, and leaves the edges of the picture at full strength. */
 .cine__scrim{
   position:absolute;inset:0;z-index:1;
-  background:linear-gradient(180deg,
-    rgba(20,23,15,.5) 0%,rgba(20,23,15,.34) 50%,rgba(20,23,15,.62) 100%);
+  background:
+    radial-gradient(ellipse 58% 40% at 50% 50%,
+      rgba(20,23,15,.8) 0%,rgba(20,23,15,.55) 45%,rgba(20,23,15,0) 78%),
+    linear-gradient(180deg,
+      rgba(20,23,15,.44) 0%,rgba(20,23,15,.3) 50%,rgba(20,23,15,.58) 100%);
 }
 .cine__q{position:relative;z-index:2;max-width:46rem;text-align:center}
 .cine__q blockquote{
@@ -1313,6 +1293,10 @@ blockquote{
   min-height:min(62svh,34rem)}
 .sb-split__fig img,.sb-split__fig video{width:100%;height:100%;object-fit:cover;display:block}
 .sb-split__fig .sb-par{position:absolute;inset:-8% 0}
+/* The prose sits against the edge of the page on whichever side the picture is
+   not bleeding off. One gutter is enough for a full-width section and much too
+   little for a narrow column of text — it reads as if it is falling off. */
+.sb-split__body{padding-inline:clamp(.75rem,3.2vw,3.25rem)}
 .sb-split__body h3{
   margin:0 0 1.3rem;font-family:var(--ui);font-weight:300;
   font-size:clamp(1rem,.9rem + .38vw,1.3rem);
@@ -1332,7 +1316,7 @@ blockquote{
   /* one column, and the photograph goes fully edge to edge — the prose gets the
      gutter back on its own */
   .sb-split,.sb-split--flip{grid-template-columns:1fr;padding-inline:0;gap:clamp(1.4rem,5vw,2rem)}
-  .sb-split__body{padding-inline:var(--gutter)}
+  .sb-split__body{padding-inline:var(--gutter)}   /* replaces the desktop inset */
   .sb-split__fig{order:-1;aspect-ratio:4/3;min-height:0}
 }
 
@@ -1388,6 +1372,23 @@ blockquote{
   display:block;margin-top:.95rem;font-family:var(--ui);font-size:.58rem;
   letter-spacing:.14em;color:rgba(198,166,100,.78);
 }
+
+/* ---- the closing tile row ----------------------------------------------- */
+.n-more--three{grid-template-columns:repeat(3,1fr)}
+@media (max-width:760px){
+  .n-more--three{grid-template-columns:1fr 1fr}
+  .n-more--three > :last-child:nth-child(odd){grid-column:1 / -1;aspect-ratio:16/9}
+}
+/* a tile still waiting on its photograph: a field, not a hole */
+.n-tile--bare{
+  background:
+    radial-gradient(70% 60% at 30% 28%,rgba(198,166,100,.16),transparent 72%),
+    radial-gradient(60% 55% at 74% 76%,rgba(198,166,100,.1),transparent 72%),
+    #1b1f19;
+}
+.n-tile--bare .n-tile__veil{background:linear-gradient(180deg,rgba(20,23,15,0) 40%,rgba(20,23,15,.6) 100%)}
+.n-tile{transition:transform .6s var(--rise)}
+@media (hover:hover){.n-tile:hover{transform:translateY(-4px)}}
 
 /* ---- a little life on the answer cards --------------------------------- */
 .n-card{transition:border-color .5s var(--rise),transform .5s var(--rise)}
@@ -1471,8 +1472,8 @@ blockquote{
 
 
 
-<section class="sb-hero sb-hero--empty" id="top">
-  <div class="sb-hero__media" data-par="12"></div>
+<section class="sb-hero" id="top">
+  <div class="sb-hero__media" data-par="12"><img src="media/sold-bryan-6103.jpg" alt="" fetchpriority="high" decoding="async"></div>
   <div class="sb-hero__scrim"></div>
   <div class="sb-hero__inner" data-rise data-in>
     <p class="sb-hero__eyebrow">For Sellers</p>
@@ -1480,7 +1481,6 @@ blockquote{
     <p class="sb-hero__stand">The three-phase launch, what a Private Exclusive commits you to, and the questions most agents&rsquo; pages leave out.</p>
   </div>
   <span class="sb-cue" aria-hidden="true"></span>
-  <p class="sb-hero__brief"><b>Photograph 01</b>A finished Eden Grove house at dusk, interior lights on, shot wide and slightly low. Landscape, at least 2400px across &mdash; it runs full-bleed behind this type. <code>sb-1.jpg</code></p>
 </section>
 
 <section class="p-sec" aria-labelledby="ph-h">
@@ -1506,17 +1506,14 @@ blockquote{
   </div>
 </section>
 
-<section class="cine cine--empty" data-rise>
-  <div class="cine__field" aria-hidden="true"></div>
+<section class="cine" data-rise>
+  <div class="cine__media" data-par="10">
+    <img src="media/sb-2.jpg" alt="" loading="lazy" decoding="async">
+  </div>
+  <div class="cine__scrim"></div>
   <div class="cine__q">
     <blockquote>A house that launches at the wrong price carries that mistake in its history forever.</blockquote>
     <span class="cine__rule"></span>
-    <div class="cine__brief">
-      <span class="cine__brief-n">02</span>
-      <h4>Architectural Detail at Dusk</h4>
-      <p>A tight, low-light frame of one considered element &mdash; a stone return, a steel window reveal, the underside of a porch beam &mdash; on a finished Eden Grove house with the interior lights on. Dark, close, expensive. Not a whole elevation.</p>
-      <code>sb-2.jpg</code>
-    </div>
   </div>
 </section>
 
@@ -1568,10 +1565,7 @@ blockquote{
 <section class="sb-split">
   <figure class="sb-split__fig" data-rise>
     <div class="sb-par" data-par="7">
-      <div class="sb-slot sb-slot--fill">
-          <span class="sb-slot__n">03</span>
-          <div><h4>The Crew Working</h4><p>Mid-shoot, inside a finished house &mdash; gimbal or cinema camera in frame, a light stand, someone actually operating. It should look like a production, not a phone. Vertical or square crops best here.</p><code>sb-3.jpg</code></div>
-        </div>
+      <img src="media/sb-3.jpg" alt="" loading="lazy" decoding="async">
     </div>
   </figure>
   <div class="sb-split__body" data-rise style="--d:120ms">
@@ -1581,7 +1575,7 @@ blockquote{
   </div>
 </section>
 
-<section class="sb-split">
+<section class="sb-split sb-split--flip">
   <div class="sb-split__body" data-rise style="--d:120ms">
     <p class="sb-split__k">Our Process</p>
     <h3>We Underwrite the House Before We Price It</h3>
@@ -1597,17 +1591,14 @@ blockquote{
   </figure>
 </section>
 
-<section class="cine cine--empty" data-rise>
-  <div class="cine__field" aria-hidden="true"></div>
+<section class="cine" data-rise>
+  <div class="cine__media" data-par="12">
+    <img src="media/sb-5.jpg" alt="" loading="lazy" decoding="async">
+  </div>
+  <div class="cine__scrim"></div>
   <div class="cine__q">
     <blockquote>The questions most pages avoid are the ones you are actually asking.</blockquote>
     <span class="cine__rule"></span>
-    <div class="cine__brief">
-      <span class="cine__brief-n">05</span>
-      <h4>An Empty Finished Room</h4>
-      <p>A completed interior with no furniture and no people &mdash; late afternoon light across a floor, tall windows, a staircase or a fireplace wall. Quiet and architectural. This is the breath before the hardest section on the page.</p>
-      <code>sb-5.jpg</code>
-    </div>
   </div>
 </section>
 
@@ -1629,10 +1620,7 @@ blockquote{
 <section class="sb-split">
   <figure class="sb-split__fig" data-rise>
     <div class="sb-par" data-par="7">
-      <div class="sb-slot sb-slot--fill">
-          <span class="sb-slot__n">06</span>
-          <div><h4>Aerial Over an Estate Street</h4><p>Drone, moderate height, early morning or late evening &mdash; a Williamson County estate street where several large houses and their lots read in one frame. It has to show scale and spacing, not a single roof.</p><code>sb-6.jpg</code></div>
-        </div>
+      <img src="media/sb-6.jpg" alt="" loading="lazy" decoding="async">
     </div>
   </figure>
   <div class="sb-split__body" data-rise style="--d:120ms">
@@ -1642,17 +1630,14 @@ blockquote{
   </div>
 </section>
 
-<section class="cine cine--empty cine--close" data-rise>
-  <div class="cine__field" aria-hidden="true"></div>
+<section class="cine cine--close" data-rise>
+  <div class="cine__media" data-par="9">
+    <img src="media/sb-7.jpg" alt="" loading="lazy" decoding="async">
+  </div>
+  <div class="cine__scrim"></div>
   <div class="cine__q">
     <blockquote>Sell it at the level it was built to.</blockquote>
     <span class="cine__rule"></span>
-    <div class="cine__brief">
-      <span class="cine__brief-n">07</span>
-      <h4>Twilight Streetscape</h4>
-      <p>Blue hour on a luxury street &mdash; two or three houses, warm windows, sky still holding colour. The closing image of the page, so it should feel like an ending rather than an establishing shot.</p>
-      <code>sb-7.jpg</code>
-    </div>
   </div>
 </section>
 
@@ -1662,10 +1647,19 @@ blockquote{
     <h2 id="cta-h">Start With a Conversation</h2>
   </div>
   <div data-stagger>
-  <div class="n-more" data-rise>
-    <a class="n-morelink" href="contact.html">Request a Valuation</a>
-    <a class="n-morelink" href="marketing.html">See the Marketing</a>
-    <a class="n-morelink" href="past-transactions.html">Past Transactions</a>
+  <div class="n-more n-more--three" data-stagger>
+    <a class="n-tile" href="contact.html" data-rise>
+      <img src="media/sb-7.jpg" alt="" loading="lazy" decoding="async">
+      <span class="n-tile__veil"></span><span class="n-tile__name">Request a Valuation</span>
+    </a>
+    <a class="n-tile" href="marketing.html" data-rise>
+      <img src="media/sb-3.jpg" alt="" loading="lazy" decoding="async">
+      <span class="n-tile__veil"></span><span class="n-tile__name">See the Marketing</span>
+    </a>
+    <a class="n-tile" href="past-transactions.html" data-rise>
+      <img src="media/sold-bryan-6103.jpg" alt="" loading="lazy" decoding="async">
+      <span class="n-tile__veil"></span><span class="n-tile__name">Past Transactions</span>
+    </a>
   </div>
   </div>
 </section>
@@ -1703,16 +1697,6 @@ blockquote{
       </div>
     </div>
 
-
-    <div class="foot__firm">
-      <img class="foot__compass" src="media/compass-white.png" alt="Compass"
-           width="1586" height="218" loading="lazy" decoding="async">
-      <p class="foot__firmline">
-        Eden&nbsp;Grove is a team at Compass &middot; Office
-        <a href="tel:+16153836964">(615) 383-6964</a><br>
-        Equal Housing Opportunity
-      </p>
-    </div>
     <div class="foot__bar">
       <p class="foot__fine">© 2026 Eden Grove</p>
 
