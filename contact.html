@@ -786,11 +786,29 @@ blockquote{
    Type-led rather than photo-led: one quiet opening, the ways to reach us,
    and a form. Nothing else on the page competes for attention.
    ========================================================================== */
+/* The opening carries a photograph now. Same construction as the sellers and
+   buyers heroes: a media layer that can hold a still or a film, a scrim
+   weighted to where the type actually sits, and the type above both. */
 .c-open{
+  position:relative;isolation:isolate;overflow:hidden;
   background:var(--ink);color:var(--paper);
-  padding:calc(var(--bar-y) * 2 + 5.5rem) var(--gutter) clamp(3rem,7vh,5rem);
+  padding:calc(var(--bar-y) * 2 + 6.5rem) var(--gutter) clamp(4rem,9vh,6.5rem);
   text-align:center;
 }
+.c-open__media{position:absolute;inset:0;z-index:0}
+.c-open__media img,.c-open__media video{
+  width:100%;height:100%;object-fit:cover;display:block;
+  object-position:center 42%;
+}
+.c-open__scrim{
+  position:absolute;inset:0;z-index:1;
+  background:
+    radial-gradient(ellipse 64% 58% at 50% 52%,
+      rgba(20,23,15,.72) 0%,rgba(20,23,15,.5) 48%,rgba(20,23,15,.18) 80%),
+    linear-gradient(180deg,
+      rgba(20,23,15,.5) 0%,rgba(20,23,15,.32) 42%,rgba(20,23,15,.62) 100%);
+}
+.c-open > :not(.c-open__media):not(.c-open__scrim){position:relative;z-index:2}
 .c-open__eyebrow{
   margin:0 0 1.4rem;font-weight:300;font-size:.6rem;
   letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--brass);
@@ -1012,6 +1030,10 @@ blockquote{
   </header>
 
 <section class="c-open">
+  <div class="c-open__media">
+    <img src="media/contact-hero.jpg" alt="" fetchpriority="high" decoding="async">
+  </div>
+  <div class="c-open__scrim"></div>
   <p class="c-open__eyebrow">Contact</p>
   <h1>Tell us what you are<br>looking&nbsp;for</h1>
   <p>Whether it is a property we represent, one you have seen elsewhere, or a
