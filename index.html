@@ -838,8 +838,11 @@ img.lock__compass{
 
 
 <section class="hero" id="top">
-  <!-- Swap this <img> for a <video> when the footage exists. Nothing else changes. -->
-  <video class="hero__media" autoplay muted loop playsinline preload="metadata"
+  <!-- preload="auto", not "metadata". Autoplay fires the moment the element is
+       ready, and with metadata only there is nothing buffered to play, so the
+       first seconds sit on the poster. This is the one video on the site worth
+       the bandwidth. -->
+  <video class="hero__media" autoplay muted loop playsinline preload="auto"
          poster="media/hero-poster.jpg" aria-hidden="true">
     <source src="media/hero.webm" type="video/webm">
     <source src="media/hero.mp4"  type="video/mp4">
@@ -1105,17 +1108,39 @@ img.lock__compass{
 
 <script>
 /* ---- hero film ----
-   autoplay handles it nearly everywhere. iOS in Low Power Mode, and browsers
-   set to block autoplay, refuse until the visitor has interacted at all — a
-   scroll or a touch anywhere counts, so we retry on the first one rather than
-   showing anybody a play button. */
+   The attributes alone (autoplay + muted + playsinline) are enough in every
+   current browser, and this is only the net underneath them.
+
+   Three things do still refuse: iOS in Low Power Mode, a browser whose autoplay
+   setting is "never", and any attempt made before the file has a frame to show.
+   So we retry on the first frame as well as on the first interaction, and again
+   when the opening lockup is dismissed — that click is a real user activation
+   and is the single best moment to ask a browser that said no the first time.
+
+   What none of this can beat is Safari's per-site Auto-Play set to "Never
+   Auto-Play". That is the visitor's own setting and no page can override it. */
 (() => {
   const v = document.querySelector("video.hero__media");
   if (!v) return;
   const go = () => { const p = v.play(); if (p) p.catch(() => {}) };
+  const kick = () => { if (v.paused) go() };
+
   go();
+  // ready-state events: the first attempt can land before there is anything
+  // decoded to show, and a silent rejection then leaves the poster up
+  ["loadeddata","canplay","canplaythrough"].forEach(e => v.addEventListener(e, kick));
   ["pointerdown","touchstart","scroll","keydown","wheel"].forEach(e =>
-    addEventListener(e, () => { if (v.paused) go() }, {passive:true}));
+    addEventListener(e, kick, {passive:true}));
+
+  // the curtain going up is a user gesture; ask again on the way through
+  const lock = document.getElementById("lock");
+  if (lock) {
+    lock.addEventListener("pointerdown", kick, {passive:true});
+    new MutationObserver(() => kick())
+      .observe(lock, {attributes:true, attributeFilter:["data-done"]});
+    setTimeout(kick, 3600);        // and once after it lifts on its own
+  }
+
   document.addEventListener("visibilitychange", () => {
     if (document.hidden) v.pause(); else go();
   });
