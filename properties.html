@@ -710,14 +710,14 @@ blockquote{
 }
 .prop--nophoto::after{background:none}
 
-/* ---- coming soon ----
-   On a tile with a photograph the badge and the facts are a reveal: they sit
+/* On a tile with a photograph the badge and the facts are a reveal: they sit
    over the picture and come up on hover. On a tile with no photograph there is
    nothing to reveal them from, and the badge is the whole point of the card, so
-   it stays up. */
-.prop--soon .prop__status,.prop--soon .prop__more{opacity:1;transform:none}
-.prop--soon .prop__more{grid-template-rows:1fr}
-.prop--soon .prop__cta{color:var(--brass)}
+   they stay up. This follows from having no picture, not from any particular
+   status, so it lives on --nophoto rather than on a status modifier. */
+.prop--nophoto .prop__status,.prop--nophoto .prop__more{opacity:1;transform:none}
+.prop--nophoto .prop__more{grid-template-rows:1fr}
+.prop--nophoto .prop__cta{color:var(--brass)}
 .prop--nophoto .prop__addr{text-shadow:none}
 /* nothing to darken on hover, so the lift is the ground itself */
 .prop--nophoto:hover{background:linear-gradient(160deg,#232719 0%,#1a1e15 70%)}
@@ -1015,11 +1015,11 @@ blockquote{
       </div>
     </a>
 
-    <!-- Coming Soon: address only. No price, square footage or MLS is published
-         until the listing goes active, and the city line is held back until it
-         is confirmed rather than guessed. -->
-    <a class="prop prop--nophoto prop--soon" href="contact.html">
-      <span class="prop__status">Coming Soon</span>
+    <!-- Private Exclusive: no MLS number, by definition. No price or square
+         footage published yet, and the city line is held back until it is
+         confirmed rather than guessed. -->
+    <a class="prop prop--nophoto" href="contact.html">
+      <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">804 Wilson Pike</h3>
         <div class="prop__more"><div>
@@ -1031,11 +1031,11 @@ blockquote{
       </div>
     </a>
 
-    <!-- Coming Soon: address only. No price, square footage or MLS is published
-         until the listing goes active, and the city line is held back until it
-         is confirmed rather than guessed. -->
-    <a class="prop prop--nophoto prop--soon" href="contact.html">
-      <span class="prop__status">Coming Soon</span>
+    <!-- Private Exclusive: no MLS number, by definition. No price or square
+         footage published yet, and the city line is held back until it is
+         confirmed rather than guessed. -->
+    <a class="prop prop--nophoto" href="contact.html">
+      <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">9003 Carondelet Pl</h3>
         <div class="prop__more"><div>
@@ -1047,11 +1047,11 @@ blockquote{
       </div>
     </a>
 
-    <!-- Coming Soon: address only. No price, square footage or MLS is published
-         until the listing goes active, and the city line is held back until it
-         is confirmed rather than guessed. -->
-    <a class="prop prop--nophoto prop--soon" href="contact.html">
-      <span class="prop__status">Coming Soon</span>
+    <!-- Private Exclusive: no MLS number, by definition. No price or square
+         footage published yet, and the city line is held back until it is
+         confirmed rather than guessed. -->
+    <a class="prop prop--nophoto" href="contact.html">
+      <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">6212 Bridlewood Ln</h3>
         <div class="prop__more"><div>
@@ -1063,11 +1063,11 @@ blockquote{
       </div>
     </a>
 
-    <!-- Coming Soon: address only. No price, square footage or MLS is published
-         until the listing goes active, and the city line is held back until it
-         is confirmed rather than guessed. -->
-    <a class="prop prop--nophoto prop--soon" href="contact.html">
-      <span class="prop__status">Coming Soon</span>
+    <!-- Private Exclusive: no MLS number, by definition. No price or square
+         footage published yet, and the city line is held back until it is
+         confirmed rather than guessed. -->
+    <a class="prop prop--nophoto" href="contact.html">
+      <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">916 Long Valley Rd</h3>
         <div class="prop__more"><div>
@@ -1079,11 +1079,11 @@ blockquote{
       </div>
     </a>
 
-    <!-- Coming Soon: address only. No price, square footage or MLS is published
-         until the listing goes active, and the city line is held back until it
-         is confirmed rather than guessed. -->
-    <a class="prop prop--nophoto prop--soon" href="contact.html">
-      <span class="prop__status">Coming Soon</span>
+    <!-- Private Exclusive: no MLS number, by definition. No price or square
+         footage published yet, and the city line is held back until it is
+         confirmed rather than guessed. -->
+    <a class="prop prop--nophoto" href="contact.html">
+      <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">2112 Eastwood Ave</h3>
         <div class="prop__more"><div>
