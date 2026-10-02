@@ -1154,8 +1154,14 @@ blockquote{
 .sb-hero{
   position:relative;isolation:isolate;overflow:hidden;
   min-height:100svh;                    /* the picture is the page, not a band */
-  display:grid;align-content:end;       /* type sits low, the way a title card does */
-  padding:calc(var(--bar-y) * 2 + 6rem) var(--gutter) clamp(5rem,13vh,9rem);
+  /* Centred in the frame, not hung off the bottom. Bottom alignment left half
+     the photograph as empty sky above the type and crowded the words onto the
+     lower edge; the words belong in the middle of the picture. The top padding
+     still clears the fixed bar, and the slightly lighter bottom padding pulls
+     the optical centre a shade below the geometric one, which is where a
+     centred block wants to sit under a header. */
+  display:grid;align-content:center;
+  padding:calc(var(--bar-y) * 2 + 4rem) var(--gutter) clamp(3rem,8vh,5.5rem);
   text-align:center;background:var(--ink);
 }
 /* the media wrapper is what drifts; the image inside it does the slow push in,
@@ -1191,19 +1197,45 @@ blockquote{
     rgba(20,23,15,.3) 0%,rgba(20,23,15,0) 46%,rgba(20,23,15,.72) 100%);
 }
 
-/* Weighted to the bottom, where the type actually sits. The old curve put .78
-   across the top as well, which on a golden-hour photograph turned the warmth
-   to mud for no contrast benefit — nothing is written up there but the nav,
-   which carries its own shadow. */
-/* Light at the top, weighted at the foot. The type sits low, so that is the
-   only place the scrim has to do any work; carrying .46 across the sky just
-   greyed out a golden-hour photograph for no contrast benefit. Tuned down until
-   the H1 was still clear of AA with room to spare, and no further. */
+/* The scrim follows the type. While the H1 sat at the foot of the frame this
+   was a bottom-weighted curve; now that the block is centred, the weight has to
+   move to the middle or the headline lands on the brightest part of a
+   golden-hour photograph with almost nothing behind it.
+
+   So: a soft ellipse under the words, and only a light wash elsewhere. The wash
+   still darkens the foot, because the scroll cue and the brief live down there,
+   and lifts a little at the very top so the nav has something to sit on. The
+   measured figure that matters is white on the H1 band, taken with the glyphs
+   hidden — sampling with the type visible measures the type. */
 .sb-hero__scrim{
   position:absolute;inset:0;z-index:1;
   background:linear-gradient(180deg,
-    rgba(20,23,15,.18) 0%,rgba(20,23,15,.10) 28%,
-    rgba(20,23,15,.52) 58%,rgba(20,23,15,.74) 78%,rgba(20,23,15,.86) 100%);
+    rgba(20,23,15,.34) 0%,
+    rgba(20,23,15,.15) 16%,
+    rgba(20,23,15,.34) 30%,
+    rgba(20,23,15,.58) 40%,
+    rgba(20,23,15,.68) 50%,
+    rgba(20,23,15,.68) 62%,
+    rgba(20,23,15,.6)  70%,
+    rgba(20,23,15,.36) 80%,
+    rgba(20,23,15,.26) 88%,
+    rgba(20,23,15,.5)  100%);
+}
+/* On a phone the headline wraps to more lines, so the band has to be taller.
+   Same shape, stretched. */
+@media (max-width:760px){
+  .sb-hero__scrim{
+    background:linear-gradient(180deg,
+      rgba(20,23,15,.4)  0%,
+      rgba(20,23,15,.22) 14%,
+      rgba(20,23,15,.44) 26%,
+      rgba(20,23,15,.66) 38%,
+      rgba(20,23,15,.72) 50%,
+      rgba(20,23,15,.66) 62%,
+      rgba(20,23,15,.44) 76%,
+      rgba(20,23,15,.34) 86%,
+      rgba(20,23,15,.56) 100%);
+  }
 }
 .sb-hero__inner{position:relative;z-index:2}
 .sb-hero__eyebrow{
@@ -1705,15 +1737,15 @@ blockquote{
   <div data-stagger>
   <div class="n-more n-more--three" data-stagger>
     <a class="n-tile" href="contact.html" data-rise>
-      <img src="media/contact-hero.jpg" alt="" loading="lazy" decoding="async">
+      <img src="media/sb-7.jpg" alt="" loading="lazy" decoding="async">
       <span class="n-tile__veil"></span><span class="n-tile__name">Request a Valuation</span>
     </a>
     <a class="n-tile" href="marketing.html" data-rise>
-      <img src="media/mkt-3-tile.jpg" alt="" loading="lazy" decoding="async">
+      <img src="media/sb-3.jpg" alt="" loading="lazy" decoding="async">
       <span class="n-tile__veil"></span><span class="n-tile__name">See the Marketing</span>
     </a>
     <a class="n-tile" href="past-transactions.html" data-rise>
-      <img src="media/brentwood-2.jpg" alt="" loading="lazy" decoding="async">
+      <img src="media/sold-bryan-6103.jpg" alt="" loading="lazy" decoding="async">
       <span class="n-tile__veil"></span><span class="n-tile__name">Past Transactions</span>
     </a>
   </div>
