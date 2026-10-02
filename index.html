@@ -684,17 +684,31 @@ blockquote{
    lockup is the first thing anyone sees; it cannot disagree with the mark
    sitting in the bar two seconds later. */
 .lock__eg{
-  /* Brass, not white. The Compass mark beside it stays white: it is a supplied
-     trademark asset and recolouring it would be a misuse of the mark. */
-  font-family:var(--display);font-weight:300;color:var(--brass);
+  /* Gold foil, to match the embossed mark. The gradient is the one on the
+     bonsai — pale at the cap line, a specular band through the middle, bronze
+     at the baseline — so the name and the tree are struck from the same metal.
+     The flat colour below is the fallback and is never merely decorative: if
+     background-clip:text is unsupported the text-fill rule never applies, so
+     the name is still gold rather than invisible.
+     The Compass mark beside it stays white. It is a supplied trademark asset
+     and recolouring it would be a misuse of the mark. */
+  font-family:var(--display);font-weight:300;color:#C9A961;
   font-size:clamp(1.5rem,1rem + 2.6vw,3.1rem);line-height:1;
   letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
   white-space:nowrap;animation-delay:.25s;
 }
+@supports ((-webkit-background-clip:text) or (background-clip:text)){
+  .lock__eg{
+    background-image:linear-gradient(180deg,
+      #E8CE8B 0%,#C9A961 26%,#F4E3B2 46%,#B08A4E 64%,#8E6B3C 100%);
+    -webkit-background-clip:text;background-clip:text;
+    -webkit-text-fill-color:transparent;color:transparent;
+  }
+}
 
 /* The divider draws itself between the two names rather than appearing. */
 .lock__bar{
-  width:1px;height:clamp(1.4rem,3.4vw,2.6rem);background:var(--brass);
+  width:1px;height:clamp(1.4rem,3.4vw,2.6rem);background:#C9A961;
   transform:scaleY(0);transform-origin:center;
   animation:lockBar 1s var(--rise) 1s forwards;
 }
