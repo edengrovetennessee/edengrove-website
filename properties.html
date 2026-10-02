@@ -704,23 +704,24 @@ blockquote{
    has no picture in it — a slightly lifted ground and a hairline so it reads as
    a card rather than a gap. Adding the photo later means adding an <img>; every
    other rule already applies. */
-.prop--nophoto{
-  background:linear-gradient(160deg,#1e2219 0%,#171b13 70%);
-  box-shadow:inset 0 0 0 1px rgba(244,241,236,.10);
-}
-.prop--nophoto::after{background:none}
+/* A Private Exclusive has no published photography of its own, so all of these
+   carry the SAME neutral Middle Tennessee frame. That repetition is the point:
+   six identical tiles read as one treatment applied to a category, where six
+   different landscapes would each look like a picture of that house. */
 
 /* On a tile with a photograph the badge and the facts are a reveal: they sit
    over the picture and come up on hover. On a tile with no photograph there is
-   nothing to reveal them from, and the badge is the whole point of the card, so
-   they stay up. This follows from having no picture, not from any particular
-   status, so it lives on --nophoto rather than on a status modifier. */
-.prop--nophoto .prop__status,.prop--nophoto .prop__more{opacity:1;transform:none}
-.prop--nophoto .prop__more{grid-template-rows:1fr}
-.prop--nophoto .prop__cta{color:var(--brass)}
-.prop--nophoto .prop__addr{text-shadow:none}
-/* nothing to darken on hover, so the lift is the ground itself */
-.prop--nophoto:hover{background:linear-gradient(160deg,#232719 0%,#1a1e15 70%)}
+   no price and no square footage to reveal, and the badge is the whole point
+   of the card, so they stay up. */
+.prop--pe .prop__status,.prop--pe .prop__more{opacity:1;transform:none}
+.prop--pe .prop__more{grid-template-rows:1fr}
+.prop--pe .prop__cta{color:var(--brass)}
+/* The badge and the call to action are up permanently here rather than on
+   hover, so they need the hover-strength scrim permanently too. */
+.prop--pe::after{
+  background:linear-gradient(to top, rgba(6,8,5,.80) 0%, rgba(6,8,5,.40) 48%, rgba(6,8,5,.06) 100%);
+}
+
 @media (max-width:760px){
   .listings__grid{grid-template-columns:1fr}
   .listings .prop{aspect-ratio:4/3}
@@ -1018,7 +1019,8 @@ blockquote{
     <!-- Private Exclusive: no MLS number, by definition. No price or square
          footage published yet, and the city line is held back until it is
          confirmed rather than guessed. -->
-    <a class="prop prop--nophoto" href="contact.html">
+    <a class="prop prop--pe" href="contact.html">
+      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:0% 50%">
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">804 Wilson Pike</h3>
@@ -1034,7 +1036,8 @@ blockquote{
     <!-- Private Exclusive: no MLS number, by definition. No price or square
          footage published yet, and the city line is held back until it is
          confirmed rather than guessed. -->
-    <a class="prop prop--nophoto" href="contact.html">
+    <a class="prop prop--pe" href="contact.html">
+      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:100% 50%">
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">9003 Carondelet Pl</h3>
@@ -1050,7 +1053,8 @@ blockquote{
     <!-- Private Exclusive: no MLS number, by definition. No price or square
          footage published yet, and the city line is held back until it is
          confirmed rather than guessed. -->
-    <a class="prop prop--nophoto" href="contact.html">
+    <a class="prop prop--pe" href="contact.html">
+      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:32% 50%">
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">6212 Bridlewood Ln</h3>
@@ -1066,7 +1070,8 @@ blockquote{
     <!-- Private Exclusive: no MLS number, by definition. No price or square
          footage published yet, and the city line is held back until it is
          confirmed rather than guessed. -->
-    <a class="prop prop--nophoto" href="contact.html">
+    <a class="prop prop--pe" href="contact.html">
+      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:68% 50%">
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">916 Long Valley Rd</h3>
@@ -1079,10 +1084,25 @@ blockquote{
       </div>
     </a>
 
+    <a class="prop prop--pe" href="contact.html">
+      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:16% 50%">
+      <span class="prop__status">Private Exclusive</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">795 Rhonda Ln</h3>
+        <div class="prop__more"><div>
+          <span class="prop__cta">Register Interest
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
     <!-- Private Exclusive: no MLS number, by definition. No price or square
          footage published yet, and the city line is held back until it is
          confirmed rather than guessed. -->
-    <a class="prop prop--nophoto" href="contact.html">
+    <a class="prop prop--pe" href="contact.html">
+      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:84% 50%">
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">2112 Eastwood Ave</h3>
