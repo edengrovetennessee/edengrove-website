@@ -1154,11 +1154,15 @@ blockquote{
    across the top as well, which on a golden-hour photograph turned the warmth
    to mud for no contrast benefit — nothing is written up there but the nav,
    which carries its own shadow. */
+/* Light at the top, weighted at the foot. The type sits low, so that is the
+   only place the scrim has to do any work; carrying .46 across the sky just
+   greyed out a golden-hour photograph for no contrast benefit. Tuned down until
+   the H1 was still clear of AA with room to spare, and no further. */
 .sb-hero__scrim{
   position:absolute;inset:0;z-index:1;
   background:linear-gradient(180deg,
-    rgba(20,23,15,.46) 0%,rgba(20,23,15,.24) 34%,
-    rgba(20,23,15,.72) 74%,rgba(20,23,15,.9) 100%);
+    rgba(20,23,15,.18) 0%,rgba(20,23,15,.10) 28%,
+    rgba(20,23,15,.52) 58%,rgba(20,23,15,.74) 78%,rgba(20,23,15,.86) 100%);
 }
 .sb-hero__inner{position:relative;z-index:2}
 .sb-hero__eyebrow{
@@ -1220,6 +1224,20 @@ blockquote{
       rgba(20,23,15,.8) 0%,rgba(20,23,15,.55) 45%,rgba(20,23,15,0) 78%),
     linear-gradient(180deg,
       rgba(20,23,15,.44) 0%,rgba(20,23,15,.3) 50%,rgba(20,23,15,.58) 100%);
+}
+/* On a phone the band is far taller than it is wide, so the same ellipse covers
+   a much smaller share of the frame and the quote drifts off the dark middle.
+   A bright picture there measured 3.36:1 — a pass, but the thinnest on the site.
+   Deepen and widen the radial at narrow widths rather than darkening the
+   desktop frame, which does not need it. */
+@media (max-width:760px){
+  .cine__scrim{
+    background:
+      radial-gradient(ellipse 96% 34% at 50% 50%,
+        rgba(20,23,15,.88) 0%,rgba(20,23,15,.7) 52%,rgba(20,23,15,.1) 86%),
+      linear-gradient(180deg,
+        rgba(20,23,15,.5) 0%,rgba(20,23,15,.4) 50%,rgba(20,23,15,.62) 100%);
+  }
 }
 .cine__q{position:relative;z-index:2;max-width:46rem;text-align:center}
 .cine__q blockquote{
@@ -1473,7 +1491,7 @@ blockquote{
 
 
 <section class="sb-hero" id="top">
-  <div class="sb-hero__media" data-par="12"><img src="media/sold-bryan-6103.jpg" alt="" fetchpriority="high" decoding="async"></div>
+  <div class="sb-hero__media" data-par="12"><img src="media/sb-1.jpg" alt="" fetchpriority="high" decoding="async"></div>
   <div class="sb-hero__scrim"></div>
   <div class="sb-hero__inner" data-rise data-in>
     <p class="sb-hero__eyebrow">For Sellers</p>
@@ -1646,15 +1664,15 @@ blockquote{
   <div data-stagger>
   <div class="n-more n-more--three" data-stagger>
     <a class="n-tile" href="contact.html" data-rise>
-      <img src="media/sb-7.jpg" alt="" loading="lazy" decoding="async">
+      <img src="media/contact-hero.jpg" alt="" loading="lazy" decoding="async">
       <span class="n-tile__veil"></span><span class="n-tile__name">Request a Valuation</span>
     </a>
     <a class="n-tile" href="marketing.html" data-rise>
-      <img src="media/sb-3.jpg" alt="" loading="lazy" decoding="async">
+      <img src="media/mkt-3.jpg" alt="" loading="lazy" decoding="async">
       <span class="n-tile__veil"></span><span class="n-tile__name">See the Marketing</span>
     </a>
     <a class="n-tile" href="past-transactions.html" data-rise>
-      <img src="media/sold-bryan-6103.jpg" alt="" loading="lazy" decoding="async">
+      <img src="media/brentwood-2.jpg" alt="" loading="lazy" decoding="async">
       <span class="n-tile__veil"></span><span class="n-tile__name">Past Transactions</span>
     </a>
   </div>
