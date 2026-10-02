@@ -802,11 +802,31 @@ blockquote{
 }
 .c-open__scrim{
   position:absolute;inset:0;z-index:1;
+  /* Lightened on Ryan's note that the hero read too dark. The old curve was
+     carrying the type at better than 8:1, which is far more cover than white
+     needs and was flattening the photograph to do it. This lands the headline
+     around 5:1 — clear of AA with room, and the cedar keeps its colour.
+     The top stop stays heavier than the middle because the nav sits up there
+     over bright foliage and has no scrim of its own. */
   background:
     radial-gradient(ellipse 64% 58% at 50% 52%,
-      rgba(20,23,15,.72) 0%,rgba(20,23,15,.5) 48%,rgba(20,23,15,.18) 80%),
+      rgba(20,23,15,.44) 0%,rgba(20,23,15,.3) 48%,rgba(20,23,15,.08) 80%),
     linear-gradient(180deg,
-      rgba(20,23,15,.5) 0%,rgba(20,23,15,.32) 42%,rgba(20,23,15,.62) 100%);
+      rgba(20,23,15,.78) 0%,rgba(20,23,15,.46) 14%,
+      rgba(20,23,15,.2) 42%,rgba(20,23,15,.5) 100%);
+}
+/* A phone crops this photograph to a narrow vertical slice, which is mostly
+   sunlit canopy — there is no dark cedar wall left to sit the type on. So the
+   phone gets its own, deeper curve rather than the desktop one. */
+@media (max-width:760px){
+  .c-open__scrim{
+    background:
+      radial-gradient(ellipse 110% 46% at 50% 52%,
+        rgba(20,23,15,.72) 0%,rgba(20,23,15,.58) 52%,rgba(20,23,15,.3) 86%),
+      linear-gradient(180deg,
+        rgba(20,23,15,.8) 0%,rgba(20,23,15,.56) 14%,
+        rgba(20,23,15,.42) 42%,rgba(20,23,15,.6) 100%);
+  }
 }
 .c-open > :not(.c-open__media):not(.c-open__scrim){position:relative;z-index:2}
 .c-open__eyebrow{
@@ -1122,7 +1142,7 @@ blockquote{
     </div>
     <div>
       <dt>Does Eden Grove work with builders and developers?</dt>
-      <dd>Yes. The team specialises in new construction, working with developers, builders, architects and interior designers from renderings through to completion, and marketing projects while they are still being built.</dd>
+      <dd>Yes. The team specializes in new construction, working with developers, builders, architects and interior designers from renderings through to completion, and marketing projects while they are still being built.</dd>
     </div>
     <div>
       <dt>How do I contact Eden Grove?</dt>
