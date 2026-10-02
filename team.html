@@ -700,11 +700,17 @@ blockquote{
    The banner carries no words at all — just the team, the mark and the nav.
    Everything the page has to say is said by the people below it. */
 .teamtop{position:relative;height:82svh;min-height:30rem;overflow:hidden}
-/* only the top wash survives here; there is no copy at the foot of the frame
-   to protect, and a floor scrim would just flatten the photograph */
 .teamtop__scrim{
   position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to bottom, rgba(8,10,7,.55) 0%, rgba(8,10,7,.20) 16%, rgba(8,10,7,0) 38%);
+  /* Deepened when the banner changed to a twilight frame with a bright overcast
+     sky behind the bar. At .55 the nav measured 2.97:1 on a desktop and the
+     wordmark 3.9:1 on a phone — the bar has no scrim of its own anywhere on
+     this site, so whatever is behind it has to be carried here. Still a top
+     wash only: there is no copy at the foot of the frame to protect, and a
+     floor scrim would only flatten the photograph. */
+  background:linear-gradient(to bottom,
+    rgba(8,10,7,.82) 0%, rgba(8,10,7,.60) 9%,
+    rgba(8,10,7,.30) 22%, rgba(8,10,7,0) 44%);
 }
 
 .people{background:var(--ink);padding:clamp(.5rem,1vw,1.1rem) clamp(.5rem,1vw,1.1rem) clamp(4rem,9vh,7rem)}
@@ -842,6 +848,14 @@ blockquote{
       "worksFor": {
         "@id": "https://edengrovetennessee.com/#org"
       }
+    },
+    {
+      "@type": "Person",
+      "name": "Jack Montague",
+      "email": "jack@edengrovetennessee.com",
+      "worksFor": {
+        "@id": "https://edengrovetennessee.com/#org"
+      }
     }
   ]
 }
@@ -851,7 +865,7 @@ blockquote{
 
 <!-- the banner is the photograph and nothing else -->
 <section class="teamtop" id="top">
-  <img class="hero__media" src="media/team-banner.jpg" alt="The Eden Grove team">
+  <img class="hero__media" src="media/team-banner.jpg" alt="An ivy-clad house at twilight, lit from within, above a reflecting pool">
   <div class="teamtop__scrim"></div>
 
   <header class="bar">
@@ -910,8 +924,9 @@ blockquote{
 </section>
 
 <!-- ============================== THE TEAM ==============================
-     All three members are real, with bios and contact details supplied by
-     the team. Joe's direct line is still the main team number. -->
+     All four members are real, with bios and contact details supplied by
+     the team. Joe's direct line is still the main team number, and Jack's
+     direct line has not been supplied yet. -->
 <section class="people" aria-label="The team">
 
     <article class="member" id="member-1">
@@ -964,6 +979,27 @@ blockquote{
         <button class="member__toggle" aria-expanded="false" aria-controls="more-3">Read More</button>
       </div>
       <div class="member__photo"><img loading="lazy" decoding="async" src="media/team-3.jpg" alt="Joe Archer"></div>
+    </article>
+
+    <!-- Jack's bio as supplied, minus its closing call to action ("Ready to make
+         a move? Give Jack a call."). None of the other three ends on a pitch,
+         and the phone and email sit two lines below it either way. The facts
+         are untouched. -->
+    <article class="member" id="member-4">
+      <div class="member__text">
+        <h2 class="member__name">Jack Montague</h2>
+        <p class="member__bio">Jack Montague is a Williamson County native who knows this market from the inside. He grew up in Brentwood, where he starred at Brentwood High School, set the program&rsquo;s career assists record, and helped lead the Bruins to three district titles and a regional championship. He went on to play four seasons of Division I basketball at Yale, where his teammates elected him captain and he led the Ivy League in three-point shooting.</p>
+        <div class="member__more" id="more-4"><div>
+          <p>The same things that made him a point guard make him the agent you want in your corner: he sees the whole floor, stays calm under pressure, and puts the people around him first. Summers spent on construction job sites with his father&rsquo;s electrical contracting business gave him a practical eye for how homes are built, which pays off when it&rsquo;s time to evaluate a property or negotiate repairs.</p>
+          <p>Today Jack serves buyers and sellers in Franklin and the surrounding communities. Buyers get an agent who listens first and knows the neighborhoods firsthand. Sellers get a clear pricing strategy and marketing built to get the home sold. Either way, you get someone who picks up the phone.</p>
+        </div></div>
+        <ul class="member__contact">
+          <!-- TEAM: Jack's direct line is still needed; the email is confirmed. -->
+          <li><a href="mailto:jack@edengrovetennessee.com">jack@edengrovetennessee.com</a></li>
+        </ul>
+        <button class="member__toggle" aria-expanded="false" aria-controls="more-4">Read More</button>
+      </div>
+      <div class="member__photo"><img loading="lazy" decoding="async" src="media/team-4.jpg" alt="Jack Montague"></div>
     </article>
 
 </section>
