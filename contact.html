@@ -894,6 +894,7 @@ blockquote{
    it is not consent in any case. accent-color keeps the native control, so
    the keyboard, the screen reader and the focus ring all behave as they
    should without a drawn replacement to maintain. */
+.c-hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 .c-consent{
   display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:start;
   margin-top:.4rem;
@@ -1134,6 +1135,15 @@ blockquote{
       <!-- The exact wording shown is posted alongside the answer. A consent record
            that cannot say WHAT the person agreed to is not much of a record, and
            this wording will be revised at some point. -->
+      <!-- A field no person sees and no person fills in. aria-hidden and
+           tabindex keep it away from screen readers and the tab order; it is
+           off-screen rather than display:none because some bots skip the
+           latter. -->
+      <div class="c-hp" aria-hidden="true">
+        <label for="cWebsite">Website</label>
+        <input id="cWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+      </div>
+
       <div class="c-consent">
         <input type="checkbox" id="cSms" name="sms_consent" value="yes">
         <label for="cSms">I agree to receive text messages from Eden Grove at the number above, about my enquiry and about properties I have asked to hear about. Consent is not a condition of any purchase. Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out, <strong>HELP</strong> for help. See our <a href="privacy.html#text-messages">Privacy Policy</a> and
@@ -1395,14 +1405,53 @@ addEventListener("keydown", e => {
 </script>
 
 <script>
+/* ---- contact form ----
+   Posts to the dashboard Worker, which sends the email and — the part that
+   matters for text messaging — stamps the consent record with a server-side
+   time and the real client IP. This page can say what wording it displayed;
+   it cannot vouch for when or from where. */
+const CONTACT_ENDPOINT = "https://dashboard.edengrovetennessee.com/__contact";
+
 const contactForm = document.getElementById("contactForm");
 if (contactForm) {
   const note = document.getElementById("contactNote");
-  contactForm.addEventListener("submit", e => {
+  const btn  = contactForm.querySelector("button[type=submit]");
+  const say  = msg => { note.textContent = msg; note.setAttribute("data-on", ""); };
+
+  contactForm.addEventListener("submit", async e => {
     e.preventDefault();
-    note.textContent = "This form is not connected yet — nothing has been sent. " +
-                       "Please call (615) 812-0066 or email connect@edengrovetennessee.com.";
-    note.setAttribute("data-on", "");
+
+    const data = Object.fromEntries(new FormData(contactForm));
+    if (!String(data.name || "").trim())  return say("Please add your name.");
+    if (!String(data.email || "").trim()) return say("Please add an email address.");
+
+    btn.disabled = true;
+    const was = btn.textContent;
+    btn.textContent = "Sending";
+    say("Sending…");
+
+    try {
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (res.ok && out.ok) {
+        contactForm.reset();
+        say("Thank you — that has reached us. We will come back to you shortly.");
+        btn.textContent = "Sent";
+        return;                       // leave it disabled: one send per visit
+      }
+      say(out.error || "We could not send that just now. Please call (615) 812-0066 " +
+                       "or email connect@edengrovetennessee.com.");
+    } catch {
+      /* Offline, blocked, or the Worker is down. Never imply it was sent. */
+      say("That did not send — you may be offline. Please call (615) 812-0066 " +
+          "or email connect@edengrovetennessee.com.");
+    }
+    btn.disabled = false;
+    btn.textContent = was;
   });
 }
 </script>
