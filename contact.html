@@ -1106,8 +1106,9 @@ blockquote{
       </div>
     </div>
 
-    <!-- NOT WIRED. Submitting shows an honest note rather than a false
-         thank-you. Point the form at an endpoint before this page goes live. -->
+    <!-- Posts to the dashboard Worker, which emails the enquiry and stamps the
+         SMS consent record with a server-side time and the real client IP.
+         Nothing here is ever told it was sent unless it was. -->
     <form class="c-form" id="contactForm" novalidate>
       <label class="visually-hidden" for="cName">Name</label>
       <input id="cName" name="name" placeholder="Name" autocomplete="name" required>
