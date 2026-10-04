@@ -888,6 +888,29 @@ blockquote{
 .c-form input:focus,.c-form textarea:focus,.c-form select:focus{
   outline:none;border-bottom-color:var(--brass);
 }
+/* ---- SMS consent ----
+   Unticked, never required, and never a condition of the form submitting:
+   a pre-ticked box or a mandatory one is an automatic carrier rejection, and
+   it is not consent in any case. accent-color keeps the native control, so
+   the keyboard, the screen reader and the focus ring all behave as they
+   should without a drawn replacement to maintain. */
+.c-consent{
+  display:grid;grid-template-columns:auto 1fr;gap:.85rem;align-items:start;
+  margin-top:.4rem;
+}
+.c-form input[type="checkbox"]{
+  width:1rem;height:1rem;margin:.28rem 0 0;padding:0;
+  border:0;border-bottom:0;background:none;
+  accent-color:var(--brass);cursor:pointer;flex:none;
+}
+.c-form input[type="checkbox"]:focus-visible{outline:1px solid var(--brass);outline-offset:3px}
+.c-consent label{
+  font-family:var(--ui);font-weight:300;font-size:.76rem;line-height:1.85;
+  color:rgba(244,241,236,.62);cursor:pointer;
+}
+.c-consent label a{color:rgba(244,241,236,.82);border-bottom:1px solid rgba(198,166,100,.4)}
+.c-consent label a:hover,.c-consent label a:focus-visible{color:#fff;outline:none}
+
 .c-form button{
   justify-self:start;margin-top:.6rem;
   padding:1rem 2.6rem;border:0;cursor:pointer;
@@ -1107,6 +1130,17 @@ blockquote{
 
       <label class="visually-hidden" for="cMsg">Message</label>
       <textarea id="cMsg" name="message" placeholder="Message" rows="4"></textarea>
+
+      <!-- The exact wording shown is posted alongside the answer. A consent record
+           that cannot say WHAT the person agreed to is not much of a record, and
+           this wording will be revised at some point. -->
+      <div class="c-consent">
+        <input type="checkbox" id="cSms" name="sms_consent" value="yes">
+        <label for="cSms">I agree to receive text messages from Eden Grove at the number above, about my enquiry and about properties I have asked to hear about. Consent is not a condition of any purchase. Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out, <strong>HELP</strong> for help. See our <a href="privacy.html#text-messages">Privacy Policy</a> and
+          <a href="terms.html#text-messages">Terms</a>.</label>
+      </div>
+      <input type="hidden" name="sms_consent_text" value="I agree to receive text messages from Eden Grove at the number above, about my enquiry and about properties I have asked to hear about. Consent is not a condition of any purchase. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help.">
+      <input type="hidden" name="sms_consent_version" value="2026-10-04">
 
       <button type="submit">Send</button>
       <p class="c-note" id="contactNote" role="status"></p>
