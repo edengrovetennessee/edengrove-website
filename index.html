@@ -692,13 +692,14 @@ blockquote{
 }
 #lock[data-done]{opacity:0;visibility:hidden;pointer-events:none}
 
-.lock__row{
-  display:flex;align-items:center;justify-content:center;
-  gap:clamp(.9rem,2.6vw,2.2rem);
-  /* the two names sit on one baseline; below 620px they stack */
-  flex-wrap:wrap;
+/* The name arrives first and settles; the byline follows it. Two beats, not
+   one — which is the whole point of reading Eden Grove before reading who
+   Eden Grove is. */
+.lock__stack{
+  display:grid;justify-items:center;
+  gap:clamp(1rem,2.4vw,1.7rem);
 }
-.lock__eg,.lock__compass{
+.lock__eg{
   opacity:0;transform:translateY(.5em);
   animation:lockIn 1.5s var(--rise) forwards;
 }
@@ -712,12 +713,6 @@ blockquote{
   white-space:nowrap;animation-delay:.25s;
 }
 
-/* The divider draws itself between the two names rather than appearing. */
-.lock__bar{
-  width:1px;height:clamp(1.4rem,3.4vw,2.6rem);background:var(--brass);
-  transform:scaleY(0);transform-origin:center;
-  animation:lockBar 1s var(--rise) 1s forwards;
-}
 
 /* TREC 1260-02-.12: the firm name may not be set smaller than the team name.
    The measure that matters is CAP HEIGHT, not font-size — a logo's box height
@@ -729,11 +724,21 @@ blockquote{
    the EDEN GROVE clamp x 0.74 — putting Compass at roughly 1.08x our cap
    height. Comfortably larger, which is what the rule asks for, and balanced,
    which is what a lockup asks for. Verified by measuring rendered ink. */
-.lock__compass{animation-delay:.85s}
-img.lock__compass{
-  display:block;width:auto;
-  height:clamp(1.11rem,.74rem + 1.92vw,2.29rem);
+.lock__by{
+  display:flex;align-items:center;gap:.9em;
+  font-size:clamp(.62rem,.55rem + .2vw,.78rem);
+  opacity:0;transform:translateY(.5em);
+  animation:lockIn 1.25s var(--rise) 1.4s forwards;
 }
+.lock__byword{
+  font-family:var(--ui);font-weight:300;font-size:1em;
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:rgba(255,255,255,.62);white-space:nowrap;
+}
+/* Sized to the byline, not to EDEN GROVE. The firm name is carried at full
+   cap height by the lockup in the bar on this and every other page, and in
+   full by the firm block in the footer; here it is a signature. */
+img.lock__compass{display:block;width:auto;height:1.1em}
 .lock__compass--type{
   font-family:var(--ui);font-weight:300;color:#fff;
   font-size:clamp(1.5rem,1rem + 2.6vw,3.1rem);line-height:1;
@@ -746,26 +751,16 @@ img.lock__compass{
   font-family:var(--ui);font-weight:300;font-size:.58rem;
   letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
   color:rgba(244,241,236,.42);opacity:0;
-  animation:lockIn 1s var(--rise) 2.4s forwards;
+  animation:lockIn 1s var(--rise) 2.75s forwards;
 }
 
 @keyframes lockIn{to{opacity:1;transform:none}}
-@keyframes lockBar{to{transform:scaleY(1)}}
-
-@media (max-width:620px){
-  .lock__row{flex-direction:column;gap:clamp(.7rem,3vw,1.1rem)}
-  .lock__bar{width:clamp(1.6rem,9vw,2.4rem);height:1px;
-             transform:scaleX(0);transform-origin:center;
-             animation-name:lockBarH}
-}
-@keyframes lockBarH{to{transform:scaleX(1)}}
 
 /* Someone who has asked for reduced motion gets the lockup as a still frame,
    held briefly, rather than no lockup at all — the firm name still has to be
    seen. */
 @media (prefers-reduced-motion:reduce){
-  .lock__eg,.lock__compass,.lock__skip{animation:none;opacity:1;transform:none}
-  .lock__bar{animation:none;transform:none}
+  .lock__eg,.lock__by,.lock__skip{animation:none;opacity:1;transform:none}
   #lock{transition:opacity .3s linear,visibility 0s linear .3s}
 }
 /* LOCKUP:END */
@@ -838,10 +833,13 @@ img.lock__compass{
 <!-- LOCKUP:START -->
 <!-- opening lockup — homepage only; see build_lockup.py -->
 <div id="lock" role="presentation">
-  <div class="lock__row">
+  <div class="lock__stack">
     <span class="lock__eg">Eden&nbsp;Grove</span>
-    <i class="lock__bar" aria-hidden="true"></i>
-    <img class="lock__compass" src="media/compass-white.png" alt="Compass" decoding="async">
+    <span class="lock__by">
+      <span class="lock__byword">A team at</span>
+      <img class="lock__compass" src="media/compass-white.png" alt="Compass"
+           width="1586" height="218" decoding="async">
+    </span>
   </div>
   <span class="lock__skip">Click to enter</span>
 </div>
@@ -1304,7 +1302,7 @@ addEventListener("keydown", e => {
   const lock = document.getElementById("lock");
   if (!lock) return;
   const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
-  const HOLD = reduce ? 1200 : 3400;
+  const HOLD = reduce ? 1200 : 4000;   // name settles 1.75s, byline 2.65s, skip 3.75s
   let gone = false;
 
   const lift = () => {
