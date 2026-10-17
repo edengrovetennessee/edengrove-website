@@ -717,6 +717,46 @@ blockquote{
   font-size:clamp(.88rem,.84rem + .22vw,1rem);
   line-height:1.95;letter-spacing:.012em;color:rgba(244,241,236,.76);
 }
+/* ---- the affiliation, and what it is actually worth to a client ----------
+   Every claim here is either Compass's own published statement, attributed as
+   such, or independently reported. No market-share figure: the one in
+   circulation for Nashville comes from an antitrust analysis of 2024 volume
+   including franchisees, which is not a thing to put on a licensee page. */
+.affil{background:var(--ink);padding:clamp(4.5rem,11vh,7.5rem) var(--gutter)}
+.affil__inner{max-width:64rem;margin:0 auto}
+.affil__eyebrow{
+  margin:0 0 1.1rem;text-align:center;
+  font-family:var(--ui);font-weight:300;
+  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+  color:var(--brass);
+}
+.affil__h{
+  margin:0;text-align:center;
+  font-family:var(--ui);font-weight:300;color:#fff;
+  font-size:clamp(1.15rem,1rem + .75vw,1.65rem);
+  line-height:1.35;letter-spacing:.18em;text-indent:.18em;text-transform:uppercase;
+}
+.affil__grid{
+  display:grid;gap:1px;background:rgba(244,241,236,.11);
+  margin-top:clamp(2.5rem,6vh,4rem);
+}
+@media (min-width:780px){.affil__grid{grid-template-columns:repeat(3,1fr)}}
+.affil__card{background:var(--ink);padding:clamp(1.5rem,3.5vw,2.2rem)}
+.affil__card h3{
+  margin:0 0 .85rem;font-family:var(--ui);font-weight:400;
+  font-size:.7rem;letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:var(--brass);
+}
+.affil__card p{
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(.85rem,.82rem + .18vw,.95rem);
+  line-height:1.95;color:rgba(244,241,236,.76);
+}
+.affil__src{
+  margin:clamp(2rem,4.5vh,3rem) auto 0;max-width:52rem;text-align:center;
+  font-family:var(--ui);font-weight:300;font-size:.72rem;line-height:1.9;
+  letter-spacing:.04em;color:rgba(244,241,236,.44);
+}
 
 /* =============================== TEAM PAGE ===============================
    The banner carries no words at all — just the team, the mark and the nav.
@@ -947,6 +987,43 @@ blockquote{
        still change and what cannot, what an allowance really covers, and where the value
        sits in a house that is not yet finished. Guiding people through that is as much
        the job as the sale is.</p>
+  </div>
+</section>
+
+<section class="affil" id="compass" aria-labelledby="affil-h">
+  <div class="affil__inner">
+    <p class="affil__eyebrow">A Team at Compass</p>
+    <h2 class="affil__h" id="affil-h">What That Gets You</h2>
+
+    <div class="affil__grid">
+      <div class="affil__card">
+        <h3>Private Exclusives</h3>
+        <p>A network of properties marketed inside Compass before they reach the MLS.
+           We see them, and we can place your house in it. Worth knowing either way:
+           Compass opens that book to agents at any brokerage, so nobody has to join
+           us to be shown one.</p>
+      </div>
+      <div class="affil__card">
+        <h3>Depth in Nashville</h3>
+        <p>Compass acquired Parks Real Estate here in 2024 &mdash; by its own account
+           roughly 1,500 agents across fifteen offices in five counties. In a market
+           where the best houses often move on who knows whom, that is the network a
+           listing enters.</p>
+      </div>
+      <div class="affil__card">
+        <h3>Reach Beyond It</h3>
+        <p>A referral network across every major American market, widened in January
+           2026 when Compass completed its acquisition of Anywhere Real&nbsp;Estate
+           &mdash; Coldwell Banker, Sotheby&rsquo;s International Realty, Corcoran,
+           Century&nbsp;21 and ERA. It matters when the buyer for a house here is
+           moving from somewhere else.</p>
+      </div>
+    </div>
+
+    <p class="affil__src">The Parks acquisition was announced by Compass on 13 May 2024;
+       the agent and office counts are Compass&rsquo;s own. The Anywhere acquisition
+       closed in January 2026 and was reported independently. Eden&nbsp;Grove is a team
+       at Compass Tennessee,&nbsp;LLC &mdash; the firm detail is at the foot of this page.</p>
   </div>
 </section>
 
