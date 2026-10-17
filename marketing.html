@@ -88,6 +88,28 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   text-transform:uppercase;line-height:1;white-space:nowrap;
   text-shadow:0 1px 24px rgba(0,0,0,.34);
 }
+/* ---- firm lockup in the bar ----------------------------------------------
+   TREC 1260-02-.12: the firm name may not be set smaller than the team name,
+   and the measure that matters is CAP HEIGHT, not font-size. The Compass
+   artwork is cropped to its own caps, so its box height IS its cap height;
+   Cormorant Garamond's caps land at about .68 of font-size. Setting the mark
+   to .74 of the wordmark's size therefore puts Compass at roughly 1.09x our
+   cap height -- larger, which is what the rule asks, and balanced, which is
+   what a lockup asks. Same arithmetic as the opening lockup on the homepage.
+   Below 560px the bar is wordmark and burger only; the footer still carries
+   the firm name on every page. */
+.bar__lock{display:flex;align-items:center;gap:clamp(.55rem,1.7vw,1.05rem);min-width:0}
+.bar__bar{
+  width:1px;height:clamp(.8rem,.55rem + .7vw,1.2rem);
+  background:var(--brass);flex:none;opacity:.85;
+}
+.bar__compass{
+  display:block;width:auto;flex:none;
+  height:calc(clamp(1.05rem,.72rem + .95vw,1.6rem) * .74);
+  filter:drop-shadow(0 1px 24px rgba(0,0,0,.34));
+}
+@media (max-width:560px){.bar__bar,.bar__compass{display:none}}
+.foot__firmline strong{font-weight:400;color:rgba(244,241,236,.72)}
 
 .nav{display:flex;align-items:center;gap:clamp(1.6rem,3.2vw,3.4rem)}
 .nav__item{position:relative}
@@ -861,7 +883,12 @@ blockquote{
   <div class="hero__scrim"></div>
 
   <header class="bar">
-    <a class="mark reveal" href="/" aria-label="Eden Grove — home">Eden&nbsp;Grove</a>
+    <div class="bar__lock">
+      <a class="mark reveal" href="/" aria-label="Eden Grove — home">Eden&nbsp;Grove</a>
+      <i class="bar__bar" aria-hidden="true"></i>
+      <img class="bar__compass reveal" src="media/compass-white.png"
+           alt="Compass" width="1586" height="218" decoding="async">
+    </div>
 
     <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav">
       <i></i><i></i>
@@ -1132,9 +1159,9 @@ blockquote{
       <img class="foot__compass" src="media/compass-white.png" alt="Compass"
            width="1586" height="218" loading="lazy" decoding="async">
       <p class="foot__firmline">
-        Eden&nbsp;Grove is a team at Compass &middot; Office
-        <a href="tel:+16153836964">(615) 383-6964</a><br>
-        Equal Housing Opportunity
+        Eden&nbsp;Grove is a team at <strong>Compass Tennessee, LLC</strong><br>
+        2206 21st Avenue South, Nashville, Tennessee 37212 &middot; Firm license 264416<br>
+        Office <a href="tel:+16154755616">(615) 475-5616</a> &middot; Equal Housing Opportunity
       </p>
     </div>
     <div class="foot__bar">
