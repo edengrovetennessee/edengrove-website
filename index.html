@@ -746,21 +746,13 @@ img.lock__compass{display:block;width:auto;height:1.1em}
   white-space:nowrap;
 }
 
-.lock__skip{
-  position:absolute;left:50%;bottom:clamp(1.6rem,5vh,3rem);translate:-50% 0;
-  font-family:var(--ui);font-weight:300;font-size:.58rem;
-  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
-  color:rgba(244,241,236,.42);opacity:0;
-  animation:lockIn 1s var(--rise) 2.75s forwards;
-}
-
 @keyframes lockIn{to{opacity:1;transform:none}}
 
 /* Someone who has asked for reduced motion gets the lockup as a still frame,
    held briefly, rather than no lockup at all — the firm name still has to be
    seen. */
 @media (prefers-reduced-motion:reduce){
-  .lock__eg,.lock__by,.lock__skip{animation:none;opacity:1;transform:none}
+  .lock__eg,.lock__by{animation:none;opacity:1;transform:none}
   #lock{transition:opacity .3s linear,visibility 0s linear .3s}
 }
 /* LOCKUP:END */
@@ -841,7 +833,6 @@ img.lock__compass{display:block;width:auto;height:1.1em}
            width="1586" height="218" decoding="async">
     </span>
   </div>
-  <span class="lock__skip">Click to enter</span>
 </div>
 <!-- LOCKUP:END -->
 
@@ -1302,7 +1293,7 @@ addEventListener("keydown", e => {
   const lock = document.getElementById("lock");
   if (!lock) return;
   const reduce = matchMedia("(prefers-reduced-motion:reduce)").matches;
-  const HOLD = reduce ? 1200 : 4000;   // name settles 1.75s, byline 2.65s, skip 3.75s
+  const HOLD = reduce ? 1200 : 4000;   // name settles 1.75s, byline 2.65s, then a beat
   let gone = false;
 
   const lift = () => {
