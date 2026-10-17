@@ -1065,6 +1065,7 @@ blockquote{
 .w-table tbody tr:first-child td{color:#fff}
 .w-table tbody tr:hover td{background:rgba(244,241,236,.035)}
 .w-table td.w-price{color:#fff}
+.w-table td small{display:block;font-size:.66rem;letter-spacing:.12em;color:rgba(244,241,236,.4);margin-top:.2rem;font-variant-numeric:normal}
 
 /* ---- photography slots ----
    Placeholders that hold the exact shape each frame will occupy, so a photograph
@@ -1610,30 +1611,58 @@ blockquote{
 
 <section class="p-sec p-sec--tight" aria-labelledby="mk-h">
   <div class="p-lede" data-rise>
-    <p class="p-eyebrow">Middle Tennessee</p>
+    <p class="p-eyebrow">Nashville Luxury</p>
     <h2 id="mk-h">Where the Market Is</h2>
   </div>
   <div data-stagger>
   <div class="sb-stats" data-stagger>
     <div class="sb-stat" data-rise>
-      <span class="sb-stat__n" data-count="12" data-pre="" data-suf="" data-dec="0">12</span>
-      <span class="sb-stat__l">Months of Supply Above $2M</span>
-      <span class="sb-stat__s">Against a four-to-six month balanced market</span>
+      <span class="sb-stat__n" data-fig="lux.brentwood.median" data-count="1800000" data-pre="$" data-suf="" data-dec="0">$1,800,000</span>
+      <span class="sb-stat__l">Brentwood Median Asking</span>
+      <span class="sb-stat__s">37027, the largest luxury market we cover</span>
     </div>
     <div class="sb-stat" data-rise>
-      <span class="sb-stat__n" data-count="68" data-pre="" data-suf="%" data-dec="0">68%</span>
-      <span class="sb-stat__l">Closed Below Asking</span>
-      <span class="sb-stat__s">Davidson County sales above $2M</span>
+      <span class="sb-stat__n" data-fig="lux.brentwood.dom" data-count="74" data-pre="" data-suf="" data-dec="0">74</span>
+      <span class="sb-stat__l">Days on Market, Brentwood</span>
+      <span class="sb-stat__s">Arrington runs 47; College Grove runs 100</span>
     </div>
     <div class="sb-stat" data-rise>
-      <span class="sb-stat__n" data-count="4.6" data-pre="" data-suf="%" data-dec="1">4.6%</span>
-      <span class="sb-stat__l">Private Exclusive Premium</span>
-      <span class="sb-stat__s">Compass&rsquo;s own study &mdash; read the caveat</span>
+      <span class="sb-stat__n" data-fig="lux.bellemeade.tail" data-count="1.88" data-pre="" data-suf="×" data-dec="1">1.9×</span>
+      <span class="sb-stat__l">Average Against Median</span>
+      <span class="sb-stat__s">Belle Meade &mdash; the weight of the top tail</span>
     </div>
   </div>
+
+  <div class="w-tablewrap" data-rise>
+    <table class="w-table">
+      <caption>The ZIP codes we work in, by what is being asked across active inventory. The
+        <em>tail</em> column is the average divided by the median &mdash; how far above the middle
+        the top of each market reaches.</caption>
+      <thead>
+        <tr><th scope="col">Area</th><th scope="col">Median Asking</th><th scope="col">Average Asking</th>
+            <th scope="col">Tail</th><th scope="col">$/Sq Ft</th><th scope="col">Days</th></tr>
+      </thead>
+      <tbody data-table="luxzips">
+        <tr><td>College Grove<small>37046</small></td><td class="w-price">$3,093,167</td><td>$3,777,415</td><td>1.2×</td><td>$580</td><td>100</td></tr>
+        <tr><td>Arrington<small>37014</small></td><td class="w-price">$1,862,225</td><td>$2,126,812</td><td>1.1×</td><td>$411</td><td>47</td></tr>
+        <tr><td>Brentwood<small>37027</small></td><td class="w-price">$1,800,000</td><td>$2,300,447</td><td>1.3×</td><td>$393</td><td>74</td></tr>
+        <tr><td>Oak Hill<small>37220</small></td><td class="w-price">$1,687,500</td><td>$2,850,858</td><td>1.7×</td><td>$447</td><td>83</td></tr>
+        <tr><td>Green Hills &amp; Forest Hills<small>37215</small></td><td class="w-price">$1,497,450</td><td>$2,190,447</td><td>1.5×</td><td>$429</td><td>68</td></tr>
+        <tr><td>Belle Meade &amp; West Meade<small>37205</small></td><td class="w-price">$1,230,000</td><td>$2,310,788</td><td>1.9×</td><td>$394</td><td>74</td></tr>
+        <tr><td>Franklin, north<small>37069</small></td><td class="w-price">$1,191,000</td><td>$2,065,261</td><td>1.7×</td><td>$360</td><td>79</td></tr>
+        <tr><td>Franklin, south<small>37064</small></td><td class="w-price">$1,112,500</td><td>$1,827,369</td><td>1.6×</td><td>$404</td><td>61</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="n-src n-src--mid">Realtor.com&reg; Research, active listings,
+     <span data-asof="luxzips">September 2026</span>. These are asking prices across what is on the
+     market, not closed sales &mdash; closed figures live in RealTracs and we will pull them for a
+     specific address. Refreshed monthly.</p>
+
   <div class="n-blocks">
-    <div class="n-card" data-rise><h3>Discriminating, Not Slow</h3><p>Twelve months of supply above $2M in Davidson, most of it closing under ask. Yet Williamson new construction often sells at or before completion. Two markets twenty minutes apart, which is why the entry price is the whole game.</p></div>
-    <div class="n-card" data-rise><h3>About That 4.6%</h3><p>It comes from a Compass regression across 70,809 of its own closed transactions. Zillow and Bright MLS find off-MLS sellers net 1.3% to 1.5% <em>less</em>. Both sides have an interest; the price history is what is not in dispute.</p></div>
+    <div class="n-card" data-rise><h3>Two Markets, Twenty Minutes Apart</h3><p>Williamson&rsquo;s median asking price is <span data-fig="county.williamson.median">$1,155,000</span>. Davidson&rsquo;s is <span data-fig="county.davidson.median">$525,000</span>. Same metro, half an hour&rsquo;s drive, and a house in one is competing against a completely different field than a house in the other.</p></div>
+    <div class="n-card" data-rise><h3>The Tail Is the Market</h3><p>In Belle Meade the average asking price runs close to twice the median. That gap <em>is</em> the luxury market, and a county median is blind to it. It is why we price from your own community&rsquo;s closings rather than from a headline figure.</p></div>
+    <div class="n-card" data-rise><h3>About That 4.6%</h3><p>Compass publishes a 4.6% premium for private listings, from a regression across 70,809 of its own closed transactions. The Real Deal reported in July 2026 that the study was written by Compass employees. Zillow and Bright MLS find off-MLS sellers net 1.3% to 1.5% <em>less</em>. Both sides have an interest; the price history is what is not in dispute.</p></div>
   </div>
   </div>
 </section>

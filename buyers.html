@@ -1065,6 +1065,7 @@ blockquote{
 .w-table tbody tr:first-child td{color:#fff}
 .w-table tbody tr:hover td{background:rgba(244,241,236,.035)}
 .w-table td.w-price{color:#fff}
+.w-table td small{display:block;font-size:.66rem;letter-spacing:.12em;color:rgba(244,241,236,.4);margin-top:.2rem;font-variant-numeric:normal}
 
 /* ---- photography slots ----
    Placeholders that hold the exact shape each frame will occupy, so a photograph
@@ -1610,13 +1611,13 @@ blockquote{
 
 <section class="p-sec p-sec--tight" aria-labelledby="mk-h">
   <div class="p-lede" data-rise>
-    <p class="p-eyebrow">Middle Tennessee</p>
+    <p class="p-eyebrow">Nashville Luxury</p>
     <h2 id="mk-h">What the Numbers Mean</h2>
   </div>
   <div data-stagger>
   <div class="sb-stats" data-stagger>
     <div class="sb-stat" data-rise>
-      <span class="sb-stat__n" data-count="1029250" data-pre="$" data-suf="" data-dec="0">$1,029,250</span>
+      <span class="sb-stat__n" data-fig="tn.conforming" data-count="1029250" data-pre="$" data-suf="" data-dec="0">$1,029,250</span>
       <span class="sb-stat__l">Jumbo Begins Here</span>
       <span class="sb-stat__s">2026 conforming limit, Davidson and Williamson &mdash; not the $832,750 baseline</span>
     </div>
@@ -1631,9 +1632,36 @@ blockquote{
       <span class="sb-stat__s">Constitutionally prohibited since 2014; no estate or inheritance tax either</span>
     </div>
   </div>
+
+  <div class="w-tablewrap" data-rise>
+    <table class="w-table">
+      <caption>The ZIP codes we work in, by what is being asked across active inventory. The
+        <em>tail</em> column is the average divided by the median &mdash; how far above the middle
+        the top of each market reaches.</caption>
+      <thead>
+        <tr><th scope="col">Area</th><th scope="col">Median Asking</th><th scope="col">Average Asking</th>
+            <th scope="col">Tail</th><th scope="col">$/Sq Ft</th><th scope="col">Days</th></tr>
+      </thead>
+      <tbody data-table="luxzips">
+        <tr><td>College Grove<small>37046</small></td><td class="w-price">$3,093,167</td><td>$3,777,415</td><td>1.2×</td><td>$580</td><td>100</td></tr>
+        <tr><td>Arrington<small>37014</small></td><td class="w-price">$1,862,225</td><td>$2,126,812</td><td>1.1×</td><td>$411</td><td>47</td></tr>
+        <tr><td>Brentwood<small>37027</small></td><td class="w-price">$1,800,000</td><td>$2,300,447</td><td>1.3×</td><td>$393</td><td>74</td></tr>
+        <tr><td>Oak Hill<small>37220</small></td><td class="w-price">$1,687,500</td><td>$2,850,858</td><td>1.7×</td><td>$447</td><td>83</td></tr>
+        <tr><td>Green Hills &amp; Forest Hills<small>37215</small></td><td class="w-price">$1,497,450</td><td>$2,190,447</td><td>1.5×</td><td>$429</td><td>68</td></tr>
+        <tr><td>Belle Meade &amp; West Meade<small>37205</small></td><td class="w-price">$1,230,000</td><td>$2,310,788</td><td>1.9×</td><td>$394</td><td>74</td></tr>
+        <tr><td>Franklin, north<small>37069</small></td><td class="w-price">$1,191,000</td><td>$2,065,261</td><td>1.7×</td><td>$360</td><td>79</td></tr>
+        <tr><td>Franklin, south<small>37064</small></td><td class="w-price">$1,112,500</td><td>$1,827,369</td><td>1.6×</td><td>$404</td><td>61</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="n-src n-src--mid">Realtor.com&reg; Research, active listings,
+     <span data-asof="luxzips">September 2026</span>. These are asking prices across what is on the
+     market, not closed sales &mdash; closed figures live in RealTracs and we will pull them for a
+     specific address. Refreshed monthly.</p>
+
   <div class="n-blocks">
     <div class="n-card" data-rise><h3>What It Costs to Hold</h3><p>Property is assessed at a quarter of value, and Williamson cut its rate about 30% in 2025. A $3M house runs roughly $11,175 a year in Brentwood, against about $52,000 in Cook County, Illinois. Dues in the communities we cover run $3,000 to $5,700.</p></div>
-    <div class="n-card" data-rise><h3>Two Markets, Twenty Minutes Apart</h3><p>Twelve months of supply above $2M in Davidson, most of it closing under ask. Williamson new construction often sells at or before completion. Where you are looking changes how hard you can push.</p></div>
+    <div class="n-card" data-rise><h3>Two Markets, Twenty Minutes Apart</h3><p>Williamson&rsquo;s median asking price is <span data-fig="county.williamson.median">$1,155,000</span> against Davidson&rsquo;s <span data-fig="county.davidson.median">$525,000</span>, and the price per square foot runs <span data-fig="county.williamson.psf">$358</span> against <span data-fig="county.davidson.psf">$301</span>. Where you look changes what your budget buys and how hard you can push.</p></div>
   </div>
   </div>
 </section>

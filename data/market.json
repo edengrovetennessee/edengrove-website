@@ -1,0 +1,202 @@
+{
+  "generated": "2026-10-17T20:15:42Z",
+  "fetched": "2026-10-17",
+  "sources": {
+    "realtor_research": {
+      "name": "Realtor.com® Research Data",
+      "url": "https://www.realtor.com/research/data/",
+      "note": "Active-listing metrics. Asking prices across inventory on the market, not closed sales.",
+      "asOf": "2026-09"
+    },
+    "fhfa": {
+      "name": "Federal Housing Finance Agency",
+      "url": "https://www.fhfa.gov/data/conforming-loan-limit",
+      "asOf": "2026-01",
+      "note": "High-cost area limit for the Nashville-Davidson--Murfreesboro--Franklin MSA."
+    }
+  },
+  "figures": {
+    "lux.brentwood.median": {
+      "value": 1800000.0,
+      "fmt": "usd0",
+      "asOf": "2026-09",
+      "source": "realtor_research",
+      "label": "Brentwood median asking",
+      "cadence": "monthly",
+      "maxAgeDays": 75
+    },
+    "lux.brentwood.dom": {
+      "value": 74.0,
+      "fmt": "days",
+      "asOf": "2026-09",
+      "source": "realtor_research",
+      "label": "Brentwood median days on market",
+      "cadence": "monthly",
+      "maxAgeDays": 75
+    },
+    "lux.bellemeade.tail": {
+      "value": 1.88,
+      "fmt": "times",
+      "asOf": "2026-09",
+      "source": "realtor_research",
+      "label": "Belle Meade average against median",
+      "cadence": "monthly",
+      "maxAgeDays": 75
+    },
+    "county.davidson.median": {
+      "value": 525000.0,
+      "fmt": "usd0",
+      "asOf": "2026-09",
+      "source": "realtor_research",
+      "label": "Davidson median asking",
+      "cadence": "monthly",
+      "maxAgeDays": 75
+    },
+    "county.davidson.dom": {
+      "value": 68.0,
+      "fmt": "days",
+      "asOf": "2026-09",
+      "source": "realtor_research",
+      "label": "Davidson median days on market",
+      "cadence": "monthly",
+      "maxAgeDays": 75
+    },
+    "county.davidson.psf": {
+      "value": 301.0,
+      "fmt": "usd0",
+      "asOf": "2026-09",
+      "source": "realtor_research",
+      "label": "Davidson price per square foot",
+      "cadence": "monthly",
+      "maxAgeDays": 75
+    },
+    "county.williamson.median": {
+      "value": 1155000.0,
+      "fmt": "usd0",
+      "asOf": "2026-09",
+      "source": "realtor_research",
+      "label": "Williamson median asking",
+      "cadence": "monthly",
+      "maxAgeDays": 75
+    },
+    "county.williamson.dom": {
+      "value": 63.0,
+      "fmt": "days",
+      "asOf": "2026-09",
+      "source": "realtor_research",
+      "label": "Williamson median days on market",
+      "cadence": "monthly",
+      "maxAgeDays": 75
+    },
+    "county.williamson.psf": {
+      "value": 358.0,
+      "fmt": "usd0",
+      "asOf": "2026-09",
+      "source": "realtor_research",
+      "label": "Williamson price per square foot",
+      "cadence": "monthly",
+      "maxAgeDays": 75
+    }
+  },
+  "tables": {
+    "luxzips": {
+      "asOf": "2026-09",
+      "source": "realtor_research",
+      "rows": [
+        {
+          "zip": "37046",
+          "area": "College Grove",
+          "median": 3093167,
+          "average": 3777415,
+          "psf": 580,
+          "dom": 100,
+          "active": 91,
+          "tail": 1.22
+        },
+        {
+          "zip": "37014",
+          "area": "Arrington",
+          "median": 1862225,
+          "average": 2126812,
+          "psf": 411,
+          "dom": 47,
+          "active": 39,
+          "tail": 1.14
+        },
+        {
+          "zip": "37027",
+          "area": "Brentwood",
+          "median": 1800000,
+          "average": 2300447,
+          "psf": 393,
+          "dom": 74,
+          "active": 375,
+          "tail": 1.28
+        },
+        {
+          "zip": "37220",
+          "area": "Oak Hill",
+          "median": 1687500,
+          "average": 2850858,
+          "psf": 447,
+          "dom": 83,
+          "active": 49,
+          "tail": 1.69
+        },
+        {
+          "zip": "37215",
+          "area": "Green Hills &amp; Forest Hills",
+          "median": 1497450,
+          "average": 2190447,
+          "psf": 429,
+          "dom": 68,
+          "active": 224,
+          "tail": 1.46
+        },
+        {
+          "zip": "37205",
+          "area": "Belle Meade &amp; West Meade",
+          "median": 1230000,
+          "average": 2310788,
+          "psf": 394,
+          "dom": 74,
+          "active": 200,
+          "tail": 1.88
+        },
+        {
+          "zip": "37069",
+          "area": "Franklin, north",
+          "median": 1191000,
+          "average": 2065261,
+          "psf": 360,
+          "dom": 79,
+          "active": 113,
+          "tail": 1.73
+        },
+        {
+          "zip": "37064",
+          "area": "Franklin, south",
+          "median": 1112500,
+          "average": 1827369,
+          "psf": 404,
+          "dom": 61,
+          "active": 481,
+          "tail": 1.64
+        }
+      ]
+    }
+  },
+  "manual": {
+    "tn.conforming": {
+      "value": 1029250,
+      "fmt": "usd0",
+      "asOf": "2026-01",
+      "source": "fhfa",
+      "label": "Conforming loan limit, Davidson and Williamson",
+      "cadence": "annual",
+      "maxAgeDays": 430,
+      "note": "FHFA sets this each November for the following year. When the 2027 figure publishes, update value and asOf or the build will stop."
+    }
+  },
+  "refused": []
+}
