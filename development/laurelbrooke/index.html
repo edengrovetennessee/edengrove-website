@@ -994,6 +994,9 @@ blockquote{
   text-transform:uppercase;color:#fff;
 }
 @media (max-width:760px){ .n-more{grid-template-columns:repeat(2,1fr)} }
+.n-more__all{
+  max-width:72rem;margin:clamp(1.4rem,3vh,2rem) auto 0;text-align:center;
+}
 
 .n-src{
   margin:1.1rem 0 0;font-weight:300;font-size:.68rem;font-style:normal;
@@ -1520,12 +1523,24 @@ blockquote{
     <h2 id="more-h">Other Developments</h2>
   </div>
   <div class="n-more">
-    <a class="n-morelink" href="../witherspoon/">Witherspoon</a>
-    <a class="n-morelink" href="../rosebrooke/">Rosebrooke</a>
-    <a class="n-morelink" href="../governors-club/">The Governors Club</a>
-    <a class="n-morelink" href="../annandale/">Annandale</a>
-    <a class="n-morelink" href="../../neighborhoods.html">All Areas &amp; Developments</a>
+    <a class="n-tile" href="../witherspoon/">
+      <img src="../../media/hood-13.jpg" alt="" loading="lazy" decoding="async">
+      <span class="n-tile__veil"></span><span class="n-tile__name">Witherspoon</span>
+    </a>
+    <a class="n-tile" href="../rosebrooke/">
+      <img src="../../media/hood-24.jpg" alt="" loading="lazy" decoding="async">
+      <span class="n-tile__veil"></span><span class="n-tile__name">Rosebrooke</span>
+    </a>
+    <a class="n-tile" href="../governors-club/">
+      <img src="../../media/hood-20.jpg" alt="" loading="lazy" decoding="async">
+      <span class="n-tile__veil"></span><span class="n-tile__name">The Governors Club</span>
+    </a>
+    <a class="n-tile" href="../annandale/">
+      <img src="../../media/hood-18.jpg" alt="" loading="lazy" decoding="async">
+      <span class="n-tile__veil"></span><span class="n-tile__name">Annandale</span>
+    </a>
   </div>
+  <p class="n-more__all"><a class="prop__cta" href="../../neighborhoods.html">All areas &amp; developments<svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 1l3 3-3 3"/></svg></a></p>
 </section>
 
 <footer class="foot">
