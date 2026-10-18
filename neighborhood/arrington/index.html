@@ -618,6 +618,24 @@ blockquote{
   margin:0;font-size:.66rem;letter-spacing:.1em;
   color:rgba(244,241,236,.42);
 }
+.foot__barleft{
+  display:flex;align-items:center;flex-wrap:wrap;
+  gap:clamp(.9rem,2.4vw,1.7rem);
+}
+/* The dashboard is internal and password-gated. A quiet line beside the
+   copyright is the right weight for it: agents need the door, clients never do,
+   and an internal tool has no business in the navigation of a marketing site.
+   rel=nofollow because the dashboard's own robots.txt is Disallow: / -- no
+   sense pointing crawlers at a door they are already told not to open. */
+.foot__agent{
+  font-size:.66rem;letter-spacing:.1em;
+  color:rgba(244,241,236,.42);
+  border-bottom:1px solid rgba(244,241,236,.18);
+  transition:color .35s var(--rise),border-color .35s var(--rise);
+}
+.foot__agent:hover,.foot__agent:focus-visible{
+  color:#fff;border-bottom-color:rgba(244,241,236,.5);outline:none;
+}
 
 /* No circles — the glyph is the whole control. Hit area comes from padding,
    which keeps them tappable without drawing a button around each one. */
@@ -1373,7 +1391,11 @@ blockquote{
       </p>
     </div>
     <div class="foot__bar">
-      <p class="foot__fine">© 2026 Eden Grove</p>
+      <div class="foot__barleft">
+        <p class="foot__fine">© 2026 Eden Grove</p>
+        <a class="foot__agent" href="https://dashboard.edengrovetennessee.com/"
+           target="_blank" rel="noopener nofollow">Agent Login</a>
+      </div>
 
       <div class="social">
         <a href="https://www.instagram.com/edengrovetn" aria-label="Eden Grove on Instagram" rel="me noopener" target="_blank">
