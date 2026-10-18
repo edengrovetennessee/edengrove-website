@@ -1154,7 +1154,7 @@ img.lock__compass{display:block;width:auto;height:1.1em}
     lock.addEventListener("pointerdown", kick, {passive:true});
     new MutationObserver(() => kick())
       .observe(lock, {attributes:true, attributeFilter:["data-done"]});
-    setTimeout(kick, 3600);        // and once after it lifts on its own
+    setTimeout(kick, 4200);        // and once after it lifts on its own
   }
 
   document.addEventListener("visibilitychange", () => {
@@ -1284,8 +1284,17 @@ addEventListener("keydown", e => {
 <!-- LOCKUP:JS:START -->
 <script>
 /* ---- opening lockup ----
-   Holds for a beat after the names have landed, then lifts. Any key, click,
-   touch or scroll skips it immediately — it is a curtain, not a gate.
+   Runs its full sequence and then lifts on its own. It cannot be skipped: it
+   is a title card, not a curtain.
+
+   Every input that used to dismiss it also fires on an attempt to scroll —
+   wheel on a desktop, touchstart and pointerdown on a phone, arrow, space and
+   page-down on a keyboard — so anyone reaching for the page cut the opening
+   off mid-sentence. There is no partial fix: dropping only "scroll" leaves the
+   gesture dismissing it through touchstart. So none of them dismiss it now.
+
+   Four seconds, or 1.2 under reduced motion. Short enough to sit under the
+   five-second threshold in WCAG 2.2.2, which is the reason not to lengthen it.
 
    The element is REMOVED rather than merely faded. A fixed, full-screen layer
    left in the DOM at opacity 0 still swallows the first click on the page in
@@ -1304,26 +1313,9 @@ addEventListener("keydown", e => {
     document.body.style.overflow = "";
     lock.addEventListener("transitionend", () => lock.remove(), {once:true});
     setTimeout(() => lock.isConnected && lock.remove(), 1400);  // if the event never fires
-    off();
   };
 
-  const onKey = () => lift();
-  const opts = {once:true, passive:true};
-  const on = () => {
-    addEventListener("keydown", onKey, opts);
-    addEventListener("pointerdown", onKey, opts);
-    addEventListener("wheel", onKey, opts);
-    addEventListener("touchstart", onKey, opts);
-  };
-  const off = () => {
-    removeEventListener("keydown", onKey);
-    removeEventListener("pointerdown", onKey);
-    removeEventListener("wheel", onKey);
-    removeEventListener("touchstart", onKey);
-  };
-
-  document.body.style.overflow = "hidden";   // no scrolling behind the curtain
-  on();
+  document.body.style.overflow = "hidden";   // and nothing moves behind it
   setTimeout(lift, HOLD);
 })();
 </script>
