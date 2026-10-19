@@ -772,27 +772,28 @@ blockquote{
 }
 .p-story p:last-child{margin-bottom:0}
 
-/* ---- the facts table ---- */
-/* Hairlines are drawn per cell, not by a 1px gap over a light background —
-   an incomplete last row would otherwise leave a pale block of empty grid.
-   Four columns then two keeps the eight facts in full rows at every width. */
-.p-facts{
-  max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:clamp(2.2rem,4vw,3.4rem) clamp(2rem,4vw,4rem);
+/* The specification, set as the email sets it: one line, middot separated,
+   with the registry detail demoted to a second, quieter line beneath. Nine
+   bordered cells answered the same question and took ten times the room. */
+/* Flex rather than a plain line: the groups are held together with hard
+   spaces and there is no whitespace around the separators, so as one text run
+   the line could not break and overflowed a 360px screen by 46px. As flex
+   items each group wraps on its own, and the middots travel with them. */
+.p-specs{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;
+  max-width:46rem;margin:0 auto;text-align:center;
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.66rem,.6rem + .3vw,.88rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:var(--t1);line-height:2.3;
 }
-.p-fact{
-  background:var(--ink);padding:0;
+.p-specs i{font-style:normal;color:var(--warm-rule);padding:0 clamp(.45em,1.6vw,.75em)}
+@media (max-width:420px){
+  .p-specs{letter-spacing:.14em;text-indent:.14em}
 }
-@media (max-width:900px){ .p-facts{grid-template-columns:repeat(2,1fr)} }
-.p-fact dt{
-  font-size:.55rem;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
-  color:var(--t3);
-}
-.p-fact dd{
-  margin:.85rem 0 0;font-family:var(--display);
-  font-size:clamp(1.5rem,1.1rem + 1.5vw,2.3rem);
-  font-weight:300;letter-spacing:.02em;color:var(--t1);font-variant-numeric:tabular-nums;
+.p-specs--fine{
+  margin:1.5rem auto 0;font-size:.6rem;letter-spacing:.18em;text-indent:.18em;
+  color:var(--warm);line-height:2;
 }
 
 /* ---- amenities ---- */
@@ -1163,17 +1164,9 @@ blockquote{
 <!-- ============================== THE FACTS ============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="facts-h">
   <h2 class="p-eyebrow" id="facts-h">Specification</h2>
-  <!-- PROPERTY: every figure in this table -->
-  <dl class="p-facts">
-      <div class="p-fact"><dt>Bedrooms</dt><dd>6</dd></div>
-      <div class="p-fact"><dt>Full Baths</dt><dd>7</dd></div>
-      <div class="p-fact"><dt>Half Baths</dt><dd>3</dd></div>
-      <div class="p-fact"><dt>Living Area</dt><dd>8,600 sq ft</dd></div>
-      <div class="p-fact"><dt>Lot</dt><dd>1 acre</dd></div>
-      <div class="p-fact"><dt>Stories</dt><dd>2</dd></div>
-      <div class="p-fact"><dt>Year</dt><dd>2027</dd></div>
-      <div class="p-fact"><dt>Price</dt><dd>$6,000,000</dd></div>
-  </dl>
+  <!-- PROPERTY: the headline figures, then the registry detail -->
+  <p class="p-specs">1 Acre<i>&middot;</i>6 Bed<i>&middot;</i>7 Full, 3 Half<i>&middot;</i>8,600 Sq Ft</p>
+  <p class="p-specs p-specs--fine">$6,000,000<i>&middot;</i>Built 2027<i>&middot;</i>Two Stories</p>
 </section>
 
 <!-- ============================== AMENITIES ============================== -->
@@ -1181,18 +1174,18 @@ blockquote{
   <h2 class="p-eyebrow" id="amen-h">Amenities</h2>
   <!-- PROPERTY: the amenity list -->
   <ul class="p-amen">
-      <li><i></i>Resort-Style Pool</li>
-      <li><i></i>Outdoor Kitchen</li>
-      <li><i></i>Screened Porch</li>
-      <li><i></i>Sunken Fireplace</li>
-      <li><i></i>Chef's Kitchen</li>
-      <li><i></i>Butler's Pantry</li>
-      <li><i></i>Library</li>
-      <li><i></i>Vaulted-Ceiling Office</li>
-      <li><i></i>Theater</li>
-      <li><i></i>Rec Room</li>
-      <li><i></i>Mother-in-Law Suite</li>
-      <li><i></i>Four-Car Garage</li>
+      <li>Resort-Style Pool</li>
+      <li>Outdoor Kitchen</li>
+      <li>Screened Porch</li>
+      <li>Sunken Fireplace</li>
+      <li>Chef's Kitchen</li>
+      <li>Butler's Pantry</li>
+      <li>Library</li>
+      <li>Vaulted-Ceiling Office</li>
+      <li>Theater</li>
+      <li>Rec Room</li>
+      <li>Mother-in-Law Suite</li>
+      <li>Four-Car Garage</li>
   </ul>
 </section>
 

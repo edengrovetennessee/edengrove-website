@@ -773,28 +773,6 @@ blockquote{
 }
 .p-story p:last-child{margin-bottom:0}
 
-/* ---- the facts table ---- */
-/* Hairlines are drawn per cell, not by a 1px gap over a light background —
-   an incomplete last row would otherwise leave a pale block of empty grid.
-   Four columns then two keeps the eight facts in full rows at every width. */
-.p-facts{
-  max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
-  display:grid;grid-template-columns:repeat(4,1fr);
-  gap:clamp(2.2rem,4vw,3.4rem) clamp(2rem,4vw,4rem);
-}
-.p-fact{
-  background:var(--ink);padding:0;
-}
-@media (max-width:900px){ .p-facts{grid-template-columns:repeat(2,1fr)} }
-.p-fact dt{
-  font-size:.55rem;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
-  color:var(--t3);
-}
-.p-fact dd{
-  margin:.85rem 0 0;font-family:var(--display);
-  font-size:clamp(1.5rem,1.1rem + 1.5vw,2.3rem);
-  font-weight:300;letter-spacing:.02em;color:var(--t1);font-variant-numeric:tabular-nums;
-}
 
 /* ---- amenities ---- */
 .p-amen{
