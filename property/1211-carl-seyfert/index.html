@@ -718,10 +718,15 @@ blockquote{
   font-size:.58rem;font-weight:400;letter-spacing:.34em;text-indent:.34em;
   text-transform:uppercase;padding:.5rem .95rem .45rem;margin-bottom:1.3rem;
 }
+/* One scale for every hero headline on the site. Four lived here before —
+   3rem on the banners, 2.7rem on contact, 2.6rem on sellers and buyers,
+   2.35rem on the property pages — all doing the same job at four sizes.
+   Smaller, tracked wider, on a longer line: it reads as a masthead rather
+   than a headline, which is the register the email set. */
 .p-hero h1{
   margin:0;font-family:var(--ui);font-weight:300;
-  font-size:clamp(1.35rem,1rem + 1.6vw,2.35rem);
-  line-height:1.7;letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  font-size:clamp(1.1rem,.88rem + .92vw,1.72rem);
+  line-height:1.6;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
   color:#fff;text-shadow:0 1px 26px rgba(0,0,0,.5);
 }
 .p-hero__price i{font-style:normal;color:var(--wline);padding:0 .7em}
