@@ -24,10 +24,23 @@
   --ink:#14170F;
   --paper:#F4F1EC;
   --on-video:#FFFFFF;
-  --on-video-dim:rgba(255,255,255,.72);
+  --on-video-dim:var(--w2);
 
   /* the one warm note in the palette — status, rules, and the only call to action */
-  --brass:#B6A97C;
+  --brass:#DACEB6;
+  /* ---- the house scale -------------------------------------------------
+     Three weights of text, one of rule, on each ground. The site was using
+     33 opacities of the cream and 10 of the white; no single value was
+     wrong, but nothing agreed with anything, which is what makes a palette
+     read as approximate rather than decided. Everything resolves here. */
+  --t1:#F4F1EC;                 /* on ink: speaks   */
+  --t2:var(--t2);   /* on ink: reads    */
+  --t3:var(--t3);   /* on ink: murmurs  */
+  --line:var(--line); /* on ink: divides  */
+  --w1:#FFFFFF;                 /* on image: speaks */
+  --w2:var(--w2);   /* on image: reads  */
+  --w3:var(--w3);   /* on image: murmurs*/
+  --wline:var(--wline);/* on image: divides*/
 
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
@@ -108,7 +121,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   filter:drop-shadow(0 1px 24px rgba(0,0,0,.34));
 }
 @media (max-width:560px){.bar__bar,.bar__compass{display:none}}
-.foot__firmline strong{font-weight:400;color:rgba(244,241,236,.72)}
+.foot__firmline strong{font-weight:400;color:var(--t2)}
 
 .nav{display:flex;align-items:center;gap:clamp(1.6rem,3.2vw,3.4rem)}
 .nav__item{position:relative}
@@ -155,7 +168,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   background:rgba(12,15,10,.78);
   backdrop-filter:blur(14px) saturate(1.1);
   -webkit-backdrop-filter:blur(14px) saturate(1.1);
-  border-top:1px solid rgba(255,255,255,.20);
+  border-top:1px solid var(--wline);
   opacity:0;transform:translateY(-.4rem);pointer-events:none;
   transition:opacity .38s var(--rise),transform .38s var(--rise);
 }
@@ -268,7 +281,7 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
   transform:scale(1.001);transition:transform 1.1s var(--rise);
 }
 .tile:hover img,.tile:focus-visible img{transform:scale(1.045)}
-.tile:focus-visible{outline:1px solid rgba(255,255,255,.7);outline-offset:-1px}
+.tile:focus-visible{outline:1px solid var(--w2);outline-offset:-1px}
 
 /* the wash only exists so the caption never lands on a bright sky */
 .tile::after{
@@ -313,7 +326,7 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
   margin:0;
   font-family:var(--ui);font-weight:300;
   font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:rgba(244,241,236,.52);
+  color:var(--t3);
 }
 
 /* Fixed height on the stack, absolute slides inside: the section cannot jump
@@ -330,19 +343,19 @@ blockquote{
   margin:0;font-family:var(--ui);font-weight:300;
   font-size:clamp(1.02rem,.88rem + .62vw,1.42rem);
   line-height:1.75;letter-spacing:.012em;
-  color:rgba(244,241,236,.94);
+  color:var(--t2);
 }
 .says__by{
   display:block;margin-top:clamp(1.5rem,3.5vh,2.25rem);
   font-family:var(--ui);font-weight:400;font-style:normal;
   font-size:.62rem;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
-  color:rgba(244,241,236,.58);
+  color:var(--t3);
 }
 
 .says__count{
   display:block;margin-top:clamp(2.25rem,5vh,3.25rem);
   font-family:var(--ui);font-size:.62rem;letter-spacing:.22em;text-indent:.22em;
-  color:rgba(244,241,236,.42);font-variant-numeric:tabular-nums;
+  color:var(--t3);font-variant-numeric:tabular-nums;
 }
 
 /* ========================= 4 · FEATURED PROPERTIES =========================
@@ -428,7 +441,7 @@ blockquote{
   border-bottom:1px solid rgba(182,169,124,.55);
   font-size:.72rem;letter-spacing:.08em;color:#fff;
 }
-.prop__facts .k{color:rgba(255,255,255,.62);margin-right:.4rem}
+.prop__facts .k{color:var(--w2);margin-right:.4rem}
 .prop__cta{
   display:inline-flex;align-items:center;gap:.5rem;margin-top:1.05rem;
   font-family:var(--ui);font-weight:400;font-size:.66rem;
@@ -483,7 +496,7 @@ blockquote{
 .access p{
   margin:clamp(1.7rem,3.6vh,2.4rem) 0 0;
   font-family:var(--ui);font-weight:300;font-size:clamp(.85rem,.8rem + .2vw,.98rem);
-  line-height:1.75;color:rgba(255,255,255,.78);max-width:34ch;
+  line-height:1.75;color:var(--w2);max-width:34ch;
 }
 
 /* Underline, not a box. A boxed field would be the only hard rectangle on the
@@ -494,12 +507,12 @@ blockquote{
 }
 .access__form input{
   flex:1 1 17rem;min-width:0;
-  background:none;border:0;border-bottom:1px solid rgba(255,255,255,.42);
+  background:none;border:0;border-bottom:1px solid var(--w3);
   color:#fff;font-family:var(--ui);font-weight:300;font-size:.92rem;
   padding:.85rem .2rem;
   transition:border-color .4s var(--rise);
 }
-.access__form input::placeholder{color:rgba(255,255,255,.45)}
+.access__form input::placeholder{color:var(--w3)}
 .access__form input:focus{outline:none;border-bottom-color:var(--brass)}
 
 .access__btn{
@@ -513,9 +526,9 @@ blockquote{
 
 .access__terms{
   margin-top:1.9rem;font-size:.68rem;line-height:1.7;
-  color:rgba(255,255,255,.5);max-width:40ch;
+  color:var(--w3);max-width:40ch;
 }
-.access__terms a{border-bottom:1px solid rgba(255,255,255,.35)}
+.access__terms a{border-bottom:1px solid var(--wline)}
 .access__terms a:hover{color:#fff;border-bottom-color:#fff}
 
 .access__note{
@@ -535,7 +548,7 @@ blockquote{
    page ends rather than switching to a different surface. */
 .foot{
   background:var(--ink);color:var(--paper);
-  border-top:1px solid rgba(244,241,236,.13);
+  border-top:1px solid var(--line);
   /* rhythm in rem, not vh — a footer's spacing should follow its type, not the
      height of the window it happens to be shown in */
   padding:clamp(3.5rem,7vw,6rem) var(--gutter) clamp(2rem,4vw,2.75rem);
@@ -558,14 +571,14 @@ blockquote{
   margin:0 0 1.9rem;
   font-family:var(--ui);font-weight:400;
   font-size:.58rem;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
-  color:rgba(244,241,236,.5);
+  color:var(--t3);
 }
 .foot__list{list-style:none;margin:0;padding:0}
 .foot__list li{margin:0 0 1.05rem}
 .foot__list li:last-child{margin-bottom:0}
 .foot__list a,.foot__list span{
   font-family:var(--ui);font-weight:300;font-size:.86rem;line-height:1.5;
-  color:rgba(244,241,236,.78);
+  color:var(--t2);
 }
 /* the rule appears under the word rather than being there and changing color */
 .foot__list a{position:relative;transition:color .35s var(--rise)}
@@ -581,7 +594,7 @@ blockquote{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
   gap:1.25rem;
   margin-top:clamp(1.5rem,3vw,2.25rem);padding-top:clamp(1.4rem,2.6vw,1.9rem);
-  border-top:1px solid rgba(244,241,236,.13);
+  border-top:1px solid var(--line);
 }
 
 /* ---- the firm sign-off ---------------------------------------------------
@@ -592,7 +605,7 @@ blockquote{
 .foot__firm{
   margin-top:clamp(2.25rem,4.5vw,3.5rem);
   padding-top:clamp(1.6rem,3vw,2.2rem);
-  border-top:1px solid rgba(244,241,236,.13);
+  border-top:1px solid var(--line);
   display:flex;align-items:center;flex-wrap:wrap;
   gap:clamp(.9rem,2.4vw,1.8rem);
 }
@@ -603,10 +616,10 @@ blockquote{
 .foot__firmline{
   margin:0;font-family:var(--ui);font-weight:300;
   font-size:.68rem;line-height:1.7;letter-spacing:.1em;
-  color:rgba(244,241,236,.5);
+  color:var(--t3);
 }
 .foot__firmline a{
-  color:inherit;border-bottom:1px solid rgba(244,241,236,.22);
+  color:inherit;border-bottom:1px solid var(--line);
   white-space:nowrap;      /* a telephone number must never break mid-digits */
 }
 .foot__firmline a:hover,.foot__firmline a:focus-visible{color:#fff;outline:none}
@@ -615,7 +628,7 @@ blockquote{
 }
 .foot__fine{
   margin:0;font-size:.66rem;letter-spacing:.1em;
-  color:rgba(244,241,236,.42);
+  color:var(--t3);
 }
 .foot__barleft{
   display:flex;align-items:center;flex-wrap:wrap;
@@ -628,12 +641,12 @@ blockquote{
    sense pointing crawlers at a door they are already told not to open. */
 .foot__agent{
   font-size:.66rem;letter-spacing:.1em;
-  color:rgba(244,241,236,.42);
-  border-bottom:1px solid rgba(244,241,236,.18);
+  color:var(--t3);
+  border-bottom:1px solid var(--line);
   transition:color .35s var(--rise),border-color .35s var(--rise);
 }
 .foot__agent:hover,.foot__agent:focus-visible{
-  color:#fff;border-bottom-color:rgba(244,241,236,.5);outline:none;
+  color:#fff;border-bottom-color:var(--t3);outline:none;
 }
 
 /* No circles — the glyph is the whole control. Hit area comes from padding,
@@ -641,7 +654,7 @@ blockquote{
 .social{display:flex;align-items:center;gap:1.5rem}
 .social a{
   display:grid;place-items:center;padding:.4rem;margin:-.4rem;
-  color:rgba(244,241,236,.62);
+  color:var(--t3);
   transition:color .35s var(--rise);
 }
 .social a:hover,.social a:focus-visible{color:#fff;outline:none}
@@ -687,7 +700,7 @@ blockquote{
   margin:clamp(1.5rem,3.5vh,2.25rem) auto 0;max-width:46ch;
   font-family:var(--ui);font-weight:300;
   font-size:clamp(.9rem,.84rem + .25vw,1.05rem);line-height:1.85;
-  color:rgba(255,255,255,.86);
+  color:var(--w1);
   text-shadow:0 1px 24px rgba(0,0,0,.4);
 }
 
@@ -702,7 +715,7 @@ blockquote{
   padding:0 clamp(.5rem,1vw,1.1rem);
   font-family:var(--ui);font-weight:300;
   font-size:.62rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:rgba(244,241,236,.55);
+  color:var(--t3);
 }
 .hoods__grid{
   display:grid;grid-template-columns:repeat(3,1fr);
@@ -715,7 +728,7 @@ blockquote{
   transform:scale(1.001);transition:transform 1.1s var(--rise);
 }
 .hood:hover img,.hood:focus-visible img{transform:scale(1.05)}
-.hood:focus-visible{outline:1px solid rgba(255,255,255,.7);outline-offset:-1px}
+.hood:focus-visible{outline:1px solid var(--w2);outline-offset:-1px}
 .hood::after{
   content:"";position:absolute;inset:0;pointer-events:none;
   background:linear-gradient(to top, rgba(6,8,5,.60) 0%, rgba(6,8,5,.14) 26%, rgba(6,8,5,0) 46%);

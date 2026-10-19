@@ -24,10 +24,23 @@
   --ink:#14170F;
   --paper:#F4F1EC;
   --on-video:#FFFFFF;
-  --on-video-dim:rgba(255,255,255,.72);
+  --on-video-dim:var(--w2);
 
   /* the one warm note in the palette — status, rules, and the only call to action */
-  --brass:#B6A97C;
+  --brass:#DACEB6;
+  /* ---- the house scale -------------------------------------------------
+     Three weights of text, one of rule, on each ground. The site was using
+     33 opacities of the cream and 10 of the white; no single value was
+     wrong, but nothing agreed with anything, which is what makes a palette
+     read as approximate rather than decided. Everything resolves here. */
+  --t1:#F4F1EC;                 /* on ink: speaks   */
+  --t2:var(--t2);   /* on ink: reads    */
+  --t3:var(--t3);   /* on ink: murmurs  */
+  --line:var(--line); /* on ink: divides  */
+  --w1:#FFFFFF;                 /* on image: speaks */
+  --w2:var(--w2);   /* on image: reads  */
+  --w3:var(--w3);   /* on image: murmurs*/
+  --wline:var(--wline);/* on image: divides*/
 
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
@@ -107,7 +120,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   filter:drop-shadow(0 1px 24px rgba(0,0,0,.34));
 }
 @media (max-width:560px){.bar__bar,.bar__compass{display:none}}
-.foot__firmline strong{font-weight:400;color:rgba(244,241,236,.72)}
+.foot__firmline strong{font-weight:400;color:var(--t2)}
 
 .nav{display:flex;align-items:center;gap:clamp(1.6rem,3.2vw,3.4rem)}
 .nav__item{position:relative}
@@ -154,7 +167,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
   background:rgba(12,15,10,.78);
   backdrop-filter:blur(14px) saturate(1.1);
   -webkit-backdrop-filter:blur(14px) saturate(1.1);
-  border-top:1px solid rgba(255,255,255,.20);
+  border-top:1px solid var(--wline);
   opacity:0;transform:translateY(-.4rem);pointer-events:none;
   transition:opacity .38s var(--rise),transform .38s var(--rise);
 }
@@ -270,7 +283,7 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
   transform:scale(1.001);transition:transform 1.1s var(--rise);
 }
 .tile:hover img,.tile:focus-visible img{transform:scale(1.045)}
-.tile:focus-visible{outline:1px solid rgba(255,255,255,.7);outline-offset:-1px}
+.tile:focus-visible{outline:1px solid var(--w2);outline-offset:-1px}
 
 /* the wash only exists so the caption never lands on a bright sky */
 .tile::after{
@@ -315,7 +328,7 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
   margin:0;
   font-family:var(--ui);font-weight:300;
   font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:rgba(244,241,236,.52);
+  color:var(--t3);
 }
 
 /* Fixed height on the stack, absolute slides inside: the section cannot jump
@@ -332,19 +345,19 @@ blockquote{
   margin:0;font-family:var(--ui);font-weight:300;
   font-size:clamp(1.02rem,.88rem + .62vw,1.42rem);
   line-height:1.75;letter-spacing:.012em;
-  color:rgba(244,241,236,.94);
+  color:var(--t2);
 }
 .says__by{
   display:block;margin-top:clamp(1.5rem,3.5vh,2.25rem);
   font-family:var(--ui);font-weight:400;font-style:normal;
   font-size:.62rem;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
-  color:rgba(244,241,236,.58);
+  color:var(--t3);
 }
 
 .says__count{
   display:block;margin-top:clamp(2.25rem,5vh,3.25rem);
   font-family:var(--ui);font-size:.62rem;letter-spacing:.22em;text-indent:.22em;
-  color:rgba(244,241,236,.42);font-variant-numeric:tabular-nums;
+  color:var(--t3);font-variant-numeric:tabular-nums;
 }
 
 /* ========================= 4 · FEATURED PROPERTIES =========================
@@ -430,7 +443,7 @@ blockquote{
   border-bottom:1px solid rgba(182,169,124,.55);
   font-size:.72rem;letter-spacing:.08em;color:#fff;
 }
-.prop__facts .k{color:rgba(255,255,255,.62);margin-right:.4rem}
+.prop__facts .k{color:var(--w2);margin-right:.4rem}
 .prop__cta{
   display:inline-flex;align-items:center;gap:.5rem;margin-top:1.05rem;
   font-family:var(--ui);font-weight:400;font-size:.66rem;
@@ -485,7 +498,7 @@ blockquote{
 .access p{
   margin:clamp(1.7rem,3.6vh,2.4rem) 0 0;
   font-family:var(--ui);font-weight:300;font-size:clamp(.85rem,.8rem + .2vw,.98rem);
-  line-height:1.75;color:rgba(255,255,255,.78);max-width:34ch;
+  line-height:1.75;color:var(--w2);max-width:34ch;
 }
 
 /* Underline, not a box. A boxed field would be the only hard rectangle on the
@@ -496,12 +509,12 @@ blockquote{
 }
 .access__form input{
   flex:1 1 17rem;min-width:0;
-  background:none;border:0;border-bottom:1px solid rgba(255,255,255,.42);
+  background:none;border:0;border-bottom:1px solid var(--w3);
   color:#fff;font-family:var(--ui);font-weight:300;font-size:.92rem;
   padding:.85rem .2rem;
   transition:border-color .4s var(--rise);
 }
-.access__form input::placeholder{color:rgba(255,255,255,.45)}
+.access__form input::placeholder{color:var(--w3)}
 .access__form input:focus{outline:none;border-bottom-color:var(--brass)}
 
 .access__btn{
@@ -515,9 +528,9 @@ blockquote{
 
 .access__terms{
   margin-top:1.9rem;font-size:.68rem;line-height:1.7;
-  color:rgba(255,255,255,.5);max-width:40ch;
+  color:var(--w3);max-width:40ch;
 }
-.access__terms a{border-bottom:1px solid rgba(255,255,255,.35)}
+.access__terms a{border-bottom:1px solid var(--wline)}
 .access__terms a:hover{color:#fff;border-bottom-color:#fff}
 
 .access__note{
@@ -537,7 +550,7 @@ blockquote{
    page ends rather than switching to a different surface. */
 .foot{
   background:var(--ink);color:var(--paper);
-  border-top:1px solid rgba(244,241,236,.13);
+  border-top:1px solid var(--line);
   /* rhythm in rem, not vh — a footer's spacing should follow its type, not the
      height of the window it happens to be shown in */
   padding:clamp(3.5rem,7vw,6rem) var(--gutter) clamp(2rem,4vw,2.75rem);
@@ -560,14 +573,14 @@ blockquote{
   margin:0 0 1.9rem;
   font-family:var(--ui);font-weight:400;
   font-size:.58rem;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
-  color:rgba(244,241,236,.5);
+  color:var(--t3);
 }
 .foot__list{list-style:none;margin:0;padding:0}
 .foot__list li{margin:0 0 1.05rem}
 .foot__list li:last-child{margin-bottom:0}
 .foot__list a,.foot__list span{
   font-family:var(--ui);font-weight:300;font-size:.86rem;line-height:1.5;
-  color:rgba(244,241,236,.78);
+  color:var(--t2);
 }
 /* the rule appears under the word rather than being there and changing color */
 .foot__list a{position:relative;transition:color .35s var(--rise)}
@@ -583,7 +596,7 @@ blockquote{
   display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
   gap:1.25rem;
   margin-top:clamp(1.5rem,3vw,2.25rem);padding-top:clamp(1.4rem,2.6vw,1.9rem);
-  border-top:1px solid rgba(244,241,236,.13);
+  border-top:1px solid var(--line);
 }
 
 /* ---- the firm sign-off ---------------------------------------------------
@@ -594,7 +607,7 @@ blockquote{
 .foot__firm{
   margin-top:clamp(2.25rem,4.5vw,3.5rem);
   padding-top:clamp(1.6rem,3vw,2.2rem);
-  border-top:1px solid rgba(244,241,236,.13);
+  border-top:1px solid var(--line);
   display:flex;align-items:center;flex-wrap:wrap;
   gap:clamp(.9rem,2.4vw,1.8rem);
 }
@@ -605,10 +618,10 @@ blockquote{
 .foot__firmline{
   margin:0;font-family:var(--ui);font-weight:300;
   font-size:.68rem;line-height:1.7;letter-spacing:.1em;
-  color:rgba(244,241,236,.5);
+  color:var(--t3);
 }
 .foot__firmline a{
-  color:inherit;border-bottom:1px solid rgba(244,241,236,.22);
+  color:inherit;border-bottom:1px solid var(--line);
   white-space:nowrap;      /* a telephone number must never break mid-digits */
 }
 .foot__firmline a:hover,.foot__firmline a:focus-visible{color:#fff;outline:none}
@@ -617,7 +630,7 @@ blockquote{
 }
 .foot__fine{
   margin:0;font-size:.66rem;letter-spacing:.1em;
-  color:rgba(244,241,236,.42);
+  color:var(--t3);
 }
 .foot__barleft{
   display:flex;align-items:center;flex-wrap:wrap;
@@ -630,12 +643,12 @@ blockquote{
    sense pointing crawlers at a door they are already told not to open. */
 .foot__agent{
   font-size:.66rem;letter-spacing:.1em;
-  color:rgba(244,241,236,.42);
-  border-bottom:1px solid rgba(244,241,236,.18);
+  color:var(--t3);
+  border-bottom:1px solid var(--line);
   transition:color .35s var(--rise),border-color .35s var(--rise);
 }
 .foot__agent:hover,.foot__agent:focus-visible{
-  color:#fff;border-bottom-color:rgba(244,241,236,.5);outline:none;
+  color:#fff;border-bottom-color:var(--t3);outline:none;
 }
 
 /* No circles — the glyph is the whole control. Hit area comes from padding,
@@ -643,7 +656,7 @@ blockquote{
 .social{display:flex;align-items:center;gap:1.5rem}
 .social a{
   display:grid;place-items:center;padding:.4rem;margin:-.4rem;
-  color:rgba(244,241,236,.62);
+  color:var(--t3);
   transition:color .35s var(--rise);
 }
 .social a:hover,.social a:focus-visible{color:#fff;outline:none}
@@ -703,8 +716,8 @@ blockquote{
 .p-hero__cta:hover{background:#C6BA92}
 
 /* ---- shared section furniture ---- */
-.p-sec{background:var(--ink);padding:clamp(4rem,9vh,7rem) var(--gutter)}
-.p-sec--tight{padding-top:clamp(2rem,4vh,3rem)}
+.p-sec{background:var(--ink);padding:clamp(5.5rem,13vh,10.5rem) var(--gutter)}
+.p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
 .p-eyebrow{
   margin:0 0 1.3rem;font-weight:300;
   font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
@@ -722,7 +735,7 @@ blockquote{
 .p-lede p{
   margin:clamp(1.4rem,3vh,2rem) auto 0;max-width:48ch;
   font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
-  line-height:1.95;color:rgba(244,241,236,.76);
+  line-height:1.95;color:var(--t2);
 }
 /* The narrative runs long on a real listing. Centered prose stops working past
    a couple of sentences, so the story block sets left with a proper measure
@@ -731,7 +744,7 @@ blockquote{
 .p-story p{
   margin:0 0 1.5rem;text-align:left;
   font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
-  line-height:1.95;color:rgba(244,241,236,.76);
+  line-height:1.95;color:var(--t2);
 }
 .p-story p:last-child{margin-bottom:0}
 
@@ -742,22 +755,20 @@ blockquote{
 .p-facts{
   max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
   display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:1px solid rgba(244,241,236,.14);
-  border-left:1px solid rgba(244,241,236,.14);
+  gap:clamp(2.2rem,4vw,3.4rem) clamp(2rem,4vw,4rem);
 }
 .p-fact{
-  background:var(--ink);padding:1.6rem 1.4rem;
-  border-right:1px solid rgba(244,241,236,.14);
-  border-bottom:1px solid rgba(244,241,236,.14);
+  background:var(--ink);padding:0;
 }
 @media (max-width:900px){ .p-facts{grid-template-columns:repeat(2,1fr)} }
 .p-fact dt{
   font-size:.55rem;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
-  color:rgba(244,241,236,.5);
+  color:var(--t3);
 }
 .p-fact dd{
-  margin:.8rem 0 0;font-size:clamp(1rem,.9rem + .4vw,1.3rem);
-  font-weight:300;letter-spacing:.06em;color:#fff;font-variant-numeric:tabular-nums;
+  margin:.85rem 0 0;font-family:var(--display);
+  font-size:clamp(1.5rem,1.1rem + 1.5vw,2.3rem);
+  font-weight:300;letter-spacing:.02em;color:var(--t1);font-variant-numeric:tabular-nums;
 }
 
 /* ---- amenities ---- */
@@ -769,7 +780,7 @@ blockquote{
 }
 .p-amen li{
   display:flex;gap:.9rem;align-items:baseline;
-  font-size:.9rem;line-height:1.7;color:rgba(244,241,236,.8);
+  font-size:.9rem;line-height:1.7;color:var(--t2);
 }
 .p-amen i{
   width:.4rem;height:.4rem;border-radius:50%;background:var(--brass);flex:0 0 auto;
@@ -780,7 +791,7 @@ blockquote{
 .p-gal__note{
   margin:1.4rem auto 0;font-weight:300;font-size:.72rem;
   letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
-  color:rgba(244,241,236,.5);
+  color:var(--t3);
 }
 .p-gal__head{
   display:flex;align-items:baseline;gap:1.2rem;
@@ -788,9 +799,9 @@ blockquote{
 }
 .p-gal__head span{
   font-size:.6rem;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
-  color:rgba(244,241,236,.55);
+  color:var(--t3);
 }
-.p-gal__head i{flex:1;height:1px;background:rgba(244,241,236,.14)}
+.p-gal__head i{flex:1;height:1px;background:var(--line)}
 .p-gal__row{
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:clamp(.5rem,1vw,1.1rem);padding:0 clamp(.5rem,1vw,1.1rem);
@@ -838,7 +849,7 @@ blockquote{
   margin:0 0 1.3rem;text-align:center;font-weight:300;
   font-size:clamp(.78rem,.74rem + .18vw,.92rem);
   letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;
-  color:rgba(244,241,236,.82);
+  color:var(--t2);
 }
 .p-map__frame{
   position:relative;aspect-ratio:16/9;overflow:hidden;
@@ -886,7 +897,7 @@ blockquote{
    text in a 280px column is hard work to read. */
 .p-partner p{
   margin:.9rem 0 0;font-weight:300;font-size:.82rem;line-height:1.8;
-  color:rgba(244,241,236,.7);text-align:left;
+  color:var(--t2);text-align:left;
 }
 @media (max-width:900px){ .p-build__grid{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:520px){ .p-build__grid{grid-template-columns:1fr} }
@@ -935,12 +946,12 @@ blockquote{
 }
 .n-block p{
   margin:0 0 .9rem;font-weight:300;font-size:.9rem;line-height:1.95;
-  color:rgba(244,241,236,.76);
+  color:var(--t2);
 }
 .n-block ul{margin:.9rem 0 0;padding:0;list-style:none;display:grid;gap:.55rem}
 .n-block li{
   position:relative;padding-left:1.4rem;font-weight:300;font-size:.86rem;
-  line-height:1.7;color:rgba(244,241,236,.72);
+  line-height:1.7;color:var(--t2);
 }
 .n-block li::before{
   content:"";position:absolute;left:0;top:.62em;width:.5rem;height:1px;
@@ -963,28 +974,26 @@ blockquote{
 }
 .n-card p{
   margin:.95rem 0 0;font-weight:300;font-size:.85rem;line-height:1.9;
-  color:rgba(244,241,236,.7);
+  color:var(--t2);
 }
 .n-cards--1{max-width:34rem}
 
 .n-times{
   max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
   display:grid;grid-template-columns:repeat(4,1fr);
-  border-top:1px solid rgba(244,241,236,.14);
-  border-left:1px solid rgba(244,241,236,.14);
+  gap:clamp(2.2rem,4vw,3.4rem) clamp(2rem,4vw,4rem);
 }
 .n-time{
-  background:var(--ink);padding:1.6rem 1.4rem;
-  border-right:1px solid rgba(244,241,236,.14);
-  border-bottom:1px solid rgba(244,241,236,.14);
+  background:var(--ink);padding:0;
 }
 .n-time dt{
   font-size:.55rem;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
-  color:rgba(244,241,236,.5);
+  color:var(--t3);
 }
 .n-time dd{
-  margin:.8rem 0 0;font-size:clamp(1rem,.9rem + .4vw,1.3rem);font-weight:300;
-  letter-spacing:.06em;color:#fff;font-variant-numeric:tabular-nums;
+  margin:.85rem 0 0;font-family:var(--display);
+  font-size:clamp(1.5rem,1.1rem + 1.5vw,2.3rem);
+  font-weight:300;letter-spacing:.02em;color:var(--t1);font-variant-numeric:tabular-nums;
 }
 @media (max-width:900px){ .n-times{grid-template-columns:repeat(2,1fr)} }
 
@@ -1009,7 +1018,7 @@ blockquote{
 
 .n-src{
   margin:1.1rem 0 0;font-weight:300;font-size:.68rem;font-style:normal;
-  letter-spacing:.16em;text-transform:uppercase;color:rgba(244,241,236,.42);
+  letter-spacing:.16em;text-transform:uppercase;color:var(--t3);
 }
 .n-src--mid{max-width:64rem;margin-left:auto;margin-right:auto;text-align:right}
 
@@ -1036,7 +1045,7 @@ blockquote{
   letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:var(--brass);
 }
 .p-agent ul{list-style:none;margin:1.2rem 0 0;padding:0}
-.p-agent li{margin:0 0 .55rem;font-size:.86rem;color:rgba(244,241,236,.78)}
+.p-agent li{margin:0 0 .55rem;font-size:.86rem;color:var(--t2)}
 .p-agent a:hover{color:#fff}
 
 /* ---- inquiry ---- */
@@ -1045,12 +1054,12 @@ blockquote{
   display:grid;gap:1.4rem;
 }
 .p-form input,.p-form textarea{
-  width:100%;background:none;border:0;border-bottom:1px solid rgba(244,241,236,.32);
+  width:100%;background:none;border:0;border-bottom:1px solid var(--line);
   color:#fff;font-family:var(--ui);font-weight:300;font-size:.92rem;
   padding:.85rem .2rem;transition:border-color .4s var(--rise);
 }
 .p-form textarea{resize:vertical;min-height:5rem}
-.p-form input::placeholder,.p-form textarea::placeholder{color:rgba(244,241,236,.42)}
+.p-form input::placeholder,.p-form textarea::placeholder{color:var(--t3)}
 .p-form input:focus,.p-form textarea:focus{outline:none;border-bottom-color:var(--brass)}
 .p-form button{
   justify-self:start;background:var(--brass);color:#14170F;font-weight:400;
@@ -1066,8 +1075,8 @@ blockquote{
 /* ---- development pages: the numbers a buyer actually asks for ---- */
 .w-strip{
   display:grid;grid-template-columns:repeat(4,1fr);
-  gap:1px;background:rgba(244,241,236,.12);
-  border:1px solid rgba(244,241,236,.12);
+  gap:1px;background:var(--line);
+  border:1px solid var(--line);
   margin-top:clamp(2rem,5vh,3rem);
 }
 @media (max-width:760px){ .w-strip{grid-template-columns:repeat(2,1fr)} }
@@ -1075,7 +1084,7 @@ blockquote{
 .w-strip dt{
   margin:0 0 .6rem;font-weight:400;font-size:.55rem;
   letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;
-  color:rgba(244,241,236,.5);
+  color:var(--t3);
 }
 .w-strip dd{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -1083,18 +1092,18 @@ blockquote{
   color:#fff;font-variant-numeric:tabular-nums;letter-spacing:.02em;
 }
 .w-strip dd small{display:block;margin-top:.4rem;font-size:.6rem;letter-spacing:.1em;
-  color:rgba(244,241,236,.45)}
+  color:var(--t3)}
 
 /* the sales table — scrolls sideways on a phone rather than crushing */
 .w-tablewrap{margin-top:clamp(2rem,5vh,3rem);overflow-x:auto}
 .w-table{width:100%;min-width:38rem;border-collapse:collapse;font-family:var(--ui)}
 .w-table caption{
   caption-side:top;text-align:left;padding-bottom:1rem;
-  font-weight:300;font-size:.82rem;line-height:1.8;color:rgba(244,241,236,.62);
+  font-weight:300;font-size:.82rem;line-height:1.8;color:var(--t3);
 }
 .w-table th,.w-table td{
   padding:.78rem .7rem;text-align:right;font-weight:300;font-size:.82rem;
-  border-bottom:1px solid rgba(244,241,236,.09);
+  border-bottom:1px solid var(--line);
   font-variant-numeric:tabular-nums;white-space:nowrap;
 }
 .w-table th:first-child,.w-table td:first-child{text-align:left;white-space:normal}
@@ -1102,11 +1111,11 @@ blockquote{
   font-weight:400;font-size:.55rem;letter-spacing:.2em;text-transform:uppercase;
   color:var(--brass);border-bottom-color:rgba(198,166,100,.4);
 }
-.w-table tbody td{color:rgba(244,241,236,.76)}
+.w-table tbody td{color:var(--t2)}
 .w-table tbody tr:first-child td{color:#fff}
-.w-table tbody tr:hover td{background:rgba(244,241,236,.035)}
+.w-table tbody tr:hover td{background:var(--line)}
 .w-table td.w-price{color:#fff}
-.w-table td small{display:block;font-size:.66rem;letter-spacing:.12em;color:rgba(244,241,236,.4);margin-top:.2rem;font-variant-numeric:normal}
+.w-table td small{display:block;font-size:.66rem;letter-spacing:.12em;color:var(--t3);margin-top:.2rem;font-variant-numeric:normal}
 
 /* ---- photography slots ----
    Placeholders that hold the exact shape each frame will occupy, so a photograph
@@ -1136,7 +1145,7 @@ blockquote{
 }
 .w-slot p{
   margin:0 auto;max-width:34ch;font-family:var(--ui);font-weight:300;
-  font-size:.76rem;line-height:1.8;color:rgba(244,241,236,.62);
+  font-size:.76rem;line-height:1.8;color:var(--t3);
 }
 .w-slot code{
   display:block;margin-top:.9rem;font-family:var(--ui);font-size:.58rem;
@@ -1147,12 +1156,12 @@ blockquote{
 .w-list{list-style:none;margin:clamp(1.8rem,4vh,2.6rem) 0 0;padding:0}
 .w-list li{
   display:grid;grid-template-columns:1fr auto;gap:.4rem 1.5rem;align-items:baseline;
-  padding:1.05rem 0;border-bottom:1px solid rgba(244,241,236,.1);
+  padding:1.05rem 0;border-bottom:1px solid var(--line);
 }
 .w-list b{font-weight:300;font-size:.95rem;color:#fff;letter-spacing:.03em}
 .w-list em{
   grid-column:1;font-style:normal;font-size:.76rem;
-  color:rgba(244,241,236,.55);font-variant-numeric:tabular-nums;
+  color:var(--t3);font-variant-numeric:tabular-nums;
 }
 .w-list span{
   grid-row:1/3;grid-column:2;align-self:center;
@@ -1297,13 +1306,13 @@ blockquote{
 .sb-hero__stand{
   margin:clamp(1.7rem,3.6vh,2.5rem) auto 0;max-width:52ch;
   font-weight:300;font-size:clamp(.9rem,.86rem + .22vw,1.02rem);
-  line-height:1.95;color:rgba(244,241,236,.8);
+  line-height:1.95;color:var(--t2);
 }
 /* the scroll cue — one hairline that fills downward, not a bouncing chevron */
 .sb-cue{
   position:absolute;left:50%;bottom:clamp(1.4rem,4vh,2.6rem);z-index:2;
   width:1px;height:clamp(2.2rem,5vh,3.4rem);translate:-50% 0;
-  background:rgba(244,241,236,.16);overflow:hidden;
+  background:var(--line);overflow:hidden;
 }
 .sb-cue::after{
   content:"";position:absolute;inset:0;background:var(--brass);
@@ -1391,7 +1400,7 @@ blockquote{
   letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;color:#fff;
 }
 .cine__brief p{margin:0;font-weight:300;font-size:.76rem;line-height:1.8;
-  color:rgba(244,241,236,.62)}
+  color:var(--t3)}
 .cine__brief code{display:block;margin-top:.9rem;font-family:var(--ui);
   font-size:.58rem;letter-spacing:.14em;color:rgba(198,166,100,.78)}
 .cine--empty .cine__q{max-width:42rem}
@@ -1400,7 +1409,7 @@ blockquote{
 .sb-hero__brief{
   position:absolute;left:var(--gutter);bottom:clamp(1.2rem,3.5vh,2.2rem);z-index:3;
   max-width:26ch;text-align:left;
-  font-weight:300;font-size:.66rem;line-height:1.7;color:rgba(244,241,236,.5);
+  font-weight:300;font-size:.66rem;line-height:1.7;color:var(--t3);
 }
 .sb-hero__brief b{display:block;font-weight:400;letter-spacing:.2em;
   text-transform:uppercase;color:var(--brass);font-size:.56rem;margin-bottom:.4rem}
@@ -1438,7 +1447,7 @@ blockquote{
 .sb-split__body p{
   margin:0 0 1.05rem;font-weight:300;
   font-size:clamp(.88rem,.84rem + .22vw,1rem);line-height:1.95;
-  color:rgba(244,241,236,.78);
+  color:var(--t2);
 }
 .sb-split__body p:last-child{margin-bottom:0}
 .sb-split__k{
@@ -1468,11 +1477,11 @@ blockquote{
 .sb-stat__l{
   display:block;margin-top:.95rem;font-weight:300;font-size:.66rem;
   letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;
-  color:rgba(244,241,236,.82);
+  color:var(--t2);
 }
 .sb-stat__s{
   display:block;margin-top:.7rem;font-weight:300;font-size:.74rem;
-  line-height:1.75;color:rgba(244,241,236,.5);
+  line-height:1.75;color:var(--t3);
 }
 @media (max-width:700px){
   .sb-stats{grid-template-columns:1fr;gap:0}
@@ -1499,7 +1508,7 @@ blockquote{
 }
 .sb-slot p{
   margin:0 auto;max-width:38ch;font-weight:300;font-size:.76rem;
-  line-height:1.8;color:rgba(244,241,236,.62);
+  line-height:1.8;color:var(--t3);
 }
 .sb-slot code{
   display:block;margin-top:.95rem;font-family:var(--ui);font-size:.58rem;
