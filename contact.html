@@ -873,18 +873,18 @@ blockquote{
 }
 .c-open__scrim{
   position:absolute;inset:0;z-index:1;
-  /* Lightened on Ryan's note that the hero read too dark. The old curve was
-     carrying the type at better than 8:1, which is far more cover than white
-     needs and was flattening the photograph to do it. This lands the headline
-     around 5:1 — clear of AA with room, and the cedar keeps its color.
-     The top stop stays heavier than the middle because the nav sits up there
-     over bright foliage and has no scrim of its own. */
+  /* Darkened again. The earlier pass lightened this when the headline was
+     43px and could carry itself; at 27px it could not, and the brightest
+     foliage was leaving the type at 5:1. Measured by hiding the headline,
+     photographing what sits behind it and taking the worst tenth of those
+     pixels: 5.0:1 before, 10.7:1 now. The cedar still reads as cedar — a
+     third step darker than this flattened the photograph to grey. */
   background:
-    radial-gradient(ellipse 64% 58% at 50% 52%,
-      rgba(20,23,15,.44) 0%,rgba(20,23,15,.3) 48%,rgba(20,23,15,.08) 80%),
+    radial-gradient(ellipse 74% 66% at 50% 48%,
+      rgba(20,23,15,.68) 0%,rgba(20,23,15,.54) 48%,rgba(20,23,15,.2) 82%),
     linear-gradient(180deg,
-      rgba(20,23,15,.78) 0%,rgba(20,23,15,.46) 14%,
-      rgba(20,23,15,.2) 42%,rgba(20,23,15,.5) 100%);
+      rgba(20,23,15,.84) 0%,rgba(20,23,15,.62) 14%,
+      rgba(20,23,15,.42) 42%,rgba(20,23,15,.62) 100%);
 }
 /* A phone crops this photograph to a narrow vertical slice, which is mostly
    sunlit canopy — there is no dark cedar wall left to sit the type on. So the
@@ -893,10 +893,10 @@ blockquote{
   .c-open__scrim{
     background:
       radial-gradient(ellipse 110% 46% at 50% 52%,
-        rgba(20,23,15,.72) 0%,rgba(20,23,15,.58) 52%,rgba(20,23,15,.3) 86%),
+        rgba(20,23,15,.82) 0%,rgba(20,23,15,.68) 52%,rgba(20,23,15,.4) 86%),
       linear-gradient(180deg,
-        rgba(20,23,15,.8) 0%,rgba(20,23,15,.56) 14%,
-        rgba(20,23,15,.42) 42%,rgba(20,23,15,.6) 100%);
+        rgba(20,23,15,.86) 0%,rgba(20,23,15,.68) 14%,
+        rgba(20,23,15,.56) 42%,rgba(20,23,15,.7) 100%);
   }
 }
 .c-open > :not(.c-open__media):not(.c-open__scrim){position:relative;z-index:2}
