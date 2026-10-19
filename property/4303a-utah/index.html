@@ -995,15 +995,36 @@ blockquote{
 .p-gal__row--port{grid-template-columns:1fr;max-width:30rem;margin-inline:auto}
 .p-gal__row--port .p-shot{aspect-ratio:3/4}
 
-/* ================================ REELS ==================================
-   Vertical films, shot for the phone and shown at the shape they were shot.
-   They stay muted until asked: a page that starts talking is a page people
-   close. Playback is driven by an observer, so nothing downloads or runs
-   until the section is actually on screen. */
-.p-reels{
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:clamp(1rem,2.4vw,2rem);
-  max-width:50rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0;
+/* ============================== REEL BANDS ===============================
+   The two films sit apart, each paired with two photographs of what it is
+   actually showing, so the video is a beat in the page rather than a block
+   parked in the middle of it. The bands alternate sides.
+
+   The column ratio is not arbitrary: a 9:16 reel beside a stack of two 3:2
+   photographs balances when the columns are about 43:57, which lands both
+   at the same height with almost nothing cropped off the photographs.
+
+   They stay muted until asked — a page that starts talking is a page people
+   close — and playback is driven by an observer, so nothing downloads or
+   decodes until the band is actually on screen. */
+.p-duo{
+  display:grid;grid-template-columns:minmax(0,43fr) minmax(0,57fr);
+  gap:clamp(1rem,2.2vw,1.8rem);
+  max-width:72rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+}
+.p-duo--flip{grid-template-columns:minmax(0,57fr) minmax(0,43fr)}
+.p-duo--flip .p-reel{order:2}
+.p-duo__stack{
+  display:grid;grid-template-rows:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(1rem,2.2vw,1.8rem);min-height:0;
+}
+.p-duo__stack .p-shot{aspect-ratio:auto;height:100%;min-height:0}
+@media (max-width:760px){
+  .p-duo{grid-template-columns:1fr;max-width:34rem}
+  .p-duo--flip .p-reel{order:0}
+  .p-duo .p-reel{width:100%;max-width:22rem;margin-inline:auto}
+  .p-duo__stack{grid-template-rows:auto auto}
+  .p-duo__stack .p-shot{aspect-ratio:3/2;height:auto}
 }
 .p-reel{position:relative;margin:0;background:#1b1f19;overflow:hidden;aspect-ratio:9/16}
 .p-reel video{width:100%;height:100%;object-fit:cover;display:block}
@@ -1020,7 +1041,6 @@ blockquote{
 .p-reel__sound .on{display:none}
 .p-reel__sound[data-on] .on{display:block}
 .p-reel__sound[data-on] .off{display:none}
-@media (max-width:560px){ .p-reels{grid-template-columns:1fr;max-width:22rem} }
 
 /* ================================= FILM ==================================
    The long film lives on YouTube. It loads on click, not on arrival: until
@@ -1180,63 +1200,24 @@ blockquote{
   </ul>
 </section>
 
-<!-- =============================== GALLERIES ============================= -->
+<!-- ============================ THE HOUSE ================================
+     Photographs and film interleaved rather than filed in separate places.
+     Each reel sits beside two pictures of the same part of the house: the
+     interior film with the living room and kitchen, the exterior film with
+     the entry and the courtyard. The bands alternate sides so the page has
+     a rhythm instead of a rail. -->
 <section class="p-sec p-sec--tight" aria-labelledby="gal-h">
   <div class="p-lede">
     <p class="p-eyebrow">Gallery</p>
     <h2 id="gal-h">The House</h2>
   </div>
 
-  <div class="p-gal">
-    <div class="p-gal__head"><span>Exterior &amp; Grounds</span><i></i></div>
-    <div class="p-gal__row">
-      <a class="p-shot" href="../../media/ut-ext-1.jpg"><img src="../../media/ut-ext-1.jpg" alt="Mahogany pivot entry door between cedar and stacked stone" loading="lazy"></a>
-      <a class="p-shot" href="../../media/ut-court-1.jpg"><img src="../../media/ut-court-1.jpg" alt="Fenced courtyard with turf, dining table and string lights" loading="lazy"></a>
-      <a class="p-shot" href="../../media/ut-deck-1.jpg"><img src="../../media/ut-deck-1.jpg" alt="Covered third-floor deck with fire table and lounge seating" loading="lazy"></a>
-    </div>
-  </div>
-
-  <div class="p-gal">
-    <div class="p-gal__head"><span>Living &amp; Kitchen</span><i></i></div>
-    <div class="p-gal__row p-gal__row--2">
-      <a class="p-shot" href="../../media/ut-liv-1.jpg"><img src="../../media/ut-liv-1.jpg" alt="Living room with gas fireplace and a glass wall to the courtyard" loading="lazy"></a>
-      <a class="p-shot" href="../../media/ut-kit-1.jpg"><img src="../../media/ut-kit-1.jpg" alt="Kitchen with waterfall quartz island and matte black cabinetry" loading="lazy"></a>
-    </div>
-  </div>
-
-  <div class="p-gal">
-    <div class="p-gal__head"><span>Primary Suite &amp; Bonus Room</span><i></i></div>
-    <div class="p-gal__row">
-      <a class="p-shot" href="../../media/ut-pri-1.jpg"><img src="../../media/ut-pri-1.jpg" alt="Primary bedroom with its own seating area" loading="lazy"></a>
-      <a class="p-shot" href="../../media/ut-pri-2.jpg"><img src="../../media/ut-pri-2.jpg" alt="Primary bedroom against a black board-and-batten wall" loading="lazy"></a>
-      <a class="p-shot" href="../../media/ut-bon-1.jpg"><img src="../../media/ut-bon-1.jpg" alt="Bonus room with wet bar and full-size pool table" loading="lazy"></a>
-    </div>
-  </div>
-
-  <div class="p-gal">
-    <div class="p-gal__head"><span>Details</span><i></i></div>
-    <div class="p-gal__row p-gal__row--port">
-      <a class="p-shot" href="../../media/ut-det-1.jpg"><img src="../../media/ut-det-1.jpg" alt="Landing with a black panelled wall and a window to the cedar elevation" loading="lazy"></a>
-    </div>
-  </div>
-</section>
-
-<!-- ================================ FILM =================================
-     Two vertical films, shown at the shape they were shot. Muted until asked.
-     The full film is a YouTube link: set YT_ID in the script at the foot of
-     this page and the section below appears on its own. While it is empty the
-     whole block stays hidden, so nothing half-built is ever on screen. -->
-<section class="p-sec p-sec--tight" aria-labelledby="film-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Film</p>
-    <h2 id="film-h">The House, Moving</h2>
-  </div>
-
-  <div class="p-reels">
+  <!-- band one — inside -->
+  <div class="p-duo">
     <figure class="p-reel">
       <video id="reel1" playsinline muted loop preload="none"
              poster="../../media/ut-reel-1-poster.jpg"
-             aria-label="Short film of 4303A Utah Ave, part one">
+             aria-label="Short film of 4303A Utah Ave — the interior">
         <source src="../../media/ut-reel-1.webm" type="video/webm">
         <source src="../../media/ut-reel-1.mp4"  type="video/mp4">
       </video>
@@ -1246,11 +1227,34 @@ blockquote{
         <svg class="on"  viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
       </button>
     </figure>
+    <div class="p-duo__stack">
+      <a class="p-shot" href="../../media/ut-liv-1.jpg"><img src="../../media/ut-liv-1.jpg" alt="Living room with gas fireplace and a glass wall to the courtyard" loading="lazy"></a>
+      <a class="p-shot" href="../../media/ut-kit-1.jpg"><img src="../../media/ut-kit-1.jpg" alt="Kitchen with waterfall quartz island and matte black cabinetry" loading="lazy"></a>
+    </div>
+  </div>
 
+  <div class="p-gal">
+    <div class="p-gal__head"><span>Primary Suite</span><i></i></div>
+    <div class="p-gal__row p-gal__row--2">
+      <a class="p-shot" href="../../media/ut-pri-1.jpg"><img src="../../media/ut-pri-1.jpg" alt="Primary bedroom with its own seating area" loading="lazy"></a>
+      <a class="p-shot" href="../../media/ut-pri-2.jpg"><img src="../../media/ut-pri-2.jpg" alt="Primary bedroom against a black board-and-batten wall" loading="lazy"></a>
+    </div>
+  </div>
+
+  <div class="p-gal">
+    <div class="p-gal__head"><span>Bonus Room &amp; Deck</span><i></i></div>
+    <div class="p-gal__row p-gal__row--2">
+      <a class="p-shot" href="../../media/ut-bon-1.jpg"><img src="../../media/ut-bon-1.jpg" alt="Bonus room with wet bar and full-size pool table" loading="lazy"></a>
+      <a class="p-shot" href="../../media/ut-deck-1.jpg"><img src="../../media/ut-deck-1.jpg" alt="Covered third-floor deck with fire table and lounge seating" loading="lazy"></a>
+    </div>
+  </div>
+
+  <!-- band two — outside, and the other way round -->
+  <div class="p-duo p-duo--flip">
     <figure class="p-reel">
       <video id="reel2" playsinline muted loop preload="none"
              poster="../../media/ut-reel-2-poster.jpg"
-             aria-label="Short film of 4303A Utah Ave, part two">
+             aria-label="Short film of 4303A Utah Ave — the exterior">
         <!-- mp4 only: VP9 came out larger than h264 on this one (7.5MB against
              4.4MB) — it is mostly open sky, which VP9 encodes badly. Reel 1
              keeps its webm, which genuinely is the smaller of the two. A
@@ -1263,8 +1267,22 @@ blockquote{
         <svg class="on"  viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
       </button>
     </figure>
+    <div class="p-duo__stack">
+      <a class="p-shot" href="../../media/ut-ext-1.jpg"><img src="../../media/ut-ext-1.jpg" alt="Mahogany pivot entry door between cedar and stacked stone" loading="lazy"></a>
+      <a class="p-shot" href="../../media/ut-court-1.jpg"><img src="../../media/ut-court-1.jpg" alt="Fenced courtyard with turf, dining table and string lights" loading="lazy"></a>
+    </div>
   </div>
 
+  <div class="p-gal">
+    <div class="p-gal__head"><span>Details</span><i></i></div>
+    <div class="p-gal__row p-gal__row--port">
+      <a class="p-shot" href="../../media/ut-det-1.jpg"><img src="../../media/ut-det-1.jpg" alt="Landing with a black panelled wall and a window to the cedar elevation" loading="lazy"></a>
+    </div>
+  </div>
+
+  <!-- The long film. Hidden until YT_ID is set in the script at the foot of
+       this page; nothing is requested from Google until somebody presses
+       play. -->
   <div class="p-film" id="film" hidden>
     <div class="p-film__frame">
       <img src="../../media/ut-hero.jpg" alt="" aria-hidden="true">
@@ -1631,7 +1649,7 @@ if (reels.length) {
 /* ---- the full film ----
    Paste the YouTube id between the quotes and the block below unhides itself.
    Nothing from Google is requested until somebody presses play. */
-const YT_ID = "";
+const YT_ID = "5GqIvde8ibw";
 
 const film = document.getElementById("film");
 if (film && YT_ID) {
