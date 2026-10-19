@@ -711,9 +711,12 @@ blockquote{
   padding:0 var(--gutter) clamp(3rem,8vh,5.5rem);
 }
 .p-hero__status{
-  display:block;background:none;color:var(--w2);
+  /* A plate in the canopy green rather than a champagne sticker: the status
+     gets a container without shouting. inline-block on purpose — as a block
+     the plate would run the whole column. White on --ink is 14.7:1. */
+  display:inline-block;background:var(--ink);color:var(--w1);
   font-size:.58rem;font-weight:400;letter-spacing:.34em;text-indent:.34em;
-  text-transform:uppercase;padding:0;margin-bottom:1.2rem;
+  text-transform:uppercase;padding:.5rem .95rem .45rem;margin-bottom:1.3rem;
 }
 .p-hero h1{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -741,7 +744,7 @@ blockquote{
 .p-hero__cta:hover{background:#C6BA92}
 
 /* ---- shared section furniture ---- */
-.p-sec{background:var(--ink);padding:clamp(3.4rem,7.5vh,6rem) var(--gutter) clamp(5rem,11vh,9rem)}
+.p-sec{background:var(--ink);padding:clamp(5rem,11vh,8.5rem) var(--gutter)}
 .p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
 /* Every section opens the same way: an inset hairline, a great deal of air,
    one small centered label, then straight into the content. There are no
@@ -757,13 +760,9 @@ blockquote{
   color:var(--warm);text-align:center;line-height:1.6;
 }
 .p-sec{position:relative}
-/* A short centred mark rather than a line across the page. A full-width rule
-   divides; a small one punctuates, and punctuation is the quieter gesture. */
-.p-sec + .p-sec::before,
-.p-hero + .p-sec::before{
-  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:3.25rem;height:1px;background:var(--warm-rule);
-}
+/* Nothing divides the sections now — no rule, no mark. Space does it, so the
+   padding is even top and bottom. .p-sec keeps position:relative: it is cheap,
+   and removing it would risk anything inside that is absolutely positioned. */
 .p-sec h2,.p-plan h2{
   margin:0;font-family:var(--ui);font-weight:300;
   font-size:clamp(1.25rem,1rem + 1.15vw,1.95rem);
