@@ -799,14 +799,22 @@ blockquote{
 /* The specification, set as the email sets it: one line, middot separated,
    with the registry detail demoted to a second, quieter line beneath. Nine
    bordered cells answered the same question and took ten times the room. */
+/* Flex rather than a plain line: the groups are held together with hard
+   spaces and there is no whitespace around the separators, so as one text run
+   the line could not break and overflowed a 360px screen by 46px. As flex
+   items each group wraps on its own, and the middots travel with them. */
 .p-specs{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;
   max-width:46rem;margin:0 auto;text-align:center;
   font-family:var(--ui);font-weight:300;
-  font-size:clamp(.72rem,.66rem + .28vw,.88rem);
+  font-size:clamp(.66rem,.6rem + .3vw,.88rem);
   letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
   color:var(--t1);line-height:2.3;
 }
-.p-specs i{font-style:normal;color:var(--warm-rule);padding:0 .75em}
+.p-specs i{font-style:normal;color:var(--warm-rule);padding:0 clamp(.45em,1.6vw,.75em)}
+@media (max-width:420px){
+  .p-specs{letter-spacing:.14em;text-indent:.14em}
+}
 .p-specs--fine{
   margin:1.5rem auto 0;font-size:.6rem;letter-spacing:.18em;text-indent:.18em;
   color:var(--warm);line-height:2;
