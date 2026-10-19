@@ -947,7 +947,26 @@ blockquote{
   font-family:var(--ui);font-weight:300;font-size:.95rem;color:var(--paper);
   transition:border-color .35s var(--rise);
 }
-.c-form select{cursor:pointer}
+/* `background:none` does nothing to a <select> in WebKit: without
+   appearance:none Safari draws its own native control, so on this page the
+   one light object was a white rounded box sitting in the middle of the
+   lead form. Chromium honours the background, which is why it looked right
+   when it was built and wrong on every iPhone that opened it.
+   appearance:none takes the native control away -- and the arrow with it,
+   so the arrow is drawn back as a chevron in the murmur grey. */
+.c-form select{
+  cursor:pointer;
+  -webkit-appearance:none;appearance:none;
+  padding-right:1.8rem;
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='rgba(244,241,236,0.45)' stroke-width='1.2'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right .15rem center;
+  background-size:.72rem auto;
+}
+.c-form select:focus{
+  background-image:url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8' fill='none' stroke='rgba(244,241,236,0.85)' stroke-width='1.2'%3E%3Cpath d='M1 1.5 6 6.5 11 1.5'/%3E%3C/svg%3E");
+}
+/* The dropdown itself is drawn by the OS; this is the one hook it honours. */
 .c-form select option{background:#1b1f19;color:var(--paper)}
 .c-form textarea{resize:vertical;min-height:5.5rem;line-height:1.8}
 .c-form input::placeholder,.c-form textarea::placeholder{color:var(--t3)}
