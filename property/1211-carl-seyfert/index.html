@@ -41,6 +41,11 @@
   --w3:rgba(255,255,255,.46);   /* on image: murmurs*/
   --wline:rgba(255,255,255,.22);/* on image: divides*/
 
+  /* The warm pair, taken from the email. The same hue read as cheap when it
+     was a button fill and reads expensive as a measure of text: 6.2:1 on ink. */
+  --warm:#A7947C;               /* prose, labels    */
+  --warm-rule:#705540;          /* hairlines only   */
+
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
 
@@ -398,7 +403,7 @@ blockquote{
    is an address on a picture; status arrives with price and MLS on hover. */
 .prop__status{
   position:absolute;z-index:3;top:clamp(1rem,1.6vw,1.5rem);left:clamp(1rem,1.8vw,1.75rem);
-  background:var(--brass);color:#14170F;
+  background:none;border:1px solid var(--brass);color:var(--brass);
   font-size:.58rem;font-weight:400;letter-spacing:.2em;text-indent:.2em;
   text-transform:uppercase;padding:.42rem .75rem .4rem;
   opacity:0;transform:translateY(-.3rem);
@@ -714,13 +719,19 @@ blockquote{
   line-height:1.7;letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
   color:#fff;text-shadow:0 1px 26px rgba(0,0,0,.5);
 }
+.p-hero__price i{font-style:normal;color:var(--wline);padding:0 .7em}
 .p-hero__price{
-  margin:1.1rem 0 0;font-size:clamp(.9rem,.84rem + .3vw,1.1rem);
-  letter-spacing:.1em;color:#fff;text-shadow:0 1px 20px rgba(0,0,0,.5);
+  margin:1.5rem 0 0;padding:1rem 0;
+  border-top:1px solid var(--wline);border-bottom:1px solid var(--wline);
+  font-size:clamp(.66rem,.6rem + .24vw,.8rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:var(--w1);text-shadow:0 1px 20px rgba(0,0,0,.5);
 }
+/* An outline rather than a filled block. A solid slab of colour is the
+   loudest thing a quiet page can contain, and the email never uses one. */
 .p-hero__cta{
-  display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;
-  background:var(--brass);color:#14170F;
+  display:inline-flex;align-items:center;gap:.6rem;margin-top:2.2rem;
+  background:none;border:1px solid var(--w2);color:var(--w1);
   font-weight:400;font-size:.66rem;letter-spacing:.24em;text-indent:.24em;
   text-transform:uppercase;padding:.95rem 2.1rem;
   transition:background-color .4s var(--rise);
@@ -728,12 +739,27 @@ blockquote{
 .p-hero__cta:hover{background:#C6BA92}
 
 /* ---- shared section furniture ---- */
-.p-sec{background:var(--ink);padding:clamp(5.5rem,13vh,10.5rem) var(--gutter)}
+.p-sec{background:var(--ink);padding:clamp(3.4rem,7.5vh,6rem) var(--gutter) clamp(5rem,11vh,9rem)}
 .p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
-.p-eyebrow{
-  margin:0 0 1.3rem;font-weight:300;
-  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:var(--brass);
+/* Every section opens the same way: an inset hairline, a great deal of air,
+   one small centered label, then straight into the content. There are no
+   headlines on this page any more — the label is the heading, which is what
+   makes the rhythm hold from top to bottom. */
+/* .p-sec h2 and .p-eyebrow would otherwise tie on specificity and the later
+   of the two would win, which silently turned every label back into a
+   headline. Qualified so the label actually wins. */
+.p-sec h2.p-eyebrow,.p-eyebrow{
+  margin:0 auto clamp(1.5rem,3vh,2.1rem);
+  font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);text-align:center;line-height:1.6;
+}
+.p-sec{position:relative}
+.p-sec + .p-sec::before,
+.p-hero + .p-sec::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(46rem,calc(100% - 2 * var(--gutter)));
+  height:1px;background:var(--warm-rule);
 }
 .p-sec h2,.p-plan h2{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -752,11 +778,11 @@ blockquote{
 /* The narrative runs long on a real listing. Centered prose stops working past
    a couple of sentences, so the story block sets left with a proper measure
    while the eyebrow and heading above it stay centered. */
-.p-story{max-width:40rem;margin:clamp(2.6rem,6vh,4rem) auto 0}
+.p-story{max-width:32rem;margin:0 auto}
 .p-story p{
-  margin:0 0 1.5rem;text-align:left;
-  font-weight:300;font-size:clamp(.92rem,.86rem + .26vw,1.07rem);
-  line-height:1.95;color:var(--t2);
+  margin:0 0 1.2rem;text-align:left;
+  font-weight:300;font-size:clamp(.9rem,.86rem + .18vw,.99rem);
+  line-height:1.8;color:var(--warm);
 }
 .p-story p:last-child{margin-bottom:0}
 
@@ -768,6 +794,22 @@ blockquote{
   max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
   display:grid;grid-template-columns:repeat(3,1fr);
   gap:clamp(2.2rem,4vw,3.4rem) clamp(2rem,4vw,4rem);
+}
+
+/* The specification, set as the email sets it: one line, middot separated,
+   with the registry detail demoted to a second, quieter line beneath. Nine
+   bordered cells answered the same question and took ten times the room. */
+.p-specs{
+  max-width:46rem;margin:0 auto;text-align:center;
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.72rem,.66rem + .28vw,.88rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:var(--t1);line-height:2.3;
+}
+.p-specs i{font-style:normal;color:var(--warm-rule);padding:0 .75em}
+.p-specs--fine{
+  margin:1.5rem auto 0;font-size:.6rem;letter-spacing:.18em;text-indent:.18em;
+  color:var(--warm);line-height:2;
 }
 .p-fact{
   background:var(--ink);padding:0;
@@ -786,10 +828,10 @@ blockquote{
 
 /* ---- amenities ---- */
 .p-amen{
-  max-width:38rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+  max-width:30rem;margin:0 auto;
   list-style:none;padding:0;
   display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:1.1rem 3rem;
+  gap:1.15rem 3rem;
 }
 .p-amen li{
   display:flex;gap:.9rem;align-items:baseline;
@@ -1118,7 +1160,7 @@ blockquote{
       <!-- PROPERTY: address -->
       <h1>1211 Carl Seyfert Memorial Dr<br>Brentwood, TN 37027</h1>
       <!-- PROPERTY: price and headline figure -->
-      <p class="p-hero__price">$5,765,000 · 7,885 Sq Ft</p>
+      <p class="p-hero__price">$5,765,000<i>·</i>7,885 Sq Ft<i>·</i>6 Bed<i>·</i>6 Bath</p>
       <a class="p-hero__cta" href="#inquire">Request Information</a>
     </div>
   </div>
@@ -1126,10 +1168,7 @@ blockquote{
 
 <!-- ============================ THE RESIDENCE ============================ -->
 <section class="p-sec" aria-labelledby="res-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">The Residence</p>
-    <h2 id="res-h">A Study in Presence and Detail</h2>
-  </div>
+  <h2 class="p-eyebrow" id="res-h">The Residence</h2>
   <!-- PROPERTY: narrative -->
   <div class="p-story">
     <p>A 1.28-acre site at the end of a dead-end street in Forest Hills, off
@@ -1151,40 +1190,25 @@ blockquote{
 
 <!-- ============================== THE FACTS ============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="facts-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Specification</p>
-    <h2 id="facts-h">The Facts</h2>
-  </div>
-  <!-- PROPERTY: every figure in this table -->
-  <dl class="p-facts">
-      <div class="p-fact"><dt>Bedrooms</dt><dd>6</dd></div>
-      <div class="p-fact"><dt>Full Baths</dt><dd>6</dd></div>
-      <div class="p-fact"><dt>Half Baths</dt><dd>3</dd></div>
-      <div class="p-fact"><dt>Living Area</dt><dd>7,885 sq ft</dd></div>
-      <div class="p-fact"><dt>Lot</dt><dd>1.28 acres</dd></div>
-      <div class="p-fact"><dt>Stories</dt><dd>2</dd></div>
-      <div class="p-fact"><dt>Year</dt><dd>2026</dd></div>
-      <div class="p-fact"><dt>Price</dt><dd>$5,765,000</dd></div>
-      <div class="p-fact"><dt>MLS</dt><dd>3259707</dd></div>
-  </dl>
+  <h2 class="p-eyebrow" id="facts-h">Specification</h2>
+  <!-- PROPERTY: the headline figures, then the registry detail -->
+  <p class="p-specs">1.28 Acres<i>·</i>6 Bed<i>·</i>6 Full, 3 Half<i>·</i>7,885 Sq Ft</p>
+  <p class="p-specs p-specs--fine">$5,765,000<i>·</i>Built 2026<i>·</i>Two Stories<i>·</i>MLS 3259707</p>
 </section>
 
 <!-- ============================== AMENITIES ============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="amen-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Appointments</p>
-    <h2 id="amen-h">Amenities</h2>
-  </div>
+  <h2 class="p-eyebrow" id="amen-h">Amenities</h2>
   <!-- PROPERTY: the amenity list -->
   <ul class="p-amen">
-      <li><i></i>Pool</li>
-      <li><i></i>Spa</li>
-      <li><i></i>Bonus Room</li>
-      <li><i></i>Four-Car Garage</li>
-      <li><i></i>Scullery</li>
-      <li><i></i>Luxury Appliances</li>
-      <li><i></i>Custom Cabinets</li>
-      <li><i></i>Elevated Dining Room</li>
+      <li>Pool</li>
+      <li>Spa</li>
+      <li>Bonus Room</li>
+      <li>Four-Car Garage</li>
+      <li>Scullery</li>
+      <li>Luxury Appliances</li>
+      <li>Custom Cabinets</li>
+      <li>Elevated Dining Room</li>
   </ul>
 </section>
 
@@ -1193,10 +1217,7 @@ blockquote{
      and the image (a portrait or the firm's mark, square). Delete a card if a
      role does not apply. -->
 <section class="p-sec p-sec--tight" aria-labelledby="build-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">The Team</p>
-    <h2 id="build-h">Behind the Build</h2>
-  </div>
+  <h2 class="p-eyebrow" id="build-h">Behind the Build</h2>
   <div class="p-build__grid">
     <div class="p-partner">
       <div class="p-partner__photo">
@@ -1300,10 +1321,8 @@ blockquote{
      later wants a branded map, swap the src for the Maps Embed API with a
      referrer-restricted key. -->
 <section class="p-sec" aria-labelledby="hood-h">
+  <h2 class="p-eyebrow" id="hood-h">Forest Hills</h2>
   <div class="p-lede">
-    <p class="p-eyebrow">Location</p>
-    <!-- PROPERTY: neighborhood name, write-up and the link to its area page -->
-    <h2 id="hood-h">Forest Hills</h2>
     <p>Forest Hills is one of the satellite cities that kept its own government
        after Nashville and Davidson County consolidated in 1963 — roughly nine
        square miles of steep wooded hills between Belle Meade, Green Hills and
@@ -1341,10 +1360,7 @@ blockquote{
      PROPERTY: whoever is actually listing this one. Headshots are square —
      media/agent-1.jpg and agent-2.jpg are placeholders at 1000 × 1000. -->
 <section class="p-sec p-sec--tight" aria-labelledby="agents-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Presented By</p>
-    <h2 id="agents-h">Eden Grove</h2>
-  </div>
+  <h2 class="p-eyebrow" id="agents-h">Presented By</h2>
   <!-- One agent on this listing, so the block runs single and centered. -->
   <div class="p-agents p-agents--1">
     <div class="p-agent">
@@ -1366,10 +1382,7 @@ blockquote{
      NOT WIRED. Submitting shows an honest note rather than a false thank-you.
      Point the <form> at an endpoint before this page is shown to a buyer. -->
 <section class="p-sec p-sec--tight" id="inquire" aria-labelledby="enq-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Inquiries</p>
-    <h2 id="enq-h">Request Information</h2>
-  </div>
+  <h2 class="p-eyebrow" id="enq-h">Inquiries</h2>
   <form class="p-form" id="enqForm" novalidate>
     <label class="visually-hidden" for="enqName">Name</label>
     <input id="enqName" name="name" placeholder="Name" autocomplete="name" required>
