@@ -42,6 +42,9 @@
   --w3:rgba(255,255,255,.46);   /* on image: murmurs*/
   --wline:rgba(255,255,255,.22);/* on image: divides*/
 
+  --warm:#A7947C;               /* labels, prose    */
+  --warm-rule:rgba(167,148,124,.45); /* marks and separators */
+
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
 
@@ -325,8 +328,8 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
 .says__eyebrow{
   margin:0;
   font-family:var(--ui);font-weight:300;
-  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:var(--t3);
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);
 }
 
 /* Fixed height on the stack, absolute slides inside: the section cannot jump
@@ -488,10 +491,13 @@ blockquote{
   padding:clamp(7rem,18vh,12rem) 0 clamp(7rem,18vh,12rem) var(--gutter);
 }
 .access h2{
-  margin:0;font-family:var(--ui);font-weight:300;
-  font-size:clamp(1.4rem,1.05rem + 1.45vw,2.25rem);
-  line-height:1.3;letter-spacing:.22em;text-indent:.22em;
-  text-transform:uppercase;color:#fff;
+  /* Was a 2.25rem headline; a section label like every other one now. No
+     text-align here on purpose: .access__inner is a left-aligned block, and a
+     centred label over left-aligned prose sits off its axis. */
+  margin:0 0 clamp(1.5rem,3vh,2.1rem);
+  font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--w2);line-height:1.6;
 }
 .access p{
   margin:clamp(1.7rem,3.6vh,2.4rem) 0 0;
@@ -714,8 +720,8 @@ blockquote{
   margin:0 0 clamp(1.75rem,4vh,2.75rem);
   padding:0 clamp(.5rem,1vw,1.1rem);
   font-family:var(--ui);font-weight:300;
-  font-size:.62rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:var(--t3);
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);
 }
 .hoods__grid{
   display:grid;grid-template-columns:repeat(3,1fr);
