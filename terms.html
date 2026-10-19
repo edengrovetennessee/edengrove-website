@@ -521,14 +521,18 @@ blockquote{
 .access__form input::placeholder{color:var(--w3)}
 .access__form input:focus{outline:none;border-bottom-color:var(--brass)}
 
+/* An outline rather than a filled block. A solid slab of colour is the
+   loudest thing a quiet page can contain, and the email never uses one.
+   The fill is the reward for reaching the button, not its resting state.
+   Hover carries ink on champagne; white on champagne measured 1.94:1. */
 .access__btn{
-  flex:0 0 auto;background:var(--brass);color:#14170F;
+  flex:0 0 auto;background:none;border:1px solid var(--w2);color:var(--w1);
   font-family:var(--ui);font-weight:400;
   font-size:.66rem;letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;
   padding:.95rem 2.1rem;
-  transition:background-color .4s var(--rise);
+  transition:background-color .4s var(--rise),border-color .4s var(--rise),color .4s var(--rise);
 }
-.access__btn:hover,.access__btn:focus-visible{background:#C6BA92;outline:none}
+.access__btn:hover,.access__btn:focus-visible{background:var(--brass);border-color:var(--brass);color:#14170F;outline:none}
 
 .access__terms{
   margin-top:1.9rem;font-size:.68rem;line-height:1.7;
@@ -915,12 +919,12 @@ blockquote{
 .c-form button{
   justify-self:start;margin-top:.6rem;
   padding:1rem 2.6rem;border:0;cursor:pointer;
-  background:var(--brass);color:var(--ink);
+  background:none;border:1px solid var(--t2);color:var(--t1);
   font-family:var(--ui);font-weight:400;font-size:.62rem;
   letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
-  transition:background-color .4s var(--rise);
+  transition:background-color .4s var(--rise),border-color .4s var(--rise),color .4s var(--rise);
 }
-.c-form button:hover,.c-form button:focus-visible{background:#C6BA92;outline:none}
+.c-form button:hover,.c-form button:focus-visible{background:var(--brass);border-color:var(--brass);color:#14170F;outline:none}
 .c-note{
   margin:1.3rem 0 0;font-weight:300;font-size:.8rem;line-height:1.8;
   color:var(--brass);opacity:0;transition:opacity .45s var(--rise);

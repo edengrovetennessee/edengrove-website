@@ -528,13 +528,13 @@ blockquote{
 .access__form input:focus{outline:none;border-bottom-color:var(--brass)}
 
 .access__btn{
-  flex:0 0 auto;background:var(--brass);color:#14170F;
+  flex:0 0 auto;background:none;border:1px solid var(--w2);color:var(--w1);
   font-family:var(--ui);font-weight:400;
   font-size:.66rem;letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;
   padding:.95rem 2.1rem;
-  transition:background-color .4s var(--rise);
+  transition:background-color .4s var(--rise),border-color .4s var(--rise),color .4s var(--rise);
 }
-.access__btn:hover,.access__btn:focus-visible{background:#C6BA92;outline:none}
+.access__btn:hover,.access__btn:focus-visible{background:var(--brass);border-color:var(--brass);color:#14170F;outline:none}
 
 .access__terms{
   margin-top:1.9rem;font-size:.68rem;line-height:1.7;
@@ -719,14 +719,18 @@ blockquote{
   margin:1.1rem 0 0;font-size:clamp(.9rem,.84rem + .3vw,1.1rem);
   letter-spacing:.1em;color:#fff;text-shadow:0 1px 20px rgba(0,0,0,.5);
 }
+/* An outline rather than a filled block. A solid slab of colour is the
+   loudest thing a quiet page can contain, and the email never uses one.
+   The fill is the reward for reaching the button, not its resting state.
+   Hover carries ink on champagne; white on champagne measured 1.94:1. */
 .p-hero__cta{
   display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;
-  background:var(--brass);color:#14170F;
+  background:none;border:1px solid var(--w2);color:var(--w1);
   font-weight:400;font-size:.66rem;letter-spacing:.24em;text-indent:.24em;
   text-transform:uppercase;padding:.95rem 2.1rem;
-  transition:background-color .4s var(--rise);
+  transition:background-color .4s var(--rise),border-color .4s var(--rise),color .4s var(--rise);
 }
-.p-hero__cta:hover{background:#C6BA92}
+.p-hero__cta:hover{background:var(--brass);border-color:var(--brass);color:#14170F}
 
 /* ---- shared section furniture ---- */
 .p-sec{background:var(--ink);padding:clamp(5rem,11vh,8.5rem) var(--gutter)}
@@ -790,9 +794,6 @@ blockquote{
   font-size:clamp(.66rem,.6rem + .28vw,.82rem);
   letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
   color:var(--t1);line-height:2.5;
-}
-.p-amen i{
-  width:.4rem;height:.4rem;border-radius:50%;background:var(--brass);flex:0 0 auto;
 }
 
 /* ---- galleries, one run per room ---- */
@@ -1071,11 +1072,11 @@ blockquote{
 .p-form input::placeholder,.p-form textarea::placeholder{color:var(--t3)}
 .p-form input:focus,.p-form textarea:focus{outline:none;border-bottom-color:var(--brass)}
 .p-form button{
-  justify-self:start;background:var(--brass);color:#14170F;font-weight:400;
+  justify-self:start;background:none;border:1px solid var(--t2);color:var(--t1);font-weight:400;
   font-size:.66rem;letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;
-  padding:.95rem 2.1rem;transition:background-color .4s var(--rise);
+  padding:.95rem 2.1rem;transition:background-color .4s var(--rise),border-color .4s var(--rise),color .4s var(--rise);
 }
-.p-form button:hover{background:#C6BA92}
+.p-form button:hover{background:var(--brass);border-color:var(--brass);color:#14170F}
 .p-note{
   margin:1.2rem 0 0;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
   color:var(--brass);opacity:0;transition:opacity .4s var(--rise);
