@@ -672,6 +672,18 @@ blockquote{
    One file per property. Everything property-specific is marked PROPERTY:
    in the markup below; the CSS never needs touching.
    ========================================================================== */
+/* =============================== THIS HERO ===============================
+   The lead image is a bright, blue-sky rendering: sunlit lawn and pale stone
+   run straight through the band where the address and price sit, and the
+   template scrim is cut for a darker picture. Measured on the rendering as
+   shipped, the worst tenth of the backdrop left white text at 1.8:1. A
+   deeper, taller foot takes it back over 4.5:1. Scoped to this page. */
+.p-hero .hero__scrim{
+  background:
+    linear-gradient(to bottom, rgba(8,10,7,.55) 0%, rgba(8,10,7,.22) 14%, rgba(8,10,7,0) 34%),
+    linear-gradient(to top,    rgba(8,10,7,.88) 0%,  rgba(8,10,7,.68) 15%,
+                               rgba(8,10,7,.36) 34%, rgba(8,10,7,0)   60%);
+}
 .p-hero{position:relative;height:100svh;min-height:36rem;overflow:hidden}
 /* 92svh left a sliver of the next section showing, which reads as a band
    rather than as a picture you have to scroll past. */
@@ -1050,7 +1062,7 @@ blockquote{
 
 <section class="p-hero" id="top">
   <!-- PROPERTY: hero image (or swap <img> for <video>, as on the homepage) -->
-  <img class="hero__media" src="../../media/prop-lead.jpg" alt="" aria-hidden="true">
+  <img class="hero__media" src="../../media/cs-hero.jpg" alt="" aria-hidden="true">
   <div class="hero__scrim"></div>
 
   <header class="bar">
