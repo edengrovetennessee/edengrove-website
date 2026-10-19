@@ -42,6 +42,11 @@
   --w3:rgba(255,255,255,.46);   /* on image: murmurs*/
   --wline:rgba(255,255,255,.22);/* on image: divides*/
 
+  /* The warm pair. The same hue read as cheap as a button fill and reads
+     expensive as small type: 6.2:1 on the ink ground. */
+  --warm:#A7947C;               /* labels, prose    */
+  --warm-rule:#705540;          /* hairlines only   */
+
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
 
@@ -718,12 +723,23 @@ blockquote{
 .p-hero__cta:hover{background:#C6BA92}
 
 /* ---- shared section furniture ---- */
-.p-sec{background:var(--ink);padding:clamp(5.5rem,13vh,10.5rem) var(--gutter)}
+.p-sec{background:var(--ink);padding:clamp(3.4rem,7.5vh,6rem) var(--gutter) clamp(5rem,11vh,9rem)}
 .p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
-.p-eyebrow{
-  margin:0 0 1.3rem;font-weight:300;
-  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:var(--brass);
+/* Every section opens the same way: an inset hairline, air, one small
+   centered label. The label IS the heading, which is what makes the rhythm
+   hold from page to page. Qualified past .p-sec h2 — the two tie on
+   specificity, and without this the label silently renders as a headline. */
+.p-sec h2.p-eyebrow,.p-eyebrow{
+  margin:0 auto clamp(1.5rem,3vh,2.1rem);
+  font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);text-align:center;line-height:1.6;
+}
+.p-sec{position:relative}
+.p-sec + .p-sec::before,.p-hero + .p-sec::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(46rem,calc(100% - 2 * var(--gutter)));
+  height:1px;background:var(--warm-rule);
 }
 .p-sec h2,.p-plan h2{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -1288,10 +1304,7 @@ blockquote{
 </section>
 
 <section class="p-sec" aria-labelledby="expect-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">The Development</p>
-    <h2 id="expect-h">What Wyelea Is</h2>
-  </div>
+  <h2 class="p-eyebrow" id="expect-h">What Wyelea Is</h2>
   <div class="n-blocks">
     <div class="n-block">
       <span class="n-block__n">01</span>
@@ -1309,10 +1322,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="cost-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">What It Costs</p>
-    <h2 id="cost-h">Recorded Closings</h2>
-  </div>
+  <h2 class="p-eyebrow" id="cost-h">Recorded Closings</h2>
   <div class="w-tablewrap">
     <table class="w-table">
       <caption>Three Wyelea Farms Section 1 transfers appear in the Williamson County property-transfer record. All three are consistent with land. No finished-home sale is verifiable here.</caption>
@@ -1335,10 +1345,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="avail-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Availability</p>
-    <h2 id="avail-h">Still Selling</h2>
-  </div>
+  <h2 class="p-eyebrow" id="avail-h">Still Selling</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>The Last Real Number Is Fifteen Months Old</h3><p>More than forty percent under contract was the developer&rsquo;s figure on 22 July 2025. Nothing has updated it since, so we are not going to restate it as today&rsquo;s position.</p></div>
     <div class="n-card"><h3>What We Can See Today</h3><p>Eleven or twelve homesites publicly listed, one of them under contract, as at 17 October 2026. That is a floor on availability, not a total &mdash; unlisted and off-market sites are not in it.</p></div>
@@ -1361,10 +1368,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="amen-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Shared Spaces</p>
-    <h2 id="amen-h">Amenities &mdash; None of the Club Is Open</h2>
-  </div>
+  <h2 class="p-eyebrow" id="amen-h">Amenities &mdash; None of the Club Is Open</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>The Whole Program Is Planned</h3><p>Everything at The Commons &mdash; Hale House with its fitness and thermal spa rooms, the Hearth &amp; Well restaurant and lounge, the lakeside pavilion, event hall, boathouse, two pools, tennis, pickleball, badminton, croquet, edible gardens and woodland trails &mdash; is planned. The developer&rsquo;s own site still describes the club in the future tense. Amenity construction was announced for fall 2025 and no source confirms it began.</p></div>
     <div class="n-card"><h3>What Is Actually Built</h3><p>Roads and utilities in Section 1, complete as at July 2025. Section 2 roads, drainage and erosion control substantially delivered &mdash; the county reduced the performance bond from $2,812,000 to $2,100,000 on 11 June 2026, which is the municipal record saying the work was accepted. The lake has been excavated; recreational use is not confirmed.</p></div>
@@ -1374,10 +1378,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="sch-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Williamson County Schools</p>
-    <h2 id="sch-h">Schools</h2>
-  </div>
+  <h2 class="p-eyebrow" id="sch-h">Williamson County Schools</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Walnut Grove Elementary</h3><p>On the Wyelea listing records.</p></div>
     <div class="n-card"><h3>Grassland Middle</h3><p>Same source.</p></div>
@@ -1387,10 +1388,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="do-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="do-h">Things to Do</h2>
-  </div>
+  <h2 class="p-eyebrow" id="do-h">Things to Do</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Leiper&rsquo;s Fork</h3><p>The historic village about fifteen minutes west &mdash; galleries, antiques and live music.</p></div>
     <div class="n-card"><h3>Downtown Franklin</h3><p>A National Register historic district on Main Street, with the restored Franklin Theatre.</p></div>
@@ -1399,10 +1397,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="dine-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="dine-h">Dining</h2>
-  </div>
+  <h2 class="p-eyebrow" id="dine-h">Dining</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Puckett&rsquo;s of Leiper&rsquo;s Fork</h3><p>The long-running grocery turned meat-and-three and music room.</p></div>
     <div class="n-card"><h3>Puckett&rsquo;s, Downtown Franklin</h3><p>The Main Street sibling.</p></div>
@@ -1411,10 +1406,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="golf-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="golf-h">Golf &amp; Clubs</h2>
-  </div>
+  <h2 class="p-eyebrow" id="golf-h">Golf &amp; Clubs</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Vanderbilt Legends Club</h3><p>Thirty-six holes in Franklin, Tom Kite and Bob Cupp.</p></div>
     <div class="n-card"><h3>The Governors Club</h3><p>A gated private Arnold Palmer course in Brentwood.</p></div>
@@ -1424,10 +1416,7 @@ blockquote{
 </section>
 
 <section class="p-sec" aria-labelledby="loc-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Location</p>
-    <h2 id="loc-h">Wyelea</h2>
-  </div>
+  <h2 class="p-eyebrow" id="loc-h">Wyelea</h2>
   <div class="p-map">
     <p class="p-map__addr">3021 Del Rio Pike, Franklin, Tennessee 37069</p>
     <div class="p-map__frame">
@@ -1445,10 +1434,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="time-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Getting Around</p>
-    <h2 id="time-h">Getting There</h2>
-  </div>
+  <h2 class="p-eyebrow" id="time-h">Getting There</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>About Thirty Minutes to Nashville</h3><p>The developer&rsquo;s own figure from its 2023 announcement, and the only travel time attached to Wyelea in any source. We are attributing it rather than adopting it.</p></div>
     <div class="n-card"><h3>Note the Street Number</h3><p>Two write-ups give 3201 Del Rio Pike. The MLS, the developer and the map pin all say 3021. Use 3021.</p></div>
@@ -1457,10 +1443,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="cta-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Next</p>
-    <h2 id="cta-h">Ask Us</h2>
-  </div>
+  <h2 class="p-eyebrow" id="cta-h">Ask Us</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Before You Offer</h3><p>Everything on this page is sourced and dated, and where the record is thin or the sources disagree we have said so rather than smoothed it over. Before you write an offer in Wyelea we will pull the recorded plat, the covenants and the current school zoning for the specific lot, and run door-to-door drive times from the actual entrance.</p></div>
     <div class="n-card"><h3>Talk to Eden Grove</h3><p>Call <a href="tel:+16157234844">(615) 723-4844</a> or <a href="../../contact.html">send us a note</a>. We represent buyers here; the on-site sales office represents the developer.</p></div>
@@ -1469,10 +1452,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="more-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Middle Tennessee</p>
-    <h2 id="more-h">Other Developments</h2>
-  </div>
+  <h2 class="p-eyebrow" id="more-h">Other Developments</h2>
   <div class="n-more">
     <a class="n-tile" href="../laurelbrooke/">
       <img src="../../media/hood-14.jpg" alt="" loading="lazy" decoding="async">

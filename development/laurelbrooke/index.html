@@ -42,6 +42,11 @@
   --w3:rgba(255,255,255,.46);   /* on image: murmurs*/
   --wline:rgba(255,255,255,.22);/* on image: divides*/
 
+  /* The warm pair. The same hue read as cheap as a button fill and reads
+     expensive as small type: 6.2:1 on the ink ground. */
+  --warm:#A7947C;               /* labels, prose    */
+  --warm-rule:#705540;          /* hairlines only   */
+
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
 
@@ -718,12 +723,23 @@ blockquote{
 .p-hero__cta:hover{background:#C6BA92}
 
 /* ---- shared section furniture ---- */
-.p-sec{background:var(--ink);padding:clamp(5.5rem,13vh,10.5rem) var(--gutter)}
+.p-sec{background:var(--ink);padding:clamp(3.4rem,7.5vh,6rem) var(--gutter) clamp(5rem,11vh,9rem)}
 .p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
-.p-eyebrow{
-  margin:0 0 1.3rem;font-weight:300;
-  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:var(--brass);
+/* Every section opens the same way: an inset hairline, air, one small
+   centered label. The label IS the heading, which is what makes the rhythm
+   hold from page to page. Qualified past .p-sec h2 — the two tie on
+   specificity, and without this the label silently renders as a headline. */
+.p-sec h2.p-eyebrow,.p-eyebrow{
+  margin:0 auto clamp(1.5rem,3vh,2.1rem);
+  font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);text-align:center;line-height:1.6;
+}
+.p-sec{position:relative}
+.p-sec + .p-sec::before,.p-hero + .p-sec::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(46rem,calc(100% - 2 * var(--gutter)));
+  height:1px;background:var(--warm-rule);
 }
 .p-sec h2,.p-plan h2{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -1289,10 +1305,7 @@ blockquote{
 </section>
 
 <section class="p-sec" aria-labelledby="expect-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">The Development</p>
-    <h2 id="expect-h">What Laurelbrooke Is</h2>
-  </div>
+  <h2 class="p-eyebrow" id="expect-h">What Laurelbrooke Is</h2>
   <div class="n-blocks">
     <div class="n-block">
       <span class="n-block__n">01</span>
@@ -1314,10 +1327,7 @@ blockquote{
      pages, and delete this section if the page must go in front of a client
      before the photographs exist. -->
 <section class="p-sec p-sec--tight" aria-labelledby="gal-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Gallery</p>
-    <h2 id="gal-h">The Community</h2>
-  </div>
+  <h2 class="p-eyebrow" id="gal-h">Gallery</h2>
   <div class="p-gal">
     <div class="p-gal__row p-gal__row--1">
       <div class="w-slot">
@@ -1387,10 +1397,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="cost-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">What It Costs</p>
-    <h2 id="cost-h">The Last Twelve Months</h2>
-  </div>
+  <h2 class="p-eyebrow" id="cost-h">The Last Twelve Months</h2>
   <dl class="w-strip">
     <div><dt>Homes Sold</dt><dd>14<small>in twelve months</small></dd></div>
     <div><dt>Median Sale</dt><dd>$2,987,500<small>average $3,874,000</small></dd></div>
@@ -1427,10 +1434,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="avail-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Availability</p>
-    <h2 id="avail-h">Getting In</h2>
-  </div>
+  <h2 class="p-eyebrow" id="avail-h">Getting In</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Built Out, No New Supply</h3><p>All 311 homesites are long since built. There is no new construction to buy, and no developer left to buy from.</p></div>
     <div class="n-card"><h3>Four and a Half Houses in a Hundred</h3><p>Fourteen of 311 homes traded in the past year &mdash; about 4.5%, among the tightest of any community we cover. Median time to contract was 38 days, but the range ran from one day to 210.</p></div>
@@ -1449,10 +1453,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="amen-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Behind the Gate</p>
-    <h2 id="amen-h">Amenities</h2>
-  </div>
+  <h2 class="p-eyebrow" id="amen-h">Amenities</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>A Four-Thousand-Foot Clubhouse</h3><p>Bookable for private functions, with valet available for larger events, alongside a resort-style aquatic center.</p></div>
     <div class="n-card"><h3>Courts and Fields</h3><p>Two lighted tennis courts, pickleball courts, a basketball court, an athletic field, a full fitness center and a playground.</p></div>
@@ -1462,10 +1463,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="sch-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Williamson County Schools</p>
-    <h2 id="sch-h">Schools</h2>
-  </div>
+  <h2 class="p-eyebrow" id="sch-h">Williamson County Schools</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Grassland Elementary</h3><p>Confirmed on all fourteen closed sales without exception.</p></div>
     <div class="n-card"><h3>Grassland Middle</h3><p>Laurelbrooke does not split zones, which is unusual for Franklin.</p></div>
@@ -1475,10 +1473,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="do-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="do-h">Things to Do</h2>
-  </div>
+  <h2 class="p-eyebrow" id="do-h">Things to Do</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>The Park at Harlinsdale Farm</h3><p>200 acres of former Walking Horse farm on the edge of downtown Franklin.</p></div>
     <div class="n-card"><h3>Pinkerton Park</h3><p>Franklin&rsquo;s riverside park, connected to downtown by footbridge.</p></div>
@@ -1487,10 +1482,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="dine-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="dine-h">Dining</h2>
-  </div>
+  <h2 class="p-eyebrow" id="dine-h">Dining</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>The Pond</h3><p>On Hillsboro Road, a short drive from the gate.</p></div>
     <div class="n-card"><h3>Daily Dish</h3><p>On Hillsboro Road in Grassland.</p></div>
@@ -1499,10 +1491,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="club-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="club-h">Golf &amp; Clubs</h2>
-  </div>
+  <h2 class="p-eyebrow" id="club-h">Golf &amp; Clubs</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Vanderbilt Legends Club</h3><p>Two courses in Franklin by Bob Cupp and Tom Kite, opened 1992.</p></div>
     <div class="n-card"><h3>Brentwood Country Club</h3><p>Private, north in Brentwood. Gary Roger Baird, 6,482 yards.</p></div>
@@ -1511,10 +1500,7 @@ blockquote{
 </section>
 
 <section class="p-sec" aria-labelledby="loc-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Location</p>
-    <h2 id="loc-h">Laurelbrooke</h2>
-  </div>
+  <h2 class="p-eyebrow" id="loc-h">Laurelbrooke</h2>
   <div class="p-map">
     <p class="p-map__addr">Off Sneed Road, Grassland, Franklin, Tennessee 37069</p>
     <div class="p-map__frame">
@@ -1532,10 +1518,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="time-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Getting Around</p>
-    <h2 id="time-h">Commute Times</h2>
-  </div>
+  <h2 class="p-eyebrow" id="time-h">Commute Times</h2>
   <dl class="n-times">
     <div class="n-time"><dt>Cool Springs</dt><dd>10&ndash;12 min</dd></div>
     <div class="n-time"><dt>Downtown Franklin</dt><dd>10&ndash;15 min</dd></div>
@@ -1546,10 +1529,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="more-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Middle Tennessee</p>
-    <h2 id="more-h">Other Developments</h2>
-  </div>
+  <h2 class="p-eyebrow" id="more-h">Other Developments</h2>
   <div class="n-more">
     <a class="n-tile" href="../witherspoon/">
       <img src="../../media/hood-13.jpg" alt="" loading="lazy" decoding="async">

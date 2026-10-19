@@ -42,6 +42,11 @@
   --w3:rgba(255,255,255,.46);   /* on image: murmurs*/
   --wline:rgba(255,255,255,.22);/* on image: divides*/
 
+  /* The warm pair. The same hue read as cheap as a button fill and reads
+     expensive as small type: 6.2:1 on the ink ground. */
+  --warm:#A7947C;               /* labels, prose    */
+  --warm-rule:#705540;          /* hairlines only   */
+
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
 
@@ -718,12 +723,23 @@ blockquote{
 .p-hero__cta:hover{background:#C6BA92}
 
 /* ---- shared section furniture ---- */
-.p-sec{background:var(--ink);padding:clamp(5.5rem,13vh,10.5rem) var(--gutter)}
+.p-sec{background:var(--ink);padding:clamp(3.4rem,7.5vh,6rem) var(--gutter) clamp(5rem,11vh,9rem)}
 .p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
-.p-eyebrow{
-  margin:0 0 1.3rem;font-weight:300;
-  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:var(--brass);
+/* Every section opens the same way: an inset hairline, air, one small
+   centered label. The label IS the heading, which is what makes the rhythm
+   hold from page to page. Qualified past .p-sec h2 — the two tie on
+   specificity, and without this the label silently renders as a headline. */
+.p-sec h2.p-eyebrow,.p-eyebrow{
+  margin:0 auto clamp(1.5rem,3vh,2.1rem);
+  font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);text-align:center;line-height:1.6;
+}
+.p-sec{position:relative}
+.p-sec + .p-sec::before,.p-hero + .p-sec::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(46rem,calc(100% - 2 * var(--gutter)));
+  height:1px;background:var(--warm-rule);
 }
 .p-sec h2,.p-plan h2{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -1181,10 +1197,7 @@ blockquote{
 </section>
 
 <section class="p-sec" aria-labelledby="expect-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">The Area</p>
-    <h2 id="expect-h">What to Expect</h2>
-  </div>
+  <h2 class="p-eyebrow" id="expect-h">What to Expect</h2>
   <div class="n-blocks">
     <div class="n-block">
       <span class="n-block__n">01</span>
@@ -1209,10 +1222,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="gal-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Gallery</p>
-    <h2 id="gal-h">The Area</h2>
-  </div>
+  <h2 class="p-eyebrow" id="gal-h">Gallery</h2>
   <div class="p-gal">
     <div class="p-gal__row">
       <a class="p-shot" href="../../media/belle-meade-1.jpg">
@@ -1229,10 +1239,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="do-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="do-h">Things to Do</h2>
-  </div>
+  <h2 class="p-eyebrow" id="do-h">Things to Do</h2>
   <div class="n-cards">
     <div class="n-card">
       <h3>Belle Meade Historic Site &amp; Winery</h3>
@@ -1250,10 +1257,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="dine-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="dine-h">Dining</h2>
-  </div>
+  <h2 class="p-eyebrow" id="dine-h">Dining</h2>
   <div class="n-cards">
     <div class="n-card">
       <h3>Sperry&rsquo;s</h3>
@@ -1271,10 +1275,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="club-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="club-h">Golf &amp; Clubs</h2>
-  </div>
+  <h2 class="p-eyebrow" id="club-h">Golf &amp; Clubs</h2>
   <div class="n-cards n-cards--1">
     <div class="n-card">
       <h3>Belle Meade Country Club</h3>
@@ -1284,10 +1285,7 @@ blockquote{
 </section>
 
 <section class="p-sec" aria-labelledby="loc-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Location</p>
-    <h2 id="loc-h">Belle Meade</h2>
-  </div>
+  <h2 class="p-eyebrow" id="loc-h">Belle Meade</h2>
   <div class="p-map">
     <p class="p-map__addr">Belle Meade, Nashville, Tennessee</p>
     <div class="p-map__frame">
@@ -1305,10 +1303,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="time-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Getting Around</p>
-    <h2 id="time-h">Commute Times</h2>
-  </div>
+  <h2 class="p-eyebrow" id="time-h">Commute Times</h2>
   <dl class="n-times">
     <div class="n-time"><dt>Downtown</dt><dd>15 min</dd></div>
     <div class="n-time"><dt>Green Hills</dt><dd>10 min</dd></div>
@@ -1319,10 +1314,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="more-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Middle Tennessee</p>
-    <h2 id="more-h">Explore Other Areas</h2>
-  </div>
+  <h2 class="p-eyebrow" id="more-h">Explore Other Areas</h2>
   <div class="n-more">
     <a class="n-tile" href="../west-meade/">
       <img src="../../media/hood-2.jpg" alt="" loading="lazy" decoding="async">
@@ -1344,9 +1336,8 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" id="inquire" aria-labelledby="enq-h">
+  <h2 class="p-eyebrow" id="enq-h">The Platinum Reserve</h2>
   <div class="p-lede">
-    <p class="p-eyebrow">The Platinum Reserve</p>
-    <h2 id="enq-h">Before the General Public</h2>
     <p>Homes in Belle Meade often trade before they are ever listed. Ask to be told first.</p>
   </div>
   <form class="p-form" id="enqForm" novalidate>

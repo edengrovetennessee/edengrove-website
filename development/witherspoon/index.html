@@ -42,6 +42,11 @@
   --w3:rgba(255,255,255,.46);   /* on image: murmurs*/
   --wline:rgba(255,255,255,.22);/* on image: divides*/
 
+  /* The warm pair. The same hue read as cheap as a button fill and reads
+     expensive as small type: 6.2:1 on the ink ground. */
+  --warm:#A7947C;               /* labels, prose    */
+  --warm-rule:#705540;          /* hairlines only   */
+
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
 
@@ -718,12 +723,23 @@ blockquote{
 .p-hero__cta:hover{background:#C6BA92}
 
 /* ---- shared section furniture ---- */
-.p-sec{background:var(--ink);padding:clamp(5.5rem,13vh,10.5rem) var(--gutter)}
+.p-sec{background:var(--ink);padding:clamp(3.4rem,7.5vh,6rem) var(--gutter) clamp(5rem,11vh,9rem)}
 .p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
-.p-eyebrow{
-  margin:0 0 1.3rem;font-weight:300;
-  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:var(--brass);
+/* Every section opens the same way: an inset hairline, air, one small
+   centered label. The label IS the heading, which is what makes the rhythm
+   hold from page to page. Qualified past .p-sec h2 — the two tie on
+   specificity, and without this the label silently renders as a headline. */
+.p-sec h2.p-eyebrow,.p-eyebrow{
+  margin:0 auto clamp(1.5rem,3vh,2.1rem);
+  font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);text-align:center;line-height:1.6;
+}
+.p-sec{position:relative}
+.p-sec + .p-sec::before,.p-hero + .p-sec::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(46rem,calc(100% - 2 * var(--gutter)));
+  height:1px;background:var(--warm-rule);
 }
 .p-sec h2,.p-plan h2{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -1290,10 +1306,7 @@ blockquote{
 </section>
 
 <section class="p-sec" aria-labelledby="expect-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">The Development</p>
-    <h2 id="expect-h">What Witherspoon Is</h2>
-  </div>
+  <h2 class="p-eyebrow" id="expect-h">What Witherspoon Is</h2>
   <div class="n-blocks">
     <div class="n-block">
       <span class="n-block__n">01</span>
@@ -1316,10 +1329,7 @@ blockquote{
      area pages, and delete this section entirely if the page must be shown to a
      client before the photographs exist. -->
 <section class="p-sec p-sec--tight" aria-labelledby="gal-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Gallery</p>
-    <h2 id="gal-h">The Community</h2>
-  </div>
+  <h2 class="p-eyebrow" id="gal-h">Gallery</h2>
   <div class="p-gal">
     <div class="p-gal__row p-gal__row--1">
       <div class="w-slot">
@@ -1389,10 +1399,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="cost-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">What It Costs</p>
-    <h2 id="cost-h">The Last Twelve Months</h2>
-  </div>
+  <h2 class="p-eyebrow" id="cost-h">The Last Twelve Months</h2>
   <dl class="w-strip">
     <div><dt>Homes Sold</dt><dd>14<small>in twelve months</small></dd></div>
     <div><dt>Median Sale</dt><dd>$2,937,500<small>average $3,593,961</small></dd></div>
@@ -1437,10 +1444,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="avail-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Availability</p>
-    <h2 id="avail-h">Getting In</h2>
-  </div>
+  <h2 class="p-eyebrow" id="avail-h">Getting In</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>There Is No New Inventory</h3><p>Witherspoon is finished. All 153 homesites were sold and built out by 2025, and the developer&rsquo;s own listing shows the community as sold out. Every purchase from here is a resale, which makes timing the whole game.</p></div>
     <div class="n-card"><h3>Roughly Nine Houses in a Hundred</h3><p>Fourteen of the 153 homes changed hands in the past year &mdash; a little under one in ten. Over three years, 45 sales closed at a 28-day median time on market. Stock is scarce but it is not stagnant.</p></div>
@@ -1461,10 +1465,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="amen-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Shared Spaces</p>
-    <h2 id="amen-h">Amenities</h2>
-  </div>
+  <h2 class="p-eyebrow" id="amen-h">Amenities</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Clubhouse and Pools</h3><p>A clubhouse with kitchen and gathering space, an adult pool and a separate children&rsquo;s pool, a pavilion and a neighborhood green for events.</p></div>
     <div class="n-card"><h3>Three Miles of Trails</h3><p>Roughly three miles of paved and natural walking and cycling paths inside the community, connecting directly to Crockett Park, Crockett Elementary and Woodland Middle. A ten-foot public multi-use path was required by the City and forms part of Brentwood&rsquo;s trail network.</p></div>
@@ -1476,10 +1477,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="sch-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Williamson County Schools</p>
-    <h2 id="sch-h">Schools</h2>
-  </div>
+  <h2 class="p-eyebrow" id="sch-h">Williamson County Schools</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Crockett Elementary</h3><p>9019 Crockett Road, about 0.7 miles away and reachable on the community&rsquo;s own trail system without touching a main road.</p></div>
     <div class="n-card"><h3>Woodland Middle</h3><p>1500 Volunteer Parkway, about 0.9 miles, also connected by trail.</p></div>
@@ -1492,10 +1490,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="do-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="do-h">Things to Do</h2>
-  </div>
+  <h2 class="p-eyebrow" id="do-h">Things to Do</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Crockett Park</h3><p>164 acres directly against the community &mdash; ten miles of paved trails, the Eddy Arnold Amphitheater, tennis courts and the c.1830 Cool Springs House. About a mile.</p></div>
     <div class="n-card"><h3>Marcella Vivrette Smith Park</h3><p>400 acres with six miles of hiking and a mountain bike trail system opened in 2024, wrapped around Ravenswood Mansion, built 1821&ndash;25. About two miles.</p></div>
@@ -1504,10 +1499,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="dine-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="dine-h">Dining</h2>
-  </div>
+  <h2 class="p-eyebrow" id="dine-h">Dining</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Del Frisco&rsquo;s Grille</h3><p>Modern American at Hill Center Brentwood, 207 Franklin Road. About five miles.</p></div>
     <div class="n-card"><h3>Mere Bulles</h3><p>Fine dining in the 1937 Maryland Manor at Maryland Farms, and a Brentwood institution. About six miles.</p></div>
@@ -1516,10 +1508,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="club-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="club-h">Golf &amp; Clubs</h2>
-  </div>
+  <h2 class="p-eyebrow" id="club-h">Golf &amp; Clubs</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Nashville Golf &amp; Athletic Club</h3><p>Private, family-owned, on Crockett Springs Trail &mdash; about two miles. Bruce Devlin and Robert von Hagge, 1971, 7,563 yards. Membership inquiries are currently paused.</p></div>
     <div class="n-card"><h3>The Governors Club</h3><p>Private, on Concord Road, about two and a half miles. An Arnold Palmer Signature Design that opened in 2000, par 72 over 7,031 yards.</p></div>
@@ -1528,10 +1517,7 @@ blockquote{
 </section>
 
 <section class="p-sec" aria-labelledby="loc-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Location</p>
-    <h2 id="loc-h">Witherspoon</h2>
-  </div>
+  <h2 class="p-eyebrow" id="loc-h">Witherspoon</h2>
   <div class="p-map">
     <p class="p-map__addr">Witherspoon Drive, Crockett Road, Brentwood, Tennessee 37027</p>
     <div class="p-map__frame">
@@ -1549,10 +1535,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="time-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Getting Around</p>
-    <h2 id="time-h">Commute Times</h2>
-  </div>
+  <h2 class="p-eyebrow" id="time-h">Commute Times</h2>
   <dl class="n-times">
     <div class="n-time"><dt>Cool Springs</dt><dd>12 min</dd></div>
     <div class="n-time"><dt>Downtown Franklin</dt><dd>18 min</dd></div>
@@ -1564,10 +1547,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="more-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Middle Tennessee</p>
-    <h2 id="more-h">Explore Brentwood</h2>
-  </div>
+  <h2 class="p-eyebrow" id="more-h">Explore Brentwood</h2>
   <div class="n-more">
     <a class="n-tile" href="../rosebrooke/">
       <img src="../../media/hood-24.jpg" alt="" loading="lazy" decoding="async">

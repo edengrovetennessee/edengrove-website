@@ -42,6 +42,11 @@
   --w3:rgba(255,255,255,.46);   /* on image: murmurs*/
   --wline:rgba(255,255,255,.22);/* on image: divides*/
 
+  /* The warm pair. The same hue read as cheap as a button fill and reads
+     expensive as small type: 6.2:1 on the ink ground. */
+  --warm:#A7947C;               /* labels, prose    */
+  --warm-rule:#705540;          /* hairlines only   */
+
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
 
@@ -717,12 +722,23 @@ blockquote{
 .p-hero__cta:hover{background:#C6BA92}
 
 /* ---- shared section furniture ---- */
-.p-sec{background:var(--ink);padding:clamp(5.5rem,13vh,10.5rem) var(--gutter)}
+.p-sec{background:var(--ink);padding:clamp(3.4rem,7.5vh,6rem) var(--gutter) clamp(5rem,11vh,9rem)}
 .p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
-.p-eyebrow{
-  margin:0 0 1.3rem;font-weight:300;
-  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:var(--brass);
+/* Every section opens the same way: an inset hairline, air, one small
+   centered label. The label IS the heading, which is what makes the rhythm
+   hold from page to page. Qualified past .p-sec h2 — the two tie on
+   specificity, and without this the label silently renders as a headline. */
+.p-sec h2.p-eyebrow,.p-eyebrow{
+  margin:0 auto clamp(1.5rem,3vh,2.1rem);
+  font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);text-align:center;line-height:1.6;
+}
+.p-sec{position:relative}
+.p-sec + .p-sec::before,.p-hero + .p-sec::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(46rem,calc(100% - 2 * var(--gutter)));
+  height:1px;background:var(--warm-rule);
 }
 .p-sec h2,.p-plan h2{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -1139,10 +1155,7 @@ blockquote{
 
 <!-- ============================ THE RESIDENCE ============================ -->
 <section class="p-sec" aria-labelledby="res-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">The Residence</p>
-    <h2 id="res-h">Warm Modern, on a Quiet Block of Sylvan Park</h2>
-  </div>
+  <h2 class="p-eyebrow" id="res-h">The Residence</h2>
   <div class="p-story">
     <p>A mahogany pivot door set between vertical cedar and hand-stacked stone opens
        this three-story contemporary, built in 2021 by Richland Building Partners and
@@ -1177,10 +1190,7 @@ blockquote{
      still loads on click rather than on arrival, through youtube-nocookie,
      so nothing is requested from Google until somebody asks for it. -->
 <section class="p-sec p-sec--tight" id="film" hidden aria-labelledby="film-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Film</p>
-    <h2 id="film-h">The Full Film</h2>
-  </div>
+  <h2 class="p-eyebrow" id="film-h">Film</h2>
   <div class="p-film">
     <div class="p-film__frame">
       <img src="../../media/ut-hero.jpg" alt="" aria-hidden="true">
@@ -1193,10 +1203,7 @@ blockquote{
 
 <!-- ============================== THE FACTS ============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="facts-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Specification</p>
-    <h2 id="facts-h">The Facts</h2>
-  </div>
+  <h2 class="p-eyebrow" id="facts-h">Specification</h2>
   <dl class="p-facts">
       <div class="p-fact"><dt>Bedrooms</dt><dd>4</dd></div>
       <div class="p-fact"><dt>Full Baths</dt><dd>4</dd></div>
@@ -1212,10 +1219,7 @@ blockquote{
 
 <!-- ============================== AMENITIES ============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="amen-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Appointments</p>
-    <h2 id="amen-h">Amenities</h2>
-  </div>
+  <h2 class="p-eyebrow" id="amen-h">Amenities</h2>
   <ul class="p-amen">
       <li><i></i>Full-Size Elevator</li>
       <li><i></i>Covered Third-Floor Deck</li>
@@ -1235,10 +1239,7 @@ blockquote{
      the entry and the courtyard. The bands alternate sides so the page has
      a rhythm instead of a rail. -->
 <section class="p-sec p-sec--tight" aria-labelledby="gal-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Gallery</p>
-    <h2 id="gal-h">The House</h2>
-  </div>
+  <h2 class="p-eyebrow" id="gal-h">Gallery</h2>
 
   <!-- band one — inside -->
   <div class="p-duo">
@@ -1305,9 +1306,8 @@ blockquote{
 
 <!-- ================================ LOCATION ============================== -->
 <section class="p-sec" aria-labelledby="hood-h">
+  <h2 class="p-eyebrow" id="hood-h">Sylvan Park</h2>
   <div class="p-lede">
-    <p class="p-eyebrow">Location</p>
-    <h2 id="hood-h">Sylvan Park</h2>
     <p>Sylvan Park is the flat, tree-lined grid west of Centennial Park where the
        streets are named for states &mdash; Utah, Nevada, Idaho, Dakota &mdash; and
        most of the housing stock is early twentieth-century cottages with newer infill
@@ -1343,10 +1343,7 @@ blockquote{
 
 <!-- =============================== PRESENTED ============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="agents-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Presented By</p>
-    <h2 id="agents-h">Eden Grove</h2>
-  </div>
+  <h2 class="p-eyebrow" id="agents-h">Presented By</h2>
   <div class="p-agents p-agents--1">
     <div class="p-agent">
       <div class="p-agent__photo">
@@ -1368,9 +1365,8 @@ blockquote{
      that is not good enough on its own, so the phone number and the email
      address sit directly above it and work whatever the form does. -->
 <section class="p-sec p-sec--tight" id="inquire" aria-labelledby="enq-h">
+  <h2 class="p-eyebrow" id="enq-h">Inquiries</h2>
   <div class="p-lede">
-    <p class="p-eyebrow">Inquiries</p>
-    <h2 id="enq-h">Request Information</h2>
     <p>Call or text Ryan Stonehouse at
        <a href="tel:+16158120066">(615)&nbsp;812-0066</a>, or email
        <a href="mailto:ryan@edengrovetennessee.com?subject=4303A%20Utah%20Ave">ryan@edengrovetennessee.com</a>.</p>

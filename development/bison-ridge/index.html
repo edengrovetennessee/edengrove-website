@@ -42,6 +42,11 @@
   --w3:rgba(255,255,255,.46);   /* on image: murmurs*/
   --wline:rgba(255,255,255,.22);/* on image: divides*/
 
+  /* The warm pair. The same hue read as cheap as a button fill and reads
+     expensive as small type: 6.2:1 on the ink ground. */
+  --warm:#A7947C;               /* labels, prose    */
+  --warm-rule:#705540;          /* hairlines only   */
+
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
 
@@ -718,12 +723,23 @@ blockquote{
 .p-hero__cta:hover{background:#C6BA92}
 
 /* ---- shared section furniture ---- */
-.p-sec{background:var(--ink);padding:clamp(5.5rem,13vh,10.5rem) var(--gutter)}
+.p-sec{background:var(--ink);padding:clamp(3.4rem,7.5vh,6rem) var(--gutter) clamp(5rem,11vh,9rem)}
 .p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
-.p-eyebrow{
-  margin:0 0 1.3rem;font-weight:300;
-  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:var(--brass);
+/* Every section opens the same way: an inset hairline, air, one small
+   centered label. The label IS the heading, which is what makes the rhythm
+   hold from page to page. Qualified past .p-sec h2 — the two tie on
+   specificity, and without this the label silently renders as a headline. */
+.p-sec h2.p-eyebrow,.p-eyebrow{
+  margin:0 auto clamp(1.5rem,3vh,2.1rem);
+  font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);text-align:center;line-height:1.6;
+}
+.p-sec{position:relative}
+.p-sec + .p-sec::before,.p-hero + .p-sec::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(46rem,calc(100% - 2 * var(--gutter)));
+  height:1px;background:var(--warm-rule);
 }
 .p-sec h2,.p-plan h2{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -1288,10 +1304,7 @@ blockquote{
 </section>
 
 <section class="p-sec" aria-labelledby="expect-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">The Development</p>
-    <h2 id="expect-h">What Bison Ridge Is</h2>
-  </div>
+  <h2 class="p-eyebrow" id="expect-h">What Bison Ridge Is</h2>
   <div class="n-blocks">
     <div class="n-block">
       <span class="n-block__n">01</span>
@@ -1309,10 +1322,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="cost-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">What It Costs</p>
-    <h2 id="cost-h">What Has Actually Sold</h2>
-  </div>
+  <h2 class="p-eyebrow" id="cost-h">What Has Actually Sold</h2>
   <div class="w-tablewrap">
     <table class="w-table">
       <caption>Two closed sales are on the public record. Everything else on this page that looks like a price is an asking figure.</caption>
@@ -1336,10 +1346,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="avail-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Availability</p>
-    <h2 id="avail-h">Still Selling</h2>
-  </div>
+  <h2 class="p-eyebrow" id="avail-h">Still Selling</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Yes, and Two Have Closed</h3><p>The question worth asking of a development with no press coverage is whether anything has ever sold here. Two have: October 2024 and January 2026. One more is under contract and at least one is actively listed.</p></div>
     <div class="n-card"><h3>The Eleven-Available Claim</h3><p>The developer says eleven of fourteen lots remain. We could not verify the fourteen, let alone the eleven.</p></div>
@@ -1348,10 +1355,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="amen-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Shared Spaces</p>
-    <h2 id="amen-h">Amenities &mdash; Planned, Not Built</h2>
-  </div>
+  <h2 class="p-eyebrow" id="amen-h">Amenities &mdash; Planned, Not Built</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>The Clubhouse Has Not Opened</h3><p>This is not our inference. The club&rsquo;s own membership terms condition refunds on &ldquo;the opening of the clubhouse and commencement of club events and amenities,&rdquo; and the developer&rsquo;s site says dues begin when the club opens. In its own words, it is not open.</p></div>
     <div class="n-card"><h3>What Exists</h3><p>Interior roads, a gated entrance, perimeter fencing, wells and electric service to the lots, a live animal herd, and one completed house.</p></div>
@@ -1361,10 +1365,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="sch-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Metro Nashville Public Schools</p>
-    <h2 id="sch-h">Schools</h2>
-  </div>
+  <h2 class="p-eyebrow" id="sch-h">Metro Nashville Public Schools</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Joelton Elementary</h3><p>Both listing records agree on the elementary school.</p></div>
     <div class="n-card"><h3>The Middle School Is Unresolved</h3><p>One listing names Brick Church Middle; the ratings panel on the same page names Haynes Middle; a Joelton Middle also exists. We are not going to publish one. Use the MNPS zone finder for the specific address.</p></div>
@@ -1374,10 +1375,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="do-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="do-h">Things to Do</h2>
-  </div>
+  <h2 class="p-eyebrow" id="do-h">Things to Do</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Beaman Park</h3><p>A large Metro Parks natural area immediately next to Joelton &mdash; rugged Highland Rim forest, streams, waterfalls and a staffed nature center. Metro added roughly three hundred acres to it in July 2026.</p></div>
     <div class="n-card"><h3>Marrowbone Lake</h3><p>A state wildlife agency fishing lake in Joelton. Note the concessionaire closed in October 2025, so there is no boat rental or bait shop &mdash; bring your own.</p></div>
@@ -1386,10 +1384,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="dine-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Nearby</p>
-    <h2 id="dine-h">Dining</h2>
-  </div>
+  <h2 class="p-eyebrow" id="dine-h">Dining</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Ember &amp; Oak</h3><p>Upscale Southern from chef Steve Swayne at The Grove at Whites Creek, opened September 2026. The nearest thing to fine dining in this direction.</p></div>
     <div class="n-card"><h3>Mazatlan</h3><p>Joelton&rsquo;s long-standing sit-down Mexican restaurant.</p></div>
@@ -1398,10 +1393,7 @@ blockquote{
 </section>
 
 <section class="p-sec" aria-labelledby="loc-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Location</p>
-    <h2 id="loc-h">Bison Ridge</h2>
-  </div>
+  <h2 class="p-eyebrow" id="loc-h">Bison Ridge</h2>
   <div class="p-map">
     <p class="p-map__addr">Ridge Hill Drive, Joelton, Tennessee 37080</p>
     <div class="p-map__frame">
@@ -1419,10 +1411,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="time-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Getting Around</p>
-    <h2 id="time-h">Getting There</h2>
-  </div>
+  <h2 class="p-eyebrow" id="time-h">Getting There</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Near I-24 Exit 35</h3><p>North-west Davidson County, with interstate access at exit 35.</p></div>
     <div class="n-card"><h3>About Fifteen Miles</h3><p>The developer&rsquo;s own distance to downtown Nashville. Its marketing elsewhere claims fifteen, twenty and twenty-five minutes on three different pages, so we are publishing the mileage and nothing else.</p></div>
@@ -1431,10 +1420,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="dd-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Due Diligence</p>
-    <h2 id="dd-h">Before You Offer Here</h2>
-  </div>
+  <h2 class="p-eyebrow" id="dd-h">Before You Offer Here</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Get the Documents</h3><p>Ask for the recorded plat, the HOA declaration and covenants, and the club documents. None of them is public, and all three change what you are buying.</p></div>
     <div class="n-card"><h3>Date Every Amenity</h3><p>If an amenity matters to your decision, get a written delivery date. The clubhouse, by the developer&rsquo;s own terms, has not opened.</p></div>
@@ -1444,10 +1430,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="cta-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Next</p>
-    <h2 id="cta-h">Ask Us</h2>
-  </div>
+  <h2 class="p-eyebrow" id="cta-h">Ask Us</h2>
   <div class="n-blocks">
     <div class="n-card"><h3>Before You Offer</h3><p>Everything on this page is sourced and dated, and where the record is thin or the sources disagree we have said so rather than smoothed it over. Before you write an offer in Bison Ridge we will pull the recorded plat, the covenants and the current school zoning for the specific lot, and run door-to-door drive times from the actual entrance.</p></div>
     <div class="n-card"><h3>Talk to Eden Grove</h3><p>Call <a href="tel:+16157234844">(615) 723-4844</a> or <a href="../../contact.html">send us a note</a>. We represent buyers here; the on-site sales office represents the developer.</p></div>
@@ -1456,10 +1439,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="more-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Middle Tennessee</p>
-    <h2 id="more-h">Other Developments</h2>
-  </div>
+  <h2 class="p-eyebrow" id="more-h">Other Developments</h2>
   <div class="n-more">
     <a class="n-tile" href="../wyelea/">
       <img src="../../media/hood-23.jpg" alt="" loading="lazy" decoding="async">

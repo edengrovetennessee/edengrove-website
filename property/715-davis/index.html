@@ -42,6 +42,11 @@
   --w3:rgba(255,255,255,.46);   /* on image: murmurs*/
   --wline:rgba(255,255,255,.22);/* on image: divides*/
 
+  /* The warm pair. The same hue read as cheap as a button fill and reads
+     expensive as small type: 6.2:1 on the ink ground. */
+  --warm:#A7947C;               /* labels, prose    */
+  --warm-rule:#705540;          /* hairlines only   */
+
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
 
@@ -717,12 +722,23 @@ blockquote{
 .p-hero__cta:hover{background:#C6BA92}
 
 /* ---- shared section furniture ---- */
-.p-sec{background:var(--ink);padding:clamp(5.5rem,13vh,10.5rem) var(--gutter)}
+.p-sec{background:var(--ink);padding:clamp(3.4rem,7.5vh,6rem) var(--gutter) clamp(5rem,11vh,9rem)}
 .p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
-.p-eyebrow{
-  margin:0 0 1.3rem;font-weight:300;
-  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:var(--brass);
+/* Every section opens the same way: an inset hairline, air, one small
+   centered label. The label IS the heading, which is what makes the rhythm
+   hold from page to page. Qualified past .p-sec h2 — the two tie on
+   specificity, and without this the label silently renders as a headline. */
+.p-sec h2.p-eyebrow,.p-eyebrow{
+  margin:0 auto clamp(1.5rem,3vh,2.1rem);
+  font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);text-align:center;line-height:1.6;
+}
+.p-sec{position:relative}
+.p-sec + .p-sec::before,.p-hero + .p-sec::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(46rem,calc(100% - 2 * var(--gutter)));
+  height:1px;background:var(--warm-rule);
 }
 .p-sec h2,.p-plan h2{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -1120,10 +1136,7 @@ blockquote{
 
 <!-- ============================ THE RESIDENCE ============================ -->
 <section class="p-sec" aria-labelledby="res-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">The Residence</p>
-    <h2 id="res-h">A Study in Presence and Detail</h2>
-  </div>
+  <h2 class="p-eyebrow" id="res-h">The Residence</h2>
   <!-- PROPERTY: narrative -->
   <div class="p-story">
     <p>This estate sits on 1 acre of prime Brentwood real estate offering 8,600 sf of world-class design. Featuring 6 Beds, 7.3 Baths, and a 4 car garage, designed for functional living with unparalleled luxury finishes. A resort style primary suite that includes two separate closets, heated floors, oversized soaking tub, and a spa like shower unlike any other. Designed meticulously with functionality in mind the first floor includes three additional guest suites each fit with their own en-suite. A beautifully designed chef&rsquo;s kitchen featuring Sub-Zero appliances and an expansive 12 foot island. Equipped with a butler&rsquo;s pantry perfect to host every event. Working from home or hosting clients? Our impressive library and vaulted ceiling office are second to none.</p>
@@ -1134,10 +1147,7 @@ blockquote{
 
 <!-- ============================== THE FACTS ============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="facts-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Specification</p>
-    <h2 id="facts-h">The Facts</h2>
-  </div>
+  <h2 class="p-eyebrow" id="facts-h">Specification</h2>
   <!-- PROPERTY: every figure in this table -->
   <dl class="p-facts">
       <div class="p-fact"><dt>Bedrooms</dt><dd>6</dd></div>
@@ -1153,10 +1163,7 @@ blockquote{
 
 <!-- ============================== AMENITIES ============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="amen-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Appointments</p>
-    <h2 id="amen-h">Amenities</h2>
-  </div>
+  <h2 class="p-eyebrow" id="amen-h">Amenities</h2>
   <!-- PROPERTY: the amenity list -->
   <ul class="p-amen">
       <li><i></i>Resort-Style Pool</li>
@@ -1178,9 +1185,8 @@ blockquote{
      PROPERTY: every image. Grouped by room so a visitor can find what they
      came for; loading="lazy" so only the first row costs anything on arrival. -->
 <section class="p-sec p-sec--tight" aria-labelledby="gal-h">
+  <h2 class="p-eyebrow" id="gal-h">Gallery</h2>
   <div class="p-lede">
-    <p class="p-eyebrow">Gallery</p>
-    <h2 id="gal-h">The House</h2>
     <!-- PROPERTY: remove this line once the house is photographed -->
     <!-- PROPERTY: keep this line only while the images are renderings -->
     <p class="p-gal__note">Renderings.</p>
@@ -1238,10 +1244,7 @@ blockquote{
      PROPERTY: the plan sheets. Split per floor and ordered ground-up; each
      one opens the full-resolution sheet. -->
 <section class="p-plan" aria-labelledby="plan-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Layout</p>
-    <h2 id="plan-h">Floor Plan</h2>
-  </div>
+  <h2 class="p-eyebrow" id="plan-h">Floor Plan</h2>
   <div class="p-plans">
     <figure class="p-plan__sheet">
       <a href="../../media/dv-plan-1.jpg">
@@ -1261,10 +1264,7 @@ blockquote{
      and the image (a portrait or the firm's mark, square). Delete a card if a
      role does not apply. -->
 <section class="p-sec p-sec--tight" aria-labelledby="build-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">The Team</p>
-    <h2 id="build-h">Behind the Build</h2>
-  </div>
+  <h2 class="p-eyebrow" id="build-h">Behind the Build</h2>
   <div class="p-build--solo">
     <div class="p-partner">
       <div class="p-partner__photo">
@@ -1294,10 +1294,8 @@ blockquote{
      later wants a branded map, swap the src for the Maps Embed API with a
      referrer-restricted key. -->
 <section class="p-sec" aria-labelledby="hood-h">
+  <h2 class="p-eyebrow" id="hood-h">Brentwood</h2>
   <div class="p-lede">
-    <p class="p-eyebrow">Location</p>
-    <!-- PROPERTY: neighborhood name, write-up and the link to its area page -->
-    <h2 id="hood-h">Brentwood</h2>
     <p>Brentwood sits directly south of Nashville along I-65, between the city's
        southern edge and Franklin, and was incorporated in 1969. It is a city of
        wooded, generously spaced lots and traditional brick and stone houses,
@@ -1335,10 +1333,7 @@ blockquote{
      PROPERTY: whoever is actually listing this one. Headshots are square —
      media/agent-1.jpg and agent-2.jpg are placeholders at 1000 × 1000. -->
 <section class="p-sec p-sec--tight" aria-labelledby="agents-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Presented By</p>
-    <h2 id="agents-h">Eden Grove</h2>
-  </div>
+  <h2 class="p-eyebrow" id="agents-h">Presented By</h2>
   <!-- PROPERTY: the listing agent. Headshot is square, 1000 × 1000. -->
   <div class="p-agents p-agents--1">
     <div class="p-agent">
@@ -1360,10 +1355,7 @@ blockquote{
      NOT WIRED. Submitting shows an honest note rather than a false thank-you.
      Point the <form> at an endpoint before this page is shown to a buyer. -->
 <section class="p-sec p-sec--tight" id="inquire" aria-labelledby="enq-h">
-  <div class="p-lede">
-    <p class="p-eyebrow">Inquiries</p>
-    <h2 id="enq-h">Request Information</h2>
-  </div>
+  <h2 class="p-eyebrow" id="enq-h">Inquiries</h2>
   <form class="p-form" id="enqForm" novalidate>
     <label class="visually-hidden" for="enqName">Name</label>
     <input id="enqName" name="name" placeholder="Name" autocomplete="name" required>

@@ -42,6 +42,11 @@
   --w3:rgba(255,255,255,.46);   /* on image: murmurs*/
   --wline:rgba(255,255,255,.22);/* on image: divides*/
 
+  /* The warm pair. The same hue read as cheap as a button fill and reads
+     expensive as small type: 6.2:1 on the ink ground. */
+  --warm:#A7947C;               /* labels, prose    */
+  --warm-rule:#705540;          /* hairlines only   */
+
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
 
@@ -716,12 +721,23 @@ blockquote{
 .p-hero__cta:hover{background:#C6BA92}
 
 /* ---- shared section furniture ---- */
-.p-sec{background:var(--ink);padding:clamp(5.5rem,13vh,10.5rem) var(--gutter)}
+.p-sec{background:var(--ink);padding:clamp(3.4rem,7.5vh,6rem) var(--gutter) clamp(5rem,11vh,9rem)}
 .p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
-.p-eyebrow{
-  margin:0 0 1.3rem;font-weight:300;
-  font-size:.6rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-  color:var(--brass);
+/* Every section opens the same way: an inset hairline, air, one small
+   centered label. The label IS the heading, which is what makes the rhythm
+   hold from page to page. Qualified past .p-sec h2 — the two tie on
+   specificity, and without this the label silently renders as a headline. */
+.p-sec h2.p-eyebrow,.p-eyebrow{
+  margin:0 auto clamp(1.5rem,3vh,2.1rem);
+  font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);text-align:center;line-height:1.6;
+}
+.p-sec{position:relative}
+.p-sec + .p-sec::before,.p-hero + .p-sec::before{
+  content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
+  width:min(46rem,calc(100% - 2 * var(--gutter)));
+  height:1px;background:var(--warm-rule);
 }
 .p-sec h2,.p-plan h2{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -1631,10 +1647,7 @@ blockquote{
 </section>
 
 <section class="p-sec" aria-labelledby="wp-h">
-  <div class="p-lede" data-rise>
-    <p class="p-eyebrow">The Value</p>
-    <h2 id="wp-h">What We Provide</h2>
-  </div>
+  <h2 class="p-eyebrow" id="wp-h" data-rise>What We Provide</h2>
   <div data-stagger>
   <div class="n-blocks">
     <div class="n-block" data-rise>
@@ -1665,10 +1678,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="mk-h">
-  <div class="p-lede" data-rise>
-    <p class="p-eyebrow">Nashville Luxury</p>
-    <h2 id="mk-h">Where the Market Is</h2>
-  </div>
+  <h2 class="p-eyebrow" id="mk-h" data-rise>Where the Market Is</h2>
   <div data-stagger>
   <div class="sb-stats" data-stagger>
     <div class="sb-stat" data-rise>
@@ -1776,10 +1786,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="ha-h">
-  <div class="p-lede" data-rise>
-    <p class="p-eyebrow">Straight Answers</p>
-    <h2 id="ha-h">The Questions Most Pages Avoid</h2>
-  </div>
+  <h2 class="p-eyebrow" id="ha-h" data-rise>The Questions Most Pages Avoid</h2>
   <div data-stagger>
   <div class="n-blocks">
     <div class="n-card" data-rise><h3>What It Costs</h3><p>No standard commission. Ours is agreed in writing before we start, and you see a net proceeds figure before you sign, not after.</p></div>
@@ -1802,10 +1809,7 @@ blockquote{
 </section>
 
 <section class="p-sec p-sec--tight" aria-labelledby="cta-h">
-  <div class="p-lede" data-rise>
-    <p class="p-eyebrow">Next</p>
-    <h2 id="cta-h">Start With a Conversation</h2>
-  </div>
+  <h2 class="p-eyebrow" id="cta-h" data-rise>Start With a Conversation</h2>
   <div data-stagger>
   <div class="n-more n-more--three" data-stagger>
     <a class="n-tile" href="contact.html" data-rise>
