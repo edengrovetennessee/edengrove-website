@@ -164,7 +164,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nav__item.open .sub{opacity:1;transform:none;pointer-events:auto}
 /* The panel hangs 1.1rem below the link, and that gap used to be outside both
    elements — moving the pointer toward the menu left the item and closed it.
-   This invisible bridge spans the gap and belongs to .sub, so travelling down
+   This invisible bridge spans the gap and belongs to .sub, so traveling down
    from the word never leaves the parent. */
 .sub::before{
   content:"";position:absolute;left:0;right:0;top:-1.4rem;height:1.4rem;
@@ -247,7 +247,7 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
 
 /* ====================== 2 · COMMITMENT TO EXCELLENCE ======================
    No photograph behind this one. The ground goes to ink and the three tiles
-   supply all the colour, which is what makes them read as the subject.
+   supply all the color, which is what makes them read as the subject.
    No heading — the mark sits alone and the tiles speak for themselves. */
 .excellence{background:var(--ink);padding:clamp(4.5rem,9vh,7.5rem) 0 0}
 
@@ -302,7 +302,7 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
 /* Given a full screen of its own. The quote is short, so the air around it is
    doing the work — the section has to feel like somewhere the page stops rather
    than a band between two others. The padding is a floor for short viewports;
-   above that the grid centres the quote in whatever height is left. */
+   above that the grid centers the quote in whatever height is left. */
 .says{
   background:var(--ink);color:var(--paper);
   min-height:100svh;
@@ -569,7 +569,7 @@ blockquote{
   font-family:var(--ui);font-weight:300;font-size:.86rem;line-height:1.5;
   color:rgba(244,241,236,.78);
 }
-/* the rule appears under the word rather than being there and changing colour */
+/* the rule appears under the word rather than being there and changing color */
 .foot__list a{position:relative;transition:color .35s var(--rise)}
 .foot__list a::after{
   content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;
@@ -697,7 +697,7 @@ blockquote{
 
 /* ========================= PROPERTIES · THE GRID =========================
    Two across, square. The card itself is the same .prop component as the home
-   page, so hover behaviour, the reveal and the touch fallback all come free. */
+   page, so hover behavior, the reveal and the touch fallback all come free. */
 .listings{background:var(--ink);padding:clamp(3rem,7vh,5rem) 0 clamp(5rem,11vh,8rem)}
 .listings__grid{
   display:grid;grid-template-columns:1fr 1fr;
@@ -997,7 +997,7 @@ blockquote{
       <!-- A portrait photograph in a 3:2 frame: cover keeps less than half the
            height, so the band has to be chosen rather than left to default.
            70% puts the seating group and the table in frame and lets the top of
-           the room go; centre would have held empty wall. -->
+           the room go; center would have held empty wall. -->
       <div class="pitch__media"><img loading="lazy" decoding="async" src="media/mkt-3.jpg"
              style="object-position:center 70%"
              alt="A sunlit living room styled for photography"></div>
@@ -1350,7 +1350,7 @@ if (tabs.length) {
     if (e.key === 'End')  { e.preventDefault(); select(tabs.at(-1)) }
   });
 
-  // Also honour a hash arriving after load — clicking a link to #new while
+  // Also honor a hash arriving after load — clicking a link to #new while
   // already on this page is a same-document navigation and re-runs nothing.
   const fromHash = (focus = false) => {
     const wanted = document.getElementById('tab-' + location.hash.slice(1));

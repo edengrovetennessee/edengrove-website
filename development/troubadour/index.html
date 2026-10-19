@@ -161,7 +161,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nav__item.open .sub{opacity:1;transform:none;pointer-events:auto}
 /* The panel hangs 1.1rem below the link, and that gap used to be outside both
    elements — moving the pointer toward the menu left the item and closed it.
-   This invisible bridge spans the gap and belongs to .sub, so travelling down
+   This invisible bridge spans the gap and belongs to .sub, so traveling down
    from the word never leaves the parent. */
 .sub::before{
   content:"";position:absolute;left:0;right:0;top:-1.4rem;height:1.4rem;
@@ -244,7 +244,7 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
 
 /* ====================== 2 · COMMITMENT TO EXCELLENCE ======================
    No photograph behind this one. The ground goes to ink and the three tiles
-   supply all the colour, which is what makes them read as the subject.
+   supply all the color, which is what makes them read as the subject.
    No heading — the mark sits alone and the tiles speak for themselves. */
 .excellence{background:var(--ink);padding:clamp(4.5rem,9vh,7.5rem) 0 0}
 
@@ -302,7 +302,7 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
 /* Given a full screen of its own. The quote is short, so the air around it is
    doing the work — the section has to feel like somewhere the page stops rather
    than a band between two others. The padding is a floor for short viewports;
-   above that the grid centres the quote in whatever height is left. */
+   above that the grid centers the quote in whatever height is left. */
 .says{
   background:var(--ink);color:var(--paper);
   min-height:100svh;
@@ -569,7 +569,7 @@ blockquote{
   font-family:var(--ui);font-weight:300;font-size:.86rem;line-height:1.5;
   color:rgba(244,241,236,.78);
 }
-/* the rule appears under the word rather than being there and changing colour */
+/* the rule appears under the word rather than being there and changing color */
 .foot__list a{position:relative;transition:color .35s var(--rise)}
 .foot__list a::after{
   content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;
@@ -726,9 +726,9 @@ blockquote{
   font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
   line-height:1.95;color:rgba(244,241,236,.76);
 }
-/* The narrative runs long on a real listing. Centred prose stops working past
+/* The narrative runs long on a real listing. Centered prose stops working past
    a couple of sentences, so the story block sets left with a proper measure
-   while the eyebrow and heading above it stay centred. */
+   while the eyebrow and heading above it stay centered. */
 .p-story{max-width:44rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0}
 .p-story p{
   margin:0 0 1.5rem;text-align:left;
@@ -821,7 +821,7 @@ blockquote{
 .p-plan .p-eyebrow{color:#8a7f57}
 .p-plan h2{color:var(--ink)}
 /* The two sheets are different shapes, so each sits on its own white card of
-   equal height with the plan centred — otherwise one floats and one sinks. */
+   equal height with the plan centered — otherwise one floats and one sinks. */
 .p-plans{
   max-width:72rem;margin:clamp(2rem,5vh,3rem) auto 0;
   display:grid;grid-template-columns:repeat(2,1fr);
@@ -837,8 +837,8 @@ blockquote{
 
 /* ---- the map ----
    A keyless Google embed, desaturated so it sits inside the palette rather
-   than shouting colour halfway down a dark page. Pointer or keyboard focus
-   restores full colour, because a map you are actually reading should be a
+   than shouting color halfway down a dark page. Pointer or keyboard focus
+   restores full color, because a map you are actually reading should be a
    map. The iframe is lazy — it costs nothing until it is scrolled to. */
 .p-map{max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0}
 .p-map__addr{
@@ -874,7 +874,7 @@ blockquote{
   gap:clamp(1.5rem,2.4vw,2.2rem);align-items:start;
 }
 /* These cards read as short editorial entries rather than badges, so they set
-   left — a paragraph of ragged-centre text in a 290px column is hard work. */
+   left — a paragraph of ragged-center text in a 290px column is hard work. */
 .p-partner{text-align:left}
 .p-partner__photo{
   aspect-ratio:1;overflow:hidden;margin:0 0 clamp(1.1rem,2.4vh,1.5rem);
@@ -889,7 +889,7 @@ blockquote{
   margin:.75rem 0 0;font-weight:300;font-size:.92rem;
   letter-spacing:.18em;text-indent:.18em;text-transform:uppercase;color:#fff;
 }
-/* Role and name stay centred; the bio sets left. A paragraph of ragged-centre
+/* Role and name stay centered; the bio sets left. A paragraph of ragged-center
    text in a 280px column is hard work to read. */
 .p-partner p{
   margin:.9rem 0 0;font-weight:300;font-size:.82rem;line-height:1.8;
@@ -897,7 +897,7 @@ blockquote{
 }
 @media (max-width:900px){ .p-build__grid{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:520px){ .p-build__grid{grid-template-columns:1fr} }
-/* Three roles instead of four — narrower grid so the row stays centred and the
+/* Three roles instead of four — narrower grid so the row stays centered and the
    cards keep their proportions rather than leaving a gap on the right. */
 .p-build__grid--3{max-width:56rem;grid-template-columns:repeat(3,1fr)}
 @media (max-width:900px){ .p-build__grid--3{grid-template-columns:repeat(2,1fr)} }
@@ -923,7 +923,7 @@ blockquote{
 @media (prefers-reduced-motion:reduce){ .p-partner__more{transition:none} }
 
 /* ==========================================================================
-   NEIGHBOURHOOD PAGE
+   NEIGHBORHOOD PAGE
    Same furniture as a property page; three components are new — the numbered
    "what to expect" blocks, the card grids for places, and the commute table.
    ========================================================================== */
@@ -995,7 +995,7 @@ blockquote{
 }
 @media (max-width:900px){ .n-times{grid-template-columns:repeat(2,1fr)} }
 
-/* The other-neighbourhood tiles at the foot of the page. */
+/* The other-neighborhood tiles at the foot of the page. */
 .n-more{
   max-width:72rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
   display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(.8rem,1.6vw,1.2rem);
@@ -1049,7 +1049,7 @@ blockquote{
 .p-agent li{margin:0 0 .55rem;font-size:.86rem;color:rgba(244,241,236,.78)}
 .p-agent a:hover{color:#fff}
 
-/* ---- enquiry ---- */
+/* ---- inquiry ---- */
 .p-form{
   max-width:38rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
   display:grid;gap:1.4rem;
@@ -1514,8 +1514,8 @@ blockquote{
       <div>
         <p class="foot__h" id="foot-contact">Contact</p>
         <ul class="foot__list" aria-labelledby="foot-contact">
-          <li><a href="tel:+16157234844">(615) 723-4844</a></li>
-          <li><a href="mailto:blake@edengrovetennessee.com">blake@edengrovetennessee.com</a></li>
+          <li><a href="tel:+16158120066">(615) 812-0066</a></li>
+          <li><a href="mailto:connect@edengrovetennessee.com">connect@edengrovetennessee.com</a></li>
         </ul>
       </div>
 
@@ -1561,7 +1561,7 @@ blockquote{
 </footer>
 
 <script>
-/* ---- enquiry form ----
+/* ---- inquiry form ----
    No endpoint yet, so it says so rather than showing a thank-you for a message
    that was never sent. */
 const enq = document.getElementById("enqForm");
@@ -1569,7 +1569,7 @@ if (enq) {
   const note = document.getElementById("enqNote");
   enq.addEventListener("submit", e => {
     e.preventDefault();
-    note.textContent = "Enquiries open shortly — nothing has been sent.";
+    note.textContent = "Inquiries open shortly — nothing has been sent.";
     note.setAttribute("data-on", "");
   });
 }

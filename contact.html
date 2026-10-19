@@ -160,7 +160,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
 .nav__item.open .sub{opacity:1;transform:none;pointer-events:auto}
 /* The panel hangs 1.1rem below the link, and that gap used to be outside both
    elements — moving the pointer toward the menu left the item and closed it.
-   This invisible bridge spans the gap and belongs to .sub, so travelling down
+   This invisible bridge spans the gap and belongs to .sub, so traveling down
    from the word never leaves the parent. */
 .sub::before{
   content:"";position:absolute;left:0;right:0;top:-1.4rem;height:1.4rem;
@@ -243,7 +243,7 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
 
 /* ====================== 2 · COMMITMENT TO EXCELLENCE ======================
    No photograph behind this one. The ground goes to ink and the three tiles
-   supply all the colour, which is what makes them read as the subject.
+   supply all the color, which is what makes them read as the subject.
    No heading — the mark sits alone and the tiles speak for themselves. */
 .excellence{background:var(--ink);padding:clamp(4.5rem,9vh,7.5rem) 0 0}
 
@@ -298,7 +298,7 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
 /* Given a full screen of its own. The quote is short, so the air around it is
    doing the work — the section has to feel like somewhere the page stops rather
    than a band between two others. The padding is a floor for short viewports;
-   above that the grid centres the quote in whatever height is left. */
+   above that the grid centers the quote in whatever height is left. */
 .says{
   background:var(--ink);color:var(--paper);
   min-height:100svh;
@@ -565,7 +565,7 @@ blockquote{
   font-family:var(--ui);font-weight:300;font-size:.86rem;line-height:1.5;
   color:rgba(244,241,236,.78);
 }
-/* the rule appears under the word rather than being there and changing colour */
+/* the rule appears under the word rather than being there and changing color */
 .foot__list a{position:relative;transition:color .35s var(--rise)}
 .foot__list a::after{
   content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;
@@ -692,7 +692,7 @@ blockquote{
 
 /* ========================= PROPERTIES · THE GRID =========================
    Two across, square. The card itself is the same .prop component as the home
-   page, so hover behaviour, the reveal and the touch fallback all come free. */
+   page, so hover behavior, the reveal and the touch fallback all come free. */
 .listings{background:var(--ink);padding:clamp(3rem,7vh,5rem) 0 clamp(5rem,11vh,8rem)}
 .listings__grid{
   display:grid;grid-template-columns:1fr 1fr;
@@ -846,7 +846,7 @@ blockquote{
   /* Lightened on Ryan's note that the hero read too dark. The old curve was
      carrying the type at better than 8:1, which is far more cover than white
      needs and was flattening the photograph to do it. This lands the headline
-     around 5:1 — clear of AA with room, and the cedar keeps its colour.
+     around 5:1 — clear of AA with room, and the cedar keeps its color.
      The top stop stays heavier than the middle because the nav sits up there
      over bright foliage and has no scrim of its own. */
   background:
@@ -1059,7 +1059,7 @@ blockquote{
       "name": "Does Eden Grove work with builders and developers?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The team specialises in new construction, working with developers, builders, architects and interior designers from renderings through to completion, and marketing projects while they are still being built."
+        "text": "Yes. The team specializes in new construction, working with developers, builders, architects and interior designers from renderings through to completion, and marketing projects while they are still being built."
       }
     },
     {
@@ -1152,7 +1152,7 @@ blockquote{
       </div>
     </div>
 
-    <!-- Posts to the dashboard Worker, which emails the enquiry and stamps the
+    <!-- Posts to the dashboard Worker, which emails the inquiry and stamps the
          SMS consent record with a server-side time and the real client IP.
          Nothing here is ever told it was sent unless it was. -->
     <form class="c-form" id="contactForm" novalidate>
@@ -1193,10 +1193,10 @@ blockquote{
 
       <div class="c-consent">
         <input type="checkbox" id="cSms" name="sms_consent" value="yes">
-        <label for="cSms">I agree to receive text messages from Eden Grove at the number above, about my enquiry and about properties I have asked to hear about. Consent is not a condition of any purchase. Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out, <strong>HELP</strong> for help. See our <a href="privacy.html#text-messages">Privacy Policy</a> and
+        <label for="cSms">I agree to receive text messages from Eden Grove at the number above, about my inquiry and about properties I have asked to hear about. Consent is not a condition of any purchase. Message frequency varies. Message and data rates may apply. Reply <strong>STOP</strong> to opt out, <strong>HELP</strong> for help. See our <a href="privacy.html#text-messages">Privacy Policy</a> and
           <a href="terms.html#text-messages">Terms</a>.</label>
       </div>
-      <input type="hidden" name="sms_consent_text" value="I agree to receive text messages from Eden Grove at the number above, about my enquiry and about properties I have asked to hear about. Consent is not a condition of any purchase. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help.">
+      <input type="hidden" name="sms_consent_text" value="I agree to receive text messages from Eden Grove at the number above, about my inquiry and about properties I have asked to hear about. Consent is not a condition of any purchase. Message frequency varies. Message and data rates may apply. Reply STOP to opt out, HELP for help.">
       <input type="hidden" name="sms_consent_version" value="2026-10-04">
 
       <button type="submit">Send</button>
