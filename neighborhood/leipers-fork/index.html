@@ -45,7 +45,7 @@
   /* The warm pair. The same hue read as cheap as a button fill and reads
      expensive as small type: 6.2:1 on the ink ground. */
   --warm:#A7947C;               /* labels, prose    */
-  --warm-rule:#705540;          /* hairlines only   */
+  --warm-rule:rgba(167,148,124,.45); /* marks and separators */
 
   --display:"Cormorant Garamond",Georgia,serif;
   --ui:"Jost",system-ui,-apple-system,sans-serif;
@@ -405,9 +405,9 @@ blockquote{
    is an address on a picture; status arrives with price and MLS on hover. */
 .prop__status{
   position:absolute;z-index:3;top:clamp(1rem,1.6vw,1.5rem);left:clamp(1rem,1.8vw,1.75rem);
-  background:var(--brass);color:#14170F;
-  font-size:.58rem;font-weight:400;letter-spacing:.2em;text-indent:.2em;
-  text-transform:uppercase;padding:.42rem .75rem .4rem;
+  background:none;color:var(--w1);
+  font-size:.58rem;font-weight:400;letter-spacing:.3em;text-indent:.3em;
+  text-transform:uppercase;padding:0;text-shadow:0 1px 14px rgba(0,0,0,.7);
   opacity:0;transform:translateY(-.3rem);
   transition:opacity .45s var(--rise),transform .45s var(--rise);
 }
@@ -699,9 +699,9 @@ blockquote{
   padding:0 var(--gutter) clamp(3rem,8vh,5.5rem);
 }
 .p-hero__status{
-  display:inline-block;background:var(--brass);color:#14170F;
-  font-size:.58rem;font-weight:400;letter-spacing:.2em;text-indent:.2em;
-  text-transform:uppercase;padding:.42rem .75rem .4rem;margin-bottom:1.5rem;
+  display:block;background:none;color:var(--w2);
+  font-size:.58rem;font-weight:400;letter-spacing:.34em;text-indent:.34em;
+  text-transform:uppercase;padding:0;margin-bottom:1.2rem;
 }
 .p-hero h1{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -736,10 +736,11 @@ blockquote{
   color:var(--warm);text-align:center;line-height:1.6;
 }
 .p-sec{position:relative}
+/* A short centred mark rather than a line across the page. A full-width rule
+   divides; a small one punctuates, and punctuation is the quieter gesture. */
 .p-sec + .p-sec::before,.p-hero + .p-sec::before{
   content:"";position:absolute;top:0;left:50%;transform:translateX(-50%);
-  width:min(46rem,calc(100% - 2 * var(--gutter)));
-  height:1px;background:var(--warm-rule);
+  width:3.25rem;height:1px;background:var(--warm-rule);
 }
 .p-sec h2,.p-plan h2{
   margin:0;font-family:var(--ui);font-weight:300;
@@ -791,14 +792,22 @@ blockquote{
 
 /* ---- amenities ---- */
 .p-amen{
-  max-width:60rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
-  list-style:none;padding:0;
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));
-  gap:1rem 2.5rem;
+  /* Two left-aligned columns centred as a block put the list's optical centre
+     well left of the label above it, which is what read as an offset. Set as
+     one centred run it sits on the page's axis, and it echoes the
+     specification line rather than inventing a second gesture. */
+  /* Spacing, not separators. A middot between flex items belongs to the item
+     that follows it, so the moment the run wraps the new line opens with an
+     orphaned dot. Space cannot wrap to the wrong place. */
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;
+  column-gap:clamp(1.4rem,3.2vw,2.6rem);row-gap:.1rem;
+  max-width:40rem;margin:0 auto;list-style:none;padding:0;
 }
 .p-amen li{
-  display:flex;gap:.9rem;align-items:baseline;
-  font-size:.9rem;line-height:1.7;color:var(--t2);
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.66rem,.6rem + .28vw,.82rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:var(--t1);line-height:2.5;
 }
 .p-amen i{
   width:.4rem;height:.4rem;border-radius:50%;background:var(--brass);flex:0 0 auto;
