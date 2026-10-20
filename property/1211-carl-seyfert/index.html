@@ -787,7 +787,9 @@ blockquote{
 /* The narrative runs long on a real listing. Centered prose stops working past
    a couple of sentences, so the story block sets left with a proper measure
    while the eyebrow and heading above it stay centered. */
-.p-story{max-width:32rem;margin:0 auto}
+/* 44rem, as every other page uses. This file alone was set to 32rem, which
+   is why the Residence read narrow against the rest of the site. */
+.p-story{max-width:44rem;margin:0 auto}
 .p-story p{
   margin:0 0 1.2rem;text-align:left;
   font-weight:300;font-size:clamp(.9rem,.86rem + .18vw,.99rem);
@@ -820,6 +822,54 @@ blockquote{
   color:var(--warm);line-height:2;
 }
 @media (max-width:420px){ .p-amen{letter-spacing:.14em;text-indent:.14em} }
+
+/* ============================== REEL BAND ================================
+   The film sits beside two pictures of the house rather than alone in the
+   middle of the page, so it is a beat in the reading rather than a block
+   parked in it.
+
+   The column ratio is not arbitrary: a 9:16 reel beside a stack of two 3:2
+   photographs balances at about 43:57, which lands both at the same height
+   with almost nothing cropped off the photographs.
+
+   It stays muted until asked — a page that starts talking is a page people
+   close — and playback is driven by an observer, so nothing downloads or
+   decodes until the band is actually on screen. */
+.p-duo{
+  display:grid;grid-template-columns:minmax(0,43fr) minmax(0,57fr);
+  gap:clamp(1rem,2.2vw,1.8rem);
+  max-width:72rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+}
+.p-duo--flip{grid-template-columns:minmax(0,57fr) minmax(0,43fr)}
+.p-duo--flip .p-reel{order:2}
+.p-duo__stack{
+  display:grid;grid-template-rows:minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(1rem,2.2vw,1.8rem);min-height:0;
+}
+.p-duo__stack .p-shot{aspect-ratio:auto;height:100%;min-height:0}
+@media (max-width:760px){
+  .p-duo{grid-template-columns:1fr;max-width:34rem}
+  .p-duo--flip .p-reel{order:0}
+  .p-duo .p-reel{width:100%;max-width:22rem;margin-inline:auto}
+  .p-duo__stack{grid-template-rows:auto auto}
+  .p-duo__stack .p-shot{aspect-ratio:3/2;height:auto}
+}
+.p-reel{position:relative;margin:0;background:#1b1f19;overflow:hidden;aspect-ratio:9/16}
+.p-reel video{width:100%;height:100%;object-fit:cover;display:block}
+.p-reel__sound{
+  position:absolute;right:.6rem;bottom:.6rem;z-index:2;
+  display:grid;place-items:center;width:2.4rem;height:2.4rem;
+  border:0;border-radius:50%;cursor:pointer;
+  background:rgba(20,23,15,.58);backdrop-filter:blur(6px);
+  color:#fff;transition:background .25s var(--rise);
+}
+.p-reel__sound:hover,.p-reel__sound:focus-visible{background:rgba(20,23,15,.84);outline:none}
+.p-reel__sound svg{width:1.05rem;height:1.05rem;fill:none;stroke:currentColor;stroke-width:1.5;
+  stroke-linecap:round;stroke-linejoin:round}
+.p-reel__sound .on{display:none}
+.p-reel__sound[data-on] .on{display:block}
+.p-reel__sound[data-on] .off{display:none}
+@media (prefers-reduced-motion:reduce){ .p-reel__sound{transition:none} }
 
 /* ---- amenities ---- */
 .p-amen{
@@ -1185,6 +1235,39 @@ blockquote{
        kitchen, a covered living area with overhead heaters, and a pool bath,
        set in lavender-lined hardscape. Four-car garage. Whole-home audio is
        already in the living room, the primary suite and the outdoor area.</p>
+  </div>
+</section>
+
+<!-- ================================ THE FILM ===============================
+     Placed directly after the narrative, not below the specification: the
+     film is the best thing on this page and nobody should have to scroll
+     past the half-bath count to reach it.
+
+     The two frames beside it are the placeholder cards already in media/ —
+     flat green plates reading LIVING and KITCHEN. They are deliberately not
+     photographs: this house is still a construction site in the film above,
+     so there are no interior photographs of it yet. Swap both when the
+     shoot happens. -->
+<section class="p-sec p-sec--tight" aria-labelledby="film-h">
+  <h2 class="p-eyebrow" id="film-h">Film</h2>
+
+  <div class="p-duo">
+    <figure class="p-reel">
+      <video id="reel1" playsinline muted loop preload="none"
+             poster="../../media/cs-reel-1-poster.jpg"
+             aria-label="Short film of 1211 Carl Seyfert Memorial Drive">
+        <source src="../../media/cs-reel-1.mp4" type="video/mp4">
+      </video>
+      <button class="p-reel__sound" type="button" aria-pressed="false"
+              aria-label="Unmute this film" data-sound="reel1">
+        <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>
+        <svg class="on"  viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </button>
+    </figure>
+    <div class="p-duo__stack">
+      <a class="p-shot" href="../../media/cs-liv-3.jpg"><img src="../../media/cs-liv-3.jpg" alt="Placeholder — living room photograph to come" loading="lazy"></a>
+      <a class="p-shot" href="../../media/cs-kit-3.jpg"><img src="../../media/cs-kit-3.jpg" alt="Placeholder — kitchen photograph to come" loading="lazy"></a>
+    </div>
   </div>
 </section>
 
@@ -1618,6 +1701,46 @@ addEventListener("keydown", e => {
     open.querySelector(".nav__link").focus();
   } else if (document.body.classList.contains("menu-open")) closeMenu();
 });
+
+/* ---- reel ----
+   preload="none", so a visitor who never scrolls this far pays nothing. The
+   observer starts it on arrival and pauses it on exit, which keeps a
+   1080x1920 decode off the main thread while somebody is reading. */
+const reels = [...document.querySelectorAll(".p-reel video")];
+if (reels.length) {
+  const quiet = matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const reelObs = new IntersectionObserver(entries => {
+    entries.forEach(({target: v, isIntersecting}) => {
+      if (isIntersecting) {
+        if (v.preload === "none") v.preload = "auto";
+        if (!quiet) v.play().catch(() => {});   // a refused autoplay leaves the poster up
+      } else {
+        v.pause();
+      }
+    });
+  }, {threshold:.35});
+  reels.forEach(v => reelObs.observe(v));
+
+  document.querySelectorAll(".p-reel__sound").forEach(btn => {
+    const v = document.getElementById(btn.dataset.sound);
+    btn.addEventListener("click", () => {
+      const turningOn = v.muted;
+      reels.forEach(other => {
+        other.muted = true;
+        const b = document.querySelector(`.p-reel__sound[data-sound="${other.id}"]`);
+        if (b) { b.removeAttribute("data-on"); b.setAttribute("aria-pressed","false");
+                 b.setAttribute("aria-label","Unmute this film"); }
+      });
+      if (turningOn) {
+        v.muted = false;
+        v.play().catch(() => {});
+        btn.setAttribute("data-on","");
+        btn.setAttribute("aria-pressed","true");
+        btn.setAttribute("aria-label","Mute this film");
+      }
+    });
+  });
+}
 </script>
 </body>
 </html>
