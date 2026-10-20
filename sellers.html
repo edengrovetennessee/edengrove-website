@@ -1359,10 +1359,10 @@ blockquote{
 .cine__scrim{
   position:absolute;inset:0;z-index:1;
   background:
-    radial-gradient(ellipse 58% 40% at 50% 50%,
-      rgba(20,23,15,.8) 0%,rgba(20,23,15,.55) 45%,rgba(20,23,15,0) 78%),
+    radial-gradient(ellipse 74% 56% at 50% 50%,
+      rgba(20,23,15,.82) 0%,rgba(20,23,15,.64) 48%,rgba(20,23,15,.24) 82%),
     linear-gradient(180deg,
-      rgba(20,23,15,.44) 0%,rgba(20,23,15,.3) 50%,rgba(20,23,15,.58) 100%);
+      rgba(20,23,15,.6) 0%,rgba(20,23,15,.46) 50%,rgba(20,23,15,.66) 100%);
 }
 /* On a phone the band is far taller than it is wide, so the same ellipse covers
    a much smaller share of the frame and the quote drifts off the dark middle.
@@ -1378,20 +1378,19 @@ blockquote{
         rgba(20,23,15,.5) 0%,rgba(20,23,15,.4) 50%,rgba(20,23,15,.62) 100%);
   }
 }
-.cine__q{position:relative;z-index:2;max-width:46rem;text-align:center}
+.cine__q{position:relative;z-index:2;max-width:52rem;text-align:center}
+/* The same register as the contact headline, and as every other hero on the
+   site: the sans, uppercase, tracked to .3em. It was 41.6px of Cormorant
+   with a brass hairline drawn in beneath it — the single loudest thing on
+   either page, and the hairline is the same ornament that came out from
+   between the sections. Lines were shortened to suit: a fourteen-word
+   sentence in tracked capitals is a wall, a nine-word one is a statement. */
 .cine__q blockquote{
-  margin:0;font-family:var(--display);font-weight:300;
-  font-size:clamp(1.35rem,1.05rem + 1.8vw,2.6rem);line-height:1.45;
-  letter-spacing:.01em;color:#fff;text-wrap:balance;
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(1.1rem,.88rem + .92vw,1.72rem);line-height:1.7;
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+  color:#fff;text-wrap:balance;
 }
-/* the rule draws itself in rather than simply appearing */
-.cine__rule{
-  display:block;width:clamp(2.5rem,6vw,4.5rem);height:1px;margin:1.6rem auto 0;
-  background:var(--brass);transform:scaleX(0);transform-origin:left;
-  transition:transform 1.3s var(--rise) .3s;
-}
-[data-in] > .cine__rule,[data-in] .cine__rule{transform:scaleX(1)}
-
 /* the empty band: a field rather than a photograph, and the brief on show */
 .cine--empty{min-height:min(72svh,36rem)}
 .cine__field{
@@ -1556,8 +1555,7 @@ blockquote{
 @media (prefers-reduced-motion:reduce){
   [data-rise],[data-rise][data-in]{opacity:1;transform:none;transition:none}
   .ln > i{transform:none;transition:none}
-  .cine__rule{transform:scaleX(1);transition:none}
-  .sb-hero__media img,.sb-hero--empty .sb-hero__media{animation:none;transform:none}
+    .sb-hero__media img,.sb-hero--empty .sb-hero__media{animation:none;transform:none}
   .sb-cue::after{animation:none;transform:scaleY(.4)}
   .sb-par,.cine__media,.sb-hero__media{transform:none !important}
   .n-card{transition:none}
@@ -1671,8 +1669,7 @@ blockquote{
   </div>
   <div class="cine__scrim"></div>
   <div class="cine__q">
-    <blockquote>A house that launches at the wrong price carries that mistake in its history forever.</blockquote>
-    <span class="cine__rule"></span>
+    <blockquote>A house launched at the wrong price carries it forever.</blockquote>
   </div>
 </section>
 
@@ -1779,8 +1776,7 @@ blockquote{
   </div>
   <div class="cine__scrim"></div>
   <div class="cine__q">
-    <blockquote>The questions most pages avoid are the ones you are actually asking.</blockquote>
-    <span class="cine__rule"></span>
+    <blockquote>The questions most pages avoid are the ones you are asking.</blockquote>
   </div>
 </section>
 
@@ -1803,7 +1799,6 @@ blockquote{
   <div class="cine__scrim"></div>
   <div class="cine__q">
     <blockquote>Sell it at the level it was built to.</blockquote>
-    <span class="cine__rule"></span>
   </div>
 </section>
 
