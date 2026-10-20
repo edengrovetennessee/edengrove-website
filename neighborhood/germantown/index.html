@@ -742,6 +742,16 @@ blockquote{
 /* ---- shared section furniture ---- */
 .p-sec{background:var(--ink);padding:clamp(5rem,11vh,8.5rem) var(--gutter)}
 .p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
+/* Two tight sections in a row are one idea in two parts — specification and
+   amenities, say. Full padding on both sides of the join left a bottom and a
+   top stacked together, which read as a gap in the page rather than a pause
+   between two short runs. Halved where they meet, untouched everywhere else. */
+.p-sec--tight + .p-sec--tight{padding-top:clamp(2rem,4.5vh,3.2rem)}
+/* and the other side of the same join: the bottom padding is the larger of
+   the two, so tightening only the top left most of the gap in place. :has()
+   is what makes this expressible — the section has to know what follows it.
+   Where it is unsupported the rule is dropped and the old spacing stands. */
+.p-sec--tight:has(+ .p-sec--tight){padding-bottom:clamp(2rem,4.5vh,3.2rem)}
 /* Every section opens the same way: an inset hairline, air, one small
    centered label. The label IS the heading, which is what makes the rhythm
    hold from page to page. Qualified past .p-sec h2 — the two tie on
@@ -766,8 +776,12 @@ blockquote{
 .p-lede{
   max-width:52rem;margin:0 auto;text-align:center;
 }
+/* 44rem, the same measure the narrative uses. It was 48ch, and a ch is the
+   width of a zero — about half an em in this face — so 48ch landed near
+   33rem and set these paragraphs nine centred lines deep. The outer .p-lede
+   said 52rem and never got a say, because the inner cap always won. */
 .p-lede p{
-  margin:clamp(1.4rem,3vh,2rem) auto 0;max-width:48ch;
+  margin:clamp(1.4rem,3vh,2rem) auto 0;max-width:44rem;
   font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
   line-height:1.95;color:var(--t2);
 }
