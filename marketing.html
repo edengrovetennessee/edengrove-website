@@ -503,9 +503,10 @@ blockquote{
   /* Larger than the other labels on purpose. This one sits directly above the
      Eden Grove wordmark in the footer, which is 20px of the display serif at
      .4em, and at label size it was being outweighed by the thing beneath it.
-     16px of the sans at .34em reads level with it without becoming a
-     headline again. */
-  font-size:clamp(.78rem,.7rem + .34vw,1rem);
+     Same face, same tracking, same weight as the other labels — only the size
+     moves. 22px at desktop, so it carries the section rather than sitting
+     level with the mark below it. */
+  font-size:clamp(.95rem,.82rem + .6vw,1.38rem);
   letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
   color:var(--w1);line-height:1.5;
 }
