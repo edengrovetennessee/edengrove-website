@@ -908,9 +908,13 @@ blockquote{
    is the one that submits an email address */
 /* Contact sits under each biography rather than only in the footer, so a
    seller can reach the person they have just read about. */
+/* One line each, always. Wrapping let the character count decide the layout:
+   Joe's phone and email come to 40 characters and fit on one line, the other
+   three come to 41 or 42 and wrap to two — so his Read More sat a line higher
+   than everyone else's. A column cannot do that. */
 .member__contact{
   margin:clamp(1.4rem,3vh,1.9rem) 0 0;padding:0;list-style:none;
-  display:flex;flex-wrap:wrap;gap:.5rem clamp(1.2rem,3vw,2.2rem);
+  display:flex;flex-direction:column;align-items:flex-start;gap:.55rem;
 }
 .member__contact li{margin:0}
 .member__contact a{
