@@ -239,6 +239,17 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
     animation:none !important;
   }
   body.menu-open .nav{opacity:1;pointer-events:auto}
+  /* The bar is position:absolute, so it belongs to the top of the document and
+     scrolls away with it. The overlay is fixed. Open the menu, scroll, and the
+     only control that closes it has left the screen — which is how a visitor
+     ends up trapped in the menu with Safari's own X as the only way out.
+     Pinned while the menu is open, and above the overlay, so the X is always
+     in the corner it was tapped in. */
+  body.menu-open .bar{position:fixed;z-index:40}
+  /* The overlay swallows the touches that would otherwise scroll the page
+     behind it. Unlike a body lock this leaves the document in flow, so
+     closing the menu leaves the page exactly where it was. */
+  body.menu-open .nav{touch-action:none;overscroll-behavior:contain}
   .nav__item{text-align:center}
   .nav__link{font-size:.95rem;letter-spacing:.3em;text-indent:.3em;color:var(--on-video)}
   .caret{width:.3rem;height:.3rem}
@@ -1181,8 +1192,16 @@ nav.querySelectorAll(".has-sub").forEach(item => {
   });
 });
 
-/* ---- mobile menu ---- */
+/* ---- mobile menu ----
+   No scroll lock on the body. position:fixed on the body does lock iOS, but it
+   takes the document out of flow: height collapsed from 5518px to 844px, so
+   the restore on close could not reach the old offset and the page landed up
+   to 423px away from where it was left. The page staying put behind a 95%
+   opaque overlay is worth less than closing the menu where you left off; the
+   overlay stops the touches that would scroll it (see touch-action in the
+   stylesheet) and the bar is pinned, so the X is always reachable. */
 const closeMenu = () => {
+  if (!document.body.classList.contains("menu-open")) return;
   document.body.classList.remove("menu-open");
   burger.setAttribute("aria-expanded", false);
 };
@@ -1190,6 +1209,14 @@ burger.addEventListener("click", () => {
   const open = document.body.classList.toggle("menu-open");
   burger.setAttribute("aria-expanded", open);
 });
+/* Esc closes it, and a resize past the breakpoint must not leave it open with
+   the burger hidden. */
+addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+addEventListener("resize", () => { if (!isPhone()) closeMenu(); });
+/* Esc closes it too, and a resize past the breakpoint must not leave the body
+   pinned with no visible way to unpin it. */
+addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+addEventListener("resize", () => { if (!isPhone()) closeMenu(); });
 nav.addEventListener("click", e => {
   const a = e.target.closest("a");
   if (a && !a.closest(".has-sub > .nav__link")) {
