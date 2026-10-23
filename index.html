@@ -272,61 +272,6 @@ body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45de
    No photograph behind this one. The ground goes to ink and the three tiles
    supply all the color, which is what makes them read as the subject.
    No heading — the mark sits alone and the tiles speak for themselves. */
-/* ---- volume ----
-   Two figures under the hero, on ink, with a hairline between them. Set in
-   the display face because they are the one place on the page where a
-   number is the thing being looked at. The note under them is deliberately
-   small and deliberately present. */
-.vol{background:var(--ink);padding:clamp(3.5rem,7vh,5.5rem) var(--gutter) 0}
-.vol__inner{
-  max-width:58rem;margin:0 auto;
-  display:grid;grid-template-columns:1fr 1px 1fr;align-items:center;
-  gap:clamp(1.5rem,4vw,3.5rem);
-}
-/* The rule is a grid column rather than a border, so it stretches to the
-   taller of the two figures instead of to whichever one owns the border. */
-.vol__inner::before{
-  content:"";grid-column:2;justify-self:center;
-  width:1px;height:100%;background:var(--line);
-}
-.vol__fig{text-align:center;min-width:0}
-.vol__fig:first-child{grid-column:1}
-.vol__fig:last-child{grid-column:3}
-.vol__n{
-  margin:0;font-family:var(--display);font-weight:300;
-  font-size:clamp(2.1rem,1.4rem + 3.1vw,4rem);line-height:1.1;
-  letter-spacing:.02em;color:var(--paper);
-  font-variant-numeric:lining-nums tabular-nums;
-  font-feature-settings:"lnum" 1,"tnum" 1;
-}
-.vol__l{
-  margin:clamp(.7rem,1.6vh,1rem) 0 0;font-family:var(--ui);font-weight:300;
-  font-size:.62rem;letter-spacing:.28em;text-indent:.28em;
-  text-transform:uppercase;color:var(--t3);
-}
-.vol__note{
-  max-width:46rem;margin:clamp(2rem,4.5vh,3rem) auto 0;text-align:center;
-  font-family:var(--ui);font-weight:300;font-size:.72rem;line-height:1.8;
-  color:var(--t3);
-}
-/* They stack on a phone. Keeping them side by side was the first instinct
-   and it does not survive the content: two nine-figure numbers across
-   390px leaves about 160px each, which is not a figure anyone is meant to
-   look at -- they ran straight into each other. The rule turns with them,
-   from a vertical hairline between columns to a horizontal one between
-   rows. */
-@media (max-width:620px){
-  .vol__inner{
-    grid-template-columns:1fr;grid-template-rows:auto 1px auto;
-    gap:clamp(1.4rem,4vh,2rem);
-  }
-  .vol__inner::before{
-    grid-column:1;grid-row:2;width:min(12rem,50%);height:1px;
-  }
-  .vol__fig:first-child{grid-column:1;grid-row:1}
-  .vol__fig:last-child{grid-column:1;grid-row:3}
-}
-
 .excellence{background:var(--ink);padding:clamp(4.5rem,9vh,7.5rem) 0 0}
 
 .excellence__head{
@@ -808,13 +753,6 @@ blockquote{
 @media (prefers-reduced-motion:reduce){
 }
 
-
-
-
-
-
-
-
 /* LOCKUP:START */
 /* ==========================================================================
    OPENING LOCKUP — EDEN GROVE | Compass
@@ -849,7 +787,6 @@ blockquote{
   letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
   white-space:nowrap;animation-delay:.25s;
 }
-
 
 /* TREC 1260-02-.12: the firm name may not be set smaller than the team name.
    The measure that matters is CAP HEIGHT, not font-size — a logo's box height
@@ -973,18 +910,6 @@ img.lock__compass{display:block;width:auto;height:1.1em}
 </div>
 <!-- LOCKUP:END -->
 
-
-
-
-
-
-
-
-
-
-
-
-
 <section class="hero" id="top">
   <!-- preload="auto", not "metadata". Autoplay fires the moment the element is
        ready, and with metadata only there is nothing buffered to play, so the
@@ -1036,36 +961,6 @@ img.lock__compass{display:block;width:auto;height:1.1em}
     <span>Scroll</span>
     <i></i>
   </div>
-</section>
-
-<!-- ================= 2 · VOLUME =================
-     ⚠ THE FIGURES ARE PLACEHOLDERS. Both read an em dash until Ryan has the
-     numbers in. Do not deploy with them unfilled — search this file for
-     VOLUME-FIGURE and replace the two.
-
-     THE LABEL reads "Eden Grove total team volume" on Ryan's instruction.
-     The number is the four agents' career production added up, most of it
-     earned at prior brokerages before Eden Grove existed, so the label on
-     its own says something the team did not do. The note underneath is what
-     makes it accurate and it should not be removed without a decision --
-     TREC reads advertising literally, and a competitor has every reason to.
-     Flagged once; Ryan's call to make. -->
-<section class="vol" aria-label="Volume">
-  <div class="vol__inner">
-    <div class="vol__fig">
-      <p class="vol__n"><!-- VOLUME-FIGURE: combined career -->&mdash;</p>
-      <p class="vol__l">Eden Grove total team volume</p>
-    </div>
-    <div class="vol__fig">
-      <p class="vol__n"><!-- VOLUME-FIGURE: 2026 -->&mdash;</p>
-      <p class="vol__l">2026 volume</p>
-    </div>
-  </div>
-  <!-- Ryan's call on the headline label. This line is what keeps it
-       accurate, and it is one line to delete if he wants it gone. -->
-  <p class="vol__note">Total team volume is the combined sales volume of Eden
-    Grove's agents, including production at prior brokerages. Eden Grove was
-    founded in 2026. Figures are self-reported.</p>
 </section>
 
 <!-- ================= 3 · COMMITMENT TO EXCELLENCE ================= -->
@@ -1277,7 +1172,6 @@ img.lock__compass{display:block;width:auto;height:1.1em}
       </div>
     </div>
 
-
     <div class="foot__firm">
       <img class="foot__compass" src="media/compass-white.png" alt="Compass"
            width="1586" height="218" loading="lazy" decoding="async">
@@ -1473,13 +1367,6 @@ addEventListener("keydown", e => {
   } else if (document.body.classList.contains("menu-open")) closeMenu();
 });
 </script>
-
-
-
-
-
-
-
 
 <!-- LOCKUP:JS:START -->
 <script>
