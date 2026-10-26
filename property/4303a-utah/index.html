@@ -714,6 +714,15 @@ blockquote{
    in the markup below; the CSS never needs touching.
    ========================================================================== */
 .p-hero{position:relative;height:100svh;min-height:36rem;overflow:hidden}
+/* PROPERTY: this photograph is a street-level frame on an infill lot - the
+   house fills it edge to edge, so there is no wider version of it. On a
+   portrait viewport cover keeps only about a third of the width and dead
+   centre is blank stone. Leaning the window left holds the entry, the glass
+   stair and the maple instead. Landscape viewports are untouched: above 1:1
+   the crop is vertical, not horizontal. */
+@media (max-aspect-ratio:1/1){
+  .p-hero .hero__media{object-position:20% 50%}
+}
 /* 92svh left a sliver of the next section showing, which reads as a band
    rather than as a picture you have to scroll past. */
 .p-hero__body{
