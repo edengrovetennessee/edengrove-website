@@ -1122,6 +1122,49 @@ blockquote{
   .p-shot video,.p-hero__media video{animation:none}
 }
 
+
+/* ============================== WALKTHROUGH ==============================
+   The long walkthrough lives on YouTube. It loads on click, not on arrival:
+   until somebody asks for it, no third-party script and no cookie.
+
+   Same component as 715 Davis, same behaviour, so the two pages do not
+   drift. The caption is the second way in - a visitor who does not read a
+   bare circle as a control reads words - and it takes itself away once the
+   film is up. */
+.p-film{max-width:58rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0}
+.p-film__frame{position:relative;aspect-ratio:16/9;background:#1b1f19;overflow:hidden}
+.p-film__frame img,.p-film__frame iframe{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}
+.p-film__play{
+  position:absolute;inset:0;z-index:2;display:grid;place-items:center;
+  border:0;background:rgba(20,23,15,.3);cursor:pointer;color:#fff;
+  transition:background .3s var(--rise)}
+.p-film__play:hover,.p-film__play:focus-visible{background:rgba(20,23,15,.14);outline:none}
+.p-film__play span{
+  display:grid;place-items:center;width:4.2rem;height:4.2rem;border-radius:50%;
+  border:1px solid var(--w2);background:rgba(20,23,15,.32);
+  transition:border-color .3s var(--rise),background .3s var(--rise)}
+.p-film__play:hover span{border-color:var(--brass);background:rgba(20,23,15,.5)}
+.p-film__play svg{width:1.15rem;height:1.15rem;fill:currentColor;margin-left:.18rem}
+.p-film__cap{
+  display:flex;align-items:center;justify-content:center;gap:.7rem;
+  width:fit-content;margin:1.15rem auto 0;padding:0 0 .55rem;
+  border:0;background:none;cursor:pointer;
+  border-bottom:1px solid var(--brass);
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.74rem,.7rem + .18vw,.86rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:var(--t1);
+  transition:color .4s var(--rise),border-color .4s var(--rise)}
+.p-film__cap svg{
+  width:.62rem;height:.62rem;fill:currentColor;flex:none;
+  color:var(--brass);transition:transform .4s var(--rise)}
+.p-film__cap:hover,.p-film__cap:focus-visible{color:var(--brass);outline:none}
+.p-film__cap:hover svg{transform:translateX(.22rem)}
+
+@media (prefers-reduced-motion:reduce){
+  .p-film__play,.p-film__play span,.p-film__cap,.p-film__cap svg{transition:none}
+}
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/property/1211-carl-seyfert/">
 <meta property="og:type" content="website">
@@ -1301,6 +1344,38 @@ blockquote{
       <a class="p-shot" href="../../media/cs-rear-1.jpg"><img src="../../media/cs-rear-1.jpg" alt="The rear elevation: a covered loggia opening to the main living room through a folding glass wall, beneath steeply pitched stone gables" loading="lazy" width="1161" height="774"></a>
       <a class="p-shot" href="../../media/cs-entry-1.jpg"><img src="../../media/cs-entry-1.jpg" alt="The side entry: French doors in a cut-stone surround against hand-laid stone and slurry-washed masonry" loading="lazy" width="1291" height="861"></a>
     </div>
+  </div>
+</section>
+
+<!-- ============================== WALKTHROUGH =============================
+     Named people rather than job titles. Blake Barker and Amber Pyles are
+     both already introduced further down in Behind the Build, so naming
+     them here costs nothing and gives the film an author. The two roles
+     stay in the line because that is what tells a visitor why this walk
+     through is worth more than a tour.
+
+     The section carries the hidden attribute, so when YT_ID is empty there
+     is no orphaned heading. It loads through youtube-nocookie on click, so
+     nothing is requested from Google until somebody asks for it. -->
+<section class="p-sec p-sec--tight" id="film" hidden aria-labelledby="walk-h">
+  <h2 class="p-eyebrow" id="walk-h">Walkthrough</h2>
+  <div class="p-lede">
+    <p>With Blake Barker, the developer, and Amber Pyles, the interior
+       designer, through the house they built.</p>
+  </div>
+  <div class="p-film">
+    <div class="p-film__frame">
+      <!-- POSTER: drop a still from the walkthrough in as media/cs-walk-poster.jpg
+           and uncomment the line below. 1920x1080 or larger, no player chrome. -->
+      <!-- <img src="../../media/cs-walk-poster.jpg" alt="" aria-hidden="true"> -->
+      <button class="p-film__play" type="button" id="filmPlay" aria-label="Watch the walkthrough of 1211 Carl Seyfert Memorial Drive">
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+      </button>
+    </div>
+    <button class="p-film__cap" type="button" id="filmCap">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      Watch the Walkthrough
+    </button>
   </div>
 </section>
 
@@ -1786,6 +1861,30 @@ if (reels.length) {
       }
     });
   });
+}
+
+/* ---- the walkthrough ----
+   Paste the YouTube id between the quotes and the block above unhides
+   itself. Nothing from Google is requested until somebody presses play. */
+const YT_ID = "-N-ktwDU1us";
+
+const film = document.getElementById("film");
+if (film && YT_ID) {
+  film.hidden = false;
+  const openFilm = () => {
+    const frame = film.querySelector(".p-film__frame");
+    if (frame.querySelector("iframe")) return;
+    const f = document.createElement("iframe");
+    f.src = `https://www.youtube-nocookie.com/embed/${YT_ID}?autoplay=1&rel=0&modestbranding=1`;
+    f.title = "1211 Carl Seyfert Memorial Dr \u2014 walkthrough with the developer and interior designer";
+    f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+    f.allowFullscreen = true;
+    frame.replaceChildren(f);
+    const cap = document.getElementById("filmCap");
+    if (cap) cap.hidden = true;
+  };
+  document.getElementById("filmPlay").addEventListener("click", openFilm);
+  document.getElementById("filmCap").addEventListener("click", openFilm);
 }
 </script>
 </body>
