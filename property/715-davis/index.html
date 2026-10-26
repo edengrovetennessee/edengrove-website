@@ -1102,9 +1102,7 @@ blockquote{
    going up, so a rendering would be a picture of the wrong house. The
    plate is the section's own ground until somebody presses play. */
 .p-film{max-width:58rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0}
-.p-film--portrait{max-width:22rem}
 .p-film__frame{position:relative;aspect-ratio:16/9;background:#1b1f19;overflow:hidden}
-.p-film--portrait .p-film__frame{aspect-ratio:9/16}
 .p-film__frame img,.p-film__frame iframe{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}
 .p-film__play{
@@ -1118,13 +1116,28 @@ blockquote{
   transition:border-color .3s var(--rise),background .3s var(--rise)}
 .p-film__play:hover span{border-color:var(--brass);background:rgba(20,23,15,.5)}
 .p-film__play svg{width:1.15rem;height:1.15rem;fill:currentColor;margin-left:.18rem}
+/* The caption is the second way in. A visitor who does not read a bare
+   circle as a control reads words, so the line under the frame is a button
+   too and says what the film is rather than naming the file. The rule under
+   it is the brass hairline the rest of the site uses for a live link. */
 .p-film__cap{
-  margin:.9rem 0 0;text-align:center;font-family:var(--ui);font-weight:300;
-  font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;
-  color:var(--t3)}
+  display:flex;align-items:center;justify-content:center;gap:.7rem;
+  width:fit-content;margin:1.15rem auto 0;padding:0 0 .55rem;
+  border:0;background:none;cursor:pointer;
+  border-bottom:1px solid var(--brass);
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.74rem,.7rem + .18vw,.86rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:var(--t1);
+  transition:color .4s var(--rise),border-color .4s var(--rise)}
+.p-film__cap svg{
+  width:.62rem;height:.62rem;fill:currentColor;flex:none;
+  color:var(--brass);transition:transform .4s var(--rise)}
+.p-film__cap:hover,.p-film__cap:focus-visible{color:var(--brass);outline:none}
+.p-film__cap:hover svg{transform:translateX(.22rem)}
 
 @media (prefers-reduced-motion:reduce){
-  .p-film__play,.p-film__play span{transition:none}
+  .p-film__play,.p-film__play span,.p-film__cap,.p-film__cap svg{transition:none}
 }
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/property/715-davis/">
@@ -1266,13 +1279,22 @@ blockquote{
      nothing is requested from Google until somebody asks for it. -->
 <section class="p-sec p-sec--tight" id="film" hidden aria-labelledby="film-h">
   <h2 class="p-eyebrow" id="film-h">Film</h2>
-  <div class="p-film p-film--portrait">
+  <div class="p-film">
     <div class="p-film__frame">
-      <button class="p-film__play" type="button" id="filmPlay" aria-label="Play the film of 715 Davis Dr being framed">
+      <!-- POSTER: drop a still from the film in as media/dv-film-poster.jpg and
+           uncomment the line below. 1920x1080 or larger, no player chrome in it.
+           Until then the frame is the section's own ground, which is honest:
+           every other photograph of this house is a rendering of the finished
+           estate and this film is the frame going up. -->
+      <!-- <img src="../../media/dv-film-poster.jpg" alt="" aria-hidden="true"> -->
+      <button class="p-film__play" type="button" id="filmPlay" aria-label="Watch the progress update for 715 Davis Dr">
         <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
       </button>
     </div>
-    <p class="p-film__cap">Framing &middot; 715 Davis Dr</p>
+    <button class="p-film__cap" type="button" id="filmCap">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      Watch the Progress Update
+    </button>
   </div>
 </section>
 
@@ -1736,15 +1758,20 @@ const YT_ID = "Reupaf5RDiI";
 const film = document.getElementById("film");
 if (film && YT_ID) {
   film.hidden = false;
-  document.getElementById("filmPlay").addEventListener("click", e => {
-    const frame = e.currentTarget.closest(".p-film__frame");
+  const openFilm = () => {
+    const frame = film.querySelector(".p-film__frame");
+    if (frame.querySelector("iframe")) return;
     const f = document.createElement("iframe");
     f.src = `https://www.youtube-nocookie.com/embed/${YT_ID}?autoplay=1&rel=0&modestbranding=1`;
     f.title = "715 Davis Dr \u2014 framing";
     f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
     f.allowFullscreen = true;
     frame.replaceChildren(f);
-  });
+    const cap = document.getElementById("filmCap");
+    if (cap) cap.hidden = true;
+  };
+  document.getElementById("filmPlay").addEventListener("click", openFilm);
+  document.getElementById("filmCap").addEventListener("click", openFilm);
 }
 </script>
 </body>
