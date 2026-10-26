@@ -714,6 +714,14 @@ blockquote{
    in the markup below; the CSS never needs touching.
    ========================================================================== */
 .p-hero{position:relative;height:100svh;min-height:36rem;overflow:hidden}
+/* PROPERTY: the hero is a top-down aerial, 16:9. On a portrait viewport
+   cover keeps about a quarter of its width, and that quarter decides
+   whether the frame reads as a pool and a garden or as a roof. 45% holds
+   the water, the lawn above it and the tree line below. Landscape
+   viewports are untouched - at 16:9 the crop there is almost nothing. */
+@media (max-aspect-ratio:1/1){
+  .p-hero .hero__media{object-position:45% 50%}
+}
 /* 92svh left a sliver of the next section showing, which reads as a band
    rather than as a picture you have to scroll past. */
 .p-hero__body{
