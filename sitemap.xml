@@ -42,8 +42,13 @@
   </url>
   <url>
     <loc>https://edengrovetennessee.com/property/715-davis/</loc>
-    <lastmod>2026-08-30</lastmod>
+    <lastmod>2026-10-29</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://edengrovetennessee.com/property/715-davis/construction/</loc>
+    <lastmod>2026-10-29</lastmod>
+    <priority>0.6</priority>
   </url>
   <url>
     <loc>https://edengrovetennessee.com/property/2502-9th-ave-s/</loc>

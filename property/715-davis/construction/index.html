@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Construction Excellence | 715 Davis Dr | Eden Grove</title>
+<meta name="description" content="A weekly record of 715 Davis Dr going up in Brentwood, room by room, built by Liebo Builders. Presented by Eden Grove at Compass.">
+<link rel="icon" href="../../../favicon.ico" sizes="any">
+<link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="../../../media/favicon-48.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../../../media/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../../../media/favicon-16.png">
+<link rel="apple-touch-icon" href="../../../media/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ==========================================================================
+   EDEN GROVE — property page template
+   HERO: full-bleed video, wordmark top left, nav top right.
+   Layout only for now — no brokerage marks, no compliance furniture yet.
+   ========================================================================== */
+:root{
+  --ink:#14170F;
+  --paper:#F4F1EC;
+  --on-video:#FFFFFF;
+  --on-video-dim:var(--w2);
+
+  /* the one warm note in the palette — status, rules, and the only call to action */
+  --brass:#DACEB6;
+  /* ---- the house scale -------------------------------------------------
+     Three weights of text, one of rule, on each ground. The site was using
+     33 opacities of the cream and 10 of the white; no single value was
+     wrong, but nothing agreed with anything, which is what makes a palette
+     read as approximate rather than decided. Everything resolves here. */
+  --t1:#F4F1EC;                 /* on ink: speaks   */
+  --t2:rgba(244,241,236,.72);   /* on ink: reads    */
+  --t3:rgba(244,241,236,.45);   /* on ink: murmurs  */
+  --line:rgba(244,241,236,.12); /* on ink: divides  */
+  --w1:#FFFFFF;                 /* on image: speaks */
+  --w2:rgba(255,255,255,.72);   /* on image: reads  */
+  --w3:rgba(255,255,255,.46);   /* on image: murmurs*/
+  --wline:rgba(255,255,255,.22);/* on image: divides*/
+
+  /* The warm pair. The same hue read as cheap as a button fill and reads
+     expensive as small type: 6.2:1 on the ink ground. */
+  --warm:#A7947C;               /* labels, prose    */
+  --warm-rule:rgba(167,148,124,.45); /* marks and separators */
+
+  --display:"Cormorant Garamond",Georgia,serif;
+  --ui:"Jost",system-ui,-apple-system,sans-serif;
+
+  --gutter:clamp(1.25rem,4vw,3.25rem);
+  --bar-y:clamp(1.4rem,2.6vw,2.1rem);
+
+  --rise:cubic-bezier(.22,.61,.36,1);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--ink);color:var(--paper);
+  font-family:var(--ui);font-weight:300;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+.visually-hidden{
+  position:absolute;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;
+  clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0;
+}
+
+/* ============================== HERO ============================== */
+.hero{position:relative;height:100svh;min-height:34rem;overflow:hidden}
+
+/* One rule serves both — swapping <img> for <video> needs no CSS change. */
+.hero__media{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  display:block;
+}
+
+/* Two scrims, not one. A top wash so the bar is always legible whatever the
+   footage does, and a floor so the scroll cue never sits on a blown highlight. */
+.hero__scrim{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(to bottom, rgba(8,10,7,.55) 0%, rgba(8,10,7,.22) 14%, rgba(8,10,7,0) 34%),
+    linear-gradient(to top,    rgba(8,10,7,.44) 0%, rgba(8,10,7,0) 26%);
+}
+
+/* ------------------------------ top bar ------------------------------ */
+.bar{
+  position:absolute;top:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:var(--bar-y) var(--gutter);
+  color:var(--on-video);
+}
+
+.mark{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(1.05rem,.72rem + .95vw,1.6rem);
+  letter-spacing:.4em;text-indent:.4em;
+  text-transform:uppercase;line-height:1;white-space:nowrap;
+  text-shadow:0 1px 24px rgba(0,0,0,.34);
+}
+/* ---- firm lockup in the bar ----------------------------------------------
+   TREC 1260-02-.12: the firm name may not be set smaller than the team name,
+   and the measure that matters is CAP HEIGHT, not font-size. The Compass
+   artwork is cropped to its own caps, so its box height IS its cap height;
+   Cormorant Garamond's caps land at about .68 of font-size. Setting the mark
+   to .74 of the wordmark's size therefore puts Compass at roughly 1.09x our
+   cap height -- larger, which is what the rule asks, and balanced, which is
+   what a lockup asks. Same arithmetic as the opening lockup on the homepage.
+   Below 560px the bar is wordmark and burger only; the footer still carries
+   the firm name on every page. */
+.bar__lock{display:flex;align-items:center;gap:clamp(.55rem,1.7vw,1.05rem);min-width:0}
+.bar__bar{
+  width:1px;height:clamp(.8rem,.55rem + .7vw,1.2rem);
+  background:var(--brass);flex:none;opacity:.85;
+}
+.bar__compass{
+  display:block;width:auto;flex:none;
+  height:calc(clamp(1.05rem,.72rem + .95vw,1.6rem) * .74);
+  filter:drop-shadow(0 1px 24px rgba(0,0,0,.34));
+}
+@media (max-width:560px){.bar__bar,.bar__compass{display:none}}
+.foot__firmline strong{font-weight:400;color:var(--t2)}
+
+.nav{display:flex;align-items:center;gap:clamp(1.6rem,3.2vw,3.4rem)}
+.nav__item{position:relative}
+
+.nav__link{
+  position:relative;display:inline-flex;align-items:center;gap:.55rem;
+  font-family:var(--ui);font-weight:300;
+  font-size:.68rem;letter-spacing:.26em;text-indent:.26em;
+  text-transform:uppercase;white-space:nowrap;
+  color:var(--on-video-dim);
+  padding:.35rem 0;
+  transition:color .45s var(--rise);
+  text-shadow:0 1px 20px rgba(0,0,0,.34);
+}
+/* the rule draws itself from the left rather than fading in — quieter, and it
+   reads as underlining a word rather than switching a state on */
+.nav__link::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:left;
+  transition:transform .5s var(--rise);
+}
+.nav__link:hover,.nav__link:focus-visible,
+.nav__item.open > .nav__link{color:var(--on-video)}
+.nav__link:hover::after,.nav__link:focus-visible::after,
+.nav__item.open > .nav__link::after{transform:scaleX(1)}
+.nav__link:focus-visible{outline:none}
+
+/* the caret is a hairline chevron, not a glyph — it stays optically correct
+   at this size where a ▾ would look like a smudge */
+.caret{
+  width:.36rem;height:.36rem;margin-left:-.2rem;flex:0 0 auto;
+  border-right:1px solid currentColor;border-bottom:1px solid currentColor;
+  transform:translateY(-.12em) rotate(45deg);opacity:.6;
+  transition:transform .4s var(--rise),opacity .4s var(--rise);
+}
+.nav__item.open .caret{transform:translateY(.05em) rotate(-135deg);opacity:.95}
+
+/* ---------------------------- dropdown ---------------------------- */
+.sub{
+  position:absolute;top:calc(100% + 1.1rem);left:-1.35rem;
+  min-width:14.5rem;
+  display:flex;flex-direction:column;
+  padding:1.25rem 1.35rem 1.35rem;
+  background:rgba(12,15,10,.78);
+  backdrop-filter:blur(14px) saturate(1.1);
+  -webkit-backdrop-filter:blur(14px) saturate(1.1);
+  border-top:1px solid var(--wline);
+  opacity:0;transform:translateY(-.4rem);pointer-events:none;
+  transition:opacity .38s var(--rise),transform .38s var(--rise);
+}
+.nav__item.open .sub{opacity:1;transform:none;pointer-events:auto}
+/* The panel hangs 1.1rem below the link, and that gap used to be outside both
+   elements — moving the pointer toward the menu left the item and closed it.
+   This invisible bridge spans the gap and belongs to .sub, so traveling down
+   from the word never leaves the parent. */
+.sub::before{
+  content:"";position:absolute;left:0;right:0;top:-1.4rem;height:1.4rem;
+}
+.sub a{
+  font-size:.64rem;letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:var(--on-video-dim);white-space:nowrap;
+  padding:.62rem 0;
+  transition:color .35s var(--rise),padding-left .35s var(--rise);
+}
+.sub a:hover,.sub a:focus-visible{color:var(--on-video);padding-left:.4rem;outline:none}
+
+/* ------------------------------ scroll cue ------------------------------ */
+.cue{
+  position:absolute;z-index:20;left:50%;bottom:clamp(1.5rem,3.4vh,2.6rem);
+  transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.75rem;
+  color:var(--on-video-dim);
+}
+.cue span{
+  font-size:.55rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+}
+.cue i{display:block;width:1px;height:2.6rem;background:currentColor;opacity:.5;
+  transform-origin:top;animation:drip 2.9s var(--rise) infinite}
+@keyframes drip{
+  0%{transform:scaleY(0);opacity:0}
+  36%{opacity:.55}
+  100%{transform:scaleY(1);opacity:0}
+}
+
+/* ------------------------------ the reveal ------------------------------
+   Everything overlaid on the video arrives after the footage has had a beat
+   to establish itself. Slow, and it only happens once. */
+.reveal{opacity:0;animation:reveal 2.2s var(--rise) forwards}
+.mark.reveal{animation-name:markIn;animation-duration:2.8s;animation-delay:.5s}
+.nav.reveal{animation-delay:1.5s}
+.cue.reveal{animation-delay:2.4s}
+@keyframes reveal{to{opacity:1}}
+@keyframes markIn{
+  from{opacity:0;letter-spacing:.7em;text-indent:.7em}
+  to  {opacity:1;letter-spacing:.4em;text-indent:.4em}
+}
+
+/* ------------------------------ mobile nav ------------------------------ */
+.burger{display:none;width:1.6rem;height:1.6rem;position:relative;z-index:40}
+.burger i{position:absolute;left:0;right:0;height:1px;background:currentColor;
+  transition:transform .45s var(--rise),opacity .3s}
+.burger i:nth-child(1){top:.45rem}
+.burger i:nth-child(2){top:.95rem}
+body.menu-open .burger i:nth-child(1){transform:translateY(.25rem) rotate(45deg)}
+body.menu-open .burger i:nth-child(2){transform:translateY(-.25rem) rotate(-45deg)}
+
+@media (max-width:760px){
+  .burger{display:block}
+  .nav{
+    position:fixed;inset:0;z-index:30;
+    flex-direction:column;justify-content:center;align-items:center;gap:1.9rem;
+    background:rgba(10,13,9,.95);
+    opacity:0;pointer-events:none;transition:opacity .5s var(--rise);
+    animation:none !important;
+  }
+  body.menu-open .nav{opacity:1;pointer-events:auto}
+  /* The bar is position:absolute, so it belongs to the top of the document and
+     scrolls away with it. The overlay is fixed. Open the menu, scroll, and the
+     only control that closes it has left the screen — which is how a visitor
+     ends up trapped in the menu with Safari's own X as the only way out.
+     Pinned while the menu is open, and above the overlay, so the X is always
+     in the corner it was tapped in. */
+  body.menu-open .bar{position:fixed;z-index:40}
+  /* The overlay swallows the touches that would otherwise scroll the page
+     behind it. Unlike a body lock this leaves the document in flow, so
+     closing the menu leaves the page exactly where it was. */
+  body.menu-open .nav{touch-action:none;overscroll-behavior:contain}
+  .nav__item{text-align:center}
+  .nav__link{font-size:.95rem;letter-spacing:.3em;text-indent:.3em;color:var(--on-video)}
+  .caret{width:.3rem;height:.3rem}
+
+  /* the panel becomes an inline accordion — a floating dropdown on a phone is
+     a fiddly target and hides the rest of the menu behind it */
+  .sub{
+    position:static;min-width:0;padding:0;border-top:0;background:none;
+    backdrop-filter:none;-webkit-backdrop-filter:none;
+    transform:none;opacity:1;pointer-events:auto;
+    max-height:0;overflow:hidden;
+    transition:max-height .45s var(--rise),margin .45s var(--rise);
+  }
+  .nav__item.open .sub{max-height:22rem;margin-top:1.4rem}
+  .sub a{font-size:.72rem;padding:.65rem 0}
+  .cue{display:none}
+}
+
+/* ====================== 2 · COMMITMENT TO EXCELLENCE ======================
+   No photograph behind this one. The ground goes to ink and the three tiles
+   supply all the color, which is what makes them read as the subject.
+   No heading — the mark sits alone and the tiles speak for themselves. */
+.excellence{background:var(--ink);padding:clamp(4.5rem,9vh,7.5rem) 0 0}
+
+.excellence__head{
+  display:flex;justify-content:center;
+  padding:0 var(--gutter) clamp(3.5rem,7vh,5.75rem);
+}
+/* The mark, in Plaster on ink. Vector, so it stays crisp at any size, and
+   width-driven so the aspect ratio comes from the file itself — a redrawn tree
+   of different proportions drops straight in. */
+.logoslot{width:clamp(5.25rem,7.5vw,7.5rem);height:auto;display:block}
+
+/* Edge to edge, hairline gutters between. The tiles carry the section, so the
+   frame around them stays as thin as the eye will accept. */
+.tiles{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(.5rem,1vw,1.1rem);
+  padding:0 clamp(.5rem,1vw,1.1rem);
+}
+.tile{position:relative;display:block;overflow:hidden;aspect-ratio:4/5;background:#1b1f19}
+.tile img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.001);transition:transform 1.1s var(--rise);
+}
+.tile:hover img,.tile:focus-visible img{transform:scale(1.045)}
+.tile:focus-visible{outline:1px solid var(--w2);outline-offset:-1px}
+
+/* the wash only exists so the caption never lands on a bright sky */
+.tile::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top, rgba(8,10,7,.62) 0%, rgba(8,10,7,.18) 24%, rgba(8,10,7,0) 46%);
+}
+/* Same voice as the top nav — uppercase Jost, wide tracking. Set smaller than
+   a serif would be at this position: letterspaced caps occupy far more width
+   per word, so these stay well below where a serif would sit. */
+.tile__t{
+  position:absolute;z-index:2;left:clamp(1.1rem,2vw,2rem);bottom:clamp(1.1rem,2.2vw,2rem);
+  right:clamp(1.1rem,2vw,2rem);
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.72rem,.6rem + .38vw,.95rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  line-height:1.85;color:#fff;
+  text-shadow:0 1px 22px rgba(0,0,0,.45);
+}
+
+@media (max-width:760px){
+  .tiles{grid-template-columns:1fr}
+  .tile{aspect-ratio:3/2}
+}
+
+/* ============================ 3 · TESTIMONIALS ============================
+   Same ink ground as the tiles above and the properties below, so the band
+   reads as a pause in one continuous surface rather than a separate panel.
+   Set entirely in Jost — the only long-form sans on the page. */
+/* Given a full screen of its own. The quote is short, so the air around it is
+   doing the work — the section has to feel like somewhere the page stops rather
+   than a band between two others. The padding is a floor for short viewports;
+   above that the grid centers the quote in whatever height is left. */
+.says{
+  background:var(--ink);color:var(--paper);
+  min-height:100svh;
+  display:grid;place-items:center;
+  padding:clamp(7rem,20vh,13rem) var(--gutter);
+}
+.says__inner{max-width:46rem;margin:0 auto;text-align:center}
+
+.says__eyebrow{
+  margin:0;
+  font-family:var(--ui);font-weight:300;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);
+}
+
+/* Fixed height on the stack, absolute slides inside: the section cannot jump
+   when a longer quote comes in, which is what makes the crossfade feel calm. */
+.says__stack{position:relative;margin-top:clamp(2.25rem,5vh,3.5rem)}
+.says__item{
+  position:absolute;inset:0;
+  opacity:0;visibility:hidden;
+  transition:opacity 1s var(--rise),visibility 1s;
+}
+.says__item[data-on]{position:relative;opacity:1;visibility:visible}
+
+blockquote{
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(1.02rem,.88rem + .62vw,1.42rem);
+  line-height:1.75;letter-spacing:.012em;
+  color:var(--t2);
+}
+.says__by{
+  display:block;margin-top:clamp(1.5rem,3.5vh,2.25rem);
+  font-family:var(--ui);font-weight:400;font-style:normal;
+  font-size:.62rem;letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:var(--t3);
+}
+
+.says__count{
+  display:block;margin-top:clamp(2.25rem,5vh,3.25rem);
+  font-family:var(--ui);font-size:.62rem;letter-spacing:.22em;text-indent:.22em;
+  color:var(--t3);font-variant-numeric:tabular-nums;
+}
+
+/* ========================= 4 · FEATURED PROPERTIES =========================
+   One lead, two beneath. Address always visible; the numbers arrive on hover
+   so the resting state stays a photograph rather than a spec sheet. */
+.featured{background:var(--ink);padding:clamp(.5rem,1vw,1.1rem) 0 clamp(4rem,8vh,6.5rem)}
+.featured__grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(.5rem,1vw,1.1rem);
+  padding:0 clamp(.5rem,1vw,1.1rem);
+}
+.prop--lead{grid-column:1 / -1}
+
+.prop{
+  position:relative;display:block;overflow:hidden;background:#1b1f19;
+  aspect-ratio:6/5;
+}
+.prop--lead{aspect-ratio:5/2}
+.prop img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.001);transition:transform 1.2s var(--rise)
+}
+.prop:hover img,.prop:focus-visible img{transform:scale(1.04)}
+.prop:focus-visible{outline:1px solid var(--brass);outline-offset:-1px}
+
+/* resting wash keeps the address readable; the second stop deepens on hover
+   so the numbers have somewhere to land */
+/* At rest the photograph is the point: only enough shadow at the very bottom
+   to hold the address, dying out well before it reaches the middle. */
+.prop::after{
+  content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to top, rgba(6,8,5,.52) 0%, rgba(6,8,5,.12) 22%, rgba(6,8,5,0) 40%);
+  transition:background .6s var(--rise);
+}
+.prop:hover::after,.prop:focus-within::after,.prop:focus-visible::after{
+  background:linear-gradient(to top, rgba(6,8,5,.78) 0%, rgba(6,8,5,.34) 52%, rgba(6,8,5,0) 100%);
+}
+
+/* The badge belongs with the numbers, not with the photograph. At rest a card
+   is an address on a picture; status arrives with price and MLS on hover. */
+.prop__status{
+  position:absolute;z-index:3;top:clamp(1rem,1.6vw,1.5rem);left:clamp(1rem,1.8vw,1.75rem);
+  /* Same plate on the cards. The text-shadow goes: it was doing the work the
+     plate now does, and the two together read as soot. */
+  background:var(--ink);color:var(--w1);
+  font-size:.58rem;font-weight:400;letter-spacing:.3em;text-indent:.3em;
+  text-transform:uppercase;padding:.5rem .95rem .45rem;
+  opacity:0;transform:translateY(-.3rem);
+  transition:opacity .45s var(--rise),transform .45s var(--rise);
+}
+.prop:hover .prop__status,.prop:focus-within .prop__status,.prop:focus-visible .prop__status{
+  opacity:1;transform:none;
+}
+
+/* The block is deliberately narrower than the card. On the lead especially, a
+   rule running the full 1400px would read as a divider across the photograph
+   rather than as underlining these three numbers. */
+.prop__body{
+  position:absolute;z-index:3;left:clamp(1rem,1.8vw,1.75rem);right:clamp(1rem,1.8vw,1.75rem);
+  bottom:clamp(1.1rem,2vw,1.9rem);
+  max-width:31rem;
+}
+.prop__addr{
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(.9rem,.8rem + .48vw,1.22rem);
+  line-height:1.75;color:#fff;text-transform:uppercase;letter-spacing:.15em;
+  text-shadow:0 1px 22px rgba(0,0,0,.5);
+}
+
+/* The detail block is measured in grid rows, not max-height, so it opens to
+   exactly its own height at any width — no guessed magic number to outgrow. */
+.prop__more{
+  display:grid;grid-template-rows:0fr;
+  opacity:0;transition:grid-template-rows .55s var(--rise),opacity .45s var(--rise);
+}
+.prop__more > div{overflow:hidden}
+.prop:hover .prop__more,.prop:focus-within .prop__more,.prop:focus-visible .prop__more{
+  grid-template-rows:1fr;opacity:1;
+}
+
+.prop__facts{
+  display:flex;flex-wrap:wrap;gap:.6rem clamp(1.1rem,2.4vw,2.6rem);
+  margin-top:1.15rem;padding:.85rem 0;
+  border-top:1px solid rgba(182,169,124,.55);
+  border-bottom:1px solid rgba(182,169,124,.55);
+  font-size:.72rem;letter-spacing:.08em;color:#fff;
+}
+.prop__facts .k{color:var(--w2);margin-right:.4rem}
+.prop__cta{
+  display:inline-flex;align-items:center;gap:.5rem;margin-top:1.05rem;
+  font-family:var(--ui);font-weight:400;font-size:.66rem;
+  letter-spacing:.22em;text-indent:.22em;
+  text-transform:uppercase;color:var(--brass);
+}
+.prop__cta svg{width:.5rem;height:.5rem;transition:transform .4s var(--rise)}
+.prop:hover .prop__cta svg{transform:translateX(.25rem)}
+
+@media (max-width:760px){
+  .featured__grid{grid-template-columns:1fr}
+  .prop,.prop--lead{aspect-ratio:4/3}
+  /* nothing to hover on a phone — the numbers are simply always there */
+  .prop__more{grid-template-rows:1fr;opacity:1}
+  .prop__status{opacity:1;transform:none}
+  .prop::after{background:linear-gradient(to top, rgba(6,8,5,.84) 0%, rgba(6,8,5,.42) 52%, rgba(6,8,5,.08) 100%)}
+}
+/* same for any pointer that cannot hover, regardless of width */
+@media (hover:none){
+  .prop__more{grid-template-rows:1fr;opacity:1}
+  .prop__status{opacity:1;transform:none}
+}
+
+/* =========================== 5 · PRIVATE ACCESS ===========================
+   A photographic band to close on, after three ink sections. Copy sits left
+   over the quiet side of the frame; the image carries the right. */
+.access{position:relative;overflow:hidden;background:#1b1f19;
+  min-height:78svh;display:grid;align-items:center}
+.access__media{
+  position:absolute;inset:0;width:100%;height:100%;
+  object-fit:cover;object-position:center;display:block;
+}
+/* Weighted to the left rather than a flat wash — the copy side needs the
+   density, the right side should keep whatever the photograph is doing. */
+.access__scrim{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    linear-gradient(to right, rgba(6,8,5,.86) 0%, rgba(6,8,5,.66) 38%, rgba(6,8,5,.24) 72%, rgba(6,8,5,.12) 100%),
+    linear-gradient(to bottom, rgba(6,8,5,.30) 0%, rgba(6,8,5,0) 40%);
+}
+.access__inner{
+  position:relative;z-index:2;
+  max-width:min(38rem,86%);
+  padding:clamp(7rem,18vh,12rem) 0 clamp(7rem,18vh,12rem) var(--gutter);
+}
+.access h2{
+  /* Was a 2.25rem headline; a section label like every other one now. No
+     text-align here on purpose: .access__inner is a left-aligned block, and a
+     centred label over left-aligned prose sits off its axis. */
+  margin:0 0 clamp(1.5rem,3vh,2.1rem);
+  font-family:var(--ui);font-weight:400;
+  /* Larger than the other labels on purpose. This one sits directly above the
+     Eden Grove wordmark in the footer, which is 20px of the display serif at
+     .4em, and at label size it was being outweighed by the thing beneath it.
+     Same face, same tracking, same weight as the other labels — only the size
+     moves. 22px at desktop, so it carries the section rather than sitting
+     level with the mark below it. */
+  font-size:clamp(.95rem,.82rem + .6vw,1.38rem);
+  letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--w1);line-height:1.5;
+}
+.access p{
+  margin:clamp(1.7rem,3.6vh,2.4rem) 0 0;
+  font-family:var(--ui);font-weight:300;font-size:clamp(.85rem,.8rem + .2vw,.98rem);
+  line-height:1.75;color:var(--w2);max-width:34ch;
+}
+
+/* Underline, not a box. A boxed field would be the only hard rectangle on the
+   page apart from the brass button it sits beside. */
+.access__form{
+  display:flex;flex-wrap:wrap;gap:.9rem;align-items:stretch;
+  margin-top:clamp(2.9rem,6.5vh,4.2rem);
+}
+.access__form input{
+  flex:1 1 17rem;min-width:0;
+  background:none;border:0;border-bottom:1px solid var(--w3);
+  color:#fff;font-family:var(--ui);font-weight:300;font-size:.92rem;
+  padding:.85rem .2rem;
+  transition:border-color .4s var(--rise);
+}
+.access__form input::placeholder{color:var(--w3)}
+.access__form input:focus{outline:none;border-bottom-color:var(--brass)}
+
+.access__btn{
+  flex:0 0 auto;background:none;border:1px solid var(--w2);color:var(--w1);
+  font-family:var(--ui);font-weight:400;
+  font-size:.66rem;letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;
+  padding:.95rem 2.1rem;
+  transition:background-color .4s var(--rise),border-color .4s var(--rise),color .4s var(--rise);
+}
+.access__btn:hover,.access__btn:focus-visible{background:var(--brass);border-color:var(--brass);color:#14170F;outline:none}
+
+.access__terms{
+  margin-top:1.9rem;font-size:.68rem;line-height:1.7;
+  color:var(--w3);max-width:40ch;
+}
+.access__terms a{border-bottom:1px solid var(--wline)}
+.access__terms a:hover{color:#fff;border-bottom-color:#fff}
+
+.access__note{
+  margin-top:1.1rem;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--brass);opacity:0;transition:opacity .4s var(--rise);
+}
+.access__note[data-on]{opacity:1}
+
+@media (max-width:760px){
+  .access__inner{max-width:none;padding-right:var(--gutter)}
+  .access__scrim{background:linear-gradient(to bottom, rgba(6,8,5,.72) 0%, rgba(6,8,5,.80) 100%)}
+  .access__btn{flex:1 1 100%;text-align:center}
+}
+
+/* =============================== 6 · FOOTER ===============================
+   Same ink as everything above it. The only separation is a hairline, so the
+   page ends rather than switching to a different surface. */
+.foot{
+  background:var(--ink);color:var(--paper);
+  border-top:1px solid var(--line);
+  /* rhythm in rem, not vh — a footer's spacing should follow its type, not the
+     height of the window it happens to be shown in */
+  padding:clamp(3.5rem,7vw,6rem) var(--gutter) clamp(2rem,4vw,2.75rem);
+}
+.foot__inner{max-width:78rem;margin:0 auto}
+
+.foot__mark{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(1rem,.8rem + .5vw,1.3rem);
+  letter-spacing:.4em;text-indent:.4em;text-transform:uppercase;
+  color:var(--paper);display:inline-block;
+}
+
+.foot__cols{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(2rem,4vw,4rem);
+  margin-top:clamp(2.25rem,4.5vw,3.5rem);
+}
+.foot__h{
+  margin:0 0 1.9rem;
+  font-family:var(--ui);font-weight:400;
+  font-size:.58rem;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
+  color:var(--t3);
+}
+.foot__list{list-style:none;margin:0;padding:0}
+.foot__list li{margin:0 0 1.05rem}
+.foot__list li:last-child{margin-bottom:0}
+.foot__list a,.foot__list span{
+  font-family:var(--ui);font-weight:300;font-size:.86rem;line-height:1.5;
+  color:var(--t2);
+}
+/* the rule appears under the word rather than being there and changing color */
+.foot__list a{position:relative;transition:color .35s var(--rise)}
+.foot__list a::after{
+  content:"";position:absolute;left:0;right:0;bottom:-2px;height:1px;
+  background:currentColor;transform:scaleX(0);transform-origin:left;
+  transition:transform .4s var(--rise);
+}
+.foot__list a:hover,.foot__list a:focus-visible{color:#fff;outline:none}
+.foot__list a:hover::after,.foot__list a:focus-visible::after{transform:scaleX(1)}
+
+.foot__bar{
+  display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;
+  gap:1.25rem;
+  margin-top:clamp(1.5rem,3vw,2.25rem);padding-top:clamp(1.4rem,2.6vw,1.9rem);
+  border-top:1px solid var(--line);
+}
+
+/* ---- the firm sign-off ---------------------------------------------------
+   TREC 1260-02-.12 wants the firm name and firm telephone on every page. The
+   mark carries the name; the line under it carries the number. Sized so the
+   Compass cap height sits a shade above the EDEN GROVE cap height above it,
+   the same relationship the opening lockup uses. */
+.foot__firm{
+  margin-top:clamp(2.25rem,4.5vw,3.5rem);
+  padding-top:clamp(1.6rem,3vw,2.2rem);
+  border-top:1px solid var(--line);
+  display:flex;align-items:center;flex-wrap:wrap;
+  gap:clamp(.9rem,2.4vw,1.8rem);
+}
+.foot__compass{
+  display:block;width:auto;height:clamp(.95rem,.75rem + .5vw,1.25rem);
+  opacity:.92;flex:none;
+}
+.foot__firmline{
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:.68rem;line-height:1.7;letter-spacing:.1em;
+  color:var(--t3);
+}
+.foot__firmline a{
+  color:inherit;border-bottom:1px solid var(--line);
+  white-space:nowrap;      /* a telephone number must never break mid-digits */
+}
+.foot__firmline a:hover,.foot__firmline a:focus-visible{color:#fff;outline:none}
+@media (max-width:560px){
+  .foot__firm{flex-direction:column;align-items:flex-start;gap:.9rem}
+}
+.foot__fine{
+  margin:0;font-size:.66rem;letter-spacing:.1em;
+  color:var(--t3);
+}
+.foot__barleft{
+  display:flex;align-items:center;flex-wrap:wrap;
+  gap:clamp(.9rem,2.4vw,1.7rem);
+}
+/* The dashboard is internal and password-gated. A quiet line beside the
+   copyright is the right weight for it: agents need the door, clients never do,
+   and an internal tool has no business in the navigation of a marketing site.
+   rel=nofollow because the dashboard's own robots.txt is Disallow: / -- no
+   sense pointing crawlers at a door they are already told not to open. */
+.foot__agent{
+  font-size:.66rem;letter-spacing:.1em;
+  color:var(--t3);
+  border-bottom:1px solid var(--line);
+  transition:color .35s var(--rise),border-color .35s var(--rise);
+}
+.foot__agent:hover,.foot__agent:focus-visible{
+  color:#fff;border-bottom-color:var(--t3);outline:none;
+}
+
+/* No circles — the glyph is the whole control. Hit area comes from padding,
+   which keeps them tappable without drawing a button around each one. */
+.social{display:flex;align-items:center;gap:1.5rem}
+.social a{
+  display:grid;place-items:center;padding:.4rem;margin:-.4rem;
+  color:var(--t3);
+  transition:color .35s var(--rise);
+}
+.social a:hover,.social a:focus-visible{color:#fff;outline:none}
+.social svg{width:1.05rem;height:1.05rem;display:block;fill:currentColor}
+
+@media (max-width:760px){
+  .foot__cols{grid-template-columns:1fr;gap:2rem}
+  .foot__bar{flex-direction:column;align-items:flex-start;gap:1rem}
+  /* Eight sitemap links stacked one per line ran the whole height of a phone
+     screen on their own. Two columns, half the height, same clarity. */
+  .foot__cols nav .foot__list{
+    columns:2;column-gap:1.25rem;
+  }
+  .foot__cols nav .foot__list li{
+    margin-bottom:.8rem;break-inside:avoid;
+  }
+  .foot__cols .foot__list li{margin-bottom:.8rem}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *{animation:none !important;transition-duration:.01ms !important}
+  .reveal{opacity:1}
+}
+
+/* ==========================================================================
+   PROPERTY PAGE — template
+   One file per property. Everything property-specific is marked PROPERTY:
+   in the markup below; the CSS never needs touching.
+   ========================================================================== */
+.p-hero{position:relative;height:100svh;min-height:36rem;overflow:hidden}
+/* PROPERTY: this photograph is a 2:1 panorama. On a portrait viewport cover
+   keeps less than a quarter of its width, and dead centre lands on the join
+   between the arch and the gable to its left - the entry gets cut in half.
+   Leaning the window to 65% puts the arch, the door and the steps in the
+   middle of the frame. Landscape viewports are untouched. */
+@media (max-aspect-ratio:1/1){
+  .p-hero .hero__media{object-position:65% 50%}
+}
+/* PROPERTY: the shared scrim was cut for a dusk photograph. This one is
+   bright midday stone, and the address sat on it at 3.0:1 on a phone and
+   2.2:1 at the worst tenth on a desktop - under the 4.5:1 floor and, in
+   places, invisible. Deepened at the foot and washed in from the left,
+   where the type is. Measured after: 8.5:1 desktop, 6.3:1 phone at the
+   worst tenth, on every line in the block. The roof, the trees and the sky
+   are untouched - the weight is all below the eaves. */
+.p-hero .hero__scrim{
+  background:
+    linear-gradient(to bottom, rgba(8,10,7,.55) 0%, rgba(8,10,7,.22) 14%, rgba(8,10,7,0) 34%),
+    linear-gradient(to right,  rgba(8,10,7,.42) 0%, rgba(8,10,7,.10) 40%, rgba(8,10,7,0) 62%),
+    linear-gradient(to top,    rgba(8,10,7,.80) 0%, rgba(8,10,7,.44) 32%, rgba(8,10,7,0) 64%);
+}
+/* 92svh left a sliver of the next section showing, which reads as a band
+   rather than as a picture you have to scroll past. */
+.p-hero__body{
+  position:absolute;inset:0;z-index:10;display:grid;align-items:end;
+  padding:0 var(--gutter) clamp(3rem,8vh,5.5rem);
+}
+.p-hero__status{
+  /* A plate in the canopy green rather than a champagne sticker: the status
+     gets a container without shouting. inline-block on purpose — as a block
+     the plate would run the whole column. White on --ink is 14.7:1. */
+  display:inline-block;background:var(--ink);color:var(--w1);
+  font-size:.58rem;font-weight:400;letter-spacing:.34em;text-indent:.34em;
+  text-transform:uppercase;padding:.5rem .95rem .45rem;margin-bottom:1.3rem;
+}
+/* One scale for every hero headline on the site. Four lived here before —
+   3rem on the banners, 2.7rem on contact, 2.6rem on sellers and buyers,
+   2.35rem on the property pages — all doing the same job at four sizes.
+   Smaller, tracked wider, on a longer line: it reads as a masthead rather
+   than a headline, which is the register the email set. */
+.p-hero h1{
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(1.1rem,.88rem + .92vw,1.72rem);
+  line-height:1.6;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+  color:#fff;text-shadow:0 1px 26px rgba(0,0,0,.5);
+}
+.p-hero__price{
+  margin:1.1rem 0 0;font-size:clamp(.9rem,.84rem + .3vw,1.1rem);
+  letter-spacing:.1em;color:#fff;text-shadow:0 1px 20px rgba(0,0,0,.5);
+}
+/* An outline rather than a filled block. A solid slab of colour is the
+   loudest thing a quiet page can contain, and the email never uses one.
+   The fill is the reward for reaching the button, not its resting state.
+   Hover carries ink on champagne; white on champagne measured 1.94:1. */
+.p-hero__cta{
+  display:inline-flex;align-items:center;gap:.6rem;margin-top:2rem;
+  background:none;border:1px solid var(--w2);color:var(--w1);
+  font-weight:400;font-size:.66rem;letter-spacing:.24em;text-indent:.24em;
+  text-transform:uppercase;padding:.95rem 2.1rem;
+  transition:background-color .4s var(--rise),border-color .4s var(--rise),color .4s var(--rise);
+}
+.p-hero__cta:hover{background:var(--brass);border-color:var(--brass);color:#14170F}
+
+/* ---- shared section furniture ---- */
+.p-sec{background:var(--ink);padding:clamp(5rem,11vh,8.5rem) var(--gutter)}
+.p-sec--tight{padding-top:clamp(3rem,7vh,5.5rem)}
+/* Two tight sections in a row are one idea in two parts — specification and
+   amenities, say. Full padding on both sides of the join left a bottom and a
+   top stacked together, which read as a gap in the page rather than a pause
+   between two short runs. Halved where they meet, untouched everywhere else. */
+.p-sec--tight + .p-sec--tight{padding-top:clamp(2rem,4.5vh,3.2rem)}
+/* and the other side of the same join: the bottom padding is the larger of
+   the two, so tightening only the top left most of the gap in place. :has()
+   is what makes this expressible — the section has to know what follows it.
+   Where it is unsupported the rule is dropped and the old spacing stands. */
+.p-sec--tight:has(+ .p-sec--tight){padding-bottom:clamp(2rem,4.5vh,3.2rem)}
+/* Every section opens the same way: an inset hairline, air, one small
+   centered label. The label IS the heading, which is what makes the rhythm
+   hold from page to page. Qualified past .p-sec h2 — the two tie on
+   specificity, and without this the label silently renders as a headline. */
+.p-sec h2.p-eyebrow,.p-eyebrow{
+  margin:0 auto clamp(1.5rem,3vh,2.1rem);
+  font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);text-align:center;line-height:1.6;
+}
+.p-sec{position:relative}
+/* Nothing divides the sections now — no rule, no mark. Space does it, so the
+   padding is even top and bottom and more generous than it was when a mark
+   was carrying part of the work. .p-sec keeps position:relative: it is cheap,
+   and removing it would risk anything inside that is absolutely positioned. */
+.p-sec h2,.p-plan h2{
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(1.25rem,1rem + 1.15vw,1.95rem);
+  line-height:1.45;letter-spacing:.22em;text-indent:.22em;
+  text-transform:uppercase;color:#fff;
+}
+.p-lede{
+  max-width:52rem;margin:0 auto;text-align:center;
+}
+/* 44rem, the same measure the narrative uses. It was 48ch, and a ch is the
+   width of a zero — about half an em in this face — so 48ch landed near
+   33rem and set these paragraphs nine centred lines deep. The outer .p-lede
+   said 52rem and never got a say, because the inner cap always won. */
+.p-lede p{
+  margin:clamp(1.4rem,3vh,2rem) auto 0;max-width:44rem;
+  font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
+  line-height:1.95;color:var(--t2);
+}
+/* The narrative runs long on a real listing. Centered prose stops working past
+   a couple of sentences, so the story block sets left with a proper measure
+   while the eyebrow and heading above it stay centered. */
+.p-story{max-width:44rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0}
+.p-story p{
+  margin:0 0 1.5rem;text-align:left;
+  font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
+  line-height:1.95;color:var(--t2);
+}
+.p-story p:last-child{margin-bottom:0}
+
+/* The specification, set as the email sets it: one line, middot separated,
+   with the registry detail demoted to a second, quieter line beneath. Nine
+   bordered cells answered the same question and took ten times the room. */
+/* Flex rather than a plain line: the groups are held together with hard
+   spaces and there is no whitespace around the separators, so as one text run
+   the line could not break and overflowed a 360px screen by 46px. As flex
+   items each group wraps on its own, and the middots travel with them. */
+.p-specs{
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;
+  max-width:46rem;margin:0 auto;text-align:center;
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.66rem,.6rem + .3vw,.88rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:var(--t1);line-height:2.3;
+}
+.p-specs i{font-style:normal;color:var(--warm-rule);padding:0 clamp(.45em,1.6vw,.75em)}
+@media (max-width:420px){
+  .p-specs{letter-spacing:.14em;text-indent:.14em}
+}
+.p-specs--fine{
+  margin:1.5rem auto 0;font-size:.6rem;letter-spacing:.18em;text-indent:.18em;
+  color:var(--warm);line-height:2;
+}
+
+/* ---- amenities ---- */
+.p-amen{
+  /* Two left-aligned columns centred as a block put the list's optical centre
+     well left of the label above it, which is what read as an offset. Set as
+     one centred run it sits on the page's axis, and it echoes the
+     specification line rather than inventing a second gesture. */
+  /* Spacing, not separators. A middot between flex items belongs to the item
+     that follows it, so the moment the run wraps the new line opens with an
+     orphaned dot. Space cannot wrap to the wrong place. */
+  display:flex;flex-wrap:wrap;justify-content:center;align-items:baseline;
+  column-gap:clamp(1.4rem,3.2vw,2.6rem);row-gap:.1rem;
+  max-width:40rem;margin:0 auto;list-style:none;padding:0;
+}
+.p-amen li{
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.66rem,.6rem + .28vw,.82rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:var(--t1);line-height:2.5;
+}
+
+/* ---- galleries, one run per room ---- */
+.p-gal{margin-top:clamp(2.5rem,6vh,4rem)}
+.p-gal__note{
+  margin:1.4rem auto 0;font-weight:300;font-size:.72rem;
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:var(--t3);
+}
+.p-gal__head{
+  display:flex;align-items:baseline;gap:1.2rem;
+  padding:0 clamp(.5rem,1vw,1.1rem);margin-bottom:1.1rem;
+}
+.p-gal__head span{
+  font-size:.6rem;letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
+  color:var(--t3);
+}
+.p-gal__head i{flex:1;height:1px;background:var(--line)}
+.p-gal__row{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(.35rem,.7vw,.8rem);padding:0;     /* edge to edge, no side rail */
+}
+/* A row with only two images gets two wider cards instead of a gap. */
+.p-gal__row--2{grid-template-columns:repeat(2,1fr)}
+.p-gal__row--1{grid-template-columns:1fr}
+/* One exterior, full width. 3:2 rather than a letterbox — the rendering is
+   4:3.3 and a wider slot would crop the roofline and the lawn off it. */
+.p-gal__row--1 .p-shot{aspect-ratio:3/2}
+.p-shot{position:relative;overflow:hidden;aspect-ratio:4/3;background:#1b1f19;display:block}
+/* A single frame on its own row earns a cinematic crop; three across stay 4:3
+   so the row does not become a letterbox strip. */
+.p-gal__row--1 .p-shot{aspect-ratio:21/9}   /* no min-height: it would
+   derive the width from the height and run the frame off the page */
+.p-gal__row--2 .p-shot{aspect-ratio:3/2}
+.p-shot img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transform:scale(1.001);transition:transform 1.1s var(--rise);
+}
+.p-shot:hover img{transform:scale(1.04)}
+@media (max-width:760px){ .p-gal__row{grid-template-columns:1fr} }
+
+/* ---- floor plan: the one light panel, because a plan needs paper ---- */
+.p-plan{background:var(--paper);padding:clamp(3.5rem,8vh,6rem) var(--gutter)}
+.p-plan .p-eyebrow{color:#8a7f57}
+.p-plan h2{color:var(--ink)}
+/* The two sheets are different shapes, so each sits on its own white card of
+   equal height with the plan centered — otherwise one floats and one sinks. */
+.p-plans{
+  max-width:72rem;margin:clamp(2rem,5vh,3rem) auto 0;
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:clamp(1.5rem,4vw,2.5rem);align-items:stretch;
+}
+.p-plan__sheet{
+  margin:0;background:#fff;padding:clamp(.9rem,2vw,1.6rem);
+  display:grid;place-items:center;
+}
+.p-plan__sheet a{display:block;width:100%}
+.p-plan__sheet img{max-width:100%;height:auto;display:block;margin:0 auto}
+@media (max-width:760px){ .p-plans{grid-template-columns:1fr} }
+
+/* ---- the map ----
+   A keyless Google embed, desaturated so it sits inside the palette rather
+   than shouting color halfway down a dark page. Pointer or keyboard focus
+   restores full color, because a map you are actually reading should be a
+   map. The iframe is lazy — it costs nothing until it is scrolled to. */
+.p-map{max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0}
+.p-map__addr{
+  margin:0 0 1.3rem;text-align:center;font-weight:300;
+  font-size:clamp(.78rem,.74rem + .18vw,.92rem);
+  letter-spacing:.22em;text-indent:.22em;text-transform:uppercase;
+  color:var(--t2);
+}
+.p-map__frame{
+  position:relative;aspect-ratio:16/9;overflow:hidden;
+  border:1px solid rgba(182,169,124,.28);background:#1b1f19;
+}
+.p-map__frame iframe{
+  width:100%;height:100%;border:0;display:block;
+  filter:grayscale(1) contrast(.9) brightness(.94);
+  transition:filter .8s var(--rise);
+}
+.p-map__frame:hover iframe,
+.p-map__frame:focus-within iframe{filter:none}
+.p-map__links{
+  margin:1.5rem 0 0;display:flex;justify-content:center;
+  gap:clamp(1.5rem,4vw,3rem);flex-wrap:wrap;
+}
+@media (max-width:760px){ .p-map__frame{aspect-ratio:4/3} }
+@media (prefers-reduced-motion:reduce){ .p-map__frame iframe{transition:none} }
+
+/* ---- behind the build ----
+   Developer, builder, architect, designer. Four square slots that take either
+   a portrait or a logo — a lot of builders would rather show the mark. */
+.p-build__grid{
+  max-width:80rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:clamp(1.5rem,2.4vw,2.2rem);align-items:start;
+}
+/* These cards read as short editorial entries rather than badges, so they set
+   left — a paragraph of ragged-center text in a 290px column is hard work. */
+.p-partner{text-align:left}
+.p-partner__photo{
+  aspect-ratio:1;overflow:hidden;margin:0 0 clamp(1.1rem,2.4vh,1.5rem);
+  background:#1b1f19;border:1px solid rgba(182,169,124,.22);
+}
+.p-partner__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.p-partner__role{
+  margin:0;font-weight:400;font-size:.55rem;
+  letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--brass);
+}
+.p-partner__name{
+  margin:.75rem 0 0;font-weight:300;font-size:.92rem;
+  letter-spacing:.18em;text-indent:.18em;text-transform:uppercase;color:#fff;
+}
+/* Role and name stay centered; the bio sets left. A paragraph of ragged-center
+   text in a 280px column is hard work to read. */
+.p-partner p{
+  margin:.9rem 0 0;font-weight:300;font-size:.82rem;line-height:1.8;
+  color:var(--t2);text-align:left;
+}
+@media (max-width:900px){ .p-build__grid{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:520px){ .p-build__grid{grid-template-columns:1fr} }
+/* Three roles instead of four — narrower grid so the row stays centered and the
+   cards keep their proportions rather than leaving a gap on the right. */
+.p-build__grid--3{max-width:56rem;grid-template-columns:repeat(3,1fr)}
+@media (max-width:900px){ .p-build__grid--3{grid-template-columns:repeat(2,1fr)} }
+@media (max-width:520px){ .p-build__grid--3{grid-template-columns:1fr} }
+/* One firm covering builder, architect and interior design — a single card
+   marooned in a three-column grid looks like two are missing, so the solo case
+   runs wide instead: portrait or mark on the left, the copy beside it. */
+.p-build--solo{
+  max-width:56rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);
+  gap:clamp(1.8rem,4vw,3.2rem);align-items:start;
+}
+@media (max-width:760px){ .p-build--solo{grid-template-columns:1fr} }
+
+/* A builder's bio can run three paragraphs while an architect's runs one, so
+   everything past the first paragraph folds away. grid-template-rows animates
+   from 0fr to 1fr, which opens without clipping descenders the way max-height
+   does. */
+.p-partner__more{
+  display:grid;grid-template-rows:0fr;
+  transition:grid-template-rows .5s var(--rise);
+}
+.p-partner__more > div{overflow:hidden}
+.p-partner__more[data-on]{grid-template-rows:1fr}
+.p-partner__toggle{
+  margin-top:1rem;padding:0;border:0;background:none;cursor:pointer;
+  font-family:var(--ui);font-weight:300;font-size:.58rem;
+  letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
+  color:var(--brass);transition:color .3s var(--rise);
+}
+.p-partner__toggle:hover,.p-partner__toggle:focus-visible{color:#fff;outline:none}
+@media (prefers-reduced-motion:reduce){ .p-partner__more{transition:none} }
+
+/* ---- agents ---- */
+.p-agents{
+  max-width:50rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(14rem,1fr));
+  gap:clamp(2rem,5vw,3.5rem);
+}
+/* A single agent should not inherit the width of two. */
+.p-agents--1{max-width:20rem}
+.p-agent{text-align:center}
+.p-agent__photo{
+  aspect-ratio:1;overflow:hidden;margin:0 0 clamp(1.4rem,3vh,2rem);
+  background:#1b1f19;border:1px solid rgba(182,169,124,.22);
+}
+.p-agent__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.p-agent__name{
+  margin:0;font-weight:300;font-size:1rem;letter-spacing:.2em;text-indent:.2em;
+  text-transform:uppercase;color:#fff;
+}
+.p-agent ul{list-style:none;margin:1.2rem 0 0;padding:0}
+.p-agent li{margin:0 0 .55rem;font-size:.86rem;color:var(--t2)}
+.p-agent a:hover{color:#fff}
+
+/* ---- inquiry ---- */
+.p-form{
+  max-width:38rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+  display:grid;gap:1.4rem;
+}
+.p-form input,.p-form textarea{
+  width:100%;background:none;border:0;border-bottom:1px solid var(--line);
+  color:#fff;font-family:var(--ui);font-weight:300;font-size:.92rem;
+  padding:.85rem .2rem;transition:border-color .4s var(--rise);
+}
+.p-form textarea{resize:vertical;min-height:5rem}
+.p-form input::placeholder,.p-form textarea::placeholder{color:var(--t3)}
+.p-form input:focus,.p-form textarea:focus{outline:none;border-bottom-color:var(--brass)}
+.p-form button{
+  justify-self:start;background:none;border:1px solid var(--t2);color:var(--t1);font-weight:400;
+  font-size:.66rem;letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;
+  padding:.95rem 2.1rem;transition:background-color .4s var(--rise),border-color .4s var(--rise),color .4s var(--rise);
+}
+.p-form button:hover{background:var(--brass);border-color:var(--brass);color:#14170F}
+.p-note{
+  margin:1.2rem 0 0;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--brass);opacity:0;transition:opacity .4s var(--rise);
+}
+.p-note[data-on]{opacity:1}
+
+/* ---- film, wherever a still goes ----------------------------------------
+   Same box, same crop, same hover. Drop <slug>-n.webm + .mp4 beside the jpg
+   and swap the tag; nothing else has to change. Muted, looped and playsinline
+   so it behaves as moving wallpaper rather than as a video player. */
+.p-shot video,.p-hero__media video,.hero__media video{
+  width:100%;height:100%;object-fit:cover;display:block;
+}
+@media (prefers-reduced-motion:reduce){
+  .p-shot video,.p-hero__media video{animation:none}
+}
+
+
+/* ================================= FILM ==================================
+   The film lives on YouTube. It loads on click, not on arrival: until
+   somebody asks for it, no third-party script and no cookie.
+
+   This one is a Short, so the frame is portrait rather than 16/9 and the
+   column is narrow enough that a phone-shaped video does not run the length
+   of a desktop screen. There is no poster still: every photograph of this
+   house is a rendering of the finished estate and the film is the frame
+   going up, so a rendering would be a picture of the wrong house. The
+   plate is the section's own ground until somebody presses play. */
+.p-film{max-width:58rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0}
+.p-film__frame{position:relative;aspect-ratio:16/9;background:#1b1f19;overflow:hidden}
+.p-film__frame img,.p-film__frame iframe{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}
+.p-film__play{
+  position:absolute;inset:0;z-index:2;display:grid;place-items:center;
+  border:0;background:rgba(20,23,15,.3);cursor:pointer;color:#fff;
+  transition:background .3s var(--rise)}
+.p-film__play:hover,.p-film__play:focus-visible{background:rgba(20,23,15,.14);outline:none}
+.p-film__play span{
+  display:grid;place-items:center;width:4.2rem;height:4.2rem;border-radius:50%;
+  border:1px solid var(--w2);background:rgba(20,23,15,.32);
+  transition:border-color .3s var(--rise),background .3s var(--rise)}
+.p-film__play:hover span{border-color:var(--brass);background:rgba(20,23,15,.5)}
+.p-film__play svg{width:1.15rem;height:1.15rem;fill:currentColor;margin-left:.18rem}
+/* The caption is the second way in. A visitor who does not read a bare
+   circle as a control reads words, so the line under the frame is a button
+   too and says what the film is rather than naming the file. The rule under
+   it is the brass hairline the rest of the site uses for a live link. */
+.p-film__cap{
+  display:flex;align-items:center;justify-content:center;gap:.7rem;
+  width:fit-content;margin:1.15rem auto 0;padding:0 0 .55rem;
+  border:0;background:none;cursor:pointer;
+  border-bottom:1px solid var(--brass);
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.74rem,.7rem + .18vw,.86rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:var(--t1);
+  transition:color .4s var(--rise),border-color .4s var(--rise)}
+.p-film__cap svg{
+  width:.62rem;height:.62rem;fill:currentColor;flex:none;
+  color:var(--brass);transition:transform .4s var(--rise)}
+.p-film__cap:hover,.p-film__cap:focus-visible{color:var(--brass);outline:none}
+.p-film__cap:hover svg{transform:translateX(.22rem)}
+
+@media (prefers-reduced-motion:reduce){
+  .p-film__play,.p-film__play span,.p-film__cap,.p-film__cap svg{transition:none}
+}
+</style>
+<style>
+/* ====================== CONSTRUCTION EXCELLENCE =========================
+   A log, not a listing. It is written to be added to once a week, so every
+   entry is the same block and the newest sits at the top. The template to
+   copy lives in a comment directly above the first entry.
+
+   No photograph behind the title. Every image of this house is a rendering
+   of what it will be, and this page is the record of it actually being
+   built, so the band is ink until there is site photography to put there.
+   ===================================================================== */
+.cx-band{
+  position:relative;background:var(--ink);
+  padding:calc(var(--bar-h,5.5rem) + clamp(4rem,9vh,7rem)) var(--gutter) clamp(3rem,7vh,5rem);
+  text-align:center;
+}
+.cx-band__where{
+  margin:0 0 1.4rem;font-family:var(--ui);font-weight:300;
+  font-size:clamp(.6rem,.56rem + .16vw,.68rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:var(--brass);
+}
+.cx-band h1{
+  margin:0;font-family:var(--ui);font-weight:300;color:var(--w1);
+  font-size:clamp(1.1rem,.88rem + .92vw,1.72rem);
+  line-height:1.6;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+}
+.cx-band__lede{
+  max-width:40rem;margin:clamp(1.4rem,3vh,2rem) auto 0;
+  font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
+  line-height:1.95;color:var(--w2);
+}
+
+/* ---- the log ---- */
+.cx-log{max-width:52rem;margin:0 auto;padding:0 var(--gutter)}
+.cx-entry{padding:clamp(2.6rem,6vh,4.2rem) 0;border-top:1px solid var(--warm-rule)}
+.cx-entry:first-of-type{border-top:0;padding-top:0}
+.cx-entry__date{
+  margin:0 0 .9rem;font-family:var(--ui);font-weight:300;
+  font-size:clamp(.6rem,.56rem + .16vw,.68rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:var(--brass);
+}
+.cx-entry__title{
+  margin:0;font-family:var(--ui);font-weight:300;color:var(--t1);
+  font-size:clamp(1rem,.9rem + .5vw,1.35rem);
+  line-height:1.4;letter-spacing:.16em;text-indent:.16em;text-transform:uppercase;
+}
+.cx-entry__body{
+  margin:clamp(1rem,2.4vh,1.5rem) 0 0;max-width:44rem;
+  font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
+  line-height:1.95;color:var(--t2);
+}
+/* One, two or three photographs. One runs full width; two and three share
+   the row. Nothing to configure: the count decides. */
+.cx-shots{
+  display:grid;gap:clamp(.5rem,1.2vw,.9rem);
+  margin:clamp(1.4rem,3vh,2rem) 0 0;
+  grid-template-columns:1fr;
+}
+.cx-shots--2{grid-template-columns:1fr 1fr}
+.cx-shots--3{grid-template-columns:repeat(3,1fr)}
+.cx-shots a{display:block;overflow:hidden;background:#1b1f19}
+.cx-shots img{
+  width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:3/2;
+  transform:scale(1.001);transition:transform 1.2s var(--rise)}
+.cx-shots a:hover img{transform:scale(1.04)}
+@media (max-width:620px){
+  .cx-shots--2,.cx-shots--3{grid-template-columns:1fr}
+}
+
+/* ---- nothing logged yet ---- */
+.cx-empty{
+  padding:clamp(2.4rem,6vh,3.6rem) 0;text-align:center;
+  font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
+  line-height:1.95;color:var(--t3);
+}
+
+/* ---- back to the listing ---- */
+.cx-back{
+  display:flex;align-items:center;justify-content:center;gap:.7rem;
+  width:fit-content;margin:0 auto;padding:0 0 .55rem;
+  border-bottom:1px solid var(--brass);
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.74rem,.7rem + .18vw,.86rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:var(--t1);text-decoration:none;
+  transition:color .4s var(--rise)}
+.cx-back:hover,.cx-back:focus-visible{color:var(--brass);outline:none}
+.cx-back svg{width:.62rem;height:.62rem;fill:currentColor;color:var(--brass);
+  transform:scaleX(-1);flex:none}
+</style>
+<link rel="canonical" href="https://edengrovetennessee.com/property/715-davis/construction/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Construction Excellence | 715 Davis Dr">
+<meta property="og:description" content="A weekly record of 715 Davis Dr going up in Brentwood, room by room, built by Liebo Builders.">
+<meta property="og:url" content="https://edengrovetennessee.com/property/715-davis/construction/">
+<meta property="og:image" content="https://edengrovetennessee.com/media/og-card.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Construction Excellence | 715 Davis Dr">
+<meta name="twitter:description" content="A weekly record of 715 Davis Dr going up in Brentwood, room by room, built by Liebo Builders.">
+<meta name="twitter:image" content="https://edengrovetennessee.com/media/og-card.jpg">
+
+</head>
+<body>
+
+<!-- ==========================================================================
+     715 Davis Dr - Construction Excellence
+
+     A weekly log of the build. Ryan, 29 Oct 2026: "itll be updated weekly
+     and itll start to highlight each room."
+
+     TO ADD A WEEK: copy the ENTRY TEMPLATE below and paste it directly under
+     the <div class="cx-log"> line, above whatever is currently first. Newest
+     at the top is the whole point - a visitor should not have to scroll a
+     year to see what happened this week.
+
+     Photographs go in media/ with a  dvc-  prefix (dv- is the listing's
+     renderings; these are the site). Name them by date so they sort:
+     dvc-2026-11-05-framing-1.jpg.
+     ========================================================================== -->
+
+<section class="cx-band" id="top">
+  <header class="bar">
+    <div class="bar__lock">
+      <a class="mark reveal" href="../../../index.html" aria-label="Eden Grove — home">Eden&nbsp;Grove</a>
+      <i class="bar__bar" aria-hidden="true"></i>
+      <img class="bar__compass reveal" src="../../../media/compass-white.png"
+           alt="Compass" width="1586" height="218" decoding="async">
+    </div>
+
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="nav">
+      <i></i><i></i>
+    </button>
+
+    <nav class="nav reveal" id="nav" aria-label="Primary">
+      <div class="nav__item has-sub">
+        <a class="nav__link" href="../../../properties.html" aria-expanded="false" aria-haspopup="true">
+          Residential<i class="caret" aria-hidden="true"></i>
+        </a>
+        <div class="sub">
+          <a href="../../../properties.html">Properties</a>
+          <a href="../../../sellers.html">Sellers</a>
+          <a href="../../../buyers.html">Buyers</a>
+          <a href="../../../neighborhoods.html">Neighborhoods</a>
+          <a href="../../../marketing.html">Marketing</a>
+          <a href="../../../past-transactions.html">Past Transactions</a>
+        </div>
+      </div>
+      <div class="nav__item">
+        <a class="nav__link" href="../../../team.html">Team</a>
+      </div>
+      <div class="nav__item">
+        <a class="nav__link" href="../../../contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <p class="cx-band__where">715 Davis Dr &middot; Brentwood</p>
+  <h1>Construction Excellence</h1>
+  <p class="cx-band__lede">A record of the house going up, added to each week.
+     As rooms are finished they are taken one at a time, so what you are
+     looking at is the build itself rather than a drawing of it.</p>
+</section>
+
+<!-- ================================= FILM =================================
+     The progress film, same component and same behaviour as the listing
+     page: click to load through youtube-nocookie, nothing requested from
+     Google before that. -->
+<section class="p-sec p-sec--tight" id="film" hidden aria-labelledby="film-h">
+  <h2 class="p-eyebrow" id="film-h">Film</h2>
+  <div class="p-film">
+    <div class="p-film__frame">
+      <!-- POSTER: drop a still from the film in as media/dv-film-poster.jpg
+           and uncomment the line below. 1920x1080 or larger, no player chrome. -->
+      <!-- <img src="../../../media/dv-film-poster.jpg" alt="" aria-hidden="true"> -->
+      <button class="p-film__play" type="button" id="filmPlay" aria-label="Watch the progress update for 715 Davis Dr">
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+      </button>
+    </div>
+    <button class="p-film__cap" type="button" id="filmCap">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      Watch the Progress Update
+    </button>
+  </div>
+</section>
+
+<!-- ================================ THE LOG ===============================
+
+     ENTRY TEMPLATE - copy everything between the two rows of equals signs,
+     paste it as the first child of .cx-log, and fill it in.
+
+     ======================================================================
+     <article class="cx-entry">
+       <p class="cx-entry__date">Week of 5 November 2026</p>
+       <h2 class="cx-entry__title">The Primary Suite</h2>
+       <p class="cx-entry__body">Two or three sentences. What changed this
+          week, and what it will be when it is done.</p>
+       <div class="cx-shots cx-shots--2">
+         <a href="../../../media/dvc-2026-11-05-primary-1.jpg"><img src="../../../media/dvc-2026-11-05-primary-1.jpg" alt="" loading="lazy" decoding="async"></a>
+         <a href="../../../media/dvc-2026-11-05-primary-2.jpg"><img src="../../../media/dvc-2026-11-05-primary-2.jpg" alt="" loading="lazy" decoding="async"></a>
+       </div>
+     </article>
+     ======================================================================
+
+     The class on .cx-shots is the number of photographs: cx-shots on its own
+     for one, cx-shots--2 for two, cx-shots--3 for three. Drop the whole
+     .cx-shots div for a week with no photographs. -->
+<section class="p-sec p-sec--tight" aria-labelledby="log-h">
+  <h2 class="p-eyebrow" id="log-h">The Log</h2>
+  <div class="cx-log">
+
+    <p class="cx-empty">The first entry goes up with the next site visit.
+       Until then the film above is the current state of the build.</p>
+
+  </div>
+</section>
+
+<!-- ============================== BACK ============================== -->
+<section class="p-sec p-sec--tight">
+  <a class="cx-back" href="../">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+    Back to 715 Davis Dr
+  </a>
+</section>
+
+<footer class="foot">
+  <div class="foot__inner">
+    <a class="foot__mark" href="../../../index.html" aria-label="Eden Grove — home">Eden&nbsp;Grove</a>
+
+    <div class="foot__cols">
+      <nav aria-labelledby="foot-sitemap">
+        <p class="foot__h" id="foot-sitemap">Sitemap</p>
+        <ul class="foot__list">
+          <li><a href="../../../index.html">Home</a></li>
+          <li><a href="../../../properties.html">Residential</a></li>
+          <li><a href="../../../sellers.html">Sellers</a></li>
+          <li><a href="../../../buyers.html">Buyers</a></li>
+          <li><a href="../../../team.html">Team</a></li>
+          <li><a href="../../../contact.html">Contact</a></li>
+          <li><a href="../../../privacy.html">Privacy</a></li>
+          <li><a href="../../../terms.html">Terms</a></li>
+        </ul>
+      </nav>
+
+      <div>
+        <p class="foot__h" id="foot-contact">Contact</p>
+        <ul class="foot__list" aria-labelledby="foot-contact">
+          <li><a href="tel:+16158120066">(615) 812-0066</a></li>
+          <li><a href="mailto:connect@edengrovetennessee.com">connect@edengrovetennessee.com</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <p class="foot__h" id="foot-address">Address</p>
+        <ul class="foot__list" aria-labelledby="foot-address">
+          <li><span>2206 21st Avenue South</span></li>
+          <li><span>Nashville, TN 37212</span></li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="foot__firm">
+      <img class="foot__compass" src="../../../media/compass-white.png" alt="Compass"
+           width="1586" height="218" loading="lazy" decoding="async">
+      <p class="foot__firmline">
+        Eden&nbsp;Grove is a team at <strong>Compass Tennessee, LLC</strong><br>
+        2206 21st Avenue South, Nashville, Tennessee 37212 &middot; Firm license 264416<br>
+        Office <a href="tel:+16154755616">(615) 475-5616</a> &middot; Equal Housing Opportunity
+      </p>
+    </div>
+    <div class="foot__bar">
+      <div class="foot__barleft">
+        <p class="foot__fine">© 2026 Eden Grove</p>
+        <a class="foot__agent" href="https://dashboard.edengrovetennessee.com/"
+           target="_blank" rel="noopener nofollow">Agent Login</a>
+      </div>
+
+      <div class="social">
+        <a href="https://www.instagram.com/edengrovetn" aria-label="Eden Grove on Instagram" rel="me noopener" target="_blank">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.7 3.7 0 0 1-1.38-.9 3.7 3.7 0 0 1-.9-1.38c-.16-.42-.36-1.06-.41-2.23-.06-1.27-.07-1.65-.07-4.85s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.9 5.9 0 0 0-2.13 1.38A5.9 5.9 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91a5.9 5.9 0 0 0 1.38 2.13 5.9 5.9 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.9 5.9 0 0 0 2.13-1.38 5.9 5.9 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.9 5.9 0 0 0-1.38-2.13A5.9 5.9 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84A6.16 6.16 0 1 0 18.16 12 6.16 6.16 0 0 0 12 5.84zM12 16a4 4 0 1 1 4-4 4 4 0 0 1-4 4zm6.41-11.85a1.44 1.44 0 1 0 1.44 1.44 1.44 1.44 0 0 0-1.44-1.44z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@edengrovetn" aria-label="Eden Grove on YouTube" rel="me noopener" target="_blank">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.5 6.19a3.02 3.02 0 0 0-2.12-2.14C19.5 3.55 12 3.55 12 3.55s-7.5 0-9.38.5A3.02 3.02 0 0 0 .5 6.19C0 8.08 0 12 0 12s0 3.92.5 5.81a3.02 3.02 0 0 0 2.12 2.14c1.88.5 9.38.5 9.38.5s7.5 0 9.38-.5a3.02 3.02 0 0 0 2.12-2.14C24 15.92 24 12 24 12s0-3.92-.5-5.81zM9.55 15.57V8.43L15.82 12z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---- inquiry form ----
+   No endpoint yet, so it says so rather than showing a thank-you for a message
+   that was never sent. */
+const enq = document.getElementById("enqForm");
+if (enq) {
+  const note = document.getElementById("enqNote");
+  enq.addEventListener("submit", e => {
+    e.preventDefault();
+    note.textContent = "Inquiries open shortly — nothing has been sent.";
+    note.setAttribute("data-on", "");
+  });
+}
+
+const burger  = document.getElementById("burger");
+const nav     = document.getElementById("nav");
+const isPhone = () => matchMedia("(max-width:760px)").matches;
+
+/* ---- dropdown ----
+   Hover on a mouse, tap on touch. The same .open class drives both, so the
+   desktop panel and the mobile accordion never disagree about state. */
+nav.querySelectorAll(".has-sub").forEach(item => {
+  const link = item.querySelector(".nav__link");
+  const set = open => {
+    item.classList.toggle("open", open);
+    link.setAttribute("aria-expanded", open);
+  };
+
+  // A short grace period on the way out, so a fast diagonal across the corner
+  // of the panel does not snap it shut before the cursor lands.
+  let closeTimer = null;
+  const cancelClose = () => { clearTimeout(closeTimer); closeTimer = null };
+  item.addEventListener("pointerenter", e => {
+    if (e.pointerType === "mouse" && !isPhone()) { cancelClose(); set(true) }
+  });
+  item.addEventListener("pointerleave", e => {
+    if (e.pointerType === "mouse" && !isPhone()) {
+      cancelClose();
+      closeTimer = setTimeout(() => set(false), 300);
+    }
+  });
+
+  // first tap/click opens rather than navigating; the section link still works second
+  link.addEventListener("click", e => {
+    if (isPhone() || e.detail === 0 || !matchMedia("(hover:hover)").matches) {
+      if (!item.classList.contains("open")) { e.preventDefault(); set(true) }
+    }
+  });
+
+  item.addEventListener("focusout", () => {
+    requestAnimationFrame(() => { if (!item.contains(document.activeElement)) set(false) });
+  });
+});
+
+/* ---- mobile menu ----
+   No scroll lock on the body. position:fixed on the body does lock iOS, but it
+   takes the document out of flow: height collapsed from 5518px to 844px, so
+   the restore on close could not reach the old offset and the page landed up
+   to 423px away from where it was left. The page staying put behind a 95%
+   opaque overlay is worth less than closing the menu where you left off; the
+   overlay stops the touches that would scroll it (see touch-action in the
+   stylesheet) and the bar is pinned, so the X is always reachable. */
+const closeMenu = () => {
+  if (!document.body.classList.contains("menu-open")) return;
+  document.body.classList.remove("menu-open");
+  burger.setAttribute("aria-expanded", false);
+};
+burger.addEventListener("click", () => {
+  const open = document.body.classList.toggle("menu-open");
+  burger.setAttribute("aria-expanded", open);
+});
+/* Esc closes it, and a resize past the breakpoint must not leave it open with
+   the burger hidden. */
+addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+addEventListener("resize", () => { if (!isPhone()) closeMenu(); });
+/* Esc closes it too, and a resize past the breakpoint must not leave the body
+   pinned with no visible way to unpin it. */
+addEventListener("keydown", e => { if (e.key === "Escape") closeMenu(); });
+addEventListener("resize", () => { if (!isPhone()) closeMenu(); });
+nav.addEventListener("click", e => {
+  const a = e.target.closest("a");
+  if (a && !a.closest(".has-sub > .nav__link")) {
+    if (!(isPhone() && a.classList.contains("nav__link") && a.parentElement.classList.contains("has-sub"))) closeMenu();
+  }
+});
+/* ---- testimonials ----
+   Auto-rotate, no controls. It only runs while the section is on screen, so no
+   quote cycles away unseen at the top of the page.
+
+   There is deliberately NO pause-on-hover here. This section is a full viewport
+   tall, so while it is on screen the pointer is essentially always inside it —
+   a hover pause meant it never advanced at all. */
+const saysItems = [...document.querySelectorAll(".says__item")];
+if (saysItems.length) {
+  const section = document.querySelector(".says");
+  const stack = document.getElementById("saysStack");
+  const count = document.getElementById("saysCount");
+  const pad   = n => String(n).padStart(2, "0");
+  const HOLD  = 7000;
+  let at = 0, timer = null, onScreen = false;
+
+  const show = i => {
+    at = (i + saysItems.length) % saysItems.length;
+    saysItems.forEach((el, n) => n === at ? el.setAttribute("data-on","") : el.removeAttribute("data-on"));
+    count.textContent = `${pad(at + 1)} / ${pad(saysItems.length)}`;
+  };
+
+  const tick = () => { if (onScreen) show(at + 1) };
+  const sync = () => {
+    clearInterval(timer); timer = null;
+    if (onScreen) timer = setInterval(tick, HOLD);
+  };
+
+  new IntersectionObserver(([e]) => { onScreen = e.isIntersecting; sync() },
+                           {threshold:.25}).observe(section);
+
+  // Reserve the tallest quote's height up front so the section never reflows
+  // mid-fade. Recomputed on resize, since the tallest changes with line length.
+  const lockHeight = () => {
+    stack.style.height = "auto";
+    const tallest = Math.max(...saysItems.map(el => {
+      const on = el.hasAttribute("data-on");
+      if (!on) { el.style.visibility = "hidden"; el.setAttribute("data-on",""); }
+      const h = el.offsetHeight;
+      if (!on) { el.removeAttribute("data-on"); el.style.visibility = ""; }
+      return h;
+    }));
+    stack.style.height = tallest + "px";
+  };
+
+  addEventListener("resize", () => { clearTimeout(window.__sr); window.__sr = setTimeout(lockHeight, 150) });
+  document.fonts?.ready.then(lockHeight);
+  lockHeight();
+  show(0);
+}
+
+/* ---- private access ----
+   No endpoint yet, so it says so. Showing a thank-you for an address that was
+   never stored is the one thing this must not do. */
+const accessForm = document.getElementById("accessForm");
+if (accessForm) {
+  const note = document.getElementById("accessNote");
+  accessForm.addEventListener("submit", e => {
+    e.preventDefault();
+    note.textContent = "Sign-up opens shortly — nothing has been sent.";
+    note.setAttribute("data-on", "");
+  });
+}
+
+/* ---- behind-the-build bios ---- */
+document.querySelectorAll(".p-partner__toggle").forEach(btn => {
+  const panel = document.getElementById(btn.getAttribute("aria-controls"));
+  btn.addEventListener("click", () => {
+    const open = panel.hasAttribute("data-on");
+    open ? panel.removeAttribute("data-on") : panel.setAttribute("data-on", "");
+    btn.setAttribute("aria-expanded", !open);
+    btn.textContent = open ? "Read More" : "Read Less";
+  });
+});
+
+addEventListener("keydown", e => {
+  if (e.key !== "Escape") return;
+  const open = nav.querySelector(".nav__item.open");
+  if (open) {
+    open.classList.remove("open");
+    open.querySelector(".nav__link").setAttribute("aria-expanded", false);
+    open.querySelector(".nav__link").focus();
+  } else if (document.body.classList.contains("menu-open")) closeMenu();
+});
+
+</script>
+<script>
+/* ---- the progress film ---- */
+const YT_ID = "Reupaf5RDiI";
+const film = document.getElementById("film");
+if (film && YT_ID) {
+  film.hidden = false;
+  const openFilm = () => {
+    const frame = film.querySelector(".p-film__frame");
+    if (frame.querySelector("iframe")) return;
+    const f = document.createElement("iframe");
+    f.src = `https://www.youtube-nocookie.com/embed/${YT_ID}?autoplay=1&rel=0&modestbranding=1`;
+    f.title = "715 Davis Dr \u2014 progress update";
+    f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+    f.allowFullscreen = true;
+    frame.replaceChildren(f);
+    const cap = document.getElementById("filmCap");
+    if (cap) cap.hidden = true;
+  };
+  document.getElementById("filmPlay").addEventListener("click", openFilm);
+  document.getElementById("filmCap").addEventListener("click", openFilm);
+}
+</script>
+</body>
+</html>

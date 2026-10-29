@@ -1136,8 +1136,27 @@ blockquote{
 .p-film__cap:hover,.p-film__cap:focus-visible{color:var(--brass);outline:none}
 .p-film__cap:hover svg{transform:translateX(.22rem)}
 
+/* The way through to the construction log. Same brass hairline as the film
+   caption, because it is the same kind of thing: a second door out of this
+   page into a longer piece of the story. */
+.p-build__link{
+  display:flex;align-items:center;justify-content:flex-start;gap:.7rem;
+  width:fit-content;margin:clamp(1.4rem,3vh,2rem) 0 0;padding:0 0 .55rem;
+  border-bottom:1px solid var(--brass);
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.72rem,.68rem + .16vw,.8rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:var(--t1);text-decoration:none;
+  transition:color .4s var(--rise),border-color .4s var(--rise)}
+.p-build__link svg{
+  width:.58rem;height:.58rem;fill:currentColor;flex:none;
+  color:var(--brass);transition:transform .4s var(--rise)}
+.p-build__link:hover,.p-build__link:focus-visible{color:var(--brass);outline:none}
+.p-build__link:hover svg{transform:translateX(.22rem)}
+
 @media (prefers-reduced-motion:reduce){
-  .p-film__play,.p-film__play span,.p-film__cap,.p-film__cap svg{transition:none}
+  .p-film__play,.p-film__play span,.p-film__cap,.p-film__cap svg,
+  .p-build__link,.p-build__link svg{transition:none}
 }
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/property/715-davis/">
@@ -1447,6 +1466,10 @@ blockquote{
          finish.</p>
       <p>Liebo Builders offers high-end design and build services, with more
          than 1,500,000 square feet of completed property behind the name.</p>
+      <a class="p-build__link" href="construction/">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        Construction Excellence
+      </a>
     </div>
   </div>
 </section>
