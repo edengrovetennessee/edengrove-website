@@ -722,6 +722,13 @@ blockquote{
                                rgba(8,10,7,.36) 34%, rgba(8,10,7,0)   60%);
 }
 .p-hero{position:relative;height:100svh;min-height:36rem;overflow:hidden}
+/* PROPERTY: the hero rendering is 1.77, so a landscape viewport crops next
+   to nothing. A portrait one keeps about a quarter of the width, and dead
+   centre lands on a run of windows that could be any elevation. 42% holds
+   the gable, the entry and the planting below it. */
+@media (max-aspect-ratio:1/1){
+  .p-hero .hero__media{object-position:42% 50%}
+}
 /* 92svh left a sliver of the next section showing, which reads as a band
    rather than as a picture you have to scroll past. */
 .p-hero__body{
@@ -1224,18 +1231,16 @@ blockquote{
      template is deliberately absent: there is no walkthrough film for this
      house.
 
-     ⚠ TWO SLOTS ARE WAITING ON MEDIA. Search for PENDING-MEDIA.
-       1. the hero photograph
-       2. the two renderings beside the reel
-     Carli Grommet's headshot and bio arrived 3 Nov and are in.
+     All media is in as of 3 Nov: hero, the two renderings beside the reel,
+     the progress reel, and Carli Grommet's headshot and bio. Every still on
+     this page is a rendering of a house that completes in February 2027,
+     and the alt text says so.
      ========================================================================== -->
 
 <section class="p-hero" id="top">
-  <!-- PENDING-MEDIA 1: the hero. Using the reel's poster frame meanwhile -
-       it is genuine footage of this house, which the renderings currently on
-       the grids are not. Swap for the hero rendering when it arrives; 2400px
-       wide or better. -->
-  <img class="hero__media" src="../../media/sh-reel-1-poster.jpg" alt="" aria-hidden="true">
+  <!-- PROPERTY: the hero is a rendering of the finished house, 2400x1353.
+       The portrait crop is set in the stylesheet, under .p-hero. -->
+  <img class="hero__media" src="../../media/sh-hero.jpg" alt="" aria-hidden="true">
   <div class="hero__scrim"></div>
 
   <header class="bar">
@@ -1337,15 +1342,13 @@ blockquote{
         <svg class="on"  viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
       </button>
     </figure>
-    <!-- PENDING-MEDIA 2: two renderings, landscape, 2000px wide or better.
-         Uncomment and point them at media/sh-rend-1.jpg and sh-rend-2.jpg.
-         Captioned as renderings in the alt text, because that is what they
-         are and a visitor reading with a screen reader should be told.
+    <!-- Both are renderings, and the alt text says so. The house will not be
+         finished until February 2027, so a visitor who cannot see the picture
+         should be told what kind of picture it is. -->
     <div class="p-duo__stack">
-      <a class="p-shot" href="../../media/sh-rend-1.jpg"><img src="../../media/sh-rend-1.jpg" alt="Rendering: the front elevation in weathered stone and natural brick" loading="lazy"></a>
-      <a class="p-shot" href="../../media/sh-rend-2.jpg"><img src="../../media/sh-rend-2.jpg" alt="Rendering: the great room under its twenty-two-foot ceiling" loading="lazy"></a>
+      <a class="p-shot" href="../../media/sh-rend-1.jpg"><img src="../../media/sh-rend-1.jpg" alt="Rendering: the rear elevation at dusk, with the covered porch, pool and spa" loading="lazy"></a>
+      <a class="p-shot" href="../../media/sh-rend-2.jpg"><img src="../../media/sh-rend-2.jpg" alt="Rendering: the front of the house from the drive, with the stone chimney at the far end" loading="lazy"></a>
     </div>
-    -->
   </div>
 </section>
 
