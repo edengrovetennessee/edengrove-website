@@ -1232,6 +1232,21 @@ blockquote{
 }
 @media (max-width:760px){ .sg-grid{grid-template-columns:1fr;max-width:34rem} }
 
+/* A project with no photograph yet. Not a grey box and not a stand-in
+   picture of a different house: the frame keeps its shape and its ground,
+   takes a hairline so it reads as a card rather than a gap, and says what
+   is missing. Same reasoning as the Private Exclusive tiles on
+   properties.html. */
+.sg-work__frame--none{
+  display:grid;place-items:center;
+  border:1px solid rgba(182,169,124,.22);
+}
+.sg-work__frame--none span{
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.58rem,.55rem + .14vw,.66rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:var(--t3);
+}
 .sg-work{display:block;text-decoration:none;color:inherit}
 .sg-work__frame{
   position:relative;overflow:hidden;aspect-ratio:3/2;background:#1b1f19;
@@ -1295,10 +1310,14 @@ blockquote{
      TO ADD A PROJECT: copy one <a class="sg-work"> and fill it in. The grid
      takes however many there are. Keep them newest or most current first.
 
-     ⚠ ONLY TWO PROJECTS ARE LISTED, because only two are evidenced anywhere
-     on this site: 515 Shenandoah and 1211 Carl Seyfert, both of which name
-     Blake Barker as developer. Shepherd Group has almost certainly built
-     more. Nothing is listed here that cannot be pointed at.
+     ⚠ TWO OF TEN HAVE A PHOTOGRAPH. The other eight carry a reserved
+     frame. There are images in media/ for Clifton, Jefferson Davis and 706
+     Davis, and they are not used here on purpose: three of them are the same
+     golden field standing in for a house, and the rest are renderings that
+     do not depict the property named on the card. That is the same problem
+     that put the wrong house on 515 Shenandoah's two grid cards, and it is
+     not worth repeating ten times on one page. Real photography replaces a
+     reserved frame one <img> at a time.
 
      ⚠ The lede is derived from Blake's personal bio, the only written
      description of the firm that exists on the site. Firm copy would be
@@ -1362,10 +1381,7 @@ blockquote{
       </div>
       <p class="sg-work__state">Under Construction &middot; Completion February 2027</p>
       <h3 class="sg-work__addr">515 Shenandoah Dr<br>Brentwood, TN 37027</h3>
-      <p class="sg-work__line">A full acre in Carondelet facing Windy Hill Park.
-         8,596 square feet, six bedrooms, a twenty-two-foot great room, pool and
-         spa. Built by PW Estates, designed by Andrew King, interiors by CG
-         Studio Interiors.</p>
+      <p class="sg-work__line">A full acre in Carondelet facing Windy Hill Park. 8,596 square feet, six bedrooms, a twenty-two-foot great room, pool and spa. Built by PW Estates, designed by Andrew King, interiors by CG Studio Interiors.</p>
     </a>
 
     <a class="sg-work" href="../../property/1211-carl-seyfert/">
@@ -1374,10 +1390,68 @@ blockquote{
       </div>
       <p class="sg-work__state">Active &middot; Built 2026</p>
       <h3 class="sg-work__addr">1211 Carl Seyfert<br>Memorial Dr, Brentwood</h3>
-      <p class="sg-work__line">1.28 acres in Forest Hills. 7,885 square feet,
-         six bedrooms, six full baths and three half. Built by Chase Pasternak,
-         designed by Andrew King, interiors by Amber Pyles.</p>
+      <p class="sg-work__line">1.28 acres in Forest Hills. 7,885 square feet, six bedrooms, six full baths and three half. Built by Chase Pasternak, designed by Andrew King, interiors by Amber Pyles.</p>
     </a>
+
+    <div class="sg-work">
+      <div class="sg-work__frame sg-work__frame--none">
+        <span>Photography to come</span>
+      </div>
+      <p class="sg-work__state">Private Exclusive</p>
+      <h3 class="sg-work__addr">1211 Jefferson Davis Dr<br>Brentwood, TN 37027</h3>
+    </div>
+
+    <div class="sg-work">
+      <div class="sg-work__frame sg-work__frame--none">
+        <span>Photography to come</span>
+      </div>
+      <p class="sg-work__state">Private Exclusive</p>
+      <h3 class="sg-work__addr">1306 Clifton Ln<br>Nashville, TN 37215</h3>
+    </div>
+
+    <div class="sg-work">
+      <div class="sg-work__frame sg-work__frame--none">
+        <span>Photography to come</span>
+      </div>
+      <p class="sg-work__state">Private Exclusive</p>
+      <h3 class="sg-work__addr">1308 Clifton Ln<br>Nashville, TN 37215</h3>
+    </div>
+
+    <div class="sg-work">
+      <div class="sg-work__frame sg-work__frame--none">
+        <span>Photography to come</span>
+      </div>
+      <p class="sg-work__state">Private Exclusive</p>
+      <h3 class="sg-work__addr">706 Davis Dr<br>Brentwood, TN 37027</h3>
+    </div>
+
+    <div class="sg-work">
+      <div class="sg-work__frame sg-work__frame--none">
+        <span>Photography to come</span>
+      </div>
+      <h3 class="sg-work__addr">804 Wilson Pike</h3>
+    </div>
+
+    <div class="sg-work">
+      <div class="sg-work__frame sg-work__frame--none">
+        <span>Photography to come</span>
+      </div>
+      <h3 class="sg-work__addr">9003 Carondelet Pl</h3>
+    </div>
+
+    <div class="sg-work">
+      <div class="sg-work__frame sg-work__frame--none">
+        <span>Photography to come</span>
+      </div>
+      <h3 class="sg-work__addr">6212 Bridalwood Ln</h3>
+    </div>
+
+    <div class="sg-work">
+      <div class="sg-work__frame sg-work__frame--none">
+        <span>Photography to come</span>
+      </div>
+      <h3 class="sg-work__addr">916 Long Valley Rd</h3>
+    </div>
 
   </div>
 </section>
