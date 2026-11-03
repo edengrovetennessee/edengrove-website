@@ -1036,6 +1036,19 @@ blockquote{
    ground and no hairline, so it does not promise a picture the way an empty
    .p-partner__photo does. */
 .p-partner__photo--none{background:none;border:0}
+/* A firm mark rather than a headshot. The square and its ground stay, but a
+   logo is not a photograph: it is set in from the edges and fitted whole
+   rather than cropped to fill. Binkley's mark is white on transparency and
+   is 267x600, so without this it would be cover-cropped to a slice of its
+   own middle. */
+.p-partner__photo--mark{padding:clamp(1.4rem,3.5vw,2.4rem);box-sizing:border-box}
+/* The image keeps the base rule's 100% by 100% - a definite box, because the
+   frame is aspect-ratio:1 - and only object-fit changes. Sizing the mark
+   itself does not work here: as a grid item its percentage height resolved
+   against a row the image was itself sizing, so it came out 441px tall in a
+   198px box and overflow:hidden cut its feet off. contain against a definite
+   box has no such circularity. */
+.p-partner__photo--mark img{object-fit:contain}
 .p-partner__role{
   margin:0;font-weight:400;font-size:.55rem;
   letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--brass);
@@ -1246,11 +1259,12 @@ blockquote{
      and Film are all absent rather than empty - a heading with nothing under
      it is worse than no heading.
 
-     ⚠ THREE THINGS ARE WAITING. Search for PENDING.
+     ⚠ TWO THINGS ARE WAITING. Search for PENDING.
        1. the rendering
        2. the specification, once there is one
-       3. Binkley Designed - a mark or headshot, and a bio
-     CLK Designs is Cheryl Kittle's, confirmed 3 Nov, and wants no headshot.
+     The build team is complete. CLK Designs is Cheryl Kittle's and wants no
+     headshot; Binkley Designed is Turner Binkley's and carries its mark.
+     Bios for both firms would still be worth having.
      ========================================================================== -->
 
 <section class="p-hero p-hero--plate" id="top">
@@ -1367,12 +1381,15 @@ blockquote{
     </div>
 
     <div class="p-partner">
-      <!-- PENDING 3: Binkley Designed. Headshot or firm mark, square at 800px,
-           as media/build-binkley.jpg, then the bio in the shape Chase uses. -->
-      <div class="p-partner__photo"></div>
+      <!-- A firm mark, not a headshot: white on transparency, so the frame's
+           own ground shows through it. PENDING: a bio for the firm, in the
+           shape Chase's uses. -->
+      <div class="p-partner__photo p-partner__photo--mark">
+        <img src="../../media/build-binkley.png" alt="Binkley Designed" loading="lazy" decoding="async">
+      </div>
       <p class="p-partner__role">Architect</p>
       <p class="p-partner__name">Binkley Designed</p>
-      <p>Their introduction goes up with the rest of the team.</p>
+      <p>Owned by Turner Binkley.</p>
     </div>
 
     <div class="p-partner">
