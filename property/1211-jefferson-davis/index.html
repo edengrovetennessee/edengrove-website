@@ -1030,6 +1030,12 @@ blockquote{
   background:#1b1f19;border:1px solid rgba(182,169,124,.22);
 }
 .p-partner__photo img{width:100%;height:100%;object-fit:cover;display:block}
+/* A partner with no photograph and none coming. The square is still held so
+   the three cards start their text on the same line - without it CLK Designs
+   sat 285px above its neighbours and read as a mistake - but it carries no
+   ground and no hairline, so it does not promise a picture the way an empty
+   .p-partner__photo does. */
+.p-partner__photo--none{background:none;border:0}
 .p-partner__role{
   margin:0;font-weight:400;font-size:.55rem;
   letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--brass);
@@ -1240,11 +1246,11 @@ blockquote{
      and Film are all absent rather than empty - a heading with nothing under
      it is worse than no heading.
 
-     ⚠ FOUR THINGS ARE WAITING. Search for PENDING.
+     ⚠ THREE THINGS ARE WAITING. Search for PENDING.
        1. the rendering
        2. the specification, once there is one
-       3. CLK Designs - who, a headshot and a bio
-       4. Binkley Designed - a headshot and a bio
+       3. Binkley Designed - a mark or headshot, and a bio
+     CLK Designs is Cheryl Kittle's, confirmed 3 Nov, and wants no headshot.
      ========================================================================== -->
 
 <section class="p-hero p-hero--plate" id="top">
@@ -1361,7 +1367,7 @@ blockquote{
     </div>
 
     <div class="p-partner">
-      <!-- PENDING 4: Binkley Designed. Headshot or firm mark, square at 800px,
+      <!-- PENDING 3: Binkley Designed. Headshot or firm mark, square at 800px,
            as media/build-binkley.jpg, then the bio in the shape Chase uses. -->
       <div class="p-partner__photo"></div>
       <p class="p-partner__role">Architect</p>
@@ -1370,12 +1376,13 @@ blockquote{
     </div>
 
     <div class="p-partner">
-      <!-- PENDING 3: CLK Designs. Ryan is confirming who the named designer
-           is; the firm is what is known today, so the firm is what is here. -->
-      <div class="p-partner__photo"></div>
+      <!-- No headshot for this one by choice (Ryan, 3 Nov). The square is
+           held open so the row aligns, but it is blank rather than a reserved
+           frame, because nothing is on its way. -->
+      <div class="p-partner__photo p-partner__photo--none"></div>
       <p class="p-partner__role">Interior Design</p>
       <p class="p-partner__name">CLK Designs</p>
-      <p>Their introduction goes up with the rest of the team.</p>
+      <p>Owned by Cheryl Kittle.</p>
     </div>
   </div>
 </section>
