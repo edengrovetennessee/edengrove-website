@@ -902,6 +902,15 @@ blockquote{
 }
 /* A row with only two images gets two wider cards instead of a gap. */
 .p-gal__row--2{grid-template-columns:repeat(2,1fr)}
+/* PROPERTY: this house was photographed upright. Rather than crop six
+   portrait frames into landscape slots - which keeps 44% of each one and
+   loses the chandelier, the tub and the island - the rows that hold them
+   are upright too. Three across on a desktop, one per row on a phone,
+   where .p-gal__row already collapses to a single column. */
+.p-gal__row--tall .p-shot{aspect-ratio:2/3}
+@media (max-width:1040px){
+  .p-gal__row--tall{grid-template-columns:repeat(2,1fr)}
+}
 .p-shot{position:relative;overflow:hidden;aspect-ratio:4/3;background:#1b1f19;display:block}
 /* A single frame on its own row earns a cinematic crop; three across stay 4:3
    so the row does not become a letterbox strip. */
@@ -1138,7 +1147,48 @@ blockquote{
 .p-reel__sound[data-on] .on{display:block}
 .p-reel__sound[data-on] .off{display:none}
 
+/* ================================= FILM ==================================
+   The long film lives on YouTube. It loads on click, not on arrival: until
+   somebody asks for it, no third-party script and no cookie. The poster is
+   a still we already hold, so nothing is fetched from Google either.
+
+   The caption is the second way in. 4303A has the bare circle and nothing
+   else; 715 Davis and 1211 Carl Seyfert both carry this line, because a
+   circle on a photograph is not obvious to everyone and words are. Three
+   of the four property pages now agree; 4303A is the one left to match. */
+.p-film{max-width:58rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0}
+.p-film__frame{position:relative;aspect-ratio:16/9;background:#1b1f19;overflow:hidden}
+.p-film__frame img,.p-film__frame iframe{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}
+.p-film__play{
+  position:absolute;inset:0;z-index:2;display:grid;place-items:center;
+  border:0;background:rgba(20,23,15,.3);cursor:pointer;color:#fff;
+  transition:background .3s var(--rise)}
+.p-film__play:hover,.p-film__play:focus-visible{background:rgba(20,23,15,.14);outline:none}
+.p-film__play span{
+  display:grid;place-items:center;width:4.2rem;height:4.2rem;border-radius:50%;
+  border:1px solid var(--w2);background:rgba(20,23,15,.32);
+  transition:border-color .3s var(--rise),background .3s var(--rise)}
+.p-film__play:hover span{border-color:var(--brass);background:rgba(20,23,15,.5)}
+.p-film__play svg{width:1.15rem;height:1.15rem;fill:currentColor;margin-left:.18rem}
+.p-film__cap{
+  display:flex;align-items:center;justify-content:center;gap:.7rem;
+  width:fit-content;margin:1.15rem auto 0;padding:0 0 .55rem;
+  border:0;background:none;cursor:pointer;
+  border-bottom:1px solid var(--brass);
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.74rem,.7rem + .18vw,.86rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:var(--t1);
+  transition:color .4s var(--rise),border-color .4s var(--rise)}
+.p-film__cap svg{
+  width:.62rem;height:.62rem;fill:currentColor;flex:none;
+  color:var(--brass);transition:transform .4s var(--rise)}
+.p-film__cap:hover,.p-film__cap:focus-visible{color:var(--brass);outline:none}
+.p-film__cap:hover svg{transform:translateX(.22rem)}
+
 @media (prefers-reduced-motion:reduce){
+  .p-film__play,.p-film__play span,.p-film__cap,.p-film__cap svg,
   .p-reel__sound{transition:none}
 }
 </style>
@@ -1296,6 +1346,30 @@ blockquote{
   </div>
 </section>
 
+<!-- ================================= FILM =================================
+     High in the page on purpose: the film is the best thing here, and it
+     should not sit below the specification where a visitor has to scroll
+     past the half-bath count to find it.
+
+     The whole section carries the hidden attribute, so when YT_ID is empty
+     there is no orphaned heading. It loads through youtube-nocookie on
+     click, so nothing is requested from Google until somebody asks. -->
+<section class="p-sec p-sec--tight" id="film" hidden aria-labelledby="film-h">
+  <h2 class="p-eyebrow" id="film-h">Film</h2>
+  <div class="p-film">
+    <div class="p-film__frame">
+      <img src="../../media/n9-hero.jpg" alt="" aria-hidden="true">
+      <button class="p-film__play" type="button" id="filmPlay" aria-label="Play the full film of 2502 9th Ave S">
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+      </button>
+    </div>
+    <button class="p-film__cap" type="button" id="filmCap">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      Watch the Film
+    </button>
+  </div>
+</section>
+
 <!-- ============================== THE FACTS ============================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="facts-h">
   <h2 class="p-eyebrow" id="facts-h">Specification</h2>
@@ -1328,18 +1402,68 @@ blockquote{
 <section class="p-sec p-sec--tight" aria-labelledby="gal-h">
   <h2 class="p-eyebrow" id="gal-h">Gallery</h2>
 
-  <div class="p-gal">
-    <div class="p-gal__row p-gal__row--2">
-      <a class="p-shot" href="../../media/n9-rear-1.jpg"><img src="../../media/n9-rear-1.jpg" alt="The rear elevation: a vaulted screened porch above a deck, with the pool and lawn below" loading="lazy" width="1800" height="1350"></a>
-      <a class="p-shot" href="../../media/n9-pool-1.jpg"><img src="../../media/n9-pool-1.jpg" alt="The heated pool and patio, enclosed by fencing and mature planting" loading="lazy" width="1800" height="1350"></a>
+  <!-- band one - inside -->
+  <div class="p-duo">
+    <figure class="p-reel">
+      <video id="reel1" playsinline muted loop preload="none"
+             poster="../../media/n9-reel-1-poster.jpg"
+             aria-label="Short film of 2502 9th Ave S - inside">
+        <source src="../../media/n9-reel-1.webm" type="video/webm">
+        <source src="../../media/n9-reel-1.mp4"  type="video/mp4">
+      </video>
+      <button class="p-reel__sound" type="button" aria-pressed="false"
+              aria-label="Unmute this film" data-sound="reel1">
+        <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>
+        <svg class="on"  viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </button>
+    </figure>
+    <div class="p-duo__stack">
+      <a class="p-shot" href="../../media/n9-rear-1.jpg"><img src="../../media/n9-rear-1.jpg" alt="The rear elevation: a vaulted screened porch above a deck, with the pool and lawn below" loading="lazy"></a>
+      <a class="p-shot" href="../../media/n9-pool-1.jpg"><img src="../../media/n9-pool-1.jpg" alt="The heated pool and patio, enclosed by fencing and mature planting" loading="lazy"></a>
     </div>
   </div>
 
   <div class="p-gal">
-    <div class="p-gal__head"><span>The Grounds</span><i></i></div>
-    <div class="p-gal__row p-gal__row--2">
-      <a class="p-shot" href="../../media/n9-aerial-1.jpg"><img src="../../media/n9-aerial-1.jpg" alt="Overhead: the pool and patio against the tree line of the protected green space behind" loading="lazy" width="1800" height="1012"></a>
-      <a class="p-shot" href="../../media/n9-front-1.jpg"><img src="../../media/n9-front-1.jpg" alt="The street elevation, with the gated front yard and remote-operated gate" loading="lazy" width="1800" height="1012"></a>
+    <div class="p-gal__head"><span>Living &amp; Dining</span><i></i></div>
+    <div class="p-gal__row p-gal__row--tall">
+      <a class="p-shot" href="../../media/n9-liv-1.jpg"><img src="../../media/n9-liv-1.jpg" alt="The sitting room: a tufted leather chair and round tables beside the window seat and painted built-ins" loading="lazy" width="640" height="960"></a>
+      <a class="p-shot" href="../../media/n9-din-1.jpg"><img src="../../media/n9-din-1.jpg" alt="The formal dining room under a brass chandelier, with linen drapery and a hide rug" loading="lazy" width="640" height="960"></a>
+      <a class="p-shot" href="../../media/n9-nook-1.jpg"><img src="../../media/n9-nook-1.jpg" alt="The breakfast nook: a round table in the corner window, beside the door to the porch" loading="lazy" width="640" height="960"></a>
+    </div>
+  </div>
+
+  <div class="p-gal">
+    <div class="p-gal__head"><span>Kitchen &amp; Primary Suite</span><i></i></div>
+    <div class="p-gal__row p-gal__row--tall">
+      <a class="p-shot" href="../../media/n9-kit-1.jpg"><img src="../../media/n9-kit-1.jpg" alt="The kitchen: a chevron tile backsplash, double ovens and a walnut-topped island" loading="lazy" width="640" height="960"></a>
+      <a class="p-shot" href="../../media/n9-pri-1.jpg"><img src="../../media/n9-pri-1.jpg" alt="The primary bedroom under a vaulted ceiling, with corner windows on two walls" loading="lazy" width="640" height="960"></a>
+      <a class="p-shot" href="../../media/n9-bath-1.jpg"><img src="../../media/n9-bath-1.jpg" alt="The primary bath: a freestanding tub on patterned tile beneath a woven pendant" loading="lazy" width="640" height="960"></a>
+    </div>
+  </div>
+
+
+
+
+  <!-- band two - outside, and the other way round -->
+  <div class="p-duo p-duo--flip">
+    <figure class="p-reel">
+      <video id="reel2" playsinline muted loop preload="none"
+             poster="../../media/n9-reel-2-poster.jpg"
+             aria-label="Short film of 2502 9th Ave S - the grounds">
+        <!-- mp4 only: VP9 put this one at 13.3MB against its own 5.2MB h264,
+             because aerial footage is all motion and detail. A format only
+             earns a line here if it saves the visitor bytes. -->
+        <source src="../../media/n9-reel-2.mp4"  type="video/mp4">
+      </video>
+      <button class="p-reel__sound" type="button" aria-pressed="false"
+              aria-label="Unmute this film" data-sound="reel2">
+        <svg class="off" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="m22 9-6 6"/><path d="m16 9 6 6"/></svg>
+        <svg class="on"  viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>
+      </button>
+    </figure>
+    <div class="p-duo__stack">
+      <a class="p-shot" href="../../media/n9-aerial-1.jpg"><img src="../../media/n9-aerial-1.jpg" alt="Overhead: the pool and patio against the tree line of the protected green space behind" loading="lazy"></a>
+      <a class="p-shot" href="../../media/n9-front-1.jpg"><img src="../../media/n9-front-1.jpg" alt="The street elevation, with the gated front yard and remote-operated gate" loading="lazy"></a>
     </div>
   </div>
 </section>
@@ -1702,6 +1826,30 @@ if (reels.length) {
   });
 }
 
+
+/* ---- the full film ----
+   Paste the YouTube id between the quotes and the block above unhides
+   itself. Nothing from Google is requested until somebody presses play. */
+const YT_ID = "OGGmaeCed5Q";
+
+const film = document.getElementById("film");
+if (film && YT_ID) {
+  film.hidden = false;
+  const openFilm = () => {
+    const frame = film.querySelector(".p-film__frame");
+    if (frame.querySelector("iframe")) return;
+    const f = document.createElement("iframe");
+    f.src = `https://www.youtube-nocookie.com/embed/${YT_ID}?autoplay=1&rel=0&modestbranding=1`;
+    f.title = "2502 9th Ave S \u2014 the full film";
+    f.allow = "accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture";
+    f.allowFullscreen = true;
+    frame.replaceChildren(f);
+    const cap = document.getElementById("filmCap");
+    if (cap) cap.hidden = true;
+  };
+  document.getElementById("filmPlay").addEventListener("click", openFilm);
+  document.getElementById("filmCap").addEventListener("click", openFilm);
+}
 </script>
 </body>
 </html>
