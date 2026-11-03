@@ -1048,6 +1048,30 @@ blockquote{
 @media (max-width:520px){ .p-build__grid{grid-template-columns:1fr} }
 /* Three roles instead of four — narrower grid so the row stays centered and the
    cards keep their proportions rather than leaving a gap on the right. */
+/* The developer gets the width the other three share between them: photo on
+   the left, the firm on the right. Same band 715 Davis uses for Liebo. */
+.p-build--solo{
+  max-width:56rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);
+  gap:clamp(1.8rem,4vw,3.2rem);align-items:start;
+}
+@media (max-width:760px){ .p-build--solo{grid-template-columns:1fr} }
+/* The way out to the portfolio. Same brass hairline as the film caption,
+   because it is the same kind of thing: a second door out of this page. */
+.p-build__link{
+  display:flex;align-items:center;justify-content:flex-start;gap:.7rem;
+  width:fit-content;margin:clamp(1.4rem,3vh,2rem) 0 0;padding:0 0 .55rem;
+  border-bottom:1px solid var(--brass);
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.72rem,.68rem + .16vw,.8rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:var(--t1);text-decoration:none;
+  transition:color .4s var(--rise),border-color .4s var(--rise)}
+.p-build__link svg{
+  width:.58rem;height:.58rem;fill:currentColor;flex:none;
+  color:var(--brass);transition:transform .4s var(--rise)}
+.p-build__link:hover,.p-build__link:focus-visible{color:var(--brass);outline:none}
+.p-build__link:hover svg{transform:translateX(.22rem)}
 .p-build__grid--3{max-width:56rem;grid-template-columns:repeat(3,1fr)}
 @media (max-width:900px){ .p-build__grid--3{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:520px){ .p-build__grid--3{grid-template-columns:1fr} }
@@ -1386,39 +1410,40 @@ blockquote{
 <!-- ============================ BEHIND THE BUILD =========================== -->
 <section class="p-sec p-sec--tight" aria-labelledby="build-h">
   <h2 class="p-eyebrow" id="build-h">Behind the Build</h2>
-  <div class="p-build__grid">
+  <!-- The developer is the firm, not the individual, and gets the band the
+       other three share between them. Blake's own bio stays on team.html and
+       on 1211 Carl Seyfert; what belongs here is Shepherd Group.
+
+       ⚠ THE COPY BELOW IS DERIVED FROM BLAKE'S PERSONAL BIO, because that is
+       the only written description of Shepherd Group that exists anywhere on
+       the site. Three or four sentences about the firm itself - what it
+       builds, where, to what standard - would be better than a paragraph
+       about its founder wearing the firm's name. -->
+  <div class="p-build--solo">
     <div class="p-partner">
       <div class="p-partner__photo">
-        <img src="../../media/agent-blake.jpg" alt="Blake Barker" loading="lazy" decoding="async">
+        <img src="../../media/agent-blake.jpg" alt="Blake Barker, founder of Shepherd Group Development" loading="lazy" decoding="async">
       </div>
-      <p class="p-partner__role">Developer</p>
-      <p class="p-partner__name">Blake Barker</p>
-      <p>Blake is deeply rooted in family values and believes every family
-         deserves a safe, stable home where they can thrive &mdash; free from the
-         fear of homelessness.</p>
-      <div class="p-partner__more" id="bio-developer"><div>
-        <p>In 2020, he began a mission to develop starter homes for families in
-           need, sparking a passion for real estate that led him to Nashville,
-           Tennessee, where he has helped individuals find both homes and
-           long-term investments. A 2022 graduate of Western
-           Kentucky University, Blake brings a strong background in leadership,
-           sales, entrepreneurship, and teamwork.</p>
-        <p>In 2025, Blake earned his Master&rsquo;s in Real Estate Development
-           from Auburn University, further equipping him to navigate complex
-           projects and better serve his clients. As a co-founder of Eden Grove
-           and the founder of Shepherd Group, he set out to build a fully
-           integrated real estate business
-           rooted in purpose &mdash; one that serves people, fosters community,
-           and creates lasting value through thoughtful development and
-           service.</p>
-        <p>Blake is a devoted family man, happily married to his wife Abbey.
-           Outside of work, you&rsquo;ll likely find him on the water, enjoying
-           time with friends and family. He remains committed to being a
-           knowledgeable and reliable guide for anyone navigating the real estate
-           markets of Greater Nashville and South Central Kentucky.</p>
-      </div></div>
-      <button class="p-partner__toggle" aria-expanded="false" aria-controls="bio-developer">Read More</button>
     </div>
+    <div class="p-partner">
+      <p class="p-partner__role">Developer</p>
+      <p class="p-partner__name">Shepherd Group Development</p>
+      <p>Shepherd Group is Blake Barker&rsquo;s development company, founded to
+         build a fully integrated real estate business rooted in purpose
+         &mdash; one that serves people, fosters community, and creates lasting
+         value through thoughtful development and service.</p>
+      <p>Blake is a co-founder of Eden Grove and holds a Master&rsquo;s in Real
+         Estate Development from Auburn University. Shepherd Group develops
+         across Greater Nashville and South Central Kentucky.</p>
+      <a class="p-build__link" href="../../developer/shepherd-group/">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+        Shepherd Group Projects
+      </a>
+    </div>
+  </div>
+
+  <!-- The other three keep their cards, three across rather than four. -->
+  <div class="p-build__grid p-build__grid--3">
     <div class="p-partner">
       <div class="p-partner__photo">
         <img src="../../media/build-chase.jpg" alt="Chase Pasternak" loading="lazy" decoding="async">
