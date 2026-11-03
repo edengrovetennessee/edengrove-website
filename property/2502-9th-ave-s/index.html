@@ -714,13 +714,19 @@ blockquote{
    in the markup below; the CSS never needs touching.
    ========================================================================== */
 .p-hero{position:relative;height:100svh;min-height:36rem;overflow:hidden}
-/* PROPERTY: the hero is a top-down aerial, 16:9. On a portrait viewport
-   cover keeps about a quarter of its width, and that quarter decides
-   whether the frame reads as a pool and a garden or as a roof. 45% holds
-   the water, the lawn above it and the tree line below. Landscape
-   viewports are untouched - at 16:9 the crop there is almost nothing. */
+/* PROPERTY: the hero is the rear elevation, 16:9 - the house, the deck and
+   the pool in one frame. On a portrait viewport cover keeps about a quarter
+   of the width, and that quarter decides what the listing is about: 55%
+   holds the screened gable, the stair and the near edge of the water.
+   Landscape viewports are untouched - at 16:9 the crop there is almost
+   nothing.
+
+   ⚠ RESOLUTION. This file is 1280x720, the size Ryan sent. Every other
+   hero on the site is 2400 wide. It is sharp at 1x and soft on a retina
+   screen. Swap in the photographer's full-resolution frame when it comes;
+   nothing but the file changes. */
 @media (max-aspect-ratio:1/1){
-  .p-hero .hero__media{object-position:45% 50%}
+  .p-hero .hero__media{object-position:55% 50%}
 }
 /* 92svh left a sliver of the next section showing, which reads as a band
    rather than as a picture you have to scroll past. */
@@ -1151,8 +1157,8 @@ blockquote{
 <meta name="twitter:description" content="Coming soon in 12 South — a 3,530 sq ft home on a gated quarter-acre backing to protected green space, with five bedrooms, a heated automated pool, hot tub and screened porch. $2,250,000, presented by Eden Grove at Compass.">
 <meta name="twitter:image" content="https://edengrovetennessee.com/media/og-card.jpg">
 <!-- The MLS number appears here and in the specification line, and the two
-     must agree. PREORDER: availability is PreOrder while the listing is
-     Coming Soon; it becomes InStock the day it goes Active. -->
+     must agree. availability went PreOrder to InStock on 3 Nov 2026, from
+     the Realtracs agent report: Status Active, list date 10/25/26. -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1185,7 +1191,7 @@ blockquote{
     "@type": "Offer",
     "price": 2250000,
     "priceCurrency": "USD",
-    "availability": "https://schema.org/PreOrder",
+    "availability": "https://schema.org/InStock",
     "seller": {
       "@type": "RealEstateAgent",
       "name": "Eden Grove",
@@ -1208,8 +1214,8 @@ blockquote{
      MLS 3626789, issued 26 October 2026. It appears twice and the two must
      agree: the specification line and the identifier in the JSON-LD.
 
-     ⚠ availability is still PreOrder. It becomes InStock the day this goes
-     Active, which is Thursday 29 October. Search for PREORDER.
+     Active since 29 October (Realtracs agent report, 2 Nov 2026). The hero
+     badge and the JSON-LD availability were both flipped on 3 November.
 
      The broker's open (Tuesday 27 October) has happened and its line is
      gone. .p-hero__event and its CSS stay for the next dated event.
@@ -1256,7 +1262,7 @@ blockquote{
 
   <div class="p-hero__body">
     <div class="reveal" style="animation-delay:.5s">
-      <span class="p-hero__status">Coming Soon</span>
+      <span class="p-hero__status">Active</span>
       <h1>2502 9th Ave S<br>Nashville, TN 37204</h1>
       <p class="p-hero__price">$2,250,000 &middot; 3,530 Sq Ft</p>
       <a class="p-hero__cta" href="#inquire">Request Information</a>
