@@ -1458,15 +1458,38 @@ blockquote{
       <button class="p-partner__toggle" aria-expanded="false" aria-controls="bio-architect">Read More</button>
     </div>
     <div class="p-partner">
-      <!-- PENDING-MEDIA 3: Carli Grommet, CG Studio Interiors. Headshot square
-           at 800px, and a bio in the shape of the three above: one paragraph
-           up front, the rest behind Read More. Nothing is attributed to her
-           until it arrives, so the card carries the role and the firm and
-           says plainly that the rest is coming. -->
+      <!-- PENDING-MEDIA 3: Carli's headshot, square at 800px, as
+           media/build-carli.jpg. The empty frame is deliberate rather than
+           omitted: .p-partner__photo is aspect-ratio:1 with its own ground and
+           hairline, so the four cards stay aligned and the gap reads as a
+           reserved seat rather than a broken image. Add the <img> inside it. -->
+      <div class="p-partner__photo"></div>
       <p class="p-partner__role">Interior Design</p>
       <p class="p-partner__name">Carli Grommet</p>
-      <p>CG Studio Interiors. Her introduction is being written now and goes up
-         with the rest of the team.</p>
+      <p>Owner and principal designer of CG Studio Interiors. A northwest soul
+         born and raised in Seattle, Washington, Carli has been practicing
+         interior design in the Nashville area since graduating with a B.S. in
+         Interior Design from Abilene Christian University in 2017.</p>
+      <div class="p-partner__more" id="bio-design"><div>
+        <p>Her professional experience includes everything from architecture and
+           space planning, to interior selections during construction, to
+           styling with furniture and accessories. She has collaborated with
+           clients and builders to design luxury homes in the greater Nashville
+           area and beyond throughout the United States in her time as a
+           designer.</p>
+        <p>Carli loves the entirety of the design process and how each part
+           plays an integral role in creating the perfect space for her clients.
+           Her personal style can be described as &ldquo;Warm and
+           Organic&rdquo;, marrying natural textures and tones with clean lines
+           and balanced minimalism. Her ideal space is inspired by Pacific
+           Northwest and Nordic landscapes and cultures.</p>
+        <p>CG loves neutrals as the main palette for a space, complemented with
+           subtle pops of color and moody motifs as needed for the perfect
+           amount of personality. What she loves most about interior design is
+           the opportunity to get to know her clients and create beautiful
+           spaces that fit their lifestyles and personalities.</p>
+      </div></div>
+      <button class="p-partner__toggle" aria-expanded="false" aria-controls="bio-design">Read More</button>
     </div>
   </div>
 </section>
