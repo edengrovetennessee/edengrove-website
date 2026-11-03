@@ -722,12 +722,13 @@ blockquote{
                                rgba(8,10,7,.36) 34%, rgba(8,10,7,0)   60%);
 }
 .p-hero{position:relative;height:100svh;min-height:36rem;overflow:hidden}
-/* PROPERTY: the hero rendering is 1.77, so a landscape viewport crops next
-   to nothing. A portrait one keeps about a quarter of the width, and dead
-   centre lands on a run of windows that could be any elevation. 42% holds
-   the gable, the entry and the planting below it. */
+/* PROPERTY: the hero rendering is a 2.17 panorama - the widest on the site.
+   A phone at 390x844 keeps only 21% of its width, so the crop is the whole
+   decision. Dead centre lands between the two gables on a run of windows
+   that could be any elevation. 34% puts the porte-cochere and the arches
+   under the address, with the right-hand gable still in frame. */
 @media (max-aspect-ratio:1/1){
-  .p-hero .hero__media{object-position:42% 50%}
+  .p-hero .hero__media{object-position:34% 50%}
 }
 /* 92svh left a sliver of the next section showing, which reads as a band
    rather than as a picture you have to scroll past. */
@@ -1216,21 +1217,6 @@ blockquote{
   .p-film__play,.p-film__play span,.p-film__cap,.p-film__cap svg{transition:none}
 }
 </style>
-<style>
-/* ==================== A HERO WITH NO PHOTOGRAPH YET ======================
-   PENDING-MEDIA: the rendering is coming. Until it does, the hero is the
-   page's own ground rather than a picture of a different house, and it is
-   shorter than a full viewport because 100svh of near-black with an address
-   on it is a long way to scroll past nothing.
-
-   WHEN THE RENDERING ARRIVES: add the <img class="hero__media"> back into
-   the section and delete p-hero--plate from the class list. Nothing else
-   changes. */
-.p-hero--plate{height:auto;min-height:0;background:var(--ink)}
-.p-hero--plate .p-hero__body{
-  position:static;padding:calc(var(--bar-h,5.5rem) + clamp(5rem,12vh,9rem)) var(--gutter) clamp(4rem,9vh,7rem);
-}
-</style>
 <link rel="canonical" href="https://edengrovetennessee.com/property/1211-jefferson-davis/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Eden Grove">
@@ -1259,18 +1245,18 @@ blockquote{
      and Film are all absent rather than empty - a heading with nothing under
      it is worse than no heading.
 
-     ⚠ TWO THINGS ARE WAITING. Search for PENDING.
-       1. the rendering
-       2. the specification, once there is one
+     ⚠ ONE THING IS WAITING. Search for PENDING.
+       the specification, once there is one. The hero rendering landed
+       3 Nov 2026 (media/jd-hero.jpg, 1849x851 - under the 2400 house
+       standard, so it is native width, not upscaled).
      The build team is complete. CLK Designs is Cheryl Kittle's and wants no
      headshot; Binkley Designed is Turner Binkley's and carries its mark.
      Bios for both firms would still be worth having.
      ========================================================================== -->
 
-<section class="p-hero p-hero--plate" id="top">
-  <!-- PENDING 1: the hero rendering. Add it here as
-       <img class="hero__media" src="../../media/jd-hero.jpg" alt="" aria-hidden="true">
-       with the scrim div after it, and take p-hero--plate off the section. -->
+<section class="p-hero" id="top">
+  <img class="hero__media" src="../../media/jd-hero.jpg" alt="" aria-hidden="true">
+  <div class="hero__scrim"></div>
   <header class="bar">
     <div class="bar__lock">
       <a class="mark reveal" href="../../index.html" aria-label="Eden Grove — home">Eden&nbsp;Grove</a>
@@ -1310,7 +1296,7 @@ blockquote{
     <div class="reveal" style="animation-delay:.5s">
       <span class="p-hero__status">Private Exclusive</span>
       <h1>1211 Jefferson Davis Dr<br>Brentwood, TN 37027</h1>
-      <!-- PENDING 2: no price and no square footage yet, so the line that
+      <!-- PENDING: no price and no square footage yet, so the line that
            carries them is not here. -->
       <a class="p-hero__cta" href="#inquire">Request Information</a>
     </div>
