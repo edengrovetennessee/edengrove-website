@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Construction Excellence | 715 Davis Dr | Eden Grove</title>
-<meta name="description" content="A weekly record of 715 Davis Dr going up in Brentwood, room by room, built by Liebo Builders. Presented by Eden Grove at Compass.">
+<meta name="description" content="A weekly record of 715 Davis Dr going up in Brentwood, room by room, built by Liebo Builders. Follow the build by email. Presented by Eden Grove at Compass.">
 <link rel="icon" href="../../../favicon.ico" sizes="any">
 <link rel="icon" type="image/svg+xml" href="../../../favicon.svg">
 <link rel="icon" type="image/png" sizes="48x48" href="../../../media/favicon-48.png">
@@ -1178,25 +1178,128 @@ blockquote{
   line-height:1.95;color:var(--w2);
 }
 
-/* ---- the log ---- */
-.cx-log{max-width:52rem;margin:0 auto;padding:0 var(--gutter)}
-.cx-entry{padding:clamp(2.6rem,6vh,4.2rem) 0;border-top:1px solid var(--warm-rule)}
-.cx-entry:first-of-type{border-top:0;padding-top:0}
-.cx-entry__date{
+/* ---- the timeline -------------------------------------------------------
+   One hairline down the centre of the column with a node on it for every
+   week. It reads downward in time: weeks already sent sit at the top, the
+   next send carries a pulsing light and the word UPCOMING, and the weeks
+   booked after it are named but dim.
+
+   HOW THE LINE WORKS. There is exactly one line, a ::before on .tl. Every
+   card paints the page's own ground over it, so the line is visible only
+   in the gaps between weeks rather than running through the type. That is
+   why .tl__card carries background:var(--ink) and why the space between
+   weeks is a margin on .tl__week and not padding inside the card. Changing
+   either of those is what will break the spine.
+
+   The ends fade rather than stopping dead, so the line arrives and leaves
+   instead of looking like a cut-off border. */
+.tl{position:relative;max-width:54rem;margin:0 auto;padding:0 var(--gutter)}
+.tl::before{
+  content:"";position:absolute;left:50%;top:0;bottom:0;width:1px;margin-left:-.5px;
+  background:linear-gradient(to bottom,
+    rgba(167,148,124,0) 0,
+    var(--warm-rule) 3.5rem,
+    var(--warm-rule) calc(100% - 3.5rem),
+    rgba(167,148,124,0) 100%);
+}
+
+.tl__week{position:relative}
+.tl__week + .tl__week{margin-top:clamp(2.4rem,5.5vh,3.8rem)}
+
+/* ---- the node on the line ---- */
+.tl__mark{display:grid;place-items:center;height:clamp(3rem,7vh,4.4rem);margin:0}
+.tl__dot{
+  position:relative;width:.46rem;height:.46rem;transform:rotate(45deg);
+  background:var(--ink);border:1px solid var(--warm);
+}
+/* The light. A brass diamond that breathes, with a ring opening out of it
+   every two and a half seconds. Both are decoration, so both go when the
+   visitor has asked for less movement and a plain double ring is left in
+   their place. */
+.tl__dot--live{
+  background:var(--brass);border-color:var(--brass);
+  animation:tl-breathe 2.5s var(--rise) infinite;
+}
+.tl__dot--live::after{
+  content:"";position:absolute;inset:-.26rem;border:1px solid var(--brass);
+  animation:tl-ping 2.5s var(--rise) infinite;
+}
+@keyframes tl-breathe{0%,100%{opacity:1}50%{opacity:.42}}
+@keyframes tl-ping{
+  0%{transform:scale(.55);opacity:.8}
+  70%{transform:scale(2.7);opacity:0}
+  100%{transform:scale(2.7);opacity:0}
+}
+@media (prefers-reduced-motion:reduce){
+  .tl__dot--live,.tl__dot--live::after{animation:none}
+  .tl__dot--live::after{inset:-.34rem;opacity:.55}
+}
+
+/* ---- the card ---- */
+.tl__card{position:relative;background:var(--ink);text-align:center}
+.tl__status{
+  margin:0 0 .85rem;font-family:var(--ui);font-weight:400;
+  font-size:clamp(.56rem,.53rem + .14vw,.63rem);
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--warm);
+}
+.tl__status--live{color:var(--brass)}
+.tl__date{
   margin:0 0 .9rem;font-family:var(--ui);font-weight:300;
   font-size:clamp(.6rem,.56rem + .16vw,.68rem);
-  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:var(--brass);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:var(--warm);
 }
-.cx-entry__title{
+.tl__title{
   margin:0;font-family:var(--ui);font-weight:300;color:var(--t1);
   font-size:clamp(1rem,.9rem + .5vw,1.35rem);
   line-height:1.4;letter-spacing:.16em;text-indent:.16em;text-transform:uppercase;
 }
-.cx-entry__body{
-  margin:clamp(1rem,2.4vh,1.5rem) 0 0;max-width:44rem;
+.tl__body{
+  max-width:36rem;margin:clamp(1.1rem,2.6vh,1.6rem) auto 0;text-align:left;
   font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
   line-height:1.95;color:var(--t2);
 }
+.tl__body p{margin:0 0 1rem}
+.tl__body p:last-child{margin-bottom:0}
+/* A week still to come is named, not described at length, so it is dimmer
+   and narrower than one that has happened. */
+.tl__week--soon .tl__title{color:var(--t2)}
+/* --warm rather than --t3 here. --t3 is the site's "murmurs" grey and it
+   measures 4.14:1 on this ground, which is under the floor for prose. The
+   warm tone is 6.19:1 and still reads as annotation rather than as the
+   week you are meant to be looking at, because it is a different hue from
+   the white above it rather than a fainter version of it. */
+.tl__week--soon .tl__body{color:var(--warm);max-width:32rem}
+
+/* ---- key features, for a room that has been covered ----
+   Two columns on a desktop, one on a phone. Each line is a fact about the
+   room, not a sentence about it. */
+.tl__feat{
+  list-style:none;max-width:36rem;margin:clamp(1.2rem,2.8vh,1.8rem) auto 0;padding:0;
+  text-align:left;display:grid;gap:.55rem 2rem;grid-template-columns:1fr 1fr;
+}
+.tl__feat li{
+  position:relative;padding-left:1.1rem;
+  font-weight:300;font-size:clamp(.82rem,.79rem + .16vw,.92rem);
+  line-height:1.7;color:var(--t2);
+}
+.tl__feat li::before{
+  content:"";position:absolute;left:0;top:.62em;width:.3rem;height:.3rem;
+  transform:rotate(45deg);border:1px solid var(--warm);
+}
+@media (max-width:620px){.tl__feat{grid-template-columns:1fr}}
+
+/* ---- a link out of a week ---- */
+.tl__out{
+  display:inline-flex;align-items:center;gap:.6rem;
+  margin:clamp(1.3rem,3vh,1.9rem) 0 0;padding:0 0 .5rem;
+  border-bottom:1px solid var(--brass);
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.68rem,.65rem + .14vw,.78rem);
+  letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;color:var(--t1);
+  transition:color .4s var(--rise);
+}
+.tl__out:hover,.tl__out:focus-visible{color:var(--brass);outline:none}
+.tl__out svg{width:.56rem;height:.56rem;fill:currentColor;color:var(--brass);flex:none}
 /* One, two or three photographs. One runs full width; two and three share
    the row. Nothing to configure: the count decides. */
 .cx-shots{
@@ -1215,12 +1318,59 @@ blockquote{
   .cx-shots--2,.cx-shots--3{grid-template-columns:1fr}
 }
 
-/* ---- nothing logged yet ---- */
-.cx-empty{
-  padding:clamp(2.4rem,6vh,3.6rem) 0;text-align:center;
-  font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
-  line-height:1.95;color:var(--t3);
+/* ---- follow the build ----------------------------------------------------
+   Sits inside the upcoming week, which is the one moment on the page where
+   somebody has just been told what is coming and has nowhere to put that
+   interest. Email only: the fewer fields, the more sign-ups, and the address
+   is the only thing the list actually needs. */
+.tl__follow{
+  max-width:36rem;margin:clamp(1.8rem,4vh,2.6rem) auto 0;
+  border:1px solid var(--warm-rule);
+  padding:clamp(1.5rem,3.6vw,2.2rem);text-align:left;
 }
+.tl__follow__h{
+  margin:0;font-family:var(--ui);font-weight:400;
+  font-size:clamp(.6rem,.56rem + .16vw,.68rem);
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--brass);
+}
+.tl__follow__p{
+  margin:.9rem 0 0;font-weight:300;
+  font-size:clamp(.82rem,.79rem + .16vw,.92rem);line-height:1.85;color:var(--t2);
+}
+.tl__form{display:flex;flex-wrap:wrap;gap:.9rem;margin:1.3rem 0 0}
+.tl__form input[type=email]{
+  flex:1 1 14rem;min-width:0;background:none;border:0;
+  border-bottom:1px solid var(--line);color:#fff;
+  font-family:var(--ui);font-weight:300;font-size:.92rem;padding:.75rem .2rem;
+  transition:border-color .4s var(--rise);
+}
+.tl__form input::placeholder{color:var(--t3)}
+.tl__form input:focus{outline:none;border-bottom-color:var(--brass)}
+.tl__form button{
+  flex:0 0 auto;border:1px solid var(--t2);color:var(--t1);font-weight:400;
+  font-size:.62rem;letter-spacing:.24em;text-indent:.24em;text-transform:uppercase;
+  padding:.85rem 1.8rem;
+  transition:background-color .4s var(--rise),border-color .4s var(--rise),color .4s var(--rise);
+}
+.tl__form button:hover:not(:disabled){background:var(--brass);border-color:var(--brass);color:#14170F}
+.tl__form button:disabled{opacity:.55;cursor:default}
+/* The honeypot. Off screen rather than display:none, because some bots skip
+   the latter. Same field name the contact form uses, so the Worker already
+   knows to throw it away. */
+.tl__hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+/* Also --warm, not --t3, and for the same reason: this line carries two
+   links a visitor may actually need to follow before handing over an
+   address, so it cannot sit under the contrast floor. */
+.tl__terms{
+  margin:1.1rem 0 0;font-size:.7rem;line-height:1.8;color:var(--warm);
+}
+.tl__terms a{border-bottom:1px solid var(--warm-rule);transition:color .3s var(--rise)}
+.tl__terms a:hover{color:var(--brass)}
+.tl__note{
+  margin:.9rem 0 0;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--brass);opacity:0;transition:opacity .4s var(--rise);
+}
+.tl__note[data-on]{opacity:1}
 
 /* ---- back to the listing ---- */
 .cx-back{
@@ -1256,14 +1406,19 @@ blockquote{
      A weekly log of the build. Ryan, 29 Oct 2026: "itll be updated weekly
      and itll start to highlight each room."
 
-     TO ADD A WEEK: copy the ENTRY TEMPLATE below and paste it directly under
-     the <div class="cx-log"> line, above whatever is currently first. Newest
-     at the top is the whole point - a visitor should not have to scroll a
-     year to see what happened this week.
+     REBUILT AS A TIMELINE, 4 Nov 2026. Ryan asked for "a line down the
+     middle and a blinking light on the next one", with the weeks planned
+     out ahead rather than only recorded after the fact, and a way to sign
+     up for the emails sitting under whichever week is next.
 
-     Photographs go in media/ with a  dvc-  prefix (dv- is the listing's
-     renderings; these are the site). Name them by date so they sort:
-     dvc-2026-11-05-framing-1.jpg.
+     It reads DOWNWARD in time, which is the opposite of the newest-first
+     log this replaced: a build is a sequence and a reader who lands here
+     halfway through should be able to follow it from the beginning. The
+     cost is that the live week moves further down the page every week. If
+     that ever becomes a scroll worth fixing, the answer is a "what is next"
+     anchor in the band, not reversing the order.
+
+     Everything about adding a week is in the comment above the timeline.
      ========================================================================== -->
 
 <section class="cx-band" id="top">
@@ -1304,9 +1459,10 @@ blockquote{
 
   <p class="cx-band__where">715 Davis Dr &middot; Brentwood</p>
   <h1>Construction Excellence</h1>
-  <p class="cx-band__lede">A record of the house going up, added to each week.
-     As rooms are finished they are taken one at a time, so what you are
-     looking at is the build itself rather than a drawing of it.</p>
+  <p class="cx-band__lede">A record of the house going up, one email a week.
+     Each one takes a room, or a part of the build, and sets the rendering
+     beside where it actually stands on site. The timeline below is what has
+     gone out and what is coming.</p>
 </section>
 
 <!-- ================================= FILM =================================
@@ -1332,33 +1488,141 @@ blockquote{
   </div>
 </section>
 
-<!-- ================================ THE LOG ===============================
+<!-- ============================== THE TIMELINE =============================
 
-     ENTRY TEMPLATE - copy everything between the two rows of equals signs,
-     paste it as the first child of .cx-log, and fill it in.
+     Reads downward in time. Weeks that have gone out sit at the top in the
+     order they were sent, then the next send with the light on it, then the
+     weeks that are booked but not written.
 
-     ======================================================================
-     <article class="cx-entry">
-       <p class="cx-entry__date">Week of 5 November 2026</p>
-       <h2 class="cx-entry__title">The Primary Suite</h2>
-       <p class="cx-entry__body">Two or three sentences. What changed this
-          week, and what it will be when it is done.</p>
-       <div class="cx-shots cx-shots--2">
-         <a href="../../../media/dvc-2026-11-05-primary-1.jpg"><img src="../../../media/dvc-2026-11-05-primary-1.jpg" alt="" loading="lazy" decoding="async"></a>
-         <a href="../../../media/dvc-2026-11-05-primary-2.jpg"><img src="../../../media/dvc-2026-11-05-primary-2.jpg" alt="" loading="lazy" decoding="async"></a>
+     TO PUBLISH A WEEK, three edits:
+       1. paste a filled-in PUBLISHED WEEK (template below) directly ABOVE
+          the week that currently has tl__week--live on it;
+       2. move  tl__week--live / tl__dot--live / tl__status--live  on to the
+          next week down, and change its status line to "Upcoming";
+       3. move the <div class="tl__follow"> sign-up block into that week.
+     The sign-up belongs to whichever week is upcoming; it is the one place
+     on the page where somebody has just been told what is coming.
+
+     Photographs go in media/ with a  dvc-  prefix (dv- is the listing's
+     renderings; dvc- is the site). Name them by date so they sort:
+     dvc-2026-11-16-kitchen-1.jpg.
+
+     =================== PUBLISHED WEEK, copy from here ===================
+     <article class="tl__week">
+       <p class="tl__mark"><i class="tl__dot" aria-hidden="true"></i></p>
+       <div class="tl__card">
+         <p class="tl__status">Sent 16 November</p>
+         <p class="tl__date">Week of 16 November 2026</p>
+         <h3 class="tl__title">The Kitchen</h3>
+         <div class="tl__body">
+           <p>Two or three sentences. What the room is, and what changed on
+              site this week.</p>
+         </div>
+         <div class="cx-shots cx-shots--2">
+           <a href="../../../media/dv-kitchen.jpg"><img src="../../../media/dv-kitchen.jpg" alt="Rendering of the kitchen" loading="lazy" decoding="async"></a>
+           <a href="../../../media/dvc-2026-11-16-kitchen-1.jpg"><img src="../../../media/dvc-2026-11-16-kitchen-1.jpg" alt="The kitchen as it stands" loading="lazy" decoding="async"></a>
+         </div>
+         <ul class="tl__feat">
+           <li>A fact about the room, not a sentence about it</li>
+           <li>Another one</li>
+         </ul>
        </div>
      </article>
-     ======================================================================
+     ====================== to here, and fill it in =======================
 
      The class on .cx-shots is the number of photographs: cx-shots on its own
-     for one, cx-shots--2 for two, cx-shots--3 for three. Drop the whole
-     .cx-shots div for a week with no photographs. -->
-<section class="p-sec p-sec--tight" aria-labelledby="log-h">
-  <h2 class="p-eyebrow" id="log-h">The Log</h2>
-  <div class="cx-log">
+     for one, cx-shots--2 for two, cx-shots--3 for three. The pairing that
+     makes this page worth reading is rendering on the left, site photograph
+     on the right, so the reader sees the drawing and the thing at once.
 
-    <p class="cx-empty">The first entry goes up with the next site visit.
-       Until then the film above is the current state of the build.</p>
+     A FILM INSIDE A WEEK (Joe on waterproofing, say) uses the same .p-film
+     component as the progress film above, pasted inside .tl__card after the
+     photographs, with its own id and its own entry in the script at the
+     bottom of this file. -->
+<section class="p-sec p-sec--tight" aria-labelledby="tl-h">
+  <h2 class="p-eyebrow" id="tl-h">The Timeline</h2>
+
+  <div class="tl">
+
+    <!-- ------------------------------ UPCOMING ------------------------- -->
+    <article class="tl__week tl__week--live" aria-labelledby="w-liebo">
+      <p class="tl__mark"><i class="tl__dot tl__dot--live" aria-hidden="true"></i></p>
+      <div class="tl__card">
+        <p class="tl__status tl__status--live">Upcoming &middot; sends Friday</p>
+        <p class="tl__date">Week of 2 November 2026</p>
+        <h3 class="tl__title" id="w-liebo">Meet Liebo Builders</h3>
+        <div class="tl__body">
+          <p>The first one is about who is building the house. Joe Liebowitz
+             started Liebo Builders as a small family crew, and it now runs
+             architecture, interior design and construction in house, so one
+             team carries a house from the first drawing through to the last
+             finish.</p>
+          <p>No room this week. From here on each email takes one part of
+             715 Davis and stays with it.</p>
+        </div>
+        <a class="tl__out" href="../../../developer/liebo-builders/">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+          Liebo Builders Projects
+        </a>
+
+        <!-- ---- the sign-up ----
+             Posts to the same Worker the contact page uses, which is origin
+             locked, throttled and already strips the honeypot. It emails
+             connect@; the address is then added to the Mailchimp audience by
+             hand. Nothing here is ever told it was sent unless it was. -->
+        <div class="tl__follow">
+          <p class="tl__follow__h">Follow the Build</p>
+          <p class="tl__follow__p">Construction Excellence and the 715 Davis
+             project updates, sent as each one goes out. One email a week
+             while the house is going up, and nothing else.</p>
+
+          <form class="tl__form" id="followForm" novalidate>
+            <label class="visually-hidden" for="followEmail">Email address</label>
+            <input id="followEmail" name="email" type="email" placeholder="Enter your email"
+                   autocomplete="email" required>
+            <div class="tl__hp" aria-hidden="true">
+              <label for="followWebsite">Website</label>
+              <input id="followWebsite" name="website" type="text" tabindex="-1" autocomplete="off">
+            </div>
+            <button type="submit">Follow</button>
+          </form>
+
+          <p class="tl__terms">We will use it for these updates and nothing
+             else. See our <a href="../../../privacy.html">Privacy Policy</a>
+             and <a href="../../../terms.html">Terms</a>.</p>
+          <p class="tl__note" id="followNote" role="status"></p>
+        </div>
+      </div>
+    </article>
+
+    <!-- ------------------------------ SCHEDULED ------------------------ -->
+    <article class="tl__week tl__week--soon" aria-labelledby="w-ext">
+      <p class="tl__mark"><i class="tl__dot" aria-hidden="true"></i></p>
+      <div class="tl__card">
+        <p class="tl__status">Scheduled</p>
+        <p class="tl__date">Week of 9 November 2026</p>
+        <h3 class="tl__title" id="w-ext">The Exteriors</h3>
+        <div class="tl__body">
+          <p>Pool, front elevation and the materials the house is wearing.
+             What the stone and the roofing are, why they were chosen, and
+             what the outdoor rooms will be once the grading is finished.</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="tl__week tl__week--soon" aria-labelledby="w-kit">
+      <p class="tl__mark"><i class="tl__dot" aria-hidden="true"></i></p>
+      <div class="tl__card">
+        <p class="tl__status">Scheduled</p>
+        <p class="tl__date">Week of 16 November 2026</p>
+        <h3 class="tl__title" id="w-kit">The Kitchen</h3>
+        <div class="tl__body">
+          <p>The first room taken on its own. The rendering beside where it
+             actually stands that week, and the detail that does not show up
+             in a drawing.</p>
+        </div>
+      </div>
+    </article>
 
   </div>
 </section>
@@ -1608,6 +1872,62 @@ addEventListener("keydown", e => {
 
 </script>
 <script>
+/* ---- follow the build --------------------------------------------------
+   Same Worker and the same contract as the contact form: origin locked,
+   throttled, honeypot thrown away server side. The topic is what tells the
+   inbox which list this is for.
+
+   The one thing this must never do is show a thank-you for an address that
+   was not stored, so every path that is not a confirmed 200 says so and
+   gives a telephone number instead. */
+const FOLLOW_ENDPOINT = "https://dashboard.edengrovetennessee.com/__contact";
+
+const followForm = document.getElementById("followForm");
+if (followForm) {
+  const note = document.getElementById("followNote");
+  const btn  = followForm.querySelector("button[type=submit]");
+  const say  = msg => { note.textContent = msg; note.setAttribute("data-on", ""); };
+
+  followForm.addEventListener("submit", async e => {
+    e.preventDefault();
+
+    const data = Object.fromEntries(new FormData(followForm));
+    const email = String(data.email || "").trim();
+    if (!email || !email.includes("@")) return say("Please add an email address.");
+
+    data.name    = "Construction updates sign-up";
+    data.topic   = "715 Davis construction updates";
+    data.message = "Sign-up from the 715 Davis Construction Excellence timeline.";
+
+    btn.disabled = true;
+    const was = btn.textContent;
+    btn.textContent = "Sending";
+    say("Sending\u2026");
+
+    try {
+      const res = await fetch(FOLLOW_ENDPOINT, {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      const out = await res.json().catch(() => ({}));
+      if (res.ok && out.ok) {
+        followForm.reset();
+        say("You are on the list \u2014 the next update comes to you.");
+        btn.textContent = "Done";
+        return;                       // leave it disabled: one sign-up per visit
+      }
+      say(out.error || "That did not go through. Please email " +
+                       "connect@edengrovetennessee.com and we will add you.");
+    } catch {
+      say("That did not go through \u2014 you may be offline. Please email " +
+          "connect@edengrovetennessee.com and we will add you.");
+    }
+    btn.disabled = false;
+    btn.textContent = was;
+  });
+}
+
 /* ---- the progress film ---- */
 const YT_ID = "Reupaf5RDiI";
 const film = document.getElementById("film");
