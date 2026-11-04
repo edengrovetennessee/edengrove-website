@@ -1212,27 +1212,86 @@ blockquote{
   position:relative;width:.46rem;height:.46rem;transform:rotate(45deg);
   background:var(--ink);border:1px solid var(--warm);
 }
-/* The light. A brass diamond that breathes, with a ring opening out of it
-   every two and a half seconds. Both are decoration, so both go when the
-   visitor has asked for less movement and a plain double ring is left in
-   their place. */
+/* THE LIGHT. The first version of this was a 0.46rem diamond with one ring
+   on it, and at the size it actually renders it read as a bullet point
+   rather than as something live - Ryan asked for a blinking indicator on a
+   page that already had one, which is the clearest evidence there is that
+   it was too quiet.
+
+   Three things carry it now. The node itself is half again as big as a
+   scheduled one and filled brass. A standing halo sits around it, which is
+   the part that works in a screenshot and for anyone who has asked for
+   less movement. And two rings leave it two thirds of a cycle apart, so
+   there is almost always one on its way out.
+
+   Everything that moves is decoration and all of it stops under
+   prefers-reduced-motion; the standing halo is what is left. */
 .tl__dot--live{
+  width:.72rem;height:.72rem;
   background:var(--brass);border-color:var(--brass);
-  animation:tl-breathe 2.5s var(--rise) infinite;
+  box-shadow:0 0 .9rem rgba(218,206,182,.45);
+  animation:tl-breathe 2.6s var(--rise) infinite;
 }
-.tl__dot--live::after{
-  content:"";position:absolute;inset:-.26rem;border:1px solid var(--brass);
-  animation:tl-ping 2.5s var(--rise) infinite;
+/* the standing halo */
+.tl__dot--live::before{
+  content:"";position:absolute;inset:-.42rem;
+  border:1px solid rgba(218,206,182,.42);
 }
-@keyframes tl-breathe{0%,100%{opacity:1}50%{opacity:.42}}
+.tl__dot--live::after,
+.tl__dot--live .tl__ring{
+  content:"";position:absolute;inset:-.42rem;border:1px solid var(--brass);
+  animation:tl-ping 2.6s var(--rise) infinite;
+}
+.tl__dot--live .tl__ring{animation-delay:-1.73s}
+@keyframes tl-breathe{0%,100%{opacity:1}50%{opacity:.55}}
 @keyframes tl-ping{
-  0%{transform:scale(.55);opacity:.8}
-  70%{transform:scale(2.7);opacity:0}
-  100%{transform:scale(2.7);opacity:0}
+  0%  {transform:scale(.5);opacity:.75}
+  65% {transform:scale(2.4);opacity:0}
+  100%{transform:scale(2.4);opacity:0}
 }
 @media (prefers-reduced-motion:reduce){
-  .tl__dot--live,.tl__dot--live::after{animation:none}
-  .tl__dot--live::after{inset:-.34rem;opacity:.55}
+  .tl__dot--live{animation:none;box-shadow:none}
+  .tl__dot--live::after,.tl__dot--live .tl__ring{animation:none;opacity:0}
+  .tl__dot--live::before{inset:-.46rem;border-color:rgba(218,206,182,.6)}
+}
+
+/* ---- the spine fills as you read it ------------------------------------
+   A second line over the first, its height driven by how far the viewport
+   has travelled through the timeline. On a page that is a record of a
+   house going up, a line that fills as you go down it is the one piece of
+   motion here that means something rather than decorating something.
+
+   It is added by script, so with no JavaScript there is simply the static
+   hairline and nothing is missing. */
+.tl__fill{
+  position:absolute;left:50%;top:0;width:1px;margin-left:-.5px;height:0;
+  background:linear-gradient(to bottom, rgba(218,206,182,.18), rgba(218,206,182,.62));
+  pointer-events:none;will-change:height;
+}
+@media (prefers-reduced-motion:reduce){.tl__fill{display:none}}
+
+/* ---- a week answers the pointer ---- */
+.tl__dot{transition:transform .45s var(--rise),border-color .45s var(--rise),background-color .45s var(--rise)}
+.tl__week:hover .tl__dot,.tl__week:focus-within .tl__dot{
+  border-color:var(--brass);transform:rotate(45deg) scale(1.45);
+}
+.tl__week:hover .tl__dot--live,.tl__week:focus-within .tl__dot--live{transform:rotate(45deg) scale(1.15)}
+.tl__week--soon{transition:opacity .5s var(--rise)}
+.tl__week--soon .tl__title{transition:color .5s var(--rise)}
+.tl__week--soon:hover .tl__title{color:var(--t1)}
+
+/* ---- weeks arrive as you reach them ----
+   The class goes on by script. Without it every week is simply visible,
+   which is the behaviour anyone with JavaScript off, or a slow parse, or a
+   failed request gets - a timeline that renders blank because an observer
+   never fired is not a trade worth making for a fade. */
+.tl--anim .tl__week{
+  opacity:0;transform:translateY(1.4rem);
+  transition:opacity .85s var(--rise),transform .85s var(--rise);
+}
+.tl--anim .tl__week[data-in]{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  .tl--anim .tl__week{opacity:1;transform:none;transition:none}
 }
 
 /* ---- the card ---- */
@@ -1749,7 +1808,7 @@ blockquote{
 
     <!-- ------------------------------ UPCOMING ------------------------- -->
     <article class="tl__week tl__week--live" aria-labelledby="w-liebo">
-      <p class="tl__mark"><i class="tl__dot tl__dot--live" aria-hidden="true"></i></p>
+      <p class="tl__mark"><i class="tl__dot tl__dot--live" aria-hidden="true"><i class="tl__ring"></i></i></p>
       <div class="tl__card">
         <p class="tl__status tl__status--live">Upcoming &middot; sends Friday</p>
         <p class="tl__date">Week of 2 November 2026</p>
@@ -2177,6 +2236,79 @@ if (followForm) {
     btn.disabled = false;
     btn.textContent = was;
   });
+}
+
+/* ---- the timeline, alive ------------------------------------------------
+   Two things, both added here rather than in the markup so that a page with
+   no JavaScript is the static timeline and nothing is missing from it.
+
+   1. THE FILL. A second line over the hairline whose height is how far the
+      reader has come through the timeline. Measured from the first node to
+      the last, not from the top of the section, so it is full when the last
+      week is reached rather than when the footer is.
+
+   2. THE ARRIVAL. Each week fades up once. The class that hides them is put
+      on the container by this script, so if the observer never runs nothing
+      is ever hidden in the first place.
+
+   Both are off under prefers-reduced-motion: the fill by CSS, the arrival
+   by not asking for it here. */
+const tl = document.querySelector(".tl");
+const lessMotion = matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+if (tl) {
+  const weeks = [...tl.querySelectorAll(".tl__week")];
+
+  /* ---- 1. the fill ---- */
+  if (!lessMotion && weeks.length) {
+    const fill = document.createElement("i");
+    fill.className = "tl__fill";
+    tl.prepend(fill);
+
+    let ticking = false;
+    const draw = () => {
+      ticking = false;
+      const tlBox = tl.getBoundingClientRect();
+      const first = weeks[0].querySelector(".tl__mark").getBoundingClientRect();
+      const last  = weeks[weeks.length - 1].querySelector(".tl__mark").getBoundingClientRect();
+
+      // where the two end nodes sit inside .tl, and where the reader is
+      const startY = first.top + first.height / 2 - tlBox.top;
+      const endY   = last.top  + last.height  / 2 - tlBox.top;
+      const eye    = innerHeight * 0.55 - tlBox.top;
+
+      const h = Math.max(0, Math.min(eye, endY)) ;
+      fill.style.height = (h < startY ? 0 : h) + "px";
+    };
+
+    addEventListener("scroll", () => {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(draw);
+    }, {passive:true});
+    addEventListener("resize", draw);
+    draw();
+  }
+
+  /* ---- 2. the arrival ---- */
+  if (!lessMotion && "IntersectionObserver" in window) {
+    tl.classList.add("tl--anim");
+    const io = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        e.target.setAttribute("data-in", "");
+        obs.unobserve(e.target);
+      });
+    }, {threshold:.12, rootMargin:"0px 0px -8% 0px"});
+    weeks.forEach(w => io.observe(w));
+
+    /* A week already on screen at load should not wait for a scroll that
+       may never come. */
+    requestAnimationFrame(() => weeks.forEach(w => {
+      const r = w.getBoundingClientRect();
+      if (r.top < innerHeight && r.bottom > 0) w.setAttribute("data-in", "");
+    }));
+  }
 }
 
 /* ---- the feed ----------------------------------------------------------
