@@ -763,27 +763,22 @@ blockquote{
   display:grid;place-items:center;
   padding:clamp(6rem,15vh,10rem) var(--gutter);
 }
-/* Ryan, 7 Nov: the interior group portrait goes beside The Standard. This
-   section used to be 46rem of centred type alone in a full viewport, which
-   is a lot of air for one idea; a 2:3 portrait on the left gives the words
-   something to sit against and keeps the measure at 46rem rather than
-   stretching it.
+/* Ryan, 7 Nov: the group photograph goes under The Standard. It was tried
+   beside it first, as a 2:3 portrait in a left-hand column, and that only
+   worked while the picture was a portrait. The one he chose is the fence
+   line - four people side by side - and a portrait column would have cut
+   two of them out of it, which is the same crop that broke the banner.
 
-   The copy needs its own wrapper. Making .creed__inner the grid turns the
-   eyebrow, the lead and each paragraph into separate cells, so the text
-   lives in .creed__copy and the grid only ever has two children. */
-.creed__inner{
-  max-width:76rem;margin:0 auto;text-align:left;
-  display:grid;grid-template-columns:minmax(0,24rem) minmax(0,1fr);
-  gap:clamp(2rem,5vw,4.5rem);align-items:center;
-}
-.creed__figure{margin:0}
+   So the words keep their 46rem measure and stay centred, the way this
+   section has always read, and the photograph closes it underneath at a
+   wider 64rem. The copy still has its own wrapper so the measure and the
+   figure's width are set independently. */
+.creed__inner{max-width:64rem;margin:0 auto;text-align:center}
+.creed__copy{max-width:46rem;margin:0 auto}
+.creed__figure{margin:clamp(3rem,7vh,4.5rem) 0 0}
 .creed__figure img{
   width:100%;height:auto;display:block;
-  aspect-ratio:2/3;object-fit:cover;
-}
-@media (max-width:900px){
-  .creed__inner{grid-template-columns:1fr;max-width:34rem;gap:clamp(2rem,5vh,3rem)}
+  aspect-ratio:3/2;object-fit:cover;
 }
 .creed__eyebrow{
   margin:0 0 clamp(2rem,4.5vh,3rem);
@@ -1062,7 +1057,7 @@ blockquote{
 
 <!-- the banner is the photograph and nothing else -->
 <section class="teamtop" id="top">
-  <img class="hero__media" src="media/team-banner.jpg" alt="Ryan Stonehouse, Blake Barker, Joe Archer and Jack Montague along a fence line at the end of the day">
+  <img class="hero__media" src="media/team-banner.jpg" alt="Ryan Stonehouse, Blake Barker, Joe Archer and Jack Montague in the living room of a finished house">
   <div class="teamtop__scrim"></div>
 
   <header class="bar">
@@ -1105,10 +1100,6 @@ blockquote{
 <!-- ============================== THE STANDARD ============================== -->
 <section class="creed" id="standard" aria-labelledby="creed-eyebrow">
   <div class="creed__inner">
-    <figure class="creed__figure">
-      <img src="media/team-group.jpg" width="1400" height="2099" loading="lazy" decoding="async"
-           alt="The four of us in the living room of a finished house">
-    </figure>
     <div class="creed__copy">
     <p class="creed__eyebrow" id="creed-eyebrow">Our Standard</p>
 
@@ -1128,6 +1119,11 @@ blockquote{
        sits in a house that is not yet finished. Guiding people through that is as much
        the job as the sale is.</p>
     </div>
+
+    <figure class="creed__figure">
+      <img src="media/team-group.jpg" width="2000" height="1334" loading="lazy" decoding="async"
+           alt="Ryan Stonehouse, Blake Barker, Joe Archer and Jack Montague along a fence line at the end of the day">
+    </figure>
   </div>
 </section>
 
