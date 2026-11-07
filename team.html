@@ -763,7 +763,28 @@ blockquote{
   display:grid;place-items:center;
   padding:clamp(6rem,15vh,10rem) var(--gutter);
 }
-.creed__inner{max-width:46rem;margin:0 auto;text-align:center}
+/* Ryan, 7 Nov: the interior group portrait goes beside The Standard. This
+   section used to be 46rem of centred type alone in a full viewport, which
+   is a lot of air for one idea; a 2:3 portrait on the left gives the words
+   something to sit against and keeps the measure at 46rem rather than
+   stretching it.
+
+   The copy needs its own wrapper. Making .creed__inner the grid turns the
+   eyebrow, the lead and each paragraph into separate cells, so the text
+   lives in .creed__copy and the grid only ever has two children. */
+.creed__inner{
+  max-width:76rem;margin:0 auto;text-align:left;
+  display:grid;grid-template-columns:minmax(0,24rem) minmax(0,1fr);
+  gap:clamp(2rem,5vw,4.5rem);align-items:center;
+}
+.creed__figure{margin:0}
+.creed__figure img{
+  width:100%;height:auto;display:block;
+  aspect-ratio:2/3;object-fit:cover;
+}
+@media (max-width:900px){
+  .creed__inner{grid-template-columns:1fr;max-width:34rem;gap:clamp(2rem,5vh,3rem)}
+}
 .creed__eyebrow{
   margin:0 0 clamp(2rem,4.5vh,3rem);
   font-family:var(--ui);font-weight:300;
@@ -829,6 +850,32 @@ blockquote{
    The banner carries no words at all — just the team, the mark and the nav.
    Everything the page has to say is said by the people below it. */
 .teamtop{position:relative;height:82svh;min-height:30rem;overflow:hidden}
+/* THE BANNER IS NOW FOUR PEOPLE, not a house, and that changes what the
+   crop has to protect. The frame is 1.88 at a common desktop size and the
+   photograph is 1.50, so it is scaled to the width and about 200px comes
+   off the height. Centred, that took their heads off. Pinned to the top,
+   the tallest head lands right at the foot of the bar and what is lost is
+   grass. */
+.teamtop .hero__media{object-position:50% 0%}
+
+/* ON A PHONE the frame is taller than it is wide, and a row of four people
+   in a portrait window is two torsos: at 390 by 692 it kept 38% of the
+   width and nobody's face. No object-position fixes that, so the banner
+   stops being a full-height hero here and becomes a band. The bar sits
+   above it on the page's own ground, the picture runs at its own 3:2
+   underneath, and all four of them are in it. */
+@media (max-width:760px){
+  .teamtop{
+    height:auto;min-height:0;background:var(--ink);
+    /* --bar-h is not declared on this page, so the fallback is doing the
+       work: the bar measures 70px here, which is 4.4rem. */
+    padding-top:calc(var(--bar-h,4.4rem) + .6rem);
+  }
+  .teamtop .hero__media{
+    position:static;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;
+  }
+  .teamtop__scrim{display:none}
+}
 .teamtop__scrim{
   position:absolute;inset:0;pointer-events:none;
   /* Deepened when the banner changed to a twilight frame with a bright overcast
@@ -1015,7 +1062,7 @@ blockquote{
 
 <!-- the banner is the photograph and nothing else -->
 <section class="teamtop" id="top">
-  <img class="hero__media" src="media/team-banner.jpg" alt="An ivy-clad house at twilight, lit from within, above a reflecting pool">
+  <img class="hero__media" src="media/team-banner.jpg" alt="Ryan Stonehouse, Blake Barker, Joe Archer and Jack Montague along a fence line at the end of the day">
   <div class="teamtop__scrim"></div>
 
   <header class="bar">
@@ -1058,6 +1105,11 @@ blockquote{
 <!-- ============================== THE STANDARD ============================== -->
 <section class="creed" id="standard" aria-labelledby="creed-eyebrow">
   <div class="creed__inner">
+    <figure class="creed__figure">
+      <img src="media/team-group.jpg" width="1400" height="2099" loading="lazy" decoding="async"
+           alt="The four of us in the living room of a finished house">
+    </figure>
+    <div class="creed__copy">
     <p class="creed__eyebrow" id="creed-eyebrow">Our Standard</p>
 
     <p class="creed__lead">Eden Grove began with one idea — that a house should come to
@@ -1075,6 +1127,7 @@ blockquote{
        still change and what cannot, what an allowance really covers, and where the value
        sits in a house that is not yet finished. Guiding people through that is as much
        the job as the sale is.</p>
+    </div>
   </div>
 </section>
 
