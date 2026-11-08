@@ -763,31 +763,14 @@ blockquote{
   display:grid;place-items:center;
   padding:clamp(6rem,15vh,10rem) var(--gutter);
 }
-/* Ryan, 7 Nov: the studio portrait of the four of them goes BESIDE The
-   Standard. This section has now carried three different pictures in two
-   days and the layout follows the shape of whichever one it holds: a
-   landscape frame goes underneath the words, because a four-across group
-   in a narrow column loses two of them, and a portrait goes next to them,
-   because a 2:3 column is what a portrait wants. This one is a portrait.
-
-   The copy keeps its own wrapper either way, so the measure and the
-   figure's width stay independent, and the figure is ordered first
-   visually while staying second in the DOM - name before picture for a
-   screen reader, picture before name for an eye. */
-.creed__inner{
-  max-width:76rem;margin:0 auto;text-align:left;
-  display:grid;grid-template-columns:minmax(0,24rem) minmax(0,1fr);
-  gap:clamp(2rem,5vw,4.5rem);align-items:center;
-}
-.creed__copy{max-width:46rem;margin:0}
-.creed__figure{margin:0;order:-1}
-.creed__figure img{
-  width:100%;height:auto;display:block;
-  aspect-ratio:2/3;object-fit:cover;
-}
-@media (max-width:900px){
-  .creed__inner{grid-template-columns:1fr;max-width:34rem;gap:clamp(2rem,5vh,3rem)}
-}
+/* Ryan, 8 Nov: the picture comes off this section. It carried three
+   different ones in two days - a portrait beside the words, a landscape
+   under them, a portrait beside them again - and the answer turned out to
+   be none of them. The banner is the photograph on this page; The Standard
+   is the sentence. .creed__copy stays as a wrapper so a picture can be put
+   back without unpicking the markup again. */
+.creed__inner{max-width:46rem;margin:0 auto;text-align:center}
+.creed__copy{max-width:46rem;margin:0 auto}
 .creed__eyebrow{
   margin:0 0 clamp(2rem,4.5vh,3rem);
   font-family:var(--ui);font-weight:300;
@@ -1134,11 +1117,6 @@ blockquote{
        sits in a house that is not yet finished. Guiding people through that is as much
        the job as the sale is.</p>
     </div>
-
-    <figure class="creed__figure">
-      <img src="media/team-group.jpg" width="1400" height="2099" loading="lazy" decoding="async"
-           alt="Ryan Stonehouse, Blake Barker, Joe Archer and Jack Montague, photographed in the studio">
-    </figure>
   </div>
 </section>
 
