@@ -835,7 +835,25 @@ blockquote{
 /* =============================== TEAM PAGE ===============================
    The banner carries no words at all — just the team, the mark and the nav.
    Everything the page has to say is said by the people below it. */
-.teamtop{position:relative;height:82svh;min-height:30rem;overflow:hidden}
+/* A FIXED SHAPE, NOT A SHARE OF THE WINDOW. Ryan, 8 Nov: "I want it to look
+   like this... on the site right now it's getting cut off." The picture he
+   was holding up was a 1512 by 982 render, and the one on his screen was
+   the same page in a wider, shorter window.
+
+   That was the whole difference. At 82svh the hero's height came from the
+   window and its width came from the page, so the share of the photograph
+   on screen changed with the shape of the browser: 80% at 1512x982, 66% at
+   1512x812, 66% again at 1800x966. The composition was never decided here,
+   it was decided by whoever resized their window.
+
+   1512/805 is the ratio of the frame he approved. Pinned to it, the hero's
+   height follows its width and the same 80% of the picture shows at every
+   window shape. No max-height: any clamp in viewport units hands the crop
+   back to the window and undoes this. In practice 1.878 is wider than
+   almost any browser window, so the hero still fits the screen - 1022 tall
+   at 1920x1080, 1363 at 2560x1440 - and where it does not, it scrolls,
+   which is the price of a composition that holds. */
+.teamtop{position:relative;aspect-ratio:1512/805;min-height:30rem;overflow:hidden}
 /* THE BANNER IS NOW FOUR PEOPLE, not a house, and that changes what the
    crop has to protect. The frame is 1.88 at a common desktop size and the
    photograph is 1.50, so it is scaled to the width and about 200px comes
@@ -852,7 +870,7 @@ blockquote{
    underneath, and all four of them are in it. */
 @media (max-width:760px){
   .teamtop{
-    height:auto;min-height:0;background:var(--ink);
+    aspect-ratio:auto;height:auto;min-height:0;background:var(--ink);
     /* --bar-h is not declared on this page, so the fallback is doing the
        work: the bar measures 70px here, which is 4.4rem. */
     padding-top:calc(var(--bar-h,4.4rem) + .6rem);
