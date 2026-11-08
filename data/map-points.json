@@ -1,0 +1,262 @@
+[
+ {
+  "slug": "anna",
+  "name": "Anna",
+  "kind": "development",
+  "query": "Anna Dr, Brentwood, TN 37027",
+  "lat": 35.993105,
+  "lon": -86.694932,
+  "src": "OSM: Concord Rd, Brentwood",
+  "precision": "street"
+ },
+ {
+  "slug": "annandale",
+  "name": "Annandale",
+  "kind": "development",
+  "query": "Jones Pkwy, Brentwood, TN 37027",
+  "lat": 36.0270769,
+  "lon": -86.7694632,
+  "src": "nominatim",
+  "precision": "street"
+ },
+ {
+  "slug": "bison-ridge",
+  "name": "Bison Ridge",
+  "kind": "development",
+  "query": "Ridge Hill Dr, Joelton, TN 37080",
+  "lat": 36.321614,
+  "lon": -86.867546,
+  "src": "OSM: Whites Creek Pike, Joelton",
+  "precision": "area"
+ },
+ {
+  "slug": "callie",
+  "name": "Callie",
+  "kind": "development",
+  "query": "Callie Ln, Brentwood, TN 37027",
+  "lat": 35.991402,
+  "lon": -86.828535,
+  "src": "Census: 1300 Holly Tree Gap Rd, Brentwood",
+  "precision": "street"
+ },
+ {
+  "slug": "cielo",
+  "name": "Cielo",
+  "kind": "development",
+  "query": "9227 Old Smyrna Rd, Brentwood, TN 37027",
+  "lat": 36.017554591372,
+  "lon": -86.76285500379,
+  "src": "census",
+  "precision": "exact"
+ },
+ {
+  "slug": "firefly",
+  "name": "Firefly",
+  "kind": "development",
+  "query": "3071 US-431, Spring Hill, TN 37174",
+  "lat": 35.716296149114,
+  "lon": -86.835787639954,
+  "src": "census",
+  "precision": "exact"
+ },
+ {
+  "slug": "governors-club",
+  "name": "Governors Club",
+  "kind": "development",
+  "query": "9681 Concord Rd, Brentwood, TN 37027",
+  "lat": 35.983462419194,
+  "lon": -86.720984791323,
+  "src": "census",
+  "precision": "exact"
+ },
+ {
+  "slug": "harlan",
+  "name": "Harlan",
+  "kind": "development",
+  "query": "9230 Old Smyrna Rd, Brentwood, TN 37027",
+  "lat": 36.01758911095,
+  "lon": -86.761285983378,
+  "src": "census",
+  "precision": "exact"
+ },
+ {
+  "slug": "laurelbrooke",
+  "name": "Laurelbrooke",
+  "kind": "development",
+  "query": "Laurelbrooke Dr, Franklin, TN 37069",
+  "lat": 35.998673,
+  "lon": -86.883335,
+  "src": "OSM: Grassland, Williamson County (Sneed Rd)",
+  "precision": "area"
+ },
+ {
+  "slug": "rosebrooke",
+  "name": "Rosebrooke",
+  "kind": "development",
+  "query": "Rosebrooke Dr, Brentwood, TN 37027",
+  "lat": 35.9670487,
+  "lon": -86.7145491,
+  "src": "nominatim",
+  "precision": "street"
+ },
+ {
+  "slug": "the-grove",
+  "name": "The Grove",
+  "kind": "development",
+  "query": "6200 Wildings Blvd, College Grove, TN 37046",
+  "lat": 35.818250449014,
+  "lon": -86.734422405392,
+  "src": "census",
+  "precision": "exact"
+ },
+ {
+  "slug": "troubadour",
+  "name": "Troubadour",
+  "kind": "development",
+  "query": "8000 Club View Dr, College Grove, TN 37046",
+  "lat": 35.82652,
+  "lon": -86.67772,
+  "src": "OSM: Troubadour Golf and Field Club, Cox Rd",
+  "precision": "exact"
+ },
+ {
+  "slug": "witherspoon",
+  "name": "Witherspoon",
+  "kind": "development",
+  "query": "Witherspoon Dr, Brentwood, TN 37027",
+  "lat": 35.9731432,
+  "lon": -86.7622973,
+  "src": "nominatim",
+  "precision": "street"
+ },
+ {
+  "slug": "wyelea",
+  "name": "Wyelea",
+  "kind": "development",
+  "query": "3021 Del Rio Pike, Franklin, TN 37069",
+  "lat": 35.948965564584,
+  "lon": -86.902392287699,
+  "src": "census",
+  "precision": "exact"
+ },
+ {
+  "slug": "arrington",
+  "name": "Arrington",
+  "kind": "neighborhood",
+  "query": "Arrington, Williamson County, Tennessee",
+  "lat": 35.8676656,
+  "lon": -86.7096095,
+  "src": "nominatim",
+  "precision": "exact"
+ },
+ {
+  "slug": "belle-meade",
+  "name": "Belle Meade",
+  "kind": "neighborhood",
+  "query": "Belle Meade, Davidson County, Tennessee",
+  "lat": 36.0958924,
+  "lon": -86.8569448,
+  "src": "nominatim",
+  "precision": "exact"
+ },
+ {
+  "slug": "brentwood",
+  "name": "Brentwood",
+  "kind": "neighborhood",
+  "query": "Brentwood, Williamson County, Tennessee",
+  "lat": 36.0325687,
+  "lon": -86.7825235,
+  "src": "nominatim",
+  "precision": "exact"
+ },
+ {
+  "slug": "downtown",
+  "name": "Downtown",
+  "kind": "neighborhood",
+  "query": "Downtown, Nashville, Davidson County, Tennessee",
+  "lat": 36.1630404,
+  "lon": -86.779808,
+  "src": "nominatim",
+  "precision": "exact"
+ },
+ {
+  "slug": "forest-hills",
+  "name": "Forest Hills",
+  "kind": "neighborhood",
+  "query": "Forest Hills, Davidson County, Tennessee",
+  "lat": 36.0687185,
+  "lon": -86.8452855,
+  "src": "nominatim",
+  "precision": "exact"
+ },
+ {
+  "slug": "franklin",
+  "name": "Franklin",
+  "kind": "neighborhood",
+  "query": "Franklin, Williamson County, Tennessee",
+  "lat": 35.925206,
+  "lon": -86.8689419,
+  "src": "nominatim",
+  "precision": "exact"
+ },
+ {
+  "slug": "germantown",
+  "name": "Germantown",
+  "kind": "neighborhood",
+  "query": "Germantown, Nashville, Davidson County, Tennessee",
+  "lat": 36.175365,
+  "lon": -86.788001,
+  "src": "Census: 1200 5th Ave N, Nashville 37208",
+  "precision": "exact"
+ },
+ {
+  "slug": "green-hills",
+  "name": "Green Hills",
+  "kind": "neighborhood",
+  "query": "Green Hills, Nashville, Davidson County, Tennessee",
+  "lat": 36.1036698,
+  "lon": -86.8166664,
+  "src": "nominatim",
+  "precision": "exact"
+ },
+ {
+  "slug": "leipers-fork",
+  "name": "Leiper's Fork",
+  "kind": "neighborhood",
+  "query": "Leiper's Fork, Williamson County, Tennessee",
+  "lat": 35.89806,
+  "lon": -86.9991443,
+  "src": "nominatim",
+  "precision": "exact"
+ },
+ {
+  "slug": "oak-hill",
+  "name": "Oak Hill",
+  "kind": "neighborhood",
+  "query": "Oak Hill, Davidson County, Tennessee",
+  "lat": 36.0742925,
+  "lon": -86.7887307,
+  "src": "nominatim",
+  "precision": "exact"
+ },
+ {
+  "slug": "thompsons-station",
+  "name": "Thompson's Station",
+  "kind": "neighborhood",
+  "query": "Thompson's Station, Williamson County, Tennessee",
+  "lat": 35.802011,
+  "lon": -86.9113908,
+  "src": "nominatim",
+  "precision": "exact"
+ },
+ {
+  "slug": "west-meade",
+  "name": "West Meade",
+  "kind": "neighborhood",
+  "query": "West Meade, Nashville, Davidson County, Tennessee",
+  "lat": 36.1178363,
+  "lon": -86.887223,
+  "src": "nominatim",
+  "precision": "exact"
+ }
+]
