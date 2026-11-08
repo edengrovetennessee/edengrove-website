@@ -1,0 +1,184 @@
+[
+ {
+  "x": 624.4592293803483,
+  "y": 935.5494916667973,
+  "x0": 624.4592293803483,
+  "y0": 933.771259559714,
+  "n": 3,
+  "city": "Brentwood",
+  "label": "Davis Dr",
+  "href": "properties.html",
+  "members": [
+   {
+    "label": "607 Davis Dr",
+    "href": "properties.html"
+   },
+   {
+    "label": "706 Davis Dr",
+    "href": "properties.html"
+   },
+   {
+    "label": "715 Davis Dr",
+    "href": "property/715-davis/"
+   }
+  ],
+  "moved_ft": 249
+ },
+ {
+  "x": 639.8279691674157,
+  "y": 909.2732360582664,
+  "x0": 630.4110996041974,
+  "y0": 917.1922613397339,
+  "n": 1,
+  "city": "Brentwood",
+  "label": "515 Shenandoah Dr",
+  "href": "property/515-shenandoah/",
+  "members": [
+   {
+    "label": "515 Shenandoah Dr",
+    "href": "property/515-shenandoah/"
+   }
+  ],
+  "moved_ft": 1723
+ },
+ {
+  "x": 613.5396352210541,
+  "y": 640.88157261459,
+  "x0": 613.5396352210541,
+  "y0": 640.88157261459,
+  "n": 1,
+  "city": "Nashville",
+  "label": "2502 9th Ave S",
+  "href": "property/2502-9th-ave-s/",
+  "members": [
+   {
+    "label": "2502 9th Ave S",
+    "href": "property/2502-9th-ave-s/"
+   }
+  ],
+  "moved_ft": 0
+ },
+ {
+  "x": 498.6803807410459,
+  "y": 587.1243362477883,
+  "x0": 498.6803807410459,
+  "y0": 587.1243362477883,
+  "n": 1,
+  "city": "Nashville",
+  "label": "4303A Utah Ave",
+  "href": "property/4303a-utah/",
+  "members": [
+   {
+    "label": "4303A Utah Ave",
+    "href": "property/4303a-utah/"
+   }
+  ],
+  "moved_ft": 0
+ },
+ {
+  "x": 779.1453213153542,
+  "y": 1299.2458961444243,
+  "x0": 769.2431578947309,
+  "y0": 1307.5720430155943,
+  "n": 1,
+  "city": "Arrington",
+  "label": "2495 Deer Meadow Ln",
+  "href": "properties.html",
+  "members": [
+   {
+    "label": "2495 Deer Meadow Ln",
+    "href": "properties.html"
+   }
+  ],
+  "moved_ft": 1812
+ },
+ {
+  "x": 588.3295011136819,
+  "y": 666.4107943108161,
+  "x0": 588.3295011136819,
+  "y0": 666.4107943108161,
+  "n": 2,
+  "city": "Nashville",
+  "label": "Clifton Ln",
+  "href": "properties.html",
+  "members": [
+   {
+    "label": "1306 Clifton Ln",
+    "href": "properties.html"
+   },
+   {
+    "label": "1308 Clifton Ln",
+    "href": "properties.html"
+   }
+  ],
+  "moved_ft": 0
+ },
+ {
+  "x": 547.2576819579047,
+  "y": 804.0775856682268,
+  "x0": 547.2576819579047,
+  "y0": 804.0775856682268,
+  "n": 1,
+  "city": "Brentwood",
+  "label": "1211 Jefferson Davis Dr",
+  "href": "property/1211-jefferson-davis/",
+  "members": [
+   {
+    "label": "1211 Jefferson Davis Dr",
+    "href": "property/1211-jefferson-davis/"
+   }
+  ],
+  "moved_ft": 0
+ },
+ {
+  "x": 402.9678421410369,
+  "y": 618.3627314868032,
+  "x0": 402.9678421410369,
+  "y0": 618.3627314868032,
+  "n": 1,
+  "city": "Nashville",
+  "label": "842 Brook Hollow Rd",
+  "href": "properties.html",
+  "members": [
+   {
+    "label": "842 Brook Hollow Rd",
+    "href": "properties.html"
+   }
+  ],
+  "moved_ft": 0
+ },
+ {
+  "x": 378.4634317642083,
+  "y": 642.5437586660894,
+  "x0": 378.4634317642083,
+  "y0": 642.5437586660894,
+  "n": 1,
+  "city": "Nashville",
+  "label": "735 Clematis Dr",
+  "href": "properties.html",
+  "members": [
+   {
+    "label": "735 Clematis Dr",
+    "href": "properties.html"
+   }
+  ],
+  "moved_ft": 0
+ },
+ {
+  "x": 589.4783021243138,
+  "y": 992.1632558860565,
+  "x0": 586.9037533789331,
+  "y0": 992.1632558860565,
+  "n": 1,
+  "city": "Brentwood",
+  "label": "1310 Lavada Pl",
+  "href": "properties.html",
+  "members": [
+   {
+    "label": "1310 Lavada Pl",
+    "href": "properties.html"
+   }
+  ],
+  "moved_ft": 361
+ }
+]

@@ -28,6 +28,7 @@
 
   /* the one warm note in the palette — status, rules, and the only call to action */
   --brass:#DACEB6;
+  --sage:#8FA87F;          /* the listings layer - 7.1:1 on the ink */
   /* ---- the house scale -------------------------------------------------
      Three weights of text, one of rule, on each ground. The site was using
      33 opacities of the cream and 10 of the white; no single value was
@@ -781,6 +782,31 @@ blockquote{
 }
 .mp__key__dot{width:.45rem;height:.45rem;border-radius:50%;background:var(--t1);flex:none}
 .mp__key__dot--dev{background:var(--brass)}
+.mp__key__dot--list{background:var(--sage)}
+
+/* The key is three switches, not a caption. A switch that is off keeps its
+   words at full strength and empties its dot - dimming the label would read
+   as disabled rather than available. */
+.mp__key__i{
+  appearance:none;-webkit-appearance:none;background:none;border:0;padding:.35rem 0;
+  cursor:pointer;border-bottom:1px solid transparent;transition:border-color .3s var(--rise);
+}
+.mp__key__i:hover{border-bottom-color:var(--warm-rule)}
+.mp__key__i:focus-visible{outline:1px solid var(--brass);outline-offset:.4rem}
+.mp__key__dot{transition:background .3s var(--rise),box-shadow .3s var(--rise)}
+.mp__key__i[aria-pressed="false"] .mp__key__dot{
+  background:transparent;box-shadow:inset 0 0 0 1px currentColor;
+}
+
+/* Hiding a layer with display:none takes its links out of the tab order too,
+   which visibility:hidden would not. */
+.mp.is-off-hood .mp__pin--hood,
+.mp.is-off-dev  .mp__pin--dev,
+.mp.is-off-list .mp__pins--list{display:none}
+.mp.is-off-hood .mp__list:not(.mp__list--dev),
+.mp.is-off-hood .mp__index__h:first-child,
+.mp.is-off-dev  .mp__list--dev,
+.mp.is-off-dev  .mp__index__h--dev{display:none}
 
 .mp__frame{max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0}
 .mp__svg{width:100%;height:auto;display:block}
@@ -804,6 +830,14 @@ blockquote{
   animation:mp-ping 3s var(--rise) infinite;animation-delay:var(--d,0s);
 }
 .mp__pin--dev .mp__ring{stroke:var(--brass)}
+/* The green layer lands on top of a map that is already full, so a listing
+   dot carries a ring of the background colour. Where it falls beside a
+   brass or white one the two stay two, instead of merging into a smear. */
+.mp__pin--list .mp__dot{
+  fill:var(--sage);stroke:var(--ink);stroke-width:3;
+  vector-effect:non-scaling-stroke;paint-order:stroke fill;
+}
+.mp__pin--list .mp__ring{stroke:var(--sage)}
 /* Every pin carries its own delay, so twenty-six of them breathe out of
    step instead of flashing in unison like a fault light. */
 @keyframes mp-ping{
@@ -815,6 +849,13 @@ blockquote{
   font-family:var(--ui);font-weight:300;font-size:19px;letter-spacing:.04em;
   fill:var(--t2);transition:fill .3s var(--rise);pointer-events:none;
 }
+/* A listing's address is too long to sit on the map permanently next to
+   twenty-six names that are already solved tight, so it waits for the
+   cursor. The panel under the map carries the same thirteen addresses for
+   anyone without one. */
+.mp__lbl--list{opacity:0;transition:opacity .3s var(--rise),fill .3s var(--rise)}
+.mp__pin--list:hover .mp__lbl--list,
+.mp__pin--list:focus-visible .mp__lbl--list{opacity:1;fill:#fff}
 .mp__pin:hover .mp__dot,.mp__pin:focus-visible .mp__dot{transform:scale(1.6)}
 .mp__pin:hover .mp__lbl,.mp__pin:focus-visible .mp__lbl{fill:#fff}
 .mp__pin:focus-visible{outline:none}
@@ -851,7 +892,43 @@ blockquote{
     display:block;padding:.75rem 0;font-weight:300;font-size:.88rem;color:var(--t2);
   }
   .mp__list--dev a{color:var(--brass)}
+  /* The labels are gone at this width, so a shared pin has nothing but its
+     size left to say it stands for more than one address. */
+  .mp__dot--many{r:12}
 }
+
+/* ---- the listings panel ----
+   Shown at every width, not just on a phone: a green dot answers where,
+   and this answers what. It is the only part of the map that goes stale,
+   so it is one block, in one place, grouped by town. */
+.mp__now{
+  max-width:34rem;margin:clamp(2.6rem,6vh,3.6rem) auto 0;
+  border-top:1px solid var(--warm-rule);padding-top:clamp(1.6rem,3.5vh,2.2rem);
+}
+.mp__now[hidden]{display:none}
+.mp__now__h{
+  margin:0;font-family:var(--ui);font-weight:400;font-size:.58rem;
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--sage);
+}
+.mp__now__city{
+  margin:clamp(1.4rem,3vh,1.8rem) 0 .2rem;font-family:var(--ui);font-weight:400;
+  font-size:.56rem;letter-spacing:.26em;text-transform:uppercase;color:var(--warm);
+}
+.mp__now__list{list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:1fr 1fr;gap:0 1.4rem}
+.mp__now__list li{border-top:1px solid var(--warm-rule)}
+.mp__now__list a{
+  display:block;padding:.7rem 0;font-weight:300;font-size:.88rem;color:var(--t2);
+  transition:color .3s var(--rise);
+}
+.mp__now__list a:hover{color:var(--sage)}
+.mp__now__foot{margin:clamp(1.5rem,3vh,2rem) 0 0}
+.mp__now__foot a{
+  font-family:var(--ui);font-weight:400;font-size:.58rem;letter-spacing:.26em;
+  text-transform:uppercase;color:var(--brass);border-bottom:1px solid var(--warm-rule);
+  padding-bottom:.2rem;
+}
+@media (max-width:520px){ .mp__now__list{grid-template-columns:1fr} }
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/neighborhoods.html">
 <meta property="og:type" content="website">
@@ -960,21 +1037,22 @@ blockquote{
      TO ADD A PLACE: put it in points.json with a lat and lon, re-run
      build_geo.py and the label solver, and paste the <g class="mp__pins">
      block back in. Do not hand-edit coordinates in here. -->
-<section class="mp" aria-labelledby="mp-h">
+<section class="mp is-off-list" aria-labelledby="mp-h">
   <div class="mp__head">
     <p class="mp__eyebrow" id="mp-h">On the Map</p>
     <p class="mp__lede">Twelve neighborhoods and fourteen luxury communities, each at its
-       own place on the map. Choose one.</p>
-    <p class="mp__key">
-      <span class="mp__key__i"><i class="mp__key__dot"></i>Neighborhood</span>
-      <span class="mp__key__i"><i class="mp__key__dot mp__key__dot--dev"></i>Luxury Community</span>
-    </p>
+       own place on the map. Add our listings on top of them. Choose any dot.</p>
+    <div class="mp__key" role="group" aria-label="Layers on the map">
+      <button type="button" class="mp__key__i" data-layer="hood" aria-pressed="true"><i class="mp__key__dot"></i>Neighborhoods</button>
+      <button type="button" class="mp__key__i" data-layer="dev"  aria-pressed="true"><i class="mp__key__dot mp__key__dot--dev"></i>Luxury Communities</button>
+      <button type="button" class="mp__key__i" data-layer="list" aria-pressed="false"><i class="mp__key__dot mp__key__dot--list"></i>Our Listings</button>
+    </div>
   </div>
 
   <div class="mp__frame">
 <svg class="mp__svg" viewBox="0 0 1000 1809.1" role="group" aria-labelledby="mp-title mp-desc" preserveAspectRatio="xMidYMid meet">
   <title id="mp-title">Middle Tennessee</title>
-  <desc id="mp-desc">Twelve neighborhoods and fourteen luxury communities, each at its true position between Joelton and Spring Hill. Every one is a link to its page.</desc>
+  <desc id="mp-desc">Twelve neighborhoods and fourteen luxury communities, each at its true position between Joelton and Spring Hill, with a switchable layer of our current listings. Every one is a link.</desc>
   <g class="mp__land" aria-hidden="true">
     <path class="mp__county" d="M-435.7,70.6 L-431.2,55.8 L-434.2,44.8 L-431.7,43.2 L-432.7,40.4 L-425.1,37.0 L-422.1,43.5 L-416.4,43.3 L-403.2,35.6 L-400.0,42.3 L-396.6,40.8 L-382.2,23.2 L-379.8,17.4 L-382.8,15.0 L-379.1,11.0 L-378.0,6.8 L-378.7,-1.7 L-376.7,-8.8 L-366.1,-16.7 L-368.4,-20.6 L-309.2,-63.2 L-294.9,-67.5 L-275.0,-102.7 L-271.5,-104.9 L-274.0,-110.4 L-264.4,-108.8 L-264.9,-105.7 L-257.3,-104.8 L-253.9,-100.5 L-248.4,-98.1 L-219.8,-95.3 L-218.6,-99.5 L-219.9,-103.4 L-225.6,-107.9 L-226.0,-111.4 L-217.9,-129.7 L-220.1,-140.6 L-210.1,-143.6 L-202.8,-150.0 L-197.3,-147.2 L-195.7,-150.3 L-193.1,-149.1 L-194.4,-143.5 L-188.1,-138.1 L-185.8,-133.7 L-186.7,-122.0 L-184.7,-112.7 L-174.5,-118.6 L-159.9,-121.4 L-156.8,-123.6 L-154.5,-128.3 L-155.0,-137.4 L-160.4,-141.3 L-162.6,-148.3 L-161.4,-164.9 L-158.0,-176.4 L-158.4,-195.1 L-111.6,-211.4 L-100.4,-223.1 L-95.7,-222.5 L-49.0,-188.3 L-48.2,-196.7 L-41.2,-195.3 L-42.2,-182.9 L25.0,-133.8 L99.5,-79.6 L146.6,-58.3 L190.5,12.8 L192.4,10.7 L187.0,1.4 L188.0,-2.3 L191.4,-3.7 L195.5,-2.9 L206.0,7.4 L215.3,9.9 L217.5,8.9 L219.6,0.2 L219.4,-8.8 L230.0,-10.6 L232.6,-13.5 L232.1,-15.9 L237.2,-18.6 L249.6,-18.0 L254.4,-23.1 L259.0,-22.6 L264.5,-24.4 L280.6,-21.6 L288.3,-25.7 L291.2,-32.9 L289.6,-42.5 L291.6,-46.8 L294.3,-45.5 L298.0,-39.0 L302.4,-35.4 L309.6,-32.6 L327.2,-44.5 L330.3,-40.8 L333.7,-40.9 L336.3,-35.9 L347.8,-23.9 L343.0,-18.6 L341.8,-20.7 L337.0,-21.0 L334.6,-9.1 L337.4,-8.7 L335.5,-2.3 L347.8,-5.5 L355.3,9.8 L347.4,17.5 L347.5,24.7 L319.4,116.1 L267.6,228.1 L246.9,245.2 L211.8,312.6 L191.6,376.3 L199.1,398.3 L195.1,406.8 L183.5,402.1 L183.4,405.2 L183.9,403.7 L191.0,406.5 L188.9,416.3 L192.4,417.6 L162.7,628.6 L77.5,717.6 L76.6,737.4 L83.1,738.1 L83.5,747.4 L77.2,749.6 L76.4,754.4 L70.8,855.6 L65.9,849.9 L64.2,841.1 L60.3,839.9 L54.5,841.4 L49.0,834.6 L42.7,833.0 L44.8,844.5 L-20.9,849.1 L-141.8,838.1 L-226.5,833.7 L-218.2,787.4 L-206.8,780.1 L-206.6,778.6 L-214.3,749.2 L-211.1,747.9 L-206.3,750.2 L-205.9,678.3 L-191.4,560.7 L-195.6,559.3 L-201.4,551.3 L-204.4,545.3 L-204.7,539.5 L-201.7,531.1 L-194.2,522.6 L-189.5,521.5 L-182.1,514.8 L-170.3,512.4 L-157.6,502.7 L-163.1,487.8 L-176.2,465.7 L-184.5,462.7 L-199.2,462.9 L-202.3,460.8 L-204.1,451.0 L-200.8,445.9 L-200.1,439.5 L-203.0,433.4 L-219.7,415.7 L-223.7,414.6 L-234.8,417.0 L-237.5,412.6 L-236.6,403.0 L-232.3,391.1 L-227.1,384.1 L-224.3,375.5 L-219.4,369.5 L-217.5,368.9 L-210.3,373.4 L-203.2,373.5 L-193.9,367.4 L-192.0,364.2 L-189.3,350.1 L-202.0,329.9 L-198.7,327.6 L-202.5,321.2 L-208.5,318.4 L-217.1,320.4 L-234.0,333.0 L-247.7,327.4 L-250.5,324.6 L-249.1,315.0 L-237.7,301.9 L-226.5,293.0 L-224.9,286.9 L-217.6,284.2 L-205.6,275.2 L-186.1,265.0 L-180.0,264.0 L-171.5,256.2 L-168.4,247.9 L-175.7,234.6 L-174.7,229.6 L-171.7,226.2 L-165.0,224.4 L-198.3,220.5 L-196.2,203.9 L-188.0,203.4 L-184.2,206.7 L-172.4,205.0 L-169.6,201.8 L-168.3,193.9 L-161.5,191.0 L-159.6,183.6 L-163.2,175.5 L-164.3,168.3 L-171.8,162.2 L-194.5,155.8 L-208.5,147.2 L-215.4,145.4 L-245.9,145.3 L-267.5,140.5 L-293.0,143.5 L-298.4,140.9 L-314.1,127.4 L-328.0,109.8 L-331.5,100.6 L-335.8,103.7 L-334.2,105.6 L-335.3,112.6 L-338.0,115.6 L-348.9,116.9 L-352.6,121.4 L-370.2,125.5 L-370.7,122.4 L-403.2,128.2 L-445.3,125.1 L-435.7,70.6 Z"/>
     <path class="mp__county" d="M788.9,1685.1 L792.3,1661.1 L796.0,1607.8 L803.1,1606.8 L806.3,1602.4 L805.5,1611.1 L827.8,1613.7 L829.8,1612.2 L832.7,1597.6 L835.5,1572.8 L841.9,1573.0 L841.8,1564.5 L848.4,1564.7 L849.9,1557.3 L865.6,1559.2 L868.3,1567.5 L871.0,1568.5 L874.3,1532.2 L870.7,1529.2 L864.8,1528.2 L870.6,1519.2 L867.0,1512.8 L867.7,1507.3 L891.8,1509.8 L899.3,1508.5 L900.9,1495.3 L932.4,1498.1 L932.7,1495.6 L949.5,1497.3 L950.1,1506.6 L971.9,1508.9 L977.0,1473.0 L973.1,1467.1 L971.5,1457.8 L960.0,1461.6 L959.0,1468.8 L952.8,1470.1 L951.8,1465.6 L947.0,1460.5 L951.0,1442.7 L954.3,1441.3 L956.0,1443.5 L964.1,1441.5 L964.4,1448.6 L972.7,1448.5 L975.1,1420.0 L945.2,1414.7 L946.2,1399.8 L963.5,1402.3 L965.5,1382.7 L992.8,1383.0 L993.2,1379.2 L996.8,1375.7 L996.9,1356.4 L999.9,1353.6 L999.1,1345.3 L989.3,1342.7 L985.1,1338.4 L987.0,1330.2 L974.6,1327.8 L973.3,1324.7 L969.3,1323.0 L963.3,1316.8 L962.0,1306.9 L963.5,1300.9 L960.9,1298.0 L955.0,1268.8 L958.8,1265.8 L967.3,1268.2 L971.0,1265.7 L962.9,1223.8 L944.5,1204.5 L941.1,1197.0 L944.8,1189.1 L943.2,1184.0 L947.4,1170.5 L968.5,1109.6 L947.4,1083.0 L948.1,1072.1 L950.3,1072.3 L953.7,1056.7 L949.5,1055.5 L947.3,1049.8 L954.1,1046.0 L969.7,1047.0 L971.3,1026.7 L978.1,1027.0 L979.8,1015.6 L983.2,1015.8 L984.8,1000.9 L978.8,1000.2 L979.8,986.7 L967.2,984.9 L974.0,937.1 L985.5,935.3 L987.7,936.6 L998.4,932.2 L1010.6,912.8 L1017.3,905.7 L1017.6,900.3 L1020.3,900.6 L1026.7,896.5 L1036.9,893.7 L1045.3,893.3 L1052.4,885.8 L1059.1,882.2 L1059.1,879.8 L1065.8,873.6 L1079.1,871.2 L1082.8,859.4 L1070.8,836.2 L1072.7,830.7 L1079.8,822.0 L1080.4,811.4 L1075.2,797.6 L1078.9,796.7 L1077.5,790.9 L1080.7,785.0 L1080.7,787.6 L1089.7,792.0 L1104.2,793.1 L1112.7,790.0 L1113.5,761.3 L1108.5,754.3 L1107.4,739.5 L1111.8,734.5 L1115.6,737.6 L1124.9,761.1 L1128.4,763.7 L1148.4,761.3 L1152.7,770.4 L1141.3,806.9 L1145.7,813.1 L1156.4,813.9 L1159.2,809.5 L1157.9,783.7 L1166.6,774.3 L1169.8,744.0 L1173.5,744.2 L1177.7,701.2 L1269.5,775.5 L1275.5,775.3 L1275.2,778.6 L1288.2,780.3 L1287.4,784.3 L1342.5,822.5 L1340.5,828.3 L1337.4,828.2 L1350.3,833.8 L1352.5,830.3 L1383.0,853.9 L1431.3,882.3 L1433.4,868.2 L1457.8,871.3 L1455.1,893.6 L1445.6,892.3 L1469.5,931.8 L1473.8,925.5 L1475.9,916.2 L1479.4,914.1 L1489.4,916.5 L1493.0,924.0 L1496.1,925.8 L1495.0,935.6 L1534.2,962.9 L1576.3,1002.1 L1580.8,996.4 L1584.1,996.0 L1590.6,999.6 L1593.9,997.6 L1610.6,999.2 L1608.5,1013.8 L1611.1,1012.1 L1609.8,1018.9 L1658.7,1028.2 L1657.7,1034.2 L1722.6,1045.2 L1724.3,1048.0 L1724.6,1045.6 L1735.6,1047.2 L1733.2,1064.3 L1744.5,1066.6 L1762.6,1068.7 L1764.3,1058.7 L1789.3,1059.6 L1790.6,1055.2 L1793.2,1053.9 L1793.7,1043.1 L1806.6,1042.8 L1806.5,1047.3 L1821.4,1049.1 L1820.4,1059.6 L1836.8,1061.2 L1837.0,1058.3 L1871.7,1061.5 L1870.5,1072.8 L1904.3,1074.4 L1904.5,1072.1 L1894.1,1070.0 L1893.9,1066.3 L1906.6,1068.0 L1909.9,1070.3 L1910.0,1066.5 L1915.7,1066.9 L1915.3,1058.9 L1924.0,1058.9 L1923.7,1075.7 L1933.5,1076.3 L1933.4,1081.4 L1941.3,1081.8 L1941.6,1096.5 L1936.2,1138.7 L1964.7,1186.0 L1958.0,1194.6 L1956.6,1201.2 L1941.3,1199.7 L1934.9,1254.3 L1926.4,1253.3 L1931.0,1255.3 L1929.3,1273.4 L1920.2,1272.7 L1920.6,1266.0 L1908.1,1264.1 L1907.1,1281.4 L1914.4,1281.1 L1898.7,1290.7 L1893.5,1342.0 L1888.9,1340.9 L1889.0,1346.0 L1893.0,1348.8 L1892.9,1351.4 L1887.7,1351.0 L1892.1,1352.9 L1884.8,1421.1 L1889.7,1432.5 L1885.2,1470.1 L1879.8,1480.8 L1878.3,1493.1 L1881.7,1496.7 L1866.1,1494.3 L1867.0,1516.2 L1862.3,1517.2 L1861.8,1529.5 L1863.8,1538.7 L1866.6,1543.0 L1863.4,1557.2 L1867.3,1563.1 L1870.7,1562.7 L1878.3,1565.9 L1876.9,1578.9 L1869.3,1578.1 L1866.7,1590.3 L1863.5,1596.0 L1866.7,1603.4 L1858.7,1609.3 L1851.7,1636.2 L1833.2,1647.1 L1830.7,1653.6 L1825.4,1660.0 L1826.2,1666.2 L1835.8,1671.8 L1828.5,1680.5 L1829.3,1694.6 L1828.2,1699.8 L1825.0,1703.4 L1823.6,1711.7 L1827.1,1734.1 L1824.8,1737.8 L1820.3,1736.1 L1809.5,1741.6 L1805.6,1738.7 L1804.4,1732.3 L1800.9,1727.9 L1796.6,1727.3 L1792.1,1738.9 L1787.0,1743.6 L1784.7,1750.0 L1788.8,1756.6 L1777.9,1758.9 L1771.4,1767.0 L1760.6,1770.2 L1755.5,1768.1 L1752.9,1770.9 L1746.5,1772.9 L1743.5,1781.9 L1747.9,1784.2 L1749.5,1791.9 L1746.2,1796.8 L1749.6,1802.5 L1749.7,1807.4 L1752.9,1811.3 L1754.4,1826.1 L1750.1,1830.6 L1741.3,1831.2 L1738.8,1835.0 L1741.2,1841.9 L1748.1,1843.5 L1750.0,1847.8 L1756.1,1853.4 L1745.9,1885.5 L1748.9,1889.6 L1747.7,1893.7 L1753.1,1901.2 L1754.9,1909.5 L1751.1,1914.9 L1751.1,1918.0 L1747.0,1921.2 L1720.7,1921.2 L1721.1,1915.1 L1714.6,1905.7 L1710.1,1905.7 L1707.9,1901.3 L1702.0,1900.8 L1698.2,1897.3 L1697.1,1893.3 L1687.8,1893.4 L1674.1,1884.8 L1671.7,1877.8 L1667.7,1878.4 L1665.2,1876.5 L1657.7,1878.7 L1660.1,1886.8 L1659.1,1891.3 L1653.0,1890.1 L1652.8,1887.6 L1645.2,1881.3 L1641.5,1880.8 L1628.8,1885.3 L1620.6,1883.6 L1617.9,1877.6 L1620.1,1870.2 L1625.7,1870.5 L1627.3,1863.8 L1630.1,1862.8 L1630.9,1859.2 L1624.9,1853.8 L1622.9,1849.3 L1611.9,1849.4 L1609.7,1844.0 L1595.3,1846.0 L1591.8,1842.8 L1572.9,1841.9 L1559.8,1853.2 L1553.7,1850.3 L1555.7,1842.5 L1546.4,1839.9 L1543.3,1837.0 L1536.7,1838.4 L1539.4,1845.7 L1532.0,1851.4 L1525.0,1846.4 L1520.6,1846.9 L1516.2,1853.5 L1517.1,1859.7 L1523.2,1861.7 L1524.8,1865.7 L1521.7,1873.5 L1506.3,1873.0 L1505.9,1868.5 L1499.3,1868.2 L1498.1,1870.4 L1493.5,1871.7 L1491.1,1878.1 L1486.2,1881.2 L1477.1,1885.1 L1469.9,1881.6 L1466.0,1892.8 L1473.7,1902.3 L1474.9,1906.6 L1472.4,1913.7 L1478.0,1924.4 L1475.2,1926.0 L1463.9,1926.6 L1457.6,1929.9 L1457.2,1934.6 L1454.1,1935.7 L1446.8,1936.4 L1442.8,1933.5 L1433.3,1935.1 L1430.5,1932.0 L1432.8,1937.9 L1431.4,1943.9 L1423.8,1946.9 L1415.3,1956.0 L1410.2,1946.5 L1406.9,1944.6 L1392.3,1944.0 L1385.5,1937.8 L1383.4,1930.7 L1391.9,1907.9 L1392.8,1900.1 L1381.3,1898.6 L1382.8,1881.5 L1385.7,1881.5 L1386.1,1875.1 L1368.6,1874.7 L1370.2,1866.4 L1357.4,1874.8 L1352.3,1882.2 L1340.2,1886.6 L1326.9,1884.1 L1326.0,1891.0 L1305.2,1888.3 L1303.0,1907.6 L1290.1,1905.8 L1291.9,1886.7 L1266.9,1883.7 L1269.3,1861.8 L1236.2,1857.3 L1235.0,1854.1 L1223.1,1853.2 L1223.9,1845.9 L1211.0,1844.2 L1211.7,1836.3 L1206.5,1835.1 L1207.1,1829.5 L1199.2,1828.3 L1200.3,1820.0 L1190.6,1818.6 L1192.0,1807.5 L1182.8,1806.1 L1183.0,1803.9 L1169.6,1801.9 L1170.3,1793.8 L1175.4,1794.5 L1177.9,1774.2 L1168.0,1773.9 L1167.5,1780.7 L1161.5,1780.3 L1161.3,1770.4 L1154.4,1770.1 L1153.9,1766.4 L1131.5,1764.2 L1131.9,1761.5 L1118.6,1758.9 L1119.8,1750.2 L1067.2,1746.0 L1039.7,1745.7 L999.2,1739.9 L959.1,1737.0 L958.9,1741.2 L953.4,1740.4 L953.9,1736.7 L950.3,1736.6 L923.4,1738.8 L917.0,1780.7 L910.8,1779.8 L911.6,1772.5 L891.8,1769.8 L892.2,1765.9 L870.3,1763.1 L870.9,1757.4 L858.6,1756.3 L858.8,1753.5 L843.7,1751.9 L844.9,1735.4 L826.0,1733.3 L830.2,1719.1 L818.5,1717.8 L819.1,1708.7 L812.4,1709.5 L813.6,1696.2 L800.6,1695.2 L800.0,1698.3 L791.0,1697.6 L788.9,1685.1 Z"/>
@@ -994,84 +1072,84 @@ blockquote{
     <path class="mp__road" d="M-272.6,1091.8 L-259.0,1096.9 L-251.8,1103.0 L-237.3,1128.1 L-182.0,1195.6 L-111.9,1240.0 L-87.1,1249.7 L-54.5,1271.4 L-35.9,1298.2 L-26.0,1318.0 L6.9,1346.0 L17.8,1361.6 L24.8,1372.9 L32.2,1399.7 L37.5,1409.3 L48.9,1417.6 L73.5,1423.6 L86.7,1437.6 L94.8,1441.6 L140.7,1434.2 L212.7,1444.6 L225.9,1441.4 L251.1,1427.4 L313.9,1423.4 L369.9,1424.0 L426.8,1429.0 L452.4,1426.0 L482.5,1427.4 L527.7,1424.8 L560.8,1442.1 L602.1,1453.6 L645.3,1444.0 L692.5,1423.2 L716.0,1405.9 L745.8,1392.6 L764.9,1372.8 L791.6,1359.7 L880.6,1363.8 L923.6,1375.6 L954.3,1370.1 L978.3,1346.2 L988.1,1340.1 M988.1,1340.1 L1002.5,1335.2 L1061.1,1327.9 L1102.2,1319.3 L1149.8,1318.0 L1179.7,1314.1 L1253.7,1270.4 L1282.1,1235.5 L1307.2,1222.3 L1326.2,1204.4 L1343.7,1167.4 L1346.6,1150.2 L1341.5,1107.9 L1318.6,1054.6 L1317.4,1046.1 L1319.9,1037.4 L1354.7,972.0 L1360.9,952.4 L1362.8,929.3 L1356.3,833.2 M-272.7,1092.5 L-259.9,1097.4 L-252.1,1103.9 L-237.9,1128.6 L-180.9,1197.4 L-100.6,1247.9 L-79.0,1255.9 L-57.4,1269.5 L-37.0,1297.6 L-26.2,1318.7 L9.2,1349.9 L23.9,1372.4 L31.9,1400.7 L37.8,1410.6 L48.6,1418.2 L74.4,1424.8 L86.0,1438.0 L95.4,1442.3 L140.1,1434.9 L213.9,1445.2 L227.2,1441.6 L250.5,1428.2 L309.5,1424.2 L368.4,1424.5 L423.6,1429.6 L454.2,1426.6 L482.9,1428.1 L528.8,1425.5 L560.7,1442.8 L594.9,1453.8 L603.2,1454.2 L647.1,1443.9 L690.4,1425.0 L716.7,1406.3 L742.7,1395.6 L764.4,1373.9 L791.5,1360.5 L800.2,1359.2 L829.1,1362.8 L882.0,1364.7 L923.5,1376.3 L954.3,1370.8 L978.1,1347.4 L988.9,1340.6 M988.9,1340.6 L1003.0,1335.7 L1062.9,1328.2 L1105.7,1319.5 L1150.6,1318.6 L1180.2,1314.6 L1254.6,1270.6 L1282.3,1236.4 L1308.4,1222.4 L1327.3,1204.1 L1344.5,1167.1 L1347.2,1149.7 L1341.8,1106.7 L1319.4,1054.9 L1318.1,1045.6 L1354.5,974.1 L1362.0,950.2 L1363.4,928.1 L1357.0,833.8"/>
   </g>
   <g class="mp__pins">
-    <a class="mp__pin" href="neighborhood/arrington/" style="--d:0.00s" aria-label="Arrington, neighborhood">
+    <a class="mp__pin mp__pin--hood" href="neighborhood/arrington/" style="--d:0.00s" aria-label="Arrington, neighborhood">
       <title>Arrington &#8212; neighborhood</title>
       <circle class="mp__ring" cx="769.2" cy="1307.6" r="7"/>
       <circle class="mp__dot"  cx="769.2" cy="1307.6" r="6"/>
       <text class="mp__lbl" x="785.2" y="1312.6" text-anchor="start">Arrington</text>
       <circle class="mp__hit" cx="769.2" cy="1307.6" r="26"/>
     </a>
-    <a class="mp__pin" href="neighborhood/belle-meade/" style="--d:0.23s" aria-label="Belle Meade, neighborhood">
+    <a class="mp__pin mp__pin--hood" href="neighborhood/belle-meade/" style="--d:0.23s" aria-label="Belle Meade, neighborhood">
       <title>Belle Meade &#8212; neighborhood</title>
       <circle class="mp__ring" cx="459.1" cy="713.5" r="7"/>
       <circle class="mp__dot"  cx="459.1" cy="713.5" r="6"/>
       <text class="mp__lbl" x="443.1" y="718.5" text-anchor="end">Belle Meade</text>
       <circle class="mp__hit" cx="459.1" cy="713.5" r="26"/>
     </a>
-    <a class="mp__pin" href="neighborhood/brentwood/" style="--d:0.46s" aria-label="Brentwood, neighborhood">
+    <a class="mp__pin mp__pin--hood" href="neighborhood/brentwood/" style="--d:0.46s" aria-label="Brentwood, neighborhood">
       <title>Brentwood &#8212; neighborhood</title>
       <circle class="mp__ring" cx="615.7" cy="878.3" r="7"/>
       <circle class="mp__dot"  cx="615.7" cy="878.3" r="6"/>
       <text class="mp__lbl" x="599.7" y="883.3" text-anchor="end">Brentwood</text>
       <circle class="mp__hit" cx="615.7" cy="878.3" r="26"/>
     </a>
-    <a class="mp__pin" href="neighborhood/downtown/" style="--d:0.69s" aria-label="Downtown, neighborhood">
+    <a class="mp__pin mp__pin--hood" href="neighborhood/downtown/" style="--d:0.69s" aria-label="Downtown, neighborhood">
       <title>Downtown &#8212; neighborhood</title>
       <circle class="mp__ring" cx="621.5" cy="538.7" r="7"/>
       <circle class="mp__dot"  cx="621.5" cy="538.7" r="6"/>
       <text class="mp__lbl" x="637.5" y="543.7" text-anchor="start">Downtown</text>
       <circle class="mp__hit" cx="621.5" cy="538.7" r="26"/>
     </a>
-    <a class="mp__pin" href="neighborhood/forest-hills/" style="--d:0.92s" aria-label="Forest Hills, neighborhood">
+    <a class="mp__pin mp__pin--hood" href="neighborhood/forest-hills/" style="--d:0.92s" aria-label="Forest Hills, neighborhood">
       <title>Forest Hills &#8212; neighborhood</title>
       <circle class="mp__ring" cx="483.6" cy="784.2" r="7"/>
       <circle class="mp__dot"  cx="483.6" cy="784.2" r="6"/>
       <text class="mp__lbl" x="467.6" y="789.2" text-anchor="end">Forest Hills</text>
       <circle class="mp__hit" cx="483.6" cy="784.2" r="26"/>
     </a>
-    <a class="mp__pin" href="neighborhood/franklin/" style="--d:1.15s" aria-label="Franklin, neighborhood">
+    <a class="mp__pin mp__pin--hood" href="neighborhood/franklin/" style="--d:1.15s" aria-label="Franklin, neighborhood">
       <title>Franklin &#8212; neighborhood</title>
       <circle class="mp__ring" cx="433.8" cy="1157.8" r="7"/>
       <circle class="mp__dot"  cx="433.8" cy="1157.8" r="6"/>
       <text class="mp__lbl" x="449.8" y="1162.8" text-anchor="start">Franklin</text>
       <circle class="mp__hit" cx="433.8" cy="1157.8" r="26"/>
     </a>
-    <a class="mp__pin" href="neighborhood/germantown/" style="--d:1.38s" aria-label="Germantown, neighborhood">
+    <a class="mp__pin mp__pin--hood" href="neighborhood/germantown/" style="--d:1.38s" aria-label="Germantown, neighborhood">
       <title>Germantown &#8212; neighborhood</title>
       <circle class="mp__ring" cx="604.2" cy="506.6" r="7"/>
       <circle class="mp__dot"  cx="604.2" cy="506.6" r="6"/>
       <text class="mp__lbl" x="620.2" y="511.6" text-anchor="start">Germantown</text>
       <circle class="mp__hit" cx="604.2" cy="506.6" r="26"/>
     </a>
-    <a class="mp__pin" href="neighborhood/green-hills/" style="--d:1.61s" aria-label="Green Hills, neighborhood">
+    <a class="mp__pin mp__pin--hood" href="neighborhood/green-hills/" style="--d:1.61s" aria-label="Green Hills, neighborhood">
       <title>Green Hills &#8212; neighborhood</title>
       <circle class="mp__ring" cx="543.9" cy="693.3" r="7"/>
       <circle class="mp__dot"  cx="543.9" cy="693.3" r="6"/>
       <text class="mp__lbl" x="559.9" y="698.3" text-anchor="start">Green Hills</text>
       <circle class="mp__hit" cx="543.9" cy="693.3" r="26"/>
     </a>
-    <a class="mp__pin" href="neighborhood/leipers-fork/" style="--d:1.84s" aria-label="Leiper&#x27;s Fork, neighborhood">
+    <a class="mp__pin mp__pin--hood" href="neighborhood/leipers-fork/" style="--d:1.84s" aria-label="Leiper&#x27;s Fork, neighborhood">
       <title>Leiper&#x27;s Fork &#8212; neighborhood</title>
       <circle class="mp__ring" cx="159.7" cy="1228.5" r="7"/>
       <circle class="mp__dot"  cx="159.7" cy="1228.5" r="6"/>
       <text class="mp__lbl" x="175.7" y="1233.5" text-anchor="start">Leiper&#x27;s Fork</text>
       <circle class="mp__hit" cx="159.7" cy="1228.5" r="26"/>
     </a>
-    <a class="mp__pin" href="neighborhood/oak-hill/" style="--d:2.07s" aria-label="Oak Hill, neighborhood">
+    <a class="mp__pin mp__pin--hood" href="neighborhood/oak-hill/" style="--d:2.07s" aria-label="Oak Hill, neighborhood">
       <title>Oak Hill &#8212; neighborhood</title>
       <circle class="mp__ring" cx="602.7" cy="769.7" r="7"/>
       <circle class="mp__dot"  cx="602.7" cy="769.7" r="6"/>
       <text class="mp__lbl" x="618.7" y="774.7" text-anchor="start">Oak Hill</text>
       <circle class="mp__hit" cx="602.7" cy="769.7" r="26"/>
     </a>
-    <a class="mp__pin" href="neighborhood/thompsons-station/" style="--d:2.30s" aria-label="Thompson&#x27;s Station, neighborhood">
+    <a class="mp__pin mp__pin--hood" href="neighborhood/thompsons-station/" style="--d:2.30s" aria-label="Thompson&#x27;s Station, neighborhood">
       <title>Thompson&#x27;s Station &#8212; neighborhood</title>
       <circle class="mp__ring" cx="344.4" cy="1478.5" r="7"/>
       <circle class="mp__dot"  cx="344.4" cy="1478.5" r="6"/>
       <text class="mp__lbl" x="360.4" y="1483.5" text-anchor="start">Thompson&#x27;s Station</text>
       <circle class="mp__hit" cx="344.4" cy="1478.5" r="26"/>
     </a>
-    <a class="mp__pin" href="neighborhood/west-meade/" style="--d:2.53s" aria-label="West Meade, neighborhood">
+    <a class="mp__pin mp__pin--hood" href="neighborhood/west-meade/" style="--d:2.53s" aria-label="West Meade, neighborhood">
       <title>West Meade &#8212; neighborhood</title>
       <circle class="mp__ring" cx="395.3" cy="656.4" r="7"/>
       <circle class="mp__dot"  cx="395.3" cy="656.4" r="6"/>
@@ -1177,6 +1255,86 @@ blockquote{
       <circle class="mp__hit" cx="363.4" cy="1095.9" r="26"/>
     </a>
   </g>
+  <!-- THE GREEN LAYER. Thirteen listings, ten dots: three on Davis Drive and
+       two on Clifton Lane share a pin rather than stack, and the pin carries
+       the count. Every address came off the Census geocoder except 2495 Deer
+       Meadow Ln, which is in neither gazetteer and sits at the centre of
+       Arrington - the same treatment Laurelbrooke already gets.
+       Two dots are not exactly on their address: 515 Shenandoah Dr moved
+       1,720 ft and Deer Meadow 1,810 ft, both to get out from under a
+       neighbor's name. Everything else is where it says it is. -->
+  <g class="mp__pins mp__pins--list">
+    <a class="mp__pin mp__pin--list" href="property/4303a-utah/" style="--d:0.00s" aria-label="4303A Utah Ave, Nashville">
+      <title>4303A Utah Ave, Nashville &#8212; Eden Grove listing</title>
+      <circle class="mp__ring" cx="498.7" cy="587.1" r="7.5"/>
+      <circle class="mp__dot"  cx="498.7" cy="587.1" r="6.0"/>
+      <text class="mp__lbl mp__lbl--list" x="514.7" y="592.1" text-anchor="start">4303A Utah Ave</text>
+      <circle class="mp__hit"  cx="498.7" cy="587.1" r="26"/>
+    </a>
+    <a class="mp__pin mp__pin--list" href="properties.html" style="--d:0.29s" aria-label="842 Brook Hollow Rd, Nashville">
+      <title>842 Brook Hollow Rd, Nashville &#8212; Eden Grove listing</title>
+      <circle class="mp__ring" cx="403.0" cy="618.4" r="7.5"/>
+      <circle class="mp__dot"  cx="403.0" cy="618.4" r="6.0"/>
+      <text class="mp__lbl mp__lbl--list" x="419.0" y="623.4" text-anchor="start">842 Brook Hollow Rd</text>
+      <circle class="mp__hit"  cx="403.0" cy="618.4" r="26"/>
+    </a>
+    <a class="mp__pin mp__pin--list" href="property/2502-9th-ave-s/" style="--d:0.58s" aria-label="2502 9th Ave S, Nashville">
+      <title>2502 9th Ave S, Nashville &#8212; Eden Grove listing</title>
+      <circle class="mp__ring" cx="613.5" cy="640.9" r="7.5"/>
+      <circle class="mp__dot"  cx="613.5" cy="640.9" r="6.0"/>
+      <text class="mp__lbl mp__lbl--list" x="629.5" y="645.9" text-anchor="start">2502 9th Ave S</text>
+      <circle class="mp__hit"  cx="613.5" cy="640.9" r="26"/>
+    </a>
+    <a class="mp__pin mp__pin--list" href="properties.html" style="--d:0.87s" aria-label="735 Clematis Dr, Nashville">
+      <title>735 Clematis Dr, Nashville &#8212; Eden Grove listing</title>
+      <circle class="mp__ring" cx="378.5" cy="642.5" r="7.5"/>
+      <circle class="mp__dot"  cx="378.5" cy="642.5" r="6.0"/>
+      <text class="mp__lbl mp__lbl--list" x="394.5" y="647.5" text-anchor="start">735 Clematis Dr</text>
+      <circle class="mp__hit"  cx="378.5" cy="642.5" r="26"/>
+    </a>
+    <a class="mp__pin mp__pin--list" href="properties.html" style="--d:1.16s" aria-label="Clifton Ln, two listings">
+      <title>Clifton Ln, Nashville &#8212; two listings</title>
+      <circle class="mp__ring" cx="588.3" cy="666.4" r="9.0"/>
+      <circle class="mp__dot mp__dot--many"  cx="588.3" cy="666.4" r="7.5"/>
+      <text class="mp__lbl mp__lbl--list" x="604.3" y="671.4" text-anchor="start">Clifton Ln &#183; 2 listings</text>
+      <circle class="mp__hit"  cx="588.3" cy="666.4" r="26"/>
+    </a>
+    <a class="mp__pin mp__pin--list" href="property/1211-jefferson-davis/" style="--d:1.45s" aria-label="1211 Jefferson Davis Dr, Brentwood">
+      <title>1211 Jefferson Davis Dr, Brentwood &#8212; Eden Grove listing</title>
+      <circle class="mp__ring" cx="547.3" cy="804.1" r="7.5"/>
+      <circle class="mp__dot"  cx="547.3" cy="804.1" r="6.0"/>
+      <text class="mp__lbl mp__lbl--list" x="563.3" y="809.1" text-anchor="start">1211 Jefferson Davis Dr</text>
+      <circle class="mp__hit"  cx="547.3" cy="804.1" r="26"/>
+    </a>
+    <a class="mp__pin mp__pin--list" href="property/515-shenandoah/" style="--d:1.74s" aria-label="515 Shenandoah Dr, Brentwood">
+      <title>515 Shenandoah Dr, Brentwood &#8212; Eden Grove listing</title>
+      <circle class="mp__ring" cx="639.8" cy="909.3" r="7.5"/>
+      <circle class="mp__dot"  cx="639.8" cy="909.3" r="6.0"/>
+      <text class="mp__lbl mp__lbl--list" x="655.8" y="914.3" text-anchor="start">515 Shenandoah Dr</text>
+      <circle class="mp__hit"  cx="639.8" cy="909.3" r="26"/>
+    </a>
+    <a class="mp__pin mp__pin--list" href="properties.html" style="--d:2.03s" aria-label="Davis Dr, three listings">
+      <title>Davis Dr, Brentwood &#8212; three listings</title>
+      <circle class="mp__ring" cx="624.5" cy="935.5" r="9.0"/>
+      <circle class="mp__dot mp__dot--many"  cx="624.5" cy="935.5" r="7.5"/>
+      <text class="mp__lbl mp__lbl--list" x="640.5" y="940.5" text-anchor="start">Davis Dr &#183; 3 listings</text>
+      <circle class="mp__hit"  cx="624.5" cy="935.5" r="26"/>
+    </a>
+    <a class="mp__pin mp__pin--list" href="properties.html" style="--d:2.32s" aria-label="1310 Lavada Pl, Brentwood">
+      <title>1310 Lavada Pl, Brentwood &#8212; Eden Grove listing</title>
+      <circle class="mp__ring" cx="589.5" cy="992.2" r="7.5"/>
+      <circle class="mp__dot"  cx="589.5" cy="992.2" r="6.0"/>
+      <text class="mp__lbl mp__lbl--list" x="605.5" y="997.2" text-anchor="start">1310 Lavada Pl</text>
+      <circle class="mp__hit"  cx="589.5" cy="992.2" r="26"/>
+    </a>
+    <a class="mp__pin mp__pin--list" href="properties.html" style="--d:2.61s" aria-label="2495 Deer Meadow Ln, Arrington">
+      <title>2495 Deer Meadow Ln, Arrington &#8212; Eden Grove listing</title>
+      <circle class="mp__ring" cx="779.1" cy="1299.2" r="7.5"/>
+      <circle class="mp__dot"  cx="779.1" cy="1299.2" r="6.0"/>
+      <text class="mp__lbl mp__lbl--list" x="763.1" y="1304.2" text-anchor="end">2495 Deer Meadow Ln</text>
+      <circle class="mp__hit"  cx="779.1" cy="1299.2" r="26"/>
+    </a>
+  </g>
 </svg>
   </div>
 
@@ -1196,7 +1354,7 @@ blockquote{
       <li><a href="neighborhood/thompsons-station/">Thompson&#x27;s Station</a></li>
       <li><a href="neighborhood/west-meade/">West Meade</a></li>
     </ul>
-    <p class="mp__index__h">Luxury Communities</p>
+    <p class="mp__index__h mp__index__h--dev">Luxury Communities</p>
     <ul class="mp__list mp__list--dev">
       <li><a href="development/anna/">Anna</a></li>
       <li><a href="development/annandale/">Annandale</a></li>
@@ -1213,6 +1371,33 @@ blockquote{
       <li><a href="development/witherspoon/">Witherspoon</a></li>
       <li><a href="development/wyelea/">Wyelea</a></li>
     </ul>
+  </div>
+
+  <div class="mp__now" id="mp-now" hidden>
+    <p class="mp__now__h">Our Listings</p>
+    <p class="mp__now__city">Brentwood</p>
+    <ul class="mp__now__list">
+      <li><a href="property/1211-jefferson-davis/">1211 Jefferson Davis Dr</a></li>
+      <li><a href="properties.html">1310 Lavada Pl</a></li>
+      <li><a href="property/515-shenandoah/">515 Shenandoah Dr</a></li>
+      <li><a href="properties.html">607 Davis Dr</a></li>
+      <li><a href="properties.html">706 Davis Dr</a></li>
+      <li><a href="property/715-davis/">715 Davis Dr</a></li>
+    </ul>
+    <p class="mp__now__city">Nashville</p>
+    <ul class="mp__now__list">
+      <li><a href="properties.html">1306 Clifton Ln</a></li>
+      <li><a href="properties.html">1308 Clifton Ln</a></li>
+      <li><a href="property/2502-9th-ave-s/">2502 9th Ave S</a></li>
+      <li><a href="property/4303a-utah/">4303A Utah Ave</a></li>
+      <li><a href="properties.html">735 Clematis Dr</a></li>
+      <li><a href="properties.html">842 Brook Hollow Rd</a></li>
+    </ul>
+    <p class="mp__now__city">Arrington</p>
+    <ul class="mp__now__list">
+      <li><a href="properties.html">2495 Deer Meadow Ln</a></li>
+    </ul>
+    <p class="mp__now__foot"><a href="properties.html">All properties</a></p>
   </div>
 </section>
 
@@ -1425,6 +1610,38 @@ addEventListener("keydown", e => {
     open.querySelector(".nav__link").focus();
   } else if (document.body.classList.contains("menu-open")) closeMenu();
 });
+</script>
+<script>
+/* ---- map layers ----
+   Three switches over one map. The neighborhoods and the communities are
+   places and stay on; the listings are inventory and start off, because
+   they are the only layer that changes week to week and the only one a
+   visitor should be choosing to look at. State lives in a class on .mp,
+   so the pins, the phone index and the listings panel can never disagree
+   about what is showing. */
+(() => {
+  const mp = document.querySelector(".mp");
+  if (!mp) return;
+  const now = document.getElementById("mp-now");
+  const keys = [...mp.querySelectorAll(".mp__key__i[data-layer]")];
+
+  const apply = btn => {
+    const on = btn.getAttribute("aria-pressed") === "true";
+    mp.classList.toggle("is-off-" + btn.dataset.layer, !on);
+    if (btn.dataset.layer === "list" && now) now.hidden = !on;
+  };
+
+  keys.forEach(btn => {
+    apply(btn);
+    btn.addEventListener("click", () => {
+      const on = btn.getAttribute("aria-pressed") === "true";
+      // Never let the last layer go out - an empty map looks broken, not off.
+      if (on && keys.filter(k => k.getAttribute("aria-pressed") === "true").length === 1) return;
+      btn.setAttribute("aria-pressed", String(!on));
+      apply(btn);
+    });
+  });
+})();
 </script>
 </body>
 </html>
