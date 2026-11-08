@@ -1116,8 +1116,11 @@ blockquote{
 /* A single agent should not inherit the width of two. */
 .p-agents--1{max-width:20rem}
 .p-agent{text-align:center}
+/* 4:5, not square. Ryan, 8 Nov: the square was cropping these down to a
+   head on a background. A portrait frame is the same shape the team page
+   uses and it lets the photograph be a person rather than a face. */
 .p-agent__photo{
-  aspect-ratio:1;overflow:hidden;margin:0 0 clamp(1.4rem,3vh,2rem);
+  aspect-ratio:4/5;overflow:hidden;margin:0 0 clamp(1.4rem,3vh,2rem);
   background:#1b1f19;border:1px solid rgba(182,169,124,.22);
 }
 /* The crop guard this frame never had. It is square and the portraits are
