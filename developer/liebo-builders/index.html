@@ -1273,6 +1273,197 @@ blockquote{
 }
 @media (prefers-reduced-motion:reduce){ .sg-work__frame img{transition:none} }
 
+/* ====================== LIEBO: THE LONGER PAGE =========================
+   A builder nobody in Brentwood has heard of yet needs more than five
+   address cards. The page now runs record -> where they come from -> how
+   they work -> what is under way -> what is coming -> who they are, which
+   is the order the questions actually arrive in.
+
+   Nothing here invents a figure. Every number is Liebo's own published
+   one and the page attributes it; the two houses under way carry only
+   facts we hold; the nine that are coming are a LIST, not cards, because
+   a card promises a photograph and a date. */
+
+.sg-band__sub{
+  margin:1rem 0 0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(.58rem,.55rem + .14vw,.66rem);
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--warm);
+}
+.sg-band__lede + .sg-band__lede{margin-top:1.1rem}
+
+/* ---- the record ---- */
+.lb-rec{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(1.8rem,4vw,3rem) clamp(1.4rem,3vw,2.6rem);
+  max-width:64rem;margin:0 auto;padding:0;
+}
+.lb-rec__i{text-align:center}
+.lb-rec dt{
+  font-family:var(--ui);font-weight:200;color:var(--t1);
+  font-size:clamp(1.9rem,1.3rem + 2.4vw,3.1rem);line-height:1;
+  letter-spacing:.01em;
+}
+.lb-rec dt span{font-size:.46em;color:var(--brass);vertical-align:.42em;margin-left:.06em}
+.lb-rec dd{
+  margin:.85rem 0 0;font-weight:300;
+  font-size:clamp(.78rem,.75rem + .16vw,.88rem);
+  line-height:1.75;color:var(--t2);
+}
+@media (max-width:760px){ .lb-rec{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:400px){ .lb-rec{grid-template-columns:1fr;max-width:20rem} }
+
+.lb-note{
+  max-width:40rem;margin:clamp(2rem,4.5vh,2.8rem) auto 0;text-align:center;
+  font-weight:300;font-size:clamp(.72rem,.7rem + .14vw,.8rem);
+  line-height:1.8;color:var(--warm);
+}
+
+/* ---- prose ---- */
+.lb-prose{max-width:40rem;margin:0 auto}
+.lb-prose p{
+  margin:0;font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
+  line-height:1.95;color:var(--t2);
+}
+.lb-prose p + p{margin-top:1.3rem}
+.lb-prose--one{text-align:center}
+
+/* ---- the named project ---- */
+.lb-named{
+  max-width:40rem;margin:clamp(2.6rem,6vh,4rem) auto 0;padding:clamp(2rem,5vh,3rem) var(--gutter);
+  border:1px solid var(--line);text-align:center;
+}
+.lb-named__eyebrow{
+  margin:0;font-family:var(--ui);font-weight:400;font-size:.58rem;
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--warm);
+}
+.lb-named__addr{
+  margin:1.1rem 0 0;font-family:var(--ui);font-weight:300;color:var(--t1);
+  font-size:clamp(1.05rem,.95rem + .5vw,1.4rem);
+  letter-spacing:.16em;text-indent:.16em;text-transform:uppercase;
+}
+.lb-named__place{
+  margin:.55rem 0 0;font-weight:300;
+  font-size:clamp(.78rem,.75rem + .16vw,.86rem);color:var(--t2);
+}
+.lb-named__line{
+  margin:1.4rem 0 0;font-weight:300;
+  font-size:clamp(.84rem,.8rem + .18vw,.94rem);line-height:1.85;color:var(--t2);
+}
+
+/* ---- the four stages ---- */
+.lb-steps{
+  list-style:none;margin:0 auto;padding:0;max-width:64rem;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:clamp(2rem,4.5vw,3.2rem);
+}
+@media (max-width:760px){ .lb-steps{grid-template-columns:1fr;max-width:34rem} }
+.lb-steps__i{border-top:1px solid var(--line);padding-top:clamp(1.2rem,2.6vh,1.6rem)}
+.lb-steps__n{
+  margin:0;font-family:var(--ui);font-weight:400;font-size:.58rem;
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--brass);
+}
+.lb-steps__h{
+  margin:.9rem 0 0;font-family:var(--ui);font-weight:300;color:var(--t1);
+  font-size:clamp(.9rem,.85rem + .26vw,1.05rem);line-height:1.5;
+}
+.lb-steps__p{
+  margin:.8rem 0 0;font-weight:300;
+  font-size:clamp(.84rem,.8rem + .18vw,.94rem);line-height:1.85;color:var(--t2);
+}
+
+/* ---- the two under way ---- */
+.sg-work__more{
+  margin:1rem 0 0;font-family:var(--ui);font-weight:400;
+  font-size:clamp(.58rem,.55rem + .14vw,.66rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:var(--brass);
+}
+.lb-follow{
+  max-width:40rem;margin:clamp(2.2rem,5vh,3rem) auto 0;text-align:center;
+  font-weight:300;font-size:clamp(.84rem,.8rem + .18vw,.94rem);
+  line-height:1.85;color:var(--t2);
+}
+.lb-follow a{color:var(--brass);border-bottom:1px solid var(--warm-rule);padding-bottom:.12rem}
+
+/* ---- what is coming ----
+   Two columns of ruled rows. A row is an address and a town and nothing
+   else, which is all we can honestly say. */
+.lb-soon{
+  list-style:none;max-width:52rem;margin:clamp(2.4rem,5.5vh,3.4rem) auto 0;padding:0;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 clamp(1.6rem,4vw,3rem);
+}
+@media (max-width:620px){ .lb-soon{grid-template-columns:1fr;max-width:26rem} }
+.lb-soon li{
+  display:flex;align-items:baseline;justify-content:space-between;gap:1rem;
+  border-top:1px solid var(--line);padding:.95rem 0;
+}
+.lb-soon__a{
+  font-family:var(--ui);font-weight:300;color:var(--t1);
+  font-size:clamp(.86rem,.82rem + .2vw,.98rem);
+  letter-spacing:.1em;text-transform:uppercase;
+}
+.lb-soon__a--tbc{color:var(--t2);letter-spacing:.14em}  /* --t3 composites to
+  4.24:1 on the ink, under the 4.5 floor, and on these three rows the words are
+  the row's content rather than a label. --t2 is 8.7:1 and still reads quieter
+  than the named addresses above it. */
+.lb-soon__b{
+  flex:none;font-family:var(--ui);font-weight:300;
+  font-size:clamp(.58rem,.55rem + .14vw,.66rem);
+  letter-spacing:.24em;text-transform:uppercase;color:var(--warm);
+}
+
+/* ---- the firm ---- */
+.lb-firm{
+  max-width:52rem;margin:0 auto;display:grid;
+  grid-template-columns:11rem minmax(0,1fr);gap:clamp(2rem,5vw,3.4rem);
+  align-items:start;
+}
+@media (max-width:700px){
+  .lb-firm{grid-template-columns:1fr;max-width:26rem;justify-items:center;text-align:center}
+}
+.lb-firm__mark{
+  border:1px solid var(--line);padding:1.6rem;display:grid;place-items:center;
+  width:11rem;height:11rem;box-sizing:border-box;
+}
+.lb-firm__mark img{width:100%;height:100%;object-fit:contain;display:block}
+.lb-firm__name{
+  margin:0;font-family:var(--ui);font-weight:300;color:var(--t1);
+  font-size:clamp(1rem,.92rem + .4vw,1.24rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+}
+.lb-firm__line{
+  margin:.6rem 0 0;font-weight:300;
+  font-size:clamp(.82rem,.78rem + .18vw,.9rem);color:var(--t2);
+}
+.lb-firm__facts{margin:clamp(1.5rem,3.5vh,2.1rem) 0 0}
+.lb-firm__facts > div{
+  border-top:1px solid var(--line);padding:.85rem 0;
+  display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:1rem;
+}
+@media (max-width:700px){
+  .lb-firm__facts > div{grid-template-columns:1fr;gap:.3rem;text-align:center}
+}
+.lb-firm__facts dt{
+  font-family:var(--ui);font-weight:400;font-size:.58rem;
+  letter-spacing:.24em;text-transform:uppercase;color:var(--warm);line-height:1.9;
+}
+.lb-firm__facts dd{
+  margin:0;font-weight:300;
+  font-size:clamp(.82rem,.78rem + .18vw,.9rem);line-height:1.75;color:var(--t2);
+}
+.lb-firm__links{
+  margin:clamp(1.5rem,3.5vh,2.1rem) 0 0;
+  display:flex;flex-wrap:wrap;gap:.9rem 2rem;
+}
+@media (max-width:700px){ .lb-firm__links{justify-content:center} }
+.lb-firm__links a{
+  font-family:var(--ui);font-weight:400;
+  font-size:clamp(.6rem,.57rem + .14vw,.68rem);
+  letter-spacing:.24em;text-transform:uppercase;color:var(--brass);
+  text-decoration:none;border-bottom:1px solid var(--warm-rule);padding-bottom:.25rem;
+  transition:border-color .4s var(--rise);
+}
+.lb-firm__links a:hover,.lb-firm__links a:focus-visible{border-bottom-color:var(--brass);outline:none}
+
 .sg-back{
   display:flex;align-items:center;justify-content:center;gap:.7rem;
   width:fit-content;margin:0 auto;padding:0 0 .55rem;
@@ -1291,11 +1482,11 @@ blockquote{
 <meta property="og:site_name" content="Eden Grove">
 <meta property="og:url" content="https://edengrovetennessee.com/developer/liebo-builders/">
 <meta property="og:title" content="Liebo Builders | Eden Grove">
-<meta property="og:description" content="Liebo Builders builds in Greater Nashville and South Central Kentucky. The projects, finished and under way.">
+<meta property="og:description" content="A Los Angeles custom builder with more than twenty years and $250M in delivered work, now building in Brentwood, West Meade and Nashville. The projects, under way and coming.">
 <meta property="og:image" content="https://edengrovetennessee.com/media/og-card.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Liebo Builders | Eden Grove">
-<meta name="twitter:description" content="Liebo Builders builds in Greater Nashville and South Central Kentucky.">
+<meta name="twitter:description" content="A Los Angeles custom builder, now building in Brentwood, West Meade and Nashville.">
 <meta name="twitter:image" content="https://edengrovetennessee.com/media/og-card.jpg">
 </head>
 <body>
@@ -1351,16 +1542,106 @@ blockquote{
 
   <p class="sg-band__eyebrow">Builder</p>
   <h1>Liebo Builders</h1>
-  <p class="sg-band__lede">Joe Liebowitz founded Liebo Builders as a small,
-     family-owned crew. Architecture, interior design and construction are all
-     handled in house, so one team carries a house from the first drawing to
-     the final finish, with more than 1,500,000 square feet of completed
-     property behind the name.</p>
+  <p class="sg-band__sub">Los&nbsp;Angeles &middot; Nashville</p>
+  <p class="sg-band__lede">Joe Liebowitz built Liebo Builders into one of
+     Southern California&rsquo;s custom home and luxury remodeling firms over
+     more than twenty years. It is a design&ndash;build practice: one firm
+     carries a house from the first conversation through permitting,
+     construction and handover, working from a standing bench of architects,
+     designers and specialty trades rather than handing the job between
+     companies.</p>
+  <p class="sg-band__lede">In 2024 they opened a Middle Tennessee office. We
+     represent their first homes here.</p>
 </section>
 
-<!-- ================================ THE WORK ============================== -->
+<!-- =============================== THE RECORD =============================
+     Every figure here is Liebo's own published number, and the page says so
+     rather than presenting them as ours. Same rule the market figures on the
+     rest of the site follow. -->
+<section class="p-sec p-sec--tight" aria-labelledby="rec-h">
+  <h2 class="p-eyebrow" id="rec-h">The Record</h2>
+
+  <dl class="lb-rec">
+    <div class="lb-rec__i"><dt>20<span>+</span></dt><dd>Years in high-end residential construction</dd></div>
+    <div class="lb-rec__i"><dt>150<span>+</span></dt><dd>Luxury projects delivered</dd></div>
+    <div class="lb-rec__i"><dt>1.5<span>M+</span></dt><dd>Square feet of residential and commercial work completed</dd></div>
+    <div class="lb-rec__i"><dt>$250<span>M+</span></dt><dd>In total project value managed</dd></div>
+    <div class="lb-rec__i"><dt>50<span>+</span></dt><dd>Partners in architecture, design and specialty trades</dd></div>
+    <div class="lb-rec__i"><dt>98<span>%</span></dt><dd>Client satisfaction, by their own post-project survey</dd></div>
+  </dl>
+
+  <p class="lb-note">Figures as published by Liebo&nbsp;Builders.</p>
+</section>
+
+<!-- ============================ FROM LOS ANGELES ========================== -->
+<section class="p-sec p-sec--tight" aria-labelledby="la-h">
+  <h2 class="p-eyebrow" id="la-h">From Los Angeles</h2>
+
+  <div class="lb-prose">
+    <p>The practice is built on the Westside and the hills above it &mdash; ground
+       floor custom homes, whole-house remodels, guest houses and the kind of
+       addition that is really a second house. The firm works out of West
+       Hollywood and takes on custom homes, luxury remodeling, construction
+       management, owner&rsquo;s representation, accessory dwellings and, since
+       the 2025 fires, rebuilds.</p>
+    <p>What a Brentwood client is buying is that bench. Twenty years of
+       Los&nbsp;Angeles work means the millwork shop, the stone supplier and the
+       finish carpenter are people the builder has used fifty times, not people
+       found for this job.</p>
+  </div>
+
+  <figure class="lb-named">
+    <p class="lb-named__eyebrow">Representative Project</p>
+    <p class="lb-named__addr">1663 Summitridge</p>
+    <p class="lb-named__place">Los Angeles, California</p>
+    <figcaption class="lb-named__line">With architecture, interiors and
+      construction run under one contract, every room is held to the same
+      standard &mdash; down to the stone, the joinery and the way the light
+      comes in.</figcaption>
+  </figure>
+</section>
+
+<!-- ============================== HOW THEY WORK =========================== -->
+<section class="p-sec p-sec--tight" aria-labelledby="how-h">
+  <h2 class="p-eyebrow" id="how-h">How They Work</h2>
+
+  <ol class="lb-steps">
+    <li class="lb-steps__i">
+      <p class="lb-steps__n">One</p>
+      <h3 class="lb-steps__h">Consultation &amp; Concept Development</h3>
+      <p class="lb-steps__p">The builder, the client and the architect settle what
+         the house is before anyone draws it &mdash; how it will be lived in, not
+         only what it will look like.</p>
+    </li>
+    <li class="lb-steps__i">
+      <p class="lb-steps__n">Two</p>
+      <h3 class="lb-steps__h">Comprehensive Planning &amp; Permitting</h3>
+      <p class="lb-steps__p">Drawings, schedule and approvals are the builder&rsquo;s
+         problem, not the owner&rsquo;s. In Williamson County that stage is longer
+         than most people expect and it is where schedules are won or lost.</p>
+    </li>
+    <li class="lb-steps__i">
+      <p class="lb-steps__n">Three</p>
+      <h3 class="lb-steps__h">Flawless Execution</h3>
+      <p class="lb-steps__p">One project manager on the house, trades the firm has
+         worked with for years, and quality control at every phase rather than at
+         the end.</p>
+    </li>
+    <li class="lb-steps__i">
+      <p class="lb-steps__n">Four</p>
+      <h3 class="lb-steps__h">Final Walkthrough &amp; Delivery</h3>
+      <p class="lb-steps__p">The job is finished when the owner says it is
+         finished. Liebo carries a lifetime workmanship warranty on top of that.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ========================== NOW BUILDING IN NASHVILLE ===================
+     Two houses are actually under way. Everything else is on the Coming
+     section below, which is a list rather than a grid of cards, because a
+     card implies a photograph and a date and those do not exist yet. -->
 <section class="p-sec p-sec--tight" aria-labelledby="work-h">
-  <h2 class="p-eyebrow" id="work-h">Projects</h2>
+  <h2 class="p-eyebrow" id="work-h">Now Building in Nashville</h2>
 
   <div class="sg-grid">
 
@@ -1368,39 +1649,82 @@ blockquote{
       <div class="sg-work__frame">
         <img src="../../media/dv-hero.jpg" alt="Rendering: 715 Davis Dr, Brentwood" loading="lazy" decoding="async">
       </div>
-      <p class="sg-work__state">Private Exclusive &middot; Completion 2027</p>
+      <p class="sg-work__state">Private Exclusive &middot; Summer 2027</p>
       <h3 class="sg-work__addr">715 Davis Dr<br>Brentwood, TN 37027</h3>
-      <p class="sg-work__line">One acre in Brentwood. 8,600 square feet, six bedrooms, seven full baths and three half, a resort-style pool and a four-car garage. Liebo handles architecture, interior design and construction in house.</p>
+      <p class="sg-work__line">The first Liebo home in Nashville. One private acre,
+         8,600 square feet, six bedrooms, seven full baths and three half, a
+         resort-style pool and a four-car garage.</p>
+      <p class="sg-work__more">View the property</p>
     </a>
 
-    <div class="sg-work">
+    <!-- NO PHOTOGRAPH, DELIBERATELY. media/listing-clematis-735.jpg exists and
+         properties.html uses it, but it is a generic golden-hour field and
+         treeline, not this house and not anything in West Meade. Putting it
+         here would caption a stock landscape with a real address. The reserved
+         frame says what is missing instead. -->
+    <a class="sg-work" href="../../properties.html">
       <div class="sg-work__frame sg-work__frame--none">
         <span>Photography to come</span>
       </div>
-      <h3 class="sg-work__addr">607 Davis Dr<br>Brentwood, TN 37027</h3>
-    </div>
+      <p class="sg-work__state">Private Exclusive &middot; 2027</p>
+      <h3 class="sg-work__addr">735 Clematis Dr<br>West Meade &middot; Nashville, TN 37205</h3>
+      <p class="sg-work__line">The second Liebo home here, and the first in West
+         Meade. Details to come.</p>
+      <p class="sg-work__more">Register interest</p>
+    </a>
 
-    <div class="sg-work">
-      <div class="sg-work__frame sg-work__frame--none">
-        <span>Photography to come</span>
-      </div>
-      <h3 class="sg-work__addr">735 Clematis Dr<br>Nashville, TN 37205</h3>
-    </div>
+  </div>
 
-    <div class="sg-work">
-      <div class="sg-work__frame sg-work__frame--none">
-        <span>Photography to come</span>
-      </div>
-      <h3 class="sg-work__addr">1310 Lavada Pl<br>Brentwood, TN 37027</h3>
-    </div>
+  <p class="lb-follow">715 Davis is documented week by week as it goes up &mdash;
+     <a href="../../property/715-davis/construction/">follow the build</a>.</p>
+</section>
 
-    <div class="sg-work">
-      <div class="sg-work__frame sg-work__frame--none">
-        <span>Photography to come</span>
-      </div>
-      <h3 class="sg-work__addr">795 Rhonda Ln</h3>
-    </div>
+<!-- ================================ COMING ================================ -->
+<section class="p-sec p-sec--tight" aria-labelledby="soon-h">
+  <h2 class="p-eyebrow" id="soon-h">Coming</h2>
 
+  <p class="lb-prose lb-prose--one">Nine more Liebo houses are in planning across
+     Brentwood, West Meade and Nashville. Three are not yet ready to be named.</p>
+
+  <ul class="lb-soon">
+    <li><span class="lb-soon__a">607 Davis Dr</span><span class="lb-soon__b">Brentwood</span></li>
+    <li><span class="lb-soon__a">702 Lynnbrook</span><span class="lb-soon__b">Nashville</span></li>
+    <li><span class="lb-soon__a">704 Lynnbrook</span><span class="lb-soon__b">Nashville</span></li>
+    <li><span class="lb-soon__a">712 Clematis</span><span class="lb-soon__b">West Meade</span></li>
+    <li><span class="lb-soon__a">1310 Lavada Pl</span><span class="lb-soon__b">Brentwood</span></li>
+    <li><span class="lb-soon__a">795 Rhonda Ln</span><span class="lb-soon__b">Brentwood</span></li>
+    <li><span class="lb-soon__a lb-soon__a--tbc">To be announced</span><span class="lb-soon__b">Brentwood</span></li>
+    <li><span class="lb-soon__a lb-soon__a--tbc">To be announced</span><span class="lb-soon__b">West Meade</span></li>
+    <li><span class="lb-soon__a lb-soon__a--tbc">To be announced</span><span class="lb-soon__b">West Meade</span></li>
+  </ul>
+
+  <p class="lb-note">Private Exclusives. Nothing on this list is on the open
+     market, and several are not yet under contract to build &mdash; ask us where
+     any one of them stands.</p>
+</section>
+
+<!-- =============================== THE FIRM =============================== -->
+<section class="p-sec p-sec--tight" aria-labelledby="firm-h">
+  <h2 class="p-eyebrow" id="firm-h">The Firm</h2>
+
+  <div class="lb-firm">
+    <div class="lb-firm__mark">
+      <img src="../../media/build-liebo.png" alt="Liebo Builders"
+           width="498" height="499" loading="lazy" decoding="async">
+    </div>
+    <div class="lb-firm__body">
+      <p class="lb-firm__name">Liebo Builders</p>
+      <p class="lb-firm__line">Joe Liebowitz, founder</p>
+      <dl class="lb-firm__facts">
+        <div><dt>Offices</dt><dd>West Hollywood, California &middot; Middle Tennessee</dd></div>
+        <div><dt>Builds in</dt><dd>Brentwood, Franklin, Nashville and Williamson County</dd></div>
+        <div><dt>Licensed</dt><dd>California CSLB&nbsp;1054050 &middot; Tennessee&nbsp;86123</dd></div>
+      </dl>
+      <p class="lb-firm__links">
+        <a href="https://www.liebobuilders.com/" target="_blank" rel="noopener">liebobuilders.com</a>
+        <a href="https://www.instagram.com/liebobuilders/" target="_blank" rel="noopener">@liebobuilders</a>
+      </p>
+    </div>
   </div>
 </section>
 
