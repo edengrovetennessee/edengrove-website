@@ -46,7 +46,7 @@
    "hero": null,
    "veil": true,
    "follow": true,
-   "kind": null
+   "kind": "new"
   },
   {
    "slug": "1306-clifton",
@@ -67,7 +67,7 @@
    "hero": null,
    "veil": true,
    "follow": true,
-   "kind": null
+   "kind": "new"
   },
   {
    "slug": "1308-clifton",
@@ -88,7 +88,7 @@
    "hero": null,
    "veil": true,
    "follow": true,
-   "kind": null
+   "kind": "new"
   },
   {
    "slug": "706-davis",
@@ -109,7 +109,7 @@
    "hero": null,
    "veil": true,
    "follow": true,
-   "kind": null
+   "kind": "new"
   },
   {
    "slug": "607-davis",
@@ -151,7 +151,7 @@
    "hero": null,
    "veil": true,
    "follow": true,
-   "kind": null
+   "kind": "new"
   },
   {
    "slug": "735-clematis",
@@ -214,7 +214,7 @@
    "hero": null,
    "veil": true,
    "follow": true,
-   "kind": null
+   "kind": "new"
   },
   {
    "slug": "9003-carondelet",
@@ -235,7 +235,7 @@
    "hero": null,
    "veil": true,
    "follow": true,
-   "kind": null
+   "kind": "new"
   },
   {
    "slug": "6212-bridlewood",
@@ -256,7 +256,7 @@
    "hero": null,
    "veil": true,
    "follow": true,
-   "kind": null
+   "kind": "new"
   },
   {
    "slug": "916-long-valley",
@@ -277,7 +277,7 @@
    "hero": null,
    "veil": true,
    "follow": true,
-   "kind": null
+   "kind": "new"
   },
   {
    "slug": "795-rhonda",
@@ -319,8 +319,8 @@
    "hero": null,
    "veil": true,
    "follow": true,
-   "kind": null
+   "kind": "new"
   }
  ],
- "_kind": "new | resale | null. Drives the New Construction and Resale sections on properties.html. null means unclassified - it is not a default, and an unclassified property is held out of both sections rather than guessed into one."
+ "_kind": "new | resale. Drives the New Construction and Resale sections on properties.html. Every property in this file is new construction; the two resales are hand-built pages (2502-9th-ave-s, 4303a-utah) and are classified in data/split-sections.py."
 }

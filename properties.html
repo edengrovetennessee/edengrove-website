@@ -833,6 +833,27 @@ blockquote{
   background:linear-gradient(to top, rgba(6,8,5,.80) 0%, rgba(6,8,5,.40) 48%, rgba(6,8,5,.06) 100%);
 }
 
+
+/* ---- two sections, not one run ----
+   New construction and resale are different things to be shopping for, and
+   the page was asking a buyer to tell them apart from the photograph. The
+   status plate still says Active or Private Exclusive, because that is a
+   different question - where the house is in its life, not what it is. */
+.listings__head{
+  max-width:72rem;margin:clamp(3.2rem,7vh,5rem) auto clamp(1.4rem,3vh,2rem);
+  padding:0 clamp(.5rem,1vw,1.1rem);text-align:center;
+}
+.listings__head--first{margin-top:0}
+.listings__h{
+  margin:0;font-family:var(--ui);font-weight:300;color:var(--t1,#F4F1EC);
+  font-size:clamp(.82rem,.76rem + .26vw,1rem);
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+}
+.listings__n{
+  max-width:34rem;margin:.9rem auto 0;font-weight:300;
+  font-size:clamp(.78rem,.75rem + .16vw,.86rem);
+  line-height:1.8;color:var(--warm,#A7947C);
+}
 @media (max-width:760px){
   .listings__grid{grid-template-columns:1fr}
   .listings .prop{aspect-ratio:4/3}
@@ -918,6 +939,11 @@ blockquote{
      The three properties we currently represent. Prices and MLS numbers are
      real — they must match Realtracs exactly. -->
 <section class="listings" aria-label="Listings">
+
+  <div class="listings__head listings__head--first">
+    <h2 class="listings__h">New Construction</h2>
+    <p class="listings__n">Built with our own builders. Most are Private Exclusives and never reach the open market.</p>
+  </div>
   <div class="listings__grid">
 
     <a class="prop" href="property/715-davis/">
@@ -948,47 +974,6 @@ blockquote{
           <!-- no MLS number: a Private Exclusive is off-market by definition -->
           <div class="prop__facts">
             <span>8,596 <span class="k">Sq Ft</span></span>
-          </div>
-          <span class="prop__cta">View Property
-            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <path d="M2 1l3 3-3 3"/></svg>
-          </span>
-        </div></div>
-      </div>
-    </a>
-
-
-    <a class="prop" href="property/2502-9th-ave-s/">
-      <img loading="lazy" decoding="async" src="media/listing-9th-2502.jpg" alt="">
-      <span class="prop__status">Active</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">2502 9th Ave S<br>Nashville, TN 37204</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$2,250,000</span>
-            <span>3,530 <span class="k">Sq Ft</span></span>
-            <span>5 <span class="k">Bed</span></span>
-          </div>
-          <span class="prop__cta">View Property
-            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <path d="M2 1l3 3-3 3"/></svg>
-          </span>
-        </div></div>
-      </div>
-    </a>
-
-
-
-    <a class="prop" href="property/4303a-utah/">
-      <img loading="lazy" decoding="async" src="media/listing-utah-4303a.jpg" alt="">
-      <span class="prop__status">Active</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">4303A Utah Ave<br>Nashville, TN 37209</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$1,889,000</span>
-            <span>3,490 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>3260583</span>
           </div>
           <span class="prop__cta">View Property
             <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
@@ -1251,7 +1236,54 @@ blockquote{
         </div></div>
       </div>
     </a>
+  </div>
 
+  <div class="listings__head">
+    <h2 class="listings__h">Resale</h2>
+    <p class="listings__n">On the market now.</p>
+  </div>
+  <div class="listings__grid">
+
+
+    <a class="prop" href="property/2502-9th-ave-s/">
+      <img loading="lazy" decoding="async" src="media/listing-9th-2502.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">2502 9th Ave S<br>Nashville, TN 37204</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$2,250,000</span>
+            <span>3,530 <span class="k">Sq Ft</span></span>
+            <span>5 <span class="k">Bed</span></span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+
+
+    <a class="prop" href="property/4303a-utah/">
+      <img loading="lazy" decoding="async" src="media/listing-utah-4303a.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">4303A Utah Ave<br>Nashville, TN 37209</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$1,889,000</span>
+            <span>3,490 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>3260583</span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
   </div>
 </section>
 
