@@ -781,14 +781,31 @@ blockquote{
    Two across, square. The card itself is the same .prop component as the home
    page, so hover behavior, the reveal and the touch fallback all come free. */
 .listings{background:var(--ink);padding:clamp(3rem,7vh,5rem) 0 clamp(5rem,11vh,8rem)}
+/* Three across, not two (Ryan, 12 Nov). Nineteen properties at two across
+   is ten rows of scrolling before you have seen the inventory; at three it
+   is seven, and at four on a wide screen it is five. The card gets shorter
+   with it - 4:3 rather than 6:5 - because a shorter card is what lets the
+   next row start above the fold rather than below it. */
 .listings__grid{
-  display:grid;grid-template-columns:1fr 1fr;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
   gap:clamp(.5rem,1vw,1.1rem);
   padding:0 clamp(.5rem,1vw,1.1rem);
 }
-/* Everything below the banner is a square, two across. New listings drop in
-   as more squares and the rhythm holds however many there are. */
-.listings .prop{aspect-ratio:1/1}
+@media (min-width:1600px){ .listings__grid{grid-template-columns:repeat(4,minmax(0,1fr))} }
+@media (max-width:1100px){ .listings__grid{grid-template-columns:1fr 1fr} }
+
+/* The furniture scales with the card. At three across the address was
+   running to three lines and the facts row was wrapping, which is how a
+   denser grid ends up taller than the one it replaced. */
+.listings .prop{aspect-ratio:4/3}
+.listings .prop__addr{font-size:clamp(.82rem,.74rem + .34vw,1rem);line-height:1.6}
+.listings .prop__body{left:clamp(.85rem,1.4vw,1.25rem);right:clamp(.85rem,1.4vw,1.25rem);
+  bottom:clamp(.9rem,1.5vw,1.35rem)}
+.listings .prop__status{top:clamp(.8rem,1.2vw,1.1rem);left:clamp(.85rem,1.4vw,1.25rem)}
+.listings .prop__facts{margin-top:.8rem;padding:.6rem 0;gap:.45rem clamp(.7rem,1.6vw,1.6rem)}
+.listings .prop__cta{margin-top:.8rem;font-size:.6rem;letter-spacing:.2em}
+/* Was a square, two across. Three across now, and 4:3 - see the note above.
+   The rhythm still holds however many listings there are. */
 
 /* ---- a listing with no photograph yet ----
    Not a gray placeholder box. The tile keeps its square and its type and simply
@@ -819,6 +836,7 @@ blockquote{
 @media (max-width:760px){
   .listings__grid{grid-template-columns:1fr}
   .listings .prop{aspect-ratio:4/3}
+  .listings .prop__addr{font-size:clamp(.9rem,.8rem + .48vw,1.22rem)}
 }
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/properties.html">
