@@ -1,2 +1,6 @@
 # renderings pulled from 1211 Carl Seyfert — kept on disk, not published
 media/_retired/
+
+# Census shapefiles for the map. ~45MB, fetched not committed:
+#   bash data/map-fetch-tiger.sh
+data/tiger/
