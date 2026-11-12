@@ -45,7 +45,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": null
   },
   {
    "slug": "1306-clifton",
@@ -65,7 +66,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": null
   },
   {
    "slug": "1308-clifton",
@@ -85,7 +87,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": null
   },
   {
    "slug": "706-davis",
@@ -105,7 +108,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": null
   },
   {
    "slug": "607-davis",
@@ -125,7 +129,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": "new"
   },
   {
    "slug": "842-brook-hollow",
@@ -145,7 +150,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": null
   },
   {
    "slug": "735-clematis",
@@ -165,7 +171,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": "new"
   },
   {
    "slug": "1310-lavada",
@@ -185,7 +192,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": "new"
   },
   {
    "slug": "804-wilson-pike",
@@ -205,7 +213,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": null
   },
   {
    "slug": "9003-carondelet",
@@ -225,7 +234,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": null
   },
   {
    "slug": "6212-bridlewood",
@@ -245,7 +255,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": null
   },
   {
    "slug": "916-long-valley",
@@ -265,7 +276,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": null
   },
   {
    "slug": "795-rhonda",
@@ -285,7 +297,8 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": "new"
   },
   {
    "slug": "2112-eastwood",
@@ -305,7 +318,9 @@
    "agent": null,
    "hero": null,
    "veil": true,
-   "follow": true
+   "follow": true,
+   "kind": null
   }
- ]
+ ],
+ "_kind": "new | resale | null. Drives the New Construction and Resale sections on properties.html. null means unclassified - it is not a default, and an unclassified property is held out of both sections rather than guessed into one."
 }

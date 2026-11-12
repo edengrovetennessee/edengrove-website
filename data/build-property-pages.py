@@ -59,8 +59,19 @@ def head_for(p, head):
     desc = (f'{p["address"]} &mdash; a Private Exclusive coming to '
             f'{p["town"]}.' if p["town"] else
             f'{p["address"]} &mdash; a Private Exclusive. Register interest.')
+    kind = {"new": "New construction", "resale": "A resale"}.get(p.get("kind") or "", "A property")
+    where = f' in {p["town"]}' if p["town"] else ""
+    desc_plain = (f'{kind}{where} at {p["address"]}, a Private Exclusive with '
+                  f'Eden Grove at Compass. Follow the build or register interest.')
     out = head
     out = re.sub(r"<title>.*?</title>", f"<title>{esc(full)} | Eden Grove</title>", out, flags=re.S)
+    # The donor's own description names Shepherd Group and Chase Pasternak.
+    # Lifted wholesale with the rest of the head, it put that sentence in the
+    # search result of fourteen properties they have nothing to do with -
+    # including Liebo's. Anything in the head that names a person or a firm
+    # has to be rewritten, not inherited.
+    out = re.sub(r'<meta name="description" content="[^"]*">',
+                 f'<meta name="description" content="{desc_plain}">', out)
     out = re.sub(r'<link rel="canonical" href="[^"]*">', f'<link rel="canonical" href="{url}">', out)
     out = re.sub(r'(<meta property="og:url" content=")[^"]*(">)', rf'\g<1>{url}\g<2>', out)
     for k in ("og:title", "twitter:title"):
