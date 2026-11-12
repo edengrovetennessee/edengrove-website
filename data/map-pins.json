@@ -1,0 +1,390 @@
+{
+ "_note": "True positions. The drawn map nudges four listing pins off their address to clear labels; a tile map must not.",
+ "frames": {
+  "Williamson": {
+   "pins": 22,
+   "bounds": [
+    [
+     -87.0111,
+     35.7043
+    ],
+    [
+     -86.6657,
+     36.0446
+    ]
+   ]
+  },
+  "Davidson": {
+   "pins": 14,
+   "bounds": [
+    [
+     -86.9072,
+     36.0491
+    ],
+    [
+     -86.7678,
+     36.3336
+    ]
+   ]
+  }
+ },
+ "pins": [
+  {
+   "kind": "community",
+   "label": "Anna",
+   "lat": 35.993105,
+   "lon": -86.694932,
+   "href": "development/anna/",
+   "precision": "street",
+   "county": "Williamson"
+  },
+  {
+   "kind": "community",
+   "label": "Annandale",
+   "lat": 36.027077,
+   "lon": -86.769463,
+   "href": "development/annandale/",
+   "precision": "street",
+   "county": "Williamson"
+  },
+  {
+   "kind": "community",
+   "label": "Bison Ridge",
+   "lat": 36.321614,
+   "lon": -86.867546,
+   "href": "development/bison-ridge/",
+   "precision": "area",
+   "county": "Davidson"
+  },
+  {
+   "kind": "community",
+   "label": "Callie",
+   "lat": 35.991402,
+   "lon": -86.828535,
+   "href": "development/callie/",
+   "precision": "street",
+   "county": "Williamson"
+  },
+  {
+   "kind": "community",
+   "label": "Cielo",
+   "lat": 36.017555,
+   "lon": -86.762855,
+   "href": "development/cielo/",
+   "precision": "exact",
+   "county": "Williamson"
+  },
+  {
+   "kind": "community",
+   "label": "Firefly",
+   "lat": 35.716296,
+   "lon": -86.835788,
+   "href": "development/firefly/",
+   "precision": "exact",
+   "county": "Maury"
+  },
+  {
+   "kind": "community",
+   "label": "Governors Club",
+   "lat": 35.983462,
+   "lon": -86.720985,
+   "href": "development/governors-club/",
+   "precision": "exact",
+   "county": "Williamson"
+  },
+  {
+   "kind": "community",
+   "label": "Harlan",
+   "lat": 36.017589,
+   "lon": -86.761286,
+   "href": "development/harlan/",
+   "precision": "exact",
+   "county": "Williamson"
+  },
+  {
+   "kind": "community",
+   "label": "Laurelbrooke",
+   "lat": 35.998673,
+   "lon": -86.883335,
+   "href": "development/laurelbrooke/",
+   "precision": "area",
+   "county": "Williamson"
+  },
+  {
+   "kind": "community",
+   "label": "Rosebrooke",
+   "lat": 35.967049,
+   "lon": -86.714549,
+   "href": "development/rosebrooke/",
+   "precision": "street",
+   "county": "Williamson"
+  },
+  {
+   "kind": "community",
+   "label": "The Grove",
+   "lat": 35.81825,
+   "lon": -86.734422,
+   "href": "development/the-grove/",
+   "precision": "exact",
+   "county": "Williamson"
+  },
+  {
+   "kind": "community",
+   "label": "Troubadour",
+   "lat": 35.82652,
+   "lon": -86.67772,
+   "href": "development/troubadour/",
+   "precision": "exact",
+   "county": "Williamson"
+  },
+  {
+   "kind": "community",
+   "label": "Witherspoon",
+   "lat": 35.973143,
+   "lon": -86.762297,
+   "href": "development/witherspoon/",
+   "precision": "street",
+   "county": "Williamson"
+  },
+  {
+   "kind": "community",
+   "label": "Wyelea",
+   "lat": 35.948966,
+   "lon": -86.902392,
+   "href": "development/wyelea/",
+   "precision": "exact",
+   "county": "Williamson"
+  },
+  {
+   "kind": "neighborhood",
+   "label": "Arrington",
+   "lat": 35.867666,
+   "lon": -86.709609,
+   "href": "neighborhood/arrington/",
+   "precision": "exact",
+   "county": "Williamson"
+  },
+  {
+   "kind": "neighborhood",
+   "label": "Belle Meade",
+   "lat": 36.095892,
+   "lon": -86.856945,
+   "href": "neighborhood/belle-meade/",
+   "precision": "exact",
+   "county": "Davidson"
+  },
+  {
+   "kind": "neighborhood",
+   "label": "Brentwood",
+   "lat": 36.032569,
+   "lon": -86.782523,
+   "href": "neighborhood/brentwood/",
+   "precision": "exact",
+   "county": "Williamson"
+  },
+  {
+   "kind": "neighborhood",
+   "label": "Downtown",
+   "lat": 36.16304,
+   "lon": -86.779808,
+   "href": "neighborhood/downtown/",
+   "precision": "exact",
+   "county": "Davidson"
+  },
+  {
+   "kind": "neighborhood",
+   "label": "Forest Hills",
+   "lat": 36.068719,
+   "lon": -86.845286,
+   "href": "neighborhood/forest-hills/",
+   "precision": "exact",
+   "county": "Davidson"
+  },
+  {
+   "kind": "neighborhood",
+   "label": "Franklin",
+   "lat": 35.925206,
+   "lon": -86.868942,
+   "href": "neighborhood/franklin/",
+   "precision": "exact",
+   "county": "Williamson"
+  },
+  {
+   "kind": "neighborhood",
+   "label": "Germantown",
+   "lat": 36.175365,
+   "lon": -86.788001,
+   "href": "neighborhood/germantown/",
+   "precision": "exact",
+   "county": "Davidson"
+  },
+  {
+   "kind": "neighborhood",
+   "label": "Green Hills",
+   "lat": 36.10367,
+   "lon": -86.816666,
+   "href": "neighborhood/green-hills/",
+   "precision": "exact",
+   "county": "Davidson"
+  },
+  {
+   "kind": "neighborhood",
+   "label": "Leiper's Fork",
+   "lat": 35.89806,
+   "lon": -86.999144,
+   "href": "neighborhood/leipers-fork/",
+   "precision": "exact",
+   "county": "Williamson"
+  },
+  {
+   "kind": "neighborhood",
+   "label": "Oak Hill",
+   "lat": 36.074292,
+   "lon": -86.788731,
+   "href": "neighborhood/oak-hill/",
+   "precision": "exact",
+   "county": "Davidson"
+  },
+  {
+   "kind": "neighborhood",
+   "label": "Thompson's Station",
+   "lat": 35.802011,
+   "lon": -86.911391,
+   "href": "neighborhood/thompsons-station/",
+   "precision": "exact",
+   "county": "Williamson"
+  },
+  {
+   "kind": "neighborhood",
+   "label": "West Meade",
+   "lat": 36.117836,
+   "lon": -86.887223,
+   "href": "neighborhood/west-meade/",
+   "precision": "exact",
+   "county": "Davidson"
+  },
+  {
+   "kind": "listing",
+   "label": "Davis Dr",
+   "lat": 36.01127,
+   "lon": -86.778382,
+   "href": "properties.html",
+   "count": 3,
+   "members": [
+    "607 Davis Dr",
+    "706 Davis Dr",
+    "715 Davis Dr"
+   ],
+   "county": "Williamson"
+  },
+  {
+   "kind": "listing",
+   "label": "515 Shenandoah Dr",
+   "lat": 36.017639,
+   "lon": -86.775555,
+   "href": "property/515-shenandoah/",
+   "count": 1,
+   "members": [
+    "515 Shenandoah Dr"
+   ],
+   "county": "Williamson"
+  },
+  {
+   "kind": "listing",
+   "label": "2502 9th Ave S",
+   "lat": 36.12379,
+   "lon": -86.783569,
+   "href": "property/2502-9th-ave-s/",
+   "count": 1,
+   "members": [
+    "2502 9th Ave S"
+   ],
+   "county": "Davidson"
+  },
+  {
+   "kind": "listing",
+   "label": "4303A Utah Ave",
+   "lat": 36.144442,
+   "lon": -86.838127,
+   "href": "property/4303a-utah/",
+   "count": 1,
+   "members": [
+    "4303A Utah Ave"
+   ],
+   "county": "Davidson"
+  },
+  {
+   "kind": "listing",
+   "label": "2495 Deer Meadow Ln",
+   "lat": 35.867666,
+   "lon": -86.709609,
+   "href": "properties.html",
+   "count": 1,
+   "members": [
+    "2495 Deer Meadow Ln"
+   ],
+   "county": "Williamson"
+  },
+  {
+   "kind": "listing",
+   "label": "Clifton Ln",
+   "lat": 36.113983,
+   "lon": -86.795543,
+   "href": "properties.html",
+   "count": 2,
+   "members": [
+    "1306 Clifton Ln",
+    "1308 Clifton Ln"
+   ],
+   "county": "Davidson"
+  },
+  {
+   "kind": "listing",
+   "label": "1211 Jefferson Davis Dr",
+   "lat": 36.061095,
+   "lon": -86.815053,
+   "href": "property/1211-jefferson-davis/",
+   "count": 1,
+   "members": [
+    "1211 Jefferson Davis Dr"
+   ],
+   "county": "Davidson"
+  },
+  {
+   "kind": "listing",
+   "label": "842 Brook Hollow Rd",
+   "lat": 36.132441,
+   "lon": -86.88359,
+   "href": "properties.html",
+   "count": 1,
+   "members": [
+    "842 Brook Hollow Rd"
+   ],
+   "county": "Davidson"
+  },
+  {
+   "kind": "listing",
+   "label": "735 Clematis Dr",
+   "lat": 36.123152,
+   "lon": -86.89523,
+   "href": "properties.html",
+   "count": 1,
+   "members": [
+    "735 Clematis Dr"
+   ],
+   "county": "Davidson"
+  },
+  {
+   "kind": "listing",
+   "label": "1310 Lavada Pl",
+   "lat": 35.988837,
+   "lon": -86.796221,
+   "href": "properties.html",
+   "count": 1,
+   "members": [
+    "1310 Lavada Pl"
+   ],
+   "county": "Williamson"
+  }
+ ]
+}

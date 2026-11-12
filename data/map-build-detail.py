@@ -8,9 +8,6 @@ import glob, json, math, sys
 import shapefile
 
 import os
-# Where the unpacked Census shapefiles live. They are NOT in the repo - they
-# are ~45MB and this runs perhaps twice a year. Fetch them with:
-#   data/map-fetch-tiger.sh
 T = os.environ.get("TIGER", os.path.join(os.path.dirname(os.path.abspath(__file__)), "tiger"))
 LAT0, LAT1 = 35.675, 36.370
 LON0, LON1 = -87.075, -86.600
