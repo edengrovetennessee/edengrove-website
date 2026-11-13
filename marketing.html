@@ -833,21 +833,125 @@ blockquote{
   line-height:1.85;color:var(--t2);
 }
 
-.pitches{max-width:82rem;margin:0 auto}
-.pitch{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:clamp(2rem,5vw,5rem);align-items:center;
-  padding:clamp(2.5rem,6vh,4.5rem) 0;
+/* ---- the plan, as a story you follow ----
+   Ryan, 13 Nov: the page should feel like a story, and the two plans should
+   be "columned out". So each plan is a numbered sequence down a spine: a
+   narrow column of markers, a wide column of stages, and a hairline joining
+   them. You read it the way you would read a schedule, because that is what
+   it is - the order is the argument.
+
+   The spine is drawn on the list, not on each stage, so it is one unbroken
+   line rather than a run of segments that never quite meet. It stops short
+   of the last marker with a gradient, so the story ends rather than trailing
+   off the bottom of the section. */
+.story{
+  list-style:none;max-width:72rem;margin:0 auto;padding:0;
+  position:relative;
 }
-/* Alternating sides, swapped by order rather than by a second copy of the
-   markup — the reading order stays text-then-image either way. */
-.pitch:nth-child(even) .pitch__media{order:-1}
+.story::before{
+  content:"";position:absolute;top:.6rem;bottom:4rem;
+  left:calc(var(--spine,4.5rem) / 2);width:1px;
+  background:linear-gradient(to bottom,
+    var(--warm-rule) 0%, var(--warm-rule) 82%, transparent 100%);
+}
+.story__stage{
+  position:relative;display:grid;
+  grid-template-columns:var(--spine,4.5rem) 1fr;
+  padding:0 0 clamp(3rem,7vh,5rem);
+}
+.story__stage:last-child{padding-bottom:0}
+.story__n{
+  position:relative;z-index:1;justify-self:center;
+  width:2.1rem;height:2.1rem;display:grid;place-items:center;
+  background:var(--ink);border:1px solid var(--warm-rule);border-radius:50%;
+  font-family:var(--ui);font-weight:300;font-size:.6rem;letter-spacing:.06em;
+  color:var(--brass);font-variant-numeric:tabular-nums;
+}
+.story__body{min-width:0;padding-top:.15rem}
+.story__h{
+  margin:0;font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  color:var(--warm);line-height:1.6;
+}
+.story__p{
+  margin:clamp(.9rem,2vh,1.3rem) 0 0;max-width:52ch;
+  font-family:var(--ui);font-weight:300;font-size:clamp(.86rem,.82rem + .2vw,.97rem);
+  line-height:1.85;color:var(--t2);
+}
+/* Media is an accent on a stage, not the stage itself: five of the thirteen
+   have none, and a sequence where every step needs a photograph is a
+   sequence that gets padded. */
+.story__body .pitch__media{
+  margin:clamp(1.4rem,3vh,2rem) 0 0;max-width:46rem;
+}
+
+/* ---- columned, where there is something to column ----
+   Ryan asked for the plans to be "columned out". Stacked, a 52-character
+   measure against a 72rem page leaves half the width empty and the film
+   below the fold of its own paragraph. So a stage that carries media puts
+   the words in one column and the picture in the next, and the two read
+   together.
+
+   :has() does the choosing, because the markup should not have to know
+   whether a stage has a photograph - the stage list is edited far more
+   often than this sheet. Where :has() is not supported the stage simply
+   stacks, which is the layout above and is fine. */
+@media (min-width:1000px){
+  .story__body:has(.pitch__media){
+    display:grid;grid-template-columns:minmax(0,24rem) minmax(0,1fr);
+    /* THREE ROWS, AND THE THIRD IS THE POINT. With two auto rows the picture
+       is taller than the words, and grid hands the slack to both rows - the
+       heading stays at the top of row one and the paragraph lands halfway
+       down the stage, a hundred pixels below the heading it belongs to. An
+       empty 1fr row underneath takes the slack instead. */
+    grid-template-rows:auto auto 1fr;
+    gap:0 clamp(2rem,4vw,3.5rem);align-items:start;
+  }
+  .story__body:has(.pitch__media) > .story__h{grid-column:1;grid-row:1}
+  .story__body:has(.pitch__media) > .story__p{grid-column:1;grid-row:2;max-width:none}
+  .story__body:has(.pitch__media) > .pitch__media{
+    grid-column:2;grid-row:1 / span 3;margin:0;max-width:none;
+  }
+}
+
+/* ---- the three that never stop ----
+   Ryan listed these with "we're also going to" against the sequence rather
+   than inside it, which is exactly what they are. Off the spine, in their
+   own band, three across. */
+.story__band{
+  max-width:72rem;margin:clamp(3.5rem,8vh,5.5rem) auto 0;
+  padding-top:clamp(2.2rem,5vh,3.2rem);border-top:1px solid var(--line);
+}
+.story__band__h{
+  margin:0 0 clamp(1.6rem,3.5vh,2.4rem);text-align:center;
+  font-family:var(--ui);font-weight:400;
+  font-size:.58rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+  color:var(--brass);
+}
+.story__always__list{
+  list-style:none;margin:0;padding:0;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(1.6rem,3.5vw,3rem);
+}
+.story__always .story__p{max-width:none}
+
+@media (max-width:860px){
+  .story__always__list{grid-template-columns:1fr;gap:clamp(1.8rem,4vh,2.6rem)}
+}
+@media (max-width:620px){
+  .story{--spine:2.9rem}
+  .story__n{width:1.75rem;height:1.75rem;font-size:.54rem}
+}
+
 .pitch__media{position:relative;overflow:hidden;aspect-ratio:3/2;background:#1b1f19}
 .pitch__media img,.pitch__media video{
   width:100%;height:100%;object-fit:cover;display:block;
   transform:scale(1.001);transition:transform 1.2s var(--rise);
 }
-.pitch:hover .pitch__media img,.pitch:hover .pitch__media video{transform:scale(1.035)}
+.story__stage:hover .pitch__media img,.story__stage:hover .pitch__media video,
+.story__always:hover .pitch__media img,.story__always:hover .pitch__media video{
+  transform:scale(1.035);
+}
 
 /* ---- the live property site, in a window ----
    Not a recording of the page — the page itself, in an iframe, rendered at a
@@ -895,27 +999,10 @@ blockquote{
 .sitewin__cover:hover span{border-color:var(--brass);background:rgba(13,15,12,.72)}
 
 /* the window is the point here, so it must not drift under the card hover */
-.pitch:hover .pitch__media--site .sitewin{transform:none}
+.story__stage:hover .pitch__media--site .sitewin,
+.story__always:hover .pitch__media--site .sitewin{transform:none}
 @media (prefers-reduced-motion:reduce){ .sitewin__cover{transition:none} }
 
-.pitch__n{
-  display:block;margin-bottom:1.1rem;
-  font-family:var(--ui);font-weight:300;font-size:.6rem;letter-spacing:.28em;
-  color:var(--t3);font-variant-numeric:tabular-nums;
-}
-.pitch h3{
-  /* The pitch is a two-column split with its text left-aligned, so the label
-     stays left too. */
-  margin:0 0 clamp(1.1rem,2.2vh,1.6rem);
-  font-family:var(--ui);font-weight:400;
-  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
-  color:var(--warm);line-height:1.6;
-}
-.pitch p{
-  margin:clamp(1rem,2.2vh,1.5rem) 0 0;max-width:46ch;
-  font-family:var(--ui);font-weight:300;font-size:clamp(.86rem,.82rem + .2vw,.97rem);
-  line-height:1.85;color:var(--t2);
-}
 
 /* The last thing said on the page. Same voice as the body copy — no rule, no
    change of typeface. It earns its weight from the space around it instead,
@@ -931,8 +1018,6 @@ blockquote{
 }
 
 @media (max-width:820px){
-  .pitch{grid-template-columns:1fr;gap:1.75rem}
-  .pitch:nth-child(even) .pitch__media{order:0}
   .pitch__media{aspect-ratio:16/10}
 }
 </style>
@@ -1025,181 +1110,206 @@ blockquote{
   </div>
 
   <div class="panel" id="panel-est" role="tabpanel" aria-labelledby="tab-est">
-    <p class="panel__lede">A house that already exists has to be shown as it is on its best
-       day, and put in front of the few people in a position to want it.</p>
-    <div class="pitches">
-
-
-    <article class="pitch">
-      <div class="pitch__text">
-        <span class="pitch__n">01</span>
-        <h3>Bringing Properties to Life Through Film</h3>
-        <p>Every established home we represent receives a feature short film — not a walkthrough, a film. Shot on location, cut to the pace of the house, and made to hold the attention of someone who has never heard of the street it sits on.</p>
+    <p class="panel__lede">Five moves, in order. Each one exists because of what it sets up for the next &mdash; a house that already exists has to be shown on its best day, to the few people in a position to want it.</p>
+    <ol class="story">
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">01</span>
+      <div class="story__body">
+        <h3 class="story__h">The Consultation</h3>
+        <p class="story__p">It starts at a table, not behind a camera. What you want out of this, what the calendar really looks like, and what the house is worth &mdash; that last one from market data rather than from an opinion. Everything after this is built on the number we agree on here.</p>
       </div>
-      <div class="pitch__media">
-        <video data-lazyvid muted loop playsinline preload="none"
-               poster="media/mkt-film-poster.jpg" aria-hidden="true">
-          <source src="media/mkt-film.webm" type="video/webm">
-          <source src="media/mkt-film.mp4"  type="video/mp4">
-        </video>
+    </li>
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">02</span>
+      <div class="story__body">
+        <h3 class="story__h">Before It Lists</h3>
+        <p class="story__p">An exterior drone film and a short editorial cut go out first, off market, to a list rather than to a feed. A house gets one first impression. The quiet one finds the right buyers before the open market has formed an opinion about the price.</p>
+<div class="pitch__media">
+          <video data-lazyvid muted loop playsinline preload="none"
+                 poster="media/mkt-film-poster.jpg" aria-hidden="true">
+            <source src="media/mkt-film.webm" type="video/webm">
+            <source src="media/mkt-film.mp4"  type="video/mp4">
+          </video>
+        </div>
       </div>
-    </article>
-
-    <article class="pitch">
-      <div class="pitch__text">
-        <span class="pitch__n">02</span>
-        <h3>Photography, Videography and Drone</h3>
-        <p>Luxury photography, motion and aerial work on every listing. The land is photographed as carefully as the rooms, because at this level the setting is often what a buyer is really purchasing.</p>
+    </li>
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">03</span>
+      <div class="story__body">
+        <h3 class="story__h">The Full Production</h3>
+        <p class="story__p">Then it is shot properly: editorial photography, motion and aerial work. Our photographer shoots for Architectural Digest. The land is photographed as carefully as the rooms, because at this level the setting is often what is really being bought.</p>
+<div class="pitch__media"><img loading="lazy" decoding="async" src="media/mkt-2.jpg" alt=""></div>
       </div>
-      <div class="pitch__media"><img loading="lazy" decoding="async" src="media/mkt-2.jpg" alt=""></div>
-    </article>
-
-    <article class="pitch">
-      <div class="pitch__text">
-        <span class="pitch__n">03</span>
-        <h3>Strategic Marketing and Advertising</h3>
-        <p>Targeted advertising, strategic email campaigns, full MLS syndication and placement across social platforms. Reach matters less than aim — the work goes in front of the people most likely to buy it.</p>
+    </li>
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">04</span>
+      <div class="story__body">
+        <h3 class="story__h">The Launch</h3>
+        <p class="story__p">One evening, built around the single thing that makes the house that house &mdash; not an open house with a sign at the corner. Planned and run by an event coordinator who came up in Manhattan, with the list treated as carefully as the room. Brokers and buyers remember a house they were brought to.</p>
+<div class="pitch__media"><img loading="lazy" decoding="async" src="media/mkt-3.jpg"
+               style="object-position:center 70%"
+               alt="A sunlit living room styled for photography"></div>
       </div>
-      <!-- A portrait photograph in a 3:2 frame: cover keeps less than half the
-           height, so the band has to be chosen rather than left to default.
-           70% puts the seating group and the table in frame and lets the top of
-           the room go; center would have held empty wall. -->
-      <div class="pitch__media"><img loading="lazy" decoding="async" src="media/mkt-3.jpg"
-             style="object-position:center 70%"
-             alt="A sunlit living room styled for photography"></div>
-    </article>
-
-    <article class="pitch">
-      <div class="pitch__text">
-        <span class="pitch__n">04</span>
-        <h3>A Website and a Campaign of Its Own</h3>
-        <p>Each property is given its own dedicated website alongside its place on ours. From there it moves out to Instagram and YouTube, and into an email campaign of its own &mdash; a teaser before it lists, a launch the day it does, an invitation to every broker&rsquo;s open. The same assets, cut for each place they land.</p>
-      </div>
-      <div class="pitch__media pitch__media--site">
-        <div class="sitewin" data-sitewin>
-          <div class="sitewin__bar" aria-hidden="true">
-            <i></i><i></i><i></i>
-            <span>edengrovetennessee.com/property/715-davis/</span>
-          </div>
-          <div class="sitewin__view">
-            <iframe class="sitewin__frame" src="property/715-davis/index.html" title="The property website for 715 Davis Dr"
-                    loading="lazy" tabindex="-1"></iframe>
-            <button class="sitewin__cover" type="button" aria-label="Explore the 715 Davis Dr property website">
-              <span>Scroll the site</span>
-            </button>
+    </li>
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">05</span>
+      <div class="story__body">
+        <h3 class="story__h">After the Launch</h3>
+        <p class="story__p">The house keeps its own website and its own email campaign: a teaser before it lists, the launch the day it does, an invitation to every broker&rsquo;s open, and market updates for as long as it takes. Then the network &mdash; agents and clients in Tennessee and well outside it, worked by hand rather than waited on.</p>
+<div class="pitch__media pitch__media--site">
+          <div class="sitewin" data-sitewin>
+            <div class="sitewin__bar" aria-hidden="true">
+              <i></i><i></i><i></i>
+              <span>edengrovetennessee.com/property/715-davis/</span>
+            </div>
+            <div class="sitewin__view">
+              <iframe class="sitewin__frame" src="property/715-davis/index.html" title="The property website for 715 Davis Dr"
+                      loading="lazy" tabindex="-1"></iframe>
+              <button class="sitewin__cover" type="button" aria-label="Explore the 715 Davis Dr property website">
+                <span>Scroll the site</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </article>
-    </div>
+    </li>
+    </ol>
   </div>
 
   <div class="panel" id="panel-new" role="tabpanel" aria-labelledby="tab-new" hidden>
-    <p class="panel__lede">A house that does not exist yet has to be sold twice — first as an
-       idea, then as a building. We market from the first rendering, not from the day the
-       sign goes in.</p>
-    <div class="pitches">
+    <p class="panel__lede">A house that does not exist yet has to be sold twice: first as an idea, then as a building. We market from the first rendering rather than from the day the sign goes in, and the record of how it was made is part of what sells it.</p>
+    <ol class="story">
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">01</span>
+      <div class="story__body">
+        <h3 class="story__h">It Starts With the Renderings</h3>
+        <p class="story__p">Exterior and interior, held to one standard from the outset. Before ground moves, a buyer can already see what they would be buying &mdash; which is the whole problem with selling a house that does not exist yet.</p>
+<div class="pitch__media">
+          <video data-lazyvid muted loop playsinline preload="none"
+                 poster="media/mkt-renderings-poster.jpg" aria-hidden="true">
+            <source src="media/mkt-renderings.webm" type="video/webm">
+            <source src="media/mkt-renderings.mp4"  type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </li>
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">02</span>
+      <div class="story__body">
+        <h3 class="story__h">Ground Break</h3>
+        <p class="story__p">Drone and photography on the day the ground opens, and editorial content from the first week. The build is documented from the dirt up, because the footage nobody takes at the start is the footage nobody can take later.</p>
+      </div>
+    </li>
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">03</span>
+      <div class="story__body">
+        <h3 class="story__h">The First Room</h3>
+        <p class="story__p">A small, curated project launch, early: investors, builders, and the brokers who actually move houses at this price. Twenty people who can bring a buyer are worth more than two hundred who cannot.</p>
+      </div>
+    </li>
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">04</span>
+      <div class="story__body">
+        <h3 class="story__h">Framing</h3>
+        <p class="story__p">A second editorial round once it is standing &mdash; photography and film of the frame, the structure, the rooms before they are rooms. A house is never as legible as it is at this stage.</p>
+      </div>
+    </li>
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">05</span>
+      <div class="story__body">
+        <h3 class="story__h">The People Behind It</h3>
+        <p class="story__p">A feature film on the project at a high level, and an email series on the people making it: the architect, the interior designer, the developer, the builder. A buyer at this level is buying the judgement of those four as much as the square footage.</p>
+<div class="pitch__media">
+          <video data-lazyvid muted loop playsinline preload="none"
+                 poster="media/mkt-people-poster.jpg" aria-hidden="true">
+            <source src="media/mkt-people.webm" type="video/webm">
+            <source src="media/mkt-people.mp4"  type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </li>
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">06</span>
+      <div class="story__body">
+        <h3 class="story__h">Exterior Complete</h3>
+        <p class="story__p">A third editorial film and drone round as soon as the outside is finished. This is usually the first set of images that sells the house to somebody who has not seen it.</p>
+      </div>
+    </li>
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">07</span>
+      <div class="story__body">
+        <h3 class="story__h">The Interview</h3>
+        <p class="story__p">In the last three months, a sit&#8209;down with whoever is best placed to tell it &mdash; builder, developer, designer or architect. What the decisions were and why. By completion there is a record of how the house came to be, not just what it looks like.</p>
+<div class="pitch__media">
+          <video data-lazyvid muted loop playsinline preload="none"
+                 poster="media/mkt-story-poster.jpg" aria-hidden="true">
+            <source src="media/mkt-story.webm" type="video/webm">
+            <source src="media/mkt-story.mp4"  type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </li>
+    <li class="story__stage">
+      <span class="story__n" aria-hidden="true">08</span>
+      <div class="story__body">
+        <h3 class="story__h">The Launch</h3>
+        <p class="story__p">Then the same route an established home takes, built to this project: a curated evening by the same coordinator, planned around what makes the house worth the drive, and a campaign that runs until it closes.</p>
+<div class="pitch__media">
+          <video data-lazyvid muted loop playsinline preload="none"
+                 poster="media/mkt-atcompletion-poster.jpg" aria-hidden="true">
+            <source src="media/mkt-atcompletion.webm" type="video/webm">
+            <source src="media/mkt-atcompletion.mp4"  type="video/mp4">
+          </video>
+        </div>
+      </div>
+    </li>
+    </ol>
 
+    <div class="story__band">
+      <p class="story__band__h">And running the whole way</p>
+      <ul class="story__always__list">
+    <li class="story__always">
+      <div class="story__body">
+        <h3 class="story__h">From Day One</h3>
+        <p class="story__p">An email campaign from the first week of the project, carrying the story of the build as it happens rather than a bulletin when it finishes.</p>
 
-    <article class="pitch">
-      <div class="pitch__text">
-        <span class="pitch__n">01</span>
-        <h3>It Starts With the Renderings</h3>
-        <p>Consistent, high-quality renderings — exterior and interior — held to one standard from the outset. Before ground is broken, a buyer can already see what they are buying.</p>
       </div>
-      <div class="pitch__media">
-        <video data-lazyvid muted loop playsinline preload="none"
-               poster="media/mkt-renderings-poster.jpg" aria-hidden="true">
-          <source src="media/mkt-renderings.webm" type="video/webm">
-          <source src="media/mkt-renderings.mp4"  type="video/mp4">
-        </video>
-      </div>
-    </article>
-
-    <article class="pitch">
-      <div class="pitch__text">
-        <span class="pitch__n">02</span>
-        <h3>The Story of the Build</h3>
-        <p>We film the project as it rises: building technique, the technology going into the walls, the decisions that separate this house from the one beside it. Fifteen- to thirty-second cuts run across our channels and the property site while the work is still underway.</p>
-      </div>
-      <div class="pitch__media">
-        <video data-lazyvid muted loop playsinline preload="none"
-               poster="media/mkt-story-poster.jpg" aria-hidden="true">
-          <source src="media/mkt-story.webm" type="video/webm">
-          <source src="media/mkt-story.mp4"  type="video/mp4">
-        </video>
-      </div>
-    </article>
-
-    <article class="pitch">
-      <div class="pitch__text">
-        <span class="pitch__n">03</span>
-        <h3>Development Signage</h3>
-        <p>Signage carrying the builder's brand alongside ours, with the renderings reproduced at full quality. The site begins selling the project long before a listing does.</p>
-      </div>
-      <div class="pitch__media"><img loading="lazy" decoding="async" src="media/mkt-7.jpg" alt=""></div>
-    </article>
-
-    <article class="pitch">
-      <div class="pitch__text">
-        <span class="pitch__n">04</span>
-        <h3>A Website That Keeps Up</h3>
-        <p>A curated property website from the beginning, updated as the build progresses &mdash; new stages, revised timelines, fresh imagery. Each stage goes out as an email to the people following the project, so interest is held across the length of the build rather than gathered at the end of it.</p>
-      </div>
-      <div class="pitch__media pitch__media--site">
-        <div class="sitewin" data-sitewin>
-          <div class="sitewin__bar" aria-hidden="true">
-            <i></i><i></i><i></i>
-            <span>edengrovetennessee.com/property/1211-carl-seyfert/</span>
-          </div>
-          <div class="sitewin__view">
-            <iframe class="sitewin__frame" src="property/1211-carl-seyfert/index.html" title="The property website for 1211 Carl Seyfert Memorial Dr"
-                    loading="lazy" tabindex="-1"></iframe>
-            <button class="sitewin__cover" type="button" aria-label="Explore the 1211 Carl Seyfert property website">
-              <span>Scroll the site</span>
-            </button>
+    </li>
+    <li class="story__always">
+      <div class="story__body">
+        <h3 class="story__h">A Website of Its Own</h3>
+        <p class="story__p">The project gets its own site from the start, and every piece of film, every photograph and every sign points at it.</p>
+<div class="pitch__media pitch__media--site">
+          <div class="sitewin" data-sitewin>
+            <div class="sitewin__bar" aria-hidden="true">
+              <i></i><i></i><i></i>
+              <span>edengrovetennessee.com/property/1211-carl-seyfert/</span>
+            </div>
+            <div class="sitewin__view">
+              <iframe class="sitewin__frame" src="property/1211-carl-seyfert/index.html" title="The property website for 1211 Carl Seyfert Memorial Dr"
+                      loading="lazy" tabindex="-1"></iframe>
+              <button class="sitewin__cover" type="button" aria-label="Explore the 1211 Carl Seyfert property website">
+                <span>Scroll the site</span>
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </article>
-
-    <article class="pitch">
-      <div class="pitch__text">
-        <span class="pitch__n">05</span>
-        <h3>The People Behind It</h3>
-        <p>Builders and developers are part of the marketing, not behind it. We want the story: why this site, why this design, and what the project means to the people who made it.</p>
+    </li>
+    <li class="story__always">
+      <div class="story__body">
+        <h3 class="story__h">Signage, Early</h3>
+        <p class="story__p">Development signage goes up at the beginning of the build, not at the end of it. For eighteen months the sign is working every day the crew is.</p>
+<div class="pitch__media"><img loading="lazy" decoding="async" src="media/mkt-7.jpg" alt=""></div>
       </div>
-      <div class="pitch__media">
-        <video data-lazyvid muted loop playsinline preload="none"
-               poster="media/mkt-people-poster.jpg" aria-hidden="true">
-          <source src="media/mkt-people.webm" type="video/webm">
-          <source src="media/mkt-people.mp4"  type="video/mp4">
-        </video>
-      </div>
-    </article>
-
-    <article class="pitch">
-      <div class="pitch__text">
-        <span class="pitch__n">06</span>
-        <h3>At Completion</h3>
-        <p>A feature film on the finished property, luxury photography and videography, and drone work — then the same distribution every established listing receives, across our website and every social platform we run.</p>
-      </div>
-      <div class="pitch__media">
-        <video data-lazyvid muted loop playsinline preload="none"
-               poster="media/mkt-atcompletion-poster.jpg" aria-hidden="true">
-          <source src="media/mkt-atcompletion.webm" type="video/webm">
-          <source src="media/mkt-atcompletion.mp4"  type="video/mp4">
-        </video>
-      </div>
-    </article>
+    </li>
+      </ul>
     </div>
   </div>
 
-  <div class="pitches">
-<div class="closer">
+  <div class="closer">
       <p>White glove, from the first rendering to the closing table. We market alongside
          you for the length of the project — not for the last month of it.</p>
-    </div>
   </div>
 </section>
 
