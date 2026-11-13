@@ -14,6 +14,24 @@
 (() => {
   "use strict";
 
+  /* PUBLIC token, and deliberately in the page. Mapbox issues two kinds:
+     sk. is secret and must never leave a server; pk. is public and has to
+     reach the browser or no map can draw. GitHub's scanner matches the JWT
+     shape rather than the prefix, so it reports this one as a "Mapbox Secret
+     Access Token" - it is not, and there is no sk. token anywhere in this
+     repository.
+
+     What actually protects it is the URL restriction on the token at
+     account.mapbox.com, which limits it to edengrovetennessee.com. That
+     restriction is the control; the repository being public changes nothing,
+     because the deployed JavaScript is world-readable either way.
+
+     The restriction leans on the Referer header, which can be forged, so it
+     is a deterrent rather than a wall. The real backstop is the account's
+     5,000-load monthly cap: the worst a lifted token can do is spend an
+     allowance, and the page falls back to the drawn map when it is gone.
+
+     If this token is ever rotated, change it here and nowhere else. */
   const TOKEN = "pk.eyJ1IjoiZWRlbmdyb3ZldGVhbSIsImEiOiJjbXdlMGpwMnkwMWYxMnhvbXliOWYxdHEwIn0.g7WnzK2C4Dhwh-4BV0xFzw";
 
   const mp   = document.querySelector(".mp");
