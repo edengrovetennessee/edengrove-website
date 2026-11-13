@@ -719,6 +719,40 @@ blockquote{
 }
 .banner__box{max-width:44rem}
 
+/* ---- the banner rotates through three properties ----
+   Three photographs and three detail boxes in the same two boxes of space,
+   one shown at a time. Without Javascript the first is the only one that
+   ever has a src or loses its opacity, so the page is exactly what it was:
+   1211 Carl Seyfert, static. */
+.banner__slide{opacity:0;transition:opacity 1.2s var(--rise)}
+.banner__slide.is-on{opacity:1}
+/* The boxes have to overlap rather than stack, and .banner__inner is a grid -
+   so they all take the same named cell and place-items still positions them. */
+.banner--listing .banner__inner{grid-template-areas:"slide"}
+.banner__slidebox{
+  grid-area:slide;
+  opacity:0;visibility:hidden;pointer-events:none;
+  transition:opacity 1.2s var(--rise),visibility 0s linear 1.2s;
+}
+.banner__slidebox.is-on{
+  opacity:1;visibility:visible;pointer-events:auto;
+  transition:opacity 1.2s var(--rise),visibility 0s;
+}
+/* A photograph fading under fixed type is one thing; type fading into other
+   type is another, and at full speed it reads as a glitch. The box waits for
+   the picture to be most of the way across before it moves. */
+.banner__slidebox{transition-delay:.25s,1.45s}
+.banner__slidebox.is-on{transition-delay:.25s,0s}
+@media (prefers-reduced-motion:reduce){
+  .banner__slide,.banner__slidebox{transition:none}
+}
+
+/* Three across at every width that fits them, rather than the auto-fill the
+   listing grids use - this row is always exactly three. */
+.listings--featured{padding-bottom:0}
+.listings__grid--three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:760px){ .listings__grid--three{grid-template-columns:1fr} }
+
 /* ---- banner as the lead listing ----
    The top property is the banner rather than a card, so its details sit bottom
    left and stay visible: there is no hover on a page header, and nothing above
@@ -899,7 +933,12 @@ blockquote{
 <body>
 
 <section class="banner banner--listing" id="top">
-  <img class="hero__media" src="media/cs-hero.jpg" alt="" aria-hidden="true">
+  <img class="hero__media banner__slide is-on" src="media/cs-hero.jpg" alt=""
+       aria-hidden="true" fetchpriority="high">
+  <img class="hero__media banner__slide" data-src="media/dv-hero.jpg" alt=""
+       aria-hidden="true" decoding="async">
+  <img class="hero__media banner__slide" data-src="media/sh-hero.jpg" alt=""
+       aria-hidden="true" decoding="async">
   <div class="hero__scrim"></div>
 
   <header class="bar">
@@ -937,16 +976,41 @@ blockquote{
     </nav>
   </header>
 
-  <div class="banner__inner">
-    <div class="banner__box reveal" style="animation-delay:.6s">
+  <h1 class="visually-hidden">Properties</h1>
+
+  <div class="banner__inner" id="bannerBoxes">
+    <div class="banner__box banner__slidebox is-on reveal" style="animation-delay:.6s">
       <span class="prop__status">Active</span>
-      <h1 class="prop__addr">1211 Carl Seyfert Memorial Dr<br>Brentwood, TN 37027</h1>
+      <p class="prop__addr">1211 Carl Seyfert Memorial Dr<br>Brentwood, TN 37027</p>
       <div class="prop__facts">
         <span>$5,765,000</span>
         <span>7,885 <span class="k">Sq Ft</span></span>
-        <span>6 <span class="k">Bed</span> · 6 <span class="k">Bath</span></span>
+        <span>6 <span class="k">Bed</span> &middot; 6 <span class="k">Bath</span></span>
       </div>
       <a class="prop__cta" href="property/1211-carl-seyfert/">View Property
+        <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M2 1l3 3-3 3"/></svg>
+      </a>
+    </div>
+    <div class="banner__box banner__slidebox">
+      <span class="prop__status">Private Exclusive</span>
+      <p class="prop__addr">715 Davis Dr<br>Brentwood, TN 37027</p>
+      <div class="prop__facts">
+        <span>$6,200,000</span>
+        <span>8,600 <span class="k">Sq Ft</span></span>
+      </div>
+      <a class="prop__cta" href="property/715-davis/">View Property
+        <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M2 1l3 3-3 3"/></svg>
+      </a>
+    </div>
+    <div class="banner__box banner__slidebox">
+      <span class="prop__status">Private Exclusive</span>
+      <p class="prop__addr">515 Shenandoah Dr<br>Brentwood, TN 37027</p>
+      <div class="prop__facts">
+        <span>8,596 <span class="k">Sq Ft</span></span>
+      </div>
+      <a class="prop__cta" href="property/515-shenandoah/">View Property
         <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
           <path d="M2 1l3 3-3 3"/></svg>
       </a>
@@ -954,12 +1018,76 @@ blockquote{
   </div>
 </section>
 
+
+<!-- ============================ FEATURED ===============================
+     The same three the banner rotates through, as cards, so nobody has to
+     wait for a fade to reach the one they want. 715 Davis and 515
+     Shenandoah appear again below under Delivering in 2027; that is
+     deliberate, not a duplicate to clean up. -->
+<section class="listings listings--featured" aria-label="Featured">
+  <div class="listings__head listings__head--first">
+    <h2 class="listings__h">Featured</h2>
+  </div>
+  <div class="listings__grid listings__grid--three">
+    <a class="prop" href="property/1211-carl-seyfert/">
+      <img loading="lazy" decoding="async" src="media/cs-hero.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">1211 Carl Seyfert Memorial Dr<br>Brentwood, TN 37027</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$5,765,000</span>
+            <span>7,885 <span class="k">Sq Ft</span></span>
+            <span>6 <span class="k">Bed</span> &middot; 6 <span class="k">Bath</span></span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+    <a class="prop" href="property/715-davis/">
+      <img loading="lazy" decoding="async" src="media/listing-davis.jpg" alt="">
+      <span class="prop__status">Private Exclusive</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">715 Davis Dr<br>Brentwood, TN 37027</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$6,200,000</span>
+            <span>8,600 <span class="k">Sq Ft</span></span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+    <a class="prop" href="property/515-shenandoah/">
+      <img loading="lazy" decoding="async" src="media/listing-shenandoah.jpg" alt="">
+      <span class="prop__status">Private Exclusive</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">515 Shenandoah Dr<br>Brentwood, TN 37027</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>8,596 <span class="k">Sq Ft</span></span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+  </div>
+</section>
+
 <!-- ============================ THE LISTINGS ============================
-     The three properties we currently represent. Prices and MLS numbers are
-     real — they must match Realtracs exactly. -->
+     Prices and MLS numbers are real — they must match Realtracs exactly. -->
 <section class="listings" aria-label="Listings">
 
-  <div class="listings__head listings__head--first">
+  <div class="listings__head">
     <h2 class="listings__h">Established Homes</h2>
   </div>
   <div class="listings__grid">
@@ -1507,6 +1635,45 @@ addEventListener("keydown", e => {
     open.querySelector(".nav__link").focus();
   } else if (document.body.classList.contains("menu-open")) closeMenu();
 });
+/* ---- the banner's three properties ----
+   Ryan, 13 Nov. Nothing here runs until the page has loaded, and nothing
+   runs at all if somebody has asked for reduced motion - they get the first
+   slide, which is what the markup already says.
+
+   The two later photographs are fetched here rather than in the markup, so
+   arriving on this page still costs one hero image and not three. */
+(() => {
+  const imgs  = [...document.querySelectorAll(".banner__slide")];
+  const boxes = [...document.querySelectorAll(".banner__slidebox")];
+  if (imgs.length < 2 || imgs.length !== boxes.length) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const HOLD = 7000;
+  let i = 0, timer = null;
+
+  const load = () => imgs.forEach(im => {
+    const s = im.dataset.src;
+    if (s) { im.src = s; delete im.dataset.src; }
+  });
+
+  const show = n => {
+    i = n % imgs.length;
+    imgs.forEach((im, k) => im.classList.toggle("is-on", k === i));
+    boxes.forEach((b, k) => b.classList.toggle("is-on", k === i));
+  };
+
+  const tick  = () => show(i + 1);
+  const start = () => { stop(); timer = setInterval(tick, HOLD); };
+  const stop  = () => { clearInterval(timer); timer = null; };
+
+  // A tab nobody is looking at should not be cycling photographs, and coming
+  // back to it should not land mid-fade on a slide that moved four times
+  // while it was hidden.
+  document.addEventListener("visibilitychange",
+    () => document.hidden ? stop() : start());
+
+  addEventListener("load", () => { load(); start(); }, { once: true });
+})();
 </script>
 </body>
 </html>
