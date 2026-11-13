@@ -942,6 +942,10 @@ blockquote{
   font-weight:300;font-size:clamp(.84rem,.8rem + .2vw,.95rem);
   line-height:2;color:var(--t2);
 }
+/* The second paragraph is the other half of the same thought, so it sits
+   closer than the gap under the headline. At the full margin the two read
+   as two separate announcements. */
+.c-open p + p{margin-top:clamp(.9rem,2vh,1.4rem)}
 
 .c-body{
   background:var(--ink);padding:0 var(--gutter) clamp(4rem,9vh,7rem);
@@ -1204,7 +1208,12 @@ blockquote{
   <h1>Tell us what you are looking&nbsp;for</h1>
   <p>Whether it is a property we represent, one you have seen elsewhere, or a
      Compass Private Exclusive that never reaches the open market — we will
-     arrange the showing and tell you honestly what we think of the house.</p>
+     arrange the showing and tell you honestly what we think of the house. Ask
+     what is coming, too. A good deal of what we sell is spoken for before it is
+     ever listed.</p>
+  <p>And if you are building something, tell us about the project. New
+     construction is our specialty, and we market it the way it should have been
+     marketed all along.</p>
 </section>
 
 <section class="c-body">

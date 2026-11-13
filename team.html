@@ -791,11 +791,24 @@ blockquote{
   font-size:clamp(.88rem,.84rem + .22vw,1rem);
   line-height:1.95;letter-spacing:.012em;color:var(--t2);
 }
-/* ---- the affiliation, and what it is actually worth to a client ----------
-   Every claim here is either Compass's own published statement, attributed as
-   such, or independently reported. No market-share figure: the one in
-   circulation for Nashville comes from an antitrust analysis of 2024 volume
-   including franchisees, which is not a thing to put on a licensee page. */
+/* ---- what working with us actually gets you ------------------------------
+   Was three cards about Compass. Ryan, 13 Nov: it should be what Eden Grove
+   offers, with the Compass platform as one line of it rather than all three.
+
+   NOTHING HERE IS A SUPERLATIVE. He described the partners as the best in
+   Nashville at what they do, and that is not a sentence a licensee page can
+   carry: an unsubstantiated "best" is the kind of claim compliance pulls, and
+   it reads weaker than saying what the thing actually is. So the cards say
+   what happens, and let the reader decide whose is best.
+
+   NO EXPERIENCE FIGURE EITHER. "A combined 40 years" does not reconcile with
+   the four bios further down this page - Blake started in 2020, Jack is a
+   recent graduate - and a number a buyer can check and disprove costs more
+   than it buys. The strengths behind it are stated without one.
+
+   STAGING AND EVENTS NAME NO PARTNER, because neither is appointed yet (both
+   are still placeholders in the dashboard). They are written as capability,
+   so nothing here breaks on the day a firm is signed. */
 .affil{background:var(--ink);padding:clamp(4.5rem,11vh,7.5rem) var(--gutter)}
 .affil__inner{max-width:64rem;margin:0 auto}
 .affil__eyebrow{
@@ -809,6 +822,11 @@ blockquote{
   font-family:var(--ui);font-weight:400;
   font-size:.62rem;letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
   color:var(--warm);text-align:center;line-height:1.6;
+}
+.affil__lede{
+  margin:0 auto;max-width:44ch;text-align:center;
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.88rem,.84rem + .22vw,1rem);line-height:1.95;color:var(--t2);
 }
 .affil__grid{
   display:grid;gap:1px;background:var(--line);
@@ -1145,35 +1163,56 @@ blockquote{
   </div>
 </section>
 
-<section class="affil" id="compass" aria-labelledby="affil-h">
+<section class="affil" id="what-you-get" aria-labelledby="affil-h">
   <div class="affil__inner">
     <!-- One label, as everywhere else. The eyebrow and the heading had become
          the same size, weight and colour, so stacking them read as a mistake.
          aria-labelledby already points here. -->
     <h2 class="affil__h" id="affil-h">What That Gets You</h2>
 
+    <p class="affil__lede">Most of this depends on who you have around you. These
+       are the people we have, and what having them changes.</p>
+
     <div class="affil__grid">
+      <div class="affil__card">
+        <h3>A Film, Not a Photo Shoot</h3>
+        <p>Film, architectural photography and an edit, made by people who shoot
+           houses the way a magazine shoots them. Every property here is a story and
+           gets told like one &mdash; not a gallery of rooms with a price under it.</p>
+      </div>
+      <div class="affil__card">
+        <h3>Staged to What It Is</h3>
+        <p>A house at this level is furnished for the walk&#8209;through and the
+           photograph, by stagers working at the top of this market. It is the
+           difference between a room a buyer can price and a room a buyer can
+           picture themselves in.</p>
+      </div>
+      <div class="affil__card">
+        <h3>A Launch, Not an Open House</h3>
+        <p>The first showing is an event, planned and run as one: the list, the
+           evening, who is in the room. Brokers and buyers remember a house they
+           were brought to. They scroll past one they were shown.</p>
+      </div>
+      <div class="affil__card">
+        <h3>A Coordinator on Every File</h3>
+        <p>Every transaction gets its own coordinator from the day it goes under
+           contract &mdash; dates, documents, lender, title, inspections. Nothing in
+           a closing arrives as a surprise because somebody was out showing houses
+           instead of watching the calendar.</p>
+      </div>
+      <div class="affil__card">
+        <h3>Marketed Before It Is Built</h3>
+        <p>We come in at the drawings, not the day the sign goes in &mdash;
+           pre&#8209;selling, walking buyers through a house that does not exist yet,
+           making a name for the project while it is still framed. Development and
+           construction sit behind the licence here, not just sales.</p>
+      </div>
       <div class="affil__card">
         <h3>Private Exclusives</h3>
         <p>A network of properties marketed inside Compass before they reach the MLS.
            We see them, and we can place your house in it. Worth knowing either way:
            Compass opens that book to agents at any brokerage, so nobody has to join
            us to be shown one.</p>
-      </div>
-      <div class="affil__card">
-        <h3>Depth in Nashville</h3>
-        <p>Compass acquired Parks Real Estate here in 2024 &mdash; by its own account
-           roughly 1,500 agents across fifteen offices in five counties. In a market
-           where the best houses often move on who knows whom, that is the network a
-           listing enters.</p>
-      </div>
-      <div class="affil__card">
-        <h3>Reach Beyond It</h3>
-        <p>A referral network across every major American market, widened in January
-           2026 when Compass completed its acquisition of Anywhere Real&nbsp;Estate
-           &mdash; Coldwell Banker, Sotheby&rsquo;s International Realty, Corcoran,
-           Century&nbsp;21 and ERA. It matters when the buyer for a house here is
-           moving from somewhere else.</p>
       </div>
     </div>
   </div>
