@@ -777,15 +777,29 @@ blockquote{
    carousel with the controls hidden. The mask fades the two ends so cards
    arrive and leave rather than appearing at a hard edge. */
 .ticker{
-  overflow:hidden;
+  /* A SCROLL CONTAINER, NOT A FILM. Ryan, 13 Nov: "when i hover you should
+     be able to scroll through". A CSS keyframe cannot be pushed by hand -
+     the track is moved by transform and the browser has nothing to scroll -
+     so the drift is a real scroll position now, advanced a fraction of a
+     pixel a frame. Hovering stops the drift and leaves an ordinary scroll
+     container under the cursor: wheel it, drag it, flick it on a phone.
+
+     This also takes out the speeding he saw. On a touch screen :hover
+     sticks after a tap, so the row paused, and the moment the browser
+     dropped the sticky hover it resumed - against something that had been
+     still for a second, resuming reads as a lurch. Nothing paused this way
+     can lurch: let go and the drift picks up from wherever the scroll
+     position now is. */
+  overflow-x:auto;overflow-y:hidden;
+  scroll-behavior:auto;            /* html{scroll-behavior:smooth} would
+                                      animate every frame we write */
+  overscroll-behavior-x:contain;   /* and not trigger the back swipe */
+  scrollbar-width:none;-ms-overflow-style:none;
   -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);
           mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);
 }
-/* 120s a lap. Ryan, 13 Nov: too fast at 60. One copy is about 3,980px, so
-   this is ~33px a second - slow enough that a card stays legible while it is
-   moving, which is the only speed worth running at. Two minutes for all
-   fourteen, and nobody is expected to watch all fourteen. */
-.ticker__track{display:flex;width:max-content;animation:tick 120s linear infinite}
+.ticker::-webkit-scrollbar{display:none}
+.ticker__track{display:flex;width:max-content}
 .ticker__set{display:flex}
 .ticker .prop{
   flex:0 0 clamp(12rem,17vw,15rem);
@@ -827,20 +841,16 @@ blockquote{
   font-size:.66rem;gap:.4rem;
 }
 .ticker .prop__facts span ~ span{display:none}   /* price only */
-@keyframes tick{ to{ transform:translate3d(-50%,0,0) } }
-/* A row that cannot be stopped cannot be read. */
-.ticker:hover .ticker__track,
-.ticker:focus-within .ticker__track{animation-play-state:paused}
 
 @media (max-width:760px){
   .ticker .prop{flex-basis:clamp(11rem,62vw,15rem)}
 }
-/* Nothing moves, and the second copy would just be the same fourteen sales
-   listed twice. One copy, scrolled by hand. */
+/* Nothing drifts - the script checks this too - and the mask comes off so
+   the ends are hard edges you can see you have reached. Both copies stay:
+   it is a scroll container either way, and scrolling off the end of one
+   copy into the start of the next is what makes it feel endless by hand. */
 @media (prefers-reduced-motion:reduce){
-  .ticker{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
-  .ticker__track{animation:none}
-  .ticker__set[aria-hidden="true"]{display:none}
+  .ticker{-webkit-mask-image:none;mask-image:none}
 }
 
 /* ===================== PAST TRANSACTIONS · SOLD CARD =====================
@@ -940,10 +950,15 @@ blockquote{
        nothing jumps. The seam is invisible because there is no seam.
 
        THE SPACING IS A MARGIN, NOT A GAP, and that is load-bearing. With
-       `gap` the track is 28 cards and 27 gaps, so half of it is 13 and a
-       half gaps - the loop lands a few pixels out and drifts further every
-       lap. A right margin on each card makes one copy exactly fourteen
-       card-plus-margins, and -50% is exactly one copy.
+       `gap` a copy would be fourteen cards and thirteen gaps, and the wrap
+       would land a few pixels out and drift further every lap. A right
+       margin on each card makes one copy exactly fourteen
+       card-plus-margins, so subtracting one copy's width is exact.
+
+       THREE COPIES, not two, and the scroll position is kept inside the
+       middle one. Two have ends, and an end can be reached by a hard flick
+       or a rubber-band overscroll - which shows empty ground where houses
+       should be.
 
        Hovering or tabbing into it stops it, because a row of moving type
        nobody can read is decoration. Reduced motion gets one copy, still,
@@ -952,7 +967,7 @@ blockquote{
     <div class="ticker__track">
       <div class="ticker__set">
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/sold-troubadour-1213.jpg" alt="">
+            <img decoding="async" src="media/sold-troubadour-1213.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">Lot 1213 Troubadour<br>College Grove, TN 37046</h3>
@@ -964,7 +979,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/sold-eslin-3373.jpg" alt="">
+            <img decoding="async" src="media/sold-eslin-3373.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">3373 Eslin Ct<br>Murfreesboro, TN 37130</h3>
@@ -981,7 +996,7 @@ blockquote{
                not copy, and renaming it would leave an orphan in media/ that
                cannot be deleted from here. -->
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/uc-vaulx-2412.jpg" alt="">
+            <img decoding="async" src="media/uc-vaulx-2412.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">2412 Vaulx Ln<br>Nashville, TN 37204</h3>
@@ -995,7 +1010,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/sold-scholarship-504a.jpg" alt="">
+            <img decoding="async" src="media/sold-scholarship-504a.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">504A Scholarship Dr<br>Nashville, TN 37209</h3>
@@ -1009,7 +1024,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/sold-albert-3916.jpg" alt="">
+            <img decoding="async" src="media/sold-albert-3916.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">3916 Albert Dr<br>Nashville, TN 37204</h3>
@@ -1023,7 +1038,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/sold-sharonhill-2917.jpg" alt="">
+            <img decoding="async" src="media/sold-sharonhill-2917.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">2917 Sharon Hill Cir<br>Nashville, TN 37215</h3>
@@ -1038,7 +1053,7 @@ blockquote{
           </div>
           <!-- Closed 3 Nov 2026. Filename keeps its uc- prefix, as above. -->
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/uc-shyshill-4505.jpg" alt="">
+            <img decoding="async" src="media/uc-shyshill-4505.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">4505 Shys Hill Rd<br>Nashville, TN 37215</h3>
@@ -1052,7 +1067,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/sold-sharonhill-2915.jpg" alt="">
+            <img decoding="async" src="media/sold-sharonhill-2915.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">2915 Sharon Hill Cir<br>Nashville, TN 37215</h3>
@@ -1069,7 +1084,7 @@ blockquote{
             <!-- Closed. The filename still reads uc-; it is a filename, not copy, and
                  renaming it would leave an orphan in media/ that cannot be deleted
                  from here. -->
-            <img loading="lazy" decoding="async" src="media/uc-rodney-1004.jpg" alt="">
+            <img decoding="async" src="media/uc-rodney-1004.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">1004 Rodney Dr<br>Nashville, TN 37205</h3>
@@ -1083,7 +1098,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/sold-westboro-608.jpg" alt="">
+            <img decoding="async" src="media/sold-westboro-608.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">608 Westboro Dr<br>Nashville, TN 37209</h3>
@@ -1097,7 +1112,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/sold-deertrack-9614.jpg" alt="">
+            <img decoding="async" src="media/sold-deertrack-9614.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">9614 Deer Track Ct<br>Brentwood, TN 37027</h3>
@@ -1111,7 +1126,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/sold-gale-900b.jpg" alt="">
+            <img decoding="async" src="media/sold-gale-900b.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">900B Gale Ln<br>Nashville, TN 37204</h3>
@@ -1125,7 +1140,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/sold-clifton-1405.jpg" alt="">
+            <img decoding="async" src="media/sold-clifton-1405.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">1405 Clifton Ln<br>Nashville, TN 37215</h3>
@@ -1139,7 +1154,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="0">
-            <img loading="lazy" decoding="async" src="media/sold-westboro-610.jpg" alt="">
+            <img decoding="async" src="media/sold-westboro-610.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">610 Westboro Dr<br>Nashville, TN 37209</h3>
@@ -1155,7 +1170,7 @@ blockquote{
         </div>
       <div class="ticker__set" aria-hidden="true">
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/sold-troubadour-1213.jpg" alt="">
+            <img decoding="async" src="media/sold-troubadour-1213.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">Lot 1213 Troubadour<br>College Grove, TN 37046</h3>
@@ -1167,7 +1182,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/sold-eslin-3373.jpg" alt="">
+            <img decoding="async" src="media/sold-eslin-3373.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">3373 Eslin Ct<br>Murfreesboro, TN 37130</h3>
@@ -1184,7 +1199,7 @@ blockquote{
                not copy, and renaming it would leave an orphan in media/ that
                cannot be deleted from here. -->
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/uc-vaulx-2412.jpg" alt="">
+            <img decoding="async" src="media/uc-vaulx-2412.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">2412 Vaulx Ln<br>Nashville, TN 37204</h3>
@@ -1198,7 +1213,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/sold-scholarship-504a.jpg" alt="">
+            <img decoding="async" src="media/sold-scholarship-504a.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">504A Scholarship Dr<br>Nashville, TN 37209</h3>
@@ -1212,7 +1227,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/sold-albert-3916.jpg" alt="">
+            <img decoding="async" src="media/sold-albert-3916.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">3916 Albert Dr<br>Nashville, TN 37204</h3>
@@ -1226,7 +1241,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/sold-sharonhill-2917.jpg" alt="">
+            <img decoding="async" src="media/sold-sharonhill-2917.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">2917 Sharon Hill Cir<br>Nashville, TN 37215</h3>
@@ -1241,7 +1256,7 @@ blockquote{
           </div>
           <!-- Closed 3 Nov 2026. Filename keeps its uc- prefix, as above. -->
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/uc-shyshill-4505.jpg" alt="">
+            <img decoding="async" src="media/uc-shyshill-4505.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">4505 Shys Hill Rd<br>Nashville, TN 37215</h3>
@@ -1255,7 +1270,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/sold-sharonhill-2915.jpg" alt="">
+            <img decoding="async" src="media/sold-sharonhill-2915.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">2915 Sharon Hill Cir<br>Nashville, TN 37215</h3>
@@ -1272,7 +1287,7 @@ blockquote{
             <!-- Closed. The filename still reads uc-; it is a filename, not copy, and
                  renaming it would leave an orphan in media/ that cannot be deleted
                  from here. -->
-            <img loading="lazy" decoding="async" src="media/uc-rodney-1004.jpg" alt="">
+            <img decoding="async" src="media/uc-rodney-1004.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">1004 Rodney Dr<br>Nashville, TN 37205</h3>
@@ -1286,7 +1301,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/sold-westboro-608.jpg" alt="">
+            <img decoding="async" src="media/sold-westboro-608.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">608 Westboro Dr<br>Nashville, TN 37209</h3>
@@ -1300,7 +1315,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/sold-deertrack-9614.jpg" alt="">
+            <img decoding="async" src="media/sold-deertrack-9614.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">9614 Deer Track Ct<br>Brentwood, TN 37027</h3>
@@ -1314,7 +1329,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/sold-gale-900b.jpg" alt="">
+            <img decoding="async" src="media/sold-gale-900b.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">900B Gale Ln<br>Nashville, TN 37204</h3>
@@ -1328,7 +1343,7 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/sold-clifton-1405.jpg" alt="">
+            <img decoding="async" src="media/sold-clifton-1405.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">1405 Clifton Ln<br>Nashville, TN 37215</h3>
@@ -1342,7 +1357,210 @@ blockquote{
             </div>
           </div>
           <div class="prop prop--sold" tabindex="-1">
-            <img loading="lazy" decoding="async" src="media/sold-westboro-610.jpg" alt="">
+            <img decoding="async" src="media/sold-westboro-610.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">610 Westboro Dr<br>Nashville, TN 37209</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,425,000</span>
+                  <span>3,521 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3189629</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+        </div>
+      <div class="ticker__set" aria-hidden="true">
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/sold-troubadour-1213.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">Lot 1213 Troubadour<br>College Grove, TN 37046</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$3,850,000</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/sold-eslin-3373.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">3373 Eslin Ct<br>Murfreesboro, TN 37130</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,175,000</span>
+                  <span>4,316 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2628204</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <!-- Closed 3 Nov 2026. The filename still reads uc-; it is a filename,
+               not copy, and renaming it would leave an orphan in media/ that
+               cannot be deleted from here. -->
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/uc-vaulx-2412.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">2412 Vaulx Ln<br>Nashville, TN 37204</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$3,250,000</span>
+                  <span>5,582 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3211573</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/sold-scholarship-504a.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">504A Scholarship Dr<br>Nashville, TN 37209</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,200,000</span>
+                  <span>3,127 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3035276</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/sold-albert-3916.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">3916 Albert Dr<br>Nashville, TN 37204</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,800,000</span>
+                  <span>6,437 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2988934</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/sold-sharonhill-2917.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">2917 Sharon Hill Cir<br>Nashville, TN 37215</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,299,000</span>
+                  <span>3,000 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2992527</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <!-- Closed 3 Nov 2026. Filename keeps its uc- prefix, as above. -->
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/uc-shyshill-4505.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">4505 Shys Hill Rd<br>Nashville, TN 37215</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,475,000</span>
+                  <span>5,386 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3528730</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/sold-sharonhill-2915.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">2915 Sharon Hill Cir<br>Nashville, TN 37215</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,300,000</span>
+                  <span>3,000 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2883317</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <!-- Closed. The filename still reads uc-; it is a filename, not copy, and
+                 renaming it would leave an orphan in media/ that cannot be deleted
+                 from here. -->
+            <img decoding="async" src="media/uc-rodney-1004.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">1004 Rodney Dr<br>Nashville, TN 37205</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,299,900</span>
+                  <span>5,167 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3245653</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/sold-westboro-608.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">608 Westboro Dr<br>Nashville, TN 37209</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,375,000</span>
+                  <span>3,534 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3189632</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/sold-deertrack-9614.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">9614 Deer Track Ct<br>Brentwood, TN 37027</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,250,000</span>
+                  <span>6,846 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3262021</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/sold-gale-900b.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">900B Gale Ln<br>Nashville, TN 37204</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,425,000</span>
+                  <span>3,190 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3234101</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/sold-clifton-1405.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">1405 Clifton Ln<br>Nashville, TN 37215</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,075,000</span>
+                  <span>4,727 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2764078</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img decoding="async" src="media/sold-westboro-610.jpg" alt="">
             <span class="prop__status">Sold</span>
             <div class="prop__body">
               <h3 class="prop__addr">610 Westboro Dr<br>Nashville, TN 37209</h3>
@@ -1569,6 +1787,112 @@ addEventListener("keydown", e => {
     open.querySelector(".nav__link").focus();
   } else if (document.body.classList.contains("menu-open")) closeMenu();
 });
+
+/* ---- the past-transactions wheel ----
+   Two identical copies of the fourteen sit end to end in a scroll
+   container. Every frame the scroll position advances a fraction of a
+   pixel; when it passes one copy's width it is set back by exactly that
+   width, which is invisible because the two copies are identical. The
+   scroll position is read from the element each frame rather than kept in
+   a variable, so a hand on the row is not fighting the drift - whatever
+   the person scrolls to is where the drift continues from.
+
+   PX_PER_SECOND is the only number worth touching. 12 is about a card's
+   width every twenty seconds. */
+(() => {
+  const el = document.querySelector(".ticker");
+  const set = el && el.querySelector(".ticker__set");
+  if (!el || !set) return;
+
+  const PX_PER_SECOND = 12;
+  const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+
+  let last = 0, holds = 0, raf = null;
+  const held = () => holds > 0 || reduced.matches || document.hidden;
+
+  // THE POSITION IS KEPT AS A FLOAT HERE, not read back off the element
+  // every frame, and that is the whole reason this works. At 12px a second
+  // a frame is 0.19 of a pixel; the browser rounds scrollLeft to a whole
+  // number on the way back out, so reading it, adding 0.19 and writing it
+  // again returns 0 for ever and the row never moves. It has to accumulate
+  // somewhere the browser is not rounding.
+  //
+  // `seen` is what the element reported after our last write. If it differs
+  // from that by more than a pixel at the top of a frame, something other
+  // than us moved it - a hand, a wheel, a flick - and we adopt that rather
+  // than dragging it back.
+  // Start in the middle copy rather than at zero, or the first thing anyone
+  // sees is the one scroll position that has nothing to its left.
+  let want = set.getBoundingClientRect().width, seen = want;
+  el.scrollLeft = want;
+
+  const frame = (t) => {
+    // A long frame - a background tab, a slow paint - must not teleport it.
+    const dt = Math.min((t - last) / 1000, 0.05);
+    last = t;
+
+    const now = el.scrollLeft;
+    if (Math.abs(now - seen) > 1.5) want = now;
+
+    if (!held() && dt > 0) want += PX_PER_SECOND * dt;
+
+    // THREE COPIES, AND THE SCROLL LIVES IN THE MIDDLE ONE. With two, the
+    // track has ends, and an end can be reached: a hard flick on a trackpad
+    // or a rubber-band overscroll on a Mac lands past the last card and
+    // shows empty ground where a row of houses should be. Held between one
+    // copy and two, there is always a full copy of cards to the left and a
+    // full copy to the right, so no amount of shoving finds an edge.
+    const w = set.getBoundingClientRect().width;
+    if (w > 0) {
+      while (want >= 2 * w) want -= w;
+      while (want < w)      want += w;
+    }
+    el.scrollLeft = want;
+    seen = el.scrollLeft;
+    raf = requestAnimationFrame(frame);
+  };
+
+  // Everything that should stop the drift, and nothing that should not.
+  // Counted rather than a boolean: a pointer down inside a hover is two
+  // holds, and releasing one must not resume while the other stands.
+  const hold = () => { holds++; };
+  const free = () => { holds = Math.max(0, holds - 1); };
+
+  el.addEventListener("pointerenter", e => { if (e.pointerType !== "touch") hold(); });
+  el.addEventListener("pointerleave", e => { if (e.pointerType !== "touch") free(); });
+  // A KEYBOARD focus holds it; a tap does not. Tapping a card focuses it -
+  // the cards carry tabindex so their numbers can be reached - and focus
+  // from a tap never leaves, so holding on it stopped the row dead the
+  // first time anyone touched a card and it never started again. That was
+  // half of what Ryan saw. :focus-visible is exactly this distinction.
+  let focusHold = false;
+  el.addEventListener("focusin", e => {
+    const keyboard = e.target && e.target.matches && e.target.matches(":focus-visible");
+    if (keyboard && !focusHold) { focusHold = true; hold(); }
+  });
+  el.addEventListener("focusout", () => {
+    if (focusHold) { focusHold = false; free(); }
+  });
+
+  // Touch has no hover to lean on. A finger down holds it; letting go gives
+  // a beat before the drift returns, so a flick can coast out first.
+  let release = null;
+  el.addEventListener("touchstart", () => { clearTimeout(release); hold(); }, { passive: true });
+  el.addEventListener("touchend",   () => { release = setTimeout(free, 1200); }, { passive: true });
+  el.addEventListener("touchcancel",() => { release = setTimeout(free, 1200); }, { passive: true });
+
+  // A wheel or a trackpad over the row is the same intent as a finger.
+  let wheelIdle = null, wheeling = false;
+  el.addEventListener("wheel", () => {
+    if (!wheeling) { wheeling = true; hold(); }
+    clearTimeout(wheelIdle);
+    wheelIdle = setTimeout(() => { wheeling = false; free(); }, 900);
+  }, { passive: true });
+
+  addEventListener("visibilitychange", () => { last = performance.now(); });
+  raf = requestAnimationFrame(t => { last = t; frame(t); });
+})();
+
 </script>
 </body>
 </html>
