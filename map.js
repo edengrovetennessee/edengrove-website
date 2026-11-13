@@ -181,10 +181,11 @@
 
       // Three marks, each saying what the thing is: a pin is a place, a
       // gate is a gated community, the bonsai is one of ours.
+      // A dot and a ring are centred on their point; a tree stands on it.
       const ART = {
-        neighborhood: ["#eg-pin",  "0 0 24 32"],
-        community:    ["#eg-gate", "0 0 30 24"],
-        listing:      ["#eg-tree", "0 0 2536 1788"],
+        neighborhood: ["#eg-area", "0 0 24 24",      "center"],
+        community:    ["#eg-comm", "0 0 24 24",      "center"],
+        listing:      ["#eg-tree", "0 0 2536 1788",  "bottom"],
       }[p.kind];
       const dot = document.createElement("span");
       dot.className = "mk__dot";
@@ -203,7 +204,7 @@
       lbl.textContent = many ? `${p.label} · ${p.count}` : p.label;
 
       a.append(dot, lbl);
-      new mapboxgl.Marker({ element: a, anchor: "bottom" })
+      new mapboxgl.Marker({ element: a, anchor: (ART && ART[2]) || "center" })
         .setLngLat([p.lon, p.lat]).addTo(map);
     });
   }

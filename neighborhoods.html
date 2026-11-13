@@ -1008,15 +1008,15 @@ blockquote{
 /* The drawn map's marks. .mp__dot sets a fill, which is all a circle or a
    diamond ever needed; the gate is drawn in stroke, so without this it is
    a shape with no colour and simply is not there. */
-.mp__dot--gate{fill:none;stroke:var(--brass);stroke-width:2;vector-effect:non-scaling-stroke}
-.mp__pin--dev:hover .mp__dot--gate,.mp__pin--dev:focus-visible .mp__dot--gate{stroke:#fff}
+.mp__dot--comm{fill:none;stroke:var(--brass);stroke-width:1.5;vector-effect:non-scaling-stroke}
+.mp__pin--dev:hover .mp__dot--comm,.mp__pin--dev:focus-visible .mp__dot--comm{stroke:#fff}
 
 /* The key carries the same three marks, at the size they read at. */
 .mp__key__ic{flex:none;display:block}
-.mp__key__ic--pin{width:.85rem;height:1.13rem;fill:var(--t1)}
-.mp__key__ic--gate{width:1.25rem;height:1rem;stroke:var(--brass);fill:none}
-.mp__key__i[aria-pressed="false"] .mp__key__ic--pin{fill:none;stroke:currentColor;stroke-width:2}
-.mp__key__i[aria-pressed="false"] .mp__key__ic--gate{stroke:currentColor}
+.mp__key__ic--area{width:.7rem;height:.7rem;fill:var(--t1)}
+.mp__key__ic--comm{width:.95rem;height:.95rem;stroke:var(--brass);fill:none}
+.mp__key__i[aria-pressed="false"] .mp__key__ic--area{fill:none;stroke:currentColor;stroke-width:3}
+.mp__key__i[aria-pressed="false"] .mp__key__ic--comm{stroke:currentColor}
 
 /* Out of the layout entirely: it exists only to be pointed at. */
 .eg-sprite{position:absolute;width:0;height:0;overflow:hidden}
@@ -1060,30 +1060,32 @@ blockquote{
    Same three shapes as the drawing: a circle is a neighborhood, a diamond
    is a luxury community, the mark is one of ours. Anchors rather than
    canvas symbols, so they tab and take a return like any other link. */
-/* Each mark is anchored at its base, so the point of the pin, the foot of
-   the gate and the root of the tree all sit on the coordinate rather than
-   the middle of the artwork straddling it. */
+/* A dot and a ring sit centred over the coordinate; the bonsai stands on
+   it, root to the ground, the way a tree does. Two positioning rules, not
+   one, because getting this wrong puts every mark half its own height
+   away from the house it points at. */
 .mk{display:block;position:relative;width:0;height:0;text-decoration:none;cursor:pointer}
-.mk__dot{
-  position:absolute;left:50%;bottom:0;transform:translateX(-50%);
-  display:block;transition:filter .3s var(--rise);
-}
+.mk__dot{position:absolute;left:50%;display:block;transition:filter .3s var(--rise)}
+.mk--neighborhood .mk__dot,
+.mk--community .mk__dot{top:50%;transform:translate(-50%,-50%)}
+.mk--listing .mk__dot{bottom:0;transform:translateX(-50%)}
 .mk__dot svg{
   width:100%;height:100%;display:block;
   filter:drop-shadow(0 0 2px rgba(20,23,15,.95)) drop-shadow(0 0 1px rgba(20,23,15,.9));
 }
-/* Sizes come off the legibility ladder: the pin survives to 18px, the gate
-   needs about 26 before its bars stop merging into a block. */
-.mk--neighborhood .mk__dot{width:22px;height:29px}
+/* The double ring is the one that thins out first, so it is drawn the
+   largest of the three - at 26px its inner ring still closes. */
+.mk--neighborhood .mk__dot{width:20px;height:20px}
+.mk--neighborhood .mk__lbl,.mk--community .mk__lbl{bottom:calc(50% + 14px)}
 .mk--neighborhood .mk__dot svg{fill:var(--t1)}
-.mk--community .mk__dot{width:30px;height:24px}
+.mk--community .mk__dot{width:26px;height:26px}
 .mk--community .mk__dot svg{stroke:var(--brass);fill:none}
 .mk--listing .mk__dot{width:34px;height:24px}
 .mk--listing .mk__dot svg{fill:var(--sage)}
 .mk--listing .mk__dot--many{width:44px;height:31px}
 
 .mk__lbl{
-  position:absolute;left:50%;bottom:100%;margin-bottom:5px;
+  position:absolute;left:50%;bottom:calc(100% + 2px);
   transform:translateX(-50%);
   white-space:nowrap;pointer-events:none;opacity:0;
   font-family:var(--ui);font-weight:300;font-size:.72rem;letter-spacing:.1em;
@@ -2089,11 +2091,9 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
 -7 10 -20 18 -28 18 -8 0 -14 5 -14 10 0 15 16 12 30 -5z"/></g>
 </g>
   
-    <symbol id="eg-pin" viewBox="0 0 24 32"><path d="M12 .9C6 .9 1.2 5.7 1.2 11.7c0 7.9 9.3 18.5 10.1 19.4a.9.9 0 0 0 1.4 0c.8-.9 10.1-11.5 10.1-19.4C22.8 5.7 18 .9 12 .9Zm0 15.1a4.2 4.2 0 1 1 0-8.4 4.2 4.2 0 0 1 0 8.4Z"/></symbol>
-    <symbol id="eg-gate" viewBox="0 0 30 24" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
-      <path d="M3 21V7"/><path d="M27 21V7"/>
-      <path d="M3 9c3.6-4 8-6 12-6s8.4 2 12 6"/><path d="M3 21h24"/>
-      <path d="M9 20.2v-13"/><path d="M15 20.2V4.6"/><path d="M21 20.2v-13"/>
+    <symbol id="eg-area" viewBox="0 0 24 24"><circle cx="12" cy="12" r="6.4"/></symbol>
+    <symbol id="eg-comm" viewBox="0 0 24 24" fill="none" stroke-width="1.5">
+      <circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="4.6"/>
     </symbol>
   </defs></svg>
 
@@ -2185,8 +2185,8 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
          line of type above it did. -->
     <h1 class="visually-hidden" id="mp-h">Middle Tennessee</h1>
     <div class="mp__key" role="group" aria-label="Layers on the map">
-      <button type="button" class="mp__key__i" data-layer="hood" aria-pressed="true"><svg class="mp__key__ic mp__key__ic--pin" viewBox="0 0 24 32" aria-hidden="true"><use href="#eg-pin"/></svg>Neighborhoods</button>
-      <button type="button" class="mp__key__i" data-layer="dev"  aria-pressed="true"><svg class="mp__key__ic mp__key__ic--gate" viewBox="0 0 30 24" aria-hidden="true"><use href="#eg-gate"/></svg>Luxury Communities</button>
+      <button type="button" class="mp__key__i" data-layer="hood" aria-pressed="true"><svg class="mp__key__ic mp__key__ic--area" viewBox="0 0 24 24" aria-hidden="true"><use href="#eg-area"/></svg>Neighborhoods</button>
+      <button type="button" class="mp__key__i" data-layer="dev"  aria-pressed="true"><svg class="mp__key__ic mp__key__ic--comm" viewBox="0 0 24 24" aria-hidden="true"><use href="#eg-comm"/></svg>Luxury Communities</button>
       <button type="button" class="mp__key__i" data-layer="list" aria-pressed="false"><svg class="mp__key__tree" viewBox="0 0 2536 1788" aria-hidden="true"><use href="#eg-tree"/></svg>Our Listings</button>
     </div>
   </div>
@@ -2210,157 +2210,157 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
   <g class="mp__pins">
     <a class="mp__pin mp__pin--hood" href="neighborhood/arrington/" aria-label="Arrington, neighborhood">
       <title>Arrington &#8212; neighborhood</title>
-      <use class="mp__dot" href="#eg-pin" x="761.7" y="1287.6" width="15.0" height="20.0"/>
+      <use class="mp__dot" href="#eg-area" x="762.7" y="1301.1" width="13.0" height="13.0"/>
       <text class="mp__lbl" x="785.2" y="1312.6" text-anchor="start">Arrington</text>
       <circle class="mp__hit" cx="769.2" cy="1307.6" r="26"/>
     </a>
     <a class="mp__pin mp__pin--hood" href="neighborhood/belle-meade/" aria-label="Belle Meade, neighborhood">
       <title>Belle Meade &#8212; neighborhood</title>
-      <use class="mp__dot" href="#eg-pin" x="451.6" y="693.5" width="15.0" height="20.0"/>
+      <use class="mp__dot" href="#eg-area" x="452.6" y="707.0" width="13.0" height="13.0"/>
       <text class="mp__lbl" x="443.1" y="718.5" text-anchor="end">Belle Meade</text>
       <circle class="mp__hit" cx="459.1" cy="713.5" r="26"/>
     </a>
     <a class="mp__pin mp__pin--hood" href="neighborhood/brentwood/" aria-label="Brentwood, neighborhood">
       <title>Brentwood &#8212; neighborhood</title>
-      <use class="mp__dot" href="#eg-pin" x="608.2" y="858.3" width="15.0" height="20.0"/>
+      <use class="mp__dot" href="#eg-area" x="609.2" y="871.8" width="13.0" height="13.0"/>
       <text class="mp__lbl" x="599.7" y="883.3" text-anchor="end">Brentwood</text>
       <circle class="mp__hit" cx="615.7" cy="878.3" r="26"/>
     </a>
     <a class="mp__pin mp__pin--hood" href="neighborhood/downtown/" aria-label="Downtown, neighborhood">
       <title>Downtown &#8212; neighborhood</title>
-      <use class="mp__dot" href="#eg-pin" x="614.0" y="518.7" width="15.0" height="20.0"/>
+      <use class="mp__dot" href="#eg-area" x="615.0" y="532.2" width="13.0" height="13.0"/>
       <text class="mp__lbl" x="637.5" y="543.7" text-anchor="start">Downtown</text>
       <circle class="mp__hit" cx="621.5" cy="538.7" r="26"/>
     </a>
     <a class="mp__pin mp__pin--hood" href="neighborhood/forest-hills/" aria-label="Forest Hills, neighborhood">
       <title>Forest Hills &#8212; neighborhood</title>
-      <use class="mp__dot" href="#eg-pin" x="476.1" y="764.2" width="15.0" height="20.0"/>
+      <use class="mp__dot" href="#eg-area" x="477.1" y="777.7" width="13.0" height="13.0"/>
       <text class="mp__lbl" x="467.6" y="789.2" text-anchor="end">Forest Hills</text>
       <circle class="mp__hit" cx="483.6" cy="784.2" r="26"/>
     </a>
     <a class="mp__pin mp__pin--hood" href="neighborhood/franklin/" aria-label="Franklin, neighborhood">
       <title>Franklin &#8212; neighborhood</title>
-      <use class="mp__dot" href="#eg-pin" x="426.3" y="1137.8" width="15.0" height="20.0"/>
+      <use class="mp__dot" href="#eg-area" x="427.3" y="1151.3" width="13.0" height="13.0"/>
       <text class="mp__lbl" x="449.8" y="1162.8" text-anchor="start">Franklin</text>
       <circle class="mp__hit" cx="433.8" cy="1157.8" r="26"/>
     </a>
     <a class="mp__pin mp__pin--hood" href="neighborhood/germantown/" aria-label="Germantown, neighborhood">
       <title>Germantown &#8212; neighborhood</title>
-      <use class="mp__dot" href="#eg-pin" x="596.7" y="486.6" width="15.0" height="20.0"/>
+      <use class="mp__dot" href="#eg-area" x="597.7" y="500.1" width="13.0" height="13.0"/>
       <text class="mp__lbl" x="620.2" y="511.6" text-anchor="start">Germantown</text>
       <circle class="mp__hit" cx="604.2" cy="506.6" r="26"/>
     </a>
     <a class="mp__pin mp__pin--hood" href="neighborhood/green-hills/" aria-label="Green Hills, neighborhood">
       <title>Green Hills &#8212; neighborhood</title>
-      <use class="mp__dot" href="#eg-pin" x="536.4" y="673.3" width="15.0" height="20.0"/>
+      <use class="mp__dot" href="#eg-area" x="537.4" y="686.8" width="13.0" height="13.0"/>
       <text class="mp__lbl" x="559.9" y="698.3" text-anchor="start">Green Hills</text>
       <circle class="mp__hit" cx="543.9" cy="693.3" r="26"/>
     </a>
     <a class="mp__pin mp__pin--hood" href="neighborhood/leipers-fork/" aria-label="Leiper&#x27;s Fork, neighborhood">
       <title>Leiper&#x27;s Fork &#8212; neighborhood</title>
-      <use class="mp__dot" href="#eg-pin" x="152.2" y="1208.5" width="15.0" height="20.0"/>
+      <use class="mp__dot" href="#eg-area" x="153.2" y="1222.0" width="13.0" height="13.0"/>
       <text class="mp__lbl" x="175.7" y="1233.5" text-anchor="start">Leiper&#x27;s Fork</text>
       <circle class="mp__hit" cx="159.7" cy="1228.5" r="26"/>
     </a>
     <a class="mp__pin mp__pin--hood" href="neighborhood/oak-hill/" aria-label="Oak Hill, neighborhood">
       <title>Oak Hill &#8212; neighborhood</title>
-      <use class="mp__dot" href="#eg-pin" x="595.2" y="749.7" width="15.0" height="20.0"/>
+      <use class="mp__dot" href="#eg-area" x="596.2" y="763.2" width="13.0" height="13.0"/>
       <text class="mp__lbl" x="618.7" y="774.7" text-anchor="start">Oak Hill</text>
       <circle class="mp__hit" cx="602.7" cy="769.7" r="26"/>
     </a>
     <a class="mp__pin mp__pin--hood" href="neighborhood/thompsons-station/" aria-label="Thompson&#x27;s Station, neighborhood">
       <title>Thompson&#x27;s Station &#8212; neighborhood</title>
-      <use class="mp__dot" href="#eg-pin" x="336.9" y="1458.5" width="15.0" height="20.0"/>
+      <use class="mp__dot" href="#eg-area" x="337.9" y="1472.0" width="13.0" height="13.0"/>
       <text class="mp__lbl" x="360.4" y="1483.5" text-anchor="start">Thompson&#x27;s Station</text>
       <circle class="mp__hit" cx="344.4" cy="1478.5" r="26"/>
     </a>
     <a class="mp__pin mp__pin--hood" href="neighborhood/west-meade/" aria-label="West Meade, neighborhood">
       <title>West Meade &#8212; neighborhood</title>
-      <use class="mp__dot" href="#eg-pin" x="387.8" y="636.4" width="15.0" height="20.0"/>
+      <use class="mp__dot" href="#eg-area" x="388.8" y="649.9" width="13.0" height="13.0"/>
       <text class="mp__lbl" x="411.3" y="661.4" text-anchor="start">West Meade</text>
       <circle class="mp__hit" cx="395.3" cy="656.4" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/anna/" aria-label="Anna, luxury community">
       <title>Anna &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="790.1" y="972.7" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="790.6" y="971.6" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="816.1" y="986.1" text-anchor="start">Anna</text>
       <circle class="mp__hit" cx="800.1" cy="981.1" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/annandale/" aria-label="Annandale, luxury community">
       <title>Annandale &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="633.2" y="884.2" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="633.7" y="883.1" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="659.2" y="875.6" text-anchor="start">Annandale</text>
       <circle class="mp__hit" cx="643.2" cy="892.6" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/bison-ridge/" aria-label="Bison Ridge, luxury community">
       <title>Bison Ridge &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="426.7" y="117.5" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="427.2" y="116.4" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="452.7" y="130.9" text-anchor="start">Bison Ridge</text>
       <circle class="mp__hit" cx="436.7" cy="125.9" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/callie/" aria-label="Callie, luxury community">
       <title>Callie &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="508.9" y="977.1" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="509.4" y="976.0" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="534.9" y="990.5" text-anchor="start">Callie</text>
       <circle class="mp__hit" cx="518.9" cy="985.5" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/cielo/" aria-label="Cielo, luxury community">
       <title>Cielo &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="639.8" y="909.2" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="640.3" y="908.1" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="633.8" y="922.6" text-anchor="end">Cielo</text>
       <circle class="mp__hit" cx="649.8" cy="917.6" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/firefly/" aria-label="Firefly, luxury community">
       <title>Firefly &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="493.6" y="1693.2" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="494.1" y="1692.1" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="519.6" y="1706.6" text-anchor="start">Firefly</text>
       <circle class="mp__hit" cx="503.6" cy="1701.6" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/governors-club/" aria-label="Governors Club, luxury community">
       <title>Governors Club &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="735.3" y="997.8" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="735.8" y="996.7" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="761.3" y="1011.2" text-anchor="start">Governors Club</text>
       <circle class="mp__hit" cx="745.3" cy="1006.2" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/harlan/" aria-label="Harlan, luxury community">
       <title>Harlan &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="657.8" y="908.7" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="658.3" y="907.6" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="683.8" y="922.1" text-anchor="start">Harlan</text>
       <circle class="mp__hit" cx="667.8" cy="917.1" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/laurelbrooke/" aria-label="Laurelbrooke, luxury community">
       <title>Laurelbrooke &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="393.5" y="958.2" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="394.0" y="957.1" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="387.5" y="971.6" text-anchor="end">Laurelbrooke</text>
       <circle class="mp__hit" cx="403.5" cy="966.6" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/rosebrooke/" aria-label="Rosebrooke, luxury community">
       <title>Rosebrooke &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="748.8" y="1040.5" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="749.3" y="1039.4" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="774.8" y="1053.9" text-anchor="start">Rosebrooke</text>
       <circle class="mp__hit" cx="758.8" cy="1048.9" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/the-grove/" aria-label="The Grove, luxury community">
       <title>The Grove &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="707.0" y="1427.8" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="707.5" y="1426.7" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="733.0" y="1441.2" text-anchor="start">The Grove</text>
       <circle class="mp__hit" cx="717.0" cy="1436.2" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/troubadour/" aria-label="Troubadour, luxury community">
       <title>Troubadour &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="826.4" y="1406.3" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="826.9" y="1405.2" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="852.4" y="1419.7" text-anchor="start">Troubadour</text>
       <circle class="mp__hit" cx="836.4" cy="1414.7" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/witherspoon/" aria-label="Witherspoon, luxury community">
       <title>Witherspoon &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="648.3" y="1024.6" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="648.8" y="1023.5" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="642.3" y="1038.0" text-anchor="end">Witherspoon</text>
       <circle class="mp__hit" cx="658.3" cy="1033.0" r="26"/>
     </a>
     <a class="mp__pin mp__pin--dev" href="development/wyelea/" aria-label="Wyelea, luxury community">
       <title>Wyelea &#8212; luxury community</title>
-      <use class="mp__dot mp__dot--gate" href="#eg-gate" x="353.4" y="1087.5" width="20.0" height="16.0"/>
+      <use class="mp__dot mp__dot--comm" href="#eg-comm" x="353.9" y="1086.4" width="19.0" height="19.0"/>
       <text class="mp__lbl" x="379.4" y="1100.9" text-anchor="start">Wyelea</text>
       <circle class="mp__hit" cx="363.4" cy="1095.9" r="26"/>
     </a>
