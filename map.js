@@ -14,24 +14,6 @@
 (() => {
   "use strict";
 
-  /* PUBLIC token, and deliberately in the page. Mapbox issues two kinds:
-     sk. is secret and must never leave a server; pk. is public and has to
-     reach the browser or no map can draw. GitHub's scanner matches the JWT
-     shape rather than the prefix, so it reports this one as a "Mapbox Secret
-     Access Token" - it is not, and there is no sk. token anywhere in this
-     repository.
-
-     What actually protects it is the URL restriction on the token at
-     account.mapbox.com, which limits it to edengrovetennessee.com. That
-     restriction is the control; the repository being public changes nothing,
-     because the deployed JavaScript is world-readable either way.
-
-     The restriction leans on the Referer header, which can be forged, so it
-     is a deterrent rather than a wall. The real backstop is the account's
-     5,000-load monthly cap: the worst a lifted token can do is spend an
-     allowance, and the page falls back to the drawn map when it is gone.
-
-     If this token is ever rotated, change it here and nowhere else. */
   const TOKEN = "pk.eyJ1IjoiZWRlbmdyb3ZldGVhbSIsImEiOiJjbXdlMGpwMnkwMWYxMnhvbXliOWYxdHEwIn0.g7WnzK2C4Dhwh-4BV0xFzw";
 
   const mp   = document.querySelector(".mp");
@@ -118,6 +100,10 @@
     mp.classList.add("is-live");
     host.removeAttribute("aria-hidden");
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
+    // A tap anywhere that is not a mark puts the card away. The marks stop
+    // their own taps before they get here, so this never fires for the tap
+    // that just opened one.
+    map.on("click", () => { if (open) { open.remove(); open = null; } });
   });
 
   /* ---- the palette ------------------------------------------------------
@@ -222,9 +208,111 @@
       lbl.textContent = many ? `${p.label} · ${p.count}` : p.label;
 
       a.append(dot, lbl);
+      card(a, p);
       new mapboxgl.Marker({ element: a, anchor: (ART && ART[2]) || "center" })
         .setLngLat([p.lon, p.lat]).addTo(map);
     });
+  }
+
+
+  /* ---- the card ---------------------------------------------------------
+     A mark on a map does not look like a door. The label on hover said what
+     the place was called and still gave no reason to believe a page was
+     behind it. The card does: the photograph off that page, the name, and
+     somewhere to go.
+
+     Mouse and touch want different things. A cursor hovers to look and
+     clicks to go, so the card opens on hover and the mark itself stays a
+     plain link. A thumb has no hover, so the first tap opens the card and
+     the button inside it navigates - nobody gets thrown onto a page they
+     grazed with a 20px target.
+
+     A pin with no photograph gets a card with no photograph. Five of the
+     coming-soon listings have no picture of themselves and must not borrow
+     one from somewhere else. */
+  const KIND = { neighborhood: "Neighborhood", community: "Luxury Community",
+                 listing: "Eden Grove Listing" };
+  let open = null;
+  const touch = window.matchMedia("(hover: none)").matches;
+
+  function card(a, p) {
+    // closeOnClick would be right if the card opened any other way. It
+    // listens for a click on the map, and a marker element is a child of the
+    // map's own canvas container - so on a phone the tap that opens the card
+    // bubbles up and closes it again in the same millisecond. The card
+    // appeared and vanished and the mark looked broken. We dismiss it
+    // ourselves instead: the mark's handler stops the tap propagating, and a
+    // tap anywhere else on the map closes whatever is open.
+    const pop = new mapboxgl.Popup({
+      closeButton: false, closeOnClick: false, offset: 18,
+      maxWidth: "none", className: "mkpop",
+    });
+    const many = p.count > 1;
+    const sub  = many ? p.count + " listings" : (KIND[p.kind] || "");
+    const html =
+      '<a class="mkpop__a" href="' + p.href + '">' +
+      (p.img ? '<span class="mkpop__ph"><img src="media/thumb/' + p.img +
+               '.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>'
+             // An empty band reads as an image that failed to load. The mark
+             // in it says the photograph is not taken yet, which is true.
+             : '<span class="mkpop__ph mkpop__ph--none">' +
+               '<svg viewBox="0 0 2536 1788" aria-hidden="true"><use href="#eg-tree"/></svg>' +
+               '</span>') +
+      '<span class="mkpop__b">' +
+        '<span class="mkpop__k">' + sub + '</span>' +
+        '<span class="mkpop__n">' + p.label + '</span>' +
+        '<span class="mkpop__go">' +
+        (p.kind === "listing" ? (many ? "View listings" : "View property") : "Explore") +
+        ' <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" ' +
+        'aria-hidden="true"><path d="M2 1l3 3-3 3"/></svg></span>' +
+      '</span></a>';
+
+    const show = () => {
+      if (open && open !== pop) open.remove();
+      pop.setLngLat([p.lon, p.lat]).setHTML(html).addTo(map);
+      open = pop;
+    };
+    const hide = () => { if (open === pop) { pop.remove(); open = null; } };
+
+    if (touch) {
+      // first tap previews, the card's own link goes
+      a.addEventListener("click", e => {
+        e.preventDefault();
+        e.stopPropagation();   // or the map hears it and closes the card
+        show();
+      });
+    } else {
+      a.addEventListener("pointerenter", e => { if (e.pointerType !== "touch") show(); });
+      a.addEventListener("focus", show);
+      a.addEventListener("blur", hide);
+      // Leaving the mark must not close a card the cursor is moving into.
+      //
+      // The subtle one: the card often opens UNDERNEATH the cursor, because
+      // it is anchored to the point the cursor is already on. The browser
+      // then fires pointerleave on the mark the instant it appears - the
+      // pointer really has left the mark, it is over the card now - and a
+      // naive timer closes the card the moment it opens. Worse, it never
+      // fires pointerenter on the card either, because the pointer did not
+      // move into it; the card arrived around a stationary pointer.
+      //
+      // So: ignore a leave whose relatedTarget is inside the card, and let
+      // a pointermove anywhere over the card cancel a pending close.
+      let t = null;
+      const arm = () => { clearTimeout(t); t = setTimeout(hide, 260); };
+      const keep = () => clearTimeout(t);
+      a.addEventListener("pointerleave", e => {
+        const el = pop.getElement();
+        if (el && e.relatedTarget && el.contains(e.relatedTarget)) return;
+        arm();
+      });
+      pop.on("open", () => {
+        const el = pop.getElement();
+        if (!el) return;
+        el.addEventListener("pointerenter", keep);
+        el.addEventListener("pointermove", keep);
+        el.addEventListener("pointerleave", arm);
+      });
+    }
   }
 
   /* ---- the county switcher ---------------------------------------------- */
@@ -232,6 +320,7 @@
     b.addEventListener("click", () => {
       document.querySelectorAll(".mp__county__b")
         .forEach(o => o.classList.toggle("is-on", o === b));
+      if (open) { open.remove(); open = null; }
       const f = data.frames[b.dataset.county];
       if (!f || !painted) return;
       map.fitBounds(f.bounds, { ...FIT, duration: 900 });
