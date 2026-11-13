@@ -835,8 +835,11 @@ blockquote{
 
 
 /* ---- two sections, not one run ----
-   New construction and resale are different things to be shopping for, and
-   the page was asking a buyer to tell them apart from the photograph. The
+   A new build and an established house are different things to be shopping
+   for, and the page was asking a buyer to tell them apart from the
+   photograph. ("Resale" was the heading until 13 Nov. Ryan: it is trade
+   language, and it carries a whiff of secondhand that does not belong over a
+   $2.25M listing.) The
    status plate still says Active or Private Exclusive, because that is a
    different question - where the house is in its life, not what it is. */
 .listings__head{
@@ -844,6 +847,27 @@ blockquote{
   padding:0 clamp(.5rem,1vw,1.1rem);text-align:center;
 }
 .listings__head--first{margin-top:0}
+/* ---- delivery years, inside new construction ----
+   Ryan, 13 Nov. Somebody shopping new construction is really shopping a
+   date - what can I be in, and when - so the year is the heading rather
+   than something to be worked out from each card. 2029 has nothing in it
+   yet and says so, which is more use than leaving the year off: it tells a
+   buyer the pipeline runs past 2028. */
+.listings__sub{
+  max-width:72rem;
+  margin:clamp(2.6rem,5.5vh,3.6rem) auto clamp(1.1rem,2.4vh,1.6rem);
+  padding:0 clamp(.5rem,1vw,1.1rem);text-align:center;
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.7rem,.66rem + .18vw,.78rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:var(--warm);
+}
+.listings__sub--first{margin-top:clamp(1.2rem,2.6vh,1.8rem)}
+.listings__none{
+  max-width:72rem;margin:0 auto;padding:0 clamp(.5rem,1vw,1.1rem);
+  text-align:center;font-weight:300;
+  font-size:clamp(.82rem,.8rem + .14vw,.9rem);line-height:1.9;color:var(--t2);
+}
 .listings__h{
   margin:0;font-family:var(--ui);font-weight:300;color:var(--t1,#F4F1EC);
   font-size:clamp(.82rem,.76rem + .26vw,1rem);
@@ -936,7 +960,7 @@ blockquote{
 <section class="listings" aria-label="Listings">
 
   <div class="listings__head listings__head--first">
-    <h2 class="listings__h">Resale</h2>
+    <h2 class="listings__h">Established Homes</h2>
   </div>
   <div class="listings__grid">
 
@@ -984,8 +1008,8 @@ blockquote{
   <div class="listings__head">
     <h2 class="listings__h">New Construction</h2>
   </div>
+  <h3 class="listings__sub listings__sub--first">Delivering in 2027</h3>
   <div class="listings__grid">
-
     <a class="prop" href="property/715-davis/">
       <img loading="lazy" decoding="async" src="media/listing-davis.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
@@ -1004,7 +1028,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
     <a class="prop" href="property/515-shenandoah/">
       <img loading="lazy" decoding="async" src="media/listing-shenandoah.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
@@ -1022,8 +1045,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-
     <a class="prop" href="property/2495-deer-meadow/">
       <img loading="lazy" decoding="async" src="media/listing-deermeadow-2495.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
@@ -1042,8 +1063,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-
     <a class="prop" href="property/1306-clifton/">
       <img loading="lazy" decoding="async" src="media/listing-clifton-1306.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
@@ -1062,8 +1081,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-
     <a class="prop" href="property/1308-clifton/">
       <img loading="lazy" decoding="async" src="media/listing-clifton-1308.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
@@ -1082,8 +1099,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-
     <a class="prop" href="property/1211-jefferson-davis/">
       <img loading="lazy" decoding="async" src="media/listing-jeffersondavis-1211.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
@@ -1098,7 +1113,10 @@ blockquote{
         </div></div>
       </div>
     </a>
+  </div>
 
+  <h3 class="listings__sub">Delivering in 2028</h3>
+  <div class="listings__grid">
     <a class="prop" href="property/706-davis/">
       <img loading="lazy" decoding="async" src="media/listing-davis-706.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
@@ -1113,8 +1131,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-
     <a class="prop" href="property/607-davis/">
       <img loading="lazy" decoding="async" src="media/listing-davis-607.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
@@ -1129,8 +1145,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-
     <a class="prop" href="property/842-brook-hollow/">
       <img loading="lazy" decoding="async" src="media/listing-brookhollow-842.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
@@ -1145,8 +1159,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-
     <a class="prop" href="property/735-clematis/">
       <img loading="lazy" decoding="async" src="media/listing-clematis-735.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
@@ -1161,8 +1173,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-
     <a class="prop" href="property/1310-lavada/">
       <img loading="lazy" decoding="async" src="media/listing-lavada-1310.jpg" alt="" style="object-position:50% 55%">
       <span class="prop__status">Private Exclusive</span>
@@ -1177,10 +1187,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-    <!-- Private Exclusive: no MLS number, by definition. No price or square
-         footage published yet, and the city line is held back until it is
-         confirmed rather than guessed. -->
     <a class="prop prop--pe" href="property/804-wilson-pike/">
       <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 0%">
       <span class="prop__status">Private Exclusive</span>
@@ -1194,10 +1200,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-    <!-- Private Exclusive: no MLS number, by definition. No price or square
-         footage published yet, and the city line is held back until it is
-         confirmed rather than guessed. -->
     <a class="prop prop--pe" href="property/9003-carondelet/">
       <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 100%">
       <span class="prop__status">Private Exclusive</span>
@@ -1211,10 +1213,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-    <!-- Private Exclusive: no MLS number, by definition. No price or square
-         footage published yet, and the city line is held back until it is
-         confirmed rather than guessed. -->
     <a class="prop prop--pe" href="property/6212-bridlewood/">
       <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 28%">
       <span class="prop__status">Private Exclusive</span>
@@ -1228,10 +1226,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-    <!-- Private Exclusive: no MLS number, by definition. No price or square
-         footage published yet, and the city line is held back until it is
-         confirmed rather than guessed. -->
     <a class="prop prop--pe" href="property/916-long-valley/">
       <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 72%">
       <span class="prop__status">Private Exclusive</span>
@@ -1245,7 +1239,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
     <a class="prop prop--pe" href="property/795-rhonda/">
       <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 14%">
       <span class="prop__status">Private Exclusive</span>
@@ -1259,10 +1252,6 @@ blockquote{
         </div></div>
       </div>
     </a>
-
-    <!-- Private Exclusive: no MLS number, by definition. No price or square
-         footage published yet, and the city line is held back until it is
-         confirmed rather than guessed. -->
     <a class="prop prop--pe" href="property/2112-eastwood/">
       <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 88%">
       <span class="prop__status">Private Exclusive</span>
@@ -1277,6 +1266,9 @@ blockquote{
       </div>
     </a>
   </div>
+
+  <h3 class="listings__sub">Delivering in 2029</h3>
+  <p class="listings__none">Coming soon.</p>
 
 </section>
 
