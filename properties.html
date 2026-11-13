@@ -849,11 +849,6 @@ blockquote{
   font-size:clamp(.82rem,.76rem + .26vw,1rem);
   letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
 }
-.listings__n{
-  max-width:34rem;margin:.9rem auto 0;font-weight:300;
-  font-size:clamp(.78rem,.75rem + .16vw,.86rem);
-  line-height:1.8;color:var(--warm,#A7947C);
-}
 @media (max-width:760px){
   .listings__grid{grid-template-columns:1fr}
   .listings .prop{aspect-ratio:4/3}
@@ -941,8 +936,53 @@ blockquote{
 <section class="listings" aria-label="Listings">
 
   <div class="listings__head listings__head--first">
+    <h2 class="listings__h">Resale</h2>
+  </div>
+  <div class="listings__grid">
+
+
+    <a class="prop" href="property/2502-9th-ave-s/">
+      <img loading="lazy" decoding="async" src="media/listing-9th-2502.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">2502 9th Ave S<br>Nashville, TN 37204</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$2,250,000</span>
+            <span>3,530 <span class="k">Sq Ft</span></span>
+            <span>5 <span class="k">Bed</span></span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+
+
+    <a class="prop" href="property/4303a-utah/">
+      <img loading="lazy" decoding="async" src="media/listing-utah-4303a.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">4303A Utah Ave<br>Nashville, TN 37209</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$1,889,000</span>
+            <span>3,490 <span class="k">Sq Ft</span></span>
+            <span><span class="k">MLS #</span>3260583</span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+  </div>
+  <div class="listings__head">
     <h2 class="listings__h">New Construction</h2>
-    <p class="listings__n">Built with our own builders. Most are Private Exclusives and never reach the open market.</p>
   </div>
   <div class="listings__grid">
 
@@ -1238,53 +1278,6 @@ blockquote{
     </a>
   </div>
 
-  <div class="listings__head">
-    <h2 class="listings__h">Resale</h2>
-    <p class="listings__n">On the market now.</p>
-  </div>
-  <div class="listings__grid">
-
-
-    <a class="prop" href="property/2502-9th-ave-s/">
-      <img loading="lazy" decoding="async" src="media/listing-9th-2502.jpg" alt="">
-      <span class="prop__status">Active</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">2502 9th Ave S<br>Nashville, TN 37204</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$2,250,000</span>
-            <span>3,530 <span class="k">Sq Ft</span></span>
-            <span>5 <span class="k">Bed</span></span>
-          </div>
-          <span class="prop__cta">View Property
-            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <path d="M2 1l3 3-3 3"/></svg>
-          </span>
-        </div></div>
-      </div>
-    </a>
-
-
-
-    <a class="prop" href="property/4303a-utah/">
-      <img loading="lazy" decoding="async" src="media/listing-utah-4303a.jpg" alt="">
-      <span class="prop__status">Active</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">4303A Utah Ave<br>Nashville, TN 37209</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$1,889,000</span>
-            <span>3,490 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>3260583</span>
-          </div>
-          <span class="prop__cta">View Property
-            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
-              <path d="M2 1l3 3-3 3"/></svg>
-          </span>
-        </div></div>
-      </div>
-    </a>
-  </div>
 </section>
 
 <!-- ========================= 5 · PRIVATE ACCESS =========================
