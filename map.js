@@ -86,7 +86,13 @@
       style: "mapbox://styles/mapbox/dark-v11",
       bounds: ALL,
       fitBoundsOptions: FIT,
-      cooperativeGestures: true,   // a two-finger drag, so the page still scrolls
+      // Ryan, 13 Nov: "they like can't actually interact with the map per
+      // se." The map is an answer, not an instrument. No drag, no scroll
+      // zoom, no double-click, no keyboard panning - the cards drive it and
+      // nothing else does. It also means the map can never be left somewhere
+      // confusing, and a thumb scrolling the page past it never gets caught.
+      // The markers are ordinary DOM elements, so they still take a click.
+      interactive: false,
       attributionControl: true
     });
   } catch (e) { return fallback("map would not construct: " + e.message); }
@@ -133,11 +139,8 @@
       }).observe(host);
     }
 
-    map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
-    // A tap anywhere that is not a mark puts the card away. The marks stop
-    // their own taps before they get here, so this never fires for the tap
-    // that just opened one.
-    map.on("click", () => { if (open) { open.remove(); open = null; } });
+    // No zoom buttons either: with the map locked they would be the one
+    // thing on it that looks operable, and they are not.
   });
 
   /* ---- the palette ------------------------------------------------------
@@ -242,7 +245,7 @@
       lbl.textContent = many ? `${p.label} · ${p.count}` : p.label;
 
       a.append(dot, lbl);
-      marks[p.href] = { p: p, show: card(a, p) };
+      marks[p.href] = { p: p, el: a, show: card(a, p) };
       new mapboxgl.Marker({ element: a, anchor: (ART && ART[2]) || "center" })
         .setLngLat([p.lon, p.lat]).addTo(map);
     });
@@ -279,6 +282,7 @@
           essential: true,
         });
         m.show();
+        pulse(m.el);
         // The map is below the cards. Landing somewhere the visitor cannot
         // see is the same as not landing at all.
         const frame = document.querySelector(".mp__frame");
@@ -288,6 +292,23 @@
     });
   }
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* A ring, twice, where the map just landed.
+     Nothing on this map pulses on its own - a field of blinking dots was the
+     first thing Ryan took off it. This is different: it fires once, on the
+     mark you just asked for, and stops. It is the map answering, not the map
+     waving. Off entirely under reduced motion, where the fly is instant and
+     there is nothing to draw the eye away from anyway. */
+  function pulse(el) {
+    if (!el || reduced) return;
+    el.querySelectorAll(".mk__ping").forEach(n => n.remove());
+    const r = document.createElement("span");
+    r.className = "mk__ping";
+    r.setAttribute("aria-hidden", "true");
+    el.appendChild(r);
+    r.addEventListener("animationend", () => r.remove(), { once: true });
+    setTimeout(() => r.remove(), 4000);   // belt and braces if the event is missed
+  }
 
 
   /* ---- the card ---------------------------------------------------------
