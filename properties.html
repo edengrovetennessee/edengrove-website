@@ -863,8 +863,38 @@ blockquote{
 .prop--pe .prop__cta{color:var(--brass)}
 /* The badge and the call to action are up permanently here rather than on
    hover, so they need the hover-strength scrim permanently too. */
+/* ---- a card with no photograph yet ----
+   Ryan, 13 Nov: take the photograph off these and put a faded colour behind
+   the words instead. Ten cards shared one picture of a field and each showed a
+   different band of it, which was a way of disguising a stand-in rather than a
+   design. A panel is the honest version: there is no photograph of this house
+   yet, and the card says so in the middle in the same uppercase the addresses
+   use. Warm bloom over ink rather than flat ink, so a row of them reads as
+   deliberate and not as ten failed images. */
+.prop--pe{
+  background:
+    radial-gradient(118% 86% at 50% 42%, rgba(167,148,124,.20) 0%, rgba(167,148,124,0) 66%),
+    linear-gradient(168deg, #20251b 0%, #191e15 54%, #12160e 100%);
+}
+.prop__soon{
+  position:absolute;z-index:2;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.68rem,.62rem + .28vw,.88rem);
+  letter-spacing:.42em;text-indent:.42em;text-transform:uppercase;
+  color:rgba(228,219,201,.82);
+  transition:color .6s var(--rise),letter-spacing .6s var(--rise);
+}
+.prop--pe:hover .prop__soon{color:#fff;letter-spacing:.48em;text-indent:.48em}
+/* Lighter than the scrim over a photograph: there is nothing bright underneath
+   to hold down, only the panel's own floor, and the address has to sit on it
+   without the middle of the card going muddy. */
 .prop--pe::after{
-  background:linear-gradient(to top, rgba(6,8,5,.80) 0%, rgba(6,8,5,.40) 48%, rgba(6,8,5,.06) 100%);
+  background:linear-gradient(to top, rgba(6,8,5,.58) 0%, rgba(6,8,5,.12) 46%, rgba(6,8,5,0) 100%);
+}
+@media (prefers-reduced-motion:reduce){
+  .prop__soon{transition:none}
+  .prop--pe:hover .prop__soon{letter-spacing:.42em;text-indent:.42em}
 }
 
 
@@ -1262,7 +1292,7 @@ blockquote{
       </div>
     </a>
     <a class="prop prop--pe" href="property/804-wilson-pike/">
-      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 0%">
+      <span class="prop__soon" aria-hidden="true">Coming Soon</span>
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">804 Wilson Pike</h3>
@@ -1275,7 +1305,7 @@ blockquote{
       </div>
     </a>
     <a class="prop prop--pe" href="property/828-belton/">
-      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 42%">
+      <span class="prop__soon" aria-hidden="true">Coming Soon</span>
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">828 Belton Dr</h3>
@@ -1288,7 +1318,7 @@ blockquote{
       </div>
     </a>
     <a class="prop prop--pe" href="property/604-s-15th/">
-      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 56%">
+      <span class="prop__soon" aria-hidden="true">Coming Soon</span>
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">604 S 15th Ave</h3>
@@ -1362,7 +1392,7 @@ blockquote{
       </div>
     </a>
     <a class="prop prop--pe" href="property/9003-carondelet/">
-      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 100%">
+      <span class="prop__soon" aria-hidden="true">Coming Soon</span>
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">9003 Carondelet Pl</h3>
@@ -1375,7 +1405,7 @@ blockquote{
       </div>
     </a>
     <a class="prop prop--pe" href="property/6212-bridlewood/">
-      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 28%">
+      <span class="prop__soon" aria-hidden="true">Coming Soon</span>
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">6212 Bridlewood Ln</h3>
@@ -1388,7 +1418,7 @@ blockquote{
       </div>
     </a>
     <a class="prop prop--pe" href="property/916-long-valley/">
-      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 72%">
+      <span class="prop__soon" aria-hidden="true">Coming Soon</span>
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">916 Long Valley Rd</h3>
@@ -1401,7 +1431,7 @@ blockquote{
       </div>
     </a>
     <a class="prop prop--pe" href="property/795-rhonda/">
-      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 14%">
+      <span class="prop__soon" aria-hidden="true">Coming Soon</span>
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">795 Rhonda Ln</h3>
@@ -1414,7 +1444,7 @@ blockquote{
       </div>
     </a>
     <a class="prop prop--pe" href="property/2112-eastwood/">
-      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 88%">
+      <span class="prop__soon" aria-hidden="true">Coming Soon</span>
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">2112 Eastwood Ave</h3>
@@ -1431,7 +1461,7 @@ blockquote{
   <h3 class="listings__sub">Coming to Market in 2029</h3>
   <div class="listings__grid">
     <a class="prop prop--pe" href="property/801-belton/">
-      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 36%">
+      <span class="prop__soon" aria-hidden="true">Coming Soon</span>
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">801 Belton Dr</h3>
@@ -1444,7 +1474,7 @@ blockquote{
       </div>
     </a>
     <a class="prop prop--pe" href="property/2305-cisco/">
-      <img loading="lazy" decoding="async" src="media/pe-field.jpg" alt="" style="object-position:50% 64%">
+      <span class="prop__soon" aria-hidden="true">Coming Soon</span>
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">2305 Cisco St</h3>
