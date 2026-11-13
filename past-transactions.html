@@ -772,15 +772,75 @@ blockquote{
    Two across, square. The card itself is the same .prop component as the home
    page, so hover behavior, the reveal and the touch fallback all come free. */
 .listings{background:var(--ink);padding:clamp(3rem,7vh,5rem) 0 clamp(5rem,11vh,8rem)}
-.listings__grid{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:clamp(.5rem,1vw,1.1rem);
-  padding:0 clamp(.5rem,1vw,1.1rem);
+/* ---- the ticker ----
+   Full bleed, no padding: a ticker that stops short of the edges is a
+   carousel with the controls hidden. The mask fades the two ends so cards
+   arrive and leave rather than appearing at a hard edge. */
+.ticker{
+  overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);
+          mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);
 }
-.listings .prop{aspect-ratio:1/1}
+/* 60s a lap. One copy is about 3,980px, so that is ~66px a second: a card
+   takes twenty-odd seconds to cross a desktop window, which is a drift
+   rather than a scroll, and all fourteen sales have gone past inside a
+   minute. At 90s it was two and a half minutes to see the back half. */
+.ticker__track{display:flex;width:max-content;animation:tick 60s linear infinite}
+.ticker__set{display:flex}
+.ticker .prop{
+  flex:0 0 clamp(12rem,17vw,15rem);
+  aspect-ratio:4/5;                      /* portrait: a 4/3 card at this width
+                                            is 170px tall and the address alone
+                                            filled it */
+  margin-right:var(--tick-gap,.75rem);   /* margin, not gap - see the markup */
+}
+/* A ticker card is never hovered - it is moving, and by the time a cursor
+   reaches one it has gone. So it is dressed the way this page already
+   dresses a card on a phone: everything out, nothing waiting on a pointer.
+   Those rules are at the foot of this sheet under (hover:none); these are
+   the same three, at every width, scoped to the ticker.
+
+   The price stays because the price is the argument this page makes - the
+   cards run highest first - and a stock ticker without numbers is a slide
+   show. Square footage and the MLS number do not fit at this size and are
+   not what anyone reads off a moving row, so only the first figure shows. */
+.ticker .prop__more{grid-template-rows:1fr;opacity:1}
+.ticker .prop__status{opacity:1;transform:none}
+.ticker .prop::after{
+  background:linear-gradient(to top,
+    rgba(6,8,5,.86) 0%, rgba(6,8,5,.52) 44%, rgba(6,8,5,.06) 86%);
+}
+.ticker .prop__body{
+  left:clamp(.8rem,1.1vw,1.1rem);right:clamp(.8rem,1.1vw,1.1rem);
+  bottom:clamp(.85rem,1.2vw,1.15rem);
+}
+.ticker .prop__addr{
+  font-size:clamp(.7rem,.66rem + .12vw,.8rem);
+  line-height:1.6;letter-spacing:.12em;
+}
+.ticker .prop__status{
+  top:clamp(.8rem,1.1vw,1.1rem);left:clamp(.8rem,1.1vw,1.1rem);
+  font-size:.5rem;padding:.38rem .7rem .34rem;
+}
+.ticker .prop__facts{
+  margin-top:.7rem;padding:.55rem 0 0;border-bottom:0;
+  font-size:.66rem;gap:.4rem;
+}
+.ticker .prop__facts span ~ span{display:none}   /* price only */
+@keyframes tick{ to{ transform:translate3d(-50%,0,0) } }
+/* A row that cannot be stopped cannot be read. */
+.ticker:hover .ticker__track,
+.ticker:focus-within .ticker__track{animation-play-state:paused}
+
 @media (max-width:760px){
-  .listings__grid{grid-template-columns:1fr}
-  .listings .prop{aspect-ratio:4/3}
+  .ticker .prop{flex-basis:clamp(11rem,62vw,15rem)}
+}
+/* Nothing moves, and the second copy would just be the same fourteen sales
+   listed twice. One copy, scrolled by hand. */
+@media (prefers-reduced-motion:reduce){
+  .ticker{overflow-x:auto;-webkit-mask-image:none;mask-image:none}
+  .ticker__track{animation:none}
+  .ticker__set[aria-hidden="true"]{display:none}
 }
 
 /* ===================== PAST TRANSACTIONS · SOLD CARD =====================
@@ -868,223 +928,430 @@ blockquote{
      Confirmed by Ryan as real closings. Sold figures are public record, so
      every number here must match what Realtracs shows. -->
 <section class="listings" aria-label="Past transactions">
-  <div class="listings__grid">
+  <!-- A TICKER, NOT A CAROUSEL. Ryan asked for a stock ticker: no
+       controls, no dots, no stopping. Two identical copies of the fourteen
+       run end to end and the track slides exactly one copy's width, so the
+       moment the first copy has gone the second is where it started and
+       nothing jumps. The seam is invisible because there is no seam.
 
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/sold-troubadour-1213.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">Lot 1213 Troubadour<br>College Grove, TN 37046</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$3,850,000</span>
+       THE SPACING IS A MARGIN, NOT A GAP, and that is load-bearing. With
+       `gap` the track is 28 cards and 27 gaps, so half of it is 13 and a
+       half gaps - the loop lands a few pixels out and drifts further every
+       lap. A right margin on each card makes one copy exactly fourteen
+       card-plus-margins, and -50% is exactly one copy.
+
+       Hovering or tabbing into it stops it, because a row of moving type
+       nobody can read is decoration. Reduced motion gets one copy, still,
+       that you scroll yourself. -->
+  <div class="ticker" aria-label="Past transactions">
+    <div class="ticker__track">
+      <div class="ticker__set">
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/sold-troubadour-1213.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">Lot 1213 Troubadour<br>College Grove, TN 37046</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$3,850,000</span>
+                </div>
+              </div></div>
+            </div>
           </div>
-        </div></div>
+          <!-- Closed 3 Nov 2026. The filename still reads uc-; it is a filename,
+               not copy, and renaming it would leave an orphan in media/ that
+               cannot be deleted from here. -->
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/uc-vaulx-2412.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">2412 Vaulx Ln<br>Nashville, TN 37204</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$3,250,000</span>
+                  <span>5,582 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3211573</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/sold-albert-3916.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">3916 Albert Dr<br>Nashville, TN 37204</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,800,000</span>
+                  <span>6,437 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2988934</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <!-- Closed 3 Nov 2026. Filename keeps its uc- prefix, as above. -->
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/uc-shyshill-4505.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">4505 Shys Hill Rd<br>Nashville, TN 37215</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,475,000</span>
+                  <span>5,386 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3528730</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="0">
+            <!-- Closed. The filename still reads uc-; it is a filename, not copy, and
+                 renaming it would leave an orphan in media/ that cannot be deleted
+                 from here. -->
+            <img loading="lazy" decoding="async" src="media/uc-rodney-1004.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">1004 Rodney Dr<br>Nashville, TN 37205</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,299,900</span>
+                  <span>5,167 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3245653</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/sold-deertrack-9614.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">9614 Deer Track Ct<br>Brentwood, TN 37027</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,250,000</span>
+                  <span>6,846 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3262021</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/sold-clifton-1405.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">1405 Clifton Ln<br>Nashville, TN 37215</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,075,000</span>
+                  <span>4,727 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2764078</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/sold-westboro-610.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">610 Westboro Dr<br>Nashville, TN 37209</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,425,000</span>
+                  <span>3,521 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3189629</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/sold-gale-900b.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">900B Gale Ln<br>Nashville, TN 37204</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,425,000</span>
+                  <span>3,190 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3234101</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/sold-westboro-608.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">608 Westboro Dr<br>Nashville, TN 37209</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,375,000</span>
+                  <span>3,534 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3189632</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/sold-sharonhill-2915.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">2915 Sharon Hill Cir<br>Nashville, TN 37215</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,300,000</span>
+                  <span>3,000 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2883317</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/sold-sharonhill-2917.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">2917 Sharon Hill Cir<br>Nashville, TN 37215</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,299,000</span>
+                  <span>3,000 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2992527</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/sold-scholarship-504a.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">504A Scholarship Dr<br>Nashville, TN 37209</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,200,000</span>
+                  <span>3,127 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3035276</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="0">
+            <img loading="lazy" decoding="async" src="media/sold-eslin-3373.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">3373 Eslin Ct<br>Murfreesboro, TN 37130</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,175,000</span>
+                  <span>4,316 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2628204</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+      </div>
+      <div class="ticker__set" aria-hidden="true">
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/sold-troubadour-1213.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">Lot 1213 Troubadour<br>College Grove, TN 37046</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$3,850,000</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <!-- Closed 3 Nov 2026. The filename still reads uc-; it is a filename,
+               not copy, and renaming it would leave an orphan in media/ that
+               cannot be deleted from here. -->
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/uc-vaulx-2412.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">2412 Vaulx Ln<br>Nashville, TN 37204</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$3,250,000</span>
+                  <span>5,582 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3211573</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/sold-albert-3916.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">3916 Albert Dr<br>Nashville, TN 37204</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,800,000</span>
+                  <span>6,437 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2988934</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <!-- Closed 3 Nov 2026. Filename keeps its uc- prefix, as above. -->
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/uc-shyshill-4505.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">4505 Shys Hill Rd<br>Nashville, TN 37215</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,475,000</span>
+                  <span>5,386 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3528730</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <!-- Closed. The filename still reads uc-; it is a filename, not copy, and
+                 renaming it would leave an orphan in media/ that cannot be deleted
+                 from here. -->
+            <img loading="lazy" decoding="async" src="media/uc-rodney-1004.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">1004 Rodney Dr<br>Nashville, TN 37205</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,299,900</span>
+                  <span>5,167 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3245653</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/sold-deertrack-9614.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">9614 Deer Track Ct<br>Brentwood, TN 37027</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,250,000</span>
+                  <span>6,846 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3262021</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/sold-clifton-1405.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">1405 Clifton Ln<br>Nashville, TN 37215</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$2,075,000</span>
+                  <span>4,727 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2764078</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/sold-westboro-610.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">610 Westboro Dr<br>Nashville, TN 37209</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,425,000</span>
+                  <span>3,521 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3189629</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/sold-gale-900b.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">900B Gale Ln<br>Nashville, TN 37204</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,425,000</span>
+                  <span>3,190 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3234101</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/sold-westboro-608.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">608 Westboro Dr<br>Nashville, TN 37209</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,375,000</span>
+                  <span>3,534 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3189632</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/sold-sharonhill-2915.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">2915 Sharon Hill Cir<br>Nashville, TN 37215</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,300,000</span>
+                  <span>3,000 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2883317</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/sold-sharonhill-2917.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">2917 Sharon Hill Cir<br>Nashville, TN 37215</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,299,000</span>
+                  <span>3,000 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2992527</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/sold-scholarship-504a.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">504A Scholarship Dr<br>Nashville, TN 37209</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,200,000</span>
+                  <span>3,127 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>3035276</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
+          <div class="prop prop--sold" tabindex="-1">
+            <img loading="lazy" decoding="async" src="media/sold-eslin-3373.jpg" alt="">
+            <span class="prop__status">Sold</span>
+            <div class="prop__body">
+              <h3 class="prop__addr">3373 Eslin Ct<br>Murfreesboro, TN 37130</h3>
+              <div class="prop__more"><div>
+                <div class="prop__facts">
+                  <span>$1,175,000</span>
+                  <span>4,316 <span class="k">Sq Ft</span></span>
+                  <span><span class="k">MLS #</span>2628204</span>
+                </div>
+              </div></div>
+            </div>
+          </div>
       </div>
     </div>
-
-    <!-- Closed 3 Nov 2026. The filename still reads uc-; it is a filename,
-         not copy, and renaming it would leave an orphan in media/ that
-         cannot be deleted from here. -->
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/uc-vaulx-2412.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">2412 Vaulx Ln<br>Nashville, TN 37204</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$3,250,000</span>
-            <span>5,582 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>3211573</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/sold-albert-3916.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">3916 Albert Dr<br>Nashville, TN 37204</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$2,800,000</span>
-            <span>6,437 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>2988934</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
-    <!-- Closed 3 Nov 2026. Filename keeps its uc- prefix, as above. -->
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/uc-shyshill-4505.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">4505 Shys Hill Rd<br>Nashville, TN 37215</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$2,475,000</span>
-            <span>5,386 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>3528730</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="prop prop--sold" tabindex="0">
-      <!-- Closed. The filename still reads uc-; it is a filename, not copy, and
-           renaming it would leave an orphan in media/ that cannot be deleted
-           from here. -->
-      <img loading="lazy" decoding="async" src="media/uc-rodney-1004.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">1004 Rodney Dr<br>Nashville, TN 37205</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$2,299,900</span>
-            <span>5,167 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>3245653</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/sold-deertrack-9614.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">9614 Deer Track Ct<br>Brentwood, TN 37027</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$2,250,000</span>
-            <span>6,846 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>3262021</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/sold-clifton-1405.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">1405 Clifton Ln<br>Nashville, TN 37215</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$2,075,000</span>
-            <span>4,727 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>2764078</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/sold-westboro-610.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">610 Westboro Dr<br>Nashville, TN 37209</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$1,425,000</span>
-            <span>3,521 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>3189629</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/sold-gale-900b.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">900B Gale Ln<br>Nashville, TN 37204</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$1,425,000</span>
-            <span>3,190 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>3234101</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/sold-westboro-608.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">608 Westboro Dr<br>Nashville, TN 37209</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$1,375,000</span>
-            <span>3,534 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>3189632</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/sold-sharonhill-2915.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">2915 Sharon Hill Cir<br>Nashville, TN 37215</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$1,300,000</span>
-            <span>3,000 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>2883317</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/sold-sharonhill-2917.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">2917 Sharon Hill Cir<br>Nashville, TN 37215</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$1,299,000</span>
-            <span>3,000 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>2992527</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/sold-scholarship-504a.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">504A Scholarship Dr<br>Nashville, TN 37209</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$1,200,000</span>
-            <span>3,127 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>3035276</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
-    <div class="prop prop--sold" tabindex="0">
-      <img loading="lazy" decoding="async" src="media/sold-eslin-3373.jpg" alt="">
-      <span class="prop__status">Sold</span>
-      <div class="prop__body">
-        <h3 class="prop__addr">3373 Eslin Ct<br>Murfreesboro, TN 37130</h3>
-        <div class="prop__more"><div>
-          <div class="prop__facts">
-            <span>$1,175,000</span>
-            <span>4,316 <span class="k">Sq Ft</span></span>
-            <span><span class="k">MLS #</span>2628204</span>
-          </div>
-        </div></div>
-      </div>
-    </div>
-
   </div>
 </section>
 
