@@ -28,6 +28,7 @@
 
   /* the one warm note in the palette — status, rules, and the only call to action */
   --brass:#DACEB6;
+  --gold:#B78F49;          /* the mark's own gold - 6.7:1 on the ink */
   /* ---- the house scale -------------------------------------------------
      Three weights of text, one of rule, on each ground. The site was using
      33 opacities of the cream and 10 of the white; no single value was
@@ -781,7 +782,7 @@ blockquote{
 }
 .mp__key__dot{width:.45rem;height:.45rem;border-radius:50%;background:var(--t1);flex:none}
 .mp__key__dot--dev{background:var(--brass)}
-.mp__key__dot--list{background:var(--brass)}
+.mp__key__dot--list{background:var(--gold)}
 
 /* The key is three switches, not a caption. A switch that is off keeps its
    words at full strength and empties its dot - dimming the label would read
@@ -823,7 +824,7 @@ blockquote{
    dot carries a ring of the background colour. Where it falls beside a
    brass or white one the two stay two, instead of merging into a smear. */
 .mp__pin--list .mp__dot{
-  fill:var(--brass);stroke:var(--ink);stroke-width:3;
+  fill:var(--gold);stroke:var(--ink);stroke-width:3;
   vector-effect:non-scaling-stroke;paint-order:stroke fill;
 }
 /* Every pin carries its own delay, so twenty-six of them breathe out of
@@ -867,7 +868,7 @@ blockquote{
 .mp__now[hidden]{display:none}
 .mp__now__h{
   margin:0;font-family:var(--ui);font-weight:400;font-size:.58rem;
-  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--brass);
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--gold);
 }
 .mp__now__city{
   margin:clamp(1.4rem,3vh,1.8rem) 0 .2rem;font-family:var(--ui);font-weight:400;
@@ -880,7 +881,7 @@ blockquote{
   display:block;padding:.7rem 0;font-weight:300;font-size:.88rem;color:var(--t2);
   transition:color .3s var(--rise);
 }
-.mp__now__list a:hover{color:var(--brass)}
+.mp__now__list a:hover{color:var(--gold)}
 .mp__now__foot{margin:clamp(1.5rem,3vh,2rem) 0 0}
 .mp__now__foot a{
   font-family:var(--ui);font-weight:400;font-size:.58rem;letter-spacing:.26em;
@@ -926,13 +927,13 @@ blockquote{
 .mp__pin--dev .mp__dot{fill:var(--brass)}
 .mp__tree{pointer-events:none}
 .mp__tree__s{
-  fill:var(--brass);
+  fill:var(--gold);
   transform-box:view-box;transform-origin:0 0;
-  transform:scale(var(--tree,.00868)) translate(-1268px,-894px);
+  transform:scale(var(--tree,.01226)) translate(-1268px,-894px);
 }
 /* On a phone the labels are gone and the mark is the only thing saying
    this one is ours, so it is drawn bigger rather than smaller. */
-@media (max-width:620px){ :root{--tree:.0165} }
+@media (max-width:620px){ :root{--tree:.0233} }
 
 /* Nothing pulses. A hovered pin gets a ring and its name goes white; that
    is the whole interaction. Scaling is off the table for the diamonds -
@@ -954,7 +955,7 @@ blockquote{
 /* The key shows the shapes, not three identical dots. A legend that does
    not match its map is worse than no legend. */
 .mp__key__dot--dev{border-radius:0;transform:rotate(45deg) scale(.86)}
-.mp__key__tree{width:1.25rem;height:.88rem;flex:none;fill:var(--brass)}
+.mp__key__tree{width:1.25rem;height:.88rem;flex:none;fill:var(--gold)}
 .mp__key__i[aria-pressed="false"] .mp__key__tree{fill:none;stroke:currentColor;stroke-width:60}
 
 /* ---- the band the nav sits on, now that the banner is gone ---- */
@@ -1009,26 +1010,6 @@ blockquote{
 .mapboxgl-ctrl-attrib a{color:var(--t2)}
 .mapboxgl-ctrl-logo{opacity:.55}
 
-/* ---- which county ----
-   One map, not two: every map on a page is its own billable load and the
-   allowance here is small. Switching reframes the same map. */
-.mp__counties{
-  display:flex;justify-content:center;gap:.5rem;
-  margin:clamp(1.6rem,3.5vh,2.4rem) auto 0;
-}
-.mp__county__b{
-  appearance:none;-webkit-appearance:none;background:none;cursor:pointer;
-  border:1px solid var(--line);padding:.6rem 1.3rem;
-  font-family:var(--ui);font-weight:400;
-  font-size:clamp(.58rem,.55rem + .14vw,.66rem);
-  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
-  color:var(--t2);transition:color .3s var(--rise),border-color .3s var(--rise);
-}
-.mp__county__b:hover{color:var(--t1);border-color:var(--warm-rule)}
-.mp__county__b.is-on{color:var(--ink);background:var(--brass);border-color:var(--brass)}
-.mp__county__b:focus-visible{outline:1px solid var(--brass);outline-offset:3px}
-.mp.is-flat .mp__counties{display:none}   /* nothing to reframe without a map */
-
 /* ---- the pins ----
    Same three shapes as the drawing: a circle is a neighborhood, a diamond
    is a luxury community, the mark is one of ours. Anchors rather than
@@ -1046,16 +1027,19 @@ blockquote{
   width:100%;height:100%;display:block;
   filter:drop-shadow(0 0 2px rgba(20,23,15,.95)) drop-shadow(0 0 1px rgba(20,23,15,.9));
 }
-/* The double ring is the one that thins out first, so it is drawn the
-   largest of the three - at 26px its inner ring still closes. */
+/* Three sizes, set by how much of each mark has to survive. A dot says all
+   it has to say at 20px. The double ring thins out first, so it is 26 - the
+   inner ring still closes there. The bonsai has branches, and under about
+   40px it stops being a tree and becomes a smudge; it is also the thing we
+   most want looked at, so it leads at 48. */
 .mk--neighborhood .mk__dot{width:20px;height:20px}
 .mk--neighborhood .mk__lbl,.mk--community .mk__lbl{bottom:calc(50% + 14px)}
 .mk--neighborhood .mk__dot svg{fill:var(--t1)}
 .mk--community .mk__dot{width:26px;height:26px}
 .mk--community .mk__dot svg{stroke:var(--brass);fill:none}
-.mk--listing .mk__dot{width:34px;height:24px}
-.mk--listing .mk__dot svg{fill:var(--brass)}
-.mk--listing .mk__dot--many{width:44px;height:31px}
+.mk--listing .mk__dot{width:48px;height:34px}
+.mk--listing .mk__dot svg{fill:var(--gold)}
+.mk--listing .mk__dot--many{width:62px;height:44px}
 
 .mk__lbl{
   position:absolute;left:50%;bottom:calc(100% + 2px);
@@ -1103,7 +1087,7 @@ blockquote{
   display:flex;align-items:center;justify-content:center;
   background:radial-gradient(120% 140% at 50% 0%, #23271d 0%, #171a12 70%);
 }
-.mkpop__ph--none svg{width:3.1rem;height:auto;fill:var(--brass);opacity:.26}
+.mkpop__ph--none svg{width:3.4rem;height:auto;fill:var(--gold);opacity:.42}
 .mkpop__b{display:block;padding:.95rem 1.05rem 1.05rem}
 .mkpop__k{
   display:block;font-family:var(--ui);font-weight:400;
