@@ -28,7 +28,6 @@
 
   /* the one warm note in the palette — status, rules, and the only call to action */
   --brass:#DACEB6;
-  --sage:#8FA87F;          /* the listings layer - 7.1:1 on the ink */
   /* ---- the house scale -------------------------------------------------
      Three weights of text, one of rule, on each ground. The site was using
      33 opacities of the cream and 10 of the white; no single value was
@@ -782,7 +781,7 @@ blockquote{
 }
 .mp__key__dot{width:.45rem;height:.45rem;border-radius:50%;background:var(--t1);flex:none}
 .mp__key__dot--dev{background:var(--brass)}
-.mp__key__dot--list{background:var(--sage)}
+.mp__key__dot--list{background:var(--brass)}
 
 /* The key is three switches, not a caption. A switch that is off keeps its
    words at full strength and empties its dot - dimming the label would read
@@ -803,10 +802,6 @@ blockquote{
 .mp.is-off-hood .mp__pin--hood,
 .mp.is-off-dev  .mp__pin--dev,
 .mp.is-off-list .mp__pins--list{display:none}
-.mp.is-off-hood .mp__list:not(.mp__list--dev),
-.mp.is-off-hood .mp__index__h:first-child,
-.mp.is-off-dev  .mp__list--dev,
-.mp.is-off-dev  .mp__index__h--dev{display:none}
 
 .mp__frame{max-width:76rem;margin:clamp(2.5rem,6vh,4rem) auto 0}
 .mp__svg{width:100%;height:auto;display:block}
@@ -828,7 +823,7 @@ blockquote{
    dot carries a ring of the background colour. Where it falls beside a
    brass or white one the two stay two, instead of merging into a smear. */
 .mp__pin--list .mp__dot{
-  fill:var(--sage);stroke:var(--ink);stroke-width:3;
+  fill:var(--brass);stroke:var(--ink);stroke-width:3;
   vector-effect:non-scaling-stroke;paint-order:stroke fill;
 }
 /* Every pin carries its own delay, so twenty-six of them breathe out of
@@ -852,32 +847,10 @@ blockquote{
   .mp__dot{transition:none}
 }
 
-/* ---- the written index ----
-   Below 620px the labels come off: nineteen user units is seven pixels at
-   that width and a row of four people's worth of names turns to mud. The
-   dots stay, the index carries the names, and every tap target is a line
-   of type rather than a six-unit circle. */
-.mp__index{display:none}
 @media (max-width:900px){ .mp__lbl{font-size:26px} }
 @media (max-width:620px){
   .mp__lbl{display:none}
   .mp__dot{r:9}
-  .mp__index{
-    display:block;max-width:34rem;margin:clamp(2.5rem,6vh,3.5rem) auto 0;
-  }
-  .mp__index__h{
-    margin:clamp(1.8rem,4vh,2.4rem) 0 .9rem;font-family:var(--ui);font-weight:400;
-    font-size:.58rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
-    color:var(--brass);
-  }
-  .mp__index__h:first-child{margin-top:0}
-  .mp__list{list-style:none;margin:0;padding:0;
-    display:grid;grid-template-columns:1fr 1fr;gap:0 1.4rem}
-  .mp__list li{border-top:1px solid var(--warm-rule)}
-  .mp__list a{
-    display:block;padding:.75rem 0;font-weight:300;font-size:.88rem;color:var(--t2);
-  }
-  .mp__list--dev a{color:var(--brass)}
   /* The labels are gone at this width, so a shared pin has nothing but its
      size left to say it stands for more than one address. */
   .mp__dot--many{r:12}
@@ -894,7 +867,7 @@ blockquote{
 .mp__now[hidden]{display:none}
 .mp__now__h{
   margin:0;font-family:var(--ui);font-weight:400;font-size:.58rem;
-  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--sage);
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--brass);
 }
 .mp__now__city{
   margin:clamp(1.4rem,3vh,1.8rem) 0 .2rem;font-family:var(--ui);font-weight:400;
@@ -907,7 +880,7 @@ blockquote{
   display:block;padding:.7rem 0;font-weight:300;font-size:.88rem;color:var(--t2);
   transition:color .3s var(--rise);
 }
-.mp__now__list a:hover{color:var(--sage)}
+.mp__now__list a:hover{color:var(--brass)}
 .mp__now__foot{margin:clamp(1.5rem,3vh,2rem) 0 0}
 .mp__now__foot a{
   font-family:var(--ui);font-weight:400;font-size:.58rem;letter-spacing:.26em;
@@ -953,7 +926,7 @@ blockquote{
 .mp__pin--dev .mp__dot{fill:var(--brass)}
 .mp__tree{pointer-events:none}
 .mp__tree__s{
-  fill:var(--sage);
+  fill:var(--brass);
   transform-box:view-box;transform-origin:0 0;
   transform:scale(var(--tree,.00868)) translate(-1268px,-894px);
 }
@@ -981,7 +954,7 @@ blockquote{
 /* The key shows the shapes, not three identical dots. A legend that does
    not match its map is worse than no legend. */
 .mp__key__dot--dev{border-radius:0;transform:rotate(45deg) scale(.86)}
-.mp__key__tree{width:1.25rem;height:.88rem;flex:none;fill:var(--sage)}
+.mp__key__tree{width:1.25rem;height:.88rem;flex:none;fill:var(--brass)}
 .mp__key__i[aria-pressed="false"] .mp__key__tree{fill:none;stroke:currentColor;stroke-width:60}
 
 /* ---- the band the nav sits on, now that the banner is gone ---- */
@@ -1081,7 +1054,7 @@ blockquote{
 .mk--community .mk__dot{width:26px;height:26px}
 .mk--community .mk__dot svg{stroke:var(--brass);fill:none}
 .mk--listing .mk__dot{width:34px;height:24px}
-.mk--listing .mk__dot svg{fill:var(--sage)}
+.mk--listing .mk__dot svg{fill:var(--brass)}
 .mk--listing .mk__dot--many{width:44px;height:31px}
 
 .mk__lbl{
@@ -1130,7 +1103,7 @@ blockquote{
   display:flex;align-items:center;justify-content:center;
   background:radial-gradient(120% 140% at 50% 0%, #23271d 0%, #171a12 70%);
 }
-.mkpop__ph--none svg{width:3.1rem;height:auto;fill:var(--sage);opacity:.3}
+.mkpop__ph--none svg{width:3.1rem;height:auto;fill:var(--brass);opacity:.26}
 .mkpop__b{display:block;padding:.95rem 1.05rem 1.05rem}
 .mkpop__k{
   display:block;font-family:var(--ui);font-weight:400;
@@ -1154,6 +1127,75 @@ blockquote{
 
 /* The hover label is the card's job now; it would only sit on top of it. */
 .mk__lbl{display:none}
+
+/* ================== THE CARDS ABOVE THE MAP ============================
+   Ryan, 13 Nov: the map alone was overwhelming to someone who does not
+   know Nashville. Names and photographs first, the map as the answer to
+   "where is that" rather than the question.
+
+   Small on purpose. Twenty-six of these have to read as a list you scan,
+   not twenty-six things competing - so the photograph is 150px wide, the
+   name is one line under it, and nothing has a border until you point at
+   it. The map still has to be reachable without a long scroll. */
+.pick{max-width:76rem;margin:clamp(1.4rem,3.5vh,2.2rem) auto 0;
+      padding:0 clamp(1rem,3vw,2rem)}
+.pick__g + .pick__g{margin-top:clamp(2rem,4.5vh,3rem)}
+.pick__h{
+  margin:0 0 clamp(.9rem,2vh,1.2rem);font-family:var(--ui);font-weight:400;
+  font-size:.58rem;letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+  color:var(--brass);
+}
+.pick__row{
+  display:grid;gap:clamp(.7rem,1.4vw,1.1rem);
+  grid-template-columns:repeat(auto-fill,minmax(9.2rem,1fr));
+}
+.pick__c{
+  display:block;text-decoration:none;cursor:pointer;
+  border:1px solid transparent;
+  transition:border-color .3s var(--rise),transform .3s var(--rise);
+}
+.pick__ph{display:block;aspect-ratio:3/2;overflow:hidden;background:#1b1f19}
+.pick__ph img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  filter:saturate(.92) brightness(.86);transition:filter .4s var(--rise);
+}
+.pick__n{
+  display:block;padding:.6rem .1rem 0;
+  font-family:var(--ui);font-weight:300;font-size:.76rem;letter-spacing:.07em;
+  color:var(--t2);transition:color .3s var(--rise);
+}
+.pick__c:hover,.pick__c:focus-visible{border-color:var(--brass);outline:none}
+.pick__c:hover .pick__ph img,.pick__c:focus-visible .pick__ph img{filter:none}
+.pick__c:hover .pick__n,.pick__c:focus-visible .pick__n{color:var(--t1)}
+/* The one that is showing on the map stays marked, so after the map has
+   flown somewhere the row still says which somewhere. */
+.pick__c.is-on{border-color:var(--brass)}
+.pick__c.is-on .pick__ph img{filter:none}
+.pick__c.is-on .pick__n{color:var(--t1)}
+/* On a phone a wrapped grid of twenty-six cards put the map 2,100px down
+   the page - far enough that most people would never have reached it, which
+   defeats the point of putting the cards in front of it. One row per group
+   that scrolls sideways keeps both groups and the map inside the first
+   couple of screens. Cards at 42% so a third one is always half-showing:
+   that, and the snap, is what says the row keeps going. */
+@media (max-width:620px){
+  .pick__row{
+    display:flex;gap:.7rem;overflow-x:auto;overscroll-behavior-x:contain;
+    scroll-snap-type:x proximity;scrollbar-width:none;
+    margin-inline:calc(-1 * clamp(1rem,3vw,2rem));
+    padding-inline:clamp(1rem,3vw,2rem);
+  }
+  .pick__row::-webkit-scrollbar{display:none}
+  .pick__c{flex:0 0 42%;scroll-snap-align:start}
+  .pick__n{font-size:.72rem}
+}
+@media (prefers-reduced-motion:reduce){
+  .pick__c,.pick__ph img,.pick__n{transition:none}
+}
+
+/* One switch, not three, so it stops looking like a legend and starts
+   looking like what it is. */
+.mp__key{margin-top:clamp(1.8rem,4vh,2.6rem)}
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/neighborhoods.html">
 <meta property="og:type" content="website">
@@ -2233,16 +2275,127 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
          words are not drawn; the map says Middle Tennessee better than a
          line of type above it did. -->
     <h1 class="visually-hidden" id="mp-h">Middle Tennessee</h1>
-    <div class="mp__key" role="group" aria-label="Layers on the map">
-      <button type="button" class="mp__key__i" data-layer="hood" aria-pressed="true"><svg class="mp__key__ic mp__key__ic--area" viewBox="0 0 24 24" aria-hidden="true"><use href="#eg-area"/></svg>Neighborhoods</button>
-      <button type="button" class="mp__key__i" data-layer="dev"  aria-pressed="true"><svg class="mp__key__ic mp__key__ic--comm" viewBox="0 0 24 24" aria-hidden="true"><use href="#eg-comm"/></svg>Luxury Communities</button>
-      <button type="button" class="mp__key__i" data-layer="list" aria-pressed="false"><svg class="mp__key__tree" viewBox="0 0 2536 1788" aria-hidden="true"><use href="#eg-tree"/></svg>Our Listings</button>
+  </div>
+
+  <div class="pick">
+    <div class="pick__g">
+      <h2 class="pick__h">Neighborhoods</h2>
+      <div class="pick__row">
+        <a class="pick__c" href="neighborhood/arrington/" data-pin="neighborhood/arrington/">
+          <span class="pick__ph"><img src="media/thumb/hood-9.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Arrington</span>
+        </a>
+        <a class="pick__c" href="neighborhood/belle-meade/" data-pin="neighborhood/belle-meade/">
+          <span class="pick__ph"><img src="media/thumb/hood-1.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Belle Meade</span>
+        </a>
+        <a class="pick__c" href="neighborhood/brentwood/" data-pin="neighborhood/brentwood/">
+          <span class="pick__ph"><img src="media/thumb/hood-6.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Brentwood</span>
+        </a>
+        <a class="pick__c" href="neighborhood/downtown/" data-pin="neighborhood/downtown/">
+          <span class="pick__ph"><img src="media/thumb/hood-11.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Downtown</span>
+        </a>
+        <a class="pick__c" href="neighborhood/forest-hills/" data-pin="neighborhood/forest-hills/">
+          <span class="pick__ph"><img src="media/thumb/hood-4.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Forest Hills</span>
+        </a>
+        <a class="pick__c" href="neighborhood/franklin/" data-pin="neighborhood/franklin/">
+          <span class="pick__ph"><img src="media/thumb/hood-7.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Franklin</span>
+        </a>
+        <a class="pick__c" href="neighborhood/germantown/" data-pin="neighborhood/germantown/">
+          <span class="pick__ph"><img src="media/thumb/hood-12.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Germantown</span>
+        </a>
+        <a class="pick__c" href="neighborhood/green-hills/" data-pin="neighborhood/green-hills/">
+          <span class="pick__ph"><img src="media/thumb/hood-3.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Green Hills</span>
+        </a>
+        <a class="pick__c" href="neighborhood/leipers-fork/" data-pin="neighborhood/leipers-fork/">
+          <span class="pick__ph"><img src="media/thumb/hood-8.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Leiper's Fork</span>
+        </a>
+        <a class="pick__c" href="neighborhood/oak-hill/" data-pin="neighborhood/oak-hill/">
+          <span class="pick__ph"><img src="media/thumb/hood-5.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Oak Hill</span>
+        </a>
+        <a class="pick__c" href="neighborhood/thompsons-station/" data-pin="neighborhood/thompsons-station/">
+          <span class="pick__ph"><img src="media/thumb/hood-10.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Thompson's Station</span>
+        </a>
+        <a class="pick__c" href="neighborhood/west-meade/" data-pin="neighborhood/west-meade/">
+          <span class="pick__ph"><img src="media/thumb/hood-2.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">West Meade</span>
+        </a>
+      </div>
+    </div>
+    <div class="pick__g">
+      <h2 class="pick__h">Luxury Communities</h2>
+      <div class="pick__row">
+        <a class="pick__c" href="development/anna/" data-pin="development/anna/">
+          <span class="pick__ph"><img src="media/thumb/hood-26.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Anna</span>
+        </a>
+        <a class="pick__c" href="development/annandale/" data-pin="development/annandale/">
+          <span class="pick__ph"><img src="media/thumb/hood-18.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Annandale</span>
+        </a>
+        <a class="pick__c" href="development/bison-ridge/" data-pin="development/bison-ridge/">
+          <span class="pick__ph"><img src="media/thumb/hood-21.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Bison Ridge</span>
+        </a>
+        <a class="pick__c" href="development/callie/" data-pin="development/callie/">
+          <span class="pick__ph"><img src="media/thumb/hood-27.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Callie</span>
+        </a>
+        <a class="pick__c" href="development/cielo/" data-pin="development/cielo/">
+          <span class="pick__ph"><img src="media/thumb/hood-19.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Cielo</span>
+        </a>
+        <a class="pick__c" href="development/firefly/" data-pin="development/firefly/">
+          <span class="pick__ph"><img src="media/thumb/hood-22.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Firefly</span>
+        </a>
+        <a class="pick__c" href="development/governors-club/" data-pin="development/governors-club/">
+          <span class="pick__ph"><img src="media/thumb/hood-20.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Governors Club</span>
+        </a>
+        <a class="pick__c" href="development/harlan/" data-pin="development/harlan/">
+          <span class="pick__ph"><img src="media/thumb/hood-25.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Harlan</span>
+        </a>
+        <a class="pick__c" href="development/laurelbrooke/" data-pin="development/laurelbrooke/">
+          <span class="pick__ph"><img src="media/thumb/hood-14.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Laurelbrooke</span>
+        </a>
+        <a class="pick__c" href="development/rosebrooke/" data-pin="development/rosebrooke/">
+          <span class="pick__ph"><img src="media/thumb/hood-24.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Rosebrooke</span>
+        </a>
+        <a class="pick__c" href="development/the-grove/" data-pin="development/the-grove/">
+          <span class="pick__ph"><img src="media/thumb/hood-16.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">The Grove</span>
+        </a>
+        <a class="pick__c" href="development/troubadour/" data-pin="development/troubadour/">
+          <span class="pick__ph"><img src="media/thumb/hood-15.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Troubadour</span>
+        </a>
+        <a class="pick__c" href="development/witherspoon/" data-pin="development/witherspoon/">
+          <span class="pick__ph"><img src="media/thumb/hood-13.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Witherspoon</span>
+        </a>
+        <a class="pick__c" href="development/wyelea/" data-pin="development/wyelea/">
+          <span class="pick__ph"><img src="media/thumb/hood-23.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">Wyelea</span>
+        </a>
+      </div>
     </div>
   </div>
 
-  <div class="mp__counties" role="group" aria-label="Which county">
-    <button type="button" class="mp__county__b is-on" data-county="Williamson">Williamson</button>
-    <button type="button" class="mp__county__b" data-county="Davidson">Davidson</button>
+  <div class="mp__key" role="group" aria-label="Layers on the map">
+    <button type="button" class="mp__key__i" data-layer="list" aria-pressed="false"><svg class="mp__key__tree" viewBox="0 0 2536 1788" aria-hidden="true"><use href="#eg-tree"/></svg>Show our listings</button>
   </div>
 
   <div class="mp__frame">
@@ -2485,41 +2638,6 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
     </a>
   </g>
 </svg>
-  </div>
-
-  <div class="mp__index">
-    <p class="mp__index__h">Neighborhoods</p>
-    <ul class="mp__list">
-      <li><a href="neighborhood/arrington/">Arrington</a></li>
-      <li><a href="neighborhood/belle-meade/">Belle Meade</a></li>
-      <li><a href="neighborhood/brentwood/">Brentwood</a></li>
-      <li><a href="neighborhood/downtown/">Downtown</a></li>
-      <li><a href="neighborhood/forest-hills/">Forest Hills</a></li>
-      <li><a href="neighborhood/franklin/">Franklin</a></li>
-      <li><a href="neighborhood/germantown/">Germantown</a></li>
-      <li><a href="neighborhood/green-hills/">Green Hills</a></li>
-      <li><a href="neighborhood/leipers-fork/">Leiper&#x27;s Fork</a></li>
-      <li><a href="neighborhood/oak-hill/">Oak Hill</a></li>
-      <li><a href="neighborhood/thompsons-station/">Thompson&#x27;s Station</a></li>
-      <li><a href="neighborhood/west-meade/">West Meade</a></li>
-    </ul>
-    <p class="mp__index__h mp__index__h--dev">Luxury Communities</p>
-    <ul class="mp__list mp__list--dev">
-      <li><a href="development/anna/">Anna</a></li>
-      <li><a href="development/annandale/">Annandale</a></li>
-      <li><a href="development/bison-ridge/">Bison Ridge</a></li>
-      <li><a href="development/callie/">Callie</a></li>
-      <li><a href="development/cielo/">Cielo</a></li>
-      <li><a href="development/firefly/">Firefly</a></li>
-      <li><a href="development/governors-club/">Governors Club</a></li>
-      <li><a href="development/harlan/">Harlan</a></li>
-      <li><a href="development/laurelbrooke/">Laurelbrooke</a></li>
-      <li><a href="development/rosebrooke/">Rosebrooke</a></li>
-      <li><a href="development/the-grove/">The Grove</a></li>
-      <li><a href="development/troubadour/">Troubadour</a></li>
-      <li><a href="development/witherspoon/">Witherspoon</a></li>
-      <li><a href="development/wyelea/">Wyelea</a></li>
-    </ul>
   </div>
 
   <div class="mp__now" id="mp-now" hidden>
@@ -2792,7 +2910,7 @@ addEventListener("keydown", e => {
   });
 })();
 </script>
-<script id="mp-data" type="application/json">{"frames":{"Williamson":{"pins":22,"bounds":[[-87.0111,35.7043],[-86.6657,36.0446]]},"Davidson":{"pins":14,"bounds":[[-86.9072,36.0491],[-86.7678,36.3336]]}},"pins":[{"kind":"community","label":"Anna","lat":35.993105,"lon":-86.694932,"href":"development/anna/","precision":"street","county":"Williamson","img":"hood-26"},{"kind":"community","label":"Annandale","lat":36.027077,"lon":-86.769463,"href":"development/annandale/","precision":"street","county":"Williamson","img":"hood-18"},{"kind":"community","label":"Bison Ridge","lat":36.321614,"lon":-86.867546,"href":"development/bison-ridge/","precision":"area","county":"Davidson","img":"hood-21"},{"kind":"community","label":"Callie","lat":35.991402,"lon":-86.828535,"href":"development/callie/","precision":"street","county":"Williamson","img":"hood-27"},{"kind":"community","label":"Cielo","lat":36.017555,"lon":-86.762855,"href":"development/cielo/","precision":"exact","county":"Williamson","img":"hood-19"},{"kind":"community","label":"Firefly","lat":35.716296,"lon":-86.835788,"href":"development/firefly/","precision":"exact","county":"Maury","img":"hood-22"},{"kind":"community","label":"Governors Club","lat":35.983462,"lon":-86.720985,"href":"development/governors-club/","precision":"exact","county":"Williamson","img":"hood-20"},{"kind":"community","label":"Harlan","lat":36.017589,"lon":-86.761286,"href":"development/harlan/","precision":"exact","county":"Williamson","img":"hood-25"},{"kind":"community","label":"Laurelbrooke","lat":35.998673,"lon":-86.883335,"href":"development/laurelbrooke/","precision":"area","county":"Williamson","img":"hood-14"},{"kind":"community","label":"Rosebrooke","lat":35.967049,"lon":-86.714549,"href":"development/rosebrooke/","precision":"street","county":"Williamson","img":"hood-24"},{"kind":"community","label":"The Grove","lat":35.81825,"lon":-86.734422,"href":"development/the-grove/","precision":"exact","county":"Williamson","img":"hood-16"},{"kind":"community","label":"Troubadour","lat":35.82652,"lon":-86.67772,"href":"development/troubadour/","precision":"exact","county":"Williamson","img":"hood-15"},{"kind":"community","label":"Witherspoon","lat":35.973143,"lon":-86.762297,"href":"development/witherspoon/","precision":"street","county":"Williamson","img":"hood-13"},{"kind":"community","label":"Wyelea","lat":35.948966,"lon":-86.902392,"href":"development/wyelea/","precision":"exact","county":"Williamson","img":"hood-23"},{"kind":"neighborhood","label":"Arrington","lat":35.867666,"lon":-86.709609,"href":"neighborhood/arrington/","precision":"exact","county":"Williamson","img":"hood-9"},{"kind":"neighborhood","label":"Belle Meade","lat":36.095892,"lon":-86.856945,"href":"neighborhood/belle-meade/","precision":"exact","county":"Davidson","img":"hood-1"},{"kind":"neighborhood","label":"Brentwood","lat":36.032569,"lon":-86.782523,"href":"neighborhood/brentwood/","precision":"exact","county":"Williamson","img":"hood-6"},{"kind":"neighborhood","label":"Downtown","lat":36.16304,"lon":-86.779808,"href":"neighborhood/downtown/","precision":"exact","county":"Davidson","img":"hood-11"},{"kind":"neighborhood","label":"Forest Hills","lat":36.068719,"lon":-86.845286,"href":"neighborhood/forest-hills/","precision":"exact","county":"Davidson","img":"hood-4"},{"kind":"neighborhood","label":"Franklin","lat":35.925206,"lon":-86.868942,"href":"neighborhood/franklin/","precision":"exact","county":"Williamson","img":"hood-7"},{"kind":"neighborhood","label":"Germantown","lat":36.175365,"lon":-86.788001,"href":"neighborhood/germantown/","precision":"exact","county":"Davidson","img":"hood-12"},{"kind":"neighborhood","label":"Green Hills","lat":36.10367,"lon":-86.816666,"href":"neighborhood/green-hills/","precision":"exact","county":"Davidson","img":"hood-3"},{"kind":"neighborhood","label":"Leiper's Fork","lat":35.89806,"lon":-86.999144,"href":"neighborhood/leipers-fork/","precision":"exact","county":"Williamson","img":"hood-8"},{"kind":"neighborhood","label":"Oak Hill","lat":36.074292,"lon":-86.788731,"href":"neighborhood/oak-hill/","precision":"exact","county":"Davidson","img":"hood-5"},{"kind":"neighborhood","label":"Thompson's Station","lat":35.802011,"lon":-86.911391,"href":"neighborhood/thompsons-station/","precision":"exact","county":"Williamson","img":"hood-10"},{"kind":"neighborhood","label":"West Meade","lat":36.117836,"lon":-86.887223,"href":"neighborhood/west-meade/","precision":"exact","county":"Davidson","img":"hood-2"},{"kind":"listing","label":"Davis Dr","lat":36.01127,"lon":-86.778382,"href":"properties.html","count":3,"members":["607 Davis Dr","706 Davis Dr","715 Davis Dr"],"county":"Williamson","img":"dv-hero"},{"kind":"listing","label":"515 Shenandoah Dr","lat":36.017639,"lon":-86.775555,"href":"property/515-shenandoah/","count":1,"members":["515 Shenandoah Dr"],"county":"Williamson","img":"sh-hero"},{"kind":"listing","label":"2502 9th Ave S","lat":36.12379,"lon":-86.783569,"href":"property/2502-9th-ave-s/","count":1,"members":["2502 9th Ave S"],"county":"Davidson","img":"n9-hero"},{"kind":"listing","label":"4303A Utah Ave","lat":36.144442,"lon":-86.838127,"href":"property/4303a-utah/","count":1,"members":["4303A Utah Ave"],"county":"Davidson","img":"ut-hero"},{"kind":"listing","label":"2495 Deer Meadow Ln","lat":35.867666,"lon":-86.709609,"href":"properties.html","count":1,"members":["2495 Deer Meadow Ln"],"county":"Williamson","img":null},{"kind":"listing","label":"Clifton Ln","lat":36.113983,"lon":-86.795543,"href":"properties.html","count":2,"members":["1306 Clifton Ln","1308 Clifton Ln"],"county":"Davidson","img":null},{"kind":"listing","label":"1211 Jefferson Davis Dr","lat":36.061095,"lon":-86.815053,"href":"property/1211-jefferson-davis/","count":1,"members":["1211 Jefferson Davis Dr"],"county":"Davidson","img":"jd-hero"},{"kind":"listing","label":"842 Brook Hollow Rd","lat":36.132441,"lon":-86.88359,"href":"properties.html","count":1,"members":["842 Brook Hollow Rd"],"county":"Davidson","img":null},{"kind":"listing","label":"735 Clematis Dr","lat":36.123152,"lon":-86.89523,"href":"properties.html","count":1,"members":["735 Clematis Dr"],"county":"Davidson","img":null},{"kind":"listing","label":"1310 Lavada Pl","lat":35.988837,"lon":-86.796221,"href":"properties.html","count":1,"members":["1310 Lavada Pl"],"county":"Williamson","img":null}]}</script>
+<script id="mp-data" type="application/json">{"pins":[{"kind":"community","label":"Anna","lat":35.993105,"lon":-86.694932,"href":"development/anna/","precision":"street","county":"Williamson","img":"hood-26"},{"kind":"community","label":"Annandale","lat":36.027077,"lon":-86.769463,"href":"development/annandale/","precision":"street","county":"Williamson","img":"hood-18"},{"kind":"community","label":"Bison Ridge","lat":36.321614,"lon":-86.867546,"href":"development/bison-ridge/","precision":"area","county":"Davidson","img":"hood-21"},{"kind":"community","label":"Callie","lat":35.991402,"lon":-86.828535,"href":"development/callie/","precision":"street","county":"Williamson","img":"hood-27"},{"kind":"community","label":"Cielo","lat":36.017555,"lon":-86.762855,"href":"development/cielo/","precision":"exact","county":"Williamson","img":"hood-19"},{"kind":"community","label":"Firefly","lat":35.716296,"lon":-86.835788,"href":"development/firefly/","precision":"exact","county":"Maury","img":"hood-22"},{"kind":"community","label":"Governors Club","lat":35.983462,"lon":-86.720985,"href":"development/governors-club/","precision":"exact","county":"Williamson","img":"hood-20"},{"kind":"community","label":"Harlan","lat":36.017589,"lon":-86.761286,"href":"development/harlan/","precision":"exact","county":"Williamson","img":"hood-25"},{"kind":"community","label":"Laurelbrooke","lat":35.998673,"lon":-86.883335,"href":"development/laurelbrooke/","precision":"area","county":"Williamson","img":"hood-14"},{"kind":"community","label":"Rosebrooke","lat":35.967049,"lon":-86.714549,"href":"development/rosebrooke/","precision":"street","county":"Williamson","img":"hood-24"},{"kind":"community","label":"The Grove","lat":35.81825,"lon":-86.734422,"href":"development/the-grove/","precision":"exact","county":"Williamson","img":"hood-16"},{"kind":"community","label":"Troubadour","lat":35.82652,"lon":-86.67772,"href":"development/troubadour/","precision":"exact","county":"Williamson","img":"hood-15"},{"kind":"community","label":"Witherspoon","lat":35.973143,"lon":-86.762297,"href":"development/witherspoon/","precision":"street","county":"Williamson","img":"hood-13"},{"kind":"community","label":"Wyelea","lat":35.948966,"lon":-86.902392,"href":"development/wyelea/","precision":"exact","county":"Williamson","img":"hood-23"},{"kind":"neighborhood","label":"Arrington","lat":35.867666,"lon":-86.709609,"href":"neighborhood/arrington/","precision":"exact","county":"Williamson","img":"hood-9"},{"kind":"neighborhood","label":"Belle Meade","lat":36.095892,"lon":-86.856945,"href":"neighborhood/belle-meade/","precision":"exact","county":"Davidson","img":"hood-1"},{"kind":"neighborhood","label":"Brentwood","lat":36.032569,"lon":-86.782523,"href":"neighborhood/brentwood/","precision":"exact","county":"Williamson","img":"hood-6"},{"kind":"neighborhood","label":"Downtown","lat":36.16304,"lon":-86.779808,"href":"neighborhood/downtown/","precision":"exact","county":"Davidson","img":"hood-11"},{"kind":"neighborhood","label":"Forest Hills","lat":36.068719,"lon":-86.845286,"href":"neighborhood/forest-hills/","precision":"exact","county":"Davidson","img":"hood-4"},{"kind":"neighborhood","label":"Franklin","lat":35.925206,"lon":-86.868942,"href":"neighborhood/franklin/","precision":"exact","county":"Williamson","img":"hood-7"},{"kind":"neighborhood","label":"Germantown","lat":36.175365,"lon":-86.788001,"href":"neighborhood/germantown/","precision":"exact","county":"Davidson","img":"hood-12"},{"kind":"neighborhood","label":"Green Hills","lat":36.10367,"lon":-86.816666,"href":"neighborhood/green-hills/","precision":"exact","county":"Davidson","img":"hood-3"},{"kind":"neighborhood","label":"Leiper's Fork","lat":35.89806,"lon":-86.999144,"href":"neighborhood/leipers-fork/","precision":"exact","county":"Williamson","img":"hood-8"},{"kind":"neighborhood","label":"Oak Hill","lat":36.074292,"lon":-86.788731,"href":"neighborhood/oak-hill/","precision":"exact","county":"Davidson","img":"hood-5"},{"kind":"neighborhood","label":"Thompson's Station","lat":35.802011,"lon":-86.911391,"href":"neighborhood/thompsons-station/","precision":"exact","county":"Williamson","img":"hood-10"},{"kind":"neighborhood","label":"West Meade","lat":36.117836,"lon":-86.887223,"href":"neighborhood/west-meade/","precision":"exact","county":"Davidson","img":"hood-2"},{"kind":"listing","label":"Davis Dr","lat":36.01127,"lon":-86.778382,"href":"properties.html","count":3,"members":["607 Davis Dr","706 Davis Dr","715 Davis Dr"],"county":"Williamson","img":"dv-hero"},{"kind":"listing","label":"515 Shenandoah Dr","lat":36.017639,"lon":-86.775555,"href":"property/515-shenandoah/","count":1,"members":["515 Shenandoah Dr"],"county":"Williamson","img":"sh-hero"},{"kind":"listing","label":"2502 9th Ave S","lat":36.12379,"lon":-86.783569,"href":"property/2502-9th-ave-s/","count":1,"members":["2502 9th Ave S"],"county":"Davidson","img":"n9-hero"},{"kind":"listing","label":"4303A Utah Ave","lat":36.144442,"lon":-86.838127,"href":"property/4303a-utah/","count":1,"members":["4303A Utah Ave"],"county":"Davidson","img":"ut-hero"},{"kind":"listing","label":"2495 Deer Meadow Ln","lat":35.867666,"lon":-86.709609,"href":"properties.html","count":1,"members":["2495 Deer Meadow Ln"],"county":"Williamson","img":null},{"kind":"listing","label":"Clifton Ln","lat":36.113983,"lon":-86.795543,"href":"properties.html","count":2,"members":["1306 Clifton Ln","1308 Clifton Ln"],"county":"Davidson","img":null},{"kind":"listing","label":"1211 Jefferson Davis Dr","lat":36.061095,"lon":-86.815053,"href":"property/1211-jefferson-davis/","count":1,"members":["1211 Jefferson Davis Dr"],"county":"Davidson","img":"jd-hero"},{"kind":"listing","label":"842 Brook Hollow Rd","lat":36.132441,"lon":-86.88359,"href":"properties.html","count":1,"members":["842 Brook Hollow Rd"],"county":"Davidson","img":null},{"kind":"listing","label":"735 Clematis Dr","lat":36.123152,"lon":-86.89523,"href":"properties.html","count":1,"members":["735 Clematis Dr"],"county":"Davidson","img":null},{"kind":"listing","label":"1310 Lavada Pl","lat":35.988837,"lon":-86.796221,"href":"properties.html","count":1,"members":["1310 Lavada Pl"],"county":"Williamson","img":null}]}</script>
 <link href="https://api.mapbox.com/mapbox-gl-js/v3.34.2/mapbox-gl.css" rel="stylesheet">
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.34.2/mapbox-gl.js" defer></script>
 <script defer src="map.js"></script>

@@ -70,12 +70,21 @@
   /* ---- the map ---------------------------------------------------------- */
   mapboxgl.accessToken = TOKEN;
   const FIT = { padding: { top: 64, bottom: 64, left: 48, right: 48 }, duration: 0 };
+  // One frame, around everything. There were two - Williamson and Davidson,
+  // on a switcher - until 13 Nov, when the cards above the map took over the
+  // choosing and asking which county first became a question nobody arrives
+  // with. Computed from the pins rather than written down, so adding a place
+  // in Maury or Rutherford reframes the map instead of falling off it.
+  const ALL = data.pins.reduce((b, p) => [
+    [Math.min(b[0][0], p.lon), Math.min(b[0][1], p.lat)],
+    [Math.max(b[1][0], p.lon), Math.max(b[1][1], p.lat)],
+  ], [[180, 90], [-180, -90]]);
   let map;
   try {
     map = new mapboxgl.Map({
       container: host,
       style: "mapbox://styles/mapbox/dark-v11",
-      bounds: data.frames.Williamson.bounds,
+      bounds: ALL,
       fitBoundsOptions: FIT,
       cooperativeGestures: true,   // a two-finger drag, so the page still scrolls
       attributionControl: true
@@ -99,6 +108,31 @@
     addPins();
     mp.classList.add("is-live");
     host.removeAttribute("aria-hidden");
+
+    // The frame is as tall as the drawing - about 2,570px - until is-live
+    // turns it into an 820px window. Mapbox defers its own resize work while
+    // the map is below the fold, so the canvas stayed at the old height: the
+    // visitor saw the top third of the fitted bounds, and every marker sat
+    // hundreds of pixels below where its house is. Nothing errored and the
+    // map looked plausible, which is why this survived a week.
+    //
+    // So resize on purpose rather than hoping, refit afterwards because the
+    // first fitBounds was measured against the wrong box, and keep watching
+    // the frame: it also changes height at the 620px breakpoint.
+    requestAnimationFrame(() => {
+      map.resize();
+      map.fitBounds(ALL, FIT);
+    });
+    if (window.ResizeObserver) {
+      let w = 0, hgt = 0;
+      new ResizeObserver(es => {
+        const r = es[0].contentRect;
+        if (Math.abs(r.width - w) < 1 && Math.abs(r.height - hgt) < 1) return;
+        w = r.width; hgt = r.height;
+        map.resize();
+      }).observe(host);
+    }
+
     map.addControl(new mapboxgl.NavigationControl({ showCompass: false }), "top-right");
     // A tap anywhere that is not a mark puts the card away. The marks stop
     // their own taps before they get here, so this never fires for the tap
@@ -208,11 +242,52 @@
       lbl.textContent = many ? `${p.label} · ${p.count}` : p.label;
 
       a.append(dot, lbl);
-      card(a, p);
+      marks[p.href] = { p: p, show: card(a, p) };
       new mapboxgl.Marker({ element: a, anchor: (ART && ART[2]) || "center" })
         .setLngLat([p.lon, p.lat]).addTo(map);
     });
+    wirePicker();
   }
+
+  /* ---- the cards above the map ------------------------------------------
+     Each one is an ordinary link to the place's own page, and that is what
+     it does with no Javascript, no WebGL or no Mapbox. Only once the tiles
+     are actually up do we take the click instead and fly there - so the
+     fallback is never a row of cards that swallow a click and do nothing.
+
+     Clicking a card does not open the page. It answers "where is this",
+     which is the question the map exists for, and opens the mark's own card
+     so the way in is sitting there. Two clicks to a page, and the second one
+     is taken somewhere you have seen. */
+  const marks = {};
+  const ZOOM = { neighborhood: 12.6, community: 14, listing: 14.4 };
+
+  function wirePicker() {
+    const cards = [...document.querySelectorAll(".pick__c")];
+    cards.forEach(c => {
+      const key = c.dataset.pin;
+      const m = marks[key];
+      if (!m) return;                       // no mark, so leave it a plain link
+      c.addEventListener("click", e => {
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.button) return;  // new tab
+        e.preventDefault();
+        cards.forEach(o => o.classList.toggle("is-on", o === c));
+        map.flyTo({
+          center: [m.p.lon, m.p.lat],
+          zoom: ZOOM[m.p.kind] || 13,
+          duration: reduced ? 0 : 1500,
+          essential: true,
+        });
+        m.show();
+        // The map is below the cards. Landing somewhere the visitor cannot
+        // see is the same as not landing at all.
+        const frame = document.querySelector(".mp__frame");
+        if (frame) frame.scrollIntoView(
+          { behavior: reduced ? "auto" : "smooth", block: "center" });
+      });
+    });
+  }
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 
   /* ---- the card ---------------------------------------------------------
@@ -273,6 +348,8 @@
       open = pop;
     };
     const hide = () => { if (open === pop) { pop.remove(); open = null; } };
+    // The cards above the map need to be able to open this one.
+    const handle = show;
 
     if (touch) {
       // first tap previews, the card's own link goes
@@ -313,17 +390,7 @@
         el.addEventListener("pointerleave", arm);
       });
     }
+    return handle;
   }
 
-  /* ---- the county switcher ---------------------------------------------- */
-  document.querySelectorAll(".mp__county__b").forEach(b => {
-    b.addEventListener("click", () => {
-      document.querySelectorAll(".mp__county__b")
-        .forEach(o => o.classList.toggle("is-on", o === b));
-      if (open) { open.remove(); open = null; }
-      const f = data.frames[b.dataset.county];
-      if (!f || !painted) return;
-      map.fitBounds(f.bounds, { ...FIT, duration: 900 });
-    });
-  });
 })();
