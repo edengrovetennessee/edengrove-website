@@ -743,6 +743,18 @@ blockquote{
   text-shadow:0 1px 24px rgba(0,0,0,.4);
 }
 
+/* The banner carries a statement rather than a paragraph, so it is set at
+   the headline scale even though the h1 above it is hidden. Same clamp,
+   tracking, case and shadow as .banner h1 - one masthead size on the site,
+   not two that nearly match. */
+.banner p.banner__line{
+  margin:0;max-width:none;
+  font-size:clamp(1.1rem,.88rem + .92vw,1.72rem);
+  line-height:1.6;letter-spacing:.3em;text-indent:.3em;
+  text-transform:uppercase;color:#fff;
+  text-shadow:0 1px 30px rgba(0,0,0,.4);
+}
+
 /* ========================= PROPERTIES · THE GRID =========================
    Two across, square. The card itself is the same .prop component as the home
    page, so hover behavior, the reveal and the touch fallback all come free. */
@@ -989,9 +1001,13 @@ blockquote{
   <div class="banner__inner">
     <div class="banner__box">
       <h1 class="visually-hidden">Luxury Home Marketing in Middle Tennessee</h1>
-      <p class="reveal" style="animation-delay:.6s">To list with Eden Grove is to have a property treated as a piece
-         of work, not an entry in a feed. One standard, held the same way on every home we
-         represent, and marketing built for what the property actually is.</p>
+      <!-- Four lines of paragraph stood here. Ryan, 13 Nov: cut it to "one
+           standard, comma, excellence". At paragraph size that is a fragment
+           lost in a full-bleed photograph, so it takes the masthead scale
+           every other hero on this site uses - the same clamp, tracking and
+           case as .banner h1. The h1 itself stays where it was, hidden: it is
+           what the page is about, and this is what the page says. -->
+      <p class="banner__line reveal" style="animation-delay:.6s">One standard, excellence</p>
     </div>
   </div>
 </section>
