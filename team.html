@@ -826,11 +826,6 @@ blockquote{
   font-size:clamp(.85rem,.82rem + .18vw,.95rem);
   line-height:1.95;color:var(--t2);
 }
-.affil__src{
-  margin:clamp(2rem,4.5vh,3rem) auto 0;max-width:52rem;text-align:center;
-  font-family:var(--ui);font-weight:300;font-size:.72rem;line-height:1.9;
-  letter-spacing:.04em;color:var(--t3);
-}
 
 /* =============================== TEAM PAGE ===============================
    The banner carries no words at all — just the team, the mark and the nav.
@@ -853,7 +848,14 @@ blockquote{
    almost any browser window, so the hero still fits the screen - 1022 tall
    at 1920x1080, 1363 at 2560x1440 - and where it does not, it scrolls,
    which is the price of a composition that holds. */
-.teamtop{position:relative;aspect-ratio:1512/805;min-height:30rem;overflow:hidden}
+/* NO min-height HERE. It was 30rem, and with an aspect-ratio on the same box
+   that is a minimum WIDTH of 30rem x 1.878 = 902px. Under a 902px window the
+   banner stopped shrinking and the whole page grew a horizontal scrollbar -
+   134px of it at 768. It bought nothing either: at 902 wide the ratio already
+   gives 480px of height, so above that the minimum never applied, and below
+   it the phone rule at 760 takes over. It only ever did harm.
+   This is trap 1 in the notes, on the page that wrote them. */
+.teamtop{position:relative;aspect-ratio:1512/805;overflow:hidden}
 /* THE BANNER IS NOW FOUR PEOPLE, not a house, and that changes what the
    crop has to protect. The frame is 1.88 at a common desktop size and the
    photograph is 1.50, so it is scaled to the width and about 200px comes
@@ -1174,11 +1176,6 @@ blockquote{
            moving from somewhere else.</p>
       </div>
     </div>
-
-    <p class="affil__src">The Parks acquisition was announced by Compass on 13 May 2024;
-       the agent and office counts are Compass&rsquo;s own. The Anywhere acquisition
-       closed in January 2026 and was reported independently. Eden&nbsp;Grove is a team
-       at Compass Tennessee,&nbsp;LLC &mdash; the firm detail is at the foot of this page.</p>
   </div>
 </section>
 
