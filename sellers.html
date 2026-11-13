@@ -1593,6 +1593,30 @@ blockquote{
   .n-card{transition:none}
   .n-card:hover{transform:none}
 }
+
+/* ---- market data, folded away ----
+   Ryan, 13 Nov: these pages should read short, and the table is for the one
+   reader who wants it. A disclosure keeps the data - and the monthly refresh
+   target, which writes into the table body - on the page without
+   spending everybody else's attention on it. */
+.mkt{max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0}
+.mkt>summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;
+  font-family:var(--ui);font-weight:400;font-size:.62rem;
+  letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
+  color:var(--brass);padding:1rem 0;
+  border-top:1px solid rgba(182,169,124,.4);
+  transition:color .4s ease;
+}
+.mkt>summary::-webkit-details-marker{display:none}
+.mkt>summary::after{
+  content:"+";margin-left:auto;text-indent:0;letter-spacing:0;
+  font-size:1rem;line-height:1;color:var(--warm);
+}
+.mkt[open]>summary::after{content:"\2212"}
+.mkt>summary:hover{color:#fff}
+.mkt>summary:focus-visible{outline:1px solid var(--brass);outline-offset:5px}
+.mkt .w-tablewrap{margin-top:clamp(1rem,2.5vh,1.6rem)}
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/sellers.html">
 <meta property="og:type" content="website">
@@ -1662,34 +1686,32 @@ blockquote{
     </nav>
   </header>
 
-
-
 <section class="sb-hero" id="top">
   <div class="sb-hero__media" data-par="12"><img src="media/sb-1.jpg" alt="" fetchpriority="high" decoding="async"></div>
   <div class="sb-hero__scrim"></div>
   <div class="sb-hero__inner" data-rise data-in>
     <p class="sb-hero__eyebrow">For Sellers</p>
     <h1><span class="ln"><i>Sell it at the level</i></span><span class="ln"><i>it was built to</i></span></h1>
-    <p class="sb-hero__stand">What we provide, where the market actually is, and straight answers on fee and net proceeds.</p>
+    <p class="sb-hero__stand">A house at this level is seen on a screen long before anyone walks in. What we put on that screen, and who makes it.</p>
   </div>
   <span class="sb-cue" aria-hidden="true"></span>
 </section>
 
 <section class="p-sec" aria-labelledby="wp-h">
-  <h2 class="p-eyebrow" id="wp-h" data-rise>What We Provide</h2>
+  <h2 class="p-eyebrow" id="wp-h" data-rise>What to Expect</h2>
   <div data-stagger>
   <div class="n-blocks">
     <div class="n-block" data-rise>
       <span class="n-block__n">01</span>
-      <div><h3>Production Before Listing</h3><p>Film, architectural photography, a website of its own, print. Nothing goes live until the assets are finished. At this level the screen is the only showing most buyers will give you.</p></div>
+      <div><h3>The First Showing Is a Screen</h3><p>Almost every buyer at this price sees the house on a phone before they see it at all, and decides there whether it is worth an afternoon. The film, the photography and the page they live on are not marketing that follows a sale. They are the showing that decides whether there is one.</p></div>
     </div>
     <div class="n-block" data-rise>
       <span class="n-block__n">02</span>
-      <div><h3>Priced From the Record</h3><p>Above $2M a county median tells you nothing. We price from your own community&rsquo;s closings, by address. It is why every area page on this site publishes them.</p></div>
+      <div><h3>Marketed to What It Is</h3><p>A house built to one standard and sold to a lesser one gives away the difference, and the difference is rarely small. There is no package to choose here and no tier to upgrade into. Every property we take gets the whole production.</p></div>
     </div>
     <div class="n-block" data-rise>
       <span class="n-block__n">03</span>
-      <div><h3>A Private Launch First</h3><p>Private Exclusive, then Coming Soon, then the MLS. You learn what the market thinks of your price before that opinion becomes permanent record.</p></div>
+      <div><h3>A Crew, From the Day You Sign</h3><p>A production team, stagers, an event coordinator and a transaction coordinator are attached to your house from the start, and one person tells you where all of it stands. You are not just hiring the people who sell it. You are hiring what stands behind them.</p></div>
     </div>
   </div>
   </div>
@@ -1701,62 +1723,27 @@ blockquote{
   </div>
   <div class="cine__scrim"></div>
   <div class="cine__q">
-    <blockquote>A house launched at the wrong price carries it forever.</blockquote>
+    <blockquote>A property is only worth what the market can see.</blockquote>
   </div>
 </section>
 
-<section class="p-sec p-sec--tight" aria-labelledby="mk-h">
-  <h2 class="p-eyebrow" id="mk-h" data-rise>Where the Market Is</h2>
+<section class="p-sec p-sec--tight" aria-labelledby="pp-h">
+  <h2 class="p-eyebrow" id="pp-h" data-rise>The People Behind It</h2>
   <div data-stagger>
-  <div class="sb-stats" data-stagger>
-    <div class="sb-stat" data-rise>
-      <span class="sb-stat__n" data-fig="lux.brentwood.median" data-count="1800000" data-pre="$" data-suf="" data-dec="0">$1,800,000</span>
-      <span class="sb-stat__l">Brentwood Median Asking</span>
-      <span class="sb-stat__s">37027, the largest luxury market we cover</span>
-    </div>
-    <div class="sb-stat" data-rise>
-      <span class="sb-stat__n" data-fig="lux.brentwood.dom" data-count="74" data-pre="" data-suf="" data-dec="0">74</span>
-      <span class="sb-stat__l">Days on Market, Brentwood</span>
-      <span class="sb-stat__s">Arrington runs 47; College Grove runs 100</span>
-    </div>
-    <div class="sb-stat" data-rise>
-      <span class="sb-stat__n" data-fig="lux.bellemeade.tail" data-count="1.88" data-pre="" data-suf="×" data-dec="1">1.9×</span>
-      <span class="sb-stat__l">Average Against Median</span>
-      <span class="sb-stat__s">Belle Meade &mdash; the weight of the top tail</span>
-    </div>
+  <div class="p-lede" data-rise>
+    <p>Most of what separates one listing from another at this level is not the
+       agent. It is who the agent can call. Not all of these people are in
+       Nashville. They work on our properties anyway.</p>
   </div>
-
-  <div class="w-tablewrap" data-rise>
-    <table class="w-table">
-      <caption>The ZIP codes we work in, by what is being asked across active inventory. The
-        <em>tail</em> column is the average divided by the median &mdash; how far above the middle
-        the top of each market reaches.</caption>
-      <thead>
-        <tr><th scope="col">Area</th><th scope="col">Median Asking</th><th scope="col">Average Asking</th>
-            <th scope="col">Tail</th><th scope="col">$/Sq Ft</th><th scope="col">Days</th></tr>
-      </thead>
-      <tbody data-table="luxzips">
-        <tr><td>College Grove<small>37046</small></td><td class="w-price">$3,093,167</td><td>$3,777,415</td><td>1.2×</td><td>$580</td><td>100</td></tr>
-        <tr><td>Arrington<small>37014</small></td><td class="w-price">$1,862,225</td><td>$2,126,812</td><td>1.1×</td><td>$411</td><td>47</td></tr>
-        <tr><td>Brentwood<small>37027</small></td><td class="w-price">$1,800,000</td><td>$2,300,447</td><td>1.3×</td><td>$393</td><td>74</td></tr>
-        <tr><td>Oak Hill<small>37220</small></td><td class="w-price">$1,687,500</td><td>$2,850,858</td><td>1.7×</td><td>$447</td><td>83</td></tr>
-        <tr><td>Green Hills &amp; Forest Hills<small>37215</small></td><td class="w-price">$1,497,450</td><td>$2,190,447</td><td>1.5×</td><td>$429</td><td>68</td></tr>
-        <tr><td>Belle Meade &amp; West Meade<small>37205</small></td><td class="w-price">$1,230,000</td><td>$2,310,788</td><td>1.9×</td><td>$394</td><td>74</td></tr>
-        <tr><td>Franklin, north<small>37069</small></td><td class="w-price">$1,191,000</td><td>$2,065,261</td><td>1.7×</td><td>$360</td><td>79</td></tr>
-        <tr><td>Franklin, south<small>37064</small></td><td class="w-price">$1,112,500</td><td>$1,827,369</td><td>1.6×</td><td>$404</td><td>61</td></tr>
-      </tbody>
-    </table>
+  <div class="n-cards" style="max-width:52rem">
+    <div class="n-card" data-rise><h3>Photography and Film</h3><p>Editorial photography, motion and aerial work from a photographer who shoots for Architectural Digest. The land is photographed as carefully as the rooms, because at this level the setting is often what is really being bought.</p></div>
+    <div class="n-card" data-rise><h3>Staging</h3><p>Furnished for the walk&#8209;through and for the photograph, by stagers working at the top of this market. It is the difference between a room a buyer can price and a room a buyer can picture themselves in.</p></div>
+    <div class="n-card" data-rise><h3>The Launch Event</h3><p>The first showing is an evening, built around the one thing that makes the house that house, planned and run by a coordinator who came up in Manhattan. Brokers and buyers remember a house they were brought to. They scroll past one they were shown.</p></div>
+    <div class="n-card" data-rise><h3>A Coordinator on Your File</h3><p>Every transaction gets its own coordinator from the day it goes under contract &mdash; dates, documents, lender, title, inspections. Nothing arrives as a surprise because somebody was out showing houses instead of watching the calendar.</p></div>
   </div>
-  <p class="n-src n-src--mid">Realtor.com&reg; Research, active listings,
-     <span data-asof="luxzips">September 2026</span>. These are asking prices across what is on the
-     market, not closed sales &mdash; closed figures live in RealTracs and we will pull them for a
-     specific address. Refreshed monthly.</p>
-
-  <div class="n-blocks">
-    <div class="n-card" data-rise><h3>Two Markets, Twenty Minutes Apart</h3><p>Williamson&rsquo;s median asking price is <span data-fig="county.williamson.median">$1,155,000</span>. Davidson&rsquo;s is <span data-fig="county.davidson.median">$525,000</span>. Same metro, half an hour&rsquo;s drive, and a house in one is competing against a completely different field than a house in the other.</p></div>
-    <div class="n-card" data-rise><h3>The Tail Is the Market</h3><p>In Belle Meade the average asking price runs close to twice the median. That gap <em>is</em> the luxury market, and a county median is blind to it. It is why we price from your own community&rsquo;s closings rather than from a headline figure.</p></div>
-    <div class="n-card" data-rise><h3>About That 4.6%</h3><p>Compass publishes a 4.6% premium for private listings, from a regression across 70,809 of its own closed transactions. The Real Deal reported in July 2026 that the study was written by Compass employees. Zillow and Bright MLS find off-MLS sellers net 1.3% to 1.5% <em>less</em>. Both sides have an interest; the price history is what is not in dispute.</p></div>
-  </div>
+  <p class="p-lede" data-rise style="margin-top:clamp(2rem,4vh,2.8rem)">
+    <a class="prop__cta" href="marketing.html">The full production, stage by stage<svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 1l3 3-3 3"/></svg></a>
+  </p>
   </div>
 </section>
 
@@ -1808,19 +1795,63 @@ blockquote{
   </div>
   <div class="cine__scrim"></div>
   <div class="cine__q">
-    <blockquote>The questions most pages avoid are the ones you are asking.</blockquote>
+    <blockquote>A house launched at the wrong price carries it forever.</blockquote>
   </div>
 </section>
 
-<section class="p-sec p-sec--tight" aria-labelledby="ha-h">
-  <h2 class="p-eyebrow" id="ha-h" data-rise>The Questions Most Pages Avoid</h2>
+<section class="p-sec p-sec--tight" aria-labelledby="mk-h">
+  <h2 class="p-eyebrow" id="mk-h" data-rise>The Market, Briefly</h2>
   <div data-stagger>
-  <div class="n-blocks">
-    <div class="n-card" data-rise><h3>What It Costs</h3><p>No standard commission. Ours is agreed in writing before we start, and you see a net proceeds figure before you sign, not after.</p></div>
-    <div class="n-card" data-rise><h3>Who Pays the Buyer&rsquo;s Agent</h3><p>Negotiated since 2024 and no longer in the MLS. Most sellers here still offer something, because a buyer funding their own agent has less to spend on your house. Your call, modeled both ways.</p></div>
-    <div class="n-card" data-rise><h3>What a Private Exclusive Commits You To</h3><p>A signed instruction filed with RealTracs within 48 hours, acknowledging the exposure you are waiving. Any public marketing &mdash; a yard sign, a priced post &mdash; ends it.</p></div>
-    <div class="n-card" data-rise><h3>What You Pay at Closing</h3><p>Transfer tax is $0.37 per $100 &mdash; $11,100 on a $3M sale &mdash; and the standard contract puts it on the buyer. Sellers here customarily buy the owner&rsquo;s title policy.</p></div>
+  <div class="sb-stats" data-stagger>
+    <div class="sb-stat" data-rise>
+      <span class="sb-stat__n" data-fig="lux.brentwood.median" data-count="1800000" data-pre="$" data-suf="" data-dec="0">$1,800,000</span>
+      <span class="sb-stat__l">Brentwood Median Asking</span>
+      <span class="sb-stat__s">37027, the largest luxury market we cover</span>
+    </div>
+    <div class="sb-stat" data-rise>
+      <span class="sb-stat__n" data-fig="lux.brentwood.dom" data-count="74" data-pre="" data-suf="" data-dec="0">74</span>
+      <span class="sb-stat__l">Days on Market, Brentwood</span>
+      <span class="sb-stat__s">Arrington runs 47; College Grove runs 100</span>
+    </div>
+    <div class="sb-stat" data-rise>
+      <span class="sb-stat__n" data-fig="lux.bellemeade.tail" data-count="1.88" data-pre="" data-suf="&times;" data-dec="1">1.9&times;</span>
+      <span class="sb-stat__l">Average Against Median</span>
+      <span class="sb-stat__s">Belle Meade &mdash; the weight of the top tail</span>
+    </div>
   </div>
+
+  <details class="mkt" data-rise>
+    <summary>View market data by area</summary>
+  <div class="w-tablewrap">
+      <table class="w-table">
+        <caption>The ZIP codes we work in, by what is being asked across active inventory. The
+          <em>tail</em> column is the average divided by the median &mdash; how far above the middle
+          the top of each market reaches.</caption>
+        <thead>
+          <tr><th scope="col">Area</th><th scope="col">Median Asking</th><th scope="col">Average Asking</th>
+              <th scope="col">Tail</th><th scope="col">$/Sq Ft</th><th scope="col">Days</th></tr>
+        </thead>
+        <tbody data-table="luxzips">
+          <tr><td>College Grove<small>37046</small></td><td class="w-price">$3,093,167</td><td>$3,777,415</td><td>1.2×</td><td>$580</td><td>100</td></tr>
+          <tr><td>Arrington<small>37014</small></td><td class="w-price">$1,862,225</td><td>$2,126,812</td><td>1.1×</td><td>$411</td><td>47</td></tr>
+          <tr><td>Brentwood<small>37027</small></td><td class="w-price">$1,800,000</td><td>$2,300,447</td><td>1.3×</td><td>$393</td><td>74</td></tr>
+          <tr><td>Oak Hill<small>37220</small></td><td class="w-price">$1,687,500</td><td>$2,850,858</td><td>1.7×</td><td>$447</td><td>83</td></tr>
+          <tr><td>Green Hills &amp; Forest Hills<small>37215</small></td><td class="w-price">$1,497,450</td><td>$2,190,447</td><td>1.5×</td><td>$429</td><td>68</td></tr>
+          <tr><td>Belle Meade &amp; West Meade<small>37205</small></td><td class="w-price">$1,230,000</td><td>$2,310,788</td><td>1.9×</td><td>$394</td><td>74</td></tr>
+          <tr><td>Franklin, north<small>37069</small></td><td class="w-price">$1,191,000</td><td>$2,065,261</td><td>1.7×</td><td>$360</td><td>79</td></tr>
+          <tr><td>Franklin, south<small>37064</small></td><td class="w-price">$1,112,500</td><td>$1,827,369</td><td>1.6×</td><td>$404</td><td>61</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="n-src n-src--mid">Realtor.com&reg; Research, active listings,
+       <span data-asof="luxzips">September 2026</span>. These are asking prices across what is on the
+       market, not closed sales &mdash; closed figures live in RealTracs and we will pull them for a
+       specific address. Refreshed monthly.</p>
+  </details>
+
+  <p class="p-lede" data-rise style="margin-top:clamp(2rem,4vh,2.8rem)">
+    <a class="prop__cta" href="neighborhoods.html">Closings by address, area by area<svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 1l3 3-3 3"/></svg></a>
+  </p>
   </div>
 </section>
 

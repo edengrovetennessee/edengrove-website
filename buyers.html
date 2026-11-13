@@ -1593,6 +1593,30 @@ blockquote{
   .n-card{transition:none}
   .n-card:hover{transform:none}
 }
+
+/* ---- market data, folded away ----
+   Ryan, 13 Nov: these pages should read short, and the table is for the one
+   reader who wants it. A disclosure keeps the data - and the monthly refresh
+   target, which writes into the table body - on the page without
+   spending everybody else's attention on it. */
+.mkt{max-width:64rem;margin:clamp(2.5rem,6vh,4rem) auto 0}
+.mkt>summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;
+  font-family:var(--ui);font-weight:400;font-size:.62rem;
+  letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
+  color:var(--brass);padding:1rem 0;
+  border-top:1px solid rgba(182,169,124,.4);
+  transition:color .4s ease;
+}
+.mkt>summary::-webkit-details-marker{display:none}
+.mkt>summary::after{
+  content:"+";margin-left:auto;text-indent:0;letter-spacing:0;
+  font-size:1rem;line-height:1;color:var(--warm);
+}
+.mkt[open]>summary::after{content:"\2212"}
+.mkt>summary:hover{color:#fff}
+.mkt>summary:focus-visible{outline:1px solid var(--brass);outline-offset:5px}
+.mkt .w-tablewrap{margin-top:clamp(1rem,2.5vh,1.6rem)}
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/buyers.html">
 <meta property="og:type" content="website">
@@ -1662,34 +1686,36 @@ blockquote{
     </nav>
   </header>
 
-
-
 <section class="sb-hero" id="top">
   <div class="sb-hero__media" data-par="12"><img src="media/by-1.jpg" alt="" fetchpriority="high" decoding="async"></div>
   <div class="sb-hero__scrim"></div>
   <div class="sb-hero__inner" data-rise data-in>
     <p class="sb-hero__eyebrow">For Buyers</p>
-    <h1><span class="ln"><i>Know what you are buying,</i></span><span class="ln"><i>and what it costs</i></span></h1>
-    <p class="sb-hero__stand">What we provide, what the Tennessee numbers mean, and straight answers on representation, cost and financing.</p>
+    <h1><span class="ln"><i>Most of this market</i></span><span class="ln"><i>is never listed</i></span></h1>
+    <p class="sb-hero__stand">Private Exclusives, a way into the houses our builders are still framing, and somebody who runs the whole thing for you.</p>
   </div>
   <span class="sb-cue" aria-hidden="true"></span>
 </section>
 
 <section class="p-sec" aria-labelledby="wp-h">
-  <h2 class="p-eyebrow" id="wp-h" data-rise>What We Provide</h2>
+  <h2 class="p-eyebrow" id="wp-h" data-rise>What You Get</h2>
   <div data-stagger>
   <div class="n-blocks">
     <div class="n-block" data-rise>
       <span class="n-block__n">01</span>
-      <div><h3>Access Before It Is Public</h3><p>Through the Compass network we see Private Exclusives and Coming Soon listings that are on neither RealTracs nor the portals. In Belle Meade, Forest Hills and the gated Williamson communities, many of the best houses never get listed at all.</p></div>
+      <div><h3>Access Before It Is Public</h3><p>Through the Compass network we see Private Exclusives and Coming Soon listings that are on neither RealTracs nor the portals. In Belle Meade, Forest Hills and the gated Williamson communities, many of the best houses never reach the market at all.</p></div>
     </div>
     <div class="n-block" data-rise>
       <span class="n-block__n">02</span>
-      <div><h3>New Construction Is the Niche</h3><p>The person at the design center is friendly, knowledgeable and paid by the seller. In a builder transaction there is no neutral party unless you bring one.</p></div>
+      <div><h3>In Early Enough to Make It Yours</h3><p>Development sits behind the licence here, not just sales. We are on these projects at the drawings, which puts our buyers in while a house is still framed &mdash; moving a wall, choosing the finishes, taking a plan semi&#8209;custom. A year later the same house is whatever somebody else chose.</p></div>
     </div>
     <div class="n-block" data-rise>
       <span class="n-block__n">03</span>
-      <div><h3>A Real Number Before You Offer</h3><p>Allowances, change-order markup, and what the second year costs in insurance, dues and reassessment. You get the figure before you sign, not while you are choosing tile against a clock.</p></div>
+      <div><h3>The White Glove Part</h3><p>Showings arranged around your week rather than a lockbox calendar. Your own transaction coordinator from the day you are under contract, and one person who knows where everything stands. Nothing you have to chase, and nobody asking you to be the one keeping the dates.</p></div>
+    </div>
+    <div class="n-block" data-rise>
+      <span class="n-block__n">04</span>
+      <div><h3>You Will Know What You Are Looking At</h3><p>What the street actually closed at, what that builder delivered last time and how the finished house compared to the drawings. We publish the closing record by address for every area we work in, because an opinion is worth less than the record.</p></div>
     </div>
   </div>
   </div>
@@ -1705,58 +1731,21 @@ blockquote{
   </div>
 </section>
 
-<section class="p-sec p-sec--tight" aria-labelledby="mk-h">
-  <h2 class="p-eyebrow" id="mk-h" data-rise>What the Numbers Mean</h2>
-  <div data-stagger>
-  <div class="sb-stats" data-stagger>
-    <div class="sb-stat" data-rise>
-      <span class="sb-stat__n" data-fig="tn.conforming" data-count="1029250" data-pre="$" data-suf="" data-dec="0">$1,029,250</span>
-      <span class="sb-stat__l">Jumbo Begins Here</span>
-      <span class="sb-stat__s">2026 conforming limit, Davidson and Williamson &mdash; not the $832,750 baseline</span>
+<section class="sb-split sb-split--flip">
+  <div class="sb-split__body" data-rise style="--d:120ms">
+    <p class="sb-split__k">Private Access</p>
+    <h3>The Platinum Reserve</h3>
+    <p>Properties, market notes and opportunities in Middle Tennessee, shared with
+       our list before they reach the open market. It is where a Private Exclusive
+       goes first, and where a builder&rsquo;s release is mentioned while the house
+       is still framed.</p>
+    <p><a class="prop__cta" href="contact.html">Ask to be added<svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 1l3 3-3 3"/></svg></a></p>
+  </div>
+  <figure class="sb-split__fig" data-rise>
+    <div class="sb-par" data-par="7">
+      <img src="media/by-5.jpg" alt="" loading="lazy" decoding="async">
     </div>
-    <div class="sb-stat" data-rise>
-      <span class="sb-stat__n" data-count="25" data-pre="" data-suf="%" data-dec="0">25%</span>
-      <span class="sb-stat__l">Assessment Ratio</span>
-      <span class="sb-stat__s">Residential property is taxed on a quarter of appraised value</span>
-    </div>
-    <div class="sb-stat" data-rise>
-      <span class="sb-stat__n" data-count="0" data-pre="$" data-suf="" data-dec="0">$0</span>
-      <span class="sb-stat__l">State Income Tax</span>
-      <span class="sb-stat__s">Constitutionally prohibited since 2014; no estate or inheritance tax either</span>
-    </div>
-  </div>
-
-  <div class="w-tablewrap" data-rise>
-    <table class="w-table">
-      <caption>The ZIP codes we work in, by what is being asked across active inventory. The
-        <em>tail</em> column is the average divided by the median &mdash; how far above the middle
-        the top of each market reaches.</caption>
-      <thead>
-        <tr><th scope="col">Area</th><th scope="col">Median Asking</th><th scope="col">Average Asking</th>
-            <th scope="col">Tail</th><th scope="col">$/Sq Ft</th><th scope="col">Days</th></tr>
-      </thead>
-      <tbody data-table="luxzips">
-        <tr><td>College Grove<small>37046</small></td><td class="w-price">$3,093,167</td><td>$3,777,415</td><td>1.2×</td><td>$580</td><td>100</td></tr>
-        <tr><td>Arrington<small>37014</small></td><td class="w-price">$1,862,225</td><td>$2,126,812</td><td>1.1×</td><td>$411</td><td>47</td></tr>
-        <tr><td>Brentwood<small>37027</small></td><td class="w-price">$1,800,000</td><td>$2,300,447</td><td>1.3×</td><td>$393</td><td>74</td></tr>
-        <tr><td>Oak Hill<small>37220</small></td><td class="w-price">$1,687,500</td><td>$2,850,858</td><td>1.7×</td><td>$447</td><td>83</td></tr>
-        <tr><td>Green Hills &amp; Forest Hills<small>37215</small></td><td class="w-price">$1,497,450</td><td>$2,190,447</td><td>1.5×</td><td>$429</td><td>68</td></tr>
-        <tr><td>Belle Meade &amp; West Meade<small>37205</small></td><td class="w-price">$1,230,000</td><td>$2,310,788</td><td>1.9×</td><td>$394</td><td>74</td></tr>
-        <tr><td>Franklin, north<small>37069</small></td><td class="w-price">$1,191,000</td><td>$2,065,261</td><td>1.7×</td><td>$360</td><td>79</td></tr>
-        <tr><td>Franklin, south<small>37064</small></td><td class="w-price">$1,112,500</td><td>$1,827,369</td><td>1.6×</td><td>$404</td><td>61</td></tr>
-      </tbody>
-    </table>
-  </div>
-  <p class="n-src n-src--mid">Realtor.com&reg; Research, active listings,
-     <span data-asof="luxzips">September 2026</span>. These are asking prices across what is on the
-     market, not closed sales &mdash; closed figures live in RealTracs and we will pull them for a
-     specific address. Refreshed monthly.</p>
-
-  <div class="n-blocks">
-    <div class="n-card" data-rise><h3>What It Costs to Hold</h3><p>Property is assessed at a quarter of value, and Williamson cut its rate about 30% in 2025. A $3M house runs roughly $11,175 a year in Brentwood, against about $52,000 in Cook County, Illinois. Dues in the communities we cover run $3,000 to $5,700.</p></div>
-    <div class="n-card" data-rise><h3>Two Markets, Twenty Minutes Apart</h3><p>Williamson&rsquo;s median asking price is <span data-fig="county.williamson.median">$1,155,000</span> against Davidson&rsquo;s <span data-fig="county.davidson.median">$525,000</span>, and the price per square foot runs <span data-fig="county.williamson.psf">$358</span> against <span data-fig="county.davidson.psf">$301</span>. Where you look changes what your budget buys and how hard you can push.</p></div>
-  </div>
-  </div>
+  </figure>
 </section>
 
 <section class="sb-split">
@@ -1776,9 +1765,13 @@ blockquote{
 <section class="sb-split sb-split--flip">
   <div class="sb-split__body" data-rise style="--d:120ms">
     <p class="sb-split__k">New Construction</p>
-    <h3>The Builder&rsquo;s Contract Is Not the Standard One</h3>
-    <p>A resale runs on the balanced Tennessee Realtors form. A builder transaction runs on the builder&rsquo;s own. Read allowances, change-order markup, the completion date and what happens when it slips, escalation, deposit escrow and arbitration.</p>
-    <p>Allowances are where the money goes: a dollar line for flooring, lighting or appliances that you exceed at retail, and the most common reason a $2M contract closes well above $2M.</p>
+    <h3>Semi&#8209;Custom, Because You Are Early</h3>
+    <p>Coming in at the drawings is the whole advantage. Plan changes while they
+       are still lines, selections chosen rather than inherited, and a finished
+       house that is yours in the ways that matter rather than the ones the
+       builder had already decided.</p>
+    <p>It also means somebody on your side reading a contract that is not the
+       standard Tennessee form, before you sign it.</p>
   </div>
   <figure class="sb-split__fig" data-rise>
     <div class="sb-par" data-par="7">
@@ -1807,29 +1800,63 @@ blockquote{
   </div>
   <div class="cine__scrim"></div>
   <div class="cine__q">
-    <blockquote>Know what you are buying, and what it costs in year two.</blockquote>
-  </div>
-</section>
-
-<section class="p-sec p-sec--tight" aria-labelledby="ha-h">
-  <h2 class="p-eyebrow" id="ha-h" data-rise>Representation, Money and Closing</h2>
-  <div data-stagger>
-  <div class="n-blocks">
-    <div class="n-card" data-rise><h3>What Representation Costs</h3><p>Since 2024 a written agreement is required before we can show you a house. Read the term and the exit. You get the fee in writing before you tour.</p></div>
-    <div class="n-card" data-rise><h3>Who Pays It</h3><p>Usually still the seller, negotiated outside the MLS, because offering nothing shrinks their own buyer pool. If they offer less than the agreed fee, the difference is yours &mdash; written in as a concession or paid at closing.</p></div>
-    <div class="n-card" data-rise><h3>Financing and Proof of Funds</h3><p>Above $2M you are in jumbo regardless of the high-cost limit, and underwriting runs longer. Sellers expect verification before they engage; we will tell you what can be redacted.</p></div>
-    <div class="n-card" data-rise><h3>No Attorney Required at Closing</h3><p>Tennessee is a title company state and no attorney is required. On a builder contract we would still want your own counsel reading it.</p></div>
-  </div>
-  </div>
-</section>
-
-<section class="cine cine--close" data-rise>
-  <div class="cine__media" data-par="9">
-    <img src="media/by-7.jpg" alt="" loading="lazy" decoding="async">
-  </div>
-  <div class="cine__scrim"></div>
-  <div class="cine__q">
     <blockquote>The first house we show you is one you could not have found.</blockquote>
+  </div>
+</section>
+
+<section class="p-sec p-sec--tight" aria-labelledby="mk-h">
+  <h2 class="p-eyebrow" id="mk-h" data-rise>The Market, Briefly</h2>
+  <div data-stagger>
+  <div class="sb-stats" data-stagger>
+    <div class="sb-stat" data-rise>
+      <span class="sb-stat__n" data-fig="lux.brentwood.median" data-count="1800000" data-pre="$" data-suf="" data-dec="0">$1,800,000</span>
+      <span class="sb-stat__l">Brentwood Median Asking</span>
+      <span class="sb-stat__s">37027, the largest luxury market we cover</span>
+    </div>
+    <div class="sb-stat" data-rise>
+      <span class="sb-stat__n" data-fig="lux.brentwood.dom" data-count="74" data-pre="" data-suf="" data-dec="0">74</span>
+      <span class="sb-stat__l">Days on Market, Brentwood</span>
+      <span class="sb-stat__s">Arrington runs 47; College Grove runs 100</span>
+    </div>
+    <div class="sb-stat" data-rise>
+      <span class="sb-stat__n" data-fig="lux.bellemeade.tail" data-count="1.88" data-pre="" data-suf="&times;" data-dec="1">1.9&times;</span>
+      <span class="sb-stat__l">Average Against Median</span>
+      <span class="sb-stat__s">Belle Meade &mdash; how far above the middle the top reaches</span>
+    </div>
+  </div>
+
+  <details class="mkt" data-rise>
+    <summary>View market data by area</summary>
+  <div class="w-tablewrap">
+      <table class="w-table">
+        <caption>The ZIP codes we work in, by what is being asked across active inventory. The
+          <em>tail</em> column is the average divided by the median &mdash; how far above the middle
+          the top of each market reaches.</caption>
+        <thead>
+          <tr><th scope="col">Area</th><th scope="col">Median Asking</th><th scope="col">Average Asking</th>
+              <th scope="col">Tail</th><th scope="col">$/Sq Ft</th><th scope="col">Days</th></tr>
+        </thead>
+        <tbody data-table="luxzips">
+          <tr><td>College Grove<small>37046</small></td><td class="w-price">$3,093,167</td><td>$3,777,415</td><td>1.2×</td><td>$580</td><td>100</td></tr>
+          <tr><td>Arrington<small>37014</small></td><td class="w-price">$1,862,225</td><td>$2,126,812</td><td>1.1×</td><td>$411</td><td>47</td></tr>
+          <tr><td>Brentwood<small>37027</small></td><td class="w-price">$1,800,000</td><td>$2,300,447</td><td>1.3×</td><td>$393</td><td>74</td></tr>
+          <tr><td>Oak Hill<small>37220</small></td><td class="w-price">$1,687,500</td><td>$2,850,858</td><td>1.7×</td><td>$447</td><td>83</td></tr>
+          <tr><td>Green Hills &amp; Forest Hills<small>37215</small></td><td class="w-price">$1,497,450</td><td>$2,190,447</td><td>1.5×</td><td>$429</td><td>68</td></tr>
+          <tr><td>Belle Meade &amp; West Meade<small>37205</small></td><td class="w-price">$1,230,000</td><td>$2,310,788</td><td>1.9×</td><td>$394</td><td>74</td></tr>
+          <tr><td>Franklin, north<small>37069</small></td><td class="w-price">$1,191,000</td><td>$2,065,261</td><td>1.7×</td><td>$360</td><td>79</td></tr>
+          <tr><td>Franklin, south<small>37064</small></td><td class="w-price">$1,112,500</td><td>$1,827,369</td><td>1.6×</td><td>$404</td><td>61</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="n-src n-src--mid">Realtor.com&reg; Research, active listings,
+       <span data-asof="luxzips">September 2026</span>. These are asking prices across what is on the
+       market, not closed sales &mdash; closed figures live in RealTracs and we will pull them for a
+       specific address. Refreshed monthly.</p>
+  </details>
+
+  <p class="p-lede" data-rise style="margin-top:clamp(2rem,4vh,2.8rem)">
+    <a class="prop__cta" href="neighborhoods.html">Closings by address, area by area<svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><path d="M2 1l3 3-3 3"/></svg></a>
+  </p>
   </div>
 </section>
 
