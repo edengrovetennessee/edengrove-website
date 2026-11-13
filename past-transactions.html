@@ -799,6 +799,14 @@ blockquote{
           mask-image:linear-gradient(90deg,transparent 0,#000 7%,#000 93%,transparent 100%);
 }
 .ticker::-webkit-scrollbar{display:none}
+/* It can be picked up and dragged, so it has to look like it can. The cursor
+   is the only affordance a row of photographs gets. */
+@media (hover:hover){ .ticker{cursor:grab} }
+.ticker.is-dragging{cursor:grabbing}
+/* Mid-drag nothing should select, and no card should answer the pointer -
+   a drag that ends on a card must not read as a press on it. */
+.ticker.is-dragging{user-select:none;-webkit-user-select:none}
+.ticker.is-dragging .prop{pointer-events:none}
 .ticker__track{display:flex;width:max-content}
 .ticker__set{display:flex}
 .ticker .prop{
@@ -1789,20 +1797,19 @@ addEventListener("keydown", e => {
 });
 
 /* ---- the past-transactions wheel ----
-   Two identical copies of the fourteen sit end to end in a scroll
-   container. Every frame the scroll position advances a fraction of a
-   pixel; when it passes one copy's width it is set back by exactly that
-   width, which is invisible because the two copies are identical. The
-   scroll position is read from the element each frame rather than kept in
-   a variable, so a hand on the row is not fighting the drift - whatever
-   the person scrolls to is where the drift continues from.
+   Identical copies of the fourteen sit end to end in a scroll container. Every
+   frame the scroll position advances a fraction of a pixel; it is held between
+   one copy's width and two, so a copy is always there to the left and another
+   to the right and no amount of shoving finds an edge. The seam is invisible
+   because the copies are identical.
 
-   PX_PER_SECOND is the only number worth touching. 12 is about a card's
-   width every twenty seconds. */
+   PX_PER_SECOND is the only number worth touching. 12 is about a card's width
+   every twenty seconds. */
 (() => {
   const el = document.querySelector(".ticker");
-  const set = el && el.querySelector(".ticker__set");
-  if (!el || !set) return;
+  const track = el && el.querySelector(".ticker__track");
+  const set = track && track.querySelector(".ticker__set");
+  if (!el || !track || !set) return;
 
   const PX_PER_SECOND = 12;
   const reduced = matchMedia("(prefers-reduced-motion: reduce)");
@@ -1810,61 +1817,105 @@ addEventListener("keydown", e => {
   let last = 0, holds = 0, raf = null;
   const held = () => holds > 0 || reduced.matches || document.hidden;
 
-  // THE POSITION IS KEPT AS A FLOAT HERE, not read back off the element
-  // every frame, and that is the whole reason this works. At 12px a second
-  // a frame is 0.19 of a pixel; the browser rounds scrollLeft to a whole
-  // number on the way back out, so reading it, adding 0.19 and writing it
-  // again returns 0 for ever and the row never moves. It has to accumulate
-  // somewhere the browser is not rounding.
+  // HOW MANY COPIES IS NOT A CONSTANT. The scroll lives in [w, 2w), so the
+  // right edge of the window sits at up to 2w + clientWidth and the track has
+  // to be at least that wide or the browser caps the scroll short of where we
+  // are asking it to go - which is the empty ground Ryan photographed. Three
+  // copies is enough only while one copy is wider than the window; a wide
+  // screen, a large text size or a zoomed page breaks that. So: clone until
+  // it clears, and check every frame, because a resize changes both numbers.
+  const ensureCopies = () => {
+    const w = set.getBoundingClientRect().width;
+    if (!(w > 0)) return 0;
+    const need = Math.max(3, Math.ceil((2 * w + el.clientWidth) / w) + 1);
+    let guard = 24;                       // a width that never settles must
+    while (track.children.length < need && guard-- > 0) {   // not hang the page
+      const copy = set.cloneNode(true);
+      copy.setAttribute("aria-hidden", "true");
+      copy.querySelectorAll("[tabindex]").forEach(n => n.setAttribute("tabindex", "-1"));
+      copy.querySelectorAll("[id]").forEach(n => n.removeAttribute("id"));
+      track.appendChild(copy);
+    }
+    return w;
+  };
+
+  // THE POSITION IS KEPT AS A FLOAT HERE, not read back off the element every
+  // frame, and that is the whole reason this works. At 12px a second a frame
+  // is 0.19 of a pixel; the browser rounds scrollLeft to a whole number on the
+  // way back out, so reading it, adding 0.19 and writing it again returns 0
+  // for ever and the row never moves.
   //
-  // `seen` is what the element reported after our last write. If it differs
-  // from that by more than a pixel at the top of a frame, something other
-  // than us moved it - a hand, a wheel, a flick - and we adopt that rather
-  // than dragging it back.
-  // Start in the middle copy rather than at zero, or the first thing anyone
-  // sees is the one scroll position that has nothing to its left.
-  let want = set.getBoundingClientRect().width, seen = want;
-  el.scrollLeft = want;
+  // `seen` is what the element reported after our last write. If it differs by
+  // more than a pixel at the top of a frame, something other than us moved it
+  // - a hand, a wheel, a flick - and we adopt that rather than dragging it
+  // back.
+  let want = 0, seen = 0;
+
+  const wrap = (w) => {
+    if (!(w > 0)) return;
+    while (want >= 2 * w) want -= w;
+    while (want < w)      want += w;
+  };
+
+  const place = (w) => {
+    el.scrollLeft = want;
+    seen = el.scrollLeft;
+    // IT DID NOT GO WHERE IT WAS TOLD. Only one thing does that: an edge, and
+    // by now there should not be one. Rather than sit against it for the rest
+    // of the session - which is exactly what the screenshot showed - fall back
+    // a whole copy, which lands on the identical card and cannot be seen.
+    if (w > 0 && Math.abs(seen - want) > 1) {
+      want = seen > w ? seen - w : seen + w;
+      el.scrollLeft = want;
+      seen = el.scrollLeft;
+    }
+  };
+
+  // Start in the second copy rather than at zero, or the first thing anybody
+  // sees is the one scroll position with nothing to its left.
+  {
+    const w = ensureCopies();
+    want = w || 0;
+    place(w);
+  }
 
   const frame = (t) => {
-    // A long frame - a background tab, a slow paint - must not teleport it.
-    const dt = Math.min((t - last) / 1000, 0.05);
-    last = t;
-
+    const dt = Math.min((t - last) / 1000, 0.05);  // a long frame - a
+    last = t;                                      // background tab, a slow
+                                                   // paint - must not teleport
     const now = el.scrollLeft;
     if (Math.abs(now - seen) > 1.5) want = now;
 
     if (!held() && dt > 0) want += PX_PER_SECOND * dt;
 
-    // THREE COPIES, AND THE SCROLL LIVES IN THE MIDDLE ONE. With two, the
-    // track has ends, and an end can be reached: a hard flick on a trackpad
-    // or a rubber-band overscroll on a Mac lands past the last card and
-    // shows empty ground where a row of houses should be. Held between one
-    // copy and two, there is always a full copy of cards to the left and a
-    // full copy to the right, so no amount of shoving finds an edge.
-    const w = set.getBoundingClientRect().width;
-    if (w > 0) {
-      while (want >= 2 * w) want -= w;
-      while (want < w)      want += w;
-    }
-    el.scrollLeft = want;
-    seen = el.scrollLeft;
+    const w = ensureCopies();
+    wrap(w);
+    place(w);
     raf = requestAnimationFrame(frame);
   };
 
+  // A flick can outrun a frame. Wrapping again on the scroll event means the
+  // browser's own momentum cannot paint an edge between two of ours.
+  el.addEventListener("scroll", () => {
+    const w = set.getBoundingClientRect().width;
+    if (!(w > 0)) return;
+    const now = el.scrollLeft;
+    if (now >= 2 * w || now < w) { want = now; wrap(w); place(w); }
+  }, { passive: true });
+
   // Everything that should stop the drift, and nothing that should not.
-  // Counted rather than a boolean: a pointer down inside a hover is two
-  // holds, and releasing one must not resume while the other stands.
+  // Counted rather than a boolean: a pointer down inside a hover is two holds,
+  // and releasing one must not resume while the other stands.
   const hold = () => { holds++; };
   const free = () => { holds = Math.max(0, holds - 1); };
 
   el.addEventListener("pointerenter", e => { if (e.pointerType !== "touch") hold(); });
   el.addEventListener("pointerleave", e => { if (e.pointerType !== "touch") free(); });
-  // A KEYBOARD focus holds it; a tap does not. Tapping a card focuses it -
-  // the cards carry tabindex so their numbers can be reached - and focus
-  // from a tap never leaves, so holding on it stopped the row dead the
-  // first time anyone touched a card and it never started again. That was
-  // half of what Ryan saw. :focus-visible is exactly this distinction.
+  // A KEYBOARD focus holds it; a tap does not. Tapping a card focuses it - the
+  // cards carry tabindex so their numbers can be reached - and focus from a
+  // tap never leaves, so holding on it stopped the row dead the first time
+  // anybody touched a card and it never started again. :focus-visible is
+  // exactly this distinction.
   let focusHold = false;
   el.addEventListener("focusin", e => {
     const keyboard = e.target && e.target.matches && e.target.matches(":focus-visible");
@@ -1874,20 +1925,68 @@ addEventListener("keydown", e => {
     if (focusHold) { focusHold = false; free(); }
   });
 
-  // Touch has no hover to lean on. A finger down holds it; letting go gives
-  // a beat before the drift returns, so a flick can coast out first.
+  // Touch has no hover to lean on. A finger down holds it; letting go gives a
+  // beat before the drift returns, so a flick can coast out first.
   let release = null;
   el.addEventListener("touchstart", () => { clearTimeout(release); hold(); }, { passive: true });
   el.addEventListener("touchend",   () => { release = setTimeout(free, 1200); }, { passive: true });
   el.addEventListener("touchcancel",() => { release = setTimeout(free, 1200); }, { passive: true });
 
-  // A wheel or a trackpad over the row is the same intent as a finger.
+  // PICK IT UP AND MOVE IT. Hovering stopping the drift is no use to somebody
+  // on a mouse: there was nothing to push. Each move applies its own delta
+  // rather than measuring back to where the drag started, so the loop can wrap
+  // underneath a drag - and over a long drag it will - without the row jumping
+  // back a copy's width in the hand.
+  let drag = null;
+  el.addEventListener("pointerdown", e => {
+    if (e.pointerType === "touch" || e.button !== 0) return;
+    drag = { x: e.clientX, moved: false, id: e.pointerId };
+    hold();
+  });
+  addEventListener("pointermove", e => {
+    if (!drag || e.pointerId !== drag.id) return;
+    const dx = e.clientX - drag.x;
+    if (!drag.moved) {
+      if (Math.abs(dx) < 4) return;        // a press is not a drag
+      drag.moved = true;
+      el.classList.add("is-dragging");
+      try { el.setPointerCapture(drag.id); } catch (_) {}
+    }
+    drag.x = e.clientX;
+    want -= dx;
+    const w = set.getBoundingClientRect().width;
+    wrap(w); place(w);
+  });
+  const dragEnd = (e) => {
+    if (!drag || (e && e.pointerId !== drag.id)) return;
+    try { el.releasePointerCapture(drag.id); } catch (_) {}
+    drag = null;
+    // The class comes off a frame later so the click that ends the drag still
+    // finds pointer-events:none on the cards and does not register as a press.
+    requestAnimationFrame(() => el.classList.remove("is-dragging"));
+    free();
+  };
+  addEventListener("pointerup", dragEnd);
+  addEventListener("pointercancel", dragEnd);
+
+  // A WHEEL OVER THE ROW MOVES THE ROW. A trackpad can already swipe it
+  // sideways; a mouse only has a vertical wheel, and over a horizontal row
+  // that is plainly meant for it. Taken only when the gesture is vertical and
+  // there is somewhere to go, so a sideways swipe stays native and the page
+  // still scrolls everywhere else.
   let wheelIdle = null, wheeling = false;
-  el.addEventListener("wheel", () => {
+  el.addEventListener("wheel", e => {
     if (!wheeling) { wheeling = true; hold(); }
     clearTimeout(wheelIdle);
     wheelIdle = setTimeout(() => { wheeling = false; free(); }, 900);
-  }, { passive: true });
+
+    if (Math.abs(e.deltaY) > Math.abs(e.deltaX) && e.deltaY !== 0) {
+      e.preventDefault();
+      want += e.deltaY * (e.deltaMode === 1 ? 16 : 1);
+      const w = set.getBoundingClientRect().width;
+      wrap(w); place(w);
+    }
+  }, { passive: false });
 
   addEventListener("visibilitychange", () => { last = performance.now(); });
   raf = requestAnimationFrame(t => { last = t; frame(t); });
