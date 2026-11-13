@@ -712,7 +712,15 @@ blockquote{
    Same furniture as the home hero — bar, media, scrim — but shorter, and the
    title sits in the middle rather than the mark. An interior page should not
    ask for a full screen before it shows you anything. */
-.banner{position:relative;height:82svh;min-height:30rem;overflow:hidden}
+/* THE FRAME IS THE PHOTOGRAPH'S OWN SHAPE, not a slice of the window.
+   A viewport-unit height made the crop a function of how tall the browser
+   happened to be - 1.88 at 1512x982, 2.63 at 1512x700 - against a 1.76
+   photograph, so a short window ate the lawn and the driveway at the bottom and the sky at the
+   top. At 1664/945 nothing is cropped at any width. Do not put a min-height
+   back on this: an aspect-ratio derives width from height and the pair sets an
+   implied minimum width (trap 1, which shipped once already on the team
+   banner). The phone rule below is where a floor belongs. */
+.banner{position:relative;aspect-ratio:1664/945;overflow:hidden}
 .banner__inner{
   position:absolute;inset:0;z-index:10;
   display:grid;place-items:center;text-align:center;
@@ -743,6 +751,20 @@ blockquote{
   font-size:.72rem;letter-spacing:.08em;color:#fff;
 }
 .banner--listing .prop__facts .k{color:var(--w2);margin-right:.4rem}
+/* WHEN SOMETHING MUST BE CROPPED, CROP THE SKY. At the frame above nothing
+   is, so this changes nothing today - but a phone, a future photograph of a
+   different shape or anything else that makes the frame taller than the
+   picture will take it off the top instead of off the grass. There is a lot of
+   sky in this photograph and only a strip of lawn. */
+.banner--listing .hero__media{object-position:50% 74%}
+
+/* ON A PHONE the address, the price and the MLS number sit over this picture
+   and need somewhere to sit, so the frame does go taller than the photograph
+   here and the rule above earns its keep. The floor belongs in this rule and
+   not beside an aspect-ratio - trap 1, which shipped once already. */
+@media (max-width:760px){
+  .banner{aspect-ratio:auto;height:82svh;min-height:30rem}
+}
 .banner--listing .hero__scrim{
   background:
     linear-gradient(to bottom, rgba(8,10,7,.55) 0%, rgba(8,10,7,.18) 16%, rgba(8,10,7,0) 38%),
