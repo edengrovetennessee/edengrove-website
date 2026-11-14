@@ -20,7 +20,8 @@
   const host = document.getElementById("mp-gl");
   const svg  = document.querySelector(".mp__svg");
   const data = JSON.parse(document.getElementById("mp-data").textContent);
-  if (!mp || !host || !svg) return;
+  if (!mp || !host) return;          // svg is optional: properties.html
+                                     // has a map with no drawing under it
 
   /* ---- the fallback -----------------------------------------------------
      The page ships with county outlines and water only. If we end up here
@@ -33,6 +34,9 @@
     host.remove();
     mp.classList.add("is-flat");
     if (window.console) console.info("[map] drawn fallback:", why);
+    // Nothing to fall back ONTO on a page with no drawing. is-flat is still
+    // set, which is what reveals that page's one line of type.
+    if (!svg) return;
     fetch("data/map-basemap.json")
       .then(r => r.ok ? r.json() : Promise.reject(r.status))
       .then(d => {

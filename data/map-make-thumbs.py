@@ -23,7 +23,7 @@ W, H, Q = 560, 370, 74
 
 names = sorted(n[:-4] for n in os.listdir(SRC)
                if n.startswith("hood-") and n.endswith(".jpg"))
-names += ["dv-hero", "jd-hero", "n9-hero", "sh-hero", "ut-hero"]
+names += ["cs-hero", "dv-hero", "jd-hero", "n9-hero", "sh-hero", "ut-hero"]
 
 os.makedirs(OUT, exist_ok=True)
 total = 0
