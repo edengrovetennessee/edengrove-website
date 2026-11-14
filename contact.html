@@ -1257,6 +1257,7 @@ blockquote{
         <option>A property I have seen elsewhere</option>
         <option>Private showing</option>
         <option>Compass Private Exclusives</option>
+        <option>The Platinum Reserve</option>
         <option>Selling my home</option>
         <option>Something else</option>
       </select>
@@ -1560,6 +1561,38 @@ addEventListener("keydown", e => {
    time and the real client IP. This page can say what wording it displayed;
    it cannot vouch for when or from where. */
 const CONTACT_ENDPOINT = "https://dashboard.edengrovetennessee.com/__contact";
+
+/* ---- arriving from somewhere that already knows what you want ----
+   buyers.html and the home page's Platinum Reserve box send people here with
+   ?topic=reserve, and the home page passes the address they already typed.
+   Choosing it for them is the difference between a link that answers the
+   question and a link that asks it again.
+
+   Matched against the options actually in the list rather than a second copy
+   of their wording kept here: a list that drifts from its own deep links is a
+   bug nobody sees until somebody lands on a form with nothing chosen. */
+(() => {
+  const q = new URLSearchParams(location.search);
+  const sel = document.getElementById("cTopic");
+  const want = (q.get("topic") || "").toLowerCase();
+  if (sel && want) {
+    const hit = [...sel.options].find(o =>
+      o.value && o.text.toLowerCase().replace(/[^a-z]/g, "").includes(
+        want.replace(/[^a-z]/g, "")));
+    if (hit) sel.value = hit.value || hit.text;
+  }
+  const email = q.get("email");
+  if (email) { const f = document.getElementById("cEmail"); if (f) f.value = email; }
+  if (want || email) {
+    const form = document.getElementById("contactForm");
+    if (form) {
+      form.scrollIntoView({ block: "center" });
+      const first = document.getElementById("cName");
+      if (first && !first.value) first.focus({ preventScroll: true });
+    }
+  }
+})();
+
 
 const contactForm = document.getElementById("contactForm");
 if (contactForm) {

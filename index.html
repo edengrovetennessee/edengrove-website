@@ -1348,15 +1348,27 @@ if (saysItems.length) {
 }
 
 /* ---- private access ----
-   No endpoint yet, so it says so. Showing a thank-you for an address that was
-   never stored is the one thing this must not do. */
+   THIS BOX HAS NO ENDPOINT OF ITS OWN and it still must not show a thank-you
+   for an address nobody stored. Until the list is wired, it hands the address
+   to the contact form, which is wired, verified, and records a real enquiry -
+   so the person ends up on the list either way and is never told something
+   untrue. The address travels in the URL so they do not type it twice.
+
+   When the list is live, post from here and delete this hand-off. */
 const accessForm = document.getElementById("accessForm");
 if (accessForm) {
   const note = document.getElementById("accessNote");
   accessForm.addEventListener("submit", e => {
     e.preventDefault();
-    note.textContent = "Sign-up opens shortly — nothing has been sent.";
+    const email = (document.getElementById("accessEmail") || {}).value || "";
+    if (!email.trim() || !/.+@.+\..+/.test(email)) {
+      note.textContent = "Please add an email address.";
+      note.setAttribute("data-on", "");
+      return;
+    }
+    note.textContent = "One moment — taking you to the request form.";
     note.setAttribute("data-on", "");
+    location.href = "contact.html?topic=reserve&email=" + encodeURIComponent(email.trim());
   });
 }
 
