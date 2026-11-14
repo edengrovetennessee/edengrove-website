@@ -1476,6 +1476,43 @@ blockquote{
 .sg-back:hover,.sg-back:focus-visible{color:var(--brass);outline:none}
 .sg-back svg{width:.62rem;height:.62rem;fill:currentColor;color:var(--brass);
   transform:scaleX(-1);flex:none}
+
+/* ---- 1663 Summitridge ----
+   The page's gallery furniture comes from the property-page sheet, which is
+   already here: .p-gal__row is three across, --2 is two, --1 is one at 21:9.
+   Two things it does not have. The rows need air between them, and nine of
+   these frames are 600x750 - a portrait photograph in a 3/2 slot loses the
+   ceiling and the floor, which in a house by a builder who is selling his
+   ceilings is the wrong half to lose. */
+.lb-gal{max-width:72rem;margin:clamp(2rem,5vh,3rem) auto 0;padding:0 var(--gutter)}
+.lb-gal .p-gal__row + .p-gal__row{margin-top:clamp(.35rem,.7vw,.8rem)}
+.lb-gal .p-gal__row--1{grid-template-columns:1fr}   /* one frame, one track:
+   the shared sheet sets --1's aspect and not its columns, so a lone child
+   was sitting in the first of three tracks at a third of the width */
+.lb-gal--tall .p-shot{aspect-ratio:4/5}
+
+/* ---- the founder ----
+   The mark and the man in one column, the same width, so the first column of
+   .lb-firm stays 11rem and the grid underneath is untouched. */
+.lb-firm__col{display:grid;gap:clamp(1rem,2.4vh,1.5rem);justify-items:center}
+.lb-firm__who{margin:0;width:11rem}
+.lb-firm__who img{
+  width:100%;aspect-ratio:4/5;object-fit:cover;display:block;
+  filter:saturate(.94) brightness(.94);
+}
+.lb-firm__who figcaption{
+  margin-top:.85rem;text-align:center;font-family:var(--ui);font-weight:300;
+  font-size:.74rem;letter-spacing:.1em;color:var(--t2);
+}
+.lb-firm__who figcaption span{
+  display:block;margin-top:.3rem;font-size:.56rem;
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:var(--t3);
+}
+@media (max-width:700px){
+  .lb-firm__col{grid-auto-flow:column;gap:1.6rem;align-items:start}
+  .lb-firm__who{width:8.5rem}
+  .lb-firm__mark{width:8.5rem;height:8.5rem;padding:1rem}
+}
 </style>
 <link rel="canonical" href="https://edengrovetennessee.com/developer/liebo-builders/">
 <meta property="og:type" content="website">
@@ -1599,6 +1636,55 @@ blockquote{
       standard &mdash; down to the stone, the joinery and the way the light
       comes in.</figcaption>
   </figure>
+
+  <!-- Ten frames of 1663 Summitridge, from the Liebo Builders Spotlight. The
+       page named this house and showed none of it. Order as the spotlight
+       runs them: the terrace, two rooms, the dining deck and a bedroom, then
+       the motor court at night. -->
+  <div class="p-gal lb-gal">
+    <div class="p-gal__row p-gal__row--1">
+      <span class="p-shot"><img src="../../media/lb-sr-1.jpg" alt="1663 Summitridge: the pool and terrace at dusk" loading="lazy" decoding="async"></span>
+    </div>
+    <div class="p-gal__row p-gal__row--2 lb-gal--tall">
+      <span class="p-shot"><img src="../../media/lb-sr-2.jpg" alt="1663 Summitridge: the living room, double height in white oak" loading="lazy" decoding="async"></span>
+      <span class="p-shot"><img src="../../media/lb-sr-3.jpg" alt="1663 Summitridge: the primary bedroom" loading="lazy" decoding="async"></span>
+    </div>
+    <div class="p-gal__row p-gal__row--2 lb-gal--tall">
+      <span class="p-shot"><img src="../../media/lb-sr-4.jpg" alt="1663 Summitridge: dining on the terrace" loading="lazy" decoding="async"></span>
+      <span class="p-shot"><img src="../../media/lb-sr-5.jpg" alt="1663 Summitridge: a bedroom open to the deck" loading="lazy" decoding="async"></span>
+    </div>
+    <p class="p-gal__note">1663 Summitridge &middot; Los Angeles</p>
+  </div>
+</section>
+
+
+<!-- ============================ THE STANDARD =============================
+     Verbatim from the Liebo Builders Spotlight. It is the argument the page
+     was missing: How They Work is process, this is what goes into the parts
+     of a house nobody ever sees.
+     ===================================================================== -->
+<section class="p-sec p-sec--tight" aria-labelledby="std-h">
+  <h2 class="p-eyebrow" id="std-h">Details and Standard</h2>
+
+  <div class="lb-prose lb-prose--one">
+    <p>The standard starts where most buyers never look. Liebo builds the
+       envelope the way it&rsquo;s done on the hillsides of Los&nbsp;Angeles,
+       with layered waterproofing, careful flashing at every opening and
+       framing held to tight tolerances. The finish is craftsmanship, not
+       trim: millwork, stone and joinery fitted by hand, so a Liebo home looks
+       right on day one and holds up for decades.</p>
+  </div>
+
+  <div class="p-gal lb-gal">
+    <div class="p-gal__row p-gal__row--2 lb-gal--tall">
+      <span class="p-shot"><img src="../../media/lb-sr-7.jpg" alt="A Liebo kitchen: stone island, white oak, integrated appliances" loading="lazy" decoding="async"></span>
+      <span class="p-shot"><img src="../../media/lb-sr-8.jpg" alt="A panelled hall running to daylight" loading="lazy" decoding="async"></span>
+    </div>
+    <div class="p-gal__row p-gal__row--2 lb-gal--tall">
+      <span class="p-shot"><img src="../../media/lb-sr-9.jpg" alt="The dressing room, in stone and white oak" loading="lazy" decoding="async"></span>
+      <span class="p-shot"><img src="../../media/lb-sr-10.jpg" alt="The study, with joinery fitted to the room" loading="lazy" decoding="async"></span>
+    </div>
+  </div>
 </section>
 
 <!-- ============================== HOW THEY WORK =========================== -->
@@ -1657,19 +1743,20 @@ blockquote{
       <p class="sg-work__more">View the property</p>
     </a>
 
-    <!-- NO PHOTOGRAPH, DELIBERATELY. media/listing-clematis-735.jpg exists and
-         properties.html uses it, but it is a generic golden-hour field and
-         treeline, not this house and not anything in West Meade. Putting it
-         here would caption a stock landscape with a real address. The reserved
-         frame says what is missing instead. -->
+    <!-- The frame here was deliberately empty: the only picture of this
+         address was a generic golden-hour field, and captioning a stock
+         landscape with a real address is worse than an empty frame. The
+         Liebo Builders Spotlight carried the real rendering, so the frame is
+         filled and that note is answered. -->
     <a class="sg-work" href="../../properties.html">
-      <div class="sg-work__frame sg-work__frame--none">
-        <span>Photography to come</span>
+      <div class="sg-work__frame">
+        <img src="../../media/lb-clematis.jpg" alt="Rendering: 735 Clematis Dr, West Meade"
+             loading="lazy" decoding="async">
       </div>
       <p class="sg-work__state">Private Exclusive &middot; 2027</p>
       <h3 class="sg-work__addr">735 Clematis Dr<br>West Meade &middot; Nashville, TN 37205</h3>
       <p class="sg-work__line">The second Liebo home here, and the first in West
-         Meade. Details to come.</p>
+         Meade.</p>
       <p class="sg-work__more">Register interest</p>
     </a>
 
@@ -1708,9 +1795,16 @@ blockquote{
   <h2 class="p-eyebrow" id="firm-h">The Firm</h2>
 
   <div class="lb-firm">
-    <div class="lb-firm__mark">
-      <img src="../../media/build-liebo.png" alt="Liebo Builders"
-           width="498" height="499" loading="lazy" decoding="async">
+    <div class="lb-firm__col">
+      <div class="lb-firm__mark">
+        <img src="../../media/build-liebo.png" alt="Liebo Builders"
+             width="498" height="499" loading="lazy" decoding="async">
+      </div>
+      <figure class="lb-firm__who">
+        <img src="../../media/lb-joe.jpg" alt="Joe Liebowitz, founder of Liebo Builders"
+             width="384" height="480" loading="lazy" decoding="async">
+        <figcaption>Joe Liebowitz<span>Founder</span></figcaption>
+      </figure>
     </div>
     <div class="lb-firm__body">
       <p class="lb-firm__name">Liebo Builders</p>
