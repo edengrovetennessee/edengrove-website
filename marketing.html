@@ -1061,7 +1061,12 @@ blockquote{
   position:absolute;width:1px;height:1px;margin:-1px;padding:0;
   overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0;
 }
-.pitch__media iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+/* MATCHED BY CLASS, NOT BY TAG. `.pitch__media iframe` also catches the two
+   property-site previews, which are iframes in a .pitch__media that render at
+   1440px and are scaled to fit - and it outranks .sitewin__frame on
+   specificity, so it collapsed them to 44% of their frame with black beside
+   them. Only the player gets this. */
+.pitch__media .film__player{position:absolute;inset:0;width:100%;height:100%;border:0}
 /* Nothing drifts under reduced motion, here as everywhere else on this page. */
 @media (prefers-reduced-motion:reduce){
   .film__play{transition:none}
@@ -1187,7 +1192,7 @@ blockquote{
         <p class="story__p">Then it is shot properly: editorial photography, motion and aerial work. Our photographer shoots for Architectural Digest. The land is photographed as carefully as the rooms, because at this level the setting is often what is really being bought.</p>
 <div class="pitch__media">
   <button class="film" type="button" data-film="OGGmaeCed5Q">
-    <img loading="lazy" decoding="async" src="media/mkt-2.jpg" alt="">
+    <img loading="lazy" decoding="async" src="media/mkt-2.jpg" alt="Aerial view of the pool, terrace and roofline at 2502 9th Avenue South">
     <span class="film__play" aria-hidden="true"></span>
     <span class="film__label">Play the film</span>
   </button>
@@ -1739,6 +1744,7 @@ addEventListener("keydown", e => {
       const id = btn.dataset.film;
       if (!id) return;
       const f = document.createElement("iframe");
+      f.className = "film__player";   // the styles match this, not `iframe`
       f.src = "https://www.youtube-nocookie.com/embed/" + id +
               "?autoplay=1&rel=0&modestbranding=1&playsinline=1";
       f.title = "Eden Grove - the full production";
