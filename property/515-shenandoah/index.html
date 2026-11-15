@@ -1041,8 +1041,9 @@ blockquote{
 @media (prefers-reduced-motion:reduce){ .p-map__frame iframe{transition:none} }
 
 /* ---- behind the build ----
-   Developer, builder, architect, designer. Four square slots that take either
-   a portrait or a logo — a lot of builders would rather show the mark. */
+   Developer, builder, architect, designer, landscape. Names only: no
+   portraits and no marks, so the row never depends on who happens to have
+   sent a headshot. */
 .p-build__grid{
   max-width:80rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
   display:grid;grid-template-columns:repeat(4,1fr);
@@ -1051,21 +1052,6 @@ blockquote{
 /* These cards read as short editorial entries rather than badges, so they set
    left — a paragraph of ragged-center text in a 290px column is hard work. */
 .p-partner{text-align:left}
-.p-partner__photo{
-  aspect-ratio:1;overflow:hidden;margin:0 0 clamp(1.1rem,2.4vh,1.5rem);
-  background:#1b1f19;border:1px solid rgba(182,169,124,.22);
-}
-.p-partner__photo img{width:100%;height:100%;object-fit:cover;display:block}
-/* A PARTNER WITH NO PORTRAIT OR MARK YET. The frame already carries its own
-   hairline and ground, so it holds the row without a picture and says what is
-   missing - the same decision as the empty project frames on the developer
-   pages and the Coming Soon panels on properties.html. Not a grey box, and
-   not somebody else's photograph. */
-.p-partner__photo--none{display:grid;place-items:center}
-.p-partner__photo--none span{
-  font-family:var(--ui);font-weight:300;font-size:.55rem;
-  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:var(--t3);
-}
 .p-partner__role{
   margin:0;font-weight:400;font-size:.55rem;
   letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--brass);
@@ -1084,14 +1070,14 @@ blockquote{
 @media (max-width:520px){ .p-build__grid{grid-template-columns:1fr} }
 /* Three roles instead of four — narrower grid so the row stays centered and the
    cards keep their proportions rather than leaving a gap on the right. */
-/* The developer gets the width the other three share between them: photo on
-   the left, the firm on the right. Same band 715 Davis uses for Liebo. */
+/* The developer gets the width the other four share between them. It was a
+   two-column band with a portrait on the left; with the portrait gone it is
+   one column of the same width. */
 .p-build--solo{
   max-width:56rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
-  display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.5fr);
+  display:grid;grid-template-columns:minmax(0,1fr);
   gap:clamp(1.8rem,4vw,3.2rem);align-items:start;
 }
-@media (max-width:760px){ .p-build--solo{grid-template-columns:1fr} }
 /* The way out to the portfolio. Same brass hairline as the film caption,
    because it is the same kind of thing: a second door out of this page. */
 .p-build__link{
@@ -1570,11 +1556,6 @@ blockquote{
        about its founder wearing the firm's name. -->
   <div class="p-build--solo">
     <div class="p-partner">
-      <div class="p-partner__photo">
-        <img src="../../media/agent-blake.jpg" alt="Blake Barker, founder of Shepherd Group Development" loading="lazy" decoding="async">
-      </div>
-    </div>
-    <div class="p-partner">
       <p class="p-partner__role">Developer</p>
       <p class="p-partner__name">Shepherd Group Development</p>
       <p>Shepherd Group is Blake Barker&rsquo;s development company, founded to
@@ -1594,11 +1575,8 @@ blockquote{
   <!-- The other three keep their cards, three across rather than four. -->
   <div class="p-build__grid p-build__grid--3">
     <div class="p-partner">
-      <div class="p-partner__photo">
-        <img src="../../media/build-chase.jpg" alt="Chase Pasternak" loading="lazy" decoding="async">
-      </div>
       <p class="p-partner__role">Builder</p>
-      <p class="p-partner__name">Chase Pasternak</p>
+      <p class="p-partner__name">PW Estates</p>
       <p>Chase Pasternak is a Texas native, born and raised in Paris, with a
          strong foundation in faith, family, and service. A proud graduate of
          Ole Miss, Chase began his professional journey as a real estate agent
@@ -1619,9 +1597,6 @@ blockquote{
       <button class="p-partner__toggle" aria-expanded="false" aria-controls="bio-builder">Read More</button>
     </div>
     <div class="p-partner">
-      <div class="p-partner__photo">
-        <img src="../../media/build-andrew.jpg" alt="Andrew King" loading="lazy" decoding="async">
-      </div>
       <p class="p-partner__role">Architect</p>
       <p class="p-partner__name">Andrew King</p>
       <p>Andrew King is a Nashville-based luxury home architect with more than
@@ -1637,12 +1612,9 @@ blockquote{
       <button class="p-partner__toggle" aria-expanded="false" aria-controls="bio-architect">Read More</button>
     </div>
     <div class="p-partner">
-      <div class="p-partner__photo">
-        <img src="../../media/build-carli.jpg" alt="Carli Grommet" loading="lazy" decoding="async">
-      </div>
       <p class="p-partner__role">Interior Design</p>
-      <p class="p-partner__name">Carli Grommet</p>
-      <p>Owner and principal designer of CG Studio Interiors. A northwest soul
+      <p class="p-partner__name">CG Studios</p>
+      <p>Owner and principal designer of CG Studios. A northwest soul
          born and raised in Seattle, Washington, Carli has been practicing
          interior design in the Nashville area since graduating with a B.S. in
          Interior Design from Abilene Christian University in 2017.</p>
@@ -1668,7 +1640,6 @@ blockquote{
       <button class="p-partner__toggle" aria-expanded="false" aria-controls="bio-design">Read More</button>
     </div>
     <div class="p-partner">
-      <div class="p-partner__photo p-partner__photo--none"><span>Mark to come</span></div>
       <p class="p-partner__role">Landscape Architecture</p>
       <p class="p-partner__name">The Addison Group</p>
       <p>The grounds at 515 Shenandoah, including the planting and the pool and
