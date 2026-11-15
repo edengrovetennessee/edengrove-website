@@ -1387,6 +1387,10 @@ blockquote{
   transition:color .4s var(--rise);
 }
 .tl__out:hover,.tl__out:focus-visible{color:var(--brass);outline:none}
+/* A WEEK CAN CARRY TWO WAYS OUT NOW: where the subject lives, and the
+   sign-up. They are inline, so the markup newline already gives them a
+   space; this just makes it a gap you can see. */
+.tl__out + .tl__out{margin-left:clamp(.9rem,2.5vw,1.8rem)}
 .tl__out svg{width:.56rem;height:.56rem;fill:currentColor;color:var(--brass);flex:none}
 /* One, two or three photographs. One runs full width; two and three share
    the row. Nothing to configure: the count decides. */
@@ -1841,7 +1845,7 @@ blockquote{
          locked, throttled and already strips the honeypot. It emails
          connect@; the address is then added to the Mailchimp audience by
          hand. Nothing here is ever told it was sent unless it was. -->
-    <div class="tl__follow">
+    <div class="tl__follow" id="follow">
       <div>
       <p class="tl__follow__h">By Email</p>
       <p class="tl__follow__p">Construction Excellence and the 715 Davis
@@ -1849,9 +1853,9 @@ blockquote{
          while the house is going up, and nothing else.</p>
 
       <ul class="tl__next">
-        <li><b>2 Nov</b> Meet Liebo Builders</li>
-        <li><b>9 Nov</b> The Exteriors</li>
-        <li><b>16 Nov</b> The Kitchen</li>
+        <li><b>16 Nov</b> Meet Liebo Builders</li>
+        <li><b>23 Nov</b> The Exteriors</li>
+        <li><b>30 Nov</b> The Kitchen</li>
       </ul>
 
       <form class="tl__form" id="followForm" novalidate>
@@ -1971,6 +1975,10 @@ blockquote{
      the bottom of this file. -->
 <section class="p-sec p-sec--tight" aria-labelledby="tl-h">
   <h2 class="p-eyebrow" id="tl-h">The Timeline</h2>
+  <div class="p-lede">
+    <p>Every email in the series, in the order it went out. The ones already
+       sent stay here, and you can pick up the next one at any point.</p>
+  </div>
 
   <div class="tl">
 
@@ -1991,6 +1999,10 @@ blockquote{
         <a class="tl__out" href="../">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
           View the Property
+        </a>
+        <a class="tl__out" href="#follow">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l6 6h-4v8h-4v-8H6z"/></svg>
+          Follow by Email
         </a>
       </div>
     </article>
@@ -2017,6 +2029,10 @@ blockquote{
         </a>
 
 
+        <a class="tl__out" href="#follow">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l6 6h-4v8h-4v-8H6z"/></svg>
+          Follow by Email
+        </a>
       </div>
     </article>
 
@@ -2038,6 +2054,10 @@ blockquote{
           <a href="../../../media/dv-out-1.jpg"><img src="../../../media/dv-out-1.jpg" alt="Rendering: the screened porch and outdoor kitchen" loading="lazy" decoding="async"></a>
         </div>
         <p class="tl__capt">Renderings &middot; the site photographs come with the email</p>
+        <a class="tl__out" href="#follow">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l6 6h-4v8h-4v-8H6z"/></svg>
+          Follow by Email
+        </a>
       </div>
     </article>
 
@@ -2057,6 +2077,10 @@ blockquote{
           <a href="../../../media/dv-kit-2.jpg"><img src="../../../media/dv-kit-2.jpg" alt="Rendering: four seats at the island" loading="lazy" decoding="async"></a>
         </div>
         <p class="tl__capt">Renderings &middot; the site photographs come with the email</p>
+        <a class="tl__out" href="#follow">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l6 6h-4v8h-4v-8H6z"/></svg>
+          Follow by Email
+        </a>
       </div>
     </article>
 
