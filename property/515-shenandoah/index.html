@@ -1572,8 +1572,11 @@ blockquote{
     </div>
   </div>
 
-  <!-- The other three keep their cards, three across rather than four. -->
-  <div class="p-build__grid p-build__grid--3">
+  <!-- Four cards, four across. It was three on a --3 grid; adding landscape
+       made it four, and four on a three-column grid leaves one card orphaned
+       on a row of its own at a third of the width. The base grid is already
+       four columns and already steps to two and then one. -->
+  <div class="p-build__grid">
     <div class="p-partner">
       <p class="p-partner__role">Builder</p>
       <p class="p-partner__name">PW Estates</p>
