@@ -1042,6 +1042,16 @@ blockquote{
   background:#1b1f19;border:1px solid rgba(182,169,124,.22);
 }
 .p-partner__photo img{width:100%;height:100%;object-fit:cover;display:block}
+/* A PARTNER WITH NO PORTRAIT OR MARK YET. The frame already carries its own
+   hairline and ground, so it holds the row without a picture and says what is
+   missing - the same decision as the empty project frames on the developer
+   pages and the Coming Soon panels on properties.html. Not a grey box, and
+   not somebody else's photograph. */
+.p-partner__photo--none{display:grid;place-items:center}
+.p-partner__photo--none span{
+  font-family:var(--ui);font-weight:300;font-size:.55rem;
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;color:var(--t3);
+}
 .p-partner__role{
   margin:0;font-weight:400;font-size:.55rem;
   letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--brass);
@@ -1543,6 +1553,13 @@ blockquote{
            spaces that fit their lifestyles and personalities.</p>
       </div></div>
       <button class="p-partner__toggle" aria-expanded="false" aria-controls="bio-design">Read More</button>
+    </div>
+    <div class="p-partner">
+      <div class="p-partner__photo p-partner__photo--none"><span>Mark to come</span></div>
+      <p class="p-partner__role">Landscape Architecture</p>
+      <p class="p-partner__name">The Addison Group</p>
+      <p>The grounds at 515 Shenandoah, including the planting and the pool and
+         spa surround.</p>
     </div>
   </div>
 </section>
