@@ -28,6 +28,13 @@
 
   /* the one warm note in the palette — status, rules, and the only call to action */
   --brass:#DACEB6;
+  /* The mark's own gold — 6.7:1 on the ink. This page referred to --gold
+     in eight places and never defined it, which is not a near miss: an
+     undefined custom property makes the whole declaration invalid at
+     computed-value time, so every tree on this map drew at fill's initial
+     value — pure black, on a #14170F ground. Same value as
+     neighborhoods.html, which had it all along. */
+  --gold:#B78F49;
   /* ---- the house scale -------------------------------------------------
      Three weights of text, one of rule, on each ground. The site was using
      33 opacities of the cream and 10 of the white; no single value was
@@ -1046,8 +1053,8 @@ blockquote{
 }
 /* A listing's address is too long to sit on the map permanently next to
    twenty-six names that are already solved tight, so it waits for the
-   cursor. The panel under the map carries the same thirteen addresses for
-   anyone without one. */
+   cursor. The panel of cards above the map carries every address in
+   writing for anyone without a pointer. */
 .mp__lbl--list{opacity:0;transition:opacity .3s var(--rise),fill .3s var(--rise)}
 .mp__pin--list:hover .mp__lbl--list,
 .mp__pin--list:focus-visible .mp__lbl--list{opacity:1;fill:#fff}
@@ -2954,8 +2961,22 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
 <!-- ============================ 5 · ON THE MAP ============================
      Ryan, 14 Nov: the cards first, the map as the answer to "where is that".
      The same pattern as neighborhoods.html and the same map.js, which already
-     knows how to draw a listing pin. Fourteen addresses as eleven pins; the
-     ten register-interest cards are not here because they publish no town.
+     knows how to draw a listing pin. One card and one pin per property, on
+     Ryan's instruction of 15 Nov: each house stands on its own rather than
+     sharing a card with its neighbours.
+
+     The ten register-interest houses are on here now too. That is a change
+     of policy, not of code: their own pages publish no town, and a pin
+     publishes the rooftop. Ryan's call as the licensee, made 15 Nov.
+
+     Coordinates are rooftop geocodes checked one at a time, never a street
+     centroid: a pin half a mile along the road is worse than no pin, since
+     somebody drives to it. Three addresses are off this map for exactly
+     that reason — 604 S 15th Ave, 916 Long Valley Rd and 1618B Stokes Ln
+     would not resolve to a rooftop and are not guessed at.
+
+     This comment used to state how many there were, and went stale the
+     first time the list moved. The data below is the only count.
      ===================================================================== -->
 <section class="mp" aria-labelledby="mp-h">
   <div class="mp__head">
@@ -2975,17 +2996,41 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
           <span class="pick__ph pick__ph--soon"><span>Coming Soon</span></span>
           <span class="pick__n">842 Brook Hollow Rd</span>
         </a>
+        <a class="pick__c" href="property/2112-eastwood/" data-pin="property/2112-eastwood/">
+          <span class="pick__ph pick__ph--soon"><span>Coming Soon</span></span>
+          <span class="pick__n">2112 Eastwood Ave</span>
+        </a>
+        <a class="pick__c" href="property/2305-cisco/" data-pin="property/2305-cisco/">
+          <span class="pick__ph pick__ph--soon"><span>Coming Soon</span></span>
+          <span class="pick__n">2305 Cisco St</span>
+        </a>
+        <a class="pick__c" href="property/828-belton/" data-pin="property/828-belton/">
+          <span class="pick__ph pick__ph--soon"><span>Coming Soon</span></span>
+          <span class="pick__n">828 Belton Dr</span>
+        </a>
         <a class="pick__c" href="property/2502-9th-ave-s/" data-pin="property/2502-9th-ave-s/">
           <span class="pick__ph"><img src="media/thumb/n9-hero.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
           <span class="pick__n">2502 9th Ave S</span>
+        </a>
+        <a class="pick__c" href="property/801-belton/" data-pin="property/801-belton/">
+          <span class="pick__ph pick__ph--soon"><span>Coming Soon</span></span>
+          <span class="pick__n">801 Belton Dr</span>
         </a>
         <a class="pick__c" href="property/735-clematis/" data-pin="property/735-clematis/">
           <span class="pick__ph pick__ph--soon"><span>Coming Soon</span></span>
           <span class="pick__n">735 Clematis Dr</span>
         </a>
-        <a class="pick__c" href="properties.html#p-clifton" data-pin="properties.html#p-clifton">
+        <a class="pick__c" href="property/795-rhonda/" data-pin="property/795-rhonda/">
           <span class="pick__ph pick__ph--soon"><span>Coming Soon</span></span>
-          <span class="pick__n">Clifton Ln &middot; two homes</span>
+          <span class="pick__n">795 Rhonda Ln</span>
+        </a>
+        <a class="pick__c" href="property/1306-clifton/" data-pin="property/1306-clifton/">
+          <span class="pick__ph"><img src="media/thumb/cl1306-hero.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">1306 Clifton Ln</span>
+        </a>
+        <a class="pick__c" href="property/1308-clifton/" data-pin="property/1308-clifton/">
+          <span class="pick__ph"><img src="media/thumb/cl1308-hero.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">1308 Clifton Ln</span>
         </a>
         <a class="pick__c" href="property/1211-jefferson-davis/" data-pin="property/1211-jefferson-davis/">
           <span class="pick__ph"><img src="media/thumb/jd-hero.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
@@ -2995,13 +3040,33 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
           <span class="pick__ph"><img src="media/thumb/cs-hero.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
           <span class="pick__n">1211 Carl Seyfert Memorial Dr</span>
         </a>
+        <a class="pick__c" href="property/6212-bridlewood/" data-pin="property/6212-bridlewood/">
+          <span class="pick__ph pick__ph--soon"><span>Coming Soon</span></span>
+          <span class="pick__n">6212 Bridlewood Ln</span>
+        </a>
         <a class="pick__c" href="property/515-shenandoah/" data-pin="property/515-shenandoah/">
           <span class="pick__ph"><img src="media/thumb/sh-hero.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
           <span class="pick__n">515 Shenandoah Dr</span>
         </a>
-        <a class="pick__c" href="properties.html#p-davis" data-pin="properties.html#p-davis">
-          <span class="pick__ph"><img src="media/thumb/dv-hero.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
-          <span class="pick__n">Davis Dr &middot; three homes</span>
+        <a class="pick__c" href="property/9003-carondelet/" data-pin="property/9003-carondelet/">
+          <span class="pick__ph pick__ph--soon"><span>Coming Soon</span></span>
+          <span class="pick__n">9003 Carondelet Pl</span>
+        </a>
+        <a class="pick__c" href="property/607-davis/" data-pin="property/607-davis/">
+          <span class="pick__ph"><img src="media/thumb/dv607-hero.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">607 Davis Dr</span>
+        </a>
+        <a class="pick__c" href="property/706-davis/" data-pin="property/706-davis/">
+          <span class="pick__ph pick__ph--soon"><span>Coming Soon</span></span>
+          <span class="pick__n">706 Davis Dr</span>
+        </a>
+        <a class="pick__c" href="property/715-davis/" data-pin="property/715-davis/">
+          <span class="pick__ph"><img src="media/thumb/dv715-hero.webp" alt="" loading="lazy" decoding="async" width="560" height="370"></span>
+          <span class="pick__n">715 Davis Dr</span>
+        </a>
+        <a class="pick__c" href="property/804-wilson-pike/" data-pin="property/804-wilson-pike/">
+          <span class="pick__ph pick__ph--soon"><span>Coming Soon</span></span>
+          <span class="pick__n">804 Wilson Pike</span>
         </a>
         <a class="pick__c" href="property/1310-lavada/" data-pin="property/1310-lavada/">
           <span class="pick__ph pick__ph--soon"><span>Coming Soon</span></span>
@@ -3302,7 +3367,7 @@ addEventListener("keydown", e => {
   addEventListener("load", () => { load(); start(); }, { once: true });
 })();
 </script>
-<script id="mp-data" type="application/json">{"pins":[{"kind":"listing","label":"4303A Utah Ave","lat":36.144442,"lon":-86.838127,"href":"property/4303a-utah/","count":1,"members":["4303A Utah Ave"],"county":"Davidson","img":"ut-hero"},{"kind":"listing","label":"842 Brook Hollow Rd","lat":36.132441,"lon":-86.88359,"href":"property/842-brook-hollow/","count":1,"members":["842 Brook Hollow Rd"],"county":"Davidson","img":null},{"kind":"listing","label":"2502 9th Ave S","lat":36.12379,"lon":-86.783569,"href":"property/2502-9th-ave-s/","count":1,"members":["2502 9th Ave S"],"county":"Davidson","img":"n9-hero"},{"kind":"listing","label":"735 Clematis Dr","lat":36.123152,"lon":-86.89523,"href":"property/735-clematis/","count":1,"members":["735 Clematis Dr"],"county":"Davidson","img":null},{"kind":"listing","label":"Clifton Ln","lat":36.113983,"lon":-86.795543,"href":"properties.html#p-clifton","count":2,"members":["1306 Clifton Ln","1308 Clifton Ln"],"county":"Davidson","img":null},{"kind":"listing","label":"1211 Jefferson Davis Dr","lat":36.061095,"lon":-86.815053,"href":"property/1211-jefferson-davis/","count":1,"members":["1211 Jefferson Davis Dr"],"county":"Davidson","img":"jd-hero"},{"kind":"listing","label":"1211 Carl Seyfert Memorial Dr","lat":36.05967,"lon":-86.815667,"href":"property/1211-carl-seyfert/","count":1,"members":["1211 Carl Seyfert Memorial Dr"],"county":"Williamson","img":"cs-hero"},{"kind":"listing","label":"515 Shenandoah Dr","lat":36.017639,"lon":-86.775555,"href":"property/515-shenandoah/","count":1,"members":["515 Shenandoah Dr"],"county":"Williamson","img":"sh-hero"},{"kind":"listing","label":"Davis Dr","lat":36.01127,"lon":-86.778382,"href":"properties.html#p-davis","count":3,"members":["607 Davis Dr","706 Davis Dr","715 Davis Dr"],"county":"Williamson","img":"dv-hero"},{"kind":"listing","label":"1310 Lavada Pl","lat":35.988837,"lon":-86.796221,"href":"property/1310-lavada/","count":1,"members":["1310 Lavada Pl"],"county":"Williamson","img":null},{"kind":"listing","label":"2495 Deer Meadow Ln","lat":35.867666,"lon":-86.709609,"href":"property/2495-deer-meadow/","count":1,"members":["2495 Deer Meadow Ln"],"county":"Williamson","img":null}]}</script>
+<script id="mp-data" type="application/json">{"pins":[{"kind":"listing","label":"4303A Utah Ave","lat":36.144442,"lon":-86.838127,"href":"property/4303a-utah/","count":1,"members":["4303A Utah Ave"],"county":"Davidson","img":"ut-hero"},{"kind":"listing","label":"842 Brook Hollow Rd","lat":36.132441,"lon":-86.88359,"href":"property/842-brook-hollow/","count":1,"members":["842 Brook Hollow Rd"],"county":"Davidson","img":null},{"kind":"listing","label":"2112 Eastwood Ave","lat":36.130407,"lon":-86.789891,"href":"property/2112-eastwood/","count":1,"members":["2112 Eastwood Ave"],"county":"Davidson","img":null},{"kind":"listing","label":"2305 Cisco St","lat":36.126072,"lon":-86.780461,"href":"property/2305-cisco/","count":1,"members":["2305 Cisco St"],"county":"Davidson","img":null},{"kind":"listing","label":"828 Belton Dr","lat":36.124525,"lon":-86.894044,"href":"property/828-belton/","count":1,"members":["828 Belton Dr"],"county":"Davidson","img":null},{"kind":"listing","label":"2502 9th Ave S","lat":36.12379,"lon":-86.783569,"href":"property/2502-9th-ave-s/","count":1,"members":["2502 9th Ave S"],"county":"Davidson","img":"n9-hero"},{"kind":"listing","label":"801 Belton Dr","lat":36.123554,"lon":-86.891224,"href":"property/801-belton/","count":1,"members":["801 Belton Dr"],"county":"Davidson","img":null},{"kind":"listing","label":"735 Clematis Dr","lat":36.123152,"lon":-86.89523,"href":"property/735-clematis/","count":1,"members":["735 Clematis Dr"],"county":"Davidson","img":null},{"kind":"listing","label":"795 Rhonda Ln","lat":36.11731,"lon":-86.907419,"href":"property/795-rhonda/","count":1,"members":["795 Rhonda Ln"],"county":"Davidson","img":null},{"kind":"listing","label":"1306 Clifton Ln","lat":36.114008,"lon":-86.795594,"href":"property/1306-clifton/","count":1,"members":["1306 Clifton Ln"],"county":"Davidson","img":"cl1306-hero"},{"kind":"listing","label":"1308 Clifton Ln","lat":36.114007,"lon":-86.795621,"href":"property/1308-clifton/","count":1,"members":["1308 Clifton Ln"],"county":"Davidson","img":"cl1308-hero"},{"kind":"listing","label":"1211 Jefferson Davis Dr","lat":36.061095,"lon":-86.815053,"href":"property/1211-jefferson-davis/","count":1,"members":["1211 Jefferson Davis Dr"],"county":"Davidson","img":"jd-hero"},{"kind":"listing","label":"1211 Carl Seyfert Memorial Dr","lat":36.05967,"lon":-86.815667,"href":"property/1211-carl-seyfert/","count":1,"members":["1211 Carl Seyfert Memorial Dr"],"county":"Williamson","img":"cs-hero"},{"kind":"listing","label":"6212 Bridlewood Ln","lat":36.041978,"lon":-86.831549,"href":"property/6212-bridlewood/","count":1,"members":["6212 Bridlewood Ln"],"county":"Davidson","img":null},{"kind":"listing","label":"515 Shenandoah Dr","lat":36.017639,"lon":-86.775555,"href":"property/515-shenandoah/","count":1,"members":["515 Shenandoah Dr"],"county":"Williamson","img":"sh-hero"},{"kind":"listing","label":"9003 Carondelet Pl","lat":36.015921,"lon":-86.780898,"href":"property/9003-carondelet/","count":1,"members":["9003 Carondelet Pl"],"county":"Williamson","img":null},{"kind":"listing","label":"607 Davis Dr","lat":36.014222,"lon":-86.779169,"href":"property/607-davis/","count":1,"members":["607 Davis Dr"],"county":"Williamson","img":"dv607-hero"},{"kind":"listing","label":"706 Davis Dr","lat":36.010519,"lon":-86.778166,"href":"property/706-davis/","count":1,"members":["706 Davis Dr"],"county":"Williamson","img":null},{"kind":"listing","label":"715 Davis Dr","lat":36.009026,"lon":-86.777814,"href":"property/715-davis/","count":1,"members":["715 Davis Dr"],"county":"Williamson","img":"dv715-hero"},{"kind":"listing","label":"804 Wilson Pike","lat":36.005907,"lon":-86.780248,"href":"property/804-wilson-pike/","count":1,"members":["804 Wilson Pike"],"county":"Williamson","img":null},{"kind":"listing","label":"1310 Lavada Pl","lat":35.988837,"lon":-86.796221,"href":"property/1310-lavada/","count":1,"members":["1310 Lavada Pl"],"county":"Williamson","img":null},{"kind":"listing","label":"2495 Deer Meadow Ln","lat":35.867666,"lon":-86.709609,"href":"property/2495-deer-meadow/","count":1,"members":["2495 Deer Meadow Ln"],"county":"Williamson","img":null}]}</script>
 <script src="https://api.mapbox.com/mapbox-gl-js/v3.34.2/mapbox-gl.js" defer></script>
 <script defer src="map.js"></script>
 </body>
