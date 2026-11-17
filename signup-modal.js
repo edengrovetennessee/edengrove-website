@@ -54,17 +54,30 @@
     '.eg-sub{position:fixed;inset:0;z-index:9000;display:grid;place-items:center;',
       'padding:clamp(1.25rem,4vw,2.5rem);}',
     '.eg-sub[hidden]{display:none}',
-    '.eg-sub__veil{position:absolute;inset:0;background:rgba(8,10,7,.72);',
+    '.eg-sub__veil{position:absolute;inset:0;background:rgba(8,10,7,.42);',
       'opacity:0;transition:opacity .6s cubic-bezier(.22,.61,.36,1)}',
     '.eg-sub[data-on] .eg-sub__veil{opacity:1}',
 
-    /* The card. One step up from the ground, the same step every framed thing
-       on this site sits on, with a hairline rather than a border. */
-    '.eg-sub__card{position:relative;width:min(34rem,100%);box-sizing:border-box;',
-      'background:#1B1F19;border:1px solid rgba(244,241,236,.12);',
-      'padding:clamp(2.2rem,5vw,3.2rem) clamp(1.6rem,4vw,3rem) clamp(1.8rem,4vw,2.6rem);',
+    /* GLASS. The ground is translucent and the backdrop behind it is blurred,
+       so the photograph the page is already showing becomes the card's
+       material rather than being hidden by it. The hairline is brighter than
+       the site's usual .12 because an edge is the only thing that tells you
+       a pane of glass is there, and the inset highlight is the lit top lip
+       of that pane. */
+    '.eg-sub__card{position:relative;width:min(31rem,100%);box-sizing:border-box;',
+      'background:rgba(20,23,15,.58);',
+      '-webkit-backdrop-filter:blur(26px) saturate(135%);',
+      'backdrop-filter:blur(26px) saturate(135%);',
+      'border:1px solid rgba(244,241,236,.17);',
+      'box-shadow:0 30px 80px rgba(0,0,0,.42),inset 0 1px 0 rgba(244,241,236,.10);',
+      'padding:clamp(2.4rem,5vw,3.4rem) clamp(1.8rem,4vw,3rem) clamp(2rem,4vw,2.6rem);',
       'text-align:left;opacity:0;transform:translateY(14px);',
       'transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}',
+    /* Without backdrop-filter there is no glass to be had, so it falls back
+       to the solid panel every other framed thing on the site uses. */
+    '@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){',
+      '.eg-sub__card{background:#1B1F19}',
+    '}',
     '.eg-sub[data-on] .eg-sub__card{opacity:1;transform:none}',
 
     /* The way out. Forty four square of target around a mark half that size. */
@@ -80,9 +93,9 @@
       'color:var(--brass,#DACEB6)}',
 
     /* Cormorant for the one line that is allowed to be large. */
-    '.eg-sub__h{margin:1.3rem 0 0;font-family:var(--display,"Cormorant Garamond",Georgia,serif);',
-      'font-weight:300;font-size:clamp(1.6rem,1.2rem + 1.6vw,2.1rem);line-height:1.22;',
-      'color:var(--t1,#F4F1EC)}',
+    '.eg-sub__h{margin:1.4rem 0 0;font-family:var(--display,"Cormorant Garamond",Georgia,serif);',
+      'font-weight:300;font-size:clamp(1.9rem,1.3rem + 2.2vw,2.6rem);line-height:1.18;',
+      'letter-spacing:.005em;color:var(--t1,#F4F1EC)}',
     '.eg-sub__h i{font-style:normal;display:block}',
 
     '.eg-sub__p{margin:1.1rem 0 0;font-family:var(--ui,"Jost",Arial,sans-serif);font-weight:300;',
@@ -143,9 +156,8 @@
         '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11"/></svg>' +
       '</button>' +
       '<p class="eg-sub__eyebrow">By Email</p>' +
-      '<h2 class="eg-sub__h" id="eg-sub-h"><i>What we are working on,</i><i>once a week.</i></h2>' +
-      '<p class="eg-sub__p" id="eg-sub-p">Private Exclusives, the builds in progress, and what is ' +
-        'actually selling in Middle Tennessee. One email a week, and nothing else.</p>' +
+      '<h2 class="eg-sub__h" id="eg-sub-h"><i>One email,</i><i>once a week.</i></h2>' +
+      '<p class="eg-sub__p" id="eg-sub-p">Private Exclusives, and what is selling.</p>' +
       '<div class="eg-sub__rule"></div>' +
       '<form class="eg-sub__form" novalidate>' +
         '<label class="eg-sub__sr" for="eg-sub-email">Email address</label>' +
@@ -158,8 +170,8 @@
         '<button type="submit">Follow</button>' +
       '</form>' +
       '<p class="eg-sub__note" role="status"></p>' +
-      '<p class="eg-sub__terms">We will use it for these updates and nothing else. ' +
-        'See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.</p>' +
+      '<p class="eg-sub__terms"><a href="privacy.html">Privacy</a> &middot; ' +
+        '<a href="terms.html">Terms</a></p>' +
     '</div>';
 
   /* ---- build it, but do not show it -------------------------------------- */
