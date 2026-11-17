@@ -93,7 +93,7 @@
       'color:var(--brass,#DACEB6)}',
 
     /* Cormorant for the one line that is allowed to be large. */
-    '.eg-sub__h{margin:1.4rem 0 0;font-family:var(--display,"Cormorant Garamond",Georgia,serif);',
+    '.eg-sub__h{margin:0;font-family:var(--display,"Cormorant Garamond",Georgia,serif);',
       'font-weight:300;font-size:clamp(1.9rem,1.3rem + 2.2vw,2.6rem);line-height:1.18;',
       'letter-spacing:.005em;color:var(--t1,#F4F1EC)}',
     '.eg-sub__h i{font-style:normal;display:block}',
@@ -155,8 +155,7 @@
       '<button class="eg-sub__x" type="button" aria-label="Close" data-close>' +
         '<svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1 1l10 10M11 1L1 11"/></svg>' +
       '</button>' +
-      '<p class="eg-sub__eyebrow">By Email</p>' +
-      '<h2 class="eg-sub__h" id="eg-sub-h"><i>One email,</i><i>once a week.</i></h2>' +
+      '<h2 class="eg-sub__h" id="eg-sub-h"><i>Join the Eden Grove</i><i>weekly email.</i></h2>' +
       '<p class="eg-sub__p" id="eg-sub-p">New listings, Private Exclusives and the builds in ' +
         'progress, sent as each one goes out. Nothing else.</p>' +
       '<div class="eg-sub__rule"></div>' +
