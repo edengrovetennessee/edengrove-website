@@ -1137,19 +1137,23 @@ blockquote{
 .p-films{
   max-width:58rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0;
   display:grid;grid-template-columns:22rem minmax(0,1fr);
-  gap:clamp(1.4rem,3vw,2.6rem);align-items:center;
+  gap:clamp(1.4rem,3vw,2.6rem);align-items:start;
 }
 .p-films .p-film{margin:0}
 .p-film--wide .p-film__frame{aspect-ratio:16/9}
 /* A FRAME WITH NOTHING IN IT YET says so, rather than holding a still of
    somebody else's house. Same decision as the reserved partner frames and
    the Coming Soon panels on properties.html. */
-.p-film--soon .p-film__frame{
-  display:grid;place-items:center;border:1px solid rgba(182,169,124,.22);
-}
-.p-film--soon span{
-  font-family:var(--ui);font-weight:300;font-size:.58rem;
-  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--t3);
+.p-film--soon .p-film__frame{border:1px solid rgba(182,169,124,.22)}
+/* The caption under the empty frame, built like .p-film__cap but with
+   nothing to press: no brass rule, no play mark, and quieter, because it
+   is a note about what is coming rather than a way in. */
+.p-film__cap--soon{
+  display:block;width:fit-content;margin:1.15rem auto 0;
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.68rem,.64rem + .16vw,.78rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:var(--t3);
 }
 @media (max-width:760px){
   .p-films{grid-template-columns:1fr;max-width:34rem;gap:clamp(1.6rem,4vh,2.2rem)}
@@ -1386,7 +1390,8 @@ blockquote{
          progress update works. Until then it holds its own shape and says
          what is missing. -->
     <div class="p-film p-film--wide p-film--soon">
-      <div class="p-film__frame"><span>Rendering film to come</span></div>
+      <div class="p-film__frame"></div>
+      <p class="p-film__cap--soon">Rendering Film to Come</p>
     </div>
 
   </div>
