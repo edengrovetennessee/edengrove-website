@@ -110,28 +110,35 @@ VEIL_CSS = '''<style>
     radial-gradient(130% 80% at 50% 38%, #23271d 0%, #171a12 55%, #0f1209 100%);
 }
 .p-hero--noimg .hero__media{display:none}
-/* A SHARP HERO HAS TO CARRY THE NAV BY ITSELF. The veil used to do that
-   job: its scrim starts at .86 across the top. The base scrim starts at
-   .55, which 9003 Carondelet and 6212 Bridlewood survive at 4.60:1, and
-   916 Long Valley does not: 3.47:1 against a 4.5 floor, because its sky is
-   brightest exactly where the nav sits.
+/* A SHARP HERO HAS TO CARRY THE NAV BY ITSELF, AND ONLY THE NAV.
 
-   Measured against Bone at the 72% the nav actually uses, on the 90th
-   percentile of luminance under the link boxes rather than the mean, since
-   it is the bright patches that lose the glyphs.
+   First attempt washed the top 40% of the picture, which protected the
+   links and cost the photograph: Ryan, twice, that it was too dark. The
+   wash was solving a problem that lives in the top 160 pixels by darkening
+   a third of the image.
 
-   .72 IS THE LIGHTEST THAT WORKS, not a guess. Swept against all three
-   unveiled heroes: .55 gives a worst case of 3.31, .64 gives 4.10, .68
-   gives 4.47, all failing. .72 gives 4.98. Ryan asked for less darkening
-   than the .78 this started at, and this is as far back as it goes while
-   every link still clears the floor.
+   So: a band, measured in pixels because that is where the nav is,
+   whatever the hero's height. The middle of the picture is left alone.
+   Swept on all three unveiled heroes, worst case of the three:
 
-   Only unveiled heroes need it, and only these generated pages have it. */
+     wash .72, top 40%     nav 5.04   sky 0.224
+     band 160px, a .92     nav 6.77   sky 0.311   +39% brighter
+
+   Lighter picture and better legibility at the same time, because the ink
+   is where the type is instead of spread thin over the whole frame.
+
+   The foot is shortened too, .84 to nothing by 42% rather than 60%, which
+   is all the headline and the Register Interest button need: measured at
+   8.07 against a 4.5 floor.
+
+   Only unveiled heroes need any of this, and only these generated pages
+   have it. */
 .p-hero:not(.p-hero--veil) .hero__scrim{
   background:
-    linear-gradient(180deg, rgba(8,10,7,.72) 0%, rgba(8,10,7,.38) 17%, rgba(8,10,7,0) 40%),
-    linear-gradient(to top, rgba(8,10,7,.88) 0%, rgba(8,10,7,.68) 15%,
-                    rgba(8,10,7,.36) 34%, rgba(8,10,7,0) 60%);
+    linear-gradient(180deg, rgba(8,10,7,.92) 0px, rgba(8,10,7,.64) 85px,
+                    rgba(8,10,7,0) 160px),
+    linear-gradient(to top, rgba(8,10,7,.84) 0%, rgba(8,10,7,.52) 18%,
+                    rgba(8,10,7,0) 42%);
 }
 .p-hero__soon{
   display:block;margin:0 0 clamp(1.2rem,3vh,1.8rem);
