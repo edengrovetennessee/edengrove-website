@@ -120,10 +120,16 @@ VEIL_CSS = '''<style>
    percentile of luminance under the link boxes rather than the mean, since
    it is the bright patches that lose the glyphs.
 
+   .72 IS THE LIGHTEST THAT WORKS, not a guess. Swept against all three
+   unveiled heroes: .55 gives a worst case of 3.31, .64 gives 4.10, .68
+   gives 4.47, all failing. .72 gives 4.98. Ryan asked for less darkening
+   than the .78 this started at, and this is as far back as it goes while
+   every link still clears the floor.
+
    Only unveiled heroes need it, and only these generated pages have it. */
 .p-hero:not(.p-hero--veil) .hero__scrim{
   background:
-    linear-gradient(180deg, rgba(8,10,7,.78) 0%, rgba(8,10,7,.44) 17%, rgba(8,10,7,0) 40%),
+    linear-gradient(180deg, rgba(8,10,7,.72) 0%, rgba(8,10,7,.38) 17%, rgba(8,10,7,0) 40%),
     linear-gradient(to top, rgba(8,10,7,.88) 0%, rgba(8,10,7,.68) 15%,
                     rgba(8,10,7,.36) 34%, rgba(8,10,7,0) 60%);
 }
