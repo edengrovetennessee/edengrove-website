@@ -110,6 +110,23 @@ VEIL_CSS = '''<style>
     radial-gradient(130% 80% at 50% 38%, #23271d 0%, #171a12 55%, #0f1209 100%);
 }
 .p-hero--noimg .hero__media{display:none}
+/* A SHARP HERO HAS TO CARRY THE NAV BY ITSELF. The veil used to do that
+   job: its scrim starts at .86 across the top. The base scrim starts at
+   .55, which 9003 Carondelet and 6212 Bridlewood survive at 4.60:1, and
+   916 Long Valley does not: 3.47:1 against a 4.5 floor, because its sky is
+   brightest exactly where the nav sits.
+
+   Measured against Bone at the 72% the nav actually uses, on the 90th
+   percentile of luminance under the link boxes rather than the mean, since
+   it is the bright patches that lose the glyphs.
+
+   Only unveiled heroes need it, and only these generated pages have it. */
+.p-hero:not(.p-hero--veil) .hero__scrim{
+  background:
+    linear-gradient(180deg, rgba(8,10,7,.78) 0%, rgba(8,10,7,.44) 17%, rgba(8,10,7,0) 40%),
+    linear-gradient(to top, rgba(8,10,7,.88) 0%, rgba(8,10,7,.68) 15%,
+                    rgba(8,10,7,.36) 34%, rgba(8,10,7,0) 60%);
+}
 .p-hero__soon{
   display:block;margin:0 0 clamp(1.2rem,3vh,1.8rem);
   font-family:var(--ui);font-weight:300;
