@@ -253,8 +253,8 @@
       "mls": null,
       "builder": null,
       "agent": null,
-      "hero": null,
-      "veil": true,
+      "hero": "bw-hero.jpg",
+      "veil": false,
       "follow": true,
       "kind": "new"
     },
