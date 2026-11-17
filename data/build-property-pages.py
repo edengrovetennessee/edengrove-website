@@ -208,7 +208,14 @@ def page(p, agents, head, bar, tail):
     full = p["address"] + (f', {p["town"]}, {p["state"]} {p["zip"]}' if p["town"] else "")
     h1 = (f'{esc(p["address"])}<br>{esc(p["town"])}, {p["state"]} {p["zip"]}'
           if p["town"] else esc(p["address"]))
-    hero_cls = "p-hero p-hero--veil" + ("" if p["hero"] else " p-hero--noimg")
+    # THE VEIL FLAG WAS NEVER READ. Every page got p-hero--veil whatever
+    # properties.json said, so a rendering could only ever appear blurred.
+    # With no image the veil class is what paints the fallback ground, so a
+    # page without one keeps it regardless.
+    if p["hero"]:
+        hero_cls = "p-hero" + (" p-hero--veil" if p.get("veil", True) else "")
+    else:
+        hero_cls = "p-hero p-hero--veil p-hero--noimg"
     hero_img = (f'\n  <img class="hero__media" src="../../media/{p["hero"]}" alt="" aria-hidden="true">'
                 if p["hero"] else "")
 
