@@ -157,7 +157,8 @@
       '</button>' +
       '<p class="eg-sub__eyebrow">By Email</p>' +
       '<h2 class="eg-sub__h" id="eg-sub-h"><i>One email,</i><i>once a week.</i></h2>' +
-      '<p class="eg-sub__p" id="eg-sub-p">Private Exclusives, and what is selling.</p>' +
+      '<p class="eg-sub__p" id="eg-sub-p">New listings, Private Exclusives and the builds in ' +
+        'progress, sent as each one goes out. Nothing else.</p>' +
       '<div class="eg-sub__rule"></div>' +
       '<form class="eg-sub__form" novalidate>' +
         '<label class="eg-sub__sr" for="eg-sub-email">Email address</label>' +
@@ -170,8 +171,8 @@
         '<button type="submit">Follow</button>' +
       '</form>' +
       '<p class="eg-sub__note" role="status"></p>' +
-      '<p class="eg-sub__terms"><a href="privacy.html">Privacy</a> &middot; ' +
-        '<a href="terms.html">Terms</a></p>' +
+      '<p class="eg-sub__terms">We will use it for these updates and nothing else. ' +
+        'See our <a href="privacy.html">Privacy Policy</a> and <a href="terms.html">Terms</a>.</p>' +
     '</div>';
 
   /* ---- build it, but do not show it -------------------------------------- */
