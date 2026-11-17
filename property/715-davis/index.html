@@ -1130,6 +1130,31 @@ blockquote{
 .p-film--portrait{max-width:22rem}
 .p-film__frame{position:relative;aspect-ratio:16/9;background:#1b1f19;overflow:hidden}
 .p-film--portrait .p-film__frame{aspect-ratio:9/16}
+/* TWO FILMS, SIDE BY SIDE, AND THEY DO NOT SHARE A SHAPE. The progress
+   update was shot vertically on site; the rendering film is 16:9. So the
+   row sizes each to its own frame and centres them against each other
+   rather than stretching either into the other's proportions. */
+.p-films{
+  max-width:58rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0;
+  display:grid;grid-template-columns:22rem minmax(0,1fr);
+  gap:clamp(1.4rem,3vw,2.6rem);align-items:center;
+}
+.p-films .p-film{margin:0}
+.p-film--wide .p-film__frame{aspect-ratio:16/9}
+/* A FRAME WITH NOTHING IN IT YET says so, rather than holding a still of
+   somebody else's house. Same decision as the reserved partner frames and
+   the Coming Soon panels on properties.html. */
+.p-film--soon .p-film__frame{
+  display:grid;place-items:center;border:1px solid rgba(182,169,124,.22);
+}
+.p-film--soon span{
+  font-family:var(--ui);font-weight:300;font-size:.58rem;
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;color:var(--t3);
+}
+@media (max-width:760px){
+  .p-films{grid-template-columns:1fr;max-width:34rem;gap:clamp(1.6rem,4vh,2.2rem)}
+  .p-films .p-film--portrait{max-width:22rem;margin-inline:auto}
+}
 .p-film__frame img,.p-film__frame iframe{
   position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}
 .p-film__play{
@@ -1339,6 +1364,7 @@ blockquote{
      nothing is requested from Google until somebody asks for it. -->
 <section class="p-sec p-sec--tight" id="film" hidden aria-labelledby="film-h">
   <h2 class="p-eyebrow" id="film-h">Film</h2>
+  <div class="p-films">
   <div class="p-film p-film--portrait">
     <div class="p-film__frame">
       <!-- POSTER: the frame at 4.12s, where the arched entry opening, the
@@ -1353,6 +1379,16 @@ blockquote{
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
       Watch the Progress Update
     </button>
+  </div>
+
+    <!-- PROPERTY: the rendering film. Drop the YouTube id into RENDER_ID at
+         the foot of this file and give this frame a poster, the same way the
+         progress update works. Until then it holds its own shape and says
+         what is missing. -->
+    <div class="p-film p-film--wide p-film--soon">
+      <div class="p-film__frame"><span>Rendering film to come</span></div>
+    </div>
+
   </div>
 </section>
 
@@ -1851,7 +1887,7 @@ const film = document.getElementById("film");
 if (film && YT_ID) {
   film.hidden = false;
   const openFilm = () => {
-    const frame = film.querySelector(".p-film__frame");
+    const frame = film.querySelector(".p-film--portrait .p-film__frame");
     if (frame.querySelector("iframe")) return;
     const f = document.createElement("iframe");
     f.src = `https://www.youtube-nocookie.com/embed/${YT_ID}?autoplay=1&rel=0&modestbranding=1`;
