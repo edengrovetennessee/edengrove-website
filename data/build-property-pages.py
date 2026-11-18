@@ -278,6 +278,21 @@ VEIL_CSS = '''<style>
 @media (prefers-reduced-motion:reduce){
   .p-film__play,.p-film__play span,.p-film__cap,.p-film__cap svg{transition:none}
 }
+
+/* ---- the gallery, the three rules the donor sheet is missing ----
+   THE SHEET SETS --1'S ASPECT AND NEVER ITS COLUMNS, so a lone full-width
+   frame sits a third of the width wide with two holes beside it. That has
+   bitten Liebo Builders, 515 Shenandoah and 715 Davis; it is written down
+   here so it cannot bite a generated page as well.
+
+   The shape modifiers come after the --1/--2 aspect rules on purpose: same
+   specificity, later wins, so one row can say both how many columns it has
+   and how tall they are. Renderings arrive in four or five ratios and
+   forcing them into one slot crops the roofline off the elevations. */
+.p-gal__row--1{grid-template-columns:1fr}
+.p-gal__row--pano .p-shot{aspect-ratio:2/1}
+.p-gal__row--wide .p-shot{aspect-ratio:16/9}
+@media (max-width:760px){ .p-gal__row--pano .p-shot{aspect-ratio:16/9} }
 </style>
 '''
 
@@ -354,6 +369,46 @@ def page(p, agents, head, bar, tail):
         <path d="M2 1l3 3-3 3"/></svg></a></p>
   </div>
 </section>
+'''
+
+    # --- the gallery --------------------------------------------------------
+    # Rooms, rows, frames, straight out of properties.json. The rows are what
+    # the page is without JavaScript; gallery.js turns the same markup into a
+    # contact sheet with a viewer, so the rows still have to be right.
+    gal, gal_js = "", ""
+    if p.get("gallery"):
+        rooms = []
+        for room in p["gallery"]:
+            rows = []
+            for r in room["rows"]:
+                shape = f' p-gal__row--{r["shape"]}' if r.get("shape") else ""
+                shots = "\n".join(
+                    f'      <a class="p-shot" href="../../media/{f}">'
+                    f'<img src="../../media/{f}" alt="{esc(alt)}" loading="lazy" decoding="async"></a>'
+                    for f, alt in r["shots"])
+                rows.append(f'    <div class="p-gal__row p-gal__row--{len(r["shots"])}{shape}">\n{shots}\n    </div>')
+            body_rows = "\n".join(rows)
+            rooms.append(f'  <div class="p-gal">\n'
+                         f'    <div class="p-gal__head"><span>{esc(room["room"])}</span><i></i></div>\n'
+                         f'{body_rows}\n  </div>')
+        note = p.get("gallery_note") or "Renderings"
+        rooms_html = "\n\n".join(rooms)
+        gal = f'''
+<!-- ================================ GALLERY ===============================
+     Rooms and rows from data/properties.json. gallery.js rebuilds this into
+     a contact sheet with a viewer; with that file missing it stays rooms,
+     frames, and a click that opens the picture. -->
+<section class="p-sec p-sec--tight" aria-labelledby="gal-h">
+  <h2 class="p-eyebrow" id="gal-h">Gallery</h2>
+  <div class="p-lede">
+    <p class="p-gal__note">{esc(note)}</p>
+  </div>
+
+{rooms_html}
+</section>
+'''
+        gal_js = '''
+<script defer src="../../gallery.js"></script>
 '''
 
     # --- the film -----------------------------------------------------------
@@ -570,7 +625,7 @@ def page(p, agents, head, bar, tail):
 {facts_block(p)}
   </dl>
 </section>
-{film}{builder}{loc}{follow}{presented}
+{gal}{film}{builder}{loc}{follow}{presented}
 <!-- ================================ INQUIRE =============================== -->
 <section class="p-sec p-sec--tight" id="inquire" aria-labelledby="enq-h">
   <h2 class="p-eyebrow" id="enq-h">Inquiries</h2>
@@ -582,7 +637,7 @@ def page(p, agents, head, bar, tail):
 </section>
 
 '''
-    return head_for(p, head) + body + tail.replace("</body>", film_js + follow_js + "</body>")
+    return head_for(p, head) + body + tail.replace("</body>", gal_js + film_js + follow_js + "</body>")
 
 def main():
     cfg = json.load(open(DATA, encoding="utf-8"))

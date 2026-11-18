@@ -1445,6 +1445,21 @@ blockquote{
 @media (prefers-reduced-motion:reduce){
   .p-film__play,.p-film__play span,.p-film__cap,.p-film__cap svg{transition:none}
 }
+
+/* ---- the gallery, the three rules the donor sheet is missing ----
+   THE SHEET SETS --1'S ASPECT AND NEVER ITS COLUMNS, so a lone full-width
+   frame sits a third of the width wide with two holes beside it. That has
+   bitten Liebo Builders, 515 Shenandoah and 715 Davis; it is written down
+   here so it cannot bite a generated page as well.
+
+   The shape modifiers come after the --1/--2 aspect rules on purpose: same
+   specificity, later wins, so one row can say both how many columns it has
+   and how tall they are. Renderings arrive in four or five ratios and
+   forcing them into one slot crops the roofline off the elevations. */
+.p-gal__row--1{grid-template-columns:1fr}
+.p-gal__row--pano .p-shot{aspect-ratio:2/1}
+.p-gal__row--wide .p-shot{aspect-ratio:16/9}
+@media (max-width:760px){ .p-gal__row--pano .p-shot{aspect-ratio:16/9} }
 </style>
 <body>
 
@@ -1525,6 +1540,31 @@ blockquote{
     <div><dt>MLS</dt><dd class="tbc">&mdash;</dd></div>
     <div><dt>Completion</dt><dd class="tbc">&mdash;</dd></div>
   </dl>
+</section>
+
+<!-- ================================ GALLERY ===============================
+     Rooms and rows from data/properties.json. gallery.js rebuilds this into
+     a contact sheet with a viewer; with that file missing it stays rooms,
+     frames, and a click that opens the picture. -->
+<section class="p-sec p-sec--tight" aria-labelledby="gal-h">
+  <h2 class="p-eyebrow" id="gal-h">Gallery</h2>
+  <div class="p-lede">
+    <p class="p-gal__note">Renderings</p>
+  </div>
+
+  <div class="p-gal">
+    <div class="p-gal__head"><span>Exteriors</span><i></i></div>
+    <div class="p-gal__row p-gal__row--1 p-gal__row--pano">
+      <a class="p-shot" href="../../media/cm735-hero.jpg"><img src="../../media/cm735-hero.jpg" alt="The front elevation" loading="lazy" decoding="async"></a>
+    </div>
+    <div class="p-gal__row p-gal__row--2 p-gal__row--pano">
+      <a class="p-shot" href="../../media/cm735-ext-2.jpg"><img src="../../media/cm735-ext-2.jpg" alt="The house along its length" loading="lazy" decoding="async"></a>
+      <a class="p-shot" href="../../media/cm735-ext-3.jpg"><img src="../../media/cm735-ext-3.jpg" alt="The opposite elevation" loading="lazy" decoding="async"></a>
+    </div>
+    <div class="p-gal__row p-gal__row--1 p-gal__row--pano">
+      <a class="p-shot" href="../../media/cm735-ext-4.jpg"><img src="../../media/cm735-ext-4.jpg" alt="The rear elevation across the pool" loading="lazy" decoding="async"></a>
+    </div>
+  </div>
 </section>
 
 <!-- ================================== FILM ================================
@@ -1855,6 +1895,8 @@ addEventListener("keydown", e => {
 
 
 </script>
+
+<script defer src="../../gallery.js"></script>
 
 <script>
 /* The film. The frame holds a poster and a single mark until it is asked

@@ -175,7 +175,46 @@
       "kind": "new",
       "film": "cm735-film",
       "film_cap": "Watch the Project Update",
-      "film_note": "Filmed on site this autumn, with the foundation poured and the footprint of the house readable from the air."
+      "film_note": "Filmed on site this autumn, with the foundation poured and the footprint of the house readable from the air.",
+      "gallery_note": "Renderings",
+      "gallery": [
+        {
+          "room": "Exteriors",
+          "rows": [
+            {
+              "shape": "pano",
+              "shots": [
+                [
+                  "cm735-hero.jpg",
+                  "The front elevation"
+                ]
+              ]
+            },
+            {
+              "shape": "pano",
+              "shots": [
+                [
+                  "cm735-ext-2.jpg",
+                  "The house along its length"
+                ],
+                [
+                  "cm735-ext-3.jpg",
+                  "The opposite elevation"
+                ]
+              ]
+            },
+            {
+              "shape": "pano",
+              "shots": [
+                [
+                  "cm735-ext-4.jpg",
+                  "The rear elevation across the pool"
+                ]
+              ]
+            }
+          ]
+        }
+      ]
     },
     {
       "slug": "1310-lavada",

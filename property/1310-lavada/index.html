@@ -1445,6 +1445,21 @@ blockquote{
 @media (prefers-reduced-motion:reduce){
   .p-film__play,.p-film__play span,.p-film__cap,.p-film__cap svg{transition:none}
 }
+
+/* ---- the gallery, the three rules the donor sheet is missing ----
+   THE SHEET SETS --1'S ASPECT AND NEVER ITS COLUMNS, so a lone full-width
+   frame sits a third of the width wide with two holes beside it. That has
+   bitten Liebo Builders, 515 Shenandoah and 715 Davis; it is written down
+   here so it cannot bite a generated page as well.
+
+   The shape modifiers come after the --1/--2 aspect rules on purpose: same
+   specificity, later wins, so one row can say both how many columns it has
+   and how tall they are. Renderings arrive in four or five ratios and
+   forcing them into one slot crops the roofline off the elevations. */
+.p-gal__row--1{grid-template-columns:1fr}
+.p-gal__row--pano .p-shot{aspect-ratio:2/1}
+.p-gal__row--wide .p-shot{aspect-ratio:16/9}
+@media (max-width:760px){ .p-gal__row--pano .p-shot{aspect-ratio:16/9} }
 </style>
 <body>
 
