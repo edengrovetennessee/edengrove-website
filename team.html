@@ -889,16 +889,32 @@ blockquote{
    above it on the page's own ground, the picture runs at its own 3:2
    underneath, and all four of them are in it. */
 @media (max-width:760px){
+  /* IT REACHES THE TOP NOW. This used to push the picture below the bar with
+     padding-top, which left a band of bare ground above it and made the
+     banner look like it had been dropped into the page rather than being
+     the page. Ryan: "it's not above where the header is."
+
+     The reason it could not before was the picture, not the rule. The old
+     banner put a head in the top eighth of the frame, so a bar lying over
+     it covered a face. This one is a fence line at the end of the day: the
+     top quarter is sky and treeline, and all four of them stand clear
+     below it. The bar has somewhere to sit.
+
+     The picture still runs at its own 3:2 rather than being cropped to a
+     portrait window -- four people in a tall frame is two torsos. */
   .teamtop{
     aspect-ratio:auto;height:auto;min-height:0;background:var(--ink);
-    /* --bar-h is not declared on this page, so the fallback is doing the
-       work: the bar measures 70px here, which is 4.4rem. */
-    padding-top:calc(var(--bar-h,4.4rem) + .6rem);
+    padding-top:0;
   }
   .teamtop .hero__media{
     position:static;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;
   }
-  .teamtop__scrim{display:none}
+  /* A BAND IN PIXELS, because the bar is a fixed height and the picture is
+     not. 70px of bar, so the ink is gone by 92. */
+  .teamtop__scrim{
+    background:linear-gradient(180deg,
+      rgba(8,10,7,.90) 0px, rgba(8,10,7,.62) 46px, rgba(8,10,7,0) 92px);
+  }
 }
 .teamtop__scrim{
   position:absolute;inset:0;pointer-events:none;
@@ -920,14 +936,22 @@ blockquote{
      luminance, and the nav still clears the floor at 5.32, 5.34 and 5.55.
      A version that cleared him further put the nav at 4.46 and was thrown
      away. */
+  /* RE-MEASURED 18 Nov against the fence frame, which has a brighter sky
+     behind the bar than the one before it: at .78 the nav fell to 3.68,
+     under the 4.5 floor. Swept .78/.84/.88/.90/.92 at the top stop; .84
+     clears at 4.66 and the faces are untouched, because they sit at 18-30%
+     and the ink is gone by 24%. .88 and above buys contrast nobody needs
+     and starts to flatten the treeline. */
   background:linear-gradient(to bottom,
-    rgba(8,10,7,.78) 0%, rgba(8,10,7,.58) 8%,
+    rgba(8,10,7,.84) 0%, rgba(8,10,7,.66) 8%,
     rgba(8,10,7,.18) 15%, rgba(8,10,7,0) 24%);
 }
 
 /* The four read across rather than down. Each member is a column: portrait,
    then name, then the opening of the biography. align-items:start lets the
    columns end where their content ends instead of stretching to the tallest. */
+.teamroom{background:var(--ink);padding:0 0 clamp(3rem,7vh,5rem)}
+.teamroom img{display:block;width:100%;height:auto}
 .people{
   background:var(--ink);
   padding:clamp(2rem,4vh,3.5rem) var(--gutter) clamp(4rem,9vh,7rem);
@@ -939,11 +963,16 @@ blockquote{
 /* The portrait leads, at every width. The DOM keeps the name first so a
    screen reader and the document outline still read name-then-picture. */
 .member__photo{order:-1}
-.member__photo{position:relative;overflow:hidden;aspect-ratio:4/5;background:#1b1f19}
+/* 2:3, WHICH IS WHAT THE PORTRAITS ARE. They were 4:5 studio frames and are
+   now full-length, shot on site. A 2:3 portrait in a 4:5 frame loses 17% off
+   the bottom, which on these is everybody's legs. The frame is pinned rather
+   than left to the image because these four sit in a row: one ratio keeps
+   the four names on one line. All four files are 1200x1800, so nothing is
+   cropped at all. */
+.member__photo{position:relative;overflow:hidden;aspect-ratio:2/3;background:#1b1f19}
 .member__photo img{
   width:100%;height:100%;object-fit:cover;display:block;
-  /* If a future portrait is not 4:5, crop from the feet up, never the head. */
-  object-position:50% 20%;
+  object-position:50% 50%;
   transform:scale(1.001);transition:transform 1.2s var(--rise);
 }
 .member:hover .member__photo img{transform:scale(1.035)}
@@ -1098,7 +1127,7 @@ blockquote{
 
 <!-- the banner is the photograph and nothing else -->
 <section class="teamtop" id="top">
-  <img class="hero__media" src="media/team-banner.jpg" alt="Ryan Stonehouse, Blake Barker, Joe Archer and Jack Montague in the living room of a finished house">
+  <img class="hero__media" src="media/team-banner.jpg" alt="Ryan Stonehouse, Blake Barker, Joe Archer and Jack Montague at a fence line, late afternoon">
   <div class="teamtop__scrim"></div>
 
   <header class="bar">
@@ -1297,6 +1326,15 @@ blockquote{
       <div class="member__photo"><img loading="lazy" decoding="async" src="media/team-4.jpg" alt="Jack Montague"></div>
     </article>
 
+</section>
+
+<!-- =========================== THE FOUR OF THEM ===========================
+     After the columns, not before: you meet them one at a time and then see
+     them in a room together. Full width and no words, because the four
+     biographies above have just said everything there is to say. -->
+<section class="teamroom" aria-label="The team together">
+  <img src="media/team-room.jpg" loading="lazy" decoding="async"
+       alt="Ryan Stonehouse, Blake Barker, Joe Archer and Jack Montague in the living room of a finished house">
 </section>
 
 <footer class="foot">
