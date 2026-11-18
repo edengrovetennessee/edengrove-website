@@ -32,9 +32,14 @@
     /* the room header becomes the control */
     ".p-gal__head{cursor:pointer;-webkit-user-select:none;user-select:none}",
     ".p-gal__head:focus-visible{outline:1px solid var(--brass);outline-offset:.5rem}",
-    ".p-gal__count{font-size:.58rem;letter-spacing:.24em;color:var(--t3);flex:none}",
-    ".p-gal__chev{flex:none;width:.5rem;height:.5rem;margin-left:.1rem;",
-      "border-right:1px solid var(--t2);border-bottom:1px solid var(--t2);",
+    /* THE CHEVRON IS A SPAN, AND EVERY RULE FOR IT GOES THROUGH .p-gal__head.
+       The head already styles its own <i> as the rule line — .p-gal__head i —
+       and that outranks a bare class, so an <i> chevron was being handed
+       flex:1;height:1px and stretched into a 500px bar, which, rotated 45
+       degrees, drew a diagonal line across the page for every room. */
+    ".p-gal__head .p-gal__count{font-size:.58rem;letter-spacing:.24em;color:var(--t3);flex:0 0 auto}",
+    ".p-gal__head .p-gal__chev{flex:0 0 auto;width:.5rem;height:.5rem;margin-left:.1rem;",
+      "background:none;border-right:1px solid var(--t2);border-bottom:1px solid var(--t2);",
       "transform:rotate(45deg) translate(-.1rem,-.1rem);transition:transform .4s " + EASE + "}",
     ".p-gal__head[aria-expanded=true] .p-gal__chev{transform:rotate(-135deg) translate(-.1rem,-.1rem)}",
 
@@ -78,7 +83,7 @@
       ".p-lb__btn{top:auto;bottom:clamp(.6rem,2vh,1.2rem);transform:none}",
     "}",
     "@media (prefers-reduced-motion:reduce){",
-      ".p-gal__panel,.p-lb,.p-gal__chev{transition:none}",
+      ".p-gal__panel,.p-lb,.p-gal__head .p-gal__chev{transition:none}",
     "}"
   ].join("");
   var s = document.createElement("style");
@@ -116,7 +121,7 @@
     var count = document.createElement("span");
     count.className = "p-gal__count";
     count.textContent = shots.length;
-    var chev = document.createElement("i");
+    var chev = document.createElement("span");
     chev.className = "p-gal__chev";
     chev.setAttribute("aria-hidden", "true");
     head.appendChild(count);
