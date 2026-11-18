@@ -1053,9 +1053,9 @@ blockquote{
    portraits and no marks, so the row never depends on who happens to have
    sent a headshot. */
 .p-build__grid{
-  max-width:80rem;margin:clamp(2.5rem,6vh,4rem) auto 0;
+  max-width:80rem;margin:clamp(4rem,9vh,6.5rem) auto 0;
   display:grid;grid-template-columns:repeat(4,1fr);
-  gap:clamp(1.5rem,2.4vw,2.2rem);align-items:start;
+  gap:clamp(2rem,3.4vw,3.4rem);align-items:start;
 }
 /* These cards read as short editorial entries rather than badges, so they set
    left — a paragraph of ragged-center text in a 290px column is hard work. */
@@ -1065,13 +1065,13 @@ blockquote{
   letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;color:var(--brass);
 }
 .p-partner__name{
-  margin:.75rem 0 0;font-weight:300;font-size:.92rem;
+  margin:1.1rem 0 0;font-weight:300;font-size:.92rem;
   letter-spacing:.18em;text-indent:.18em;text-transform:uppercase;color:#fff;
 }
 /* Role and name stay centered; the bio sets left. A paragraph of ragged-center
    text in a 280px column is hard work to read. */
 .p-partner p{
-  margin:.9rem 0 0;font-weight:300;font-size:.82rem;line-height:1.8;
+  margin:1.3rem 0 0;font-weight:300;font-size:.82rem;line-height:1.9;
   color:var(--t2);text-align:left;
 }
 @media (max-width:900px){ .p-build__grid{grid-template-columns:repeat(2,1fr)} }
@@ -1090,7 +1090,7 @@ blockquote{
    because it is the same kind of thing: a second door out of this page. */
 .p-build__link{
   display:flex;align-items:center;justify-content:flex-start;gap:.7rem;
-  width:fit-content;margin:clamp(1.4rem,3vh,2rem) 0 0;padding:0 0 .55rem;
+  width:fit-content;margin:clamp(1.8rem,3.6vh,2.4rem) 0 0;padding:0 0 .55rem;
   border-bottom:1px solid var(--brass);
   font-family:var(--ui);font-weight:300;
   font-size:clamp(.72rem,.68rem + .16vw,.8rem);
@@ -1103,6 +1103,19 @@ blockquote{
 .p-build__link:hover,.p-build__link:focus-visible{color:var(--brass);outline:none}
 .p-build__link:hover svg{transform:translateX(.22rem)}
 .p-build__grid--3{max-width:56rem;grid-template-columns:repeat(3,1fr)}
+/* THE DEVELOPER BAND LINES UP WITH THE FOUR CARDS UNDER IT. The solo band is
+   56rem and the four-across grid is 80rem, so on this page the two rows
+   started at different places: the developer paragraph began a third of the
+   way in while the cards began at the gutter, and the section read as two
+   unrelated things stacked up rather than one block.
+
+   The band matches the grid's width; the prose inside it does not, because
+   80rem of running text is a 150-character line. 44rem keeps the measure
+   where it was and lets the left edges agree, which is the only edge the
+   eye is reading. Only on this page: 1211 Jefferson Davis pairs its band
+   with a three-column grid, which is 56rem already. */
+.p-build--wide{max-width:80rem}
+.p-build--wide .p-partner p{max-width:44rem}
 @media (max-width:900px){ .p-build__grid--3{grid-template-columns:repeat(2,1fr)} }
 @media (max-width:520px){ .p-build__grid--3{grid-template-columns:1fr} }
 
@@ -1117,7 +1130,7 @@ blockquote{
 .p-partner__more > div{overflow:hidden}
 .p-partner__more[data-on]{grid-template-rows:1fr}
 .p-partner__toggle{
-  margin-top:1rem;padding:0;border:0;background:none;cursor:pointer;
+  margin-top:1.5rem;padding:0;border:0;background:none;cursor:pointer;
   font-family:var(--ui);font-weight:300;font-size:.58rem;
   letter-spacing:.28em;text-indent:.28em;text-transform:uppercase;
   color:var(--brass);transition:color .3s var(--rise);
@@ -1566,7 +1579,7 @@ blockquote{
        the site. Three or four sentences about the firm itself - what it
        builds, where, to what standard - would be better than a paragraph
        about its founder wearing the firm's name. -->
-  <div class="p-build--solo">
+  <div class="p-build--solo p-build--wide">
     <div class="p-partner">
       <p class="p-partner__role">Developer</p>
       <p class="p-partner__name">Shepherd Group Development</p>
