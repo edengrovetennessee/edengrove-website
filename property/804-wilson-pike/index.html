@@ -1135,17 +1135,21 @@ blockquote{
 /* 4:5, not square. Ryan, 8 Nov: the square was cropping these down to a
    head on a background. A portrait frame is the same shape the team page
    uses and it lets the photograph be a person rather than a face. */
-.p-agent__photo{
-  aspect-ratio:4/5;overflow:hidden;margin:0 0 clamp(1.4rem,3vh,2rem);
+.p-agent__photo{overflow:hidden;margin:0 0 clamp(1.4rem,3vh,2rem);
   background:#1b1f19;border:1px solid rgba(182,169,124,.22);
 }
-/* The crop guard this frame never had. It is square and the portraits are
-   square, so nothing is cropped today - but a future headshot that is not
-   1:1 gets cut from the feet up rather than through the forehead, which is
-   what happened once already on the sister frame on the team page. */
 .p-agent__photo img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  object-position:50% 20%;
+  /* THE FRAME TAKES THE SHAPE OF THE PICTURE, not the other way round.
+     This was aspect-ratio:1 on thirty pages and 4:5 on the property
+     pages, against portraits that are all 1200x1500. A 4:5 portrait
+     in a square frame loses a fifth of its height, cropped off the
+     bottom, which is a person cut through the chest.
+
+     There is no right fixed number here, because the right number is
+     whatever the photograph is. So the frame has no height of its own
+     and the image sets it. A 9:16 headshot dropped in tomorrow needs
+     no CSS change, and nothing is ever cropped again. */
+  width:100%;height:auto;display:block;
 }
 .p-agent__name{
   margin:0;font-weight:300;font-size:1rem;letter-spacing:.2em;text-indent:.2em;

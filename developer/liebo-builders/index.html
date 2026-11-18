@@ -1104,11 +1104,22 @@ blockquote{
 /* A single agent should not inherit the width of two. */
 .p-agents--1{max-width:20rem}
 .p-agent{text-align:center}
-.p-agent__photo{
-  aspect-ratio:1;overflow:hidden;margin:0 0 clamp(1.4rem,3vh,2rem);
+.p-agent__photo{overflow:hidden;margin:0 0 clamp(1.4rem,3vh,2rem);
   background:#1b1f19;border:1px solid rgba(182,169,124,.22);
 }
-.p-agent__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.p-agent__photo img{
+  /* THE FRAME TAKES THE SHAPE OF THE PICTURE, not the other way round.
+     This was aspect-ratio:1 on thirty pages and 4:5 on the property
+     pages, against portraits that are all 1200x1500. A 4:5 portrait
+     in a square frame loses a fifth of its height, cropped off the
+     bottom, which is a person cut through the chest.
+
+     There is no right fixed number here, because the right number is
+     whatever the photograph is. So the frame has no height of its own
+     and the image sets it. A 9:16 headshot dropped in tomorrow needs
+     no CSS change, and nothing is ever cropped again. */
+  width:100%;height:auto;display:block;
+}
 .p-agent__name{
   margin:0;font-weight:300;font-size:1rem;letter-spacing:.2em;text-indent:.2em;
   text-transform:uppercase;color:#fff;
