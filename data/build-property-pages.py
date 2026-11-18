@@ -140,6 +140,20 @@ VEIL_CSS = '''<style>
     linear-gradient(to top, rgba(8,10,7,.84) 0%, rgba(8,10,7,.52) 18%,
                     rgba(8,10,7,0) 42%);
 }
+/* WHOSE CROP IS THIS? The donor page these pages borrow their chrome from
+   carries a phone rule tuned to its own hero: object-position 34%, chosen
+   because 515 Shenandoah is a 2.17 panorama and dead centre landed on a run
+   of windows that could be any elevation. Every generated page inherited
+   it, so a portrait phone has been cropping each rendering by a rule
+   written for a different photograph.
+
+   The middle is the right default for a hero that is composed around its
+   own centre, which most elevations are. A hero that wants another point
+   sets "focus" in properties.json and it arrives as a custom property on
+   the image itself. */
+@media (max-aspect-ratio:1/1){
+  .p-hero:not(.p-hero--veil) .hero__media{object-position:var(--hero-focus,50% 50%)}
+}
 .p-hero__soon{
   display:block;margin:0 0 clamp(1.2rem,3vh,1.8rem);
   font-family:var(--ui);font-weight:300;
@@ -216,6 +230,54 @@ VEIL_CSS = '''<style>
 /* Off screen, not display:none - some bots skip anything that is hidden
    outright, and a honeypot nothing fills in catches nothing. */
 .p-follow__pot{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+
+/* ---- the film ----
+   THE SAME FILM THE HAND-BUILT PAGES HAVE, lifted out of 715 Davis so a
+   generated page can carry one too. Difference: that one is a YouTube
+   embed, this is the file itself, because what Liebo send is an mp4 and
+   putting it through a third party to play it back is a round trip for
+   nothing. preload="none" so the weight is only paid by somebody who
+   presses play; the poster is what loads. */
+.p-film{max-width:58rem;margin:clamp(2.2rem,5vh,3.2rem) auto 0}
+.p-film__frame{position:relative;aspect-ratio:16/9;background:#1b1f19;overflow:hidden}
+.p-film__frame video{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border:0;display:block}
+.p-film__play{
+  position:absolute;inset:0;z-index:2;display:grid;place-items:center;
+  border:0;background:rgba(20,23,15,.3);cursor:pointer;color:#fff;
+  transition:background .3s var(--rise)}
+.p-film__play[hidden]{display:none}
+.p-film__play:hover,.p-film__play:focus-visible{background:rgba(20,23,15,.14);outline:none}
+.p-film__play span{
+  display:grid;place-items:center;width:4.2rem;height:4.2rem;border-radius:50%;
+  border:1px solid var(--w2);background:rgba(20,23,15,.32);
+  transition:border-color .3s var(--rise),background .3s var(--rise)}
+.p-film__play:hover span{border-color:var(--brass);background:rgba(20,23,15,.5)}
+.p-film__play svg{width:1.15rem;height:1.15rem;fill:currentColor;margin-left:.18rem}
+/* The caption is the second way in: a visitor who does not read a bare
+   circle as a control reads words. */
+.p-film__cap{
+  display:flex;align-items:center;justify-content:center;gap:.7rem;
+  width:fit-content;margin:1.15rem auto 0;padding:0 0 .55rem;
+  border:0;background:none;cursor:pointer;
+  border-bottom:1px solid var(--brass);
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.74rem,.7rem + .18vw,.86rem);
+  letter-spacing:.26em;text-indent:.26em;text-transform:uppercase;
+  color:var(--t1);
+  transition:color .4s var(--rise),border-color .4s var(--rise)}
+.p-film__cap svg{
+  width:.62rem;height:.62rem;fill:currentColor;flex:none;
+  color:var(--brass);transition:transform .4s var(--rise)}
+.p-film__cap:hover,.p-film__cap:focus-visible{color:var(--brass);outline:none}
+.p-film__cap:hover svg{transform:translateX(.22rem)}
+.p-film__note{
+  margin:1.1rem auto 0;max-width:34rem;text-align:center;font-weight:300;
+  font-size:clamp(.7rem,.68rem + .12vw,.78rem);line-height:1.8;color:var(--warm);
+}
+@media (prefers-reduced-motion:reduce){
+  .p-film__play,.p-film__play span,.p-film__cap,.p-film__cap svg{transition:none}
+}
 </style>
 '''
 
@@ -246,7 +308,8 @@ def page(p, agents, head, bar, tail):
         hero_cls = "p-hero" + (" p-hero--veil" if p.get("veil", True) else "")
     else:
         hero_cls = "p-hero p-hero--veil p-hero--noimg"
-    hero_img = (f'\n  <img class="hero__media" src="../../media/{p["hero"]}" alt="" aria-hidden="true">'
+    focus = f' style="--hero-focus:{p["focus"]}"' if p.get("focus") else ""
+    hero_img = (f'\n  <img class="hero__media"{focus} src="../../media/{p["hero"]}" alt="" aria-hidden="true">'
                 if p["hero"] else "")
 
     # --- the parts that only exist when we know something -------------------
@@ -291,6 +354,58 @@ def page(p, agents, head, bar, tail):
         <path d="M2 1l3 3-3 3"/></svg></a></p>
   </div>
 </section>
+'''
+
+    # --- the film -----------------------------------------------------------
+    # "film" in properties.json is a stem, not a path: "cm735-film" wants
+    # media/cm735-film.mp4 beside media/cm735-film-poster.jpg. One value,
+    # two files, and no way to set a poster that belongs to another film.
+    film, film_js = "", ""
+    if p.get("film"):
+        stem = p["film"]
+        cap  = p.get("film_cap") or "Watch the Project Update"
+        note = p.get("film_note") or ""
+        note_html = f'\n    <p class="p-film__note">{esc(note)}</p>' if note else ""
+        film = f'''
+<!-- ================================== FILM ================================
+     Self hosted. The source is in media/ and the poster beside it; nothing
+     is fetched until somebody presses play. -->
+<section class="p-sec p-sec--tight" id="film" aria-labelledby="film-h">
+  <h2 class="p-eyebrow" id="film-h">Film</h2>
+  <div class="p-film">
+    <div class="p-film__frame">
+      <video id="pFilm" playsinline preload="none"
+             poster="../../media/{stem}-poster.jpg"
+             aria-label="{esc(cap)} &mdash; {esc(p["address"])}">
+        <source src="../../media/{stem}.mp4" type="video/mp4">
+      </video>
+      <button class="p-film__play" id="pFilmPlay" type="button"
+              aria-label="{esc(cap)} &mdash; {esc(p["address"])}">
+        <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+      </button>
+    </div>
+    <button class="p-film__cap" id="pFilmCap" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+      {esc(cap)}
+    </button>{note_html}
+  </div>
+</section>
+'''
+        film_js = '''
+<script>
+/* The film. The frame holds a poster and a single mark until it is asked
+   for; the first press is what hands the browser its own controls and
+   starts the file downloading. Two ways in, the mark and the line of
+   words, because a bare circle is not a control to everybody. */
+(() => {
+  const v = document.getElementById("pFilm");
+  if (!v) return;
+  const b = document.getElementById("pFilmPlay"), c = document.getElementById("pFilmCap");
+  const go = () => { b.hidden = true; v.controls = true; v.play(); };
+  b.addEventListener("click", go);
+  if (c) c.addEventListener("click", go);
+})();
+</script>
 '''
 
     # --- follow the build ---------------------------------------------------
@@ -455,7 +570,7 @@ def page(p, agents, head, bar, tail):
 {facts_block(p)}
   </dl>
 </section>
-{builder}{loc}{follow}{presented}
+{film}{builder}{loc}{follow}{presented}
 <!-- ================================ INQUIRE =============================== -->
 <section class="p-sec p-sec--tight" id="inquire" aria-labelledby="enq-h">
   <h2 class="p-eyebrow" id="enq-h">Inquiries</h2>
@@ -467,7 +582,7 @@ def page(p, agents, head, bar, tail):
 </section>
 
 '''
-    return head_for(p, head) + body + tail.replace("</body>", follow_js + "</body>")
+    return head_for(p, head) + body + tail.replace("</body>", film_js + follow_js + "</body>")
 
 def main():
     cfg = json.load(open(DATA, encoding="utf-8"))

@@ -169,10 +169,13 @@
       "mls": null,
       "builder": "liebo",
       "agent": null,
-      "hero": null,
-      "veil": true,
+      "hero": "cm735-hero.jpg",
+      "veil": false,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film": "cm735-film",
+      "film_cap": "Watch the Project Update",
+      "film_note": "Filmed on site this autumn, with the foundation poured and the footprint of the house readable from the air."
     },
     {
       "slug": "1310-lavada",
