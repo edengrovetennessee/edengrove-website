@@ -162,9 +162,9 @@
       "hood": "West Meade",
       "status": "Private Exclusive",
       "price": null,
-      "sqft": null,
-      "beds": null,
-      "baths": null,
+      "sqft": "6,851",
+      "beds": "6",
+      "baths": "6 Full, 3 Half",
       "acres": null,
       "mls": null,
       "builder": "liebo",
@@ -214,6 +214,17 @@
             }
           ]
         }
+      ],
+      "sqft_exact": "6,850.55",
+      "garage": "4-Car",
+      "story": "A new Liebo house on a wooded lot in West Meade, six bedrooms over two floors with a four-car garage. The back of the house is given over to a covered porch, a pool and a terrace off the second floor. Under construction now — the foundation is poured.",
+      "features": [
+        "Office",
+        "Hobby Room",
+        "Media Room",
+        "Second-Floor Terrace",
+        "Pool",
+        "Covered Porch, Fire Pit and Grill"
       ]
     },
     {

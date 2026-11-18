@@ -1456,6 +1456,24 @@ blockquote{
    specificity, later wins, so one row can say both how many columns it has
    and how tall they are. Renderings arrive in four or five ratios and
    forcing them into one slot crops the roofline off the elevations. */
+/* ---- what the house has ----
+   The facts list answers how big. This answers what is in it, which is the
+   question a Private Exclusive actually gets asked, and it is a list rather
+   than a paragraph because that is how it arrives from the builder. Same
+   hairline and same spaced caps as the facts above it, one weight quieter,
+   so the two read as one block and not as two ideas. */
+.p-feat{
+  max-width:52rem;margin:clamp(2rem,4vh,2.8rem) auto 0;padding:0;list-style:none;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(1.6rem,4vw,3rem);
+}
+@media (max-width:760px){ .p-feat{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:460px){ .p-feat{grid-template-columns:1fr;max-width:26rem} }
+.p-feat li{
+  border-top:1px solid var(--line);padding:.95rem 0;
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.7rem,.67rem + .14vw,.8rem);
+  letter-spacing:.14em;text-transform:uppercase;color:var(--t2);
+}
 .p-gal__row--1{grid-template-columns:1fr}
 .p-gal__row--pano .p-shot{aspect-ratio:2/1}
 .p-gal__row--wide .p-shot{aspect-ratio:16/9}
@@ -1535,6 +1553,7 @@ blockquote{
     <div><dt>Square Feet</dt><dd>3,890</dd></div>
     <div><dt>Bedrooms</dt><dd class="tbc">&mdash;</dd></div>
     <div><dt>Bathrooms</dt><dd class="tbc">&mdash;</dd></div>
+    <div><dt>Garage</dt><dd class="tbc">&mdash;</dd></div>
     <div><dt>Acreage</dt><dd class="tbc">&mdash;</dd></div>
     <div><dt>MLS</dt><dd class="tbc">&mdash;</dd></div>
     <div><dt>Completion</dt><dd class="tbc">&mdash;</dd></div>

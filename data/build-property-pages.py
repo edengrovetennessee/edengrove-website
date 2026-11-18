@@ -289,6 +289,24 @@ VEIL_CSS = '''<style>
    specificity, later wins, so one row can say both how many columns it has
    and how tall they are. Renderings arrive in four or five ratios and
    forcing them into one slot crops the roofline off the elevations. */
+/* ---- what the house has ----
+   The facts list answers how big. This answers what is in it, which is the
+   question a Private Exclusive actually gets asked, and it is a list rather
+   than a paragraph because that is how it arrives from the builder. Same
+   hairline and same spaced caps as the facts above it, one weight quieter,
+   so the two read as one block and not as two ideas. */
+.p-feat{
+  max-width:52rem;margin:clamp(2rem,4vh,2.8rem) auto 0;padding:0;list-style:none;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0 clamp(1.6rem,4vw,3rem);
+}
+@media (max-width:760px){ .p-feat{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:460px){ .p-feat{grid-template-columns:1fr;max-width:26rem} }
+.p-feat li{
+  border-top:1px solid var(--line);padding:.95rem 0;
+  font-family:var(--ui);font-weight:300;
+  font-size:clamp(.7rem,.67rem + .14vw,.8rem);
+  letter-spacing:.14em;text-transform:uppercase;color:var(--t2);
+}
 .p-gal__row--1{grid-template-columns:1fr}
 .p-gal__row--pano .p-shot{aspect-ratio:2/1}
 .p-gal__row--wide .p-shot{aspect-ratio:16/9}
@@ -297,8 +315,8 @@ VEIL_CSS = '''<style>
 '''
 
 FACTS = [("Status","status"),("Price","price"),("Square Feet","sqft"),
-         ("Bedrooms","beds"),("Bathrooms","baths"),("Acreage","acres"),
-         ("MLS","mls"),("Completion","completion")]
+         ("Bedrooms","beds"),("Bathrooms","baths"),("Garage","garage"),
+         ("Acreage","acres"),("MLS","mls"),("Completion","completion")]
 
 def facts_block(p):
     rows = []
@@ -370,6 +388,19 @@ def page(p, agents, head, bar, tail):
   </div>
 </section>
 '''
+
+    # --- the residence ------------------------------------------------------
+    # The placeholder says the page is early rather than pretending it is
+    # finished. A property with something true to say overrides it with
+    # "story"; "features" is what the house has, which is the question a
+    # Private Exclusive actually gets asked.
+    story = esc(p["story"]) if p.get("story") else (
+        "It is early here. What is settled is on this page; what is not is shown\n"
+        "       as a blank rather than guessed at, and fills in as the house does.")
+    feat = ""
+    if p.get("features"):
+        items = "\n".join(f"    <li>{esc(x)}</li>" for x in p["features"])
+        feat = f'\n  <ul class="p-feat">\n{items}\n  </ul>\n'
 
     # --- the gallery --------------------------------------------------------
     # Rooms, rows, frames, straight out of properties.json. The rows are what
@@ -617,10 +648,9 @@ def page(p, agents, head, bar, tail):
 <section class="p-sec" aria-labelledby="res-h">
   <h2 class="p-eyebrow" id="res-h">The Residence</h2>
   <div class="p-story">
-    <p>It is early here. What is settled is on this page; what is not is shown
-       as a blank rather than guessed at, and fills in as the house does.</p>
+    <p>{story}</p>
   </div>
-
+{feat}
   <dl class="p-facts">
 {facts_block(p)}
   </dl>
