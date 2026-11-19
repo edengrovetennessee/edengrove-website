@@ -131,31 +131,6 @@ a{color:inherit}
   text-transform:uppercase;color:rgba(255,255,255,.45);
 }
 
-/* ---- the story, two halves and our note under each ----
-   The note is set apart rather than run on, because one half is theirs and
-   the other is ours and a reader has to be able to tell which is which. */
-.story{
-  margin:clamp(2.6rem,6vh,4rem) 0 0;
-  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:clamp(2rem,4vw,3.6rem);align-items:start;
-}
-@media (max-width:820px){ .story{grid-template-columns:1fr;gap:clamp(2.4rem,6vh,3.4rem)} }
-.story__half{border-top:1px solid var(--line);padding:1.6rem 0 0}
-.story__who{
-  margin:0 0 1.3rem;font-weight:300;font-size:1rem;line-height:1.7;
-  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;color:#fff;
-}
-.story__half p{margin:0;font-size:.86rem;line-height:1.9;color:var(--t2)}
-.story__note{
-  margin:1.5rem 0 0;padding:1.3rem 0 0;border-top:1px solid rgba(218,206,182,.2);
-  color:var(--warm);
-}
-.story__note b{
-  display:block;margin:0 0 .6rem;font-family:var(--ui);font-weight:400;
-  font-size:.5rem;letter-spacing:.26em;text-indent:.26em;
-  text-transform:uppercase;color:var(--brass);
-}
-
 /* ---- the partner roster ------------------------------------------------ */
 .roster{
   margin:clamp(2.6rem,6vh,4rem) 0 0;
@@ -551,66 +526,6 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
     </p>
   </div>
   <p class="hero__cue">Scroll</p>
-</section>
-
-<!-- ================================ THE STORY =============================
-     THEIR COPY, NOT OURS, AND IT OPENS THE PAGE. Everything after this is
-     machinery; this is the thing the machinery carries. Putting it first
-     says we read it before we wrote a plan.
-
-     The right-hand notes are the only editorial we add: what each one is
-     worth in a campaign, which is the whole reason this page exists. -->
-<section class="sec" aria-labelledby="story-h">
-  <div class="wrap">
-    <p class="eyebrow" id="story-h">The Story</p>
-    <h2 class="h2">Who you are</h2>
-    <div class="rule"></div>
-    <p class="lede">
-      A buyer at this level is choosing a builder as much as an address.
-      Everything further down this page is machinery &mdash; films, emails,
-      events, a brokerage. This is the part that decides whether any of it
-      lands.
-    </p>
-
-    <div class="story">
-      <div class="story__half">
-        <p class="story__who">Kaeser Building</p>
-        <p>Custom, detail-driven residences built from the ground up, where
-           architectural vision, craftsmanship and project management are held
-           by the same hands. Premium materials and advanced building
-           techniques. Custom millwork, designer kitchens, spa-quality baths,
-           smart-home systems, energy-efficient mechanicals. Every phase
-           overseen from site selection to handover: elite trades coordinated,
-           standards enforced, timelines kept, the handover white-glove.</p>
-        <p class="story__note"><b>What we would do with it</b>
-           Almost none of that survives the drywall. A buyer walking a finished
-           house cannot see the waterproofing, the framing decision, or the
-           reason a wall is where it is. Construction Excellence exists to show
-           them while it is still visible &mdash; one room and one technique
-           every other week, for the length of the build. It is the argument
-           for your price, made twenty-six times.</p>
-      </div>
-
-      <div class="story__half">
-        <p class="story__who">Amber Kaeser</p>
-        <p>A woman running a luxury build in a field that is still almost
-           entirely not &mdash; and running all of it. Land evaluation,
-           architectural collaboration, the trades, the final detailing. A
-           command of construction logistics with an eye for how people
-           actually live: flow, function, comfort, and finishes chosen rather
-           than specified. Detail-oriented, decisive, collaborative.</p>
-        <p class="story__note"><b>What we would do with it</b>
-           This is the strongest story on the project and most of the market
-           has never heard it. Builders stay a category to a buyer until one
-           of them becomes a person. We would not spend it on a single film:
-           it runs through the whole campaign &mdash; the brand work with Sam,
-           the interviews, the technique emails that come with a name attached
-           &mdash; because women building at this level is a thing this market
-           should be seeing, and it is yours to own before anybody else
-           does.</p>
-      </div>
-    </div>
-  </div>
 </section>
 
 <!-- ================================= TEAM ================================= -->
