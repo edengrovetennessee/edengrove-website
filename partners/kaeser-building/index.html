@@ -979,7 +979,15 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">Editorial film — three of four</p>
         <h3>Stone, masonry, cladding</h3>
         <p>The exterior finishes are on. The house stops being a frame and starts being the picture in the rendering, which is its own story worth filming.</p>
-        <div class="slot slot--film"><span><em>Drone film 03</em>to be shot</span></div>
+        <div class="slot slot--reel slot--live">
+          <video playsinline preload="none" poster="../../media/cs-drone-poster.jpg">
+            <source src="../../media/cs-drone-film.mp4" type="video/mp4">
+          </video>
+          <button class="slot__play" type="button" aria-label="Play the exterior finishes drone film for 1211 Carl Seyfert Memorial Drive">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
+        <p class="slot__cap"><b>An example of ours</b>1211 Carl Seyfert Memorial Dr &middot; the finishes on, from the air</p>
       </div>
       <div class="cell" data-col="The Campaign">
         <p class="cell__kind">Construction Excellence</p>
