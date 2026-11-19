@@ -509,6 +509,56 @@ a{color:inherit}
   </div>
 </section>
 
+<!-- =============================== COMPASS ================================ -->
+<section class="sec" aria-labelledby="compass-h">
+  <div class="wrap">
+    <p class="eyebrow" id="compass-h">Compass</p>
+    <h2 class="h2">And the machine<br>behind the brokerage.</h2>
+    <div class="rule"></div>
+    <p class="lede">
+      Eden&nbsp;Grove is a team at Compass, which hands this house a set of
+      tools that have nothing to do with how good our marketing is. Most of
+      them work before it is ever publicly for sale.
+    </p>
+
+    <div class="roster">
+      <div class="pcard">
+        <p class="pcard__role">Before the clock starts</p>
+        <p class="pcard__name">Private Exclusive<br>Market Testing</p>
+        <p>The house can be shown to Compass agents and their buyers while it is
+           still a Private Exclusive. Real feedback on price and product without
+           accumulating days on market &mdash; and if we have aimed high, no
+           public price cut on the record for every future buyer to read.</p>
+      </div>
+
+      <div class="pcard">
+        <p class="pcard__role">Targeting</p>
+        <p class="pcard__name">Reverse<br>Prospecting</p>
+        <p>The MLS can tell us which agents already have buyers whose saved
+           searches match this house. We do not wait to be found. We go to those
+           agents by name, with the film in hand.</p>
+      </div>
+
+      <div class="pcard">
+        <p class="pcard__role">Reach</p>
+        <p class="pcard__name">The National<br>Agent Network</p>
+        <p>Compass agents in every major market, reachable directly. A buyer at
+           this level is often moving from somewhere else, and the person they
+           trust is their own agent in Los&nbsp;Angeles, New&nbsp;York or
+           Miami &mdash; not a listing site.</p>
+      </div>
+
+      <div class="pcard">
+        <p class="pcard__role">First call</p>
+        <p class="pcard__name">Our Internal<br>Network</p>
+        <p>Before any of it: the agents, investors, athletes, entertainers and
+           past clients we have spent years building. A quiet first call has
+           closed houses at this level before the sign was ever planted.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ============================== THE JOURNEY ============================= -->
 <section class="sec sec--tight" aria-labelledby="journey-h">
   <div class="wrap">
@@ -612,158 +662,399 @@ a{color:inherit}
    ======================================================================== */
 const PHASES = [
   {
-    when:"Before ground", sub:"Month 0",
-    project:{kind:"Event", h:"The kickoff",
-      body:"Small, curated, on the property. Your investors, the architect, the interior designer, our team. Twelve months of blood and money start here, and most of the people who will spend it have never met. Breaking bread first is not ceremony — it is alignment."},
-    campaign:{kind:"Email 01", h:"The project, introduced",
-      body:"High level and short. Agents, high-net-worth individuals, athletes, entertainers, and our own network. The market does not need detail yet. It needs to know this is coming.",
-      slot:["mail","Email 01","sample to be dropped in"],
-      slot:["shot","The kickoff","a frame from a past one"]},
-    brand:{kind:"Post", h:"Who Kaeser Building is",
-      body:"The team you have assembled, in your own words. Not a logo and a phone number — the people, and why you chose them."}
+    "when": "Before ground",
+    "sub": "Month 0",
+    "project": {
+      "kind": "Event",
+      "h": "The kickoff",
+      "body": "Small, curated, on the property. Your investors, the architect, the interior designer, our team. Twelve months of blood and money start here, and most of the people who will spend it have never met. Breaking bread first is not ceremony — it is alignment.",
+      "slot": [
+        "shot",
+        "The kickoff",
+        "a frame from a past one"
+      ]
+    },
+    "campaign": {
+      "kind": "Email 01",
+      "h": "The project, introduced",
+      "body": "High level and short. Agents, high-net-worth individuals, athletes, entertainers, and our own network. The market does not need detail yet. It needs to know this is coming.",
+      "slot": [
+        "mail",
+        "Email 01",
+        "sample to be dropped in"
+      ]
+    },
+    "brand": {
+      "kind": "Post",
+      "h": "Who Kaeser Building is",
+      "body": "The team you have assembled, in your own words. Not a logo and a phone number — the people, and why you chose them."
+    }
   },
   {
-    when:"Site live", sub:"Month 0–1",
-    project:{kind:"Collateral", h:"The development sign",
-      body:"Your logo, curated to this project, standing before the old house comes down. It is the cheapest lead source on the job and the one most builders waste. Nobody drives past this site and has no way to call.",
-      slot:["sign","The sign","rendering with your logo"]},
-    campaign:{kind:"Email 02", h:"The builder and the team",
-      body:"You, your architect, your designer, your landscape architect. And your pipeline — what else is coming, whether or not we are listing it. We would rather list them all, but this is a partnership either way."},
-    brand:{kind:"Feature", h:"The pipeline, in public",
-      body:"Your upcoming projects go out to our list whether they are ours to sell or not. A builder with a pipeline reads differently from a builder with a house.",
-      slot:["mail","Email 02","sample to be dropped in"]}
+    "when": "Site live",
+    "sub": "Month 0–1",
+    "project": {
+      "kind": "Collateral",
+      "h": "The development sign",
+      "body": "Your logo, curated to this project, standing before the old house comes down. It is the cheapest lead source on the job and the one most builders waste. Nobody drives past this site and has no way to call.",
+      "slot": [
+        "sign",
+        "The sign",
+        "rendering with your logo"
+      ]
+    },
+    "campaign": {
+      "kind": "Email 02",
+      "h": "The builder and the team",
+      "body": "You, your architect, your designer, your landscape architect. And your pipeline — what else is coming, whether or not we are listing it. We would rather list them all, but this is a partnership either way.",
+      "slot": [
+        "mail",
+        "Email 02",
+        "sample to be dropped in"
+      ]
+    },
+    "brand": {
+      "kind": "Feature",
+      "h": "The pipeline, in public",
+      "body": "Your upcoming projects go out to our list whether they are ours to sell or not. A builder with a pipeline reads differently from a builder with a house."
+    }
   },
   {
-    when:"Foundation", sub:"Month 2–3",
-    project:{kind:"Editorial film — one of four", h:"The site, from the air",
-      body:"Demo done, site cleared, foundation poured or block set. Our in-house editorial and drone team put together the first film: this is the land, this is what is going on it, this is who is building it.",
-      slot:["film","Drone film 01","existing footage to embed"]},
-    campaign:{kind:"Project update", h:"We are out of the ground",
-      body:"The film goes to the whole list — including every lead the sign has caught so far. Not everybody is on Instagram. Everybody has email."},
-    brand:{kind:"Film with Sam Phen", h:"The people behind it",
-      body:"Your architect, your designer, your landscape architect. On camera if they want it, off camera if they do not — either way the story gets told and your name is on it."}
+    "when": "Foundation",
+    "sub": "Month 2–3",
+    "project": {
+      "kind": "Editorial film — one of four",
+      "h": "The site, from the air",
+      "body": "Demo done, site cleared, foundation poured or block set. Our in-house editorial and drone team put together the first film: this is the land, this is what is going on it, this is who is building it.",
+      "slot": [
+        "film",
+        "Drone film 01",
+        "existing footage to embed"
+      ]
+    },
+    "campaign": {
+      "kind": "Project update",
+      "h": "We are out of the ground",
+      "body": "The film goes to the whole list — including every lead the sign has caught so far. Not everybody is on Instagram. Everybody has email."
+    },
+    "brand": {
+      "kind": "Film with Sam Phen",
+      "h": "The people behind it",
+      "body": "Your architect, your designer, your landscape architect. On camera if they want it, off camera if they do not — either way the story gets told and your name is on it.",
+      "slot": [
+        "film",
+        "Brand film",
+        "to be shot with Sam"
+      ]
+    }
   },
   {
-    when:"Renderings", sub:"Month 3–4",
-    project:{kind:"In-house rendering", h:"The exteriors, released",
-      body:"Once the exterior renderings are right — and we will go through angles, iterations and finish changes until they are — the house gets a face before it has walls.",
-      slot:["film","Exterior renderings","set to be dropped in"],
-      slot:["film","Brand film","to be shot with Sam"]},
-    campaign:{kind:"Email", h:"This is what it will be",
-      body:"The renderings carry the email. For most of the list this is the first time the house exists as a thing you can want."},
-    brand:{kind:"Credit", h:"The renderings carry your name",
-      body:"Every frame that circulates for the next eight months is a Kaeser Building house before it is an address.",
-      slot:["mail","Renderings email","sample to be dropped in"]}
+    "when": "Renderings",
+    "sub": "Month 3–4",
+    "project": {
+      "kind": "In-house rendering",
+      "h": "The exteriors, released",
+      "body": "Once the exterior renderings are right — and we will go through angles, iterations and finish changes until they are — the house gets a face before it has walls.",
+      "slot": [
+        "film",
+        "Exterior renderings",
+        "set to be dropped in"
+      ]
+    },
+    "campaign": {
+      "kind": "Email",
+      "h": "This is what it will be",
+      "body": "The renderings carry the email. For most of the list this is the first time the house exists as a thing you can want.",
+      "slot": [
+        "mail",
+        "Renderings email",
+        "sample to be dropped in"
+      ]
+    },
+    "brand": {
+      "kind": "Credit",
+      "h": "The renderings carry your name",
+      "body": "Every frame that circulates for the next eight months is a Kaeser Building house before it is an address."
+    }
   },
   {
-    when:"Every other week", sub:"Month 3 onward",
-    project:{kind:"Ongoing", h:"Construction Excellence begins",
-      body:"From here to the end, every two weeks, we publish one room and one building technique. It starts with architecture and exteriors, because that is what exists, and moves inside as the house does."},
-    campaign:{kind:"The spine of the campaign", h:"One room, one technique",
-      body:"Each one takes a single room and a single technique and explains why it was done that way — a waterproofing detail, a framing decision, an architectural move, a finish the designer chose. It is where a buyer learns the difference between this house and the one down the road.",
-      slot:["mail","Construction Excellence","sample to be dropped in"]},
-    brand:{kind:"Positioning", h:"Every technique is yours",
-      body:"Twenty-six emails over the build, each one explaining something Kaeser Building does that the next builder does not. That is the whole argument for your price, made in instalments."}
+    "when": "Every other week",
+    "sub": "Month 3 onward",
+    "project": {
+      "kind": "Ongoing",
+      "h": "Construction Excellence begins",
+      "body": "From here to the end, every two weeks, we publish one room and one building technique. It starts with architecture and exteriors, because that is what exists, and moves inside as the house does."
+    },
+    "campaign": {
+      "kind": "The spine of the campaign",
+      "h": "One room, one technique",
+      "body": "Each one takes a single room and a single technique and explains why it was done that way — a waterproofing detail, a framing decision, an architectural move, a finish the designer chose. It is where a buyer learns the difference between this house and the one down the road.",
+      "slot": [
+        "mail",
+        "Construction Excellence",
+        "sample to be dropped in"
+      ]
+    },
+    "brand": {
+      "kind": "Positioning",
+      "h": "Every technique is yours",
+      "body": "Twenty-six emails over the build, each one explaining something Kaeser Building does that the next builder does not. That is the whole argument for your price, made in instalments."
+    }
   },
   {
-    when:"Framed", sub:"Month 5–6",
-    project:{kind:"Editorial film — two of four", h:"The shape of it",
-      body:"The house is standing. This is the week people can finally read it, and it is where our first walkthroughs and private showings come from.",
-      slot:["film","Drone film 02","existing footage to embed"]},
-    campaign:{kind:"Project update", h:"It has a roofline",
-      body:"The film, and the first invitation to walk it. Interest changes character once a buyer can stand in a room."},
-    brand:{kind:"Post", h:"Progress, told properly",
-      body:"The same footage, cut for social, carrying your mark."}
+    "when": "Framed",
+    "sub": "Month 5–6",
+    "project": {
+      "kind": "Editorial film — two of four",
+      "h": "The shape of it",
+      "body": "The house is standing. This is the week people can finally read it, and it is where our first walkthroughs and private showings come from.",
+      "slot": [
+        "film",
+        "Drone film 02",
+        "existing footage to embed"
+      ]
+    },
+    "campaign": {
+      "kind": "Project update",
+      "h": "It has a roofline",
+      "body": "The film, and the first invitation to walk it. Interest changes character once a buyer can stand in a room."
+    },
+    "brand": {
+      "kind": "Post",
+      "h": "Progress, told properly",
+      "body": "The same footage, cut for social, carrying your mark."
+    }
   },
   {
-    when:"Rendering film", sub:"Month 6–7",
-    project:{kind:"In-house production", h:"The house, in motion",
-      body:"With the interiors rendered, we build the film: through the door, through the rooms, out to the grounds. A year before anyone can do it on foot.",
-      slot:["film","Rendering film","existing film to embed"]},
-    campaign:{kind:"Email", h:"Walk it before it exists",
-      body:"The single highest-performing piece we send. It is also the one that generates the pre-sale conversations."},
-    brand:{kind:"—", h:"", empty:true}
+    "when": "Rendering film",
+    "sub": "Month 6–7",
+    "project": {
+      "kind": "In-house production",
+      "h": "The house, in motion",
+      "body": "With the interiors rendered, we build the film: through the door, through the rooms, out to the grounds. A year before anyone can do it on foot.",
+      "slot": [
+        "film",
+        "Rendering film",
+        "existing film to embed"
+      ]
+    },
+    "campaign": {
+      "kind": "Email",
+      "h": "Walk it before it exists",
+      "body": "The single highest-performing piece we send. It is also the one that generates the pre-sale conversations."
+    },
+    "brand": {
+      "kind": "—",
+      "h": "",
+      "empty": true
+    }
   },
   {
-    when:"Exterior finishes", sub:"Month 7–8",
-    project:{kind:"Editorial film — three of four", h:"Stone, masonry, cladding",
-      body:"The exterior finishes are on. The house stops being a frame and starts being the picture in the rendering, which is its own story worth filming.",
-      slot:["film","Drone film 03","to be shot"]},
-    campaign:{kind:"Construction Excellence", h:"The exterior detail",
-      body:"The stone, how it was set, why that stone. The things that cost you money and that nobody notices unless someone points at them."},
-    brand:{kind:"Post", h:"Craft, at close range",
-      body:"Macro photography of the work. This is the content that other builders share, which is how builders get known."}
+    "when": "Exterior finishes",
+    "sub": "Month 7–8",
+    "project": {
+      "kind": "Editorial film — three of four",
+      "h": "Stone, masonry, cladding",
+      "body": "The exterior finishes are on. The house stops being a frame and starts being the picture in the rendering, which is its own story worth filming.",
+      "slot": [
+        "film",
+        "Drone film 03",
+        "to be shot"
+      ]
+    },
+    "campaign": {
+      "kind": "Construction Excellence",
+      "h": "The exterior detail",
+      "body": "The stone, how it was set, why that stone. The things that cost you money and that nobody notices unless someone points at them."
+    },
+    "brand": {
+      "kind": "Post",
+      "h": "Craft, at close range",
+      "body": "Macro photography of the work. This is the content that other builders share, which is how builders get known.",
+      "slot": [
+        "shot",
+        "Craft, close up",
+        "to be shot"
+      ]
+    }
   },
   {
-    when:"Interior finishes", sub:"Month 8–10",
-    project:{kind:"Switch to real", h:"Renderings give way to photographs",
-      body:"Plaster, the fireplace, the hood, the arches, the windows. From here the campaign stops showing what it will look like and starts showing what it looks like."},
-    campaign:{kind:"Construction Excellence", h:"Interior architecture",
-      body:"Room by room, as each one becomes real. The renderings stay in the archive as the before.",
-      slot:["shot","First real photography","to be shot"]},
-    brand:{kind:"Interview", h:"The interior designer",
-      body:"Sat down in the house, mid-finish, talking about what the choices were and why. Your team, on record."}
+    "when": "Interior finishes",
+    "sub": "Month 8–10",
+    "project": {
+      "kind": "Switch to real",
+      "h": "Renderings give way to photographs",
+      "body": "Plaster, the fireplace, the hood, the arches, the windows. From here the campaign stops showing what it will look like and starts showing what it looks like.",
+      "slot": [
+        "shot",
+        "First real photography",
+        "to be shot"
+      ]
+    },
+    "campaign": {
+      "kind": "Construction Excellence",
+      "h": "Interior architecture",
+      "body": "Room by room, as each one becomes real. The renderings stay in the archive as the before."
+    },
+    "brand": {
+      "kind": "Interview",
+      "h": "The interior designer",
+      "body": "Sat down in the house, mid-finish, talking about what the choices were and why. Your team, on record.",
+      "slot": [
+        "port",
+        "Designer interview",
+        "to be shot"
+      ]
+    }
   },
   {
-    when:"The agent interview", sub:"Month 10",
-    project:{kind:"Film", h:"The person who has been here all year",
-      body:"A sit-down with the listing agent, who has walked this build every week and can speak to the vision, the decisions and the detail without being briefed. It gives the listing a face.",
-      slot:["port","Agent interview","to be shot"],
-      slot:["port","Designer interview","to be shot"]},
-    campaign:{kind:"Email", h:"The walkthrough",
-      body:"Sent to the full list and to every captured lead. The closest thing to a private showing that an email can be."},
-    brand:{kind:"Positioning", h:"Someone else vouching for you",
-      body:"A builder saying their work is careful is marketing. The agent who watched it being built saying it is evidence."}
+    "when": "The agent interview",
+    "sub": "Month 10",
+    "project": {
+      "kind": "Film",
+      "h": "The person who has been here all year",
+      "body": "A sit-down with the listing agent, who has walked this build every week and can speak to the vision, the decisions and the detail without being briefed. It gives the listing a face.",
+      "slot": [
+        "port",
+        "Agent interview",
+        "to be shot"
+      ]
+    },
+    "campaign": {
+      "kind": "Email",
+      "h": "The walkthrough",
+      "body": "Sent to the full list and to every captured lead. The closest thing to a private showing that an email can be."
+    },
+    "brand": {
+      "kind": "Positioning",
+      "h": "Someone else vouching for you",
+      "body": "A builder saying their work is careful is marketing. The agent who watched it being built saying it is evidence."
+    }
   },
   {
-    when:"Landscaping", sub:"Month 11",
-    project:{kind:"Editorial film — four of four", h:"The last drone film",
-      body:"Landscape in, grounds finished, the property whole from the air. This one is the teaser — it tells the market we are weeks away.",
-      slot:["film","Drone film 04","to be shot"]},
-    campaign:{kind:"Project update", h:"We are finishing",
-      body:"Urgency, finally earned. Every lead gathered over twelve months hears it at once."},
-    brand:{kind:"—", h:"", empty:true}
+    "when": "Landscaping",
+    "sub": "Month 11",
+    "project": {
+      "kind": "Editorial film — four of four",
+      "h": "The last drone film",
+      "body": "Landscape in, grounds finished, the property whole from the air. This one is the teaser — it tells the market we are weeks away.",
+      "slot": [
+        "film",
+        "Drone film 04",
+        "to be shot"
+      ]
+    },
+    "campaign": {
+      "kind": "Project update",
+      "h": "We are finishing",
+      "body": "Urgency, finally earned. Every lead gathered over twelve months hears it at once."
+    },
+    "brand": {
+      "kind": "—",
+      "h": "",
+      "empty": true
+    }
   },
   {
-    when:"Staged and filmed", sub:"Month 12",
-    project:{kind:"Estadia Media", h:"The finished house",
-      body:"Staged, then handed to Estadia for the editorial film and the full photographic set. This is the work that will represent the house everywhere it appears, for as long as it is for sale.",
-      slot:["film","Estadia film","past production to embed"]},
-    campaign:{kind:"Email", h:"First look",
-      body:"The film and the set, to everybody. Twelve months of audience, arriving at the same moment."},
-    brand:{kind:"Interviews", h:"Builder, architect, designer",
-      body:"The story of the house from the people who made it. This is where we pull at a buyer and where your brand gets its best material of the year."}
+    "when": "Staged and filmed",
+    "sub": "Month 12",
+    "project": {
+      "kind": "Estadia Media",
+      "h": "The finished house",
+      "body": "Staged, then handed to Estadia for the editorial film and the full photographic set. This is the work that will represent the house everywhere it appears, for as long as it is for sale.",
+      "slot": [
+        "film",
+        "Estadia film",
+        "past production to embed"
+      ]
+    },
+    "campaign": {
+      "kind": "Email",
+      "h": "First look",
+      "body": "The film and the set, to everybody. Twelve months of audience, arriving at the same moment."
+    },
+    "brand": {
+      "kind": "Interviews",
+      "h": "Builder, architect, designer",
+      "body": "The story of the house from the people who made it. This is where we pull at a buyer and where your brand gets its best material of the year.",
+      "slot": [
+        "film",
+        "Builder interviews",
+        "to be shot"
+      ]
+    }
   },
   {
-    when:"The event", sub:"Month 12",
-    project:{kind:"The Found Table", h:"Not a broker’s open",
-      body:"A curated evening, scaled to the property, built by Jesse Scott so the event complements the house rather than filling it. The right agents, the right investors, the right buyers, and the house at its absolute peak. All of it filmed.",
-      slot:["film","A Found Table evening","Jesse’s content via Blake"],
-      slot:["film","Builder interviews","to be shot"]},
-    campaign:{kind:"Email", h:"The invitation, then the night",
-      body:"An invitation beforehand, and afterwards the film of it. People who were not there should want to have been."},
-    brand:{kind:"Content", h:"How the house behaves with people in it",
-      body:"Flow, light, noise, the feel of a full room. You cannot photograph that in an empty house and you cannot fake it."}
+    "when": "The event",
+    "sub": "Month 12",
+    "project": {
+      "kind": "The Found Table",
+      "h": "Not a broker’s open",
+      "body": "A curated evening, scaled to the property, built by Jesse Scott so the event complements the house rather than filling it. The right agents, the right investors, the right buyers, and the house at its absolute peak. All of it filmed.",
+      "slot": [
+        "film",
+        "A Found Table evening",
+        "Jesse’s content via Blake"
+      ]
+    },
+    "campaign": {
+      "kind": "Email",
+      "h": "The invitation, then the night",
+      "body": "An invitation beforehand, and afterwards the film of it. People who were not there should want to have been."
+    },
+    "brand": {
+      "kind": "Content",
+      "h": "How the house behaves with people in it",
+      "body": "Flow, light, noise, the feel of a full room. You cannot photograph that in an empty house and you cannot fake it.",
+      "slot": [
+        "shot",
+        "The room, full",
+        "to be shot"
+      ]
+    }
   },
   {
-    when:"Content day", sub:"Month 12",
-    project:{kind:"Agents", h:"They shoot it themselves",
-      body:"We open the house to agents with real followings and let them make their own content in it. It builds the relationships that sell the next one and multiplies the reach of this one at no cost.",
-      slot:["shot","The room, full","to be shot"],
-      slot:["shot","Content day","to be shot"]},
-    campaign:{kind:"Email", h:"Available now",
-      body:"The listing, live, to a list that has been following it for a year."},
-    brand:{kind:"Reach", h:"Agents carry your name out with them",
-      body:"Every one of them posts a Kaeser Building house. None of them had to be paid to."}
+    "when": "Content day",
+    "sub": "Month 12",
+    "project": {
+      "kind": "Agents",
+      "h": "They shoot it themselves",
+      "body": "We open the house to agents with real followings and let them make their own content in it. It builds the relationships that sell the next one and multiplies the reach of this one at no cost.",
+      "slot": [
+        "shot",
+        "Content day",
+        "to be shot"
+      ]
+    },
+    "campaign": {
+      "kind": "Email",
+      "h": "Available now",
+      "body": "The listing, live, to a list that has been following it for a year."
+    },
+    "brand": {
+      "kind": "Reach",
+      "h": "Agents carry your name out with them",
+      "body": "Every one of them posts a Kaeser Building house. None of them had to be paid to."
+    }
   },
   {
-    when:"After", sub:"Until it closes",
-    project:{kind:"Ongoing", h:"A year of material, still working",
-      body:"Four editorial films, a rendering film, an event film, interviews, a full photographic set, and twenty-six campaign emails. Whether it sells in a day or in ninety, there is enough to keep it in front of every buyer in Nashville and across the country."},
-    campaign:{kind:"Ongoing", h:"The list does not go quiet",
-      body:"The campaign continues until it closes, then carries straight into the next project with the audience intact."},
-    brand:{kind:"The point", h:"The next one starts warm",
-      body:"You do not rebuild an audience for project two. You inherit this one."}
+    "when": "After",
+    "sub": "Until it closes",
+    "project": {
+      "kind": "Ongoing",
+      "h": "A year of material, still working",
+      "body": "Four editorial films, a rendering film, an event film, interviews, a full photographic set, and twenty-six campaign emails. Whether it sells in a day or in ninety, there is enough to keep it in front of every buyer in Nashville and across the country."
+    },
+    "campaign": {
+      "kind": "Ongoing",
+      "h": "The list does not go quiet",
+      "body": "The campaign continues until it closes, then carries straight into the next project with the audience intact."
+    },
+    "brand": {
+      "kind": "The point",
+      "h": "The next one starts warm",
+      "body": "You do not rebuild an audience for project two. You inherit this one."
+    }
   }
 ];
 
