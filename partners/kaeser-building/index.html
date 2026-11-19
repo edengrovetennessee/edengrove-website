@@ -214,6 +214,39 @@ a{color:inherit}
   text-transform:uppercase;color:var(--t3);
 }
 
+/* ---- what is covered ----
+   Ryan's ask, close to his words: she should know we have access to
+   all of it, and that every one of them is either in house or under
+   contract. A ledger says that in one look. Written as prose it would
+   be a list of twelve nouns in a paragraph, which nobody reads and
+   which is exactly the kind of wordiness this page was rebuilt to
+   get away from. */
+.cov{
+  margin:clamp(2.4rem,5vh,3.4rem) auto 0;max-width:48rem;
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:clamp(1.8rem,4vw,3.6rem);
+}
+@media (max-width:620px){ .cov{grid-template-columns:1fr;max-width:26rem} }
+.cov__h{
+  grid-column:1/-1;margin:0 0 .6rem;text-align:center;
+  font-size:.56rem;letter-spacing:.28em;text-indent:.28em;
+  text-transform:uppercase;color:var(--t3);
+}
+.cov__col{min-width:0}
+.cov__t{
+  margin:0 0 .3rem;padding-bottom:.9rem;
+  border-bottom:1px solid var(--line);
+  font-weight:400;font-size:.52rem;
+  letter-spacing:.24em;text-indent:.24em;
+  text-transform:uppercase;color:var(--brass);
+}
+.cov__n{
+  margin:0;padding:.9rem 0;border-bottom:1px solid var(--line);
+  font-weight:300;font-size:.78rem;line-height:1.6;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--t1);
+}
+@media (max-width:620px){ .cov__col + .cov__col .cov__t{margin-top:2rem} }
+
 /* ---- the claim band ---------------------------------------------------- */
 .claim{
   margin:clamp(3rem,7vh,5rem) auto 0;max-width:52rem;text-align:center;
@@ -669,8 +702,30 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 
     </div>
 
+    <div class="cov">
+      <p class="cov__h">Every discipline this house needs</p>
+      <div class="cov__col">
+        <p class="cov__t">On our staff</p>
+        <p class="cov__n">Exterior renderings</p>
+        <p class="cov__n">Interior renderings</p>
+        <p class="cov__n">Rendering film</p>
+        <p class="cov__n">Editorial drone</p>
+        <p class="cov__n">Construction content</p>
+        <p class="cov__n">Transaction coordination</p>
+        <p class="cov__n">Administration</p>
+      </div>
+      <div class="cov__col">
+        <p class="cov__t">Under contract to us</p>
+        <p class="cov__n">Editorial film &amp; photography</p>
+        <p class="cov__n">Branding</p>
+        <p class="cov__n">Staging</p>
+        <p class="cov__n">Event coordination</p>
+        <p class="cov__n">Print &amp; signage</p>
+      </div>
+    </div>
+
     <div class="claim">
-      <p>Every one of them under contract, and on your house.</p>
+      <p>None of it gets found when the time comes.</p>
       <p>We know what goes into a project like this, and we know what is at risk
          behind it. Our job is to make sure that when it is finished, nothing was
          left on the table &mdash; not the audience, not the price, and not your
