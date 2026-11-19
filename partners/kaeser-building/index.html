@@ -318,7 +318,8 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
    about his own. preload="none": the frame shows the poster and the file is
    only fetched by somebody who presses play. */
 .slot--live{position:relative;border-color:rgba(218,206,182,.4);padding:0;background:#1b1f19}
-.slot--live video{position:absolute;inset:0}
+.slot--live video,.slot--live img,.slot--live iframe{position:absolute;inset:0}
+.slot--still{cursor:default}
 .slot__play{
   position:absolute;inset:0;z-index:2;display:grid;place-items:center;
   border:0;background:rgba(20,23,15,.26);cursor:pointer;color:#fff;
@@ -688,7 +689,10 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">In-house rendering</p>
         <h3>The exteriors, released</h3>
         <p>Once the exterior renderings are right — and we will go through angles, iterations and finish changes until they are — the house gets a face before it has walls.</p>
-        <div class="slot slot--film"><span><em>Exterior renderings</em>set to be dropped in</span></div>
+        <div class="slot slot--film slot--live slot--still">
+          <img src="../../media/dv-hero.jpg" alt="The front elevation at 715 Davis Drive" loading="lazy" decoding="async">
+        </div>
+        <p class="slot__cap"><b>An example of ours</b>715 Davis Dr &middot; the exterior rendering</p>
       </div>
       <div class="cell" data-col="The Campaign">
         <p class="cell__kind">Email</p>
@@ -733,7 +737,15 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">Editorial film — two of four</p>
         <h3>The shape of it</h3>
         <p>The house is standing. This is the week people can finally read it, and it is where our first walkthroughs and private showings come from.</p>
-        <div class="slot slot--film"><span><em>Drone film 02</em>existing footage to embed</span></div>
+        <div class="slot slot--film slot--live">
+          <video playsinline preload="none" poster="../../media/wp804-film-poster.jpg">
+            <source src="../../media/wp804-film.mp4" type="video/mp4">
+          </video>
+          <button class="slot__play" type="button" aria-label="Play the framing film from 804 Wilson Pike">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
+        <p class="slot__cap"><b>An example of ours</b>804 Wilson Pike &middot; framed</p>
       </div>
       <div class="cell" data-col="The Campaign">
         <p class="cell__kind">Project update</p>
@@ -870,7 +882,13 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">Interviews</p>
         <h3>Builder, architect, designer</h3>
         <p>The story of the house from the people who made it. This is where we pull at a buyer and where your brand gets its best material of the year.</p>
-        <div class="slot slot--film"><span><em>Builder interviews</em>to be shot</span></div>
+        <div class="slot slot--film slot--live" data-yt="-N-ktwDU1us">
+          <img src="../../media/cs-walk-poster.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async">
+          <button class="slot__play" type="button" aria-label="Play the walkthrough of 1211 Carl Seyfert Memorial Drive">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
+        <p class="slot__cap"><b>An example of ours</b>1211 Carl Seyfert Memorial Dr &middot; with the developer and the interior designer</p>
       </div>
       </div>
     </div>
@@ -1130,9 +1148,28 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
   journey.addEventListener("click", function (e) {
     var btn = e.target.closest ? e.target.closest(".slot__play") : null;
     if (!btn) return;
-    var v = btn.parentNode.querySelector("video");
-    if (!v) return;
-    btn.hidden = true; v.controls = true; v.play();
+    var slot = btn.parentNode;
+    btn.hidden = true;
+
+    /* YOUTUBE LOADS ON THE PRESS, NOT ON THE PAGE. Nothing is requested
+       from Google until somebody asks for it, which is the same bargain
+       the property pages make. */
+    var yt = slot.dataset.yt;
+    if (yt){
+      var f = document.createElement("iframe");
+      f.src = "https://www.youtube-nocookie.com/embed/" + yt +
+              "?autoplay=1&rel=0&modestbranding=1";
+      f.title = "Walkthrough";
+      f.allow = "accelerometer; autoplay; encrypted-media; picture-in-picture";
+      f.setAttribute("allowfullscreen", "");
+      f.setAttribute("frameborder", "0");
+      slot.appendChild(f);
+      return;
+    }
+
+    var v = slot.querySelector("video");
+    if (!v) { btn.hidden = false; return; }
+    v.controls = true; v.play();
   });
 
   addEventListener("scroll", onScroll, { passive: true });
