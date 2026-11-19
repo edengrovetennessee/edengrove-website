@@ -145,6 +145,38 @@ a{color:inherit}
   text-transform:uppercase;color:var(--t3);
 }
 
+/* ---- the team ----
+   THE FOUR OF THEM FIRST, then what we hold in house, then who is under
+   contract. Ours before theirs: the argument is that the partners come
+   with a team, not that the team comes with partners. */
+.team{
+  margin:clamp(2.6rem,6vh,4rem) 0 0;
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:clamp(1.2rem,2.6vw,2.4rem);align-items:start;
+}
+@media (max-width:860px){ .team{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:460px){ .team{grid-template-columns:1fr;max-width:22rem} }
+.tm{margin:0}
+.tm__ph{aspect-ratio:2/3;overflow:hidden;background:var(--panel)}
+.tm__ph img{width:100%;height:100%;object-fit:cover}
+.tm__role{
+  margin:1.1rem 0 0;font-size:.52rem;letter-spacing:.28em;text-indent:.28em;
+  text-transform:uppercase;color:var(--brass);
+}
+.tm__name{
+  margin:.6rem 0 0;font-family:var(--display);font-weight:300;
+  font-size:1.2rem;line-height:1.3;color:#fff;
+}
+.tm p:last-child{margin:.8rem 0 0;font-size:.79rem;line-height:1.85;color:var(--t2)}
+.sub{
+  margin:clamp(2.6rem,6vh,4rem) 0 0;padding-top:clamp(2rem,4vh,2.8rem);
+  border-top:1px solid var(--line);
+}
+.sub__h{
+  margin:0;font-size:.56rem;letter-spacing:.28em;text-indent:.28em;
+  text-transform:uppercase;color:var(--t3);
+}
+
 /* ---- the claim band ---------------------------------------------------- */
 .claim{
   margin:clamp(3rem,7vh,5rem) auto 0;max-width:52rem;text-align:center;
@@ -243,6 +275,7 @@ a{color:inherit}
 .slot--port{aspect-ratio:4/5}
 .slot--mail{aspect-ratio:3/4}
 .slot--sign{aspect-ratio:3/4}
+.slot--shot{aspect-ratio:4/3}
 .slot span{
   font-size:.52rem;letter-spacing:.24em;text-indent:.24em;
   text-transform:uppercase;color:var(--t3);line-height:1.9;
@@ -321,6 +354,96 @@ a{color:inherit}
   <p class="hero__cue">Scroll</p>
 </section>
 
+<!-- ================================= TEAM ================================= -->
+<section class="sec" aria-labelledby="team-h">
+  <div class="wrap">
+    <p class="eyebrow" id="team-h">The Team</p>
+    <h2 class="h2">When you work with Eden&nbsp;Grove,<br>you get all of us.</h2>
+    <div class="rule"></div>
+    <p class="lede">
+      Not one agent with a brokerage behind them. Four people who have each come
+      at this from a different direction &mdash; development, acquisitions,
+      construction, this county &mdash; and a bench behind them that means none
+      of them is doing paperwork when they should be doing your deal.
+    </p>
+
+    <div class="team">
+      <figure class="tm">
+        <div class="tm__ph"><img src="../../media/agent-ryan.jpg" alt="Ryan Stonehouse" loading="lazy" decoding="async"></div>
+        <figcaption>
+          <p class="tm__role">Founder</p>
+          <p class="tm__name">Ryan Stonehouse</p>
+          <p>Four seasons in the NFL, then real estate from the development side
+             first &mdash; land, entitlement, construction, and what actually
+             makes a finished house worth more.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="tm">
+        <div class="tm__ph"><img src="../../media/agent-blake.jpg" alt="Blake Barker" loading="lazy" decoding="async"></div>
+        <figcaption>
+          <p class="tm__role">Co-Founder</p>
+          <p class="tm__name">Blake Barker</p>
+          <p>Runs Shepherd Group Development alongside Eden&nbsp;Grove, and holds
+             a Master&rsquo;s in Real Estate Development. He has been on your side
+             of the table.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="tm">
+        <div class="tm__ph"><img src="../../media/agent-joe.jpg" alt="Joe Archer" loading="lazy" decoding="async"></div>
+        <figcaption>
+          <p class="tm__role">Acquisitions</p>
+          <p class="tm__name">Joe Archer</p>
+          <p>Leads acquisitions and brokers across Middle&nbsp;Tennessee and
+             South-Central Kentucky. The one who knows what the land traded for
+             before it was yours.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="tm">
+        <div class="tm__ph"><img src="../../media/agent-jack.jpg" alt="Jack Montague" loading="lazy" decoding="async"></div>
+        <figcaption>
+          <p class="tm__role">Brokerage</p>
+          <p class="tm__name">Jack Montague</p>
+          <p>Williamson County native, Brentwood born and raised. He knows this
+             market from the inside, which matters more here than almost
+             anywhere.</p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="sub">
+      <p class="sub__h">And what we hold in house</p>
+      <div class="roster">
+        <div class="pcard">
+          <p class="pcard__role">In House</p>
+          <p class="pcard__name">Editorial Drone &amp;<br>Construction Film</p>
+          <p>Ours, on staff, on call. Progress from the air and on the ground,
+             from the day the site is cleared to the day the landscape goes in.
+             Four films across the build, each one a release of its own.</p>
+        </div>
+        <div class="pcard">
+          <p class="pcard__role">In House</p>
+          <p class="pcard__name">Rendering &amp;<br>Rendering Film</p>
+          <p>A private, US-based rendering studio we hold directly. It lets us
+             sell a house that does not exist yet &mdash; and build a rendering
+             film that walks a buyer through it, room by room, a year before the
+             door opens.</p>
+        </div>
+        <div class="pcard">
+          <p class="pcard__role">In House</p>
+          <p class="pcard__name">Transaction Coordination<br>&amp; Administration</p>
+          <p>A dedicated transaction coordinator and a dedicated admin on every
+             project. Scheduling, paperwork and deadlines are theirs, which is
+             what keeps our agents in front of clients instead of in front of a
+             contract.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- =============================== PARTNERS =============================== -->
 <section class="sec" aria-labelledby="partners-h">
   <div class="wrap">
@@ -365,24 +488,6 @@ a{color:inherit}
       </div>
 
       <div class="pcard">
-        <p class="pcard__role">In House</p>
-        <p class="pcard__name">Editorial Drone &amp;<br>Construction Film</p>
-        <p>Ours, on staff, on call. Progress from the air and on the ground, from
-           the day the site is cleared to the day the landscape goes in. Four
-           films across the build, each one a release of its own.</p>
-        <span class="pcard__tag">In house</span>
-      </div>
-
-      <div class="pcard">
-        <p class="pcard__role">In House</p>
-        <p class="pcard__name">Rendering &amp;<br>Rendering Film</p>
-        <p>A private, US-based rendering studio we hold directly. It lets us sell
-           a house that does not exist yet &mdash; and build a rendering film that
-           walks a buyer through it, room by room, a year before the door opens.</p>
-        <span class="pcard__tag">In house</span>
-      </div>
-
-      <div class="pcard">
         <p class="pcard__role">Print &amp; Collateral</p>
         <p class="pcard__name">Curated Locally<br>in Brentwood</p>
         <p>Every printed piece is specified and produced here, by hand, by people
@@ -391,15 +496,6 @@ a{color:inherit}
         <span class="pcard__tag">Local</span>
       </div>
 
-      <div class="pcard">
-        <p class="pcard__role">In House</p>
-        <p class="pcard__name">Transaction Coordination<br>&amp; Administration</p>
-        <p>A dedicated transaction coordinator and a dedicated admin on every
-           project. Scheduling, paperwork and deadlines are theirs, which is what
-           keeps our agents in front of clients instead of in front of a
-           contract.</p>
-        <span class="pcard__tag">In house</span>
-      </div>
     </div>
 
     <div class="claim">
@@ -521,7 +617,8 @@ const PHASES = [
       body:"Small, curated, on the property. Your investors, the architect, the interior designer, our team. Twelve months of blood and money start here, and most of the people who will spend it have never met. Breaking bread first is not ceremony — it is alignment."},
     campaign:{kind:"Email 01", h:"The project, introduced",
       body:"High level and short. Agents, high-net-worth individuals, athletes, entertainers, and our own network. The market does not need detail yet. It needs to know this is coming.",
-      slot:["mail","Email 01","sample to be dropped in"]},
+      slot:["mail","Email 01","sample to be dropped in"],
+      slot:["shot","The kickoff","a frame from a past one"]},
     brand:{kind:"Post", h:"Who Kaeser Building is",
       body:"The team you have assembled, in your own words. Not a logo and a phone number — the people, and why you chose them."}
   },
@@ -533,7 +630,8 @@ const PHASES = [
     campaign:{kind:"Email 02", h:"The builder and the team",
       body:"You, your architect, your designer, your landscape architect. And your pipeline — what else is coming, whether or not we are listing it. We would rather list them all, but this is a partnership either way."},
     brand:{kind:"Feature", h:"The pipeline, in public",
-      body:"Your upcoming projects go out to our list whether they are ours to sell or not. A builder with a pipeline reads differently from a builder with a house."}
+      body:"Your upcoming projects go out to our list whether they are ours to sell or not. A builder with a pipeline reads differently from a builder with a house.",
+      slot:["mail","Email 02","sample to be dropped in"]}
   },
   {
     when:"Foundation", sub:"Month 2–3",
@@ -549,11 +647,13 @@ const PHASES = [
     when:"Renderings", sub:"Month 3–4",
     project:{kind:"In-house rendering", h:"The exteriors, released",
       body:"Once the exterior renderings are right — and we will go through angles, iterations and finish changes until they are — the house gets a face before it has walls.",
-      slot:["film","Exterior renderings","set to be dropped in"]},
+      slot:["film","Exterior renderings","set to be dropped in"],
+      slot:["film","Brand film","to be shot with Sam"]},
     campaign:{kind:"Email", h:"This is what it will be",
       body:"The renderings carry the email. For most of the list this is the first time the house exists as a thing you can want."},
     brand:{kind:"Credit", h:"The renderings carry your name",
-      body:"Every frame that circulates for the next eight months is a Kaeser Building house before it is an address."}
+      body:"Every frame that circulates for the next eight months is a Kaeser Building house before it is an address.",
+      slot:["mail","Renderings email","sample to be dropped in"]}
   },
   {
     when:"Every other week", sub:"Month 3 onward",
@@ -599,7 +699,8 @@ const PHASES = [
     project:{kind:"Switch to real", h:"Renderings give way to photographs",
       body:"Plaster, the fireplace, the hood, the arches, the windows. From here the campaign stops showing what it will look like and starts showing what it looks like."},
     campaign:{kind:"Construction Excellence", h:"Interior architecture",
-      body:"Room by room, as each one becomes real. The renderings stay in the archive as the before."},
+      body:"Room by room, as each one becomes real. The renderings stay in the archive as the before.",
+      slot:["shot","First real photography","to be shot"]},
     brand:{kind:"Interview", h:"The interior designer",
       body:"Sat down in the house, mid-finish, talking about what the choices were and why. Your team, on record."}
   },
@@ -607,7 +708,8 @@ const PHASES = [
     when:"The agent interview", sub:"Month 10",
     project:{kind:"Film", h:"The person who has been here all year",
       body:"A sit-down with the listing agent, who has walked this build every week and can speak to the vision, the decisions and the detail without being briefed. It gives the listing a face.",
-      slot:["port","Agent interview","to be shot"]},
+      slot:["port","Agent interview","to be shot"],
+      slot:["port","Designer interview","to be shot"]},
     campaign:{kind:"Email", h:"The walkthrough",
       body:"Sent to the full list and to every captured lead. The closest thing to a private showing that an email can be."},
     brand:{kind:"Positioning", h:"Someone else vouching for you",
@@ -636,7 +738,8 @@ const PHASES = [
     when:"The event", sub:"Month 12",
     project:{kind:"The Found Table", h:"Not a broker’s open",
       body:"A curated evening, scaled to the property, built by Jesse Scott so the event complements the house rather than filling it. The right agents, the right investors, the right buyers, and the house at its absolute peak. All of it filmed.",
-      slot:["film","A Found Table evening","Jesse’s content via Blake"]},
+      slot:["film","A Found Table evening","Jesse’s content via Blake"],
+      slot:["film","Builder interviews","to be shot"]},
     campaign:{kind:"Email", h:"The invitation, then the night",
       body:"An invitation beforehand, and afterwards the film of it. People who were not there should want to have been."},
     brand:{kind:"Content", h:"How the house behaves with people in it",
@@ -645,7 +748,9 @@ const PHASES = [
   {
     when:"Content day", sub:"Month 12",
     project:{kind:"Agents", h:"They shoot it themselves",
-      body:"We open the house to agents with real followings and let them make their own content in it. It builds the relationships that sell the next one and multiplies the reach of this one at no cost."},
+      body:"We open the house to agents with real followings and let them make their own content in it. It builds the relationships that sell the next one and multiplies the reach of this one at no cost.",
+      slot:["shot","The room, full","to be shot"],
+      slot:["shot","Content day","to be shot"]},
     campaign:{kind:"Email", h:"Available now",
       body:"The listing, live, to a list that has been following it for a year."},
     brand:{kind:"Reach", h:"Agents carry your name out with them",
