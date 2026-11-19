@@ -172,6 +172,18 @@ a{color:inherit}
    Only the partners who have a mark get one: a card with a logo and a card
    with a gap read as a hierarchy nobody intended, so the ones without are
    left to their name, set in the page's own face. */
+/* ---- partners are people ----
+   These cards carried logos, which made the roster read like a vendor
+   list. Ryan wanted the faces instead: the argument is that these are
+   particular people under contract to us, and a logo cannot make that
+   argument. The print card has no face yet, so it gets the same block
+   of space and keeps the row aligned. */
+.pcard__face{
+  width:3.5rem;height:3.5rem;margin:0 0 1.3rem;
+  border-radius:50%;overflow:hidden;background:var(--panel);
+}
+.pcard__face img{width:100%;height:100%;object-fit:cover;display:block}
+.pcard__face--none{background:none}
 .pcard__logo{
   display:flex;align-items:center;justify-content:flex-start;
   height:2.2rem;margin:0 0 1.3rem;
@@ -661,7 +673,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 
     <div class="roster">
       <div class="pcard">
-        <div class="pcard__logo"><img src="../../media/partner-estadia.png" alt="Estadia Media" loading="lazy" decoding="async"></div>
+        <div class="pcard__face"><img src="../../media/partner-estadia-face.jpg" alt="The founder of Estadia Media" loading="lazy" decoding="async"></div>
         <p class="pcard__role">Editorial Film &amp; Photography</p>
         <p class="pcard__name">Estadia Media</p>
         <p>The finished house. Estadia are an editorial production house, and a
@@ -671,7 +683,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
       </div>
 
       <div class="pcard">
-        <div class="pcard__logo"><img src="../../media/partner-foundtable.png" alt="The Found Table" loading="lazy" decoding="async"></div>
+        <div class="pcard__face"><img src="../../media/partner-foundtable-face.jpg" alt="Jesse Scott of The Found Table" loading="lazy" decoding="async"></div>
         <p class="pcard__role">Events</p>
         <p class="pcard__name">The Found Table<br>Jesse Scott</p>
         <p>Not a broker&rsquo;s open. A curated evening sized to the property, built
@@ -681,7 +693,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
       </div>
 
       <div class="pcard">
-        <div class="pcard__logo pcard__logo--face"><img src="../../media/partner-samphen.jpg" alt="Sam Phen" loading="lazy" decoding="async"></div>
+        <div class="pcard__face"><img src="../../media/partner-samphen.jpg" alt="Sam Phen" loading="lazy" decoding="async"></div>
         <p class="pcard__role">Branding</p>
         <p class="pcard__name">Sam Phen</p>
         <p>Brand for Eden&nbsp;Grove, for the property, and for Kaeser&nbsp;Building.
@@ -692,6 +704,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
       </div>
 
       <div class="pcard">
+        <div class="pcard__face pcard__face--none" aria-hidden="true"></div>
         <p class="pcard__role">Print &amp; Collateral</p>
         <p class="pcard__name">Curated Locally<br>in Brentwood</p>
         <p>Every printed piece is specified and produced here, by hand, by people
