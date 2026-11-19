@@ -1,0 +1,734 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- ==========================================================================
+     EDEN GROVE x KAESER BUILDING
+
+     UNLISTED ON PURPOSE. No link to it from anywhere on the site, and
+     noindex/nofollow below, because this is a page you send to one builder,
+     not a page the market finds. It is a proposal, and it reads like one.
+
+     PLACEHOLDERS ARE MARKED AND VISIBLE. Every frame waiting on a film, an
+     email or a photograph says so on its face rather than being left out,
+     so nothing silently goes missing before this is sent.
+     ========================================================================== -->
+<title>Eden Grove &times; Kaeser Building</title>
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="How Eden Grove markets a new build, and the partners who do it.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#14170F;            /* the ground */
+  --panel:#1B1F19;          /* one step up: every frame */
+  --t1:#F4F1EC;             /* speaks */
+  --t2:rgba(244,241,236,.72);  /* reads */
+  --t3:rgba(244,241,236,.45);  /* murmurs */
+  --line:rgba(244,241,236,.12);
+  --brass:#DACEB6;
+  --warm:#A7947C;
+  --display:'Cormorant Garamond',Georgia,serif;
+  --ui:'Jost',system-ui,-apple-system,sans-serif;
+  --rise:cubic-bezier(.22,.61,.36,1);
+  --gutter:clamp(1.3rem,5vw,4.2rem);
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:var(--ink);color:var(--t2);
+  font-family:var(--ui);font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit}
+
+/* ---- shared furniture ------------------------------------------------- */
+.wrap{max-width:84rem;margin:0 auto;padding:0 var(--gutter)}
+.eyebrow{
+  margin:0;font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.38em;text-indent:.38em;
+  text-transform:uppercase;color:var(--warm);
+}
+.h2{
+  margin:1.4rem 0 0;font-family:var(--display);font-weight:300;
+  font-size:clamp(1.8rem,1.3rem + 1.9vw,3rem);line-height:1.25;
+  letter-spacing:.01em;color:var(--t1);
+}
+.lede{
+  margin:1.6rem 0 0;max-width:46rem;
+  font-size:clamp(.95rem,.9rem + .22vw,1.08rem);line-height:1.9;color:var(--t2);
+}
+.lede--mid{margin-left:auto;margin-right:auto;text-align:center}
+.rule{width:2.6rem;height:1px;background:var(--brass);margin:1.6rem 0 0}
+.rule--mid{margin-inline:auto}
+.sec{padding:clamp(4.5rem,11vh,9rem) 0}
+.sec--tight{padding:clamp(3rem,7vh,5.5rem) 0}
+
+/* ---- the bar ----------------------------------------------------------- */
+.bar{
+  position:absolute;top:0;left:0;right:0;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+  padding:clamp(1.4rem,2.6vw,2.1rem) var(--gutter);
+}
+.mark{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(1rem,.72rem + .9vw,1.5rem);
+  letter-spacing:.4em;text-indent:.4em;text-transform:uppercase;color:#fff;
+  text-decoration:none;
+}
+.bar__note{
+  font-size:.58rem;letter-spacing:.26em;text-indent:.26em;
+  text-transform:uppercase;color:rgba(255,255,255,.6);text-align:right;
+}
+
+/* ---- the hero ---------------------------------------------------------- */
+.hero{
+  position:relative;min-height:min(92svh,52rem);
+  display:grid;place-items:center;text-align:center;
+  padding:clamp(7rem,14vh,10rem) var(--gutter) clamp(4rem,9vh,6rem);
+  background:
+    radial-gradient(120% 90% at 50% 30%, #23271d 0%, #171a12 58%, #0f1209 100%);
+  overflow:hidden;
+}
+.hero__in{position:relative;z-index:2;max-width:54rem}
+.lockup{
+  display:flex;align-items:center;justify-content:center;
+  gap:clamp(1.4rem,4vw,3.4rem);flex-wrap:wrap;
+  margin:0 0 clamp(2rem,5vh,3rem);
+}
+.lockup__eg{
+  font-family:var(--display);font-weight:300;
+  font-size:clamp(1.5rem,1rem + 2vw,2.6rem);
+  letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;color:#fff;
+}
+.lockup__x{font-family:var(--display);font-size:1.3rem;color:var(--brass);opacity:.8}
+.lockup__kb{width:clamp(7rem,13vw,10.5rem);height:auto;opacity:.96}
+.hero h1{
+  margin:0;font-family:var(--display);font-weight:300;
+  font-size:clamp(2rem,1.2rem + 3.4vw,4rem);line-height:1.18;color:#fff;
+}
+.hero__sub{
+  margin:1.8rem auto 0;max-width:40rem;
+  font-size:clamp(.95rem,.9rem + .22vw,1.08rem);line-height:1.95;
+  color:rgba(255,255,255,.76);
+}
+.hero__cue{
+  position:absolute;left:50%;bottom:clamp(1.6rem,4vh,2.6rem);
+  transform:translateX(-50%);z-index:2;
+  font-size:.55rem;letter-spacing:.3em;text-indent:.3em;
+  text-transform:uppercase;color:rgba(255,255,255,.45);
+}
+
+/* ---- the partner roster ------------------------------------------------ */
+.roster{
+  margin:clamp(2.6rem,6vh,4rem) 0 0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(17rem,1fr));
+  gap:clamp(1.6rem,3vw,2.8rem);
+}
+.pcard{border-top:1px solid var(--line);padding:1.6rem 0 0}
+.pcard__role{
+  margin:0;font-size:.55rem;letter-spacing:.28em;text-indent:.28em;
+  text-transform:uppercase;color:var(--brass);
+}
+.pcard__name{
+  margin:1rem 0 0;font-family:var(--display);font-weight:300;
+  font-size:1.3rem;line-height:1.3;color:#fff;
+}
+.pcard p{margin:1.1rem 0 0;font-size:.84rem;line-height:1.9;color:var(--t2)}
+.pcard__tag{
+  display:inline-block;margin:1.1rem 0 0;
+  font-size:.52rem;letter-spacing:.26em;text-indent:.26em;
+  text-transform:uppercase;color:var(--t3);
+}
+
+/* ---- the claim band ---------------------------------------------------- */
+.claim{
+  margin:clamp(3rem,7vh,5rem) auto 0;max-width:52rem;text-align:center;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:clamp(2.4rem,5vh,3.4rem) 0;
+}
+.claim p{
+  margin:0;font-family:var(--display);font-weight:300;
+  font-size:clamp(1.25rem,1rem + 1.1vw,1.85rem);line-height:1.55;color:var(--t1);
+}
+.claim p + p{margin-top:1.3rem;font-family:var(--ui);font-size:.88rem;line-height:1.9;color:var(--t2)}
+
+/* ==========================================================================
+   THE THREE COLUMNS
+
+   One run of time, read three ways. The project on the left, the campaign
+   that runs alongside it in the middle, and what the builder's own brand
+   gains on the right. They are one grid rather than three lists, because
+   the whole argument is that these things happen to the same week.
+   ========================================================================== */
+.journey{position:relative;padding-bottom:clamp(3rem,8vh,6rem)}
+.jhead{
+  position:sticky;top:0;z-index:12;
+  background:linear-gradient(to bottom,var(--ink) 72%,rgba(20,23,15,0));
+  padding:clamp(1rem,2.4vh,1.6rem) 0 clamp(1.4rem,3vh,2rem);
+}
+.jhead__grid,.phase__grid{
+  display:grid;
+  grid-template-columns:8.5rem minmax(0,1fr) minmax(0,1fr) minmax(0,1fr);
+  gap:clamp(1rem,2.2vw,2.2rem);
+  /* THE SPINE RUNS DOWN THE OUTSIDE, not between the columns. It was at
+     4.25rem, which is the middle of the When column, so the line and its
+     nodes were struck straight through "Before ground". A rail belongs
+     beside the content it is measuring. */
+  padding-left:2.6rem;
+}
+.jhead__cell{
+  font-size:.56rem;letter-spacing:.26em;text-indent:.26em;
+  text-transform:uppercase;color:var(--brass);
+  padding-bottom:.7rem;border-bottom:1px solid var(--line);
+}
+.jhead__cell--when{color:var(--t3)}
+
+/* the spine: one line down the whole run, drawn as you go */
+.spine{
+  position:absolute;left:0;top:0;bottom:0;width:1px;
+  background:var(--line);
+}
+.spine__ink{
+  position:absolute;inset:0;background:var(--brass);
+  transform-origin:top;transform:scaleY(0);
+}
+
+.phase{position:relative;padding:clamp(1.8rem,4vh,3rem) 0}
+.phase + .phase{border-top:1px solid rgba(244,241,236,.06)}
+.phase__when{
+  position:relative;
+  font-size:.56rem;letter-spacing:.24em;text-indent:.24em;
+  text-transform:uppercase;color:var(--t3);padding-top:.2rem;
+}
+.phase__when b{display:block;font-weight:400;color:var(--t1);margin-bottom:.45rem}
+/* the node on the spine */
+.phase__dot{
+  position:absolute;left:-3px;top:calc(clamp(1.8rem,4vh,3rem) + .45rem);
+  width:7px;height:7px;border-radius:50%;
+  background:var(--ink);border:1px solid var(--line);
+  transition:border-color .5s var(--rise),background .5s var(--rise),
+             box-shadow .5s var(--rise);
+}
+.phase.on .phase__dot{
+  border-color:var(--brass);background:var(--brass);
+  box-shadow:0 0 0 4px rgba(218,206,182,.1);
+}
+.cell{opacity:0;transform:translateY(14px);transition:opacity .7s var(--rise),transform .7s var(--rise)}
+.phase.on .cell{opacity:1;transform:none}
+.phase.on .cell:nth-child(3){transition-delay:.09s}
+.phase.on .cell:nth-child(4){transition-delay:.18s}
+.cell__kind{
+  margin:0 0 .7rem;font-size:.5rem;letter-spacing:.26em;text-indent:.26em;
+  text-transform:uppercase;color:var(--brass);
+}
+.cell h3{
+  margin:0;font-family:var(--display);font-weight:400;
+  font-size:1.12rem;line-height:1.35;color:#fff;letter-spacing:.01em;
+}
+.cell p{margin:.8rem 0 0;font-size:.82rem;line-height:1.85;color:var(--t2)}
+.cell--empty{color:var(--t3)}
+.cell--empty .dash{display:block;width:1.4rem;height:1px;background:var(--line);margin-top:.5rem}
+
+/* ---- placeholders ------------------------------------------------------ */
+.slot{
+  margin:1.1rem 0 0;border:1px solid rgba(218,206,182,.22);background:var(--panel);
+  display:grid;place-items:center;text-align:center;padding:1rem;
+}
+.slot--film{aspect-ratio:16/9}
+.slot--port{aspect-ratio:4/5}
+.slot--mail{aspect-ratio:3/4}
+.slot--sign{aspect-ratio:3/4}
+.slot span{
+  font-size:.52rem;letter-spacing:.24em;text-indent:.24em;
+  text-transform:uppercase;color:var(--t3);line-height:1.9;
+}
+.slot em{display:block;font-style:normal;color:var(--brass);margin-bottom:.35rem}
+.slot video,.slot iframe,.slot img{width:100%;height:100%;object-fit:cover;border:0;display:block}
+
+/* ---- the close --------------------------------------------------------- */
+.close{background:var(--panel)}
+.two{
+  margin:clamp(2.4rem,6vh,3.6rem) 0 0;
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(20rem,1fr));
+  gap:clamp(1.8rem,4vw,3.4rem);
+}
+.two h3{
+  margin:0;font-family:var(--display);font-weight:300;font-size:1.45rem;
+  line-height:1.3;color:var(--t1);
+}
+.two p{margin:1.1rem 0 0;font-size:.86rem;line-height:1.9;color:var(--t2)}
+.foot{
+  border-top:1px solid var(--line);padding:clamp(2.5rem,6vh,4rem) 0;
+  text-align:center;
+}
+.foot__mark{
+  font-family:var(--display);font-weight:300;font-size:1.1rem;
+  letter-spacing:.4em;text-indent:.4em;text-transform:uppercase;color:var(--t1);
+}
+.foot p{margin:1.2rem 0 0;font-size:.78rem;line-height:1.9;color:var(--t3)}
+.foot a{color:var(--brass);text-decoration:none}
+.foot a:hover{color:#fff}
+
+/* ---- phones ------------------------------------------------------------ */
+@media (max-width:900px){
+  .jhead{display:none}
+  .phase__grid{grid-template-columns:1fr;gap:1.6rem;padding-left:2rem}
+  .phase__dot{top:calc(clamp(1.8rem,4vh,3rem) + .35rem)}
+  .phase__when{padding-top:0}
+  .phase__when b{display:inline;margin:0 .7rem 0 0}
+  .cell{opacity:1;transform:none}
+  .cell::before{
+    content:attr(data-col);display:block;margin:0 0 .55rem;
+    font-size:.5rem;letter-spacing:.26em;text-indent:.26em;
+    text-transform:uppercase;color:var(--t3);
+  }
+  .cell--empty{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .cell{opacity:1;transform:none;transition:none}
+  .phase__dot,.spine__ink{transition:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ================================= HERO ================================= -->
+<section class="hero" id="top">
+  <header class="bar">
+    <a class="mark" href="https://edengrovetennessee.com/">Eden Grove</a>
+    <p class="bar__note">Prepared for Kaeser Building<br>November 2026</p>
+  </header>
+
+  <div class="hero__in">
+    <div class="lockup">
+      <span class="lockup__eg">Eden Grove</span>
+      <span class="lockup__x">&times;</span>
+      <img class="lockup__kb" src="kaeser-white.png" alt="Kaeser Building">
+    </div>
+    <h1>Marketed the way<br>it was meant to be.</h1>
+    <p class="hero__sub">
+      You will spend twelve months and everything you have on this house. This
+      is what happens alongside it &mdash; who does it, when it happens, and
+      what your own name is worth at the end of it.
+    </p>
+  </div>
+  <p class="hero__cue">Scroll</p>
+</section>
+
+<!-- =============================== PARTNERS =============================== -->
+<section class="sec" aria-labelledby="partners-h">
+  <div class="wrap">
+    <p class="eyebrow" id="partners-h">The Partners</p>
+    <h2 class="h2">When you get Eden&nbsp;Grove,<br>you get all of them.</h2>
+    <div class="rule"></div>
+    <p class="lede">
+      These are not vendors we have worked with and can name. Each one is under
+      a long-term contract with Eden&nbsp;Grove, negotiated over months, because
+      a marketing plan that depends on who is free that week is not a plan.
+      Every one of them is the best at the one thing they do, and we let them
+      do it.
+    </p>
+
+    <div class="roster">
+      <div class="pcard">
+        <p class="pcard__role">Editorial Film &amp; Photography</p>
+        <p class="pcard__name">Estadia Media</p>
+        <p>The finished house. Estadia are an editorial production house, and a
+           finished home is their wheelhouse &mdash; the film and the stills that
+           carry a property to market and keep carrying it long after.</p>
+        <span class="pcard__tag">Under contract</span>
+      </div>
+
+      <div class="pcard">
+        <p class="pcard__role">Events</p>
+        <p class="pcard__name">The Found Table<br>Jesse Scott</p>
+        <p>Not a broker&rsquo;s open. A curated evening sized to the property, built
+           to bring the right agents, investors and buyers into the house and let
+           them feel how it moves.</p>
+        <span class="pcard__tag">Under contract</span>
+      </div>
+
+      <div class="pcard">
+        <p class="pcard__role">Branding</p>
+        <p class="pcard__name">Sam Phen</p>
+        <p>Brand for Eden&nbsp;Grove, for the property, and for Kaeser&nbsp;Building.
+           Sam&rsquo;s work is what makes a buyer feel they are part of a project
+           rather than looking at one &mdash; and it is pointed at your name as
+           much as ours.</p>
+        <span class="pcard__tag">Under contract</span>
+      </div>
+
+      <div class="pcard">
+        <p class="pcard__role">In House</p>
+        <p class="pcard__name">Editorial Drone &amp;<br>Construction Film</p>
+        <p>Ours, on staff, on call. Progress from the air and on the ground, from
+           the day the site is cleared to the day the landscape goes in. Four
+           films across the build, each one a release of its own.</p>
+        <span class="pcard__tag">In house</span>
+      </div>
+
+      <div class="pcard">
+        <p class="pcard__role">In House</p>
+        <p class="pcard__name">Rendering &amp;<br>Rendering Film</p>
+        <p>A private, US-based rendering studio we hold directly. It lets us sell
+           a house that does not exist yet &mdash; and build a rendering film that
+           walks a buyer through it, room by room, a year before the door opens.</p>
+        <span class="pcard__tag">In house</span>
+      </div>
+
+      <div class="pcard">
+        <p class="pcard__role">Print &amp; Collateral</p>
+        <p class="pcard__name">Curated Locally<br>in Brentwood</p>
+        <p>Every printed piece is specified and produced here, by hand, by people
+           we can stand next to. Paper, weight, finish and ink chosen per project
+           rather than ordered from a catalogue.</p>
+        <span class="pcard__tag">Local</span>
+      </div>
+
+      <div class="pcard">
+        <p class="pcard__role">In House</p>
+        <p class="pcard__name">Transaction Coordination<br>&amp; Administration</p>
+        <p>A dedicated transaction coordinator and a dedicated admin on every
+           project. Scheduling, paperwork and deadlines are theirs, which is what
+           keeps our agents in front of clients instead of in front of a
+           contract.</p>
+        <span class="pcard__tag">In house</span>
+      </div>
+    </div>
+
+    <div class="claim">
+      <p>Hundreds of years of combined experience, under contract,
+         pointed at one house.</p>
+      <p>We know what goes into a project like this, and we know what is at risk
+         behind it. Our job is to make sure that when it is finished, nothing was
+         left on the table &mdash; not the audience, not the price, and not your
+         name.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== THE JOURNEY ============================= -->
+<section class="sec sec--tight" aria-labelledby="journey-h">
+  <div class="wrap">
+    <p class="eyebrow" id="journey-h">The Twelve Months</p>
+    <h2 class="h2">Three things happen<br>to the same week.</h2>
+    <div class="rule"></div>
+    <p class="lede">
+      The project itself. The campaign that runs alongside it, every other week,
+      for the length of the build. And what Kaeser&nbsp;Building is worth by the
+      end of it. Read down for time, across for what is happening at once.
+    </p>
+  </div>
+
+  <div class="wrap journey" id="journey">
+    <div class="spine" aria-hidden="true"><div class="spine__ink" id="spineInk"></div></div>
+
+    <div class="jhead" aria-hidden="true">
+      <div class="jhead__grid">
+        <div class="jhead__cell jhead__cell--when">When</div>
+        <div class="jhead__cell">The Project</div>
+        <div class="jhead__cell">The Campaign</div>
+        <div class="jhead__cell">The Kaeser Brand</div>
+      </div>
+    </div>
+
+    <div id="phases">
+      <!-- PHASE CONTENT IS BUILT BELOW, FROM data[]. One source for the row so
+           the three columns cannot drift out of step with each other. -->
+    </div>
+  </div>
+</section>
+
+<!-- ================================ CLOSE ================================= -->
+<section class="sec close" aria-labelledby="close-h">
+  <div class="wrap">
+    <p class="eyebrow" id="close-h">What It Is For</p>
+    <h2 class="h2">Best case, it sells<br>before it is finished.</h2>
+    <div class="rule"></div>
+    <p class="lede">
+      Our objective is always to pre-sell at the highest number an early buyer
+      will pay. But a house like this has to be marketed properly whether or not
+      that happens &mdash; because the second thing it is buying you is a
+      reputation as a premier builder in Nashville, and that is worth something
+      on the next one.
+    </p>
+
+    <div class="two">
+      <div>
+        <h3>Whether it sells in a day or in ninety</h3>
+        <p>By the time the house is finished we have four editorial films, a
+           rendering film, a curated event, a full photographic set and a year of
+           campaign behind it. That is enough to keep it in front of every buyer
+           in Nashville and across the country for as long as it takes &mdash;
+           and enough to carry the next one.</p>
+      </div>
+      <div>
+        <h3>Your agent is in front of people, not paperwork</h3>
+        <p>A dedicated transaction coordinator and a dedicated admin carry every
+           project. Scheduling, compliance and deadlines are not an agent&rsquo;s
+           job here, which is why ours spend their time with buyers and nurturing
+           leads instead of chasing signatures.</p>
+      </div>
+      <div>
+        <h3>Every lead, from the first day</h3>
+        <p>The sign goes up before the old house comes down, with your logo on
+           it. Drive-bys, cold calls, agent enquiries, event guests &mdash; all of
+           it lands in one place, and all of it gets the campaign. We do not lose
+           somebody because they passed the site in the wrong month.</p>
+      </div>
+      <div>
+        <h3>You are not the only one being marketed</h3>
+        <p>Every technique email, every interview, every post carries
+           Kaeser&nbsp;Building as much as it carries the address. We would rather
+           sign the next three projects with you than win this one.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="foot">
+      <p class="foot__mark">Eden Grove</p>
+      <p>
+        Eden Grove at Compass &mdash;
+        <a href="tel:+16158120066">(615)&nbsp;812-0066</a>,
+        <a href="mailto:connect@edengrovetennessee.com">connect@edengrovetennessee.com</a><br>
+        <a href="https://edengrovetennessee.com/">edengrovetennessee.com</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+/* ===========================================================================
+   THE ROW IS THE UNIT. Each phase is one object with three cells, so the
+   project, the campaign and the brand cannot drift out of step: if a film
+   moves a month, its email and its post move with it.
+
+   kind  - the small brass label
+   body  - optional sentence
+   slot  - optional placeholder frame: [class, label, note]
+   ======================================================================== */
+const PHASES = [
+  {
+    when:"Before ground", sub:"Month 0",
+    project:{kind:"Event", h:"The kickoff",
+      body:"Small, curated, on the property. Your investors, the architect, the interior designer, our team. Twelve months of blood and money start here, and most of the people who will spend it have never met. Breaking bread first is not ceremony — it is alignment."},
+    campaign:{kind:"Email 01", h:"The project, introduced",
+      body:"High level and short. Agents, high-net-worth individuals, athletes, entertainers, and our own network. The market does not need detail yet. It needs to know this is coming.",
+      slot:["mail","Email 01","sample to be dropped in"]},
+    brand:{kind:"Post", h:"Who Kaeser Building is",
+      body:"The team you have assembled, in your own words. Not a logo and a phone number — the people, and why you chose them."}
+  },
+  {
+    when:"Site live", sub:"Month 0–1",
+    project:{kind:"Collateral", h:"The development sign",
+      body:"Your logo, curated to this project, standing before the old house comes down. It is the cheapest lead source on the job and the one most builders waste. Nobody drives past this site and has no way to call.",
+      slot:["sign","The sign","rendering with your logo"]},
+    campaign:{kind:"Email 02", h:"The builder and the team",
+      body:"You, your architect, your designer, your landscape architect. And your pipeline — what else is coming, whether or not we are listing it. We would rather list them all, but this is a partnership either way."},
+    brand:{kind:"Feature", h:"The pipeline, in public",
+      body:"Your upcoming projects go out to our list whether they are ours to sell or not. A builder with a pipeline reads differently from a builder with a house."}
+  },
+  {
+    when:"Foundation", sub:"Month 2–3",
+    project:{kind:"Editorial film — one of four", h:"The site, from the air",
+      body:"Demo done, site cleared, foundation poured or block set. Our in-house editorial and drone team put together the first film: this is the land, this is what is going on it, this is who is building it.",
+      slot:["film","Drone film 01","existing footage to embed"]},
+    campaign:{kind:"Project update", h:"We are out of the ground",
+      body:"The film goes to the whole list — including every lead the sign has caught so far. Not everybody is on Instagram. Everybody has email."},
+    brand:{kind:"Film with Sam Phen", h:"The people behind it",
+      body:"Your architect, your designer, your landscape architect. On camera if they want it, off camera if they do not — either way the story gets told and your name is on it."}
+  },
+  {
+    when:"Renderings", sub:"Month 3–4",
+    project:{kind:"In-house rendering", h:"The exteriors, released",
+      body:"Once the exterior renderings are right — and we will go through angles, iterations and finish changes until they are — the house gets a face before it has walls.",
+      slot:["film","Exterior renderings","set to be dropped in"]},
+    campaign:{kind:"Email", h:"This is what it will be",
+      body:"The renderings carry the email. For most of the list this is the first time the house exists as a thing you can want."},
+    brand:{kind:"Credit", h:"The renderings carry your name",
+      body:"Every frame that circulates for the next eight months is a Kaeser Building house before it is an address."}
+  },
+  {
+    when:"Every other week", sub:"Month 3 onward",
+    project:{kind:"Ongoing", h:"Construction Excellence begins",
+      body:"From here to the end, every two weeks, we publish one room and one building technique. It starts with architecture and exteriors, because that is what exists, and moves inside as the house does."},
+    campaign:{kind:"The spine of the campaign", h:"One room, one technique",
+      body:"Each one takes a single room and a single technique and explains why it was done that way — a waterproofing detail, a framing decision, an architectural move, a finish the designer chose. It is where a buyer learns the difference between this house and the one down the road.",
+      slot:["mail","Construction Excellence","sample to be dropped in"]},
+    brand:{kind:"Positioning", h:"Every technique is yours",
+      body:"Twenty-six emails over the build, each one explaining something Kaeser Building does that the next builder does not. That is the whole argument for your price, made in instalments."}
+  },
+  {
+    when:"Framed", sub:"Month 5–6",
+    project:{kind:"Editorial film — two of four", h:"The shape of it",
+      body:"The house is standing. This is the week people can finally read it, and it is where our first walkthroughs and private showings come from.",
+      slot:["film","Drone film 02","existing footage to embed"]},
+    campaign:{kind:"Project update", h:"It has a roofline",
+      body:"The film, and the first invitation to walk it. Interest changes character once a buyer can stand in a room."},
+    brand:{kind:"Post", h:"Progress, told properly",
+      body:"The same footage, cut for social, carrying your mark."}
+  },
+  {
+    when:"Rendering film", sub:"Month 6–7",
+    project:{kind:"In-house production", h:"The house, in motion",
+      body:"With the interiors rendered, we build the film: through the door, through the rooms, out to the grounds. A year before anyone can do it on foot.",
+      slot:["film","Rendering film","existing film to embed"]},
+    campaign:{kind:"Email", h:"Walk it before it exists",
+      body:"The single highest-performing piece we send. It is also the one that generates the pre-sale conversations."},
+    brand:{kind:"—", h:"", empty:true}
+  },
+  {
+    when:"Exterior finishes", sub:"Month 7–8",
+    project:{kind:"Editorial film — three of four", h:"Stone, masonry, cladding",
+      body:"The exterior finishes are on. The house stops being a frame and starts being the picture in the rendering, which is its own story worth filming.",
+      slot:["film","Drone film 03","to be shot"]},
+    campaign:{kind:"Construction Excellence", h:"The exterior detail",
+      body:"The stone, how it was set, why that stone. The things that cost you money and that nobody notices unless someone points at them."},
+    brand:{kind:"Post", h:"Craft, at close range",
+      body:"Macro photography of the work. This is the content that other builders share, which is how builders get known."}
+  },
+  {
+    when:"Interior finishes", sub:"Month 8–10",
+    project:{kind:"Switch to real", h:"Renderings give way to photographs",
+      body:"Plaster, the fireplace, the hood, the arches, the windows. From here the campaign stops showing what it will look like and starts showing what it looks like."},
+    campaign:{kind:"Construction Excellence", h:"Interior architecture",
+      body:"Room by room, as each one becomes real. The renderings stay in the archive as the before."},
+    brand:{kind:"Interview", h:"The interior designer",
+      body:"Sat down in the house, mid-finish, talking about what the choices were and why. Your team, on record."}
+  },
+  {
+    when:"The agent interview", sub:"Month 10",
+    project:{kind:"Film", h:"The person who has been here all year",
+      body:"A sit-down with the listing agent, who has walked this build every week and can speak to the vision, the decisions and the detail without being briefed. It gives the listing a face.",
+      slot:["port","Agent interview","to be shot"]},
+    campaign:{kind:"Email", h:"The walkthrough",
+      body:"Sent to the full list and to every captured lead. The closest thing to a private showing that an email can be."},
+    brand:{kind:"Positioning", h:"Someone else vouching for you",
+      body:"A builder saying their work is careful is marketing. The agent who watched it being built saying it is evidence."}
+  },
+  {
+    when:"Landscaping", sub:"Month 11",
+    project:{kind:"Editorial film — four of four", h:"The last drone film",
+      body:"Landscape in, grounds finished, the property whole from the air. This one is the teaser — it tells the market we are weeks away.",
+      slot:["film","Drone film 04","to be shot"]},
+    campaign:{kind:"Project update", h:"We are finishing",
+      body:"Urgency, finally earned. Every lead gathered over twelve months hears it at once."},
+    brand:{kind:"—", h:"", empty:true}
+  },
+  {
+    when:"Staged and filmed", sub:"Month 12",
+    project:{kind:"Estadia Media", h:"The finished house",
+      body:"Staged, then handed to Estadia for the editorial film and the full photographic set. This is the work that will represent the house everywhere it appears, for as long as it is for sale.",
+      slot:["film","Estadia film","past production to embed"]},
+    campaign:{kind:"Email", h:"First look",
+      body:"The film and the set, to everybody. Twelve months of audience, arriving at the same moment."},
+    brand:{kind:"Interviews", h:"Builder, architect, designer",
+      body:"The story of the house from the people who made it. This is where we pull at a buyer and where your brand gets its best material of the year."}
+  },
+  {
+    when:"The event", sub:"Month 12",
+    project:{kind:"The Found Table", h:"Not a broker’s open",
+      body:"A curated evening, scaled to the property, built by Jesse Scott so the event complements the house rather than filling it. The right agents, the right investors, the right buyers, and the house at its absolute peak. All of it filmed.",
+      slot:["film","A Found Table evening","Jesse’s content via Blake"]},
+    campaign:{kind:"Email", h:"The invitation, then the night",
+      body:"An invitation beforehand, and afterwards the film of it. People who were not there should want to have been."},
+    brand:{kind:"Content", h:"How the house behaves with people in it",
+      body:"Flow, light, noise, the feel of a full room. You cannot photograph that in an empty house and you cannot fake it."}
+  },
+  {
+    when:"Content day", sub:"Month 12",
+    project:{kind:"Agents", h:"They shoot it themselves",
+      body:"We open the house to agents with real followings and let them make their own content in it. It builds the relationships that sell the next one and multiplies the reach of this one at no cost."},
+    campaign:{kind:"Email", h:"Available now",
+      body:"The listing, live, to a list that has been following it for a year."},
+    brand:{kind:"Reach", h:"Agents carry your name out with them",
+      body:"Every one of them posts a Kaeser Building house. None of them had to be paid to."}
+  },
+  {
+    when:"After", sub:"Until it closes",
+    project:{kind:"Ongoing", h:"A year of material, still working",
+      body:"Four editorial films, a rendering film, an event film, interviews, a full photographic set, and twenty-six campaign emails. Whether it sells in a day or in ninety, there is enough to keep it in front of every buyer in Nashville and across the country."},
+    campaign:{kind:"Ongoing", h:"The list does not go quiet",
+      body:"The campaign continues until it closes, then carries straight into the next project with the audience intact."},
+    brand:{kind:"The point", h:"The next one starts warm",
+      body:"You do not rebuild an audience for project two. You inherit this one."}
+  }
+];
+
+/* ---- build the rows ---------------------------------------------------- */
+const host = document.getElementById("phases");
+
+function cell(c, colName){
+  if (!c || c.empty){
+    return '<div class="cell cell--empty" data-col="' + colName + '">'
+         + '<span class="dash"></span></div>';
+  }
+  var out = '<div class="cell" data-col="' + colName + '">';
+  if (c.kind) out += '<p class="cell__kind">' + c.kind + '</p>';
+  if (c.h)    out += '<h3>' + c.h + '</h3>';
+  if (c.body) out += '<p>' + c.body + '</p>';
+  if (c.slot){
+    out += '<div class="slot slot--' + c.slot[0] + '">'
+         + '<span><em>' + c.slot[1] + '</em>' + c.slot[2] + '</span></div>';
+  }
+  return out + '</div>';
+}
+
+host.innerHTML = PHASES.map(function (p) {
+  return '<div class="phase">'
+       +   '<span class="phase__dot" aria-hidden="true"></span>'
+       +   '<div class="phase__grid">'
+       +     '<div class="phase__when"><b>' + p.when + '</b>' + p.sub + '</div>'
+       +     cell(p.project,  "The Project")
+       +     cell(p.campaign, "The Campaign")
+       +     cell(p.brand,    "The Kaeser Brand")
+       +   '</div>'
+       + '</div>';
+}).join("");
+
+/* ---- the line draws itself as you go ----------------------------------- */
+(function () {
+  var journey = document.getElementById("journey");
+  var ink     = document.getElementById("spineInk");
+  var phases  = Array.prototype.slice.call(document.querySelectorAll(".phase"));
+  if (!journey || !ink) return;
+
+  var less = matchMedia("(prefers-reduced-motion:reduce)");
+  if (less.matches){ ink.style.transform = "scaleY(1)"; }
+
+  /* A phase lights up once its top third has come up past the middle of the
+     screen, and stays lit. Nothing un-reveals on the way back up: a line
+     that retreats as you scroll reads as a bug, not as motion. */
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); }
+    });
+  }, { rootMargin: "0px 0px -42% 0px", threshold: 0.01 });
+  phases.forEach(function (p) { io.observe(p); });
+
+  var ticking = false;
+  function draw(){
+    ticking = false;
+    if (less.matches) return;
+    var r = journey.getBoundingClientRect();
+    var mid = window.innerHeight * 0.58;
+    var p = (mid - r.top) / r.height;
+    ink.style.transform = "scaleY(" + Math.max(0, Math.min(1, p)) + ")";
+  }
+  function onScroll(){
+    if (!ticking){ ticking = true; requestAnimationFrame(draw); }
+  }
+  addEventListener("scroll", onScroll, { passive: true });
+  addEventListener("resize", onScroll);
+  draw();
+})();
+</script>
+</body>
+</html>
