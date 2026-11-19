@@ -186,6 +186,25 @@ a{color:inherit}
   text-transform:uppercase;color:var(--t3);
 }
 
+/* ---- evidence under a claim ----
+   "The MLS can tell us which agents already have buyers" is a claim.
+   A hundred and forty-seven rows of it is not. These are screenshots
+   of the actual tools, sat under the sentence they prove.
+
+   The agent names and faces in the reverse prospecting shot are
+   blurred on purpose. The number is the point; who those agents are,
+   and what their clients have been looking at, is not ours to put on
+   a public URL. */
+.pcard__ev{
+  margin:1.2rem 0 0;border:1px solid rgba(218,206,182,.22);
+  background:var(--panel);line-height:0;
+}
+.pcard__ev img{width:100%;height:auto;display:block;opacity:.93}
+.pcard__evcap{
+  margin:.6rem 0 0;font-size:.5rem;letter-spacing:.22em;text-indent:.22em;
+  text-transform:uppercase;color:var(--t3);line-height:1.8;
+}
+
 /* ---- the team ----
    NO PORTRAITS HERE. They were four of them with headshots and a line each,
    and Ryan cut them: a builder judging a marketing plan does not need to be
@@ -683,6 +702,10 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
            still a Private Exclusive. Real feedback on price and product without
            accumulating days on market &mdash; and if we have aimed high, no
            public price cut on the record for every future buyer to read.</p>
+        <div class="pcard__ev">
+          <img src="../../media/ev-map.jpg" alt="A map of Compass Private Exclusive listings across Nashville and Brentwood, priced from 4.3 to 12 million" loading="lazy" decoding="async">
+        </div>
+        <p class="pcard__evcap">Private Exclusives in this market this week &middot; 4.3M to 12M</p>
       </div>
 
       <div class="pcard">
@@ -691,6 +714,10 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p>The MLS can tell us which agents already have buyers whose saved
            searches match this house. We do not wait to be found. We go to those
            agents by name, with the film in hand.</p>
+        <div class="pcard__ev">
+          <img src="../../media/ev-reverse.jpg" alt="The Compass reverse prospecting tool showing 147 matching buyer collections for one of our listings, with agent names obscured" loading="lazy" decoding="async">
+        </div>
+        <p class="pcard__evcap">147 agents with a matching buyer, on one of ours &middot; names withheld</p>
       </div>
 
       <div class="pcard">
@@ -708,6 +735,10 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p>Before any of it: the agents, investors, athletes, entertainers and
            past clients we have spent years building. A quiet first call has
            closed houses at this level before the sign was ever planted.</p>
+        <div class="pcard__ev">
+          <img src="../../media/ev-network.jpg" alt="Ryan Stonehouse in a Tennessee Titans uniform, and today" loading="lazy" decoding="async">
+        </div>
+        <p class="pcard__evcap">Four seasons with the Titans &middot; the list did not start in real estate</p>
       </div>
     </div>
   </div>
