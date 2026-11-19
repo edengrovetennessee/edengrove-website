@@ -365,6 +365,10 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
    vertical and Estadia's work is 2.22:1; forcing either into 16:9 would
    throw away most of one and letterbox the other. */
 .slot--tall{aspect-ratio:2/3}
+/* the rendering film is shot 9:16 and it is the single best piece of
+   evidence on this page, so it gets the tallest frame here rather than
+   being cropped into a 16:9 window alongside everything else. */
+.slot--reel{aspect-ratio:9/16}
 .slot--cine{aspect-ratio:1654/744}
 .slot span{
   font-size:.52rem;letter-spacing:.24em;text-indent:.24em;
@@ -933,7 +937,15 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">In-house production</p>
         <h3>The house, in motion</h3>
         <p>With the interiors rendered, we build the film: through the door, through the rooms, out to the grounds. A year before anyone can do it on foot.</p>
-        <div class="slot slot--film"><span><em>Rendering film</em>existing film to embed</span></div>
+        <div class="slot slot--reel slot--live">
+          <video playsinline preload="none" poster="../../media/dv715-rendering-poster.jpg">
+            <source src="../../media/dv715-rendering-film.mp4" type="video/mp4">
+          </video>
+          <button class="slot__play" type="button" aria-label="Play the rendering film for 715 Davis Drive">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
+        <p class="slot__cap"><b>An example of ours</b>715 Davis Dr &middot; the rendering film, a year before the door opens</p>
       </div>
       <div class="cell" data-col="The Campaign">
         <p class="cell__kind">Email</p>
@@ -962,7 +974,11 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">Post</p>
         <h3>Craft, at close range</h3>
         <p>Macro photography of the work. This is the content that other builders share, which is how builders get known.</p>
-        <div class="slot slot--shot"><span><em>Craft, close up</em>to be shot</span></div>
+        <div class="slot slot--shot slot--live slot--scroll" tabindex="0" role="group"
+             aria-label="Five close photographs of finished detail work, scrollable">
+          <img src="../../media/dv715-details.jpg" alt="Close photographs of finished work: a mitred stone counter edge, a book-matched marble waterfall, rough stone against a white oak ceiling, a marble niche, and walnut cabinetry with an aged brass knob" loading="lazy" decoding="async">
+        </div>
+        <p class="slot__cap"><b>An example of ours &middot; scroll it</b>The detail, photographed close</p>
       </div>
       </div>
     </div>
