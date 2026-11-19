@@ -130,6 +130,27 @@ a{color:inherit}
   gap:clamp(1.6rem,3vw,2.8rem);
 }
 .pcard{border-top:1px solid var(--line);padding:1.6rem 0 0}
+/* ---- a partner's own mark ----
+   ONE HEIGHT, WHATEVER THE SHAPE. The marks are 900x160 and 772x600, so
+   sizing by width would print one of them six times the other. The box is
+   a fixed height and the logo is contained inside it, which is the only
+   way a row of borrowed artwork lines up.
+
+   Only the partners who have a mark get one: a card with a logo and a card
+   with a gap read as a hierarchy nobody intended, so the ones without are
+   left to their name, set in the page's own face. */
+.pcard__logo{
+  display:flex;align-items:center;justify-content:flex-start;
+  height:2.2rem;margin:0 0 1.3rem;
+}
+/* 13rem, not 11: Estadia's mark is 900x160. At 11rem the width cap bit
+   first and printed it a quarter shorter than the one beside it, which
+   reads as one partner mattering less. At 13rem all three clear on height
+   instead, so the row sits on one line. */
+.pcard__logo img{max-height:100%;width:auto;max-width:13rem;object-fit:contain;opacity:.92}
+/* Sam has no mark, so he stands in the same box as himself: square crop,
+   same height as every logo beside it, so the row still lines up. */
+.pcard__logo--face img{height:100%;width:auto;aspect-ratio:1;border-radius:50%;object-fit:cover;opacity:1}
 .pcard__role{
   margin:0;font-size:.55rem;letter-spacing:.28em;text-indent:.28em;
   text-transform:uppercase;color:var(--brass);
@@ -488,6 +509,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 
     <div class="roster">
       <div class="pcard">
+        <div class="pcard__logo"><img src="../../media/partner-estadia.png" alt="Estadia Media" loading="lazy" decoding="async"></div>
         <p class="pcard__role">Editorial Film &amp; Photography</p>
         <p class="pcard__name">Estadia Media</p>
         <p>The finished house. Estadia are an editorial production house, and a
@@ -497,6 +519,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
       </div>
 
       <div class="pcard">
+        <div class="pcard__logo"><img src="../../media/partner-foundtable.png" alt="The Found Table" loading="lazy" decoding="async"></div>
         <p class="pcard__role">Events</p>
         <p class="pcard__name">The Found Table<br>Jesse Scott</p>
         <p>Not a broker&rsquo;s open. A curated evening sized to the property, built
@@ -506,6 +529,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
       </div>
 
       <div class="pcard">
+        <div class="pcard__logo pcard__logo--face"><img src="../../media/partner-samphen.jpg" alt="Sam Phen" loading="lazy" decoding="async"></div>
         <p class="pcard__role">Branding</p>
         <p class="pcard__name">Sam Phen</p>
         <p>Brand for Eden&nbsp;Grove, for the property, and for Kaeser&nbsp;Building.
@@ -516,8 +540,9 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
       </div>
 
       <div class="pcard">
+        <div class="pcard__logo"><img src="../../media/partner-alpha.png" alt="AlphaGraphics" loading="lazy" decoding="async"></div>
         <p class="pcard__role">Print &amp; Collateral</p>
-        <p class="pcard__name">Curated Locally<br>in Brentwood</p>
+        <p class="pcard__name">AlphaGraphics<br>Brentwood</p>
         <p>Every printed piece is specified and produced here, by hand, by people
            we can stand next to. Paper, weight, finish and ink chosen per project
            rather than ordered from a catalogue.</p>
