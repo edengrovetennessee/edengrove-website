@@ -222,6 +222,21 @@ a{color:inherit}
   margin:.6rem 0 0;font-size:.5rem;letter-spacing:.22em;text-indent:.22em;
   text-transform:uppercase;color:var(--t3);line-height:1.8;
 }
+/* two of them, side by side, each with its own name. One athlete on
+   the internal network card is a story about Ryan. Two, one of whom
+   is an agent on this team, is the network the card is claiming. */
+.evpair{margin:1.2rem 0 0;display:grid;grid-template-columns:1fr 1fr;gap:clamp(.5rem,1.4vw,.9rem)}
+.evpair figure{margin:0;min-width:0}
+.evpair__im{
+  aspect-ratio:1;overflow:hidden;line-height:0;
+  border:1px solid rgba(218,206,182,.22);background:var(--panel);
+}
+.evpair__im img{width:100%;height:100%;object-fit:cover;display:block;opacity:.93}
+.evpair figcaption{
+  margin:.6rem 0 0;font-size:.46rem;letter-spacing:.18em;text-indent:.18em;
+  text-transform:uppercase;color:var(--t3);line-height:1.7;
+}
+.evpair figcaption b{display:block;font-weight:400;color:var(--brass)}
 
 /* ---- the team ----
    NO PORTRAITS HERE. They were four of them with headshots and a line each,
@@ -792,10 +807,16 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p>Before any of it: the agents, investors, athletes, entertainers and
            past clients we have spent years building. A quiet first call has
            closed houses at this level before the sign was ever planted.</p>
-        <div class="pcard__ev">
-          <img src="../../media/ev-network.jpg" alt="Ryan Stonehouse in a Tennessee Titans uniform on the field at Nissan Stadium" loading="lazy" decoding="async">
+        <div class="evpair">
+          <figure>
+            <div class="evpair__im"><img src="../../media/ev-ryan.jpg" alt="Ryan Stonehouse in a Tennessee Titans uniform" loading="lazy" decoding="async"></div>
+            <figcaption><b>Ryan Stonehouse</b>Co-Founder</figcaption>
+          </figure>
+          <figure>
+            <div class="evpair__im"><img src="../../media/ev-gabe.jpg" alt="Gabe Jeudy in a Tennessee Titans uniform" loading="lazy" decoding="async"></div>
+            <figcaption><b>Gabe Jeudy</b>Affiliate Agent</figcaption>
+          </figure>
         </div>
-        <p class="pcard__evcap">Ryan Stonehouse &middot; four seasons with the Titans</p>
       </div>
     </div>
   </div>
