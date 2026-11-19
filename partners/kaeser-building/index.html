@@ -361,6 +361,11 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 .slot--mail{aspect-ratio:3/4}
 .slot--sign{aspect-ratio:2/1}
 .slot--shot{aspect-ratio:4/3}
+/* The frame takes the shape of the film. A Found Table evening was shot
+   vertical and Estadia's work is 2.22:1; forcing either into 16:9 would
+   throw away most of one and letterbox the other. */
+.slot--tall{aspect-ratio:2/3}
+.slot--cine{aspect-ratio:1654/744}
 .slot span{
   font-size:.52rem;letter-spacing:.24em;text-indent:.24em;
   text-transform:uppercase;color:var(--t3);line-height:1.9;
@@ -412,6 +417,19 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
    on this page is something we made for somebody else and the caption says
    so; this one was made for him, so it says that instead. */
 .slot__cap--his b{color:var(--t1)}
+/* ---- what a partner actually hands over ----
+   Set as text rather than dropped in as a screenshot of a quote: a list a
+   builder can read at a glance, in the page's own face, and one we can
+   edit when the scope does. */
+.deliv{margin:1.4rem 0 0;padding:0;list-style:none}
+.deliv__h{
+  margin:0 0 .2rem;font-size:.5rem;letter-spacing:.26em;text-indent:.26em;
+  text-transform:uppercase;color:var(--brass);
+}
+.deliv li{
+  border-top:1px solid rgba(244,241,236,.08);padding:.5rem 0;
+  font-size:.74rem;line-height:1.65;color:var(--t2);
+}
 
 /* ---- the close --------------------------------------------------------- */
 .close{background:var(--panel)}
@@ -1015,7 +1033,28 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">Estadia Media</p>
         <h3>The finished house</h3>
         <p>Staged, then handed to Estadia for the editorial film and the full photographic set. This is the work that will represent the house everywhere it appears, for as long as it is for sale.</p>
-        <div class="slot slot--film"><span><em>Estadia film</em>past production to embed</span></div>
+        <div class="slot slot--cine slot--live">
+          <video playsinline preload="none" poster="../../media/est-film-poster.jpg">
+            <source src="../../media/est-film.mp4" type="video/mp4">
+          </video>
+          <button class="slot__play" type="button" aria-label="Play the Estadia Media film of Bennett Hollow">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
+        <p class="slot__cap"><b>An example of ours</b>Bennett Hollow &middot; filmed by Estadia Media</p>
+        <p class="deliv__h">What Estadia hand over</p>
+        <ul class="deliv">
+          <li>Editorial interior, exterior and twilight photography</li>
+          <li>A widescreen cinematic feature film, no people in it</li>
+          <li>A teaser and four vertical reels</li>
+          <li>Forty stills pulled from the film</li>
+          <li>Twenty-five evergreen social clips &mdash; a library to post from for months</li>
+          <li>Exterior drone video</li>
+          <li>Detail shots, lit for controlled editorial setups</li>
+          <li>A premium timeslot: sunrise or sunset, golden hour priority</li>
+          <li>Licensed soundtrack, film-quality colour grading</li>
+        </ul>
+        <p class="slot__cap"><b>Scope</b>A full day, eight hours on location, about two weeks to deliver</p>
       </div>
       <div class="cell" data-col="The Campaign">
         <p class="cell__kind">Email</p>
@@ -1044,7 +1083,20 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">The Found Table</p>
         <h3>Not a broker’s open</h3>
         <p>A curated evening, scaled to the property, built by Jesse Scott so the event complements the house rather than filling it. The right agents, the right investors, the right buyers, and the house at its absolute peak. All of it filmed.</p>
-        <div class="slot slot--film"><span><em>A Found Table evening</em>Jesse’s content via Blake</span></div>
+        <div class="slot slot--tall slot--live">
+          <video playsinline preload="none" poster="../../media/ft-film-poster.jpg">
+            <source src="../../media/ft-film.mp4" type="video/mp4">
+          </video>
+          <button class="slot__play" type="button" aria-label="Play a Found Table evening">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
+        <p class="slot__cap"><b>An example of ours</b>A Found Table evening</p>
+        <div class="slot slot--film slot--live slot--scroll" tabindex="0" role="group"
+             aria-label="Provenance, the origin story Jesse wrote for 1211 Carl Seyfert Memorial Drive, scrollable">
+          <img src="../../media/ft-provenance.jpg" alt="Provenance: an origin story for 1211 Carl Seyfert Memorial Drive, by The Found Table" loading="lazy" decoding="async">
+        </div>
+        <p class="slot__cap"><b>An example of ours &middot; scroll it</b>Provenance &middot; the origin story written for that house</p>
       </div>
       <div class="cell" data-col="The Campaign">
         <p class="cell__kind">Email</p>
