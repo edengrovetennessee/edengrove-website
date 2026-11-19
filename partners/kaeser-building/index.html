@@ -19,7 +19,7 @@
 <meta name="description" content="How Eden Grove markets a new build, and the partners who do it.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Jost:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&family=Jost:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root{
   --ink:#14170F;            /* the ground */
@@ -48,23 +48,29 @@ a{color:inherit}
 
 /* ---- shared furniture ------------------------------------------------- */
 .wrap{max-width:84rem;margin:0 auto;padding:0 var(--gutter)}
+/* ---- THE SITE'S TYPE, NOT A NEW ONE ----
+   This page opened with big Cormorant headlines, which edengrovetennessee.com
+   does not have anywhere. There the serif is the wordmark and the figures;
+   every heading is Jost, light, uppercase and widely spaced, and the sections
+   are centred. Copied off the property pages rather than approximated:
+   .p-eyebrow, .p-hero h1, .p-lede p, .p-partner__name. */
 .eyebrow{
-  margin:0;font-family:var(--ui);font-weight:400;
-  font-size:.62rem;letter-spacing:.38em;text-indent:.38em;
-  text-transform:uppercase;color:var(--warm);
+  margin:0 auto clamp(1.5rem,3vh,2.1rem);font-family:var(--ui);font-weight:400;
+  font-size:.62rem;letter-spacing:.34em;text-indent:.34em;
+  text-transform:uppercase;color:var(--warm);text-align:center;line-height:1.6;
 }
 .h2{
-  margin:1.4rem 0 0;font-family:var(--display);font-weight:300;
-  font-size:clamp(1.8rem,1.3rem + 1.9vw,3rem);line-height:1.25;
-  letter-spacing:.01em;color:var(--t1);
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(1rem,.84rem + .66vw,1.42rem);line-height:1.6;
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+  color:var(--t1);text-align:center;
 }
 .lede{
-  margin:1.6rem 0 0;max-width:46rem;
-  font-size:clamp(.95rem,.9rem + .22vw,1.08rem);line-height:1.9;color:var(--t2);
+  margin:clamp(1.4rem,3vh,2rem) auto 0;max-width:44rem;text-align:center;
+  font-weight:300;font-size:clamp(.88rem,.84rem + .22vw,1rem);
+  line-height:1.95;color:var(--t2);
 }
-.lede--mid{margin-left:auto;margin-right:auto;text-align:center}
-.rule{width:2.6rem;height:1px;background:var(--brass);margin:1.6rem 0 0}
-.rule--mid{margin-inline:auto}
+.rule{width:2.6rem;height:1px;background:var(--brass);margin:clamp(1.3rem,2.6vh,1.8rem) auto 0}
 .sec{padding:clamp(4.5rem,11vh,9rem) 0}
 .sec--tight{padding:clamp(3rem,7vh,5.5rem) 0}
 
@@ -108,8 +114,10 @@ a{color:inherit}
 .lockup__x{font-family:var(--display);font-size:1.3rem;color:var(--brass);opacity:.8}
 .lockup__kb{width:clamp(7rem,13vw,10.5rem);height:auto;opacity:.96}
 .hero h1{
-  margin:0;font-family:var(--display);font-weight:300;
-  font-size:clamp(2rem,1.2rem + 3.4vw,4rem);line-height:1.18;color:#fff;
+  margin:0;font-family:var(--ui);font-weight:300;
+  font-size:clamp(1.1rem,.88rem + .92vw,1.72rem);line-height:1.6;
+  letter-spacing:.3em;text-indent:.3em;text-transform:uppercase;
+  color:#fff;text-shadow:0 1px 26px rgba(0,0,0,.5);
 }
 .hero__sub{
   margin:1.8rem auto 0;max-width:40rem;
@@ -134,8 +142,8 @@ a{color:inherit}
 @media (max-width:820px){ .story{grid-template-columns:1fr;gap:clamp(2.4rem,6vh,3.4rem)} }
 .story__half{border-top:1px solid var(--line);padding:1.6rem 0 0}
 .story__who{
-  margin:0 0 1.2rem;font-family:var(--display);font-weight:300;
-  font-size:1.5rem;line-height:1.25;color:#fff;
+  margin:0 0 1.3rem;font-weight:300;font-size:1rem;line-height:1.7;
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;color:#fff;
 }
 .story__half p{margin:0;font-size:.86rem;line-height:1.9;color:var(--t2)}
 .story__note{
@@ -181,8 +189,8 @@ a{color:inherit}
   text-transform:uppercase;color:var(--brass);
 }
 .pcard__name{
-  margin:1rem 0 0;font-family:var(--display);font-weight:300;
-  font-size:1.3rem;line-height:1.3;color:#fff;
+  margin:1rem 0 0;font-weight:300;font-size:.92rem;line-height:1.7;
+  letter-spacing:.18em;text-indent:.18em;text-transform:uppercase;color:#fff;
 }
 .pcard p{margin:1.1rem 0 0;font-size:.84rem;line-height:1.9;color:var(--t2)}
 .pcard__tag{
@@ -213,10 +221,11 @@ a{color:inherit}
   padding:clamp(2.4rem,5vh,3.4rem) 0;
 }
 .claim p{
-  margin:0;font-family:var(--display);font-weight:300;
-  font-size:clamp(1.25rem,1rem + 1.1vw,1.85rem);line-height:1.55;color:var(--t1);
+  margin:0;font-weight:300;font-size:clamp(.9rem,.82rem + .4vw,1.1rem);
+  line-height:1.9;letter-spacing:.14em;text-indent:.14em;
+  text-transform:uppercase;color:var(--t1);
 }
-.claim p + p{margin-top:1.3rem;font-family:var(--ui);font-size:.88rem;line-height:1.9;color:var(--t2)}
+.claim p + p{margin-top:1.4rem;font-size:.88rem;line-height:1.9;letter-spacing:0;text-indent:0;text-transform:none;color:var(--t2)}
 
 /* ==========================================================================
    THE THREE COLUMNS
@@ -318,7 +327,7 @@ html.js .rv.in{
 html.js .rv.in.d1{transition-delay:.08s}
 html.js .rv.in.d2{transition-delay:.16s}
 html.js .rv.in.d3{transition-delay:.24s}
-.rule{transform-origin:left}
+.rule{transform-origin:center}
 html.js .rule.rv{transform:scaleX(0);opacity:1}
 html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 
@@ -335,8 +344,8 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
   text-transform:uppercase;color:var(--brass);
 }
 .cell h3{
-  margin:0;font-family:var(--display);font-weight:400;
-  font-size:1.12rem;line-height:1.35;color:#fff;letter-spacing:.01em;
+  margin:0;font-weight:300;font-size:.86rem;line-height:1.7;
+  letter-spacing:.14em;text-indent:.14em;text-transform:uppercase;color:#fff;
 }
 .cell p{margin:.8rem 0 0;font-size:.82rem;line-height:1.85;color:var(--t2)}
 .cell--empty{color:var(--t3)}
@@ -350,7 +359,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 .slot--film{aspect-ratio:16/9}
 .slot--port{aspect-ratio:4/5}
 .slot--mail{aspect-ratio:3/4}
-.slot--sign{aspect-ratio:3/4}
+.slot--sign{aspect-ratio:2/1}
 .slot--shot{aspect-ratio:4/3}
 .slot span{
   font-size:.52rem;letter-spacing:.24em;text-indent:.24em;
@@ -399,6 +408,10 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
   text-transform:uppercase;color:var(--t3);line-height:1.8;
 }
 .slot__cap b{display:block;font-weight:400;color:var(--brass)}
+/* A MOCK OF HIS SIGN IS NOT AN EXAMPLE OF OUR WORK. Everything else filled
+   on this page is something we made for somebody else and the caption says
+   so; this one was made for him, so it says that instead. */
+.slot__cap--his b{color:var(--t1)}
 
 /* ---- the close --------------------------------------------------------- */
 .close{background:var(--panel)}
@@ -408,8 +421,8 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
   gap:clamp(1.8rem,4vw,3.4rem);
 }
 .two h3{
-  margin:0;font-family:var(--display);font-weight:300;font-size:1.45rem;
-  line-height:1.3;color:var(--t1);
+  margin:0;font-weight:300;font-size:.92rem;line-height:1.7;
+  letter-spacing:.18em;text-indent:.18em;text-transform:uppercase;color:var(--t1);
 }
 .two p{margin:1.1rem 0 0;font-size:.86rem;line-height:1.9;color:var(--t2)}
 .foot{
@@ -464,11 +477,10 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
       <span class="lockup__x">&times;</span>
       <img class="lockup__kb" src="kaeser-white.png" alt="Kaeser Building">
     </div>
-    <h1>Marketed the way<br>it was meant to be.</h1>
+    <h1>How we market a new build</h1>
     <p class="hero__sub">
-      You will spend twelve months and everything you have on this house. This
-      is what happens alongside it &mdash; who does it, when it happens, and
-      what your own name is worth at the end of it.
+      Who does it, when it happens, and what your name is worth at the end
+      of it. Prepared for Amber Kaeser.
     </p>
   </div>
   <p class="hero__cue">Scroll</p>
@@ -484,7 +496,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 <section class="sec" aria-labelledby="story-h">
   <div class="wrap">
     <p class="eyebrow" id="story-h">The Story</p>
-    <h2 class="h2">The house is the product.<br>You are the brand.</h2>
+    <h2 class="h2">Who you are</h2>
     <div class="rule"></div>
     <p class="lede">
       A buyer at this level is choosing a builder as much as an address.
@@ -536,7 +548,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 <section class="sec" aria-labelledby="team-h">
   <div class="wrap">
     <p class="eyebrow rv" id="team-h">The Team</p>
-    <h2 class="h2 rv d1">When you work with Eden&nbsp;Grove,<br>you get all of us.</h2>
+    <h2 class="h2 rv d1">Who you get</h2>
     <div class="rule rv d2"></div>
     <p class="lede rv d3">
       Not one agent with a brokerage behind them. Four people who have each come
@@ -580,7 +592,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 <section class="sec" aria-labelledby="partners-h">
   <div class="wrap">
     <p class="eyebrow rv" id="partners-h">The Partners</p>
-    <h2 class="h2 rv d1">When you get Eden&nbsp;Grove,<br>you get all of them.</h2>
+    <h2 class="h2 rv d1">Who we bring</h2>
     <div class="rule rv d2"></div>
     <p class="lede rv d3">
       These are not vendors we have worked with and can name. Each one is under
@@ -635,8 +647,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
     </div>
 
     <div class="claim">
-      <p>Hundreds of years of combined experience, under contract,
-         pointed at one house.</p>
+      <p>Every one of them under contract, and on your house.</p>
       <p>We know what goes into a project like this, and we know what is at risk
          behind it. Our job is to make sure that when it is finished, nothing was
          left on the table &mdash; not the audience, not the price, and not your
@@ -649,7 +660,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 <section class="sec" aria-labelledby="compass-h">
   <div class="wrap">
     <p class="eyebrow rv" id="compass-h">Compass</p>
-    <h2 class="h2 rv d1">And the machine<br>behind the brokerage.</h2>
+    <h2 class="h2 rv d1">What we have access to</h2>
     <div class="rule rv d2"></div>
     <p class="lede rv d3">
       Eden&nbsp;Grove is a team at Compass, which hands this house a set of
@@ -699,7 +710,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 <section class="sec sec--tight" aria-labelledby="journey-h">
   <div class="wrap">
     <p class="eyebrow rv" id="journey-h">The Twelve Months</p>
-    <h2 class="h2 rv d1">Three things happen<br>to the same week.</h2>
+    <h2 class="h2 rv d1">What happens, and when</h2>
     <div class="rule rv d2"></div>
     <p class="lede rv d3">
       The project itself. The campaign that runs alongside it, every other week,
@@ -761,7 +772,10 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">Collateral</p>
         <h3>The development sign</h3>
         <p>Your logo, curated to this project, standing before the old house comes down. It is the cheapest lead source on the job and the one most builders waste. Nobody drives past this site and has no way to call.</p>
-        <div class="slot slot--sign"><span><em>The sign</em>rendering with your logo</span></div>
+        <div class="slot slot--sign slot--live slot--still">
+          <img src="kaeser-sign.jpg" alt="The Eden Grove development sign, carrying the Kaeser Building mark and Amber's contact details" loading="lazy" decoding="async">
+        </div>
+        <p class="slot__cap slot__cap--his"><b>Made for you</b>Your mark, your number, on site before the old house comes down</p>
       </div>
       <div class="cell" data-col="The Campaign">
         <p class="cell__kind">Email 02</p>
@@ -1101,14 +1115,12 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 <section class="sec close" aria-labelledby="close-h">
   <div class="wrap">
     <p class="eyebrow rv" id="close-h">What It Is For</p>
-    <h2 class="h2 rv d1">Best case, it sells<br>before it is finished.</h2>
+    <h2 class="h2 rv d1">The objective</h2>
     <div class="rule rv d2"></div>
     <p class="lede rv d3">
-      Our objective is always to pre-sell at the highest number an early buyer
-      will pay. But a house like this has to be marketed properly whether or not
-      that happens &mdash; because the second thing it is buying you is a
-      reputation as a premier builder in Nashville, and that is worth something
-      on the next one.
+      To pre-sell at the highest number an early buyer will pay. Failing that,
+      to sell it well &mdash; and either way to leave Kaeser&nbsp;Building better
+      known in Nashville than it was twelve months earlier.
     </p>
 
     <div class="two">
