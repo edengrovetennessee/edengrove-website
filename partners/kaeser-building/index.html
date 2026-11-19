@@ -186,6 +186,24 @@ a{color:inherit}
   text-transform:uppercase;color:var(--t3);
 }
 
+/* ---- the people inside the in-house cards ----
+   "A private rendering studio we hold directly" is a department. A
+   face with a name under it is a person who answers the phone, which
+   is the difference the partner roster already makes further down the
+   page. Same circular treatment, smaller, because these sit inside a
+   card rather than heading one. */
+.pteam{margin:1.3rem 0 0;display:flex;flex-wrap:wrap;gap:1.1rem}
+.pteam figure{margin:0;width:3.7rem;text-align:center}
+.pteam__f{
+  width:3.1rem;height:3.1rem;margin:0 auto;border-radius:50%;
+  overflow:hidden;background:var(--panel);border:1px solid var(--line);
+}
+.pteam__f img{width:100%;height:100%;object-fit:cover;display:block}
+.pteam figcaption{
+  margin:.5rem 0 0;font-size:.46rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--t2);line-height:1.6;
+}
+
 /* ---- evidence under a claim ----
    "The MLS can tell us which agents already have buyers" is a claim.
    A hundred and forty-seven rows of it is not. These are screenshots
@@ -572,6 +590,12 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
           <p>Ours, on staff, on call. Progress from the air and on the ground,
              from the day the site is cleared to the day the landscape goes in.
              Four films across the build, each one a release of its own.</p>
+          <div class="pteam">
+            <figure>
+              <div class="pteam__f"><img src="../../media/inhouse-litwin.jpg" alt="Nick Litwin" loading="lazy" decoding="async"></div>
+              <figcaption>Nick Litwin</figcaption>
+            </figure>
+          </div>
         </div>
         <div class="pcard">
           <p class="pcard__role">In House</p>
@@ -580,6 +604,16 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
              sell a house that does not exist yet &mdash; and build a rendering
              film that walks a buyer through it, room by room, a year before the
              door opens.</p>
+          <div class="pteam">
+            <figure>
+              <div class="pteam__f"></div>
+              <figcaption>Daniel Connor</figcaption>
+            </figure>
+            <figure>
+              <div class="pteam__f"><img src="../../media/inhouse-ryan.jpg" alt="Ryan Stonehouse" loading="lazy" decoding="async"></div>
+              <figcaption>Ryan Stonehouse</figcaption>
+            </figure>
+          </div>
         </div>
         <div class="pcard">
           <p class="pcard__role">In House</p>
