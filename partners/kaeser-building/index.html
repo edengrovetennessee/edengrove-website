@@ -312,6 +312,32 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 }
 .slot em{display:block;font-style:normal;color:var(--brass);margin-bottom:.35rem}
 .slot video,.slot iframe,.slot img{width:100%;height:100%;object-fit:cover;border:0;display:block}
+/* ---- a slot with the real thing in it ----
+   AN EXAMPLE OF OUR WORK, NOT HIS HOUSE, and the caption has to say so or a
+   builder reads a finished film of somebody else's project as a promise
+   about his own. preload="none": the frame shows the poster and the file is
+   only fetched by somebody who presses play. */
+.slot--live{position:relative;border-color:rgba(218,206,182,.4);padding:0;background:#1b1f19}
+.slot--live video{position:absolute;inset:0}
+.slot__play{
+  position:absolute;inset:0;z-index:2;display:grid;place-items:center;
+  border:0;background:rgba(20,23,15,.26);cursor:pointer;color:#fff;
+  transition:background .3s var(--rise);
+}
+.slot__play[hidden]{display:none}
+.slot__play:hover,.slot__play:focus-visible{background:rgba(20,23,15,.1);outline:none}
+.slot__play span{
+  display:grid;place-items:center;width:2.9rem;height:2.9rem;border-radius:50%;
+  border:1px solid rgba(255,255,255,.72);background:rgba(20,23,15,.3);
+  transition:border-color .3s var(--rise),background .3s var(--rise);
+}
+.slot__play:hover span{border-color:var(--brass);background:rgba(20,23,15,.5)}
+.slot__play svg{width:.8rem;height:.8rem;fill:currentColor;margin-left:.12rem}
+.slot__cap{
+  margin:.65rem 0 0;font-size:.5rem;letter-spacing:.22em;text-indent:.22em;
+  text-transform:uppercase;color:var(--t3);line-height:1.8;
+}
+.slot__cap b{display:block;font-weight:400;color:var(--brass)}
 
 /* ---- the close --------------------------------------------------------- */
 .close{background:var(--panel)}
@@ -575,7 +601,7 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
     <!-- THE ROWS ARE REAL MARKUP, not built by script. The script only
          enhances: it reveals, draws the thread and names the month. A
          page a builder is sent should not go blank because one line of
-         JavaScript threw. Generated from data/phases.py -- edit there. -->
+         JavaScript threw. This markup is the source: edit it here. -->
     <div id="phases">
     <div class="phase" data-when="Before ground &middot; Month 0">
       <span class="phase__dot" aria-hidden="true"></span>
@@ -631,7 +657,15 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">Editorial film — one of four</p>
         <h3>The site, from the air</h3>
         <p>Demo done, site cleared, foundation poured or block set. Our in-house editorial and drone team put together the first film: this is the land, this is what is going on it, this is who is building it.</p>
-        <div class="slot slot--film"><span><em>Drone film 01</em>existing footage to embed</span></div>
+        <div class="slot slot--film slot--live">
+          <video playsinline preload="none" poster="../../media/cm735-film-poster.jpg">
+            <source src="../../media/cm735-film.mp4" type="video/mp4">
+          </video>
+          <button class="slot__play" type="button" aria-label="Play the foundation film from 735 Clematis Drive">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
+        <p class="slot__cap"><b>An example of ours</b>735 Clematis Dr &middot; the foundation film</p>
       </div>
       <div class="cell" data-col="The Campaign">
         <p class="cell__kind">Project update</p>
@@ -1091,6 +1125,15 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
   function onScroll(){ if (!ticking){ ticking = true; requestAnimationFrame(draw); } }
 
   function layout(){ len = buildPath(); draw(); }
+
+  /* Delegated, so the next film dropped into a slot needs no new script. */
+  journey.addEventListener("click", function (e) {
+    var btn = e.target.closest ? e.target.closest(".slot__play") : null;
+    if (!btn) return;
+    var v = btn.parentNode.querySelector("video");
+    if (!v) return;
+    btn.hidden = true; v.controls = true; v.play();
+  });
 
   addEventListener("scroll", onScroll, { passive: true });
   addEventListener("resize", layout);
