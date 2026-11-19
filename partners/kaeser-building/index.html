@@ -320,6 +320,20 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
 .slot--live{position:relative;border-color:rgba(218,206,182,.4);padding:0;background:#1b1f19}
 .slot--live video,.slot--live img,.slot--live iframe{position:absolute;inset:0}
 .slot--still{cursor:default}
+/* ---- an email you can read in place ----
+   A campaign email is four feet of artwork and the frame holding it is a
+   few inches. Shrinking it to fit shows a smudge; a crop shows the header
+   and nothing that matters. So the frame scrolls and the email stays at a
+   size you can read, which is also what it is like to receive one. */
+.slot--scroll{
+  display:block;place-items:unset;padding:0;overflow-y:auto;overflow-x:hidden;
+  border-color:rgba(218,206,182,.4);background:#1b1f19;
+  scrollbar-width:thin;scrollbar-color:rgba(218,206,182,.3) transparent;
+  -webkit-overflow-scrolling:touch;
+}
+.slot--scroll img{position:static;width:100%;height:auto;object-fit:unset}
+.slot--scroll::-webkit-scrollbar{width:4px}
+.slot--scroll::-webkit-scrollbar-thumb{background:rgba(218,206,182,.3)}
 .slot__play{
   position:absolute;inset:0;z-index:2;display:grid;place-items:center;
   border:0;background:rgba(20,23,15,.26);cursor:pointer;color:#fff;
@@ -641,7 +655,11 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">Email 02</p>
         <h3>The builder and the team</h3>
         <p>You, your architect, your designer, your landscape architect. And your pipeline — what else is coming, whether or not we are listing it. We would rather list them all, but this is a partnership either way.</p>
-        <div class="slot slot--mail"><span><em>Email 02</em>sample to be dropped in</span></div>
+        <div class="slot slot--mail slot--live slot--scroll" tabindex="0" role="group"
+             aria-label="The Liebo Builders spotlight email, scrollable">
+          <img src="../../media/mail-liebo-spotlight.jpg" alt="The Liebo Builders spotlight email" loading="lazy" decoding="async">
+        </div>
+        <p class="slot__cap"><b>An example of ours &middot; scroll it</b>Liebo Builders &middot; the builder spotlight</p>
       </div>
       <div class="cell" data-col="The Kaeser Brand">
         <p class="cell__kind">Feature</p>
@@ -906,6 +924,10 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">Email</p>
         <h3>The invitation, then the night</h3>
         <p>An invitation beforehand, and afterwards the film of it. People who were not there should want to have been.</p>
+        <div class="slot slot--mail slot--live slot--still">
+          <img src="../../media/cs-invite.jpg" alt="An invitation to discover 1211 Carl Seyfert Memorial Drive" loading="lazy" decoding="async">
+        </div>
+        <p class="slot__cap"><b>An example of ours</b>1211 Carl Seyfert Memorial Dr &middot; the invitation</p>
       </div>
       <div class="cell" data-col="The Kaeser Brand">
         <p class="cell__kind">Content</p>
