@@ -408,6 +408,9 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
    evidence on this page, so it gets the tallest frame here rather than
    being cropped into a 16:9 window alongside everything else. */
 .slot--reel{aspect-ratio:9/16}
+/* the marketing films were cut at 1400x934, so they get their own
+   ratio rather than a tenth of the picture shaved off to make 16:9 */
+.slot--three{aspect-ratio:1400/934}
 .slot--cine{aspect-ratio:1654/744}
 .slot span{
   font-size:.52rem;letter-spacing:.24em;text-indent:.24em;
@@ -1049,6 +1052,15 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">Construction Excellence</p>
         <h3>Interior architecture</h3>
         <p>Room by room, as each one becomes real. The renderings stay in the archive as the before.</p>
+        <div class="slot slot--three slot--live">
+          <video playsinline preload="none" poster="../../media/mkt-atcompletion-poster.jpg">
+            <source src="../../media/mkt-atcompletion.mp4" type="video/mp4">
+          </video>
+          <button class="slot__play" type="button" aria-label="Play a film of finished interiors, room by room">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
+        <p class="slot__cap"><b>An example of ours</b>Room by room, once they are real</p>
       </div>
       <div class="cell" data-col="The Kaeser Brand">
         <p class="cell__kind">Project film</p>
@@ -1088,6 +1100,15 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">Positioning</p>
         <h3>Someone else vouching for you</h3>
         <p>A builder saying their work is careful is marketing. The agent who watched it being built saying it is evidence.</p>
+        <div class="slot slot--three slot--live">
+          <video playsinline preload="none" poster="../../media/mkt-story-poster.jpg">
+            <source src="../../media/mkt-story.mp4" type="video/mp4">
+          </video>
+          <button class="slot__play" type="button" aria-label="Play a sit-down interview with a project design partner">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
+        <p class="slot__cap"><b>An example of ours</b>The design partner, on camera</p>
       </div>
       </div>
     </div>
@@ -1231,6 +1252,15 @@ html.js .rule.rv.in{transform:scaleX(1);transition:transform .9s var(--rise)}
         <p class="cell__kind">Ongoing</p>
         <h3>A year of material, still working</h3>
         <p>Four editorial films, a rendering film, an event film, interviews, a full photographic set, and twenty-six campaign emails. Whether it sells in a day or in ninety, there is enough to keep it in front of every buyer in Nashville and across the country.</p>
+        <div class="slot slot--three slot--live">
+          <video playsinline preload="none" poster="../../media/mkt-propertysite-poster.jpg">
+            <source src="../../media/mkt-propertysite.mp4" type="video/mp4">
+          </video>
+          <button class="slot__play" type="button" aria-label="Play a walkthrough of a dedicated property website">
+            <span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+          </button>
+        </div>
+        <p class="slot__cap"><b>An example of ours</b>A property site holding a year of it</p>
       </div>
       <div class="cell" data-col="The Campaign">
         <p class="cell__kind">Ongoing</p>
