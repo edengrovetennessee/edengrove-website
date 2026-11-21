@@ -394,13 +394,32 @@ blockquote{
 }
 
 /* ========================= 4 · FEATURED PROPERTIES =========================
-   One lead, two beneath. Address always visible; the numbers arrive on hover
-   so the resting state stays a photograph rather than a spec sheet. */
+   One lead, three beneath, and the four take turns in the lead. Address
+   always visible; the numbers arrive on hover so the resting state stays a
+   photograph rather than a spec sheet. */
 .featured{background:var(--ink);padding:clamp(.5rem,1vw,1.1rem) 0 clamp(4rem,8vh,6.5rem)}
 .featured__grid{
-  display:grid;grid-template-columns:1fr 1fr;
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
   gap:clamp(.5rem,1vw,1.1rem);
   padding:0 clamp(.5rem,1vw,1.1rem);
+  transition:opacity .42s var(--rise);
+}
+/* Three across, not two: there are three cards under the lead now and a
+   two-up would strand one of them alone on a row. They hold all the way to
+   760, where the whole grid goes single file anyway. */
+.featured__grid.is-turning{opacity:0}
+/* Between the phone breakpoint and 1000 the three row cards are about 250 to
+   320 wide, and 1211 Carl Seyfert Memorial Dr wraps to three lines there. In
+   a 6:5 frame that address reached the bottom edge of the card with nothing
+   under it. Portrait cards in that band, the same answer the sold grid uses
+   for the same reason. :not() on purpose: a bare .prop here is declared after
+   .prop--lead and at equal specificity would take the lead card's 5:2 away. */
+@media (max-width:1000px) and (min-width:761px){
+  .prop:not(.prop--lead){aspect-ratio:4/5}
+}
+@media (prefers-reduced-motion:reduce){
+  .featured__grid{transition:none}
+  .featured__grid.is-turning{opacity:1}
 }
 .prop--lead{grid-column:1 / -1}
 
@@ -1043,12 +1062,20 @@ img.lock__compass{display:block;width:auto;height:1.1em}
 
 <!-- ==================== 4 · FEATURED PROPERTIES ====================
      Figures confirmed by Ryan as current. They must keep matching Realtracs —
-     a price change there is a change here. -->
-<section class="featured" id="properties" aria-label="Featured properties">
-  <div class="featured__grid">
+     a price change there is a change here.
 
-    <a class="prop prop--lead" href="property/1211-carl-seyfert/">
-      <img loading="lazy" decoding="async" src="media/cs-hero.jpg" alt="">
+     FOUR CARDS, ONE BIG SLOT, AND THEY TAKE TURNS IN IT. Each card carries
+     both of its crops: data-wide for the 5:2 lead frame and data-card for
+     the 6:5 row frame. The script at the foot of the page moves the first
+     card to the back every nine seconds and swaps the src to match the new
+     role. With the script off this is Carl Seyfert on top and the other
+     three underneath, which is a correct page, not a broken one. -->
+<section class="featured" id="properties" aria-label="Featured properties">
+  <div class="featured__grid" id="featGrid">
+
+    <a class="prop prop--lead" href="property/1211-carl-seyfert/"
+       data-wide="media/lead-carl.jpg" data-card="media/prop-4.jpg">
+      <img loading="lazy" decoding="async" src="media/lead-carl.jpg" alt="">
       <span class="prop__status">Active</span>
       <div class="prop__body">
         <h3 class="prop__addr">1211 Carl Seyfert Memorial Dr<br>Brentwood, TN 37027</h3>
@@ -1066,13 +1093,14 @@ img.lock__compass{display:block;width:auto;height:1.1em}
       </div>
     </a>
 
-    <a class="prop" href="property/715-davis/">
+    <a class="prop" href="property/715-davis/"
+       data-wide="media/lead-davis.jpg" data-card="media/prop-1.jpg">
       <img loading="lazy" decoding="async" src="media/prop-1.jpg" alt="">
       <span class="prop__status">Private Exclusive</span>
       <div class="prop__body">
         <h3 class="prop__addr">715 Davis Dr<br>Brentwood, TN 37027</h3>
         <div class="prop__more"><div>
-          <!-- no MLS number: a Private Exclusive is off-market by definition -->
+          <!-- no MLS number: a Private Exclusive is off market by definition -->
           <div class="prop__facts">
             <span>$6,200,000</span>
             <span>8,600 <span class="k">Sq Ft</span></span>
@@ -1085,17 +1113,38 @@ img.lock__compass{display:block;width:auto;height:1.1em}
       </div>
     </a>
 
-    <a class="prop" href="property/515-shenandoah/">
+    <a class="prop" href="property/515-shenandoah/"
+       data-wide="media/lead-shen.jpg" data-card="media/prop-2.jpg">
       <img loading="lazy" decoding="async" src="media/prop-2.jpg" alt="">
       <span class="prop__status">Coming Soon</span>
       <div class="prop__body">
         <h3 class="prop__addr">515 Shenandoah Dr<br>Brentwood, TN 37027</h3>
         <div class="prop__more"><div>
-          <!-- MLS 3636403; the cards carry price and size, not the number -->
           <div class="prop__facts">
             <span>$5,500,000</span>
             <span>8,596 <span class="k">Sq Ft</span></span>
             <span>6 <span class="k">Bed</span> &middot; 6 <span class="k">Bath</span></span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+              <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+
+    <a class="prop" href="property/6001-dunham-springs/"
+       data-wide="media/lead-dunham.jpg" data-card="media/prop-3.jpg">
+      <img loading="lazy" decoding="async" src="media/prop-3.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">6001 Dunham Springs Rd<br>Nashville, TN 37205</h3>
+        <div class="prop__more"><div>
+          <div class="prop__facts">
+            <span>$5,500,000</span>
+            <span>6,879 <span class="k">Sq Ft</span></span>
+            <span>6 <span class="k">Bed</span> &middot; 6.2 <span class="k">Bath</span></span>
+            <span><span class="k">MLS #</span>3639362</span>
           </div>
           <span class="prop__cta">View Property
             <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
@@ -1421,6 +1470,83 @@ addEventListener("keydown", e => {
 
   document.body.style.overflow = "hidden";   // and nothing moves behind it
   setTimeout(lift, HOLD);
+})();
+
+/* ---- featured properties, four cards taking turns ----
+   The big slot is 5:2 and a row card is 6:5, so a card changing role also
+   changes which file it shows. Both crops are on the element as data-wide
+   and data-card, and both are preloaded before the first turn, or the swap
+   would leave an empty frame for a beat.
+
+   On a phone the grid is single file and every card is 4:3, so there is no
+   big slot to swap into: every card shows its card crop and only the order
+   changes. The 5:2 crop in a 4:3 frame would lose half the house sideways.
+
+   It is a dissolve, not a cut. The ground behind the grid is nearly black,
+   so fading to zero reads as a cross fade rather than a blink.
+
+   It stops while the pointer is inside the section, because a card that
+   moves out from under someone reading it is worse than no movement at all.
+   The properties banner does not do this, but that one fills the viewport
+   and the pointer is always inside it. This one does not. */
+(() => {
+  const grid = document.getElementById("featGrid");
+  if (!grid) return;
+  const cards = [...grid.children];
+  if (cards.length < 2) return;
+  if (matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const phone = matchMedia("(max-width: 760px)");
+  const HOLD = 9000, FADE = 440;
+  let timer = null, onScreen = false, held = false;
+
+  const dress = () => cards.forEach((c, i) => {
+    const lead = i === 0;
+    c.classList.toggle("prop--lead", lead);
+    const img = c.querySelector("img");
+    const want = (lead && !phone.matches) ? c.dataset.wide : c.dataset.card;
+    if (img && want && !img.getAttribute("src").endsWith(want)) img.src = want;
+  });
+
+  const warm = () => cards.forEach(c => {
+    const want = phone.matches ? [c.dataset.card] : [c.dataset.wide, c.dataset.card];
+    want.forEach(src => { if (src) new Image().src = src; });
+  });
+
+  const turn = () => {
+    if (!onScreen || held) return;
+    grid.classList.add("is-turning");
+    setTimeout(() => {
+      const first = cards.shift();
+      cards.push(first);
+      grid.appendChild(first);
+      dress();
+      grid.classList.remove("is-turning");
+    }, FADE);
+  };
+
+  const stop  = () => { clearInterval(timer); timer = null; };
+  const start = () => { stop(); timer = setInterval(turn, HOLD); };
+
+  phone.addEventListener("change", () => { dress(); warm(); });
+  /* The pause is per card, not on the grid. The grid is a full width block
+     and a cursor left sitting anywhere in the middle of the page while
+     somebody scrolls would be inside it, which would freeze the rotation for
+     the whole visit without anybody meaning to. Over a card is a real signal:
+     that one is being read. */
+  cards.forEach(c => {
+    c.addEventListener("pointerenter", () => { held = true; });
+    c.addEventListener("pointerleave",  () => { held = false; });
+  });
+  document.addEventListener("visibilitychange",
+    () => { if (document.hidden) stop(); else if (onScreen) start(); });
+
+  dress();
+  warm();
+  new IntersectionObserver(es => {
+    onScreen = es[0].isIntersecting;
+    if (onScreen) start(); else stop();
+  }, { threshold: 0.25 }).observe(grid);
 })();
 </script>
 <!-- LOCKUP:JS:END -->
