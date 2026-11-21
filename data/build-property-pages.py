@@ -169,6 +169,19 @@ VEIL_CSS = '''<style>
 @media (max-aspect-ratio:1/1){
   .p-hero:not(.p-hero--veil) .hero__media{object-position:var(--hero-focus,50% 50%)}
 }
+/* ---- the figures, under the address ----
+   Lifted from the hand-built property pages, which all carry this and
+   which is what "built like the other pages" means at the top of one.
+   The donor's stylesheet had the separator rule for this class and not
+   the class itself, so a generated page that tried to use it got
+   unstyled text. */
+.p-hero__price{
+  margin:1.5rem 0 0;padding:1rem 0;
+  border-top:1px solid var(--wline);border-bottom:1px solid var(--wline);
+  font-size:clamp(.66rem,.6rem + .24vw,.8rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:var(--w1);text-shadow:0 1px 20px rgba(0,0,0,.5);
+}
 .p-hero__soon{
   display:block;margin:0 0 clamp(1.2rem,3vh,1.8rem);
   font-family:var(--ui);font-weight:300;
@@ -650,6 +663,31 @@ def page(p, agents, head, bar, tail):
     inquire_tel_pretty = (f"({inquire_tel[:3]})&nbsp;{inquire_tel[3:6]}-{inquire_tel[6:]}"
                           if len(inquire_tel) == 10 and inquire_tel.isdigit() else inquire_tel)
 
+    # ---- the top of the page ---------------------------------------------
+    # "Coming Soon" above "Active" is the page contradicting itself, so the
+    # kicker is dropped on anything already on the market. Everything else
+    # keeps the kicker, and with it the brass rule that hangs off it.
+    _st = (p.get("status") or "").strip()
+    hero_soon = "" if _st == "Active" else '<span class="p-hero__soon">Coming Soon</span>\n      '
+    hero_cta  = "Request Information" if _st == "Active" else "Register Interest"
+
+    # The figures under the address, in the order the hand-built pages use
+    # them, and only the ones we actually have. A property with none of them
+    # gets no line and no rule rather than an empty frame.
+    _baths = (p.get("baths") or "").strip()
+    _m = re.match(r"^(\d+)\s*Full(?:,\s*(\d+)\s*Half)?$", _baths)
+    if _m:
+        _baths = _m.group(1) + ("." + _m.group(2) if _m.group(2) else "")
+    _bits = [b for b in (
+        (p.get("price") or "").strip(),
+        f'{p["sqft"]} Sq Ft'  if p.get("sqft")  else "",
+        f'{p["beds"]} Bed'    if p.get("beds")  else "",
+        f'{_baths} Bath'      if _baths         else "",
+    ) if b]
+    hero_price = ('<p class="p-hero__price">'
+                  + "<i>&middot;</i>".join(esc(b) for b in _bits)
+                  + "</p>\n      ") if _bits else ""
+
     body = f'''<body>
 
 <!-- ==========================================================================
@@ -669,10 +707,9 @@ def page(p, agents, head, bar, tail):
 
   <div class="p-hero__body">
     <div class="reveal" style="animation-delay:.5s">
-      <span class="p-hero__soon">Coming Soon</span>
-      <span class="p-hero__status">{esc(p["status"])}</span>
+      {hero_soon}<span class="p-hero__status">{esc(p["status"])}</span>
       <h1>{h1}</h1>
-      <a class="p-hero__cta" href="#inquire">Register Interest</a>
+      {hero_price}<a class="p-hero__cta" href="#inquire">{hero_cta}</a>
     </div>
   </div>
 </section>

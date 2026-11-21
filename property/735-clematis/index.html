@@ -1325,6 +1325,19 @@ blockquote{
 @media (max-aspect-ratio:1/1){
   .p-hero:not(.p-hero--veil) .hero__media{object-position:var(--hero-focus,50% 50%)}
 }
+/* ---- the figures, under the address ----
+   Lifted from the hand-built property pages, which all carry this and
+   which is what "built like the other pages" means at the top of one.
+   The donor's stylesheet had the separator rule for this class and not
+   the class itself, so a generated page that tried to use it got
+   unstyled text. */
+.p-hero__price{
+  margin:1.5rem 0 0;padding:1rem 0;
+  border-top:1px solid var(--wline);border-bottom:1px solid var(--wline);
+  font-size:clamp(.66rem,.6rem + .24vw,.8rem);
+  letter-spacing:.2em;text-indent:.2em;text-transform:uppercase;
+  color:var(--w1);text-shadow:0 1px 20px rgba(0,0,0,.5);
+}
 .p-hero__soon{
   display:block;margin:0 0 clamp(1.2rem,3vh,1.8rem);
   font-family:var(--ui);font-weight:300;
@@ -1539,6 +1552,7 @@ blockquote{
       <span class="p-hero__soon">Coming Soon</span>
       <span class="p-hero__status">Private Exclusive</span>
       <h1>735 Clematis Dr<br>Nashville, TN 37205</h1>
+      <p class="p-hero__price">6,851 Sq Ft<i>&middot;</i>6 Bed<i>&middot;</i>6.3 Bath</p>
       <a class="p-hero__cta" href="#inquire">Register Interest</a>
     </div>
   </div>
