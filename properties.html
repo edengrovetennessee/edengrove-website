@@ -757,12 +757,16 @@ blockquote{
 /* Three across at every width that fits them, rather than the auto-fill the
    listing grids use - this row is always exactly three. */
 .listings--featured{padding-bottom:0}
-.listings__grid--three{grid-template-columns:repeat(3,minmax(0,1fr))}
-@media (max-width:760px){ .listings__grid--three{grid-template-columns:1fr} }
+/* DOUBLED CLASS ON PURPOSE. .listings__grid is declared further down this
+   stylesheet with one class, so at equal specificity it won on source order
+   and these modifiers did nothing at all. 0,2,0 beats 0,1,0 wherever it
+   sits. */
+.listings__grid.listings__grid--three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:760px){ .listings__grid.listings__grid--three{grid-template-columns:1fr} }
 /* Four featured, so four across rather than three and an orphan. */
-.listings__grid--four{grid-template-columns:repeat(4,minmax(0,1fr))}
-@media (max-width:1200px){ .listings__grid--four{grid-template-columns:repeat(2,minmax(0,1fr))} }
-@media (max-width:620px){ .listings__grid--four{grid-template-columns:1fr} }
+.listings__grid.listings__grid--four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1200px){ .listings__grid.listings__grid--four{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:620px){ .listings__grid.listings__grid--four{grid-template-columns:1fr} }
 
 /* ---- banner as the lead listing ----
    The top property is the banner rather than a card, so its details sit bottom
@@ -2607,10 +2611,11 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
       <div class="prop__body">
         <h3 class="prop__addr">6001 Dunham Springs Rd<br>Nashville, TN 37205</h3>
         <div class="prop__more"><div>
-          <!-- MLS 3639362; the cards carry price and size, not the number -->
           <div class="prop__facts">
             <span>$5,500,000</span>
             <span>6,879 <span class="k">Sq Ft</span></span>
+            <span>6 <span class="k">Bed</span> &middot; 6.2 <span class="k">Bath</span></span>
+            <span><span class="k">MLS #</span>3639362</span>
           </div>
           <span class="prop__cta">View Property
             <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
