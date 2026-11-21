@@ -726,7 +726,9 @@ blockquote{
    screen. Swap in the photographer's full-resolution frame when it comes;
    nothing but the file changes. */
 @media (max-aspect-ratio:1/1){
-  .p-hero .hero__media{object-position:55% 50%}
+  /* 42% of this frame is the middle of the house. 55% was the drone
+     shot's number and on this one it cut the gable off. */
+  .p-hero .hero__media{object-position:40% 50%}
 }
 /* 92svh left a sliver of the next section showing, which reads as a band
    rather than as a picture you have to scroll past. */
@@ -1107,11 +1109,20 @@ blockquote{
    pale cedar, stacked stone and lit foliage sit exactly where the address
    goes, and the phone crop puts the headline square on the stone. So the
    foot of the gradient runs deeper and taller here, and only here. */
+/* Deeper at the foot than the other listings, and measured rather than
+   guessed. The hero here is a street photograph with a white picket fence
+   running right through the band the address sits in. At the shared scrim
+   the address read 3.5:1, which clears the 3.0 large text floor and is
+   still hard to look at, because the pickets alternate white and shadow
+   behind the letters. This reaches 6.2:1 on a desktop and 6.5:1 on a
+   phone, taken as the 90th percentile luminance under the real text box
+   with the text hidden. */
 .p-hero .hero__scrim{
   background:
     linear-gradient(to bottom, rgba(8,10,7,.55) 0%, rgba(8,10,7,.22) 14%, rgba(8,10,7,0) 34%),
-    linear-gradient(to top,    rgba(8,10,7,.84) 0%,  rgba(8,10,7,.62) 15%,
-                               rgba(8,10,7,.30) 34%, rgba(8,10,7,0)   58%);
+    linear-gradient(to top,    rgba(8,10,7,.88) 0%,  rgba(8,10,7,.74) 15%,
+                               rgba(8,10,7,.56) 30%, rgba(8,10,7,.30) 44%,
+                               rgba(8,10,7,0)   64%);
 }
 
 /* ============================== REEL BANDS ===============================
