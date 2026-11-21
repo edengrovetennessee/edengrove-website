@@ -56,12 +56,27 @@ def head_for(p, head):
        stylesheet, the fonts, the favicons - is shared and left alone."""
     full = p["address"] + (f', {p["town"]} {p["state"]} {p["zip"]}' if p["town"] else "")
     url  = f'https://edengrovetennessee.com/property/{p["slug"]}/'
-    desc = (f'{p["address"]} &mdash; a Private Exclusive coming to '
+    # STATUS DRIVES THE WORDING. This used to say "a Private Exclusive" for
+    # every property, which was true of the fourteen that existed when it was
+    # written and false the moment one of them went Active: the meta
+    # description and the link preview both told the market a listed house
+    # was off market. An unrecognised status falls back to the old phrasing
+    # rather than to a blank.
+    st = (p.get("status") or "").strip()
+    LEAD  = {"Private Exclusive": "a Private Exclusive coming to",
+             "Coming Soon":       "coming soon to",
+             "Active":            "now on the market in"}
+    PHASE = {"Private Exclusive": "a Private Exclusive",
+             "Coming Soon":       "coming soon",
+             "Active":            "now on the market"}
+    lead  = LEAD.get(st,  "a Private Exclusive coming to")
+    phase = PHASE.get(st, "a Private Exclusive")
+    desc = (f'{p["address"]} &mdash; {lead} '
             f'{p["town"]}.' if p["town"] else
-            f'{p["address"]} &mdash; a Private Exclusive. Register interest.')
+            f'{p["address"]} &mdash; {phase}. Register interest.')
     kind = {"new": "New construction", "resale": "A resale"}.get(p.get("kind") or "", "A property")
     where = f' in {p["town"]}' if p["town"] else ""
-    desc_plain = (f'{kind}{where} at {p["address"]}, a Private Exclusive with '
+    desc_plain = (f'{kind}{where} at {p["address"]}, {phase} with '
                   f'Eden Grove at Compass. Follow the build or register interest.')
     out = head
     out = re.sub(r"<title>.*?</title>", f"<title>{esc(full)} | Eden Grove</title>", out, flags=re.S)
@@ -617,6 +632,24 @@ def page(p, agents, head, bar, tail):
 </section>
 '''
 
+    # ---- how to ask about it ---------------------------------------------
+    # An Active listing is on the open market and showable; a Private
+    # Exclusive is neither, and Coming Soon is not yet. Saying the wrong one
+    # of those is a fact error, not a wording preference. Where a property
+    # has a listing agent, their own line answers faster than the general
+    # number, and the fallback is what every page used to print.
+    LEAD = {
+        "Active":      "This one is on the market and showing now.",
+        "Coming Soon": "This one is not on the open market yet.",
+    }
+    inquire_lead = LEAD.get((p.get("status") or "").strip(),
+                            "This is a Private Exclusive and is not on the open market.")
+    _ag = (agents or {}).get(p.get("agent") or "", {})
+    inquire_tel  = _ag.get("tel") or "6158120066"
+    inquire_mail = _ag.get("email") or "connect@edengrovetennessee.com"
+    inquire_tel_pretty = (f"({inquire_tel[:3]})&nbsp;{inquire_tel[3:6]}-{inquire_tel[6:]}"
+                          if len(inquire_tel) == 10 and inquire_tel.isdigit() else inquire_tel)
+
     body = f'''<body>
 
 <!-- ==========================================================================
@@ -660,9 +693,9 @@ def page(p, agents, head, bar, tail):
 <section class="p-sec p-sec--tight" id="inquire" aria-labelledby="enq-h">
   <h2 class="p-eyebrow" id="enq-h">Inquiries</h2>
   <div class="p-lede">
-    <p>This is a Private Exclusive and is not on the open market. To ask about
-       it, call or text <a href="tel:+16158120066">(615)&nbsp;812-0066</a> or
-       email <a href="mailto:connect@edengrovetennessee.com?subject={urllib.parse.quote(p["address"])}">connect@edengrovetennessee.com</a>.</p>
+    <p>{inquire_lead} To ask about it, call or text
+       <a href="tel:+1{inquire_tel}">{inquire_tel_pretty}</a> or
+       email <a href="mailto:{inquire_mail}?subject={urllib.parse.quote(p["address"])}">{inquire_mail}</a>.</p>
   </div>
 </section>
 

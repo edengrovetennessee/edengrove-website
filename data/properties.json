@@ -28,6 +28,96 @@
   },
   "properties": [
     {
+      "slug": "6001-dunham-springs",
+      "address": "6001 Dunham Springs Rd",
+      "town": "Nashville",
+      "hood": null,
+      "state": "TN",
+      "zip": "37205",
+      "kind": "new",
+      "status": "Active",
+      "price": "$5,500,000",
+      "sqft": "6,879",
+      "beds": "6",
+      "baths": "6 Full, 2 Half",
+      "garage": "3 Car",
+      "acres": "2.13",
+      "mls": null,
+      "completion": "December 2026",
+      "agent": "ryan",
+      "builder": null,
+      "hero": "ds-hero.jpg",
+      "focus": "38% 50%",
+      "follow": true,
+      "story": "Set on 2.13 private acres in Hillwood, 6001 Dunham Springs sits down off the road beneath mature trees and reads as a true estate. The house is under construction and completes in mid December 2026. Preview showings begin Friday, November 27.",
+      "features": [
+        "Detailed millwork, crown molding and custom trim throughout",
+        "A barrel ceiling across the living room and kitchen",
+        "Living room anchored by a stone fireplace",
+        "A 12 by 6.5 foot kitchen island under a custom Arcustone hood",
+        "Breakfast nook and a butler's pantry with room for catering",
+        "Formal dining room",
+        "Main level primary with his and hers closets and a soaking tub",
+        "A private covered porch off the primary suite",
+        "Study opening through glass paned double doors to the front porch",
+        "An ensuite bath for every bedroom, each one detailed differently",
+        "Upstairs bonus room, adjoining loft, and bedrooms four and five",
+        "A second laundry upstairs alongside the large one on the main level",
+        "Covered rear porch with a fireplace over a fenced courtyard yard",
+        "Room to add a pool and spa",
+        "Pool house with a full kitchen and pantry",
+        "Three car garage and two private entrances off the driveway"
+      ],
+      "gallery": [
+        {
+          "room": "The Property",
+          "rows": [
+            {
+              "shape": null,
+              "shots": [
+                [
+                  "ds-ext-2.jpg",
+                  "6001 Dunham Springs Rd from the air, the house in its trees"
+                ]
+              ]
+            },
+            {
+              "shape": null,
+              "shots": [
+                [
+                  "ds-ext-1.jpg",
+                  "The front elevation and wrap-around porch"
+                ],
+                [
+                  "ds-ext-3.jpg",
+                  "The house from the lawn, through the trees"
+                ]
+              ]
+            },
+            {
+              "shape": null,
+              "shots": [
+                [
+                  "ds-ext-4.jpg",
+                  "The property from above, looking across Hillwood"
+                ],
+                [
+                  "ds-drive.jpg",
+                  "The drive, the motorcourt and the garage wing"
+                ]
+              ]
+            }
+          ]
+        }
+      ],
+      "gallery_note": "Photography",
+      "film_cap": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "veil": null,
+      "film": null
+    },
+    {
       "slug": "2495-deer-meadow",
       "address": "2495 Deer Meadow Ln",
       "town": "Arrington",
@@ -46,7 +136,18 @@
       "hero": null,
       "veil": true,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     },
     {
       "slug": "1306-clifton",
@@ -67,7 +168,18 @@
       "hero": null,
       "veil": true,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     },
     {
       "slug": "1308-clifton",
@@ -88,7 +200,18 @@
       "hero": null,
       "veil": true,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     },
     {
       "slug": "706-davis",
@@ -109,7 +232,18 @@
       "hero": null,
       "veil": true,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     },
     {
       "slug": "607-davis",
@@ -130,7 +264,18 @@
       "hero": null,
       "veil": true,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     },
     {
       "slug": "842-brook-hollow",
@@ -151,7 +296,18 @@
       "hero": null,
       "veil": true,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     },
     {
       "slug": "735-clematis",
@@ -225,7 +381,9 @@
         "Second-Floor Terrace",
         "Pool",
         "Covered Porch, Fire Pit and Grill"
-      ]
+      ],
+      "completion": null,
+      "focus": null
     },
     {
       "slug": "1310-lavada",
@@ -246,7 +404,18 @@
       "hero": null,
       "veil": true,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     },
     {
       "slug": "804-wilson-pike",
@@ -267,7 +436,18 @@
       "hero": null,
       "veil": true,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     },
     {
       "slug": "9003-carondelet",
@@ -288,7 +468,18 @@
       "hero": "car-hero.jpg",
       "veil": false,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     },
     {
       "slug": "6212-bridlewood",
@@ -309,7 +500,18 @@
       "hero": "bw-hero.jpg",
       "veil": false,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     },
     {
       "slug": "916-long-valley",
@@ -330,7 +532,18 @@
       "hero": "lv-hero.jpg",
       "veil": false,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     },
     {
       "slug": "795-rhonda",
@@ -351,7 +564,18 @@
       "hero": null,
       "veil": true,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     },
     {
       "slug": "2112-eastwood",
@@ -372,7 +596,18 @@
       "hero": null,
       "veil": true,
       "follow": true,
-      "kind": "new"
+      "kind": "new",
+      "film_cap": null,
+      "garage": null,
+      "completion": null,
+      "gallery_note": null,
+      "focus": null,
+      "film_note": null,
+      "sqft_exact": null,
+      "story": null,
+      "film": null,
+      "gallery": null,
+      "features": null
     }
   ],
   "_kind": "new | resale. Drives the New Construction and Resale sections on properties.html. Every property in this file is new construction; the two resales are hand-built pages (2502-9th-ave-s, 4303a-utah) and are classified in data/split-sections.py."

@@ -759,6 +759,10 @@ blockquote{
 .listings--featured{padding-bottom:0}
 .listings__grid--three{grid-template-columns:repeat(3,minmax(0,1fr))}
 @media (max-width:760px){ .listings__grid--three{grid-template-columns:1fr} }
+/* Four featured, so four across rather than three and an orphan. */
+.listings__grid--four{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media (max-width:1200px){ .listings__grid--four{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:620px){ .listings__grid--four{grid-template-columns:1fr} }
 
 /* ---- banner as the lead listing ----
    The top property is the banner rather than a card, so its details sit bottom
@@ -2438,6 +2442,8 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
        aria-hidden="true" decoding="async">
   <img class="hero__media banner__slide" data-src="media/sh-hero.jpg" alt=""
        aria-hidden="true" decoding="async">
+  <img class="hero__media banner__slide" data-src="media/ds-hero.jpg" alt=""
+       aria-hidden="true" decoding="async">
   <div class="hero__scrim"></div>
 
   <header class="bar">
@@ -2515,6 +2521,19 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
           <path d="M2 1l3 3-3 3"/></svg>
       </a>
     </div>
+    <div class="banner__box banner__slidebox">
+      <span class="prop__status">Active</span>
+      <p class="prop__addr">6001 Dunham Springs Rd<br>Nashville, TN 37205</p>
+      <div class="prop__facts">
+        <span>$5,500,000</span>
+        <span>6,879 <span class="k">Sq Ft</span></span>
+        <span>6 <span class="k">Bed</span> &middot; 6.2 <span class="k">Bath</span></span>
+      </div>
+      <a class="prop__cta" href="property/6001-dunham-springs/">View Property
+        <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M2 1l3 3-3 3"/></svg>
+      </a>
+    </div>
   </div>
 </section>
 
@@ -2528,7 +2547,7 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
   <div class="listings__head listings__head--first">
     <h2 class="listings__h">Featured</h2>
   </div>
-  <div class="listings__grid listings__grid--three">
+  <div class="listings__grid listings__grid--four">
     <a class="prop" href="property/1211-carl-seyfert/">
       <img loading="lazy" decoding="async" src="media/cs-hero.jpg" alt="">
       <span class="prop__status">Active</span>
@@ -2574,6 +2593,25 @@ c9 -38 27 -92 40 -120 39 -83 56 -125 56 -138 0 -23 49 -117 85 -164 24 -31
             <span>$5,500,000</span>
             <span>8,596 <span class="k">Sq Ft</span></span>
             <span>6 <span class="k">Bed</span> &middot; 6 <span class="k">Bath</span></span>
+          </div>
+          <span class="prop__cta">View Property
+            <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+          <path d="M2 1l3 3-3 3"/></svg>
+          </span>
+        </div></div>
+      </div>
+    </a>
+    <a class="prop" href="property/6001-dunham-springs/">
+      <img loading="lazy" decoding="async" src="media/listing-dunham-6001.jpg" alt="">
+      <span class="prop__status">Active</span>
+      <div class="prop__body">
+        <h3 class="prop__addr">6001 Dunham Springs Rd<br>Nashville, TN 37205</h3>
+        <div class="prop__more"><div>
+          <!-- no MLS number on the card: the sheet still reads Incomplete.
+               Add it here and on the property page the day it is issued. -->
+          <div class="prop__facts">
+            <span>$5,500,000</span>
+            <span>6,879 <span class="k">Sq Ft</span></span>
           </div>
           <span class="prop__cta">View Property
             <svg viewBox="0 0 8 8" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
