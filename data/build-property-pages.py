@@ -422,9 +422,19 @@ def page(p, agents, head, bar, tail):
     # finished. A property with something true to say overrides it with
     # "story"; "features" is what the house has, which is the question a
     # Private Exclusive actually gets asked.
-    story = esc(p["story"]) if p.get("story") else (
-        "It is early here. What is settled is on this page; what is not is shown\n"
-        "       as a blank rather than guessed at, and fills in as the house does.")
+    # A story can be one string or several paragraphs. Public remarks run to
+    # a dozen sentences and a single <p> of that is a wall; a three sentence
+    # summary is one paragraph and should stay one. Both spellings work, and
+    # a string with no blank line in it comes out exactly as it used to.
+    _story = p.get("story")
+    if isinstance(_story, (list, tuple)):
+        _paras = [str(x).strip() for x in _story if str(x).strip()]
+    elif _story:
+        _paras = [x.strip() for x in str(_story).split("\n\n") if x.strip()]
+    else:
+        _paras = ["It is early here. What is settled is on this page; what is not is shown\n"
+                  "       as a blank rather than guessed at, and fills in as the house does."]
+    story = "</p>\n    <p>".join(esc(x) for x in _paras)
     feat = ""
     if p.get("features"):
         items = "\n".join(f"    <li>{esc(x)}</li>" for x in p["features"])

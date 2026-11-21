@@ -49,25 +49,13 @@
       "hero": "ds-hero.jpg",
       "focus": "38% 50%",
       "follow": true,
-      "story": "Set on 2.13 private acres in Hillwood, 6001 Dunham Springs sits down off the road beneath mature trees and reads as a true estate. The house is under construction and completes in mid December 2026. Preview showings begin Friday, November 27.",
-      "features": [
-        "Detailed millwork, crown molding and custom trim throughout",
-        "A barrel ceiling across the living room and kitchen",
-        "Living room anchored by a stone fireplace",
-        "A 12 by 6.5 foot kitchen island under a custom Arcustone hood",
-        "Breakfast nook and a butler's pantry with room for catering",
-        "Formal dining room",
-        "Main level primary with his and hers closets and a soaking tub",
-        "A private covered porch off the primary suite",
-        "Study opening through glass paned double doors to the front porch",
-        "An ensuite bath for every bedroom, each one detailed differently",
-        "Upstairs bonus room, adjoining loft, and bedrooms four and five",
-        "A second laundry upstairs alongside the large one on the main level",
-        "Covered rear porch with a fireplace over a fenced courtyard yard",
-        "Room to add a pool and spa",
-        "Pool house with a full kitchen and pantry",
-        "Three car garage and two private entrances off the driveway"
+      "story": [
+        "Set on 2.13 private acres in Hillwood, 6001 Dunham Springs sits down off the road beneath mature trees and feels like a true estate. Homes built with this level of craftsmanship rarely come to market. The home is currently under construction, and completion is slated for mid December 2026. Preview showings begin Friday, November 27.",
+        "The home’s 6,879 square feet are finished with detailed millwork, crown molding and custom trim throughout. A barrel ceiling runs across the living room and kitchen, and the living room is anchored by a stone fireplace. The kitchen is built around an oversized 12 x 6.5 foot island under a custom Arcustone hood. It also has a breakfast nook and a butler’s pantry with plenty of room for catering. A formal dining room completes the entertaining space.",
+        "The primary suite on the main level offers his and hers closets, a soaking tub and its own private covered porch. A large study opens through glass paned double doors onto the covered front porch. Every bedroom has its own ensuite bath, and each bath has its own detailed touch. Upstairs you’ll find a large bonus room, an adjoining loft, bedrooms four and five, and a second laundry room to go with the large laundry on the main level.",
+        "Out back, a covered porch with a fireplace overlooks a fenced, courtyard style yard with room to add a pool and spa. The pool house has a full kitchen and pantry. A three car garage and two private entrances off the driveway complete the property."
       ],
+      "features": null,
       "gallery": [
         {
           "room": "The Property",
