@@ -476,6 +476,47 @@ blockquote{
   opacity:1;transform:none;
 }
 
+/* ---- under contract ----
+   The photograph steps back to half and the card says why, in the middle,
+   at rest. Against this near-black card ground half opacity reads as the
+   house receding rather than as a washed-out photo.
+
+   DOUBLED CLASS ON PURPOSE on the image rule. .prop--uc img and .prop img
+   carry the same specificity, one class and one element, so a single class
+   here would win on source order alone and quietly stop working the day
+   somebody moves the block. 0,2,1 beats 0,1,1 wherever it sits. */
+.prop.prop--uc img{
+  opacity:.5;
+  transition:opacity .7s var(--rise),transform 1.2s var(--rise);
+}
+.prop.prop--uc:hover img,.prop.prop--uc:focus-within img{opacity:.66}
+
+.prop__stamp{
+  /* Not inset:0. The address block at the foot runs to three lines on a
+     narrow card, and a stamp centred on the whole card was written across
+     it. Centred in the top two thirds clears the address at every card
+     shape this site uses, from the 5:2 lead to the 6:5 grid. */
+  position:absolute;z-index:3;inset:0 0 32% 0;pointer-events:none;
+  display:grid;place-content:center;text-align:center;
+  padding:0 1.5rem;
+  transition:opacity .45s var(--rise);
+}
+.prop__stamp b{
+  display:block;font-family:var(--ui);font-weight:300;color:#fff;
+  font-size:clamp(.66rem,.58rem + .3vw,.9rem);
+  letter-spacing:.38em;text-indent:.38em;text-transform:uppercase;
+  text-shadow:0 1px 22px rgba(0,0,0,.55);
+}
+.prop__stamp i{
+  display:block;margin-top:.8rem;font-style:normal;color:var(--brass);
+  font-size:clamp(.56rem,.5rem + .18vw,.7rem);
+  letter-spacing:.34em;text-indent:.34em;text-transform:uppercase;
+  /* Brass at this size over a sunlit photograph disappeared without it. */
+  text-shadow:0 1px 18px rgba(0,0,0,.75);
+}
+/* It hands the photograph over to the numbers. */
+.prop--uc:hover .prop__stamp,.prop--uc:focus-within .prop__stamp{opacity:0}
+
 /* The block is deliberately narrower than the card. On the lead especially, a
    rule running the full 1400px would read as a divider across the photograph
    rather than as underlining these three numbers. */
@@ -521,6 +562,10 @@ blockquote{
 
 @media (max-width:760px){
   .featured__grid{grid-template-columns:1fr}
+  /* No hover on a phone, so the corner plate is always on and would say
+     the same two words as the stamp. The stamp is the louder of the two
+     and carries the second line, so the plate goes. */
+  .prop--uc .prop__status{display:none}
   /* On a phone the card is 4:3 and the facts are always shown, which lifts the
      address to about 41% of the card height. The desktop gradient has faded to
      nothing by there, so the foot has to reach much further up. */
@@ -1073,10 +1118,13 @@ img.lock__compass{display:block;width:auto;height:1.1em}
 <section class="featured" id="properties" aria-label="Featured properties">
   <div class="featured__grid" id="featGrid">
 
-    <a class="prop prop--lead" href="property/1211-carl-seyfert/"
+    <a class="prop prop--lead prop--uc" href="property/1211-carl-seyfert/"
        data-wide="media/lead-carl.jpg" data-card="media/prop-4.jpg">
       <img loading="lazy" decoding="async" src="media/lead-carl.jpg" alt="">
-      <span class="prop__status">Under Contract</span>
+      <!-- aria-hidden on the plate, not the stamp: the stamp is the one
+           carrying both lines, so it is the one the reader should get. -->
+      <span class="prop__status" aria-hidden="true">Under Contract</span>
+      <span class="prop__stamp"><b>Under Contract</b><i>&middot; Pre-Market &middot;</i></span>
       <div class="prop__body">
         <h3 class="prop__addr">1211 Carl Seyfert Memorial Dr<br>Brentwood, TN 37027</h3>
         <div class="prop__more"><div>
